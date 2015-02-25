@@ -1,0 +1,516 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>特殊申请单打印</title>
+	<link rel="stylesheet" type="text/css" href="./special_printview.css" />
+	<style>
+	</style>
+</head>
+<body class="jsy-body">
+	<div id="page">
+		<!-- 到期转投-委托书格式 -->
+		<div id="print-body">
+			<h2>委 托 书</h2>
+			<p class="text-right">
+				编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+			</p>
+			<p>
+				委托人：<span class="bind" data-bindtype="list"
+				data-member="customer.id" data-bindobject="customer"
+				data-displaymember="name"></span>
+			</p>
+			<p>
+				身份证号：<span class="bind" data-bindtype="value"
+				data-member="customer.id" data-bindobject="customer"
+				data-displaymember="credentialsNumber"></span>
+			</p>
+			<p>
+				住址：
+			</p>
+			<p></p>
+			<p>
+				受托人：<span class="bind" data-bindtype="value" data-member="fundName"></span>
+			</p>
+			<p>
+				注册地址：：<span class="bind" data-bindtype="value"
+				data-member="incAddress"></span>
+			</p>
+			<p>
+				执行事务合伙人：<span>深圳金赛银基金管理有限公司（王维奇）</span>
+			</p>
+			<br />
+			<p>鉴于：</p>
+			<p>
+				1，委托人与<span class="bind" data-bindtype="value" data-member="incName"></span>
+				签订一份《合伙协议》（编号：<span class="bind" data-bindtype="value"
+				data-member="xhtnh">xxxx</span>），约定委托人作为<span class="bind" data-bindtype="value"
+				data-member="fundname"></span>的有限合伙人，投资<span class="bind"
+				data-bindtype="list" data-bindobject="project"
+				data-member="project.id" data-displaymember="companyName"></span>，参与<span
+				class="bind" data-bindtype="list" data-bindobject="project"
+				data-member="project.id" data-displaymember="name"></span>的建设。
+			</p>
+			<p>
+				2，委托人原投资<span class="bind" data-bindtype="value"
+				data-member="fundname"></span>的投资期限于 <span class="bind"
+				data-bindtype="value" data-member="dqrq" data-format="localdate">
+			</span> 到期，投资款人民币<span class="bind" data-bindtype="value"
+			data-member="rgje" data-format="upmoney"></span>元整。
+		</p>
+		<p>委托事项如下：</p>
+		<p>
+			现委托人特委托受托人于上述款项到期时将本委托人投资款： 人民币 <span
+			class="bind" data-bindtype="value" data-member="ztje"
+			data-format="upmoney"></span>元整及收益：人民币<span class="bind"
+			data-bindtype="value" data-member="tzje" data-format="upmoney">xxx</span>元整
+			存入《合伙协议》中指定的<span class="bind" data-bindtype="value" data-member="fundname">xxxxx</span>
+			的募集账户，以履行该《合伙协议》。如由此引起纠纷，由委托人承担一切责任。
+		</p>
+		<br />
+		<p class="margin_right">委托人：</p>
+		<p class="margin_right">（签字并捺印）</p>
+		<p class="margin_right">日期：</p>
+		<p>受托人同意此委托事项。</p>
+		<p>
+			受托人：<span class="bind" data-bindtype="value" data-member="fundName"></span>
+		</p>
+		<p>负责人：</p>
+		<p>日期： 年 月 日</p>
+		
+	</div>
+	<!-- 委托书格式 结束 -->
+	<div style="PAGE-BREAK-AFTER: always"></div>
+
+	<!-- 未到期转投-退伙协议 (单GP） -->
+	<div id="print-body">
+		<h2>退 伙 协 议 （单GP)</h2>
+		<p class="text-right">
+			编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+		</p>
+		<p>
+			甲方：<span>深圳金赛银并购基金管理有限公司（自动生成）</span>
+			<p>
+				法定代表人：<span>王维奇</span>
+			</p>
+			<p>
+				地址：<span>深圳市罗湖区桂园街道宝安南路1036号鼎丰大厦923#（自动生成）</span>
+			</p>
+			<br />
+
+			<p>
+				乙方：<span></span>
+			</p>
+			<p>
+				身份证号码：<span></span>
+			</p>
+			<p>
+				住址：<span></span>
+			</p>
+			<br />
+
+			<p>鉴于：</p>
+			<p>
+				1、甲方为 <span class="bind" data-bindtype="value"
+				data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙） </span>
+				的普通合伙人与执行事务合伙人。
+			</p>
+			<!-- 原投资档案信息 -->
+			<p>
+				2、乙方于 <span data-bindtype="list" data-bindobject="investarchive"
+				data-member="oldArchivesId" data-displaymember="rgrq"
+				data-format="cndate"> 年 月 日</span>出资人民币<span data-bindtype="list"
+				data-bindobject="investarchive" data-member="oldArchivesId"
+				data-displaymember="tzje" data-format="upmoney">100</span>元整（小写：人民币<span
+				data-bindtype="list" data-bindobject="investarchive"
+				data-member="oldArchivesId" data-displaymember="tzje">100</span>元整），签订编号为
+				<span data-bindtype="value" data-member="htbh" >合同编号</span> 的 <span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>《合伙协议》（下称“合伙协议”），成为<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>
+				的有限合伙人。
+			</p>
+
+			<p>
+				现乙方由于自身原因，于 <span class="bind" data-bindtype="value"
+				data-member="scrq" data-format="cndate"> 年 月 日</span> 申请提前退出<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>，并且自愿将其在<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>中的投资款人民币<span
+				class="bind" data-bindtype="value" data-member="ztje"
+				data-format="upmoney">xxx</span>元整（小写：人民币<span class="bind"
+				data-bindtype="value" data-member="ztje">xxx</span>元整）转投至<span
+				class="bind" data-bindtype="value" data-member="newfundName">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>。根据《合伙协议》的约定，双方达成协议如下，供遵照执行。
+			</p>
+
+			<p>
+				<b>第一条</b> 经合伙人协商确定，同意乙方中途退出<span class="bind" data-bindtype="value"
+				data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>。并且乙方投资<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>的收益计算截止至<span
+				class="bind" data-bindtype="value" data-member="scrq"
+				data-format="cndate"> 年 月 日</span> 。（即批准转投申请之日）
+			</p>
+
+			<p>
+				第二条 双方确认，本协议签订后五个工作日内，<span class="bind" data-bindtype="value"
+				data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>将乙方的投资本金计人民币<span
+				class="bind" data-bindtype="value" data-member="ztje"
+				data-format="upmoney">xxx</span>元整（小写：人民币<span class="bind"
+				data-bindtype="value" data-member="ztje">xxx</span>元整）转至<span
+				class="bind" data-bindtype="value" data-member="newfundName">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>的募集账户，以及支付乙方投资<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>期间的收益至乙方在《合伙协议》中指定的个人账户，自此甲方及<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>均无需向乙方支付与<span
+				class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>有关的收益或其他款项。
+			</p>
+
+			<p>
+				第三条 乙方转投<span class="bind" data-bindtype="value"
+				data-member="newfundName">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>所享有的权利或承担的义务详见乙方与深圳金赛银基金管理有限公司签订的《合伙协议》相关条款。
+			</p>
+
+			<p>
+				第四条 本协议签订后，乙方即退出<span class="bind" data-bindtype="value"
+				data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>，不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。
+			</p>
+
+			<p>第五条 如履行本协议过程中发生争议，双方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
+
+			<p>第六条 本协议一式三份，甲方持两份，乙方持一份，自双方签字盖章之日起生效。</p>
+			<br />
+
+			<p>甲方：深圳金赛银并购基金管理有限公司</p>
+			<p>法定代表人：</p>
+			<p>签订日期： 年 月 日</p>
+			<br />
+
+			<p>乙方（签字并捺印）：</p>
+			<p>签订日期： 年 月 日</p>
+
+		</div>
+		<!-- 退伙协议 (单GP）-->
+
+		<div style="PAGE-BREAK-AFTER: always"></div>
+
+		<!-- 未到期转投-委托书 -->
+		<div id="print-body">
+			<h2>委 托 书</h2>
+			<p class="text-right">
+				编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+			</p>
+			<p>
+				委托人：<span class="bind" data-bindtype="list"
+				data-member="customer.id" data-bindobject="customer"
+				data-displaymember="name"></span>
+			</p>
+			<p>
+				身份证号：<span class="bind" data-bindtype="value"
+				data-member="customer.id" data-bindobject="customer"
+				data-displaymember="credentialsNumber"></span>
+			</p>
+			<p>
+				住址：
+			</p>
+			<p>
+				受托人：<span class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>
+			</p>
+			<p>
+				注册地址：：<span class="bind" data-bindtype="value"
+				data-member="incAddress">XXXXXXXXXX</span>
+			</p>
+			<p>
+				执行事务合伙人：<span>深圳金赛银基金管理有限公司（王维奇）</span>
+			</p>
+			<br />
+			<p>鉴于：</p>
+			<p>
+				1，委托人与<span class="bind" data-bindtype="value" data-member="incName">深圳金赛银基金管理有限公司</span>
+				拟签订一份《合伙协议》（编号：<span class="bind" data-bindtype="value"
+				data-member="xhtnh">xxxx</span>）），约定委托人作为<span class="bind" data-bindtype="value"
+				data-member="fundname">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>的有限合伙人，投资<span
+				class="bind" data-bindtype="list" data-bindobject="project"
+				data-member="project.id" data-displaymember="companyName">张家界大辉煌置业有限公司</span>，参与<span
+				class="bind" data-bindtype="list" data-bindobject="project"
+				data-member="project.id" data-displaymember="name">“张家界贺龙国际体育中心城市综合体”项目</span>的建设。
+			</p>
+			<p>
+				2，委托人于<span class="bind" data-bindtype="value" data-member="rgrq"
+				data-format="cndate"> 年 月 日</span> 投资于<span>
+				鞍山新城产业引导股权投资基金合伙企业</span>的投资款提前退出。
+			</p>
+			<p>委托事项如下：</p>
+			<p>
+				现委托人特委托受托人于本委托书签订之日后五个工作日内将本委托人投资款人民币<span
+				class="bind" data-bindtype="value" data-member="ztje"
+				data-format="upmoney">xxx</span>元整（小写：人民币<span class="bind"
+				data-bindtype="value" data-member="ztje">xxx</span>元整）转入《合伙协议》中指定的<span
+				class="bind" data-bindtype="value" data-member="newfundName">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>募集账户，以履行该《合伙协议 》。如由此引起纠纷，由委托人承担一切责任。
+			</p>
+			<br />
+			<p class="margin_right">委托人：</p>
+			<p class="margin_right">（签字并捺印）</p>
+			<p class="margin_right">日期：</p>
+			<p>受托人同意此委托事项。</p>
+			<p>
+				受托人：<span class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>
+			</p>
+			<p>负责人：</p>
+			<p>日期： 年 月 日</p>
+			
+		</div>
+		<!--委托书-->
+		<div style="PAGE-BREAK-AFTER: always"></div>
+
+		<!--退伙申请-退伙协议（单GP）-->
+		<div id="print-body">
+			<h2>退 伙 协 议 （单GP)</h2>
+			<p class="text-right">
+				编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+			</p>
+			<p>
+				甲方：<span>深圳金赛银并购基金管理有限公司（自动生成）</span>
+				<p>
+					法定代表人：<span>王维奇</span>
+				</p>
+				<p>
+					地址：<span>深圳市罗湖区桂园街道宝安南路1036号鼎丰大厦923#（自动生成）</span>
+				</p>
+				<br />
+
+				<p>
+					乙方：<span></span>
+				</p>
+				<p>
+					身份证号码：<span></span>
+				</p>
+				<p>
+					住址：<span></span>
+				</p>
+				<br />
+
+				<p>鉴于：</p>
+				<p>
+					1、甲方为 <span class="bind" data-bindtype="value"
+					data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙） </span>
+					的普通合伙人与执行事务合伙人。
+				</p>
+
+				<p>
+					1、甲方为 <span class="bind" data-bindtype="value"
+					data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙） </span>
+					的普通合伙人与执行事务合伙人。
+				</p>
+				<p>
+					2、乙方于 <span data-bindtype="list" data-bindobject="investarchive"
+					data-member="oldArchivesId" data-displaymember="rgrq"
+					data-format="cndate"> 年 月 日</span>出资人民币<span data-bindtype="list"
+					data-bindobject="investarchive" data-member="oldArchivesId"
+					data-displaymember="tzje" data-format="upmoney">100</span>元整（小写：人民币<span
+					data-bindtype="list" data-bindobject="investarchive"
+					data-member="oldArchivesId" data-displaymember="tzje">100</span>元整），签订编号为
+					<span class="bind" data-bindtype="value"
+				data-member="htnh">xxxx</span>的 <span
+					class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>《合伙协议》（下称“合伙协议”），成为<span
+					class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>
+					的有限合伙人。
+				</p>
+				<p>
+					现乙方由于自身原因，于 <span class="bind" data-bindtype="value"
+					data-member="scrq" data-format="cndate"> 年 月 日</span>申请提前退伙。根据《合伙协议》的约定，双方达成协议如下，供遵照执行。
+				</p>
+				<p>
+					第一条 经合伙人协商确定，同意乙方中途退出<span class="bind" data-bindtype="value"
+					data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>。
+				</p>
+				<p>
+					第二条 根据《合伙协议》第12.2.1.4约定，乙方应向<span class="bind"
+					data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>支付其本人投资总额的百分之一作为违约金，即<span
+					class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>有权从乙方的投资总额及收益中扣除违约金人民币
+					元整（小写：人民币 元整）。<span class="bind" data-bindtype="value"
+					data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>已支付乙方 年 月 日至
+					年 月 日投资期间的预期收益共计人民币 元整（大写：人民币 元整）。本协议签订之日后五个工作日内，除<span class="bind"
+					data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>需返还乙方投资款及预期收益共计人民币
+					元（小写：人民币 整）至丙方指定的如下账户：账户名： ；开户行： ；账号： 外，甲方及<span class="bind"
+					data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>均无需向丙方支付任何收益或其他款项。
+				</p>
+				<p>
+					第三条 本协议签订后，丙方即退出<span class="bind" data-bindtype="value"
+					data-member="fundName">鞍山新城产业引导股权投资基金合伙企业(有限合伙)</span>，不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。丙方提前退出人民币30,000.00元整（大写：人民币叁万元整）投资款后，其向杭州金鸿安股权投资合伙企业（有限合伙）投资款仅为人民币100,000.00元整（大写：人民币壹拾万元整），仅享有杭州金鸿安股权投资合伙企业（有限合伙）壹拾万元人民币的基金份额以及相应权利。
+				</p>
+				<p>第四条 如履行本协议过程中发生争议，双方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
+				<p>第五条 本协议一式三份，甲方持两份，乙方持一份，自双方签字盖章之日起生效。</p>
+				<p>（以下无正文）</p>
+				<p>甲方：深圳金赛银并购基金管理有限公司</p>
+				<p>法定代表人：</p>
+				<p>签订日期： 年 月 日</p>
+				<p>乙方（签字并捺印）：</p>
+				<p>签订日期： 年 月 日</p>
+			</div>
+			<!--退伙申请-退伙协议（单GP）-->
+			<div style="PAGE-BREAK-AFTER: always"></div>
+
+			<!-- 委托付款  委托书-->
+			<div id="print-body">
+				<h2>付  款  委 托 书</h2>
+				<p class="text-right">
+					编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+				</p>
+				<p>
+					委托人：<span class="bind" data-bindtype="list"
+					data-member="customer.id" data-bindobject="customer"
+					data-displaymember="name"></span>
+				</p>
+				<p>
+					身份证号：<span class="bind" data-bindtype="value"
+					data-member="customer.id" data-bindobject="customer"
+					data-displaymember="credentialsNumber"></span>
+				</p>
+				<p>
+                     住址：
+				</P>
+				<p></p>
+				<!-- 循环输 受托人  有多个受托人时，以甲，乙丙丁代替占位符“ ” -->
+				<br>
+				<p>
+					受托人[占位符]：<span class="bind" data-bindtype="value" data-member="fundName">鞍山新城产业引导股权投资基金合伙企业（有限合伙）</span>
+				</p>
+				<p>
+					住址：<span class="bind" data-bindtype="value"
+					data-member="incAddress">XXXXXXXXXX</span>
+				</p>
+				<!-- 单个受托人信息 -->
+				<!-- 机构模板 -->
+
+				<p> 
+					受托人：
+				</p>
+				<p>
+					法定代表人:
+				</p>
+				<p>
+					注册号:
+				</p>
+				<!-- 机构模板 -->
+
+				<!-- 个人模板 -->
+				<p> 
+					受托人：
+				</p>
+				<p>
+					身份证号:
+				</p>
+				<p> 
+					住址：
+				</p>
+				<!-- 个人模板 -->
+
+				<!-- 单个受托人信息 -->
+				<!-- 循环输 受托人 -->
+				<br />
+				<p>鉴于：</p>
+				<p>
+					委托人与<span class="bind" data-bindtype="value" data-member="incName">深圳金赛银基金管理有限公司</span>
+					签订一份《合伙协议》（编号：<span class="bind" data-bindtype="value"
+				data-member="htbh">xxxx</span>），约定委托人作为<span class="bind" data-bindtype="value"
+					data-member="fundname">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>的有限合伙人，出资人民币<span
+					class="bind" data-bindtype="value" data-member="ztje"
+					data-format="upmoney">xxx</span>元整，
+					投资<span
+					class="bind" data-bindtype="list" data-bindobject="project"
+					data-member="project.id" data-displaymember="name">“张家界贺龙国际体育中心城市综合体”项目</span>。
+				</p>
+				<p>委托事项如下：</p>
+
+				<p>
+					委托人现委托
+				<!-- 循环输出付款人  有多个受托人时，以甲，乙丙丁代替占位符“ ” -->
+					受托人 <!-- 占位符--> 于    年   月   日代为支付投资款     元整，                
+
+				<!-- 循环输出付款人 -->					
+					至《合伙协议》中指定的 <span class="bind" data-bindtype="value" data-member="newfundName">张家界金赛银旅游文化产业发展引导基金企业（有限合伙）</span>开设的募集账户（如下），以履行该《合伙协议》。如由此引起纠纷，由委托人承担一切责任。
+				</p>
+				<!-- 循环输出付款人 -->
+				<p class="margin_right">委托人（签字并捺印）：;</p>
+				<p class="margin_right">日期：</p>
+				<p>受托人同意此委托事项。</p>
+
+                <!-- 循环输 受托人 和之前的一样  -->
+				<p>
+					受托人：（签字并捺印）
+				</p>
+				<p>日期： 年 月 日</p>
+
+				<!-- 循环输 受托人  -->
+			</div>
+			<!-- 委托付款 -->
+
+			<!-- 续投补充协议 -->
+
+			<div id="print-body">
+				<h2 class="bind" data-bindtype="value" data-member="fundName"><span class="Bind" datA-BINDTYPE="VALUE" DATA-MEMBER="FUNDNAME">《金赛银理财财富一号（FOF）基金理财计划》</SPAN></h2>
+				<h2>之补充协</h2>
+				<p class="text-right">
+					编号：<span class="bind" data-bindtype="value" data-member="number"></span>
+				</p>
+				<p>
+					甲方：<span>深圳金赛银并购基金管理有限公司（自动生成）</span></>
+					<p>
+						法定代表人：<span>王维奇</span>
+					</p>
+					<p>
+						地址：<span>深圳市罗湖区桂园街道宝安南路1036号鼎丰大厦923#（自动生成）</span>
+					</p>
+					<br />
+
+					<p>
+						乙方：<span></span>
+					</p>
+					<p>
+						身份证号码：<span></span>
+					</p>
+					<p>
+						住址：<span></span>
+					</p>
+					<br />
+
+					<p>鉴于：</p>
+
+					<p >1. 甲乙双方签订编号为<span data-bindtype="list" data-bindobject="investarchive" data-member="oldArchivesId" data-displaymember="">档案编号</span>的<span class="Bind" datA-BINDTYPE="VALUE" DATA-MEMBER="FUNDNAME">《金赛银理财财富一号（FOF）基金理财计划》</SPAN>（下称“原协议”），乙方并于<span class="bind" data-bindtype="value" data-member="xtsqrq" data-format="cndate"> 年 月 日</span>，向深圳金赛银并购投资基金企业（有限合伙）（下称“合伙企业”）投资人民币<span class="bind" data-bindtype="value" data-member="ztje" data-format="upmoney">xxx</span> 元整，用于<span class="bind" data-bindtype="value" data-member="newfundName">合伙企业发起设立的股权/债券投资基金</span>。
+					</P> 
+					<p>
+						2. 乙方申请原协议约定的投资期限届满后，继续投资于<span class="bind" data-bindtype="value" data-member="newfundName">合伙企业发起设立的股权/债券投资基金</span>。
+
+						鉴于此，甲乙双方为维护各自合法权益，经友好协商，特订立如下补充协议。
+					</p>
+					<p>
+						第一条 根据原协议约定，原投资期限届满，合伙企业应向乙方返还投资本金并分配预期收益。现因乙方申请在原投资期限届满后继续投资于合伙企业，双方确认：
+					</p>
+					<p>
+						□ 全部投资款续投。合伙企业于投资期限届满后仅需将乙方原预期收益汇入乙方在原协议中指定的收款账户，而无需返还原协议约定的投资本金，原协议约定的投资本金于期满后将直接投资于续期的合伙企业中。 
+					</p><p>
+					□ 全部投资款续投，收益续投。原投资期限届满后合伙企业无需返还原协议约定的投资本金及预期收益，原协议约定的投资本金及预期收益于期满后将直接投资于续期的合伙企业中。 
+				</p>
+				<p>
+					□ 全部投资款续投，追加投资款。合伙企业于投资期限届满后仅需将乙方原预期收益汇入乙方在原协议中指定的收款账户，而无需返还原协议约定的投资本金，原协议约定的投资本金于期满后将直接投资于续期的合伙企业中。此外，乙方追加投资款人民币 <span class="bind" data-bindtype="value" data-member="zjtzje" data-format="upmoney">xxx</span>元整。
+				</p>
+				<p>
+					□ 全部投资款续投，收益续投，追加投资款。原投资期限届满后合伙企业无需返还原协议约定的投资本金及预期收益，原协议约定的投资本金及预期收益于期满后直接投资于续期的合伙企业中。此外，乙方追加投资款人民币<span class="bind" data-bindtype="value" data-member="zjtzje" data-format="upmoney">xxx</span>元整。
+				</p>
+				<p>
+					□ 部分投资款续投。合伙企业于投资期限届满后仅需将乙方原预期收益及部分投资本金人民币<span class="bind" data-bindtype="value" data-member="xtbje" data-format="upmoney">xxx</span> 元整汇入乙方在原协议中指定的收款账户，剩余部分投资本金人民币<span class="bind" data-bindtype="value" data-member="xtbje" data-format="upmoney">xxx</span>元整期满后将直接投资于续期的合伙企业中。
+					第二条 甲乙双方在此确定乙方新的投资期限为    天，<span class="bind" data-bindtype="value" data-member="xtjxrq" data-format="cndate"> 年 月 日</span>起至<span class="bind" data-bindtype="value" data-member="xtdqrq" data-format="cndate"> 年 月 日</span>止，投资本金为人民币<span class="bind" data-bindtype="value" data-member="ztzje" data-format="upmoney">xxx</span>  元整，预期年化收益率为<span class="bind" data-bindtype="value" data-member="xtyqsyl" data-format="rate">xxx</span> 。
+				</p>
+				<p>
+					第三条 本补充协议自双方签字盖章之日起生效。本协议作为原协议的补充，与原协议具有同等法律效力。原协议与本补充协议有不同的约定，以本补充协议为准。
+					第四条 本补充协议壹式叁份，甲乙双方各执壹份，合伙企业存档壹份，叁份补充协议具有同等法律效力。
+				</p>
+
+				<p>甲方：深圳金赛银并购基金管理有限公司</p>
+				<p>法定代表人：</p>
+				<p>签订日期： 年 月 日</p>
+				<br />
+
+				<p>乙方（签字并捺印）：</p>
+				<p>签订日期： 年 月 日</p>
+			</div>
+
+			<!-- 续投补充协议 -->
+		</body>
+		</html>

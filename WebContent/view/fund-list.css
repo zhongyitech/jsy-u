@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+.total-table{
+	width: 100%;
+	border-collapse: inherit;
+	border-spacing: 3px;
+}
+
+.total-table td{
+	width: 120px;
+	height: 70px;
+	border: 1px solid #cccccc;
+}
+
+.fund-total-item-label{
+	margin: 12px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.fund-total-item-value{
+	margin: 12px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
+	color: #dede33;
+}
+
+.fund-report{
+	width: 1200px;
+	height: 400px;
+	margin: 12px auto 0px auto;
+	padding: 0px 0px 0px 0px;
+	border: 1px solid #cccccc;
+}
+
+.tcalInput {
+	background: url('../image/cal_32.png') 100% 50% no-repeat;
+	background-color: #ffffff;
+}

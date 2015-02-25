@@ -1,0 +1,36 @@
+﻿#print-body h2{
+    font-size:22px;
+    text-align:center;
+}
+body{
+    margin:0px;
+    padding:0px;
+}
+#print-body{
+    font-family:'宋体';
+    padding:70px;
+    padding-top:30px;
+}
+#page{
+    width:750px;
+    border:1px dashed #808080;
+    margin:auto;
+    padding:0px;
+}
+#print-body span{
+    text-decoration:underline;
+    margin:0px 6px;
+}
+#print-body p{
+   text-indent:2em;
+   line-height:2em;
+   margin-top:0px;
+   margin-bottom:0px;
+}
+
+.margin_right{
+    margin-left:370px;
+}
+.text-right{
+    text-align:right;
+}

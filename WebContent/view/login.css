@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+
+.login-body{
+	background: #eeeeee url(../images/noise.png);
+	font-family: 微软雅黑;
+}
+
+.jsy-body{
+	background: #ffffff url(../images/noise.png);
+	font-family: 微软雅黑!important;
+}
+
+.login-div{
+	width: 320px;
+	margin: 168px auto;
+}
+
+.login-img{
+	width: 24px;
+	height: 24px;
+	padding: 8px;
+}
+
+.login-title{
+	font-weight: bold;
+	font-family: 微软雅黑;
+}
+
+.login-dialog{
+	width: 320px;
+}
+
+.logo-text{
+	font-weight: bold;
+}
+
+.logo-image{
+	vertical-align: middle;
+}
+
+.page-view{
+	min-height: 640px
+}
+
+.view-width{
+	width: 1200px;
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+.keyword-view{
+	line-height: 30px;
+	padding: 4px;
+}
+
+.keyowrd-icon{
+	color: #3a4049;
+}
+
+.keyword-input{
+	font-family: cursive;
+}
+
+.keyword-input-width{
+	width: 200px;
+}
+
+.keyword-button{
+	height: 32px;
+}
+
+.table td{
+	padding: 6px 3px;
+}
+
+.table th{
+	background: #2381e9;
+	color: #fff;
+	font-weight: bold;
+}
+
+.page-bar{
+	height: 34px;
+	padding-left: 3px;
+	margin-bottom: 12px;
+}
+
+.page-number{
+	margin-left: 1px!important;
+}
+
+.funds-pages{
+	width: 1085px;
+}
+
+.content-box-header{
+	font-weight: bold;
+}
+
+.opacity-70{-moz-opacity:.7;filter:alpha(opacity:70);opacity:.7}
+
+.ui-dialog-title{
+	font-weight: bold;
+}
+

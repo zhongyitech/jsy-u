@@ -1,0 +1,18 @@
+#example-box {
+	position: relative;
+	padding-top: 25px
+}
+
+#cash-report {
+	height: 450px;
+}
+
+.filter-status{
+	width: 120px;
+	margin-right: 45px;
+}
+
+.filter-input{
+	width: 120px;
+	background-color: #ffffff;
+}

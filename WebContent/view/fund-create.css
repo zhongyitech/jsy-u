@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+.tcalInput {
+	background: url('../image/cal_32.png') 100% 50% no-repeat;
+	background-color: #ffffff;
+}
+
+.display-inline{
+	display: inline;
+}
+
+.tzqx-view{
+	width: 450px
+}
+
+.width-12-12{
+	width: 100%;
+	float: left;
+}
+
+.width-12-6{
+	width: 50%;
+	float: left;
+}
+
+.mrg6{
+	margin: 6px;
+}
+
+.mrg6L{
+	margin-left: 6px;
+}
+
+.mrg6R{
+	margin-right: 6px;
+}
+
+.form-input select{
+	padding-left: 6px;
+}

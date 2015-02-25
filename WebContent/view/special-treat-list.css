@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.form-input .form-label {
+	padding: 5px 15px !important;
+}
+
+.special-status {
+	width: 150px !important;
+}
+
+.jsy_black_overlay {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 5;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity = 80);
+}
+
+.jsy_white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 100%;
+	padding: 16px;
+	border: 16px solid rgb(32, 63, 97);
+	background-color: white;
+	z-index: 6;
+	overflow: auto;
+}
+
+.jsy_light {
+	height: 150px;
+}

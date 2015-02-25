@@ -1,0 +1,78 @@
+.invest-number{
+	display: inline-block!important;
+	width: 120px;
+}
+
+@media print {
+	.clearfix{ display:none!important;}
+	.scrollable-content{ display:none!important; }
+	.box-toggle{ display:none!important; }
+	.pad25T{padding-top: 0px!important;}
+	
+	#page-content{padding-top: 0px!important;}
+	#page-content-wrapper{
+		margin-left: 0px!important;
+		margin-top: -54px!important;
+	}
+	#print-list{ display: block!important; }
+}
+
+#print-list{  display: none;  }
+
+.print-page{
+	width: 600px;
+    height: 900px;
+    font-family: '宋体',Verdana;
+    /* font-size: 20px; */
+    margin: 0 auto;
+    margin-bottom: 90px;
+    /* border: 2px dashed #000000; */
+}
+
+.print-head{
+	width: 100%;
+	height: 60px;
+}
+
+.print-number{
+	font-size: 9px;
+	font-weight: bold;
+	line-height: 32px;
+	float: right;
+}
+
+.print-title{
+	height: 90px;
+	text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.print-section {
+	text-indent: 2em;
+}
+
+.print-content{
+	height: 600px;
+	font-size: 22px;
+	line-height: 45px;
+	color: #000000;
+}
+
+.print-underline{
+	text-decoration: underline;
+}
+
+.print-bottom{
+	font-size: 22px;
+	line-height: 45px;
+	color: #000000;
+}
+
+.print-bottom a{
+	color: #000000;
+}
+
+.print-right{
+	text-align:right;
+}

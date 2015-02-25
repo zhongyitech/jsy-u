@@ -1,0 +1,111 @@
+@media print {
+	.clearfix{ display:none!important;}
+	.scrollable-content{ display:none!important;}
+}
+
+.print-page{
+	width: 500px;
+    height: 720px;
+    font-family: '宋体',Verdana;
+    margin: 0 auto;
+    margin-bottom: 90px;
+    padding: 0px 32px;
+    border: 2px dashed #000000;
+    color: #000000;
+}
+
+.print-head{
+	width: 100%;
+	height: 60px;
+}
+
+.print-number{
+	font-size: 9px;
+	font-weight: bold;
+	line-height: 32px;
+	float: right;
+}
+
+.print-title{
+	height: 60px;
+	text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.print-section {
+	text-indent: 2em;
+}
+
+.print-content{
+	height: 500px;
+	font-size: 18px;
+	line-height: 32px;
+	color: #000000;
+}
+
+.print-underline{
+	text-decoration: underline;
+}
+
+.print-bottom{
+	font-size: 18px;
+	line-height: 32px;
+	color: #000000;
+}
+
+.print-bottom a{
+	color: #000000;
+}
+
+.print-right{
+	text-align:right;
+}
+
+.form-wizard input{
+	height: 24px!important;
+	padding-left: 6px!important;
+	padding-right: 6px!important;
+}
+
+.form-wizard select{
+	height: 24px!important;
+	padding-left: 6px!important;
+}
+
+.form-wizard input[type=file]{
+	height: 24px!important;
+	padding-left: 0px!important;
+}
+
+.attachment-div{
+	display: inline-block;
+	margin-right: 12px;
+	margin-bottom: 12px;
+	height: 200px;
+	width: 245px;
+	border: 1px #cccccc solid;
+	text-align: center;
+}
+
+.attachment-i{
+	line-height: 196px;
+}
+
+.attachment-img{
+	max-height: 190px;
+	max-width: 230px;
+	vertical-align: middle;
+}
+
+.gltc-bl{
+	width: 60px;
+}
+
+.bank-name{
+	width: 120px;
+}
+
+.bank-number{
+	width: 120px;
+}
