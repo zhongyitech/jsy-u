@@ -7,7 +7,7 @@ var FLOW={
 
     file: FILE,
 
-    stepPanels:["panel_gatherInfo","panel_gatheerOA","panel_research","panel_researchOA","panel_meeting","panel_otherEA","panel_addCompany","panel_makeContact","panel_makeContactOA"],
+    stepPanels:["panel_gatherInfo","panel_gatherOA","panel_research","panel_researchOA","panel_meeting","panel_otherEA","panel_addCompany","panel_makeContact","panel_makeContactOA"],
 
     //panel_gatherInfo
     certificateFiles_attachments: [],
@@ -51,7 +51,7 @@ var FLOW={
                 me.init_gatherInfo(rest_result.gatherInfoBean);
             }
             if(rest_result.gatherOABean){
-                me.init_gatherOA();
+                me.init_gatherOA(rest_result.gatherOABean);
             }
             if(rest_result.researchBean){
                 me.init_research();
@@ -306,13 +306,30 @@ var FLOW={
 
 
         //处理显示效果
-        console.log("showing gatherInfo");
-        //开始加载该模块的数据
         if(gatherInfoBean.accessable){//可以编辑
-
+            console.log("can modify gatherInfo");
         }else{//不可以编辑
-
+            console.log("can not modify gatherInfo");
         }
+        $("#panel_gatherOA").show();
+    },
+
+
+    init_gatherOA: function(gatherOABean){
+        var me = this;
+        //初始化事件
+
+
+        //加载数据
+
+
+        //处理显示效果
+        if(gatherOABean.accessable){//可以编辑
+            console.log("can modify gatherOA");
+        }else{//不可以编辑
+            console.log("can not modify gatherOA");
+        }
+
         $("#panel_gatherInfo").show();
     },
 
