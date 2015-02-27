@@ -76,7 +76,7 @@
                             <div class="page-header">
                                 <h3>步骤1.1：资料采集（项目部负责并填写）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
+                            <form class="form-bordered " action="/" method="post" id="form_gatherInfo">
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 项目证照：</label>
@@ -157,14 +157,6 @@
 
                                 <div class="form-row">
                                     <div>
-
-                                        <table class="item-table" id="fileupdate">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-left"></th>
-                                            </tr>
-                                            </thead>
-                                        </table>
                                         <div id="others_files">
                                             <div id="exist_others">
 
@@ -234,15 +226,19 @@
                                     </div>
 
                                     <div class="form-input col-md-2">
-                                        <input class="input-file" name="attachment" type="file">
+                                        <div >
+                                            <ul id="exist_lowFiles">
+                                            </ul>
+                                        </div>
+                                        <input id="lowFiles" class="input-file" name="attachment" type="file">
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        <textarea id="lowDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
+                                        <textarea id="lowDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -250,15 +246,19 @@
                                         <label for="">(*) 项目进调报告：</label>
                                     </div>
                                     <div class="form-input col-md-2">
-                                        <input class="input-file" name="attachment" type="file">
+                                        <div >
+                                            <ul id="exist_projectFiles">
+                                            </ul>
+                                        </div>
+                                        <input id="projectFiles" class="input-file" name="attachment" type="file">
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        <textarea id="projectDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
+                                        <textarea id="projectDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -266,36 +266,43 @@
                                         <label for="">财务报告：</label>
                                     </div>
                                     <div class="form-input col-md-2">
-                                        <input class="input-file" name="attachment" type="file">
+                                        <div >
+                                            <ul id="exist_finanFiles">
+                                            </ul>
+                                        </div>
+                                        <input id="finanFiles" class="input-file" name="attachment" type="file">
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        <textarea id="finanDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <textarea name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
+                                        <textarea id="finanDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
                                     </div>
                                 </div>
 
 
                                 <div class="form-row">
                                     <div>
-                                        <table class="item-table" >
-                                            <thead>
-                                            <tr>
-                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left">
-                                                    <input class="input-file" name="attachment" type="file">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="form-input col-md-10" >
+                                        <div id="research_others_files">
+                                            <div id="exist_research_others">
+
+                                            </div>
+                                            <div>
+                                                <div class="form-input col-md-10">
+                                                    <input type="button" id="research_add_file" value="添加其他文件" style="width: 100px;">
+                                                </div>
+                                                <div class="form-input col-md-4">
+                                                    <input id="research_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                                </div>
+                                                <div class="form-input col-md-4">
+                                                    <textarea id="research_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                                </div>
+                                                <div class="form-input col-md-4">
+                                                    <textarea id="research_attachment2_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -303,7 +310,7 @@
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" >提交</span>
+                                            <span class="button-content" id="complete_research">提交</span>
                                         </button>
                                     </div>
                                 </div>
@@ -344,34 +351,43 @@
                                 <h3>步骤1.5：投决会（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
                             <form class="form-bordered " action="/" method="post">
+
                                 <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">会议纪要：</label>
+                                    <div class="form-label col-md-2">
+                                        <label for="">(*) 会议纪要：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
+                                        <div >
+                                            <ul id="exist_meetingFiles">
+                                            </ul>
+                                        </div>
+                                        <input id="meetingFiles" class="input-file" name="attachment" type="file" multiple>
+                                    </div>
+                                    <div class="form-input col-md-6">
+                                        <textarea id="meetingDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                     </div>
                                 </div>
 
 
                                 <div class="form-row">
                                     <div>
-                                        <table class="item-table" >
-                                            <thead>
-                                            <tr>
-                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left">
-                                                    <input class="input-file" name="attachment" type="file">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="form-input col-md-10" >
+                                        <div id="meeting_others_files">
+                                            <div id="meeting_exist_others">
+
+                                            </div>
+                                            <div>
+                                                <div class="form-input col-md-10">
+                                                    <input type="button" id="meeting_add_file" value="添加其他文件" style="width: 100px;">
+                                                </div>
+                                                <div class="form-input col-md-4">
+                                                    <input id="meeting_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                                </div>
+                                                <div class="form-input col-md-6">
+                                                    <textarea id="meeting_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <br />

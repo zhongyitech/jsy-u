@@ -17,6 +17,12 @@ var FLOW={
     businessPlanFiles_attachments: [],
     other_attachments: [],
 
+    //research
+    lowFiles_attachments: [],
+    projectFiles_attachments: [],
+    finanFiles_attachments: [],
+    research_other_attachments: [],
+
     gatherOA:"#panel_gatherOA",
     research:"#panel_research",
     researchOA:"#panel_researchOA",
@@ -54,25 +60,25 @@ var FLOW={
                 me.init_gatherOA(rest_result.gatherOABean);
             }
             if(rest_result.researchBean){
-                me.init_research();
+                me.init_research(rest_result.researchBean);
             }
             if(rest_result.researchOABean){
-                me.init_researchOA();
+                me.init_researchOA(rest_result.researchOABean);
             }
             if(rest_result.meetingBeans){
-                me.init_meeting();
+                me.init_meeting(rest_result.meetingBeans);
             }
             if(rest_result.otherEABean){
-                me.init_otherEA();
+                me.init_otherEA(rest_result.otherEABean);
             }
             if(rest_result.addCompanyBean){
-                me.init_addCompany();
+                me.init_addCompany(rest_result.addCompanyBean);
             }
             if(rest_result.makeContactBean){
-                me.init_makeContact();
+                me.init_makeContact(rest_result.makeContactBean);
             }
             if(rest_result.makeContactOABean){
-                me.init_makeContactOA();
+                me.init_makeContactOA(rest_result.makeContactOABean);
             }
 
         },function(result){
@@ -169,20 +175,15 @@ var FLOW={
                 other_attachments: me.other_attachments
             };
 
-            me.post_complete_gather(model);
+            me.post_complete('/api/project/complete_gather', model);
 
         });
 
-        //加载数据
+        /***加载数据***/
         //项目证照
         if(gatherInfoBean.certificateFiles_attachments && gatherInfoBean.certificateFiles_attachments.length > 0){
             $.each(gatherInfoBean.certificateFiles_attachments,function(index,obj){
-                var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                fileli.append(delspan);
-                delspan.click(function () {
-                    console.log("del",obj.fileName,obj.filePath);
-                });
+                var fileli= me._construct_fileli(obj);
                 
                 $("#exist_certificateFiles").append(fileli);
             });
@@ -194,12 +195,7 @@ var FLOW={
         if(gatherInfoBean.debtFiles_attachments && gatherInfoBean.debtFiles_attachments.length > 0){
             $.each(gatherInfoBean.debtFiles_attachments,function(index,obj){
 
-                var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                fileli.append(delspan);
-                delspan.click(function () {
-                    console.log("del",obj.fileName,obj.filePath);
-                });
+                var fileli= me._construct_fileli(obj);
 
                 $("#exist_debtFiles").append(fileli);
             });
@@ -210,12 +206,7 @@ var FLOW={
         //财务报表
         if(gatherInfoBean.financialFiles_attachments && gatherInfoBean.financialFiles_attachments.length > 0){
             $.each(gatherInfoBean.financialFiles_attachments,function(index,obj){
-                var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                fileli.append(delspan);
-                delspan.click(function () {
-                    console.log("del",obj.fileName,obj.filePath);
-                });
+                var fileli= me._construct_fileli(obj);
 
                 $("#exist_financialFiles").append(fileli);
             });
@@ -226,33 +217,18 @@ var FLOW={
         //对公批文
         if(gatherInfoBean.toPublicFiles_attachments && gatherInfoBean.toPublicFiles_attachments.length > 0){
             $.each(gatherInfoBean.toPublicFiles_attachments,function(index,obj){
-                var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                fileli.append(delspan);
-                delspan.click(function () {
-                    console.log("del",obj.fileName,obj.filePath);
-                });
+                var fileli= me._construct_fileli(obj);
                 $("#exist_toPublicFiles").append(fileli);
             });
         }
         if(gatherInfoBean.toPublicFilesDesc){
-            var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-            var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-            fileli.append(delspan);
-            delspan.click(function () {
-                console.log("del",obj.fileName,obj.filePath);
-            });
+            var fileli= me._construct_fileli(obj);
             $("#toPublicFilesDesc").val(fileli);
         }
         //商务计划
         if(gatherInfoBean.businessPlanFiles_attachments && gatherInfoBean.businessPlanFiles_attachments.length > 0){
             $.each(gatherInfoBean.businessPlanFiles_attachments,function(index,obj){
-                var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                fileli.append(delspan);
-                delspan.click(function () {
-                    console.log("del",obj.fileName,obj.filePath);
-                });
+                var fileli= me._construct_fileli(obj);
                 $("#exist_businessPlanFiles").append(fileli);
             });
         }
@@ -278,6 +254,7 @@ var FLOW={
                 appenddiv.append(filediv);
                 var descdiv = $('<div class="form-input col-md-6">');
                 var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+                descarea.val(obj.desc);
                 descdiv.append(descarea);
 
 
@@ -298,7 +275,6 @@ var FLOW={
                     ul.append(fileli);
                 });
 
-                descarea.val(obj.pdesc);
             });
         }
 
@@ -309,18 +285,34 @@ var FLOW={
         if(gatherInfoBean.accessable){//可以编辑
             console.log("can modify gatherInfo");
         }else{//不可以编辑
+            $("input[name='attachment']","#form_gatherInfo").hide();
+
+            $("textarea[name='input_text']","#form_gatherInfo").attr('readonly','readonly');
+            $('textarea','#others_files').filter(function() { return $(this).val() == ""; }).hide();
+            $("#gatherInfo_add_file").hide();
+
             console.log("can not modify gatherInfo");
         }
-        $("#panel_gatherOA").show();
+        $("#panel_gatherInfo").show();
+
     },
 
+    _construct_fileli: function(obj){
+        var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj.fileName+"&path="+obj.filePath+"'>"+obj.fileName+"</li>");
+        var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+        fileli.append(delspan);
+        delspan.click(function () {
+            console.log("del",obj.fileName,obj.filePath);
+        });
+        return fileli;
+    },
 
     init_gatherOA: function(gatherOABean){
         var me = this;
         //初始化事件
 
 
-        //加载数据
+        /***加载数据***/
 
 
         //处理显示效果
@@ -330,8 +322,289 @@ var FLOW={
             console.log("can not modify gatherOA");
         }
 
-        $("#panel_gatherInfo").show();
+        $("#panel_gatherOA").show();
     },
+
+    init_research: function(researchBean){
+        var me = this;
+        //初始化事件
+        $("#lowFiles").change(function() {
+            me.lowFiles_attachments = me.file.upload($(this)[0].files);
+        });
+        $("#projectFiles").change(function() {
+            me.projectFiles_attachments = me.file.upload($(this)[0].files);
+        });
+        $("#finanFiles").change(function() {
+            me.finanFiles_attachments = me.file.upload($(this)[0].files);
+        });
+        $("#research_attachment_1").change(function() {
+            me.research_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+        });
+
+        $("#research_add_file").click(function () {
+            var i =$("div .input-file","#research_others_files").length+1;
+            var others_files = $("#research_others_files");
+
+            var appenddiv = $("<div>");
+            var filediv = $('<div class="form-input col-md-4">');
+            var fileinput = $('<input id="attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
+            filediv.append(fileinput);
+            appenddiv.append(filediv);
+            var descdiv = $('<div class="form-input col-md-4">');
+            var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            descdiv.append(descarea);
+            appenddiv.append(descdiv);
+
+            var descdiv2 = $('<div class="form-input col-md-4">');
+            var descarea2 = $('<textarea id="attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            descdiv2.append(descarea2);
+            appenddiv.append(descdiv2);
+
+            others_files.append(appenddiv);
+
+            fileinput.change(function () {
+                me.research_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+            });
+        });
+
+
+        $("#complete_research").click(function(){
+            var lowDesc= $("#lowDesc").val();
+            var lowDesc2= $("#lowDesc2").val();
+            var projectDesc= $("#projectDesc").val();
+            var projectDesc2= $("#projectDesc2").val();
+            var finanDesc= $("#finanDesc").val();
+            var finanDesc2= $("#finanDesc2").val();
+
+
+            $.each(me.other_attachments, function( index, attachment ) {
+                attachment.desc=$("#attachment_txt_"+attachment.index).val();
+                attachment.desc2=$("#attachment2_txt_"+attachment.index).val();
+            });
+
+            var model = {
+                projectid:me.projectid,
+
+                lowDesc:lowDesc,
+                projectDesc:projectDesc,
+                finanDesc:finanDesc,
+                lowDesc2:lowDesc2,
+                projectDesc2:projectDesc2,
+                finanDesc2:finanDesc2,
+
+
+                lowFiles_attachments: me.lowFiles_attachments,
+                projectFiles_attachments: me.projectFiles_attachments,
+                finanFiles_attachments: me.finanFiles_attachments,
+                research_other_attachments: me.research_other_attachments
+            };
+
+            me.post_complete('/api/project/complete_research', model);
+
+        });
+
+        /***加载数据***/
+        //法律进调报告
+        if(researchBean.lawTransfer && researchBean.lawTransfer.length > 0){
+            $.each(researchBean.lawTransfer,function(index,obj){
+                var fileli= me._construct_fileli(obj);
+
+                $("#exist_lowFiles").append(fileli);
+            });
+        }
+        if(researchBean.lawTransfer_pdesc) {
+            $("#lowDesc").val(researchBean.lawTransfer_pdesc);
+        }
+        if(researchBean.lawTransfer_pdesc2) {
+            $("#lowDesc2").val(researchBean.lawTransfer_pdesc2);
+        }
+
+        //项目进调报告
+        if(researchBean.projectTransfer && researchBean.projectTransfer.length > 0){
+            $.each(researchBean.projectTransfer,function(index,obj){
+                var fileli= me._construct_fileli(obj);
+                $("#exist_projectFiles").append(fileli);
+            });
+        }
+        if(researchBean.lawTransfer_pdesc) {
+            $("#projectDesc").val(researchBean.projectTransfer_pdesc);
+        }
+        if(researchBean.lawTransfer_pdesc2) {
+            $("#projectDesc2").val(researchBean.projectTransfer_pdesc2);
+        }
+
+        //财务报告
+        if(researchBean.financialReport && researchBean.financialReport.length > 0){
+            $.each(researchBean.projectTransfer,function(index,obj){
+                var fileli= me._construct_fileli(obj);
+                $("#exist_finanFiles").append(fileli);
+            });
+        }
+        if(researchBean.financialReport_pdesc) {
+            $("#finanDesc").val(researchBean.financialReport_pdesc);
+        }
+        if(researchBean.financialReport_pdesc2) {
+            $("#finanDesc2").val(researchBean.financialReport_pdesc2);
+        }
+
+
+        //other
+        if(researchBean.other_attachments && researchBean.other_attachments.length > 0){
+            //empty
+
+            //add
+            $.each(researchBean.other_attachments,function(index,obj){
+
+                var i =$("div .input-file","#others_files").length+1;
+                var others_files = $("#exist_others");
+
+                var appenddiv = $("<div>");
+                var filediv = $('<div class="form-input col-md-4">');
+                var div = $('<div>');
+                var ul = $('<ul>');
+                div.append(ul);
+                filediv.append(div);
+                appenddiv.append(filediv);
+
+                var descdiv = $('<div class="form-input col-md-4">');
+                var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+                descarea.val(obj.desc);
+                descdiv.append(descarea);
+
+                var descdiv2 = $('<div class="form-input col-md-4">');
+                var descarea2 = $('<textarea id="attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+                descarea2.val(obj.desc2);
+                descdiv.append(descarea2);
+
+
+                var deldiv = $('<div class="form-input col-md-2">');
+                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+                delspan.click(function () {
+                    console.log("del",obj);
+                });
+                deldiv.append(delspan);
+
+                appenddiv.append(descdiv);
+                appenddiv.append(deldiv);
+
+                others_files.append(appenddiv);
+
+                $.each(obj.files,function(index2,obj2){
+                    var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
+                    ul.append(fileli);
+                });
+
+            });
+        }
+
+        /****处理显示效果****/
+        if(researchBean.accessable){//可以编辑
+            console.log("can modify research");
+        }else{//不可以编辑
+            console.log("can not modify research");
+        }
+
+        $("#panel_research").show();
+    },
+
+
+    init_researchOA: function(researchOABean){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(researchOABean.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_researchOA").show();
+    },
+
+    init_meeting: function(meetingBeans){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(meetingBeans.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_meeting").show();
+    },
+
+    init_otherEA: function(otherEABean){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(otherEABean.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_otherEA").show();
+    },
+
+    init_addCompany: function(addCompanyBean){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(addCompanyBean.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_addCompany").show();
+    },
+
+    init_makeContact: function(makeContactBean){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(makeContactBean.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_makeContact").show();
+    },
+
+
+    init_makeContactOA: function(makeContactOABean){
+        var me = this;
+        /***初始化事件***/
+
+        /***加载数据***/
+
+        /****处理显示效果****/
+        if(makeContactOABean.accessable){//可以编辑
+            console.log("can modify researchOA");
+        }else{//不可以编辑
+            console.log("can not modify researchOA");
+        }
+
+        $("#panel_makeContactOA").show();
+    },
+
 
     del_file: function(fileName, filePath){
         var me = this;
@@ -361,11 +634,11 @@ var FLOW={
         });
     },
 
-    post_complete_gather: function(model){
+    post_complete: function(url, model){
         console.log("model:",JSON.stringify(model));
 
         var me = this;
-        var data = {url: '/api/project/complete_gather', entity: JSON.stringify(model)};
+        var data = {url: url, entity: JSON.stringify(model)};
         console.log(data);
         $.ajax({
             type: 'post',
