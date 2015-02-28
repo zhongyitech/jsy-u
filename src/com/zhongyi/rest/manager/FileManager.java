@@ -17,6 +17,7 @@ import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.FileUpload;
 
 
+@SuppressWarnings("unchecked")
 public class FileManager {
 	private FileManager(){
 		

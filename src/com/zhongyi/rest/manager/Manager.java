@@ -8,12 +8,12 @@ import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 public class Manager {
@@ -52,8 +52,8 @@ public class Manager {
 	public ManagerResponse get(String cookie, String url, JSONObject params) {
 		ManagerResponse manageResponse = new ManagerResponse();
 
-		HttpClient client = new DefaultHttpClient();
-		StringBuffer paramUrl = new StringBuffer();
+        CloseableHttpClient client = HttpClients.createDefault();
+        StringBuffer paramUrl = new StringBuffer();
 		for (Object o : params.entrySet()) {
 			Entry<String, Object> entry = (Entry<String, Object>) o;
 			if (paramUrl.length() == 0) {
@@ -93,7 +93,7 @@ public class Manager {
 	public ManagerResponse post(String cookie, String url, JSONObject params) {
 		ManagerResponse manageResponse = new ManagerResponse();
 
-		HttpClient client = new DefaultHttpClient();
+		CloseableHttpClient client = HttpClients.createDefault();
 		HttpPost post = new HttpPost(url);
 		try {
 			String token = TokenManager.getInstance().get(cookie);
@@ -137,7 +137,7 @@ public class Manager {
 	public ManagerResponse post(String cookie, String url, JSONObject params, JSONObject entity) {
 		ManagerResponse manageResponse = new ManagerResponse();
 
-		HttpClient client = new DefaultHttpClient();
+		CloseableHttpClient client = HttpClients.createDefault();
 		StringBuffer paramUrl = new StringBuffer();
 		for (Object o : params.entrySet()) {
 			Entry<String, Object> entry = (Entry<String, Object>) o;
@@ -179,7 +179,7 @@ public class Manager {
 	
 	public ManagerResponse put(String cookie, String url, JSONObject params, JSONObject entity) {
 		ManagerResponse manageResponse = new ManagerResponse();
-		HttpClient client = new DefaultHttpClient();
+		CloseableHttpClient client = HttpClients.createDefault();
 		StringBuffer paramUrl = new StringBuffer();
 		if (params != null) {
 			for (Object o : params.entrySet()) {

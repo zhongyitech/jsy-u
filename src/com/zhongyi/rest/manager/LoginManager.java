@@ -5,11 +5,11 @@ import javax.ws.rs.core.Response.Status;
 import net.sf.json.JSONObject;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 public class LoginManager extends Manager{
@@ -34,7 +34,7 @@ public class LoginManager extends Manager{
 	
 	public ManagerResponse login(String cookie, String username, String password){
 		ManagerResponse mr = new ManagerResponse();
-    	HttpClient client = new DefaultHttpClient();
+    	CloseableHttpClient client = HttpClients.createDefault();
     	String url = getServiceURL() + LOGIN_URL;
         HttpPost post = new HttpPost(url);
         post.setHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
@@ -73,7 +73,7 @@ public class LoginManager extends Manager{
 	public ManagerResponse getUser(String sesion){
 		ManagerResponse mr = new ManagerResponse();
 		
-    	HttpClient client = new DefaultHttpClient();
+    	CloseableHttpClient client = HttpClients.createDefault();
     	String url = getServiceURL() + USER_URL;
         HttpGet get = new HttpGet(url);
         String token = TokenManager.getInstance().get(sesion);
