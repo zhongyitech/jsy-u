@@ -53,24 +53,24 @@
 								<col style="width: 90px;" />
 							</colgroup>
 							<tr>
-								<th>认购人</th>
-								<th>基金名称</th>
-								<th>档案编号</th>
-								<th>合同编号</th>
-								<th>认购日期</th>
-								<th>认购金额</th>
-								<th>认购期限</th>
-								<th>理财经理</th>
-								<th>地区</th>
-								<th>年经收益率</th>
-								<th>付息方式</th>
-								<th>到期日期</th>
-								<th>委托情况</th>
-								<th>已付利息</th>
-								<th>已付本金</th>
-								<th>操作</th>
-								<th></th>
-							</tr>
+								<th><span class="text-overflow">认购人</span></th>
+								<th><span class="text-overflow">基金名称</span></th>
+								<th><span class="text-overflow">档案编号</span></th>
+								<th><span class="text-overflow">合同编号</span></th>
+								<th><span class="text-overflow">认购日期</span></th>
+								<th><span class="text-overflow">认购金额</span></th>
+								<th><span class="text-overflow">认购期限</span></th>
+								<th><span class="text-overflow">理财经理</span></th>
+								<th><span class="text-overflow">地区</span></th>
+								<th><span class="text-overflow">年经收益率</span></th>
+								<th><span class="text-overflow">付息方式</span></th>
+								<th><span class="text-overflow">到期日期</span></th>
+								<th><span class="text-overflow">委托情况</span></th>
+								<th><span class="text-overflow">已付利息</span></th>
+								<th><span class="text-overflow">已付本金</span></th>
+								<th><span class="text-overflow">操作</span></th>
+								<th><span class="text-overflow"></span></th>
+							</tr>							
 							<tr>
 								<td></td>
 								<td></td>

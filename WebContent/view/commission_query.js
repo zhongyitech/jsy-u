@@ -7,7 +7,7 @@ $(document).ready(function () {
     VIEWDATA.deposit = DEPOSIT;
     VIEWDATA.dateformat=DATEFORMAT;
     VIEWDATA.init(true);
-
+    
     COMMISSION_REPORT.ini(true);
 });
 
@@ -164,7 +164,6 @@ var VIEWDATA = {
                         console.log("relaod page...");
                     }
                     window.location.href = "commission_apply.jsp";
-
                 },
                 error: function(result){
                     isAllSuc = false;
@@ -172,11 +171,9 @@ var VIEWDATA = {
                         return;
                     }
                     me.error(result);
-
                 }
             });
         }
-
         if(!isAllSuc){
             alert('提交过程中，存在部分提交时错误.');
         }

@@ -100,9 +100,9 @@ var VIEWDATA={
             for (var i in items) {
                 var row = $("<tr></tr>");
                 table.append(row);
+
                 row.append('<td>' + items[i]["id"] + '</td>');
-                var link = "projectinfo.jsp?id="+ items[i]["id"];
-                row.append('<td><a href="'+link+'">' + items[i]["name"] + '</a></td>');
+                row.append('<td>' + items[i]["name"] + '</td>');
                 if(items[i]["fundNames"]){
                     row.append('<td>' + items[i]["fundNames"] + '</td>');
                 }else{

@@ -53,4 +53,17 @@ public class ItemRest {
 		ManagerResponse response = ItemManager.getInstance().put(cookie, url, paramsJSON, entityJSON);
 		return Response.ok(response.response).status(response.status).build();
 	}
+	
+	@POST
+	@Path("delete")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response delete(@CookieParam("JSESSIONID") String cookie,
+			@FormParam("url")		@DefaultValue("")	String url,
+			@FormParam("params")	@DefaultValue("{}")	String params,
+			@FormParam("entity")	@DefaultValue("{}")	String entity){
+		JSONObject paramsJSON = JSONObject.fromObject(params);
+		JSONObject entityJSON = JSONObject.fromObject(entity);
+		ManagerResponse response = ItemManager.getInstance().delete(cookie, url, paramsJSON, entityJSON);
+		return Response.ok(response.response).status(response.status).build();
+	}
 }

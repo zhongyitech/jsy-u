@@ -16,7 +16,6 @@ import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.FileUpload;
 
-
 @SuppressWarnings("unchecked")
 public class FileManager {
 	private FileManager(){
@@ -24,7 +23,7 @@ public class FileManager {
 	}
 	
 	private static FileManager instance;
-	private final String DIR_PATH = "/home/oswaldl/A_temp";
+	private final String DIR_PATH = "";
 	private final String PATH_KEY = "filePath";
 	private final String NAME_KEY = "fileName";
 	private final String REQUEST_ENCODING = "UTF-8";
@@ -37,8 +36,13 @@ public class FileManager {
 		return instance;
 	}
 	
-	public ManagerResponse upload(HttpServletRequest request){
+	public ManagerResponse upload(String jsession, HttpServletRequest request){
 		ManagerResponse response = new ManagerResponse();
+		if(TokenManager.getInstance().get(jsession) == null){//未登录
+			response.status = ManagerResponse.UNAUTHORIZED;
+			return response;
+		}
+		
 		JSONObject result = new JSONObject();
 		response.status = ManagerResponse.OK;
 		
@@ -84,12 +88,22 @@ public class FileManager {
         return response;
 	}
 	
-	public String download(String path){
+	public ManagerResponse download(String jsession, String path){
+		ManagerResponse response = new ManagerResponse();
+		if(TokenManager.getInstance().get(jsession) == null){//未登录
+			response.response = DIR_PATH + File.separator + NOT_FOUND;
+			response.status = ManagerResponse.UNAUTHORIZED;
+			return response;
+		}
+		response.status = ManagerResponse.OK;
+		
 		File file = new File(DIR_PATH + File.separator + path);
 		if(file.exists()){
-			return file.getPath();
+			response.response = file.getPath();
 		}else{
-			return DIR_PATH + File.separator + NOT_FOUND;
+			response.response = DIR_PATH + File.separator + NOT_FOUND;
 		}
+		
+		return response;
 	}
 }

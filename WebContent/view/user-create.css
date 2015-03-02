@@ -61,3 +61,7 @@ input[type=file] {
 	max-width: 230px;
 	vertical-align: middle;
 }
+
+.indent-2 {
+	text-indent: 2em;
+}

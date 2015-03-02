@@ -296,7 +296,7 @@ var INVESTMENT_ITEM={
 				bm_select.append(option);
 				for(var i in users){
 					var userid = users[i][this.user.ID_KEY];
-					var username = this.user.getName(userid);
+					var username = USER.toView(users[i]);
 					var option = $('<option value="' + userid + '">' + username + '</option>');
 					bm_select.append(option);
 				}
@@ -500,8 +500,8 @@ var INVESTMENT_ITEM={
 				finish.attr('onclick', 'INVESTMENT_ITEM.save()');
 				if(finish.attr('onclick')){
 					//IE8需要重新渲染
-					$('.toggle-button').click();
-					$('.toggle-button').click();
+//					$('.toggle-button').click();
+//					$('.toggle-button').click();
 					return;
 				}
 			}
@@ -1088,7 +1088,7 @@ var INVESTMENT_ITEM={
 				customer['yhzh'] = banknumber.trim();
 			}
 			
-			var phone = $(this.INVEST_BANKNAME_ID).val();
+			var phone = $(this.INVEST_PHONE_ID).val();
 			if(phone){
 				customer['telephone'] = phone.trim();
 				customer['phone'] = phone.trim();
