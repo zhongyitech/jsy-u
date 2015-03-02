@@ -23,6 +23,14 @@ var FLOW={
     finanFiles_attachments: [],
     research_other_attachments: [],
 
+    //meetings
+    meetingFiles_attachments: [],
+    meeting_other_attachments: [],
+
+    //thirdpartyLow
+    thirdpartyLowFiles_attachments: [],
+    thirdpartyLow_other_attachments: [],
+
     gatherOA:"#panel_gatherOA",
     research:"#panel_research",
     researchOA:"#panel_researchOA",
@@ -290,7 +298,7 @@ var FLOW={
             $("textarea[name='input_text']","#form_gatherInfo").attr('readonly','readonly');
             $('textarea','#others_files').filter(function() { return $(this).val() == ""; }).hide();
             $("#gatherInfo_add_file").hide();
-
+            $("button[type='button']","#form_gatherInfo").hide();
             console.log("can not modify gatherInfo");
         }
         $("#panel_gatherInfo").show();
@@ -501,6 +509,12 @@ var FLOW={
         if(researchBean.accessable){//可以编辑
             console.log("can modify research");
         }else{//不可以编辑
+            $("input[name='attachment']","#form_research").hide();
+
+            $("textarea[name='input_text']","#form_research").attr('readonly','readonly');
+            $('textarea','#research_others_files').filter(function() { return $(this).val() == ""; }).hide();
+            $("#research_add_file").hide();
+            $("button[type='button']","#form_research").hide();
             console.log("can not modify research");
         }
 
@@ -527,14 +541,78 @@ var FLOW={
     init_meeting: function(meetingBeans){
         var me = this;
         /***初始化事件***/
+        $("#meetingFiles").change(function() {
+            me.meetingFiles_attachments = me.file.upload($(this)[0].files);
+        });
+
+        $("#meeting_attachment_1").change(function() {
+            me.meeting_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+        });
+
+        $("#meeting_add_file").click(function () {
+            var i =$("div .input-file","#meeting_others_files").length+1;
+            var others_files = $("#meeting_others_files");
+
+            var appenddiv = $("<div>");
+            var filediv = $('<div class="form-input col-md-4">');
+            var fileinput = $('<input id="meeting_attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
+            filediv.append(fileinput);
+            appenddiv.append(filediv);
+            var descdiv = $('<div class="form-input col-md-6">');
+            var descarea = $('<textarea id="meeting_attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            descdiv.append(descarea);
+            appenddiv.append(descdiv);
+
+
+            others_files.append(appenddiv);
+
+            fileinput.change(function () {
+                me.meeting_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+            });
+        });
+
+        $("#complete_meeting").click(function(){
+                var meetingDesc= $("#meetingDesc").val();
+
+                $.each(me.meeting_other_attachments, function( index, attachment ) {
+                    attachment.desc=$("#meeting_attachment_txt_"+attachment.index).val();
+                });
+
+                var model = {
+                    projectid:me.projectid,
+                    meetingDesc:meetingDesc,
+                    meetingFiles_attachments: me.meetingFiles_attachments,
+                    meeting_other_attachments: me.meeting_other_attachments
+                };
+
+                me.post_complete('/api/project/complete_meeting', model);
+
+        });
 
         /***加载数据***/
+        //纪要
+        if(meetingBeans.meetingRecord && meetingBeans.meetingRecord.length > 0){
+            $.each(meetingBeans.meetingRecord,function(index,obj){
+                var fileli= me._construct_fileli(obj);
+
+                $("#exist_meetingFiles").append(fileli);
+            });
+        }
+        if(meetingBeans.meetingDesc) {
+            $("#meetingDesc").val(meetingDesc.meetingDesc);
+        }
 
         /****处理显示效果****/
         if(meetingBeans.accessable){//可以编辑
-            console.log("can modify researchOA");
+            console.log("can modify meeting");
         }else{//不可以编辑
-            console.log("can not modify researchOA");
+            $("input[name='attachment']","#form_meeting").hide();
+
+            $("textarea[name='input_text']","#form_meeting").attr('readonly','readonly');
+            $('textarea','#meeting_others_files').filter(function() { return $(this).val() == ""; }).hide();
+            $("#meeting_add_file").hide();
+            $("button[type='button']","#form_meeting").hide();
+            console.log("can not modify meeting");
         }
 
         $("#panel_meeting").show();
@@ -543,14 +621,78 @@ var FLOW={
     init_otherEA: function(otherEABean){
         var me = this;
         /***初始化事件***/
+        $("#thirdpartyLowFiles").change(function() {
+            me.thirdpartyLowFiles_attachments = me.file.upload($(this)[0].files);
+        });
+
+        $("#thirdpartyLow_attachment_1").change(function() {
+            me.thirdpartyLow_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+        });
+
+        $("#thirdpartyLow_add_file").click(function () {
+            var i =$("div .input-file","#thirdpartyLow_others_files").length+1;
+            var others_files = $("#thirdpartyLow_others_files");
+
+            var appenddiv = $("<div>");
+            var filediv = $('<div class="form-input col-md-4">');
+            var fileinput = $('<input id="thirdpartyLow_attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
+            filediv.append(fileinput);
+            appenddiv.append(filediv);
+            var descdiv = $('<div class="form-input col-md-6">');
+            var descarea = $('<textarea id="thirdpartyLow_attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            descdiv.append(descarea);
+            appenddiv.append(descdiv);
+
+
+            others_files.append(appenddiv);
+
+            fileinput.change(function () {
+                me.thirdpartyLow_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+            });
+        });
+
+        $("#complete_thirdpartyLow").click(function(){
+            var thirdpartyLowDesc= $("#thirdpartyLowDesc").val();
+
+            $.each(me.meeting_other_attachments, function( index, attachment ) {
+                attachment.desc=$("#thirdpartyLow_attachment_txt_"+attachment.index).val();
+            });
+
+            var model = {
+                projectid:me.projectid,
+                thirdpartyLowDesc:thirdpartyLowDesc,
+                thirdpartyLowFiles_attachments: me.thirdpartyLowFiles_attachments,
+                thirdpartyLow_other_attachments: me.thirdpartyLow_other_attachments
+            };
+
+            me.post_complete('/api/project/complete_thirdpartyLow', model);
+
+        });
 
         /***加载数据***/
+        if(otherEABean.thirdPartyFile && otherEABean.thirdPartyFile.length > 0){
+            $.each(otherEABean.thirdPartyFile,function(index,obj){
+                var fileli= me._construct_fileli(obj);
+
+                $("#exist_thirdpartyLowFiles").append(fileli);
+            });
+        }
+        if(otherEABean.thirdPartyDesc) {
+            $("#thirdpartyLowDesc").val(meetingDesc.thirdPartyDesc);
+        }
 
         /****处理显示效果****/
         if(otherEABean.accessable){//可以编辑
-            console.log("can modify researchOA");
+            console.log("can modify otherEA");
         }else{//不可以编辑
-            console.log("can not modify researchOA");
+            $("input[name='attachment']","#form_thirdpartyLow").hide();
+
+            $("textarea[name='input_text']","#form_thirdpartyLow").attr('readonly','readonly');
+            $('textarea','#thirdpartyLow_others_files').filter(function() { return $(this).val() == ""; }).hide();
+            $("#thirdpartyLow_add_file").hide();
+            $("button[type='button']","#form_thirdpartyLow").hide();
+
+            console.log("can not modify otherEA");
         }
 
         $("#panel_otherEA").show();
@@ -559,8 +701,13 @@ var FLOW={
     init_addCompany: function(addCompanyBean){
         var me = this;
         /***初始化事件***/
+        $("#complete_addCompany").click(function(){
+            
+        });
+
 
         /***加载数据***/
+        getCompanies();
 
         /****处理显示效果****/
         if(addCompanyBean.accessable){//可以编辑
@@ -588,6 +735,28 @@ var FLOW={
         $("#panel_makeContact").show();
     },
 
+    getCompanies: function () {
+        var me = this;
+        var data = {url: '/api/company/listAll'};
+        console.log(data);
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/get',
+            data: data,
+            dataType: 'json',
+            async: false,
+            success: function(result){
+                console.log(result);
+                if(result && result.rest_status && result.rest_status == "200"){
+
+                }
+
+            },
+            error: function(result){
+                alert('提交时错误:'+result);
+            }
+        });
+    },
 
     init_makeContactOA: function(makeContactOABean){
         var me = this;
@@ -625,18 +794,12 @@ var FLOW={
 
             },
             error: function(result){
-                isAllSuc = false;
-                if(LOGIN.error(result)){
-                    return;
-                }
-                alert('提交时错误.');
+                alert('提交时错误:'+result);
             }
         });
     },
 
     post_complete: function(url, model){
-        console.log("model:",JSON.stringify(model));
-
         var me = this;
         var data = {url: url, entity: JSON.stringify(model)};
         console.log(data);
@@ -655,11 +818,8 @@ var FLOW={
 
             },
             error: function(result){
-                isAllSuc = false;
-                if(LOGIN.error(result)){
-                    return;
-                }
-                alert('提交时错误.');
+                console.log(result);
+                alert('提交时错误:'+result.responseText);
             }
         });
     }

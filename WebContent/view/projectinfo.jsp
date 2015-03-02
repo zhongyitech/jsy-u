@@ -218,7 +218,7 @@
                             <div class="page-header">
                                 <h3>步骤1.3：现场考察（方案确定）（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
+                            <form id="form_research" class="form-bordered " action="/" method="post">
                                 <div class="form-row">
 
                                     <div class="form-label col-md-2">
@@ -350,7 +350,7 @@
                             <div class="page-header">
                                 <h3>步骤1.5：投决会（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
+                            <form id="form_meeting" class="form-bordered " action="/" method="post">
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
@@ -394,7 +394,7 @@
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" >提交</span>
+                                            <span class="button-content" id="complete_meeting">提交</span>
                                         </button>
                                     </div>
                                 </div>
@@ -411,34 +411,41 @@
                             <div class="page-header">
                                 <h3>步骤1.6：第三方法律机构（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
+                            <form id="form_thirdpartyLow" class="form-bordered " action="/" method="post">
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">未知证件：</label>
+                                        <label for="">法律证件：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
+                                        <div >
+                                            <ul id="exist_thirdpartyLowFiles">
+                                            </ul>
+                                        </div>
+                                        <input id="thirdpartyLowFiles" class="input-file" name="attachment" type="file">
+                                    </div>
+                                    <div class="form-input col-md-6">
+                                        <textarea id="thirdpartyLowDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                     </div>
                                 </div>
 
 
                                 <div class="form-row">
                                     <div>
-                                        <table class="item-table" >
-                                            <thead>
-                                            <tr>
-                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left">
-                                                    <input class="input-file" name="attachment" type="file">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="form-input col-md-10" >
+                                        <div id="thirdpartyLow_others_files">
+                                            <div id="exist_thirdpartyLow_others">
+
+                                            </div>
+                                            <div>
+                                                <div class="form-input col-md-10">
+                                                    <input type="button" id="thirdpartyLow_add_file" value="添加其他文件" style="width: 100px;">
+                                                </div>
+                                                <div class="form-input col-md-4">
+                                                    <input id="thirdpartyLow_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                                </div>
+                                                <div class="form-input col-md-6">
+                                                    <textarea id="thirdpartyLow_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -446,7 +453,7 @@
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" >提交</span>
+                                            <span class="button-content" id="complete_thirdpartyLow">提交</span>
                                         </button>
                                     </div>
                                 </div>
@@ -465,131 +472,143 @@
                                 <h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
                             <form class="form-bordered " action="/" method="post">
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">企业名称：</label>
-                                    </div>
-
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">执行商务合伙人：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">法人国籍：</label>
-                                    </div>
-
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">法人证件类型：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">法人证件号码：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">注册地址：</label>
-                                    </div>
-
-                                    <div class="form-input col-md-4">
-                                        <input type="text"/>
-                                    </div>
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">注册编号：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input type="text" id="projectname"/>
-                                    </div>
-
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">营业执照：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
-                                    </div>
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">组织机构代码证：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">税务证件：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
-                                    </div>
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">银行开户许可证：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">使用代码证：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input class="input-file" name="attachment" type="file">
-                                    </div>
-                                </div>
 
 
                                 <div class="form-row">
-                                    <div>
-                                        <table class="item-table" >
-                                            <thead>
-                                            <tr>
-                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-left">
-                                                    <input class="input-file" name="attachment" type="file">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="form-input col-md-10" >
-                                        </div>
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">选择公司：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <select id="company">
+                                        </select>
                                     </div>
                                 </div>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">企业名称：</label>--%>
+                                    <%--</div>--%>
+
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">执行商务合伙人：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+
+                                <%--</div>--%>
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">法人国籍：</label>--%>
+                                    <%--</div>--%>
+
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">法人证件类型：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+
+                                <%--</div>--%>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">法人证件号码：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+
+                                <%--</div>--%>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">注册地址：</label>--%>
+                                    <%--</div>--%>
+
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text"/>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">注册编号：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input type="text" id="projectname"/>--%>
+                                    <%--</div>--%>
+
+                                <%--</div>--%>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">营业执照：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">组织机构代码证：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">税务证件：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">银行开户许可证：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2   ">--%>
+                                        <%--<label for="">使用代码证：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+
+
+                                <%--<div class="form-row">--%>
+                                    <%--<div>--%>
+                                        <%--<table class="item-table" >--%>
+                                            <%--<thead>--%>
+                                            <%--<tr>--%>
+                                                <%--<th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>--%>
+                                            <%--</tr>--%>
+                                            <%--</thead>--%>
+                                            <%--<tbody>--%>
+                                            <%--<tr>--%>
+                                                <%--<td class="text-left">--%>
+                                                    <%--<input class="input-file" name="attachment" type="file">--%>
+                                                <%--</td>--%>
+                                            <%--</tr>--%>
+                                            <%--</tbody>--%>
+                                        <%--</table>--%>
+                                        <%--<div class="form-input col-md-10" >--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                                 <br />
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" >提交</span>
+                                            <span class="button-content" id="complete_addCompany">提交</span>
                                         </button>
                                     </div>
                                 </div>
