@@ -10,7 +10,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
 public class LoginManager extends Manager{
 	private LoginManager(){
@@ -34,8 +33,8 @@ public class LoginManager extends Manager{
 	
 	public ManagerResponse login(String cookie, String username, String password){
 		ManagerResponse mr = new ManagerResponse();
-    	CloseableHttpClient client = HttpClients.createDefault();
-    	String url = getServiceURL() + LOGIN_URL;
+        CloseableHttpClient client= HttpClients.createDefault();
+        String url = getServiceURL() + LOGIN_URL;
         HttpPost post = new HttpPost(url);
         post.setHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
         try{
@@ -72,8 +71,8 @@ public class LoginManager extends Manager{
 	
 	public ManagerResponse getUser(String sesion){
 		ManagerResponse mr = new ManagerResponse();
-		
-    	CloseableHttpClient client = HttpClients.createDefault();
+
+        CloseableHttpClient client= HttpClients.createDefault();
     	String url = getServiceURL() + USER_URL;
         HttpGet get = new HttpGet(url);
         String token = TokenManager.getInstance().get(sesion);
@@ -85,10 +84,7 @@ public class LoginManager extends Manager{
         try{
             HttpResponse response = client.execute(get);
             mr.status = response.getStatusLine().getStatusCode();
-            if(mr.status.equals(ManagerResponse.OK)){
-            	String string = EntityUtils.toString(response.getEntity(), CHARSET);
-            	mr.response = string;
-            }
+            mr.response = toString(response.getEntity());
         }catch(Exception e){
             e.printStackTrace();
         }finally {

@@ -153,56 +153,56 @@ var INVESTMENT_LIST={
 			var rqrq=item['rgrq'];
 			rqrq=this.dateformat.toDate(rqrq);
 
-			var rqrq_td = $('<td><span   title="' + rqrq + '">' + rqrq + '</span></td>');
+			var rqrq_td = $('<td><span   class="text-overflow" title="' + rqrq + '">' + rqrq + '</span></td>');
 			tr.append(rqrq_td);
 
 			var rqje=item['sjtzje'];
 
-			var rqje_td = $('<td><span   title="' + rqje + '">' + rqje + '</span></td>');
+			var rqje_td = $('<td><span   class="text-overflow" title="' + rqje + '">' + rqje + '</span></td>');
 			tr.append(rqje_td);
             
             var value='';
             var row='';
             value =item['tzqx'];
-            row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+            row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			value=item['ywjl'];	
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			value=item['country'];	
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			value=item['nhsyl'];	
 			value=this.numberformat.toRate(value);
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			value=item['fxfs'];	
 			value=this.stringformat.toPayType(value);
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			value=item['dqrq'];	
 			value=this.dateformat.toDate(value);
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 			var statusid=item['dazt'];	
 			value=FUNDWTSTATUS.get(statusid);
 			var vurl=FUNDWTSTATUS.getUrl(statusid)+"?investmentid="+statusid;
- 			row=$("<td><a class='' target='_blank' href='"+vurl+"' title='"+value+"'>"+value+"</a></td>");
+ 			row=$("<td><a class='' target='_blank' href='"+vurl+"' class='text-overflow' title='"+value+"'>"+value+"</a></td>");
 			tr.append(row);
 
 			value=item['lx'];	
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 
 			value=item['bj'];	
- 			row=$('<td><span   title="' + value + '">' + value + '</span></td>');
+ 			row=$('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
 			tr.append(row);
 
 //			row="<td><div class='dropdown'>"+

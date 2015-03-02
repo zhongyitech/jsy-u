@@ -6,8 +6,6 @@
     <jsp:include page="./head.jsp"></jsp:include>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="projectinfo.css" />
-    <script type="text/javascript" src="./flowLogic.js"></script>
-    <script type="text/javascript" src="./projectinfo.js"></script>
     <title>项目明细</title>
 </head>
 
@@ -22,11 +20,11 @@
                     </div>
                 </section>
 
-                <%--<p>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">汇款</button>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">收款</button>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">结算</button>--%>
-                <%--</p>--%>
+                <p>
+                    <button class="btn btn-large btn-primary" type="button">汇款</button>
+                    <button class="btn btn-large btn-primary" type="button">收款</button>
+                    <button class="btn btn-large btn-primary" type="button">结算</button>
+                </p>
 
 
                 <div class="center-margin col-md-10" id="fund-form">
@@ -70,72 +68,52 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_gatherInfo" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <section id="gatherInfo">
                             <div class="page-header">
                                 <h3>步骤1.1：资料采集（项目部负责并填写）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post" id="form_gatherInfo">
+                            <form class="form-bordered " action="/" method="post">
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 项目证照：</label>
                                     </div>
 
-                                    <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_certificateFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="certificateFiles" class="input-file" name="attachment" type="file" multiple/>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="file"/>
                                     </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="certificateFilesDesc"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="text" placeholder="备注栏"/>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 债务报告：</label>
                                     </div>
-                                    <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_debtFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="debtFiles" class="input-file" name="attachment" type="file" multiple>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="debtFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="text" placeholder="备注栏"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 财务报表：</label>
                                     </div>
-                                    <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_financialFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="financialFiles" class="input-file" name="attachment" type="file" multiple>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="financialFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="text" placeholder="备注栏"/>
                                     </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 对公批文：</label>
                                     </div>
-                                    <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_toPublicFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="toPublicFiles" class="input-file" name="attachment" type="file" multiple>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="toPublicFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="text" placeholder="备注栏"/>
                                     </div>
                                 </div>
 
@@ -143,43 +121,39 @@
                                     <div class="form-label col-md-2">
                                         <label for="">(*) 商务计划书：</label>
                                     </div>
-                                    <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_businessPlanFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="businessPlanFiles" class="input-file" name="attachment" type="file" multiple>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="businessPlanFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                    <div class="form-input col-md-2">
+                                        <input class="input-file" name="attachment" type="text" placeholder="备注栏"/>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div>
-                                        <div id="others_files">
-                                            <div id="exist_others">
 
-                                            </div>
-                                            <div>
-                                                <div class="form-input col-md-10">
-                                                    <input type="button" id="gatherInfo_add_file" value="添加其他文件" style="width: 100px;">
-                                                </div>
-                                                <div class="form-input col-md-4">
-                                                    <input id="attachment_1"  class="input-file" name="attachment" type="file" multiple>
-                                                </div>
-                                                <div class="form-input col-md-6">
-                                                    <textarea id="attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <table class="item-table" id="fileupdate">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-left"><input type="button" id="add_file" value="添加其他文件" style="width: 100px;"></th>
+                                                <th class="text-left">比如：房地产项目的五证：国有土地使用证/建设用地规划许可证/建设工程规划许可证/建设工程施工许可证/商品房预售许可证</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <input id="invest-attachment1" class="input-file" name="attachment" type="file">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <br />
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" id="complete_gather">提交</span>
+                                            <span class="button-content" id="add-project">提交</span>
                                         </button>
                                     </div>
                                 </div>
@@ -191,9 +165,9 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_gatherOA" style="display:none; ">
+                <div class="panel panel-default" >
                     <div class="panel-body">
-                        <section id="gatherOA">
+                        <section id="gatheerOA">
                             <div class="page-header">
                                 <h3>步骤1.2：资料评判——OA审核</h3>
                             </div>
@@ -212,7 +186,7 @@
                 </div>
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_research" style="display:none; ">
+                <div class="panel panel-default" >
                     <div class="panel-body">
                         <section id="research">
                             <div class="page-header">
@@ -225,84 +199,43 @@
                                         <label for="">(*) 法律进调报告：</label>
                                     </div>
 
-                                    <div class="form-input col-md-2">
-                                        <div >
-                                            <ul id="exist_lowFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="lowFiles" class="input-file" name="attachment" type="file">
-                                    </div>
-
                                     <div class="form-input col-md-4">
-                                        <textarea id="lowDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
-
-                                    <div class="form-input col-md-4">
-                                        <textarea id="lowDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-row">
                                     <div class="form-label col-md-2   ">
                                         <label for="">(*) 项目进调报告：</label>
                                     </div>
-                                    <div class="form-input col-md-2">
-                                        <div >
-                                            <ul id="exist_projectFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="projectFiles" class="input-file" name="attachment" type="file">
-                                    </div>
-
                                     <div class="form-input col-md-4">
-                                        <textarea id="projectDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                    </div>
-
-                                    <div class="form-input col-md-4">
-                                        <textarea id="projectDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">财务报告：</label>
                                     </div>
-                                    <div class="form-input col-md-2">
-                                        <div >
-                                            <ul id="exist_finanFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="finanFiles" class="input-file" name="attachment" type="file">
-                                    </div>
-
                                     <div class="form-input col-md-4">
-                                        <textarea id="finanDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                    </div>
-
-                                    <div class="form-input col-md-4">
-                                        <textarea id="finanDesc2" name="input_text" class="small-textarea" placeholder="结论栏"></textarea>
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
                                 </div>
 
 
                                 <div class="form-row">
                                     <div>
-                                        <div id="research_others_files">
-                                            <div id="exist_research_others">
-
-                                            </div>
-                                            <div>
-                                                <div class="form-input col-md-10">
-                                                    <input type="button" id="research_add_file" value="添加其他文件" style="width: 100px;">
-                                                </div>
-                                                <div class="form-input col-md-4">
-                                                    <input id="research_attachment_1"  class="input-file" name="attachment" type="file" multiple>
-                                                </div>
-                                                <div class="form-input col-md-4">
-                                                    <textarea id="research_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                                </div>
-                                                <div class="form-input col-md-4">
-                                                    <textarea id="research_attachment2_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                                </div>
-                                            </div>
+                                        <table class="item-table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <input class="input-file" name="attachment" type="file">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="form-input col-md-10" >
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +243,7 @@
                                 <div class="form-row pad3B">
                                     <div>
                                         <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" id="complete_research">提交</span>
+                                            <span class="button-content" >提交</span>
                                         </button>
                                     </div>
                                 </div>
@@ -321,7 +254,7 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_researchOA" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <section id="researchOA">
                             <div class="page-header">
@@ -344,50 +277,41 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_meeting" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <section id="meeting">
                             <div class="page-header">
                                 <h3>步骤1.5：投决会（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
                             <form class="form-bordered " action="/" method="post">
-
                                 <div class="form-row">
-                                    <div class="form-label col-md-2">
-                                        <label for="">(*) 会议纪要：</label>
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">会议纪要：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <div >
-                                            <ul id="exist_meetingFiles">
-                                            </ul>
-                                        </div>
-                                        <input id="meetingFiles" class="input-file" name="attachment" type="file" multiple>
-                                    </div>
-                                    <div class="form-input col-md-6">
-                                        <textarea id="meetingDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        <input class="input-file" name="attachment" type="file">
                                     </div>
                                 </div>
 
 
                                 <div class="form-row">
                                     <div>
-                                        <div id="meeting_others_files">
-                                            <div id="meeting_exist_others">
-
-                                            </div>
-                                            <div>
-                                                <div class="form-input col-md-10">
-                                                    <input type="button" id="meeting_add_file" value="添加其他文件" style="width: 100px;">
-                                                </div>
-                                                <div class="form-input col-md-4">
-                                                    <input id="meeting_attachment_1"  class="input-file" name="attachment" type="file" multiple>
-                                                </div>
-                                                <div class="form-input col-md-6">
-                                                    <textarea id="meeting_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
-                                                </div>
-                                            </div>
+                                        <table class="item-table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <input class="input-file" name="attachment" type="file">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="form-input col-md-10" >
                                         </div>
-
                                     </div>
                                 </div>
                                 <br />
@@ -405,7 +329,7 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_otherEA" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <section id="otherEA">
                             <div class="page-header">
@@ -455,12 +379,32 @@
                     </div>
                 </div>
 
+                <!-- flow instance -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <section id="otherEAOA">
+                            <div class="page-header">
+                                <h3>步骤1.7：第三方法律机构——OA审核</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-label col-md-2   ">
+                                    <label for="">评审结果：</label>
+                                </div>
+
+                                <div class="form-input col-md-4">
+                                    通过
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_addCompany" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
-                        <section id="addCompany">
+                        <section id="add-company">
                             <div class="page-header">
                                 <h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
@@ -599,9 +543,9 @@
                 </div>
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_makeContact" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
-                        <section id="makeContact">
+                        <section id="make-contact">
                             <div class="page-header">
                                 <h3>步骤3：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
@@ -612,13 +556,13 @@
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input type="text"/>
                                     </div>
                                     <div class="form-label col-md-2">
                                         <label for="">乙方：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input type="text"/>
                                     </div>
 
                                 </div>
@@ -628,7 +572,7 @@
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input type="text"/>
                                     </div>
 
                                 </div>
@@ -680,14 +624,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr><td>1</td><td>规模</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>收益率</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>付息利息</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>续存期年限</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>基金合作条件</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>关联担保单位</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>关联担保个人信息</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>项目退出</td><td><input type="text"></td></tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Mark</td>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Mark</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -699,7 +644,7 @@
                                     <table class="item-table" >
                                         <thead>
                                         <tr>
-                                            <th class="text-left"><inputtype="button" value="添加其他文件" style="width: 100px;"></th>
+                                            <th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -730,9 +675,9 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_makeContactOA" style="display:none; ">
+                <div class="panel panel-default">
                     <div class="panel-body">
-                        <section id="makeContactOA">
+                        <section id="make-contactOA">
                             <div class="page-header">
                                 <h3>步骤3.1：项目合同——OA审核</h3>
                             </div>

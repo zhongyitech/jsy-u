@@ -132,6 +132,15 @@
 									</div>
 									<div class="form-row">
 										<div class="form-label col-md-3 ">
+											<label for=""> 续投协议名称： </label>
+										</div>
+										<div class="form-input col-md-6 ">
+											<input class="bind" data-bindtype="value"
+												data-member="fundname" />
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-label col-md-3 ">
 											<label for=""> 注册地址： </label>
 										</div>
 										<div class="form-input col-md-6 ">
@@ -209,7 +218,7 @@
 									
 									<div class="form-row">
 										<div class="form-label col-md-12 ">
-											<label><span class="font-size-16">乙方</span></label>
+											<label><span class="font-size-16">乙方（单 GP不需要填写）</span></label>
 										</div>
 									</div>
 									<div class="form-row">
@@ -239,8 +248,7 @@
 											<input class="bind" data-bindtype="value"
 												data-member="businessLicense" />
 										</div>
-									</div>
-									
+									</div>									
 								</form>
 								<div class="pad10T">
 									<button class="btn-ui btn bg-green large medium mrg10L" id="">

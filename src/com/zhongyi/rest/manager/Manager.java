@@ -2,12 +2,12 @@ package com.zhongyi.rest.manager;
 
 import java.util.Map.Entry;
 
-import javax.ws.rs.core.Response.Status;
-
 import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -15,6 +15,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
 
 public class Manager {
 	public static final String STATUS = "status";
@@ -40,20 +41,21 @@ public class Manager {
 //		return "http://192.168.3.109:8080/jsy";
 		//佳文
 //		return "http://192.168.8.122:8080/jsy";
+		return "http://127.0.0.1:18080/jsy";
 //		return "http://192.168.7.116:8080/jsy";
 //		return "http://192.168.1.59:18080/jsy-rest";
 //		return "http://192.168.0.37:8080/jsy";
 //		return "http://127.0.0.1:18080/jsy-rest";
-//		return "http://127.0.0.1:18080/jsy";
+//		return "http://192.168.0.18:18080/jsy";
 //		return "http://jsy-pc:18080/jsy-rest";
-		return "http://localhost:8080/jsy";
+//		return "http://localhost:8080/jsy";
 	}
 
 	public ManagerResponse get(String cookie, String url, JSONObject params) {
 		ManagerResponse manageResponse = new ManagerResponse();
 
-        CloseableHttpClient client = HttpClients.createDefault();
-        StringBuffer paramUrl = new StringBuffer();
+		HttpClient client = HttpClients.createDefault();
+		StringBuffer paramUrl = new StringBuffer();
 		for (Object o : params.entrySet()) {
 			Entry<String, Object> entry = (Entry<String, Object>) o;
 			if (paramUrl.length() == 0) {
@@ -75,8 +77,7 @@ public class Manager {
 		try {
 			HttpResponse response = client.execute(get);
 			manageResponse.status = response.getStatusLine().getStatusCode();
-			String string = toString(response.getEntity());
-			manageResponse.response = string;
+			manageResponse.response = toString(response.getEntity());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -93,7 +94,7 @@ public class Manager {
 	public ManagerResponse post(String cookie, String url, JSONObject params) {
 		ManagerResponse manageResponse = new ManagerResponse();
 
-		CloseableHttpClient client = HttpClients.createDefault();
+		HttpClient client = HttpClients.createDefault();
 		HttpPost post = new HttpPost(url);
 		try {
 			String token = TokenManager.getInstance().get(cookie);
@@ -106,11 +107,7 @@ public class Manager {
 			post.setEntity(new StringEntity(params.toString(), CHARSET));
 			HttpResponse response = client.execute(post);
 			manageResponse.status = response.getStatusLine().getStatusCode();
-			if (manageResponse.status == Status.OK.getStatusCode()) {
-				String string = EntityUtils.toString(response.getEntity(), CHARSET);
-				manageResponse.response = string;
-//				manageResponse.entity = JSONObject.fromObject(string);
-			}
+			manageResponse.response = toString(response.getEntity());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -136,7 +133,6 @@ public class Manager {
 	
 	public ManagerResponse post(String cookie, String url, JSONObject params, JSONObject entity) {
 		ManagerResponse manageResponse = new ManagerResponse();
-
 		CloseableHttpClient client = HttpClients.createDefault();
 		StringBuffer paramUrl = new StringBuffer();
 		for (Object o : params.entrySet()) {
@@ -179,7 +175,7 @@ public class Manager {
 	
 	public ManagerResponse put(String cookie, String url, JSONObject params, JSONObject entity) {
 		ManagerResponse manageResponse = new ManagerResponse();
-		CloseableHttpClient client = HttpClients.createDefault();
+		HttpClient client = HttpClients.createDefault();
 		StringBuffer paramUrl = new StringBuffer();
 		if (params != null) {
 			for (Object o : params.entrySet()) {
@@ -219,6 +215,50 @@ public class Manager {
 			}
 		}
 
+		return manageResponse;
+	}
+	
+	public ManagerResponse delete(String cookie, String url, JSONObject params, JSONObject entity) {
+		ManagerResponse manageResponse = new ManagerResponse();
+		HttpClient client = HttpClients.createDefault();
+		StringBuffer paramUrl = new StringBuffer();
+		if (params != null) {
+			for (Object o : params.entrySet()) {
+				Entry<String, Object> entry = (Entry<String, Object>) o;
+				if (paramUrl.length() == 0) {
+					paramUrl.append("?");
+				} else {
+					paramUrl.append("&");
+				}
+				paramUrl.append(entry.getKey());
+				paramUrl.append("=");
+				paramUrl.append(entry.getValue());
+			}
+		}
+		HttpDelete http = new HttpDelete(url + paramUrl);
+		
+		try {
+			String token = TokenManager.getInstance().get(cookie);
+			if (token != null) {
+				http.setHeader(ACCESS_TOKEN_REQUEST, token);
+			}
+			http.setHeader(ACCEPT_TYPE_KEY, ACCEPT_TYPE_VALUE);
+			http.setHeader(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE);
+			
+			HttpResponse response = client.execute(http);
+			manageResponse.status = response.getStatusLine().getStatusCode();
+			String string = toString(response.getEntity());
+			manageResponse.response = string;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				http.abort();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return manageResponse;
 	}
 

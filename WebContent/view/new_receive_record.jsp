@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"></jsp:include>
-    <script type="text/javascript" src="./new_receive_record.js"></script>
+    <script type="text/javascript" src="./new_project.js"></script>
     <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
     <title>新建收款记录</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
@@ -24,20 +24,18 @@
             <form class="form-bordered " action="/" method="post">
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">基金名称：</label>
-                    </div>
-
-                    <div class="form-input col-md-4">
-                        <input type="text" id="fundname" placeholder="输入自动查询"/>
-                        <input type="hidden" id="fundid"/>
-                    </div>
-                    <div class="form-label col-md-2   ">
                         <label for="">项目名称：</label>
                     </div>
 
                     <div class="form-input col-md-4">
                         <input type="text" id="projectname" placeholder="输入自动查询"/>
-                        <input type="hidden" id="projectid"/>
+                    </div>
+                    <div class="form-label col-md-2   ">
+                        <label for="">基金名称：</label>
+                    </div>
+
+                    <div class="form-input col-md-4">
+                        <input type="text" id="fundname" placeholder="输入自动查询"/>
                     </div>
 
                 </div>
@@ -46,13 +44,13 @@
                         <label for="">付款日期：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input class="tcal filter-input" id="date" />
+                        <input type="text" id="paydate"/>
                     </div>
                     <div class="form-label col-md-2   ">
                         <label for="">付款金额：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="total"/>
+                        <input type="text" id="paytotal"/>
                     </div>
                 </div>
 
@@ -62,25 +60,25 @@
                     </div>
                     <div class="form-input col-md-8">
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox1" value="original"> 本金
+                            <input type="checkbox" id="inlineCheckbox1" value="option1"> 本金
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox2" value="firstyear"> 第一年利息
+                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 第一年利息
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox4" value="maintain"> 管理费
+                            <input type="checkbox" id="inlineCheckbox4" value="option3"> 管理费
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox5" value="channel"> 渠道费
+                            <input type="checkbox" id="inlineCheckbox5" value="option3"> 渠道费
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox6" value="overdue"> 逾期利息
+                            <input type="checkbox" id="inlineCheckbox6" value="option3"> 逾期利息
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox7" value="penalty"> 违约金
+                            <input type="checkbox" id="inlineCheckbox7" value="option3"> 违约金
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="receiveType" id="inlineCheckbox8" value="borrow"> 借款
+                            <input type="checkbox" id="inlineCheckbox8" value="option3"> 借款
                         </label>
                     </div>
                 </div>
@@ -126,13 +124,13 @@
                         <label for="">付款账户：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="payaccount" placeholder="自动带出（不在合同环节中录入的）" readonly="readonly"/>
+                        <input type="text" id="payaccount" placeholder="自动带出（不在合同环节中录入的）"/>
                     </div>
                     <div class="form-label col-md-2   ">
                         <label for="">付款银行：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="paybank" placeholder="自动带出（不在合同环节中录入的）(下拉选择)" readonly="readonly"/>
+                        <input type="text" id="paybank" placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
                     </div>
                 </div>
 
@@ -141,13 +139,13 @@
                         <label for="">付款人：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="payor" placeholder="自动带出（不在合同环节中录入的）" readonly="readonly"/>
+                        <input type="text" id="payaccount" placeholder="自动带出（不在合同环节中录入的）"/>
                     </div>
                     <div class="form-label col-md-2   ">
                         <label for="">收款人：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="receiver" placeholder="自动带出（不在合同环节中录入的）(下拉选择)" readonly="readonly"/>
+                        <input type="text" id="paybank" placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
                     </div>
                 </div>
 
@@ -156,13 +154,13 @@
                         <label for="">收款账户：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="receiveaccount" placeholder="自动带出（不在合同环节中录入的）" readonly="readonly"/>
+                        <input type="text" id="payaccount" placeholder="自动带出（不在合同环节中录入的）"/>
                     </div>
                     <div class="form-label col-md-2   ">
                         <label for="">收款银行：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="receivebank" placeholder="自动带出（不在合同环节中录入的）(下拉选择)" readonly="readonly"/>
+                        <input type="text" id="paybank" placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
                     </div>
                 </div>
 
@@ -170,7 +168,7 @@
                 <div class="form-row pad3B">
                     <div>
                         <button class="but-ui btn primary-bg large" type="button">
-                            <span class="button-content" id="add-record">添加</span>
+                            <span class="button-content" id="add-project">添加</span>
                         </button>
                     </div>
                 </div>

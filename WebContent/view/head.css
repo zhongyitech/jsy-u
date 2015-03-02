@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
-#header-logo, #page-header {
-	background: linear-gradient(to bottom, #A05D23 0, #f57614 100%);
+/* #header-logo, #page-header {
+	background: linear-gradient(to bottom, #454545 0, #565656 100%);
 	color: #fefefe;
 }
 
@@ -18,18 +18,13 @@
 	color: #fefefe;
 }
 
-.top-icon-bar .dropdown>a:hover {
-	background: #de8723;
+.user-profile>a:hover{
+	background: #121212;
 	color: #fefefe;
-}
-
-.user-profile>a:hover {
-	background: #de8723;
-	color: #fefefe;
-}
+} */
 
 .login-body{
-	background: #ffffcc url(../images/noise.png);
+	background: #ffffdd url(../images/noise.png);
 	font-family: 微软雅黑;
 }
 
@@ -67,7 +62,7 @@
 }
 
 .page-view{
-	min-height: 640px
+	min-height: 450px
 }
 
 .view-width{
@@ -221,4 +216,8 @@ select[disabled]{
 .span-12{
 	display: block;
 	height: 12px;
+}
+
+.pointer{
+	cursor: pointer;
 }

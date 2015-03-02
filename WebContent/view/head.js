@@ -23,6 +23,17 @@ var PAGE={
 		USER_LIST: './user-list.jsp',
 		USER_CREATE: './user-create.jsp',
 		USER_EDIT: './user-edit.jsp',
+		DEPARTMENT_LIST: './department-list.jsp',
+		DEPARTMENT_CREATE: './department-create.jsp',
+		DEPARTMENT_EDIT: './department-edit.jsp',
+		COMPANY_LIST: './company-list.jsp',
+		COMPANY_CREATE: './company-create.jsp',
+		COMPANY_EDIT: './company-edit.jsp',
+		ROLE_LIST: './role-list.jsp',
+		ROLE_CREATE: './role-create.jsp',
+		ROLE_EDIT: './role-edit.jsp',
+		AUTHORITY_LIST: './authority-list.jsp',//权限管理页面
+		AUTHORITY_EDIT: './authority-edit.jsp',//权限编辑页面
 		getParam: function(name) { 
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
 			var r = window.location.search.substr(1).match(reg); 
@@ -259,7 +270,7 @@ var NOTIFICATION_TASK={
 		}
 };
 
-var FUND={
+var FUND={//基金
 		ID_KEY: 'id',
 		NUMBER_KEY: 'fundNo',
 		NAME_KEY: 'fundName',
@@ -279,11 +290,11 @@ var FUND={
 		response: {},
 		items: [],
 		map: {},
-		ini: function(async){
-			//默认异步加载数据
+		ini: function(async){//缓存数据
 			if(!async){
 				async = false;
 			}
+			
 			var params = JSON.stringify({});
 			var data = {url: '/api/fund', params: params};
 			var me = this;
@@ -306,7 +317,6 @@ var FUND={
 			});
 		},
 		getItems: function(){
-			//同步加载数据
 			if(!this.items || !this.items.length){
 				this.ini(false);
 			}
@@ -338,12 +348,25 @@ var FUND={
 				return '无基金名称';
 			}
 		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
 		toId: function(item){
 			if(item){
-				return item[this.ID_KEY]
-			}else{
-				return item;
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
 			}
+			
+			return '';
 		},
 		toNumber: function(item){
 			if(item){
@@ -589,6 +612,10 @@ var INVESTMENT={
 			return this.map;
 		},
 		get: function(id){
+			if(!id){
+				return '';
+			}
+			
 			var params = JSON.stringify({id: id});
 			var data = {url: '/api/investmentArchives/GetById', params: params};
 			var me = this;
@@ -1121,6 +1148,185 @@ var TCFPFW = {
 		}
 };
 
+var YHZH_PURPOSE={//用途
+		ID_KEY: 'id',
+		NAME_KEY: 'mapName',
+		map: {},
+		ini: function(async){
+			//默认异步加载数据
+			if(!async){
+				async = false;
+			}
+			
+			var params = JSON.stringify({type: TYPE_Enumeration.YHZH_ID});
+			var data = {url: '/api/typeConfig/type', params: params};
+			var me = this;
+			$.ajax({ 
+				type: "post", 
+				url: "../rest/item/get", 
+				async: async,
+				data: data,
+				dataType: "json",
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
+					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
+				}
+			});
+		},
+		getItems: function(){
+			//同步加载数据
+			if(!this.items || !this.items.length){
+				this.ini(false);
+			}
+			return this.items;
+		},
+		getMap: function(){
+			if(JSON.stringify(this.map) == "{}"){
+				var items = this.getItems();
+				for(var i in items){
+					this.map[items[i][this.ID_KEY]] = items[i];
+				}
+			}
+			return this.map;
+		},
+		get: function(id){
+			var map = this.getMap();
+			return map[id];
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toName: function(item){
+			if(item){
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		}
+};
+
+var COMPANY_TYPE={
+		ID_KEY: 'id',
+		NAME_KEY: 'mapName',
+		VALUE_KEY: 'mapValue',
+		VALUE_GENNERAL: 1,
+		VALUE_PARTNER: 2,
+		map: {},
+		ini: function(async){
+			//默认异步加载数据
+			if(!async){
+				async = false;
+			}
+			
+			var params = JSON.stringify({type: TYPE_Enumeration.COMPANY_ID});
+			var data = {url: '/api/typeConfig/type', params: params};
+			var me = this;
+			$.ajax({ 
+				type: "post", 
+				url: "../rest/item/get", 
+				async: async,
+				data: data,
+				dataType: "json",
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
+					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
+				}
+			});
+		},
+		getItems: function(){
+			//同步加载数据
+			if(!this.items || !this.items.length){
+				this.ini(false);
+			}
+			return this.items;
+		},
+		getMap: function(){
+			if(JSON.stringify(this.map) == "{}"){
+				var items = this.getItems();
+				for(var i in items){
+					this.map[items[i][this.ID_KEY]] = items[i];
+				}
+			}
+			return this.map;
+		},
+		get: function(id){
+			var map = this.getMap();
+			return map[id];
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toName: function(item){
+			if(item){
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toValue: function(item){
+			if(item){
+				var v = item[this.VALUE_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		}
+};
+
 var TypeConfig={//年化收益和提成
 	NAME_KEY: 'mapName',
 	SHOUYI_KEY: 'rest_yield',
@@ -1261,7 +1467,9 @@ var TYPE_Enumeration={
 	BORROW_IN: 1,
 	BORROW_OUT: 2,
 	BORROW_LOST: 3,
-	BORROW_DESTROY: 4
+	BORROW_DESTROY: 4,
+	COMPANY_ID: 6,//公司类型
+	YHZH_ID: 7
 };
 
 var BorrowStatus={
@@ -1335,7 +1543,6 @@ var BorrowStatus={
 		}
 	}
 };
-
 
 //基金的状态
 var FUND_STATUS={
@@ -1420,13 +1627,208 @@ var FUND_STATUS={
 		}
 };
 
+//权限
+var AUTHORITY={
+		ID_KEY: 'id',
+		ROLE_KEY: 'role',//角色名称
+		RESOURCE_KEY: 'resource',//权限
+		OPERATIONS_KEY: 'operations',//操作
+		map: {},
+		ini: function(async){
+			//默认异步加载数据
+			if(!async){
+				async = false;
+			}
+			
+			var params = JSON.stringify({});
+			var data = {url: '/api/role/readAll', params: params};
+			var me = this;
+			$.ajax({ 
+				type: "post", 
+				url: "../rest/item/get", 
+				async: async,
+				data: data,
+				dataType: "json",
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
+					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
+				}
+			});
+		},
+		getItems: function(){
+			//同步加载数据
+			if(!this.items || !this.items.length){
+				this.ini(false);
+			}
+			return this.items;
+		},
+		getMap: function(){
+			if(JSON.stringify(this.map) == "{}"){
+				var items = this.getItems();
+				for(var i in items){
+					this.map[items[i][this.ID_KEY]] = items[i];
+				}
+			}
+			return this.map;
+		},
+		get: function(id){
+			var map = this.getMap();
+			return map[id];
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toName: function(item){
+			if(item){
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toAuthority: function(item){
+			if(item){
+				var v = item[this.AUTHORITY_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		}
+}
+
+//角色
+var ROLE={
+		ID_KEY: 'id',
+		NAME_KEY: 'name',//角色名称
+		AUTHORITY_KEY: 'authority',//权限
+		map: {},
+		ini: function(async){
+			//默认异步加载数据
+			if(!async){
+				async = false;
+			}
+			
+			var params = JSON.stringify({});
+			var data = {url: '/api/role/readAll', params: params};
+			var me = this;
+			$.ajax({ 
+				type: "post", 
+				url: "../rest/item/get", 
+				async: async,
+				data: data,
+				dataType: "json",
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
+					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
+				}
+			});
+		},
+		getItems: function(){
+			//同步加载数据
+			if(!this.items || !this.items.length){
+				this.ini(false);
+			}
+			return this.items;
+		},
+		getMap: function(){
+			if(JSON.stringify(this.map) == "{}"){
+				var items = this.getItems();
+				for(var i in items){
+					this.map[items[i][this.ID_KEY]] = items[i];
+				}
+			}
+			return this.map;
+		},
+		get: function(id){
+			var map = this.getMap();
+			return map[id];
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toName: function(item){
+			if(item){
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toAuthority: function(item){
+			if(item){
+				var v = item[this.AUTHORITY_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		}
+}
+
 var USER ={
 		ID_KEY: 'id',
 		ACCOUNT_KEY: 'username',//账号
+		PASSWORD_KEY: 'password',//密码
+		ENABLED_KEY: 'enabled',//是否启用
 		NAME_KEY: 'chainName',//中文名
 		DEPARTMENT_KEY: 'department',//部门
 		SKR_KEY: 'skr',//银行账号
+		KHH_KEY: 'khh',//开户行
 		YHZH_KEY: 'yhzh',//银行账号
+		ROLE_KEY: 'role',//角色
 		response: {},
 		item: {},
 		items: [],
@@ -1530,6 +1932,18 @@ var USER ={
 				return '';
 			}
 		},
+		toEnabled: function(item){
+			if(item){
+				var v = item[this.ENABLED_KEY];
+				if(v){
+					return v;
+				}else{
+					return false;
+				}
+			}
+			
+			return '';
+		},
 		toName: function(item){
 			if(item){
 				var v = item[this.NAME_KEY];
@@ -1558,9 +1972,27 @@ var USER ={
 			}
 			return '';
 		},
+		toKHH: function(item){//开户行
+			if(item){
+				var v = item[this.KHH_KEY];
+				if(v){
+					return v;
+				}
+			}
+			return '';
+		},
 		toYHZH: function(item){//银行账号
 			if(item){
 				var v = item[this.YHZH_KEY];
+				if(v){
+					return v;
+				}
+			}
+			return '';
+		},
+		toRole: function(item){//角色
+			if(item){
+				var v = item[this.ROLE_KEY];
 				if(v){
 					return v;
 				}
@@ -1578,9 +2010,424 @@ var USER ={
 		}
 };
 
+var YHZH={//银行账户
+		ID_KEY: 'id',
+		ACCOUNT_KEY: 'account',//账号
+		HM_KEY: 'accountName',//户名
+		YHMC_KEY: 'bankName',//银行名称
+		KHH_KEY: 'bankOfDeposit',//开户行
+		ISDEFAULT_KEY: 'defaultAccount',//是否默认账号
+		PURPOSE_KEY: 'purpose',//用途
+		get: function(id){
+			var me = this;
+			var params = JSON.stringify({id: id});
+			var data = {url: '/api/bankAccount/findById', params: params};
+			$.ajax({ 
+				type: 'post', 
+				url: '../rest/item/get', 
+				data: data,
+				dataType: 'json',
+				async: false,
+				success: function(response){
+					me.response=response;
+				},
+				error: function(response){
+					me.response=response;
+					LOGIN.error(response);
+				}
+			});
+			
+			if(this.response[REST.RESULT_KEY]){
+				me.item = JSON.parse(me.response[REST.RESULT_KEY]);
+			}
+			return me.item;
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toAccount: function(item){
+			if(item){
+				var v = item[this.ACCOUNT_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toHM: function(item){
+			if(item){
+				var v = item[this.HM_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toYHMC: function(item){
+			if(item){
+				var v = item[this.YHMC_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toKHH: function(item){
+			if(item){
+				var v = item[this.KHH_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toIsDefault: function(item){
+			if(item){
+				var v = item[this.ISDEFAULT_KEY];
+				if(v){
+					return v;
+				}else{
+					return false;
+				}
+			}
+			
+			return '';
+		},
+		toPurpose: function(item){
+			if(item){
+				var v = item[this.PURPOSE_KEY];
+				if(v){
+					return v;
+				}else{
+					return false;
+				}
+			}
+			
+			return '';
+		}
+};
+
+//公司
+var COMPANY={
+		ID_KEY: 'id',
+		NAME_KEY: 'companyName',//公司名称
+		NICKNAME_KEY: 'companyNickName',//公司简称
+		TYPE_KEY: 'companyType',//公司类型
+		TEMPLATE_KEY: 'protocolTemplate',//协议模板
+		ADDRESS_KEY: 'address',//注册地址
+		PARTNER_KEY: 'partners',//合伙人
+		PARENT_KEY: 'head',//总公司
+		FUND_KEY: 'fund',//基金
+		FRDB_KEY: 'corporate',//法人代表
+		SHENG_KEY: 'province',//省
+		CITY_KEY: 'city',//市
+		XIAN_KEY: 'area',//县
+		STATUS_KEY: 'status',//状态
+		FOUND_KEY: 'foundingDate',//成立日期
+		ASSIGNER_KEY: 'responsiblePerson',//责任人
+		PHONE_KEY: 'telephone',//联系电话
+		FAX_KEY: 'fax',//传真
+		DESCRIPTION_KEY: 'companyDescription',//公司描述
+		REMARK_KEY: 'remark',//备注
+		YHZH_KEY: 'bankAccount',//银行账户
+		map: {},
+		ini: function(async){
+			//默认异步加载数据
+			if(!async){
+				async = false;
+			}
+			
+			var params = JSON.stringify({});
+			var data = {url: '/api/fundCompanyInformation/readAll', params: params};
+			var me = this;
+			$.ajax({ 
+				type: "post", 
+				url: "../rest/item/get", 
+				async: async,
+				data: data,
+				dataType: "json",
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
+					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
+				}
+			});
+		},
+		getItems: function(){
+			//同步加载数据
+			if(!this.items || !this.items.length){
+				this.ini(false);
+			}
+			return this.items;
+		},
+		getMap: function(){
+			if(JSON.stringify(this.map) == "{}"){
+				var items = this.getItems();
+				for(var i in items){
+					this.map[items[i][this.ID_KEY]] = items[i];
+				}
+			}
+			return this.map;
+		},
+		get: function(id){
+			var map = this.getMap();
+			return map[id];
+		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
+		toId: function(item){
+			if(item){
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toName: function(item){
+			if(item){
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toNickname: function(item){
+			if(item){
+				var v = item[this.NICKNAME_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toType: function(item){
+			if(item){
+				var v = item[this.TYPE_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toTemplate: function(item){
+			if(item){
+				var v = item[this.TEMPLATE_KEY];
+				if(v){
+					return v;
+				}else{
+					return '0';
+				}
+			}
+			
+			return '';
+		},
+		toAddress: function(item){
+			if(item){
+				var v = item[this.ADDRESS_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toPartner: function(item){
+			if(item){
+				var v = item[this.PARTNER_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toFund: function(item){
+			if(item){
+				var v = item[this.FUND_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toParent: function(item){
+			if(item){
+				var v = item[this.PARENT_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toFRDB: function(item){
+			if(item){
+				var v = item[this.FRDB_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toMJZH: function(item){
+			if(item){
+				var v = item[this.MJZH_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toSHENG: function(item){
+			if(item){
+				var v = item[this.SHENG_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toCity: function(item){
+			if(item){
+				var v = item[this.CITY_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toXIAN: function(item){
+			if(item){
+				var v = item[this.XIAN_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toStatus: function(item){
+			if(item){
+				var v = item[this.STATUS_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toFound: function(item){
+			if(item){
+				var v = item[this.FOUND_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toAssigner: function(item){
+			if(item){
+				var v = item[this.ASSIGNER_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toPhone: function(item){
+			if(item){
+				var v = item[this.PHONE_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toFax: function(item){
+			if(item){
+				var v = item[this.FAX_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toDescription: function(item){
+			if(item){
+				var v = item[this.DESCRIPTION_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toYHZH: function(item){
+			if(item){
+				var v = item[this.YHZH_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		}
+}
+
 var DEPARTMENT={
 		ID_KEY: 'id',
-		NAME_KEY: 'deptName',
+		NAME_KEY: 'deptName',//部门名称
+		COMPANY_KEY: 'fundCompanyInformation',//所属公司
+		DESCRIPTION_KEY: 'description',//所属公司
 		items_cache: false,
 		items:[],
 		map: {},
@@ -1589,34 +2436,35 @@ var DEPARTMENT={
 		error: function(result){
 			LOGIN.error(result);
 		},
-		ini: function(async){
-			//默认异步加载数据
+		ini: function(async){//缓存数据
 			if(!async){
 				async = false;
 			}
 			
+			var params = JSON.stringify({});
+			var data = {url: '/api/department/readAll', params: params};
 			var me = this;
 			$.ajax({ 
 				type: "post", 
-				url: "../rest/department/getAll", 
+				url: "../rest/item/get", 
 				async: async,
-				data: {},
+				data: data,
 				dataType: "json",
-				success: function(result){
-					me.items = JSON.parse(result.rest_result);
-				},
-				error: function(result){
-					if(LOGIN.error(result)){
-						return;
+				success: function(response){
+					me.response = response;
+					if(response && response[REST.RESULT_KEY]){
+						me.items = JSON.parse(response[REST.RESULT_KEY]);
 					}
+				},
+				error: function(response){
+					me.response = response;
+					LOGIN.error(response);
 				}
 			});
 		},
 		getItems: function(){
-			//同步加载数据
-			if(!this.items_cache){
+			if(!this.items || !this.items.length){
 				this.ini(false);
-				this.items_cache = true;
 			}
 			return this.items;
 		},
@@ -1641,19 +2489,55 @@ var DEPARTMENT={
 			}
 			return name;
 		},
+		toItem: function(item){
+			if(item){
+				var id = item[this.ID_KEY];
+				if(id){
+					return this.get(id);
+				}
+			}
+			
+			return '';
+		},
 		toId: function(item){
 			if(item){
-				return item[this.ID_KEY]
-			}else{
-				return item;
+				var v = item[this.ID_KEY];
+				if(v){
+					return v;
+				}
 			}
+			
+			return '';
 		},
 		toName: function(item){
 			if(item){
-				return item[this.NAME_KEY]
-			}else{
-				return item;
+				var v = item[this.NAME_KEY];
+				if(v){
+					return v;
+				}
 			}
+			
+			return '';
+		},
+		toCompany: function(item){
+			if(item){
+				var v = item[this.COMPANY_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
+		},
+		toDescription: function(item){
+			if(item){
+				var v = item[this.DESCRIPTION_KEY];
+				if(v){
+					return v;
+				}
+			}
+			
+			return '';
 		}
 };
 
@@ -1705,11 +2589,14 @@ var LOGIN={
 		},
 		setView: function(){
 			var me = this;
+			var params = JSON.stringify({});
+			var entity = JSON.stringify({});
+			var data = {url: '/api/user/getUser', params: params, entity: entity};
 			$.ajax({ 
 				type: "post", 
-				url: '../rest/login/user', 
+				url: '../rest/item/get', 
 				async: true,
-				data: {},
+				data: data,
 				dataType: "json",
 				success: function(response){
 					me.response = response;
@@ -1724,11 +2611,14 @@ var LOGIN={
 		},
 		getUser: function(){
 			var me = this;
+			var params = JSON.stringify({});
+			var entity = JSON.stringify({});
+			var data = {url: '/api/user/getUser', params: params, entity: entity};
 			$.ajax({ 
 				type: "post", 
-				url: '../rest/login/user', 
+				url: '../rest/item/get', 
 				async: false,
-				data: {},
+				data: data,
 				dataType: "json",
 				success: function(response){
 					me.response = response;
@@ -2082,6 +2972,9 @@ var FILE={
 			});
 			var items = rest_result[REST.RESULT_KEY];
 			return items;
+		},
+		getForm: function(){
+			return $('<form></form>').append($('#invest-attachment')[0]);;
 		}
 };
 
@@ -2271,73 +3164,99 @@ var INVESTMENT_SY={
     }
 };
 
+//消息提示框带选择功能
 var MESSAGEBOX = {
-	yesfunc : null,
-	nofunc : null,
-	cancelfunc : null,
-	show : function(msg) {
-		$("#jsy_msgbox_comfirm_dialog").show();
-		$("#jsy_msgbox_comfirm_dialog").click(function() {
-			$("#jsy_msgbox_light").css("display", "none");
-			$("#jsy_msgbox_fade").css("display", "none");
-		});
-		$("#jsy_msgbox_light").css("display", "block");
-		$("#jsy_msgbox_fade").css("display", "block");
-		$('#jsy_messagebox_msg').html(msg);
-	},
-	close : function() {
-		$("#jsy_msgbox_light").css("display", "none");
-		$("#jsy_msgbox_fade").css("display", "none");
-		this.hidebutton();
-	},
-	hidebutton:function(){
-		$('#jsy_msgbox_yes').hide();
-		$('#jsy_msgbox_no').hide();
-		$('#jsy_msgbox_cancel').hide();
-		$('#jsy_msgbox_comfirm_dialog').hide();
-	},
-	dialog : function(msg, button, funcs) {
-		this.hidebutton();
-		if (button == null || button == undefined) {
-			MESSAGEBOX.show(msg);
-			return;
-		} else {
-			var buts = button.split(',');
-			for ( var b in buts) {
-				$('#jsy_msgbox_' + buts[b]).show();
-			}
-		}
-		if (funcs != null && funcs != undefined) {
-			for ( var fun in funcs) {
-				this[funcs[fun].name + 'func'] = funcs[fun].func;
-			}
-		}
-		$('#jsy_msgbox_yes').click(function() {
-			if (MESSAGEBOX.yesfunc != null) {
-				MESSAGEBOX.yesfunc();
-				MESSAGEBOX.yesfunc = null;
-			}
-			MESSAGEBOX.close();
-		});
-		$('#jsy_msgbox_no').click(function() {
-			if (MESSAGEBOX.nofunc != null) {
-				MESSAGEBOX.nofunc();
-				MESSAGEBOX.nofunc = null;
-			}
-			MESSAGEBOX.close();
-		});
-		$('#jsy_msgbox_cancel').click(function() {
-			if (MESSAGEBOX.cancelfunc != null) {
-				MESSAGEBOX.cancelfunc();
-				MESSAGEBOX.cancelfunc = null;
-			}
-			MESSAGEBOX.close();
-		});
-		$("#jsy_msgbox_comfirm_dialog").click(function() {
-			MESSAGEBOX.close();
-		});
-		$("#jsy_msgbox_light").css("display", "block");
-		$("#jsy_msgbox_fade").css("display", "block");
-		$('#jsy_messagebox_msg').html(msg);
-	}
+    yesfunc: null,
+    nofunc: null,
+    cancelfunc: null,
+    show: function (msg)
+    {
+        this.hidebutton();
+        $("#jsy_msgbox_comfirm_dialog").show();
+        $("#jsy_msgbox_comfirm_dialog").click(function ()
+        {
+            $("#jsy_msgbox_light").css("display", "none");
+            $("#jsy_msgbox_fade").css("display", "none");
+            this.close();
+        });
+        $("#jsy_msgbox_light").css("display", "block");
+        $("#jsy_msgbox_fade").css("display", "block");
+        $('#jsy_messagebox_msg').html(msg);
+    },
+    close: function ()
+    {
+        this.hidebutton();
+        $("#jsy_msgbox_light").css("display", "none");
+        $("#jsy_msgbox_fade").css("display", "none");
+    },
+    hidebutton: function ()
+    {
+        $('#jsy_msgbox_yes').hide();
+        $('#jsy_msgbox_no').hide();
+        $('#jsy_msgbox_cancel').hide();
+        $('#jsy_msgbox_comfirm_dialog').hide();
+    },
+    showYesNo: function (msg, okfunc)
+    {
+        var button = "yes,no";
+        var funcs = [{ "yes": okfunc}];
+        this.dialog(msg, button, funcs);
+    },
+    dialog: function (msg, button, funcs)
+    {
+        this.hidebutton();
+        if (button == null || button == undefined)
+        {
+            MESSAGEBOX.show(msg);
+            return;
+        } else
+        {
+            var buts = button.split(',');
+            for (var b in buts)
+            {
+                $('#jsy_msgbox_' + buts[b]).show();
+            }
+        }
+        if (funcs != null && funcs != undefined)
+        {
+            for (var fun in funcs)
+            {
+                this[funcs[fun].name + 'func'] = funcs[fun].func;
+            }
+        }
+        $('#jsy_msgbox_yes').click(function ()
+        {
+            if (MESSAGEBOX.yesfunc != null)
+            {
+                MESSAGEBOX.yesfunc();
+                MESSAGEBOX.yesfunc = null;
+            }
+            MESSAGEBOX.close();
+        });
+        $('#jsy_msgbox_no').click(function ()
+        {
+            if (MESSAGEBOX.nofunc != null)
+            {
+                MESSAGEBOX.nofunc();
+                MESSAGEBOX.nofunc = null;
+            }
+            MESSAGEBOX.close();
+        });
+        $('#jsy_msgbox_cancel').click(function ()
+        {
+            if (MESSAGEBOX.cancelfunc != null)
+            {
+                MESSAGEBOX.cancelfunc();
+                MESSAGEBOX.cancelfunc = null;
+            }
+            MESSAGEBOX.close();
+        });
+        $("#jsy_msgbox_comfirm_dialog").click(function ()
+        {
+            MESSAGEBOX.close();
+        });
+        $("#jsy_msgbox_light").css("display", "block");
+        $("#jsy_msgbox_fade").css("display", "block");
+        $('#jsy_messagebox_msg').html(msg);
+    }
 };

@@ -28,22 +28,18 @@ public class FileRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response upload(@CookieParam("JSESSIONID") String jsession,
 			@Context HttpServletRequest request){
-		ManagerResponse response = FileManager.getInstance().upload(request);
-		return Response.ok(response.response).status(response.status).build();
+		ManagerResponse response = FileManager.getInstance().upload(jsession, request);
+		return Response.ok(response.response).status(response.status).build(); 
 	}
 	
 	@GET
 	@Path("download")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public Response download(@CookieParam("JSESSIONID")	@DefaultValue("") 	String jsession, 
-							@QueryParam("path")			@DefaultValue("")	String path,
-							@QueryParam("name")			@DefaultValue("")	String name
-	) throws Exception{
-		String pathname = FileManager.getInstance().download(path);
-		File file = new File(pathname);
+							@QueryParam("path")			@DefaultValue("")	String path) throws FileNotFoundException{
+		ManagerResponse response = FileManager.getInstance().download(jsession, path);
+		File file = new File(response.response);
 		InputStream stream = new FileInputStream(file);
-
-
-		return Response.ok(stream).status(ManagerResponse.OK).header("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(name, "UTF-8")).build();
+		return Response.ok(stream).status(response.status).build();
 	}
 }

@@ -47,7 +47,7 @@
 								<i class="glyph-icon icon-arrow-right"></i>
 							</a>
 						</div>
-						
+												
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
