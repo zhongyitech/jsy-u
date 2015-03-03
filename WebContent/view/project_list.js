@@ -102,7 +102,8 @@ var VIEWDATA={
                 table.append(row);
 
                 row.append('<td>' + items[i]["id"] + '</td>');
-                row.append('<td>' + items[i]["name"] + '</td>');
+                var link = "projectinfo.jsp?id="+ items[i]["id"];
+                row.append('<td><a href="'+link+'">' + items[i]["name"] + '</a></td>');
                 if(items[i]["fundNames"]){
                     row.append('<td>' + items[i]["fundNames"] + '</td>');
                 }else{
