@@ -31,6 +31,9 @@ var FLOW={
     thirdpartyLowFiles_attachments: [],
     thirdpartyLow_other_attachments: [],
 
+    //makeContact
+    makeContact_other_attachments: [],
+
     gatherOA:"#panel_gatherOA",
     research:"#panel_research",
     researchOA:"#panel_researchOA",
@@ -702,18 +705,30 @@ var FLOW={
         var me = this;
         /***初始化事件***/
         $("#complete_addCompany").click(function(){
-            
+
+            var selectedCompany= $("#company").val();
+
+
+            var model = {
+                projectid:me.projectid,
+                companyid:selectedCompany
+            };
+
+            me.post_complete('/api/project/complete_addCompany', model);
         });
 
 
         /***加载数据***/
-        getCompanies();
+        me.getCompany();
 
         /****处理显示效果****/
         if(addCompanyBean.accessable){//可以编辑
-            console.log("can modify researchOA");
+            console.log("can modify addCompany");
         }else{//不可以编辑
-            console.log("can not modify researchOA");
+            $("#company").attr('readonly','readonly');
+            $("button[type='button']","#form_addCompany").hide();
+
+            console.log("can not modify addCompany");
         }
 
         $("#panel_addCompany").show();
@@ -721,21 +736,244 @@ var FLOW={
 
     init_makeContact: function(makeContactBean){
         var me = this;
+
         /***初始化事件***/
+        $("#add_newAttention").click(function(){
+            var attention_name = $("#attention_name").val();
+            var attention_value =$("#attention_value").val();
+            if(!attention_name || attention_name == ''){
+                alert("请输入注意事项");
+                return false;
+            }
+            if(!attention_value || attention_value == ''){
+                alert("请输入风险提示栏");
+                return false;
+            }
+
+            var size = $('#attentions > tbody>tr').size()+1;
+
+            $('#attentions > tbody:last').append('<tr><td>'+attention_name+'<input id="attname'+size+'" type="hidden" value="'+attention_name+'"/></td><td>'+attention_value+'<input id="attvalue'+size+'" type="hidden" value="'+attention_value+'"/></td></tr>');
+            return false;
+        });
+
+        $("#add_more_signer").click(function(){
+            var name = $("#signX_name").val();
+            var value = $("#signX_value").val();
+            var size =  $("input[name='exist_signer']").size();
+
+            $("#signX_name").val("");
+            $("#signX_value").val("");
+
+            if(!name || name==""){
+                alert("请输入注意事项");
+                return;
+            }
+            if(!value || value==""){
+                alert("请输入风险提示");
+                return;
+            }
+
+            var new_div = $("<div class='form-row'><div class='form-label col-md-2'><label >"+name+"：</label><input id='signname"+size+"' type='hidden' name='exist_signer' type='text' value='"+name+"' placeholder='输入'"+name+"'名称'/></div><div class='form-input col-md-4'><input id='signvalue"+size+"' name='exist_signer' type='text' value='"+value+"' placeholder='输入'"+name+"'名称'/></div></div>");
+
+            $("#add_new_sign_div").before(new_div);
+
+        });
+
+        $('#project_relate_fund').autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fund/nameLike'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    $("#project_relate_fund").val(suggestion.data);
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#project_relate_fund").val("");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
+
+        $("#makeContact_attachment_1").change(function() {
+            me.makeContact_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+        });
+        $("#makeContact_add_file").click(function () {
+            var i =$("div .input-file","#makeContact_others_files").length+1;
+            var others_files = $("#makeContact_others_files");
+
+            var appenddiv = $("<div>");
+            var filediv = $('<div class="form-input col-md-4">');
+            var fileinput = $('<input id="makeContact_attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
+            filediv.append(fileinput);
+            appenddiv.append(filediv);
+            var descdiv = $('<div class="form-input col-md-6">');
+            var descarea = $('<textarea id="makeContact_attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            descdiv.append(descarea);
+            appenddiv.append(descdiv);
+
+            others_files.append(appenddiv);
+
+            fileinput.change(function () {
+                me.makeContact_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+            });
+        });
+
+        $("#complete_makeContact").click(function(){
+            var model = {
+                projectid:me.projectid,
+                signers:[],
+                attentions:[]
+            };
+
+            $("input[id^=signname]").each(function () {
+                var index = $(this).attr("id").replace("signname", "");
+                var name = $(this).val();
+                var value = $("#signvalue"+index).val();
+                var obj = {name:name,value:value};
+                model.signers.push(obj)
+            });
+
+            var fund = $("#project_relate_fund").val();
+            if(fund && fund!=""){
+                model.fund = fund;
+            }
+
+            $("input[id^=attname]").each(function () {
+                var index = $(this).attr("id").replace("attname", "");
+                var name = $(this).val();
+                var value = $("#attvalue"+index).val();
+                var obj = {name:name,value:value};
+                model.attentions.push(obj)
+            });
+
+            $.each(me.makeContact_other_attachments, function( index, attachment ) {
+                attachment.desc=$("#makeContact_attachment_txt_"+attachment.index).val();
+            });
+            model.other_attachments=me.makeContact_other_attachments;
+
+            me.post_complete('/api/project/complete_makeContact', model);
+        });
 
         /***加载数据***/
+        if(makeContactBean.signers && makeContactBean.signers.length > 0){
+            //clear old data
+            $("#div_default_signer1").remove();
+            $("#div_default_signer2").remove();
+
+            //reload
+            var size =  Math.ceil(makeContactBean.signers.length /2 );
+            for(var i= 0; i< size ; i++){
+                var index1 = i*2;
+                var index2 = i*2+1;
+                var lastone = false;
+
+                if(index2 == makeContactBean.signers.length)
+                    lastone = true;
+
+                if(lastone){
+                    var new_div = $("<div class='form-row'><div class='form-label col-md-2'><label >"+makeContactBean.signers[index1].name+"：</label><input id='signname"+index1+"' type='hidden' name='exist_signer' type='text' value='"+makeContactBean.signers[index1].name+"' placeholder='输入'"+makeContactBean.signers[index1].name+"'名称'/></div><div class='form-input col-md-4'><input id='signvalue"+index1+"' name='exist_signer' type='text' value='"+makeContactBean.signers[index1].value+"' placeholder='输入'"+makeContactBean.signers[index1].name+"'名称'/></div></div>");
+                    $("#add_new_sign_div").before(new_div);
+                }else{
+                    var new_div = $("<div class='form-row'><div class='form-label col-md-2'><label >"+makeContactBean.signers[index1].name+"：</label><input id='signname"+index1+"' type='hidden' name='exist_signer' type='text' value='"+makeContactBean.signers[index1].name+"' placeholder='输入'"+makeContactBean.signers[index1].name+"'名称'/></div><div class='form-input col-md-4'><input id='signvalue"+index1+"' name='exist_signer' type='text' value='"+makeContactBean.signers[index1].value+"' placeholder='输入'"+makeContactBean.signers[index1].name+"'名称'/></div><div class='form-label col-md-2'><label >"+makeContactBean.signers[index2].name+"：</label><input id='signname"+index2+"' type='hidden' name='exist_signer' type='text' value='"+makeContactBean.signers[index2].name+"' placeholder='输入'"+makeContactBean.signers[index2].name+"'名称'/></div><div class='form-input col-md-4'><input id='signvalue"+index2+"' name='exist_signer' type='text' value='"+makeContactBean.signers[index2].value+"' placeholder='输入'"+makeContactBean.signers[index2].name+"'名称'/></div></div>");
+                    $("#add_new_sign_div").before(new_div);
+                }
+
+            }
+
+        }
+
+        if(makeContactBean.attentions && makeContactBean.attentions.length > 0){
+            //clear old data
+            var pacts = $("#attentions tr");
+            if (pacts && pacts.length) {
+                for (var i = 1; i < pacts.length; i++) {
+                    $(pacts[i]).remove();
+                }
+            }
+
+            //reload
+            $.each(makeContactBean.attentions,function(index,obj){
+                var size = $('#attentions > tbody>tr').size()+1;
+                $('#attentions > tbody:last').append('<tr><td>'+obj.name+'<input id="attname'+size+'" type="hidden" value="'+obj.name+'"/></td><td>'+obj.value+'<input id="attvalue'+size+'" type="hidden" value="'+obj.value+'"/></td></tr>');
+
+            });
+        }
+
+        //other
+        if(makeContactBean.other_attachments && makeContactBean.other_attachments.length > 0){
+            //empty
+
+            //add
+            $.each(makeContactBean.other_attachments,function(index,obj){
+
+                var i =$("div .input-file","#makeContact_others_files").length+1;
+                var others_files = $("#exist_makeContact_others");
+
+                var appenddiv = $("<div>");
+                var filediv = $('<div class="form-input col-md-4">');
+                var div = $('<div>');
+                var ul = $('<ul>');
+                div.append(ul);
+                filediv.append(div);
+                appenddiv.append(filediv);
+
+                var descdiv = $('<div class="form-input col-md-4">');
+                var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+                descarea.val(obj.desc);
+                descdiv.append(descarea);
+
+
+                var deldiv = $('<div class="form-input col-md-2">');
+                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+                delspan.click(function () {
+                    console.log("del",obj);
+                });
+                deldiv.append(delspan);
+
+                appenddiv.append(descdiv);
+                appenddiv.append(deldiv);
+
+                others_files.append(appenddiv);
+
+                $.each(obj.files,function(index2,obj2){
+                    var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
+                    ul.append(fileli);
+                });
+
+            });
+        }
+
 
         /****处理显示效果****/
         if(makeContactBean.accessable){//可以编辑
-            console.log("can modify researchOA");
+            console.log("can modify makeContact");
         }else{//不可以编辑
-            console.log("can not modify researchOA");
+            $("input","#form_signer").attr("readonly","readonly");
+            $("#add_new_sign_div").remove();
+            $("#attention_head").remove();
+            $("#div_add_more_makeContactFiles").remove();
+            $("button[type='button']","#div_submit_makecontact").hide();
+            console.log("can not modify makeContact");
         }
 
         $("#panel_makeContact").show();
     },
 
-    getCompanies: function () {
+    getCompany: function () {
         var me = this;
         var data = {url: '/api/company/listAll'};
         console.log(data);
@@ -747,7 +985,12 @@ var FLOW={
             async: false,
             success: function(result){
                 console.log(result);
-                if(result && result.rest_status && result.rest_status == "200"){
+                if(result && result.length>0){
+                    $.each(result,function(index,obj){
+                        $("#company").append(
+                            '<option value="'+obj.id+'">'+obj.name+'</option>'
+                        );
+                    });
 
                 }
 

@@ -6,6 +6,7 @@
     <jsp:include page="./head.jsp"></jsp:include>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="projectinfo.css" />
+    <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="./flowLogic.js"></script>
     <script type="text/javascript" src="./projectinfo.js"></script>
     <title>项目明细</title>
@@ -471,7 +472,7 @@
                             <div class="page-header">
                                 <h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
+                            <form class="form-bordered " action="/" method="post" id="form_addCompany">
 
 
                                 <div class="form-row">
@@ -624,37 +625,47 @@
                             <div class="page-header">
                                 <h3>步骤3：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）</h3>
                             </div>
-                            <form class="form-bordered " action="/" method="post">
-                                <div class="form-row">
+                            <form id="form_signer" class="form-bordered " action="/" method="post">
+                                <div id="div_default_signer1" class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">甲方：</label>
+                                        <input id="signname1" value="甲方" name="exist_signer_name" type="hidden"/>
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue1" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
                                     </div>
                                     <div class="form-label col-md-2">
                                         <label for="">乙方：</label>
+                                        <input id="signname2" value="乙方" name="exist_signer_name" type="hidden"/>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue2" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
                                     </div>
 
                                 </div>
-                                <div class="form-row">
+                                <div id="div_default_signer2" class="form-row">
                                     <div class="form-label col-md-2">
                                         <label for="">丙方：</label>
+                                        <input id="signname3" value="丙方" name="exist_signer_name" type="hidden"/>
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue3" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
                                     </div>
 
                                 </div>
 
-                                <div class="form-row">
+                                <div id="add_new_sign_div" class="form-row">
                                     <div class="form-label col-md-2">
-                                        <input type="button" value="添加更多签署方"/>
+                                        <input id="signX_name" type="text" placeholder="某方"/>
+                                    </div>
+
+                                    <div class="form-input col-md-4">
+                                        <input id="signX_value" type="text" placeholder="输入某方的名称"/>
+                                    </div>
+                                    <div class="form-label col-md-2">
+                                        <input id="add_more_signer" type="button" value="添加更多签署方"/>
                                     </div>
 
                                 </div>
@@ -665,7 +676,7 @@
                                         <label for="">关联基金：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text"/>
+                                        <input id="project_relate_fund" type="text"/>
                                     </div>
 
                                 </div>
@@ -676,37 +687,36 @@
 
 
                             <div class="panel panel-default">
-                                <div class="panel-heading">
+                                <div id="attention_head" class="panel-heading">
                                     <form class="form-inline">
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail3">注意事项</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="注意事项">
+                                            <label class="sr-only" for="attention_name">注意事项</label>
+                                            <input type="text" class="form-control" id="attention_name" placeholder="注意事项">
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail4">风险提示栏</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail4" placeholder="风险提示栏">
+                                            <label class="sr-only" for="attention_value">风险提示栏</label>
+                                            <input type="text" class="form-control" id="attention_value" placeholder="风险提示栏">
                                         </div>
-                                        <button type="submit" class="btn btn-default">添加</button>
+                                        <button id="add_newAttention" type="submit" class="btn btn-default">添加</button>
                                     </form>
                                 </div>
                                 <div class="panel-body">
-                                    <table class="table table-striped text-center mrg0B">
+                                    <table id="attentions" class="table table-striped text-center mrg0B">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">编号</th>
                                             <th class="text-center">注意事项</th>
                                             <th class="text-center">风险提示栏</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr><td>1</td><td>规模</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>收益率</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>付息利息</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>续存期年限</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>基金合作条件</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>关联担保单位</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>关联担保个人信息</td><td><input type="text"></td></tr>
-                                        <tr><td>2</td><td>项目退出</td><td><input type="text"></td></tr>
+                                        <tr><td>规模<input id="attname1" type="hidden" value="规模"/></td>            <td><input id="attvalue1" type="text"/></td></tr>
+                                        <tr><td>收益率<input id="attname2" type="hidden" value="收益率"/></td>          <td><input id="attvalue2" type="text"></td></tr>
+                                        <tr><td>付息利息<input id="attname3" type="hidden" value="付息利息"/></td>        <td><input id="attvalue3" type="text"></td></tr>
+                                        <tr><td>续存期年限<input id="attname4" type="hidden" value="续存期年限"/></td>       <td><input id="attvalue4" type="text"></td></tr>
+                                        <tr><td>基金合作条件<input id="attname5" type="hidden" value="基金合作条件"/></td>     <td><input id="attvalue5" type="text"></td></tr>
+                                        <tr><td>关联担保单位<input id="attname6" type="hidden" value="关联担保单位"/></td>     <td><input id="attvalue6" type="text"></td></tr>
+                                        <tr><td>关联担保个人信息<input id="attname7" type="hidden" value="关联担保个人信息"/></td>  <td><input id="attvalue7" type="text"></td></tr>
+                                        <tr><td>项目退出<input id="attname8" type="hidden" value="项目退出"/></td>         <td><input id="attvalue8" type="text"></td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -714,30 +724,30 @@
 
 
                             <div class="form-row">
-                                <div>
-                                    <table class="item-table" >
-                                        <thead>
-                                        <tr>
-                                            <th class="text-left"><inputtype="button" value="添加其他文件" style="width: 100px;"></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-left">
-                                                <input class="input-file" name="attachment" type="file">
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="form-input col-md-10" >
+
+                                    <div id="makeContact_others_files">
+                                        <div id="exist_makeContact_others">
+
+                                        </div>
+                                        <div id="div_add_more_makeContactFiles">
+                                            <div class="form-input col-md-10">
+                                                <input type="button" id="makeContact_add_file" value="添加其他文件" style="width: 100px;">
+                                            </div>
+                                            <div class="form-input col-md-4">
+                                                <input id="makeContact_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                            </div>
+                                            <div class="form-input col-md-6">
+                                                <textarea id="makeContact_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+
                             </div>
                             <br />
-                            <div class="form-row pad3B">
+                            <div id="div_submit_makecontact" class="form-row pad3B" >
                                 <div>
                                     <button class="but-ui btn primary-bg large" type="button">
-                                        <span class="button-content" >提交</span>
+                                        <span class="button-content" id="complete_makeContact">提交</span>
                                     </button>
                                 </div>
                             </div>
