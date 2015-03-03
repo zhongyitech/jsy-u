@@ -25,3 +25,9 @@
 
 <link rel="stylesheet" type="text/css" href="../css/common/head.css">
 <script type="text/javascript" src="../js/common/head.js"></script>
+
+<%
+    String path=request.getServletPath();
+    request.setAttribute("request-resource-path",path.substring(path.lastIndexOf("/"),path.lastIndexOf(".")));
+%>
+<%--<link rel="stylesheet" type="text/css" href="../css<%=request.getAttribute("request-resource-path")%>.css">--%>
