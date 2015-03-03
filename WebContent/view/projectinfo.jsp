@@ -38,14 +38,14 @@
                             <label>项目编号：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            001
+                            <span id="project_id"></span>
                         </div>
 
                         <div class="form-label col-md-2">
                             <label>项目名称：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            某房地产融资项目
+                            <span id="project_name"></span>
                         </div>
 
                     </div>
@@ -55,14 +55,14 @@
                             <label>关联基金：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            基金1
+                            <span id="fund_name"></span>
                         </div>
 
                         <div class="form-label col-md-2">
                             <label>项目当前流程：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            调研者上传被调查对象信息
+                            <span id="currentStageName"></span>
                         </div>
 
                     </div>
@@ -671,15 +671,15 @@
                                 </div>
 
 
-                                <div class="form-row">
-                                    <div class="form-label col-md-2">
-                                        <label for="">关联基金：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <input id="project_relate_fund" type="text"/>
-                                    </div>
+                                <%--<div class="form-row">--%>
+                                    <%--<div class="form-label col-md-2">--%>
+                                        <%--<label for="">关联基金：</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-input col-md-4">--%>
+                                        <%--<input id="project_relate_fund" type="text"/>--%>
+                                    <%--</div>--%>
 
-                                </div>
+                                <%--</div>--%>
 
                             </form>
 

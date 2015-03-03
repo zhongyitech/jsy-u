@@ -64,6 +64,7 @@ var FLOW={
                 return;
             }
             var rest_result = JSON.parse(result.rest_result);
+            me.init_project(rest_result.project);
             if(rest_result.gatherInfoBean){
                 me.init_gatherInfo(rest_result.gatherInfoBean);
             }
@@ -97,6 +98,15 @@ var FLOW={
         });
 
     },
+
+    init_project: function(project){
+        if(!project)return;
+        $("#project_id").html(project.id);
+        $("#project_name").html(project.name);
+        $("#fund_name").html(project.fundNames);
+        $("#currentStageName").html(project.currentStageName);
+    },
+
     request_step_data: function(suc,err){
         var model = {
             projectid:this.projectid
@@ -779,33 +789,33 @@ var FLOW={
 
         });
 
-        $('#project_relate_fund').autocomplete(
-            {
-                serviceUrl: '../rest/auto/get',
-                type: 'POST',
-                params: {
-                    url: '/api/fund/nameLike'
-                },
-                paramName: 'params',
-                onSelect: function (suggestion) {
-                    $("#project_relate_fund").val(suggestion.data);
-                },
-                transformResult: function (response) {
-                    //clear old value
-                    $("#project_relate_fund").val("");
-                    if (!response || response == '') {
-                        return {
-                            "query": "Unit",
-                            "suggestions": []
-                        };
-                    } else {
-                        var result = JSON.parse(response);
-                        var suggestions = JSON.parse(result.suggestions);
-                        result.suggestions = suggestions;
-                        return result;
-                    }
-                }
-            });
+        //$('#project_relate_fund').autocomplete(
+        //    {
+        //        serviceUrl: '../rest/auto/get',
+        //        type: 'POST',
+        //        params: {
+        //            url: '/api/fund/nameLike'
+        //        },
+        //        paramName: 'params',
+        //        onSelect: function (suggestion) {
+        //            $("#project_relate_fund").val(suggestion.data);
+        //        },
+        //        transformResult: function (response) {
+        //            //clear old value
+        //            $("#project_relate_fund").val("");
+        //            if (!response || response == '') {
+        //                return {
+        //                    "query": "Unit",
+        //                    "suggestions": []
+        //                };
+        //            } else {
+        //                var result = JSON.parse(response);
+        //                var suggestions = JSON.parse(result.suggestions);
+        //                result.suggestions = suggestions;
+        //                return result;
+        //            }
+        //        }
+        //    });
 
 
         $("#makeContact_attachment_1").change(function() {
@@ -847,10 +857,10 @@ var FLOW={
                 model.signers.push(obj)
             });
 
-            var fund = $("#project_relate_fund").val();
-            if(fund && fund!=""){
-                model.fund = fund;
-            }
+            //var fund = $("#project_relate_fund").val();
+            //if(fund && fund!=""){
+            //    model.fund = fund;
+            //}
 
             $("input[id^=attname]").each(function () {
                 var index = $(this).attr("id").replace("attname", "");
@@ -975,7 +985,7 @@ var FLOW={
 
     getCompany: function () {
         var me = this;
-        var data = {url: '/api/company/listAll'};
+        var data = {url: '/api/fundCompanyInformation/listAll'};
         console.log(data);
         $.ajax({
             type: 'post',
@@ -988,7 +998,7 @@ var FLOW={
                 if(result && result.length>0){
                     $.each(result,function(index,obj){
                         $("#company").append(
-                            '<option value="'+obj.id+'">'+obj.name+'</option>'
+                            '<option value="'+obj.id+'">'+obj.companyName+'</option>'
                         );
                     });
 

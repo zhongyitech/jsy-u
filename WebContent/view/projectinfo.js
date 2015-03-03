@@ -1,5 +1,11 @@
+$.urlParam = function (name) {
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
 
 $(document).ready(function(){
+
+
     VIEWDATA.flow=FLOW;
     VIEWDATA.init(true);
 
@@ -15,7 +21,7 @@ var VIEWDATA={
     },
 
     init_view: function(){
-        this.flow.show(1);
+        this.flow.show($.urlParam("id"));
     }
 
 
