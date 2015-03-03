@@ -1,0 +1,211 @@
+@CHARSET "UTF-8";
+
+/* #header-logo, #page-header {
+	background: linear-gradient(to bottom, #454545 0, #565656 100%);
+	color: #fefefe;
+}
+
+#header-logo{
+	border-right: #dedede solid 1px;
+}
+
+.user-profile>a{
+	color: #fefefe;
+	border-left: #dedede solid 1px;
+}
+
+.dropdown>a {
+	color: #fefefe;
+}
+
+.user-profile>a:hover{
+	background: #121212;
+	color: #fefefe;
+} */
+
+/*.login-body{*/
+	/*background: #ffffdd url(../images/noise.png);*/
+	/*font-family: 微软雅黑;*/
+/*}*/
+
+.page-body{
+	/* background: #ffffff url(../images/noise.png); */
+	font-family: 微软雅黑!important;
+}
+
+.login-div{
+	width: 320px;
+	margin: 168px auto;
+}
+
+.login-img{
+	width: 24px;
+	height: 24px;
+	padding: 8px;
+}
+
+.login-title{
+	font-weight: bold;
+	font-family: 微软雅黑;
+}
+
+.login-dialog{
+	width: 320px;
+}
+
+.logo-text{
+	font-weight: bold;
+}
+
+.logo-image{
+	vertical-align: middle;
+}
+
+.page-view{
+	min-height: 450px
+}
+
+.keyword-view{
+	line-height: 30px;
+	padding: 4px;
+}
+
+.keyowrd-icon{
+	color: #3a4049;
+}
+
+.keyword-input{
+	font-family: cursive;
+}
+
+.keyword-input-width{
+	width: 200px;
+}
+
+.keyword-button{
+	height: 32px;
+}
+
+.table td{
+	padding: 6px 3px;
+}
+
+.table-striped td{
+	padding: 12px 3px;
+}
+
+th span{
+	height: 24px;
+	line-height: 24px;
+}
+
+td .form-input input{
+	height: 24px;
+	padding-left: 6px!important;
+	padding-right: 6px!important;
+}
+
+td select, td .selector, td .selector span{
+	height: 24px!important;
+	line-height: 24px!important;
+	font-size: 12px!important;
+}
+
+td .input-append{
+	height: 24px!important;
+	line-height: 24px!important;
+	cursor: pointer;
+}
+
+td .form-input{
+	padding-left: 0px!important;
+	padding-right: 0px!important;
+}
+
+input[type="checkbox"]{
+	width: 12px;
+	height: 12px;
+}
+
+input[disabled]{
+	background-color: #dddddd;
+}
+
+select[disabled]{
+	background-color: #dddddd;
+}
+
+.page-bar{
+	height: 34px;
+	padding-left: 3px;
+	margin-bottom: 12px;
+}
+
+.page-number{
+	margin-left: 1px!important;
+}
+
+.pages-div{
+	width: 1085px;
+}
+
+.content-box-header{
+	font-weight: bold;
+}
+
+.opacity-70{-moz-opacity:.7;filter:alpha(opacity:70);opacity:.7}
+
+.ui-dialog-title{
+	font-weight: bold;
+}
+
+.text-overflow{
+	display: block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.item-date{
+	width: 99px;
+}
+
+.fund-name{
+	width: 120px!important;
+}
+
+.user-name{
+	width: 120px!important;
+}
+
+.department-name{
+	width: 120px!important;
+}
+
+.filter-status{
+	width: 120px;
+	margin-right: 45px;
+}
+
+.filter-input{
+	width: 120px;
+	background-color: #ffffff;
+}
+
+.item-url{
+	color: #3399cc;
+}
+
+.bg-white{
+	color: #121212;
+	background: #fefefe;
+}
+
+.span-12{
+	display: block;
+	height: 12px;
+}
+
+.pointer{
+	cursor: pointer;
+}

@@ -3,15 +3,15 @@
 <html>
 
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="./user-edit.css">
-<script type="text/javascript" src="./user-edit.js"></script>
+<jsp:include page="./head.jsp"/>
+<link rel="stylesheet" type="text/css" href="../css/user-edit.css">
+<script type="text/javascript" src="../js/user-edit.js"></script>
 <title>编辑用户信息</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 		
 			<div id="page-content" class="page-view pad25T">

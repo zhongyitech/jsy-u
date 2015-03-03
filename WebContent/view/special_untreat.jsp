@@ -4,14 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<script type="text/javascript" src="./special_untreat.js"></script>
+<jsp:include page="./head.jsp"/>
+<script type="text/javascript" src="../js/special_untreat.js"></script>
 <title>未到期转投处理申请表</title>
 </head>
-<link rel="stylesheet" type="text/css" href="./special_untreat.css"></link>
+<link rel="stylesheet" type="text/css" href="../css/special_untreat.css"/>
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 			<!-- #page-title -->
 			<div id="page-content" style="width: 800px">

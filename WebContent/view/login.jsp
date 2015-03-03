@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
+<jsp:include page="./head.jsp"/>
 <title>金赛银基金</title>
 </head>
 

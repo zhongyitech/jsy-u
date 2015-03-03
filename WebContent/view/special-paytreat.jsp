@@ -3,15 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<script type="text/javascript" src="./special-paytreat.js"></script>
-<script type="text/javascript" src="./special-common.js"></script>
-<link rel="stylesheet" type="text/css" href="./special-paytreat.css"></link>
+<jsp:include page="./head.jsp"/>
+<script type="text/javascript" src="../js/special-paytreat.js"></script>
+<script type="text/javascript" src="../js/special-common.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/special-paytreat.css"/>
 <title>委托付款申请表</title>
 </head>
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 			<div id="page-content" style="width: 800px">
 				<div class="text-center">

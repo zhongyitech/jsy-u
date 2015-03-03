@@ -9,20 +9,19 @@
 <link rel="icon" href="../favicon.ico">
 <link rel="shortcut icon" href="../favicon.ico"/>
 
-<!-- Fides Admin CSS Core -->
 <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
-<!-- Theme UI -->
-<link id="layout-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/fides/color-schemes/dark-blue.min.css" />
-<!-- Fides Admin Responsive -->
+<link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/color-schemes/dark-blue.min.css" />
 <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css" />
 <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css" />
-<!-- Fides Admin JS -->
+<link rel="stylesheet" type="text/css" href="../css/common/common.css"/>
+
 <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+<script type="text/javascript" src="../js/common/common.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../tigra-calendar/tcal.css"/>
-<script type="text/javascript" src="../tigra-calendar/tcal.js"></script>
+<!-- temp -->
+<link rel="stylesheet" type="text/css" href="../js/tigra-calendar/tcal.css"/>
+<script type="text/javascript" src="../js/tigra-calendar/tcal.js"></script>
+<script src="../js/echarts/echarts-all.js"></script>
 
-<script src="../echarts/echarts-all.js"></script>
-
-<link rel="stylesheet" type="text/css" href="./head.css">
-<script type="text/javascript" src="./head.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/common/head.css">
+<script type="text/javascript" src="../js/common/head.js"></script>

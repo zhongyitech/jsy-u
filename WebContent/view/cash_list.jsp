@@ -4,13 +4,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>兑付申请</title>
-	<jsp:include page="./head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="./cash_list.css"></link>
+	<jsp:include page="./head.jsp"/>
+	<link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
 </head>
 <body class="jsy-body">
 <div id="page-wrapper">
-	<jsp:include page="./navi.jsp"></jsp:include>
-	<script type="text/javascript" src="./cash_list.js"></script>
+	<jsp:include page="./navi.jsp"/>
 	<div id="page-content-wrapper">
 		<div id="page-content" class="page-view pad25T">
 
@@ -249,5 +248,6 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="../js/cash_list.js"></script>
 </body>
 </html>

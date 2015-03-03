@@ -3,15 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="./special-treat-list.css"></link>
-<script type="text/javascript" src="./special-treat-list.js"></script>
+<jsp:include page="./head.jsp"/>
+<link rel="stylesheet" type="text/css" href="../css/special-treat-list.css"/>
+<script type="text/javascript" src="../js/special-treat-list.js"></script>
 <title>特殊申请表管理</title>
 </head>
-<link rel="stylesheet" type="text/css" href=""></link>
+
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 			<!-- #page-title -->
 			<div id="page-content" class="page-view pad25T">

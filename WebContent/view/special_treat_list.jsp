@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>特殊申请</title>
 </head>
-<link rel="stylesheet" type="text/css" href="./special_treat_list.css"></link>
+<link rel="stylesheet" type="text/css" href="../css/special_treat_list.css"/>
 
 <body class="jsy-body">
-		<script type="text/javascript" src="./special_treat_list.js"></script>
+		<script type="text/javascript" src="../js/special_treat_list.js"></script>
 	<div id="page-content-wrapper">
 		<!-- #page-title -->
 		<div id="page-content" style="padding-left: 5px;">

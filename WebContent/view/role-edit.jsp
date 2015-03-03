@@ -3,15 +3,15 @@
 <html>
 
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="./role-edit.css">
-<script type="text/javascript" src="./role-edit.js"></script>
+<jsp:include page="./head.jsp"/>
+<link rel="stylesheet" type="text/css" href="../css/role-edit.css">
+<script type="text/javascript" src="../js/role-edit.js"></script>
 <title>编辑角色</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 		
 			<div id="page-content" class="page-view pad25T">

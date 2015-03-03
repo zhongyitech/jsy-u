@@ -3,16 +3,14 @@
 <html>
 
 <head>
-    <jsp:include page="./head.jsp"></jsp:include>
-    <link rel="stylesheet" type="text/css" href="./fund-list.css">
-    <script type="text/javascript" src="./project_list.js"></script>
-    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <jsp:include page="./head.jsp"/>
+    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
     <title>收款列表</title>
 </head>
 
 <body class="page-body">
 <div id="page-wrapper">
-    <jsp:include page="./navi.jsp"></jsp:include>
+    <jsp:include page="./navi.jsp"/>
 
     <div id="page-content-wrapper">
         <div id="page-content" class="page-view pad25T">
@@ -182,5 +180,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../js/project_list.js"></script>
 </body>
 </html>

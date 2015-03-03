@@ -3,15 +3,14 @@
 <html>
 
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="./fund-list.css">
-<script type="text/javascript" src="./fund-list.js"></script>
-<title>基金管理</title>
+    <title>基金管理</title>
+    <jsp:include page="head.jsp"/>
+    <link rel="stylesheet" type="text/css" href="../css/fund-list.css"/>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="navi.jsp"/>
 	
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
@@ -172,5 +171,6 @@
 			</div>
 		</div>
 	</div>
+    <script type="text/javascript" src="../js/fund-list.js"></script>
 </body>
 </html>

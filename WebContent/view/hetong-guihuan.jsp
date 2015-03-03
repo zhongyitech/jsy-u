@@ -3,15 +3,14 @@
 <html>
 
 <head>
-	<jsp:include page="./head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="./hetong-guihuan.css">
-	<script type="text/javascript" src="./hetong-guihuan.js"></script>
+	<jsp:include page="./head.jsp"/>
+	<link rel="stylesheet" type="text/css" href="../css/hetong-guihuan.css">
 	<title>合同归还</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
@@ -105,5 +104,6 @@
 			</div>
 		</div>
 	</div>
+    <script type="text/javascript" src="../js/hetong-guihuan.js"></script>
 </body>
 </html>

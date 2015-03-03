@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <jsp:include page="./head.jsp"></jsp:include>
-    <script type="text/javascript" src="./new_project.js"></script>
-    <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
+    <jsp:include page="./head.jsp"/>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
     <title>档案管理-档案入库</title>
-
 </head>
-<link rel="stylesheet" type="text/css" href="autocomplete.css"/>
-<link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+
 <body class="jsy-body">
 
 <div id="page-wrapper">
-<jsp:include page="./navi.jsp"></jsp:include>
+    <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
         <!-- #page-title -->
         <section id="dropdowns">
@@ -78,7 +75,8 @@
                         <table class="item-table" id="fileupdate">
                             <thead>
                             <tr>
-                                <th class="text-left"><input type="button" id="add_file" value="添加附件" style="width: 100px;"></th>
+                                <th class="text-left"><input type="button" id="add_file" value="添加附件"
+                                                             style="width: 100px;"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -93,7 +91,8 @@
                         </div>
                     </div>
                 </div>
-                <br />
+                <br/>
+
                 <div class="form-row pad3B">
                     <div>
                         <button class="but-ui btn primary-bg large" type="button">
@@ -106,5 +105,6 @@
 
     </div>
 </div>
+<script type="text/javascript" src="../js/new_project.js"></script>
 </body>
 </html>

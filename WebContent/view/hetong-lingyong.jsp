@@ -3,15 +3,14 @@
 <html>
 
 <head>
-	<jsp:include page="./head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="./hetong-lingyong.css">
-	<script type="text/javascript" src="./hetong-lingyong.js"></script>
+	<jsp:include page="./head.jsp"/>
+	<link rel="stylesheet" type="text/css" href="../css/hetong-lingyong.css">
 	<title>合同领用</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
@@ -105,5 +104,6 @@
 			</div>
 		</div>
 	</div>
+    <script type="text/javascript" src="../js/hetong-lingyong.js"></script>
 </body>
 </html>

@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="./head.jsp"></jsp:include>
-<title>提成申请</title>
+    <title>提成申请</title>
+    <jsp:include page="./head.jsp"/>
+    <link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
 </head>
-<link rel="stylesheet" type="text/css" href="./cash_list.css"></link>
+
 <body class="jsy-body">
 	<div id="page-wrapper">
-	<jsp:include page="./navi.jsp"></jsp:include>
-	<script type="text/javascript" src="./commission_apply.js"></script>
+	<jsp:include page="./navi.jsp"/>
 	<div id="page-content-wrapper">
 		<!-- #page-title -->
 		<div id="page-content" class="page-view pad25T">
@@ -260,5 +260,6 @@
 		</div>		
 	</div>
 	</div>
+    <script type="text/javascript" src="../js/commission_apply.js"></script>
 </body>
 </html>

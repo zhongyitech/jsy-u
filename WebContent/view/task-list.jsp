@@ -3,15 +3,15 @@
 <html>
 
 <head>
-	<jsp:include page="./head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="./task-list.css">
-	<script type="text/javascript" src="./task-list.js"></script>
+	<jsp:include page="./head.jsp"/>
+	<link rel="stylesheet" type="text/css" href="../css/task-list.css">
+	<script type="text/javascript" src="../js/task-list.js"></script>
 	<title>待办事项</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">

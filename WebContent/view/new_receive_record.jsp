@@ -3,17 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <jsp:include page="./head.jsp"></jsp:include>
-    <script type="text/javascript" src="./new_receive_record.js"></script>
-    <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
+    <jsp:include page="./head.jsp"/>
     <title>新建收款记录</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
 </head>
-<link rel="stylesheet" type="text/css" href="autocomplete.css"/>
 
 <body class="jsy-body">
 <div id="page-wrapper">
-    <jsp:include page="./navi.jsp"></jsp:include>
+    <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
         <!-- #page-title -->
 
@@ -177,5 +174,6 @@
 
     </div>
 </div>
+<script type="text/javascript" src="../js/new_receive_record.js"></script>
 </body>
 </html>

@@ -3,15 +3,14 @@
 <html>
 
 <head>
-	<jsp:include page="./head.jsp"></jsp:include>
-	<link rel="stylesheet" type="text/css" href="./customer-history.css">
-	<script type="text/javascript" src="./customer-history.js"></script>
+	<jsp:include page="./head.jsp"/>
+	<link rel="stylesheet" type="text/css" href="../css/customer-history.css">
 	<title>客户信息修改记录</title>
 </head>
 
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
@@ -70,5 +69,6 @@
 			</div>
 		</div>
 	</div>
+    <script type="text/javascript" src="../js/customer-history.js"></script>
 </body>
 </html>

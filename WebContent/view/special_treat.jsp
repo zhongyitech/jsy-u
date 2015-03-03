@@ -3,14 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
-<script type="text/javascript" src="./special_treat.js"></script>
-	<link rel="stylesheet" type="text/css" href="./special_treat.css"></link>
+<jsp:include page="./head.jsp"/>
+<script type="text/javascript" src="../js/special_treat.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/special_treat.css"/>
 	<title>到期转投处理申请表</title>
 </head>
 <body class="page-body">
 <div id="page-wrapper">
-	<jsp:include page="./navi.jsp"></jsp:include>
+	<jsp:include page="./navi.jsp"/>
 	<div id="page-content-wrapper">
 		
 		<div id="page-content" style="width:800px">

@@ -3,18 +3,15 @@
 <html>
 
 <head>
-    <jsp:include page="./head.jsp"></jsp:include>
+    <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="projectinfo.css" />
-    <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
-    <script type="text/javascript" src="./flowLogic.js"></script>
-    <script type="text/javascript" src="./projectinfo.js"></script>
+    <link rel="stylesheet" href="../css/projectinfo.css" />
     <title>项目明细</title>
 </head>
 
 <body class="page-body">
 <div id="page-wrapper">
-<jsp:include page="./navi.jsp"></jsp:include>
+<jsp:include page="./navi.jsp"/>
         <div id="page-content-wrapper">
             <div id="page-content" class="page-view pad25T">
                 <section id="dropdowns">
@@ -38,14 +35,14 @@
                             <label>项目编号：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <span id="project_id"></span>
+                            001
                         </div>
 
                         <div class="form-label col-md-2">
                             <label>项目名称：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <span id="project_name"></span>
+                            某房地产融资项目
                         </div>
 
                     </div>
@@ -55,14 +52,14 @@
                             <label>关联基金：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <span id="fund_name"></span>
+                            基金1
                         </div>
 
                         <div class="form-label col-md-2">
                             <label>项目当前流程：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <span id="currentStageName"></span>
+                            调研者上传被调查对象信息
                         </div>
 
                     </div>
@@ -671,15 +668,15 @@
                                 </div>
 
 
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2">--%>
-                                        <%--<label for="">关联基金：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input id="project_relate_fund" type="text"/>--%>
-                                    <%--</div>--%>
+                                <div class="form-row">
+                                    <div class="form-label col-md-2">
+                                        <label for="">关联基金：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="project_relate_fund" type="text"/>
+                                    </div>
 
-                                <%--</div>--%>
+                                </div>
 
                             </form>
 
@@ -784,5 +781,7 @@
 
 
 </div>
+<script type="text/javascript" src="../js/flowLogic.js"></script>
+<script type="text/javascript" src="../js/projectinfo.js"></script>
 </body>
 </html>

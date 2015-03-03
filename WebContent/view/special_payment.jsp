@@ -3,14 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<jsp:include page="./head.jsp"></jsp:include>
+<jsp:include page="./head.jsp"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>委托付款处理申请表</title>
 
 </head>
 <body class="page-body">
 	<div id="page-wrapper">
-		<jsp:include page="./navi.jsp"></jsp:include>
+		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 			<!-- #page-title -->
 			<div id="page-content" style="width: 800px">
