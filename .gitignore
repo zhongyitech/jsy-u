@@ -5,7 +5,6 @@
 #################
 
 *.pydevproject
-.project
 .metadata
 .gradle
 bin/
@@ -16,8 +15,6 @@ target/
 *.swp
 *~.nib
 local.properties
-.classpath
-.settings/
 .loadpath
 
 # External tool builders
@@ -154,3 +151,5 @@ ClientBin/
 *.[Pp]ublish.xml
 *.pfx
 *.publishsettings
+/.git/
+/.git/

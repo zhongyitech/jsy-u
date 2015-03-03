@@ -9,9 +9,12 @@ var USER_FORM={
 		FORM_ID: '#user-form',
 		SUBMIT_ID: '#submit-button',
 		ACCOUNT_ID: '#account',
+		PASSWORD_ID: '#password',
+		ENABLED_ID: '#enabled',
 		NAME_ID: '#name',
 		DEPARTMENT_ID: '#department',
 		SKR_ID: '#skr',
+		KHH_ID: '#khh',
 		YHZH_ID: '#yhzh',
 		item: {},
 		getView: function(){
@@ -31,6 +34,21 @@ var USER_FORM={
 		},
 		setAccount: function(item){
 			this.getAccountView().val(USER.toAccount(item));
+		},
+		getPasswordView: function(){
+			var form = this.getForm();
+			if(form){
+				return form.find(this.PASSWORD_ID);
+			}
+		},
+		getEnabledView: function(){
+			var form = this.getForm();
+			if(form){
+				return form.find(this.ENABLED_ID);
+			}
+		},
+		setEnabled: function(item){
+			this.getEnabledView().val('' + USER.toEnabled(item));
 		},
 		getNameView: function(){
 			var form = this.getForm();
@@ -74,6 +92,15 @@ var USER_FORM={
 		setSKR: function(item){
 			this.getSKRView().val(USER.toSKR(item));
 		},
+		getKHHView: function(){
+			var form = this.getForm();
+			if(form){
+				return form.find(this.KHH_ID);
+			}
+		},
+		setKHH: function(item){
+			this.getKHHView().val(USER.toKHH(item));
+		},
 		getYHZHView: function(){
 			var form = this.getForm();
 			if(form){
@@ -81,7 +108,7 @@ var USER_FORM={
 			}
 		},
 		setYHZH: function(item){
-			this.getYHZHView().val(USER.toSKR(item));
+			this.getYHZHView().val(USER.toYHZH(item));
 		},
 		getSubmitButton: function(){
 			var view = this.getView();
@@ -117,28 +144,62 @@ var USER_FORM={
 			
 			this.setAccount(item);
 			this.setName(item);
+			this.setEnabled(item);
 			this.setDepartment(item);
 			this.setSKR(item);
+			this.setKHH(item);
 			this.setYHZH(item);
 		},
 		getItem: function(){
 			var me = this;
 			var item = me.item;
-			var form = me.getForm();
-			var name = this.getNameView().val();
-			if(name){
-				item[CUSTOMER.NAME_ID] = name;
+			var account = this.getAccountView().val();
+			if(account){
+				item[USER.ACCOUNT_KEY] = account;
 			}
 			
-			me.item = item;
+			var password = this.getPasswordView().val();
+			if(password){
+				item[USER.PASSWORD_KEY] = password;
+			}
+			
+			var enabled = this.getEnabledView().val();
+			if(enabled){
+				item[USER.ENABLED_KEY] = enabled;
+			}
+			
+			var name = this.getNameView().val();
+			if(name){
+				item[USER.NAME_KEY] = name;
+			}
+			
+			var department = this.getDepartmentView().val();
+			if(department){
+				item[USER.DEPARTMENT_KEY] = {id: department};
+			}
+			
+			var skr = this.getSKRView().val();
+			if(skr){
+				item[USER.SKR_KEY] = skr;
+			}
+			
+			var khh = this.getKHHView().val();
+			if(khh){
+				item[USER.KHH_KEY] = khh;
+			}
+			
+			var yhzh = this.getYHZHView().val();
+			if(yhzh){
+				item[USER.YHZH_KEY] = yhzh;
+			}
 			return item;
 		},
 		submit: function(){//提交
 			var me = this;
+			var params = JSON.stringify({id: me.item[USER.ID_KEY]});
 			var item = me.getItem();
-			var params = JSON.stringify({id: item[CUSTOMER.ID_KEY]});
 			var entity = JSON.stringify(item);
-			var data = {url: '/api/customer/update', params: params, entity: entity};
+			var data = {url: '/api/user', params: params, entity: entity};
 			$.ajax({ 
 				type: "post", 
 				url: "../rest/item/put", 
@@ -147,7 +208,7 @@ var USER_FORM={
 				dataType: "json",
 				success: function(response){
 					me.response = response;
-					window.location = PAGE.CUSTOMER_LIST;
+					window.location = PAGE.USER_LIST;
 				},
 				error: function(response){
 					me.response = response;

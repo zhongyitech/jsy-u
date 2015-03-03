@@ -33,38 +33,61 @@
 	                                <label class="label-description">(*)账号：</label>
 	                            </div>
 	                            <div class="form-input col-md-4">
-	                                <input placeholder="" type="text" id="account" disabled>
+	                                <input placeholder="必填" type="text" id="account" disabled>
 	                            </div>
 	                            
 	                            <div class="form-label col-md-2">
-	                                <label class="label-description">(*)名称：</label>
+	                                <label class="label-description">(*)密码：</label>
 	                            </div>
 	                            <div class="form-input col-md-4">
-	                                <input placeholder="输入名称" type="text" id="name">
+	                                <input placeholder="必填" type="password" id="password">
 	                            </div>
 							</div>
                                     
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
+	                                <label class="label-description">(*)名称：</label>
+	                            </div><div class="form-input col-md-4">
+	                                <input placeholder="输入名称" type="text" id="name">
+	                            </div>
+	                            
+	                            <div class="form-label col-md-2">
                                             <label for="" class="label-description">(*)部门:</label>
-                                        </div>
-                                        <div class="form-input col-md-4">
+                                        </div><div class="form-input col-md-4">
                                             <select id="department"></select>
                                         </div>
+                                    
+						</div><div class="form-row">
+                                    
+								<div class="form-label col-md-2">
+	                                <label class="label-description">(*)是否启用：</label>
+	                            </div>
+	                            
+	                            <div class="form-input col-md-4">
+	                            	<select id="enabled">
+	                            		<option value="true">启用</option>
+	                            		<option value="false">禁用</option>
+	                            	</select>
+	                            </div>
                                         
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)收款人:</label>
+                                            <label for="" class="label-description">收款人:</label>
                                         </div><div class="form-input col-md-4">
-                                            <input placeholder="请输入收款人" type="text" id="skr">
+                                            <input placeholder="" type="text" id="skr">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="form-row">
+                                        
+                                   </div>
+                                   
+                                   <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)银行账号:</label>
+                                            <label for="" class="label-description">开户行:</label>
+                                        </div><div class="form-input col-md-4">
+                                            <input placeholder="" type="text" id="khh">
                                         </div>
-                                        <div class="form-input col-md-10">
-                                            <input placeholder="请输入银行账号" type="text" id="yhzh">
+                                        <div class="form-label col-md-2">
+                                            <label for="" class="label-description">银行账号:</label>
+                                        </div><div class="form-input col-md-4">
+                                            <input placeholder="" type="text" id="yhzh">
                                         </div>
                                    </div>
 						</div>

@@ -309,10 +309,10 @@
                                     
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)住址（身份证地址）:</label>
+                                            <label for="" class="label-description">(*)住址:</label>
                                         </div>
                                         <div class="form-input col-md-10">
-                                            <input placeholder="请输入身份证地址" type="text" id="invest-sfzdz">
+                                            <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="invest-sfzdz">
                                         </div>
                                     </div>
                                     

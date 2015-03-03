@@ -52,9 +52,12 @@
 							<thead>
 								<tr>
 									<th class="text-center">账号</th>
+									<th class="text-center">是否启用</th>
 									<th class="text-center">名称</th>
 									<th class="text-center">部门</th>
+									<th class="text-center">公司</th>
 									<th class="text-center">收款人</th>
+									<th class="text-center">开户行</th>
 									<th class="text-center">银行账号</th>
 								</tr>
 							</thead>

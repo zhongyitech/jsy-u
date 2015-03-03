@@ -253,6 +253,7 @@ var CZJLRZ_LIST ={
 			tr.append(czr_td);
 			
 			var czsj = CZJLRZ.toCZSJ(item);
+			czsj = DATEFORMAT.toDate(czsj);
 			var czsj_td = $('<td class="text-center"><span class="text-overflow" title="' + czsj + '">' + czsj + '</span></td>');
 			tr.append(czsj_td);
 			

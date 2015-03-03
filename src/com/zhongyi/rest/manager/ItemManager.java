@@ -30,4 +30,9 @@ public class ItemManager extends Manager{
 		url = getServiceURL() + url;
 		return super.put(cookie, url, params, entity);
 	}
+	
+	public ManagerResponse delete(String cookie, String url, JSONObject params, JSONObject entity){
+		url = getServiceURL() + url;
+		return super.delete(cookie, url, params, entity);
+	}
 }

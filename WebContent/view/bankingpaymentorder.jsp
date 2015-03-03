@@ -6,6 +6,7 @@
 <head>
 <jsp:include page="./head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="./bankingpaymentorder.css"></link>
+<script type="text/javascript" src="./datacommon.js"></script>
 <script type="text/javascript" src="./bankingpaymentorder.js"></script>
 <title>银行付款单</title>
 </head>
@@ -18,9 +19,9 @@
 			<div id="page-content" class="page-view pad25T">
 				<div class="content-box box-toggle view-width">
 					<div class="content-box-header primary-bg">
-						<span class="float-left">待付付款单 </span> <a href="#"
+						<span class="float-left">侍款单记录 </span> <a href="#"
 							class="float-right icon-separator btn toggle-button"
-							title="最近领用记录"> <i
+							title="侍款单记录"> <i
 							class="glyph-icon icon-toggle icon-chevron-down"></i>
 						</a>
 						<div class="keyword-view float-right">
@@ -40,7 +41,6 @@
 								<span class="button-content">搜索</span>
 							</button>
 						</div>
-
 					</div>
 					<div class="content-box-wrapper">
 					<div class="col-md-12 page-bar pad0R">
@@ -54,6 +54,8 @@
 								id="page-last"> <i class="glyph-icon icon-arrow-right"></i>
 							</a>
 						</div>
+						<div class="pad3A mrg5B seach_panel " id="search_panel">
+						</div>
 						<table id="payorder-table"
 							class="table table-striped text-center mrg0B"
 							id="filepackage-get-table">
@@ -61,7 +63,7 @@
 								<th></th>
 							</tr>
 						</table>
-						<div class="button-pane">
+						<div class="button-pane" class="hide">
 							<button type="button"
 								class="btn-ui btn bg-green large medium mrg10L" id="submit_pay">
 								<span class="button-content">确认支付</span>

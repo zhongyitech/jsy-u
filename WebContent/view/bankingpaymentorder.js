@@ -2,14 +2,12 @@ $(document).ready(function () {
     FORMATPRIVED['paystatus'] = function (data) {
         return paystatus[data];
     };
-
     VIEWMODEL.ini(true);
 });
 /*  汇款单查询和支付模块
  * API : 
  * 1. 获取付款单对应的投资档案中的基金的“支付 账户”
- * 2. 获取基金的支付银行账户
- * 
+ * 2. 获取基金的支付银行账户 
  */
 var paystatus = {
     0: '未付', 1: '已付', 2: '取消', 3: '支付失败'
@@ -32,15 +30,29 @@ var VIEWMODEL = {
     response: {},
     items: {},
     DataBind: GetBIND_TABLE(),
-    ini: function (async) {
+    searchPanel: Search_Panel('#search_panel'),
+    ini: function (async)
+    {
         this.DataBind.Columns = [{
-            title: ' ',
-            column_type: 'checkbox',
+            title: '基金',
             //column_type: 'checkbox',
-            className: 'checkboxclass',
+            //column_type: 'checkbox',
+            //className: 'checkboxclass',
+            fieldName:'fundName',
             /* 以下可以不设置 */
             index: 0,
-            visible: true
+            visible: true,
+            isSearch:true
+        },
+        {
+            title: '付款账户',
+            fieldName: 'paymentAccountName',
+            isSearch:true
+        },
+         {
+            title: '付款账号',
+            fieldName: 'paymentAccount',
+            isSearch:true
         },
         {
             title: '收款人',
@@ -48,31 +60,28 @@ var VIEWMODEL = {
             fieldName: 'customer',
             titleClassName: '',
             className: '',
+            isSearch:true
         },
         {
             title: '收款账号',
             fieldName: 'receiptAccount',
             formatString: '',
             titleClassName: '',
+            isSearch:true
         },
         {
             title: '开户行',
             //fieldName: 'receiptBankName',
-            fieldName: 'fxfs',
-            formatString: '',
-            column_type: 'a',
-            url: '/',
+            fieldName: 'fxfs'
         },
         {
             title: '金额',
             fieldName: 'sum',
-            formatString: 'money',
-            titleClassName: '',
+            formatString: 'money'
         }, {
-            title: '要求付款时间',
-            fieldName:'dqrq',// 'payTime',
-            formatString: 'date',
-            titleClassName: '',
+            title: '支付时间',
+            fieldName: 'reallyPaytime', // 'payTime',
+            formatString: 'date'
         },
         {
             title: '处理状态',
@@ -80,60 +89,84 @@ var VIEWMODEL = {
             fieldName: 'bj',
             formatString: 'paystatus',
             titleClassName: '',
+            isSearch:true
+        },        
+        {
+          title:'流水号',
+          fieldName:'bankTransactionCode'  ,
+          isSearch:true
         },
         {
             title: '备注',
             fieldName: 'remark',
-            titleClassName: '',
+            titleClassName: ''
         }];
-
         var that = this;
         this.DataBind.table_id = this.TABLE_ID;
         //test
         this.DataBind.ini();
-
-        $(this.submit_pay).click(function () {
+        this.searchPanel.clickSearchfunc = function (keywords)
+        {
+        	alert("query data...");
+        	console.log(keywords);
+            that.setData();
+        };
+        this.searchPanel.buildSearachPanel(this.DataBind.Columns);
+        
+        $(this.submit_pay).click(function ()
+        {
             var orderid = that.getSelecrOrderID();
             that.pay(orderid);
         });
-        $('#submit_cancelPay').click(function () {
+        $('#submit_cancelPay').click(function ()
+        {
             var orderid = that.getSelecrOrderID();
             that.cancelPayOrder(orderid);
             MESSAGEBOX.dialog('您确定要取消此付款单？', 'yes,no', [{ name: 'yes', func: function () { alert('yes'); } }]);
         });
-        $('#submit_otherPay').click(function () {
+        $('#submit_otherPay').click(function ()
+        {
             var orderid = that.getSelecrOrderID();
             that.cancelPayOrder(orderid);
             MESSAGEBOX.dialog('此付款单已手工支付，将此单标记为已支付状态？', 'yes,no', [{ name: 'yes', func: function () { alert('yes'); } }]);
         });
-
         this.iniFilter();
         this.iniPage();
         this.setData(async);
-    },
-    pay: function (payOrderID) {
+    },    
+    pay: function (payOrderID)
+    {
         //$(this.confirm_panel).show();
+        CONFIRM_DIALOG.payorders = this.getSelectOrder();
         CONFIRM_DIALOG.showDialog();
     },
-    cancelPayOrder: function (payOrderID) {
+    cancelPayOrder: function (payOrderID)
+    {
         $(this.confirm_panel).hide();
     },
-    error: function (msg) {
+    error: function (msg)
+    {
         MESSAGBOX.Show(msg);
-    }, getSelecrOrderID: function () {
-        return 1;
-    }
-    ,
-    iniFilter: function () {
+    },
+    getSelectOrder: function ()
+    {
+        var order = [];
+        return order;
+    },
+    iniFilter: function ()
+    {
         var me = this;
-        $(this.KEYWORD_BUTTON_ID).click(function () {
+        $(this.KEYWORD_BUTTON_ID).click(function ()
+        {
             //过滤时翻至第一页
             me.selectFirst();
         });
     },
-    setData: function (async) {
+    setData: function (async)
+    {
         //异步加载数据
-        if (!async) {
+        if (!async)
+        {
             async = false;
         }
         this.page_start = (this.pages_select - 1) * this.page_size;
@@ -141,69 +174,82 @@ var VIEWMODEL = {
         var me = this;
         var params = {};
         var entity = JSON.stringify({ startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword });
-        var data = { url: '/api/investmentArchives/IAOutput', params: params, entity: entity };
+        var data = { url: '/api/paymentRecord/readAllForPage', params: params, entity: entity };
         $.ajax({
             type: 'post',
             url: '../rest/item/post',
             data: data,
             dataType: 'json',
             async: async,
-            success: function (response) {
+            success: function (response)
+            {
                 me.response = response;
                 me.setView(response);
             },
-            error: function (response) {
+            error: function (response)
+            {
                 me.response = response;
                 LOGIN.error(response);
             }
         });
     },
-
-    setView: function (response) {
+    setView: function (response)
+    {
         this.items = JSON.parse(response[REST.RESULT_KEY]);
         this.setTable(this.items);
         this.setPage(response);
     },
-    setFilter: function () {//获取过滤条件
+    setFilter: function ()
+    {//获取过滤条件
         var keyword_input = $(this.KEYWORD_ID);
         this.filter_keyword = keyword_input.val();
     },
-    setTable: function (items) {
+    setTable: function (items)
+    {
         this.DataBind.binding(items);
     },
-    iniPage: function () {
+    iniPage: function ()
+    {
         var me = this;
-        $('#page-first').click(function () {
+        $('#page-first').click(function ()
+        {
             //过滤时翻至第一页
             me.selectFirst();
         });
-        $('#page-last').click(function () {
+        $('#page-last').click(function ()
+        {
             //过滤时翻至第一页
             me.selectLast();
         });
     },
-    setPage: function (response) {
+    setPage: function (response)
+    {
         var total = response[REST.TOTAL_KEY];
         this.page_total = total;
 
         var pages_div = $(this.PAGES_ID);
         var pages = pages_div.find("a");
-        if (pages.length) {
-            for (var i = 0; i < pages.length; i++) {
+        if (pages.length)
+        {
+            for (var i = 0; i < pages.length; i++)
+            {
                 $(pages[i]).remove();
             }
         }
         var pages_from = this.pages_select - 16;
-        if (pages_from < 1) {
+        if (pages_from < 1)
+        {
             pages_from = 1;
         }
         var pages_to = pages_from + this.pages_size;
         var pages_total = Math.ceil(total / this.page_size);
 
         var me = this;
-        for (var i = pages_from; i < pages_to && i <= pages_total; i++) {
+        for (var i = pages_from; i < pages_to && i <= pages_total; i++)
+        {
             var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if (i == this.pages_select) {
+            if (i == this.pages_select)
+            {
                 page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
             }
             pages_div.append(page_number);
@@ -211,230 +257,97 @@ var VIEWMODEL = {
             page_number.click(function (e) { me.selectPage(e); });
         }
     },
-    selectPage: function (e) {
+    selectPage: function (e)
+    {
         this.pages_select = e.toElement.textContent;
         this.setData(true);
     },
-    selectFirst: function () {
+    selectFirst: function ()
+    {
         this.pages_select = 1;
         this.setData(true);
     },
-    selectLast: function () {
+    selectLast: function ()
+    {
         this.pages_select = this.pages_total;
         this.setData(true);
     },
-    getSelectRow: function () {
-    var table = this.getTable();
-    var items = table.find('tr');
-    for(var i=1; i<items.length; i++){
-        var item = $(items.get(i));
-        var checkbox = item.find('input[name="checkbox"]');
-        if(checkbox.length > 0){
-            if(checkbox.get(0)['checked']){
-                $(item).remove();
+    getSelectRow: function ()
+    {
+        var table = this.getTable();
+        var items = table.find('tr');
+        for (var i = 1; i < items.length; i++)
+        {
+            var item = $(items.get(i));
+            var checkbox = item.find('input[name="checkbox"]');
+            if (checkbox.length > 0)
+            {
+                if (checkbox.get(0)['checked'])
+                {
+                    $(item).remove();
+                }
             }
         }
     }
-},
 };
-
 var CONFIRM_DIALOG = {
     submit_id: '#submit_acceptpayorder',
     showtn_id: '#submit_pay',
     canelbtn_id: '#submit_cancelpayorder',
     payorders: [],
     panel: '#pay_panel',
-    submitPayorder: function () {
+    submitPayorder: function ()
+    {
         var msg = '';
-        if (this.payorders.length > 0) {
+        if (this.payorders.length > 0)
+        {
             msg = '确认对多个选择的付款单使用这个账户进行支付？';
-        } else {
+        } else
+        {
             msg = '确认使用此账户进行支付操作？<br>';
         }
+        MESSAGEBOX.showYesNo(msg, this.submit);
         MESSAGEBOX.dialog(msg, 'yes,no',
           [{
               name: 'yes', func:
               this.submit
-          }]
-          );
+          }]);
     },
-    showDialog: function () {
+    showDialog: function ()
+    {
         var that = this;
         $(this.panel).show();
         $(this.showtn_id).attr('disabled', true);
-        $(this.submit_id).click(function () {
+        $(this.submit_id).click(function ()
+        {
             that.submitPayorder();
         });
-        $(this.canelbtn_id).click(function () {
+        $(this.canelbtn_id).click(function ()
+        {
             that.close();
         });
     },
-    submit: function () {
+    //提交支付操作
+    submit: function ()
+    {
         var that = CONFIRM_DIALOG;
+        if(that.payorders.length>0)
+        {
+           
+        }
+        //调用后台的支付接口
+
         that.close();
     },
-    getItem: function () {
+    getItem: function ()
+    {
         var bankAccountID = 0;
         return { bankAccountid: bankAccountID };
     },
-    close: function () {
+    close: function ()
+    {
         this.payorders = [];
         $(this.showtn_id).attr('disabled', false);
         $(this.panel).hide();
-    }
-};
-
-function GetBIND_TABLE() {
-    return {
-        table_id: '#summary-table',
-        thbaseClass: 'text-center',
-        Columns: [],
-        ths: [],
-        items: [],
-        ini: function () {
-            //this.Columns.push(column);
-        },
-        binding: function (items) {
-            if (items != null || items != undefined)
-                this.items = items;
-            this._setTable();
-        },
-        //生成表格
-        _setTable: function () {
-            var tr = this._createTableHead();
-            $(this.table_id + ' tr').remove();
-            $(this.table_id).append(tr);
-            var dr = '';
-            for (var key in this.items) {
-                var row = this.items[key];
-                dr = this._getRow(row);
-                $(this.table_id).append(dr);
-            }
-        },
-        _createTableHead: function () {
-            var tr = '<tr>';
-            var th = '';
-            for (var key in this.Columns) {
-                var col = this.Columns[key];
-                if (col['visible'] && col['visible'] == false) {
-                    continue;
-                }
-                th = '<th class="';
-                th += this.thbaseClass + ' ' + col.titleClassName + '" ';
-                //            if (col.width != null && col.width != undefined) {
-                //                th += ' width="' + col.width + '" ';
-                //            }
-                th += ' >' + col.title + '</th>';
-                tr += th;
-            }
-            tr += '</tr>';
-            return tr;
-        },
-        tr_key: 0,
-        _getRow: function (item) {
-            var tr = '<tr key="' + (this.tr_key++) + '">';
-            var td = '';
-            for (var key in this.Columns) {
-                var col = this.Columns[key];
-                if (col['visible'] && col['visible'] == false) {
-                    continue;
-                }
-                td = '<td>';
-                td += COLUMN_TYPE.getHtml(col, item);
-                td += '</td>';
-                tr += td;
-            }
-            tr += "</tr>";
-            return tr;
-        }
-    };
-}
-//Table Bind
-
-//不同类型控件的显示方式、选择框、文本框、下拉列表、文本、时间控件
-var COLUMN_TYPE = {
-    getHtml: function (column, item) {
-        var type = column.column_type;
-        if (type == null || type == undefined || type == '') type = "label";
-        return this[type](column, item);
-    },
-    baseClassName: '',
-    checkbox: function (column, item) {
-        var html = "<input type='checkbox'  name='" + column.fieldName + "'";
-        var value = item[column.fieldName];
-        if (column.formatString != null && column.formatString != '')
-            value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        if (value == true || value == 1) {
-            html = html + " checked='checked' ";
-        }
-        html += ' />';
-        return html;
-        //<input type="checkbox" name="checkbox">
-    },
-    textbox: function (column, item) {
-        var html = "<input name='" + column.fieldName + "'";
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html = html + " value='" + value + "' />";
-        return html;
-    },
-    selectList: function (column, item) {
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        var html = '<select name="' + column.fieldName + '"';
-        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html = html + ' >' + value + '</select>';
-        return html;
-    },
-    label: function (column, item) {
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        var html = '<label name="' + column.fieldName + '"';
-        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html = html + ' >' + value + '</label>';
-        return html;
-    },
-    span: function (column, item, url) {
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        var html = '<span name="' + column.fieldName + '"';
-        html = html + ' href="' + url + '"';
-        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html = html + ' >' + value + '</span>';
-        return html;
-    },
-    a: function (column, item) {
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        var html = '<a name="' + column.fieldName + '"';
-        html = html + " class=' " + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html += ' href="' + column.url + '"';
-        html = html + ' >' + value + '</a>';
-        return html;
-    },
-    dateInput: function (column, item) {
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
-        var html = '<label name="' + column.fieldName + '"';
-        html = html + " class='tcal tcalInput " + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
-        html = html + ' >' + value + '</label>';
-        return html;
-    }
-};
-var FORMATPRIVED = {
-    formatValue: function (name, data) {
-        if (name == undefined || name == '' || data==undefined)
-            return data;
-        var fun = FORMATPRIVED[name];
-        console.log(name);
-        if (fun != null) {
-            return fun(data);
-        }
-        return data;
-    },
-    money: function (data) {
-        return MONEYFORMAT.toYuan(data);
-    },
-    date: function (data) {
-        return DATEFORMAT.toDate(data);
-    },
-    time: function (data) {
-        return DATEFORMAT.toTime(data);
     }
 };

@@ -1,0 +1,216 @@
+/* 表格绑定类，自动将ITEMS中的数据绑定到表格TD中，会自动生成表头（TH)和（TD） */
+function GetBIND_TABLE() {
+    return {
+        table_id: '#summary-table',
+        thbaseClass: 'text-center',
+        Columns: [],
+        ths: [],
+        items: [],
+        ini: function () {
+            // this.Columns.push(column);
+        },
+        binding: function (items) {
+            if (items != null || items != undefined)
+                this.items = items;
+            this._setTable();
+        },
+        // 生成表格
+        _setTable: function () {
+            var tr = this._createTableHead();
+            $(this.table_id + ' tr').remove();
+            $(this.table_id).append(tr);
+            var dr = '';
+            for (var key in this.items) {
+                var row = this.items[key];
+                dr = this._getRow(row);
+                $(this.table_id).append(dr);
+            }
+        },
+        _createTableHead: function () {
+            var tr = '<tr>';
+            var th = '';
+            for (var key in this.Columns) {
+                var col = this.Columns[key];
+                if (col['visible'] && col['visible'] == false) {
+                    continue;
+                }
+                th = '<th class="';
+                th += this.thbaseClass + ' ' + col.titleClassName + '" ';
+                // if (col.width != null && col.width != undefined) {
+                // th += ' width="' + col.width + '" ';
+                // }
+                th += ' >' + col.title + '</th>';
+                tr += th;
+            }
+            tr += '</tr>';
+            return tr;
+        },
+        tr_key: 0,
+        _getRow: function (item) {
+            var tr = '<tr key="' + (this.tr_key++) + '">';
+            var td = '';
+            for (var key in this.Columns) {
+                var col = this.Columns[key];
+                if (col['visible'] && col['visible'] == false) {
+                    continue;
+                }
+                td = '<td>';
+                td += COLUMN_TYPE.getHtml(col, item);
+                td += '</td>';
+                tr += td;
+            }
+            tr += "</tr>";
+            return tr;
+        }
+    };
+}
+// Table Bind
+
+function Search_Panel(panel_id)
+{
+    return {
+        panel_id: panel_id,
+        clickSearchfunc: null,
+        buildSearachPanel: function (columns)
+        {
+            var count = columns.length;
+            var rowmax = 6;
+            var rowcount = 0;
+            var html = '<div class="form-row ">';
+            for (var i = 0; i < count; i++)
+            {
+                var col = columns[i];
+                if (col.isSearch != true)
+                {
+                    continue;
+                }
+                var rowhtml = this.getPanelItem(col.title, col.fieldName);
+                if (rowcount % rowmax == 0)
+                {
+                    html += '</div><div class="form-row  ">';
+                }
+                html += rowhtml;
+                rowcount += 1;
+            }
+            html += '</div>';
+            $(this.panel_id).html('');
+            $(this.panel_id).append(html);
+            var searchbtn = '<button class="btn medium ui-state-default search_btn" type="button" id="search_btn">查询数据</button>';
+            $(this.panel_id).append(searchbtn);
+            var that = this;
+            $('#search_btn').click(function ()
+            {
+                that.clickSearchfunc(that._getKeywords());
+            });
+        },
+        getPanelItem: function (title, fieldName)
+        {
+            var html = '<div class="form-input col-md-2"><div class="input-append-wrapper">' +
+					   '<div class="input-append bg-gray pad5L pad5R">' +
+					   '<label>' + title + '</label>' +
+					   '</div><input type="text" placeholder="查询条件" name="' + fieldName + '" /></div></div>';
+            return html;
+        },
+        _getKeywords: function ()
+        {
+            var keys = new Array();
+            $(this.panel_id + ' input').each(function ()
+            {
+                var key = $(this).attr('name');
+                var value = $(this).val();
+                keys.push({
+                    key: key, value: value
+                });
+            });
+            return keys;
+        }
+    };
+}
+
+// 不同类型控件的显示方式、选择框、文本框、下拉列表、文本、时间控件
+var COLUMN_TYPE = {
+    getHtml: function (column, item) {
+        var type = column.column_type;
+        if (type == null || type == undefined || type == '') type = "label";
+        return this[type](column, item);
+    },
+    baseClassName: '',
+    checkbox: function (column, item) {
+        var html = "<input type='checkbox'  name='" + column.fieldName + "'";
+        var value = item[column.fieldName];
+        if (column.formatString != null && column.formatString != '')
+            value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        if (value == true || value == 1) {
+            html = html + " checked='checked' ";
+        }
+        html += ' />';
+        return html;
+        // <input type="checkbox" name="checkbox">
+    },
+    textbox: function (column, item) {
+        var html = "<input name='" + column.fieldName + "'";
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html = html + " value='" + value + "' />";
+        return html;
+    },
+    selectList: function (column, item) {
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = '<select name="' + column.fieldName + '"';
+        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html = html + ' >' + value + '</select>';
+        return html;
+    },
+    label: function (column, item) {
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = '<label name="' + column.fieldName + '"';
+        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html = html + ' >' + value + '</label>';
+        return html;
+    },
+    span: function (column, item, url) {
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = '<span name="' + column.fieldName + '"';
+        html = html + ' href="' + url + '"';
+        html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html = html + ' >' + value + '</span>';
+        return html;
+    },
+    a: function (column, item) {
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = '<a name="' + column.fieldName + '"';
+        html = html + " class=' " + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html += ' href="' + column.url + '"';
+        html = html + ' >' + value + '</a>';
+        return html;
+    },
+    dateInput: function (column, item) {
+        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = '<label name="' + column.fieldName + '"';
+        html = html + " class='tcal tcalInput " + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
+        html = html + ' >' + value + '</label>';
+        return html;
+    }
+};
+var FORMATPRIVED = {
+    formatValue: function (name, data) {
+        if (name == undefined || name == '' || data==undefined)
+            return data;
+        var fun = FORMATPRIVED[name];
+        console.log(name);
+        if (fun != null) {
+            return fun(data);
+        }
+        return data;
+    },
+    money: function (data) {
+        return MONEYFORMAT.toYuan(data);
+    },
+    date: function (data) {
+        return DATEFORMAT.toDate(data);
+    },
+    time: function (data) {
+        return DATEFORMAT.toTime(data);
+    }
+};

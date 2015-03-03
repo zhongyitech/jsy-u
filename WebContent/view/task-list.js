@@ -173,6 +173,7 @@ var TASK_LIST ={
 			}
 			
 			var cjsj = TASK.toCJSJ(item);
+			cjsj = DATEFORMAT.toDate(cjsj);
 			var cjsj_td = $('<td class="text-center"><span class="text-overflow" title="' + cjsj + '">' + cjsj + '</span></td>');
 			tr.append(cjsj_td);
 			

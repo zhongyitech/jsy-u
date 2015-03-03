@@ -5,7 +5,6 @@
 <head>
     <jsp:include page="./head.jsp"></jsp:include>
     <script type="text/javascript" src="./new_project.js"></script>
-    <script type="text/javascript" src="../view/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
     <title>档案管理-档案入库</title>
 
@@ -26,11 +25,11 @@
             <form class="form-bordered " action="/" method="post">
                 <div class="form-row">
                     <div class="form-label col-md-2">
-                        <label for="">项目方：</label>
+                        <label for="">项目单号：</label>
                     </div>
 
                     <div class="form-input col-md-4">
-                        <input type="text" id="projectdealer"/>
+                        《新建》
                     </div>
                     <div class="form-label col-md-2   ">
                         <label for="">项目名称：</label>
@@ -58,111 +57,17 @@
                     </div>
                 </div>
 
+
                 <div class="form-row">
                     <div class="form-label col-md-12">
                         <label for="" class="font-size-20">备注：</label>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-input col-md-10">
                         <textarea name="input_text" id="description" class="small-textarea"></textarea>
                     </div>
                 </div>
-
-                <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul id="mytabs" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">结构</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">股权</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">债务+资产</a></li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="form-row">
-                                        <div class="form-label col-md-2">
-                                            <label for="">董事：</label>
-                                        </div>
-
-                                        <div class="form-input col-md-4">
-                                            <input type="text" id="director"/>
-                                        </div>
-                                        <div class="form-label col-md-2   ">
-                                            <label for="">监事：</label>
-                                        </div>
-                                        <div class="form-input col-md-4">
-                                            <input type="text"  id="supervisor"/>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="form-row">
-                                        <div class="form-label col-md-12">
-                                            <label for="" class="font-size-20">股干人员架构：</label>
-                                        </div>
-                                        <div class="form-input col-md-10">
-                                            <textarea name="input_text" class="small-textarea" id="stockStructure"></textarea>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
-                            <div class="panel panel-default">
-                                <div class="form-input col-md-2">
-                                    <label class="sr-only" for="stockDate">时间</label>
-                                    <input class="tcal filter-input" id="stockDate" />
-                                </div>
-                                <div class="form-input col-md-4">
-                                    <label class="sr-only" for="structure">股份结构</label>
-                                    <input type="email" class="form-control" id="structure" placeholder="股份结构">
-                                </div>
-                                <div class="form-input col-md-2">
-                                    <button class="btn btn-default" id="addStock">添加</button>
-                                </div>
-
-                                <div class="panel-body">
-                                    <table class="table table-striped text-center mrg0B" id="stock_table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">编号</th>
-                                                <th class="text-center">时间</th>
-                                                <th class="text-center">股份结构</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="messages">
-                            <div class="form-row">
-                                <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">债务：</label>
-                                </div>
-                                <div class="form-input col-md-10">
-                                    <textarea name="input_text" class="small-textarea" id="debt"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">资产：</label>
-                                </div>
-                                <div class="form-input col-md-10">
-                                    <textarea name="input_text" class="small-textarea" id="assets"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="form-row">
                     <div class="form-label col-md-12">
                         <label for="" class="font-size-20">附件：</label>

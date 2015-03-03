@@ -69,10 +69,18 @@
 				</div>
 			</li>
 
-			<li><a href="javascript:;" title="" id="user-logout">
-			<i class="glyph-icon icon-signout font-size-13 mrg5R"></i> 
-			<span class="font-bold">退出</span>
-			</a></li>
+			<li>
+				<a href="./account-edit.jsp" title="设置" id="user-edit">
+					<i class="glyph-icon icon-gear font-size-13 mrg5R"></i> 
+					<span class="font-bold">设置</span>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;" title="退出" id="user-logout">
+					<i class="glyph-icon icon-signout font-size-13 mrg5R"></i> 
+					<span class="font-bold">退出</span>
+				</a>
+			</li>
 		</ul>
 	</div>
 
@@ -176,8 +184,8 @@
 					class="glyph-icon icon-reorder"></i>档案管理
 			</a>
 				<ul>
-					<li><a href="forms.html" title="Layouts &amp; Elements"> <i
-							class="glyph-icon icon-chevron-right"></i> 统计信息
+					<li><a href="hetong-query.jsp" title="Layouts &amp; Elements"> <i
+							class="glyph-icon icon-chevron-right"></i>合同查询
 					</a></li>
 					<li><a href="filepackage-list.jsp"
 						title="Layouts &amp; Elements"> <i
@@ -198,17 +206,17 @@
 					class="glyph-icon icon-reorder"></i> 银行业务
 			</a>
 				<ul>
-					<li><a href="fundCompany-Management.jsp" title="Layouts &amp; Elements"> <i
-							class="glyph-icon icon-chevron-right"></i>基金公司管理
+					<li><a href="fundCompany-Management.jsp" title="设置或修改基金关联公司的信息。"> <i
+							class="glyph-icon icon-chevron-right"></i>有限合伙管理
 					</a></li>
 					<li><a href="bankingpaymentorder.jsp" title="Layouts &amp; Elements"> <i
-							class="glyph-icon icon-chevron-right"></i> 付款单
+							class="glyph-icon icon-chevron-right"></i> 付款单查询
 					</a></li>
-					<li><a href="./xxxx.jsp" title="Layouts &amp; Elements"> <i
-							class="glyph-icon icon-chevron-right"></i> 兑付记录
+					<li><a href="forms.html" title="设置生成凭证使用的匹配数据"> <i
+							class="glyph-icon icon-chevron-right"></i>记账凭证设置设置
 					</a></li>
-					<li><a href="forms.html" title="Layouts &amp; Elements"> <i
-							class="glyph-icon icon-chevron-right"></i>记账凭证管理
+                    <li><a href="forms.html" title="查询生成的历史数据"> <i
+							class="glyph-icon icon-chevron-right"></i>记账凭证记录
 					</a></li>
 					<li><a href="./bankingTransportation.jsp" title="查询从银行同步的交易流水信息"> <i
 							class="glyph-icon icon-chevron-right"></i>交易流水查询
@@ -229,13 +237,39 @@
 			</a>
 				<ul>
 					<li>
-						<a href="forms.html" title="权限管理"><i class="glyph-icon icon-chevron-right"></i>权限管理</a>
+						<a href="./authority-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>权限管理</a>
 					</li>
+					
 					<li>
-						<a href="./user-list.jsp" title="用户管理"><i class="glyph-icon icon-chevron-right"></i>用户管理</a>
+						<a href="./company-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>公司管理</a>
 					</li>
+					
 					<li>
-						<a href="./user-create.jsp" title="新增用户"><i class="glyph-icon icon-chevron-right"></i>新增用户</a>
+						<a href="./company-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增公司</a>
+					</li>
+					
+					<li>
+						<a href="./department-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>部门管理</a>
+					</li>
+					
+					<li>
+						<a href="./department-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增部门</a>
+					</li>
+					
+					<li>
+						<a href="./role-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>角色管理</a>
+					</li>
+					
+					<li>
+						<a href="./role-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增角色</a>
+					</li>
+					
+					<li>
+						<a href="./user-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>用户管理</a>
+					</li>
+					
+					<li>
+						<a href="./user-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增用户</a>
 					</li>
 				</ul>
 			</li>

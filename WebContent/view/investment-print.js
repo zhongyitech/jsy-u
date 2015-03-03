@@ -351,25 +351,40 @@ var PRINT_LIST={
 			var shouyi_a = $('<a class="print-underline" name="print-shouyi">' + shouyi + '</a>');
 			section_fund.append(shouyi_a);
 			
-			section_fund.append('/年。');
-			
-			var from = item[this.investment.RGRQ_KEY];
-			from = this.dateformat.toCH(from);
-			var section_from = $('<p class="print-section">您的计息起始日期为<a class="print-underline" name="print-from">' + from + '</a>，</p>');
-			content.append(section_from);
-			
-			var section_paydate = $('<div name="print-paydate"></div>');
-			content.append(section_paydate);
-			
 			var fxfs = item[this.investment.FXFS_KEY];
-			var rgrq = item[this.investment.RGRQ_KEY];
-			rgrq = this.dateformat.toDate(rgrq);
-			
-			var dqrq = INVESTMENT.toDQRQ(item);
-			var last = DATEFORMAT.toCH(dqrq);
 			if(fxfs == 'N'){
-				section_paydate.append('<p class="print-section">付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
+				section_fund.append('/年。您的计息起始日期为');
+				
+				var from = item[this.investment.RGRQ_KEY];
+				from = this.dateformat.toCH(from);
+				var section_from = $('<a class="print-underline" name="print-from">' + from + '</a>');
+				section_fund.append(section_from);
+				
+				var rgrq = item[this.investment.RGRQ_KEY];
+				rgrq = this.dateformat.toDate(rgrq);
+				
+				var dqrq = INVESTMENT.toDQRQ(item);
+				var last = DATEFORMAT.toCH(dqrq);
+				section_fund.append('，付息和归还本金日为');
+				section_fund.append('<a class="print-underline">' + last + '</a>');
+				section_fund.append('。到账时间为付息日或归还本金日起三个工作日内。(周六、周日及法定节假日顺延)');
 			}else if(fxfs == 'J'){
+				section_fund.append('/年。');
+				
+				var from = item[this.investment.RGRQ_KEY];
+				from = this.dateformat.toCH(from);
+				var section_from = $('<p class="print-section">您的计息起始日期为<a class="print-underline" name="print-from">' + from + '</a>，</p>');
+				content.append(section_from);
+				
+				var section_paydate = $('<div name="print-paydate"></div>');
+				content.append(section_paydate);
+				
+				var rgrq = item[this.investment.RGRQ_KEY];
+				rgrq = this.dateformat.toDate(rgrq);
+				
+				var dqrq = INVESTMENT.toDQRQ(item);
+				var last = DATEFORMAT.toCH(dqrq);
+				
 				var first = new Date(rgrq);
 				first = first.setMonth(first.getMonth() + 3);
 				first = DATEFORMAT.toCH(first);
@@ -386,13 +401,31 @@ var PRINT_LIST={
 				section_paydate.append('<p class="print-section">第三次付息日为<a class="print-underline">' + third + '</a>,</p>');
 				
 				section_paydate.append('<p class="print-section">第四次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
+				section_paydate.append('<p class="print-section">到账时间为付息日或归还本金日起三个工作日内。(周六、周日及法定节假日顺延)</p>');
 			}else if(fxfs == 'W'){
+				section_fund.append('/年。');
+				
+				var from = item[this.investment.RGRQ_KEY];
+				from = this.dateformat.toCH(from);
+				var section_from = $('<p class="print-section">您的计息起始日期为<a class="print-underline" name="print-from">' + from + '</a>，</p>');
+				content.append(section_from);
+				
+				var section_paydate = $('<div name="print-paydate"></div>');
+				content.append(section_paydate);
+				
+				var rgrq = item[this.investment.RGRQ_KEY];
+				rgrq = this.dateformat.toDate(rgrq);
+				
+				var dqrq = INVESTMENT.toDQRQ(item);
+				var last = DATEFORMAT.toCH(dqrq);
+				
 				var first = new Date(rgrq);
 				first = first.setMonth(first.getMonth() + 6);
 				first = DATEFORMAT.toCH(first);
 				section_paydate.append('<p class="print-section">第一次付息日为<a class="print-underline">' + first + '</a>,</p>');
 				
 				section_paydate.append('<p class="print-section">第二次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
+				section_paydate.append('<p class="print-section">到账时间为付息日或归还本金日起三个工作日内。(周六、周日及法定节假日顺延)</p>');
 			}
 			
 			var section_pact = $('<p class="print-section"></p>');
@@ -407,6 +440,9 @@ var PRINT_LIST={
 			
 			var section_last = $('<p class="print-section">特此确认！</p>');
 			content.append(section_last);
+			
+			var section_tips = $('<p class="print-section bold">友情提示：若您于本投资期限届满后继续投资本合伙企业或转投本公司其他基金合伙企业，请与投资期限届满前三个工作日与您的理财经理联系，并办理相关续投或转投手续。</p>');
+			content.append(section_tips);
 			
 			var bottom = $('<div class="print-bottom"></div>');
 			item_div.append(bottom);

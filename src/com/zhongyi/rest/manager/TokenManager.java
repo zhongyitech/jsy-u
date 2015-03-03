@@ -26,15 +26,15 @@ public class TokenManager {
 		return items;
 	}
 	
-	public String get(String cookie){
-		return getItems().get(cookie);
+	public String get(String jsession){
+		return getItems().get(jsession);
 	}
 	
 	public void put(String cookie, String token){
 		getItems().put(cookie, token);
 	}
 	
-	public void remove(String cookie){
-		getItems().remove(cookie);
+	public void remove(String jsession){
+		getItems().remove(jsession);
 	}
 }
