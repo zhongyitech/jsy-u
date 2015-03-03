@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"></jsp:include>
-    <script type="text/javascript" src="./new_project.js"></script>
+    <script type="text/javascript" src="./new_receive_record.js"></script>
     <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
     <title>新建收款记录</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />

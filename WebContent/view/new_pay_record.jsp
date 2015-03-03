@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"></jsp:include>
-    <script type="text/javascript" src="./new_project.js"></script>
+    <script type="text/javascript" src="./new_pay_record.js"></script>
     <script type="text/javascript" src="../jquery/jquery.autocomplete.js"></script>
     <title>新建汇款记录</title>
 
@@ -27,14 +27,15 @@
                         </div>
 
                         <div class="form-input col-md-4">
-                            <input type="text" id="projectname" placeholder="输入自动查询"/>
+                            <input type="text" id="fundname" placeholder="输入自动查询"/>
+                            <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                         </div>
                         <div class="form-label col-md-2   ">
                             <label for="">项目名称：</label>
                         </div>
 
                         <div class="form-input col-md-4">
-                            <input type="text" id="funname" placeholder="输入自动查询"/>
+                            <input type="text" id="projectname" readonly="readonly"/>
                         </div>
 
                     </div>
