@@ -160,6 +160,7 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/bankingpaymentorder.js"></script>
+<script type="text/javascript" src="../js/datacommon.js"></script>
+<script type="text/javascript" src="../js/fundCompany-Management.js"></script>
 </body>
 </html>

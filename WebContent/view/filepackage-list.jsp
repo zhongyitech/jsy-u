@@ -50,7 +50,7 @@
 
     <div id="page-content-wrapper">
         <!-- #page-title -->
-        <div id="page-content" style="width: 700px">
+        <div id="page-content">
 
             <div class="content-box box-toggle view-width">
 
