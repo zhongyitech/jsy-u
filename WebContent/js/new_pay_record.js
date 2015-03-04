@@ -7,7 +7,7 @@ $(document).ready(function(){
 });
 
 var VIEWDATA={
-
+    oldSelectData:null,
     init: function(){
         this.init_view();
 
@@ -15,6 +15,10 @@ var VIEWDATA={
 
     init_view: function(){
         var me = this;
+
+        $("#paytotal").keyup(function(){
+            $(this).val(STRINGFORMAT.toYuan($(this).val()));
+        });
 
         $('#fundname').autocomplete(
             {
@@ -28,11 +32,15 @@ var VIEWDATA={
                     //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
                     $("#fundname").val(suggestion.value);
                     $("#_fundname").val(suggestion.data);
-                    me.load_projectinfos(suggestion.data);
+                    if(me.oldSelectData!=suggestion.data){
+                        me.oldSelectData=suggestion.data
+                        me.load_projectinfos(suggestion.data);
+                    }
                 },
                 transformResult: function (response) {
                     //clear old value
                     $("#fundname").val("");
+                    $("#_fundname").val("");
                     if (!response || response == '') {
                         return {
                             "query": "Unit",
@@ -50,9 +58,8 @@ var VIEWDATA={
     load_projectinfos: function(fundid){
         console.log("loading fundinfo:"+fundid);
         var me = this;
-        var params = JSON.stringify({ startposition: me.page_start, pagesize: me.page_size, queryparam: me.filter_keyword });
-        ///api/commissionInfo/addPayment?jsonStr=
-        var data = { url: '/api/commissionInfo/addPayment', entity: JSON.stringify(items[i]) };
+        var params = JSON.stringify({ id: fundid});
+        var data = { url: '/api/fundCompanyInformation/findByFund', params: params };
         console.log(data);
         $.ajax({
             type: 'post',
@@ -62,14 +69,39 @@ var VIEWDATA={
             async: false,
             success: function(result){
                 console.log(result);
-                if(result && result.length>0){
-                    $.each(result,function(index,obj){
-                        $("#company").append(
-                            '<option value="'+obj.id+'">'+obj.companyName+'</option>'
+                var rest_result = JSON.parse(result.rest_result);
+                if(rest_result&& rest_result.projects){
+                    $.each(rest_result.projects,function(index,obj){
+                        $('#project').append(
+                            '<option value="'+obj.id+'" selected="selected">'+obj.name+'</option>'
                         );
                     });
-
                 }
+
+                if(rest_result&& rest_result.banks){
+                    $.each(rest_result.banks,function(index,obj){
+                        if(obj.defaultAccount){
+                            $('#banklist').append(
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label>'
+                            );
+                        }else{
+                            $('#banklist').append(
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label>'
+                            );
+                        }
+
+                    });
+
+                    $("input[name='bankselect']").change(function(){
+                        var selected = $(this).val();
+                        $.each(rest_result.banks,function(index,obj){
+                            if(obj.id==selected){
+
+                            }
+                        });
+                    });
+                }
+
 
             },
             error: function(result){

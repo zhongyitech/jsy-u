@@ -18,32 +18,32 @@
                 </div>
                 <form class="form-bordered " action="/" method="post">
                     <div class="form-row">
-                        <div class="form-label col-md-2   ">
-                            <label for="">基金名称：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>基金名称：</label>
                         </div>
 
                         <div class="form-input col-md-4">
                             <input type="text" id="fundname" placeholder="输入自动查询"/>
                             <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                         </div>
-                        <div class="form-label col-md-2   ">
-                            <label for="">项目名称：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>项目名称：</label>
                         </div>
 
                         <div class="form-input col-md-4">
-                            <input type="text" id="projectname" readonly="readonly"/>
+                            <select id="project"></select>
                         </div>
 
                     </div>
                     <div class="form-row">
-                        <div class="form-label col-md-2   ">
-                            <label for="">付款日期：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>付款日期：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <input type="text" id="paydate"/>
+                            <input class="tcal filter-input" id="paydate"/>
                         </div>
-                        <div class="form-label col-md-2   ">
-                            <label for="">投资金额：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>投资金额：</label>
                         </div>
                         <div class="form-input col-md-4">
                             <input type="text" id="paytotal"/>
@@ -51,67 +51,29 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-label col-md-2   ">
-                            <label for="">款项性质：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>款项性质：</label>
                         </div>
                         <div class="form-input col-md-4">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked style="height: 2em;">
+                                    <input type="radio" name="moneyUseType" id="moneyUsepay" value="pay" checked  style="height: 16px;width: 16px; position: relative;top: 3px;">
                                     投资款
                                 </label>
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" style="height: 2em;">
+                                    <input type="radio" name="moneyUseType" id="moneyUseborrow" value="borrow" style="height: 16px;width: 16px;position: relative;top: 3px;">
                                     借款
                                 </label>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="form-label col-md-2  ">
-                            <label for="">付款账户：</label>
+                        <div class="form-label col-md-2 ">
+                            <label>银行账户：</label>
                         </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）"/>
-                        </div>
-                        <div class="form-label col-md-2   ">
-                            <label for="">付款银行：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
+                        <div id="banklist" class="form-input col-md-10">
+
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-label col-md-2  ">
-                            <label for="">付款人：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）"/>
-                        </div>
-                        <div class="form-label col-md-2   ">
-                            <label for="">收款人：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-label col-md-2  ">
-                            <label for="">收款账户：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）"/>
-                        </div>
-                        <div class="form-label col-md-2   ">
-                            <label for="">收款银行：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <input type="text"  placeholder="自动带出（不在合同环节中录入的）(下拉选择)"/>
-                        </div>
-                    </div>
-
-
 
 
                     <div class="form-row pad3B">
