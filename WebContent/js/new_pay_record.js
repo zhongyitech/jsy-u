@@ -54,6 +54,17 @@ var VIEWDATA={
                     }
                 }
             });
+
+        $("#add_pay_record").click(function(){
+            var fundname = $("#_fundname").val();
+            var project = $("#project").val();
+            var paydate = $("#paydate").val();
+            var paytotal = $("#paytotal").val();
+
+            var moneyUseType = $("input[name='moneyUseType'][checked]").val();
+            var bankselect = $("input[name='bankselect'][checked]").val();
+
+        });
     },
     load_projectinfos: function(fundid){
         console.log("loading fundinfo:"+fundid);
@@ -72,8 +83,9 @@ var VIEWDATA={
                 var rest_result = JSON.parse(result.rest_result);
                 if(rest_result&& rest_result.projects){
                     $.each(rest_result.projects,function(index,obj){
+                        //selected="selected"
                         $('#project').append(
-                            '<option value="'+obj.id+'" selected="selected">'+obj.name+'</option>'
+                            '<option value="'+obj.id+'" >'+obj.name+'</option>'
                         );
                     });
                 }
