@@ -16,31 +16,31 @@
         <div id="page-content" class="page-view pad25T">
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">侍款单记录 </span> <a href="#"
-                                                              class="float-right icon-separator btn toggle-button"
-                                                              title="侍款单记录"> <i
-                        class="glyph-icon icon-toggle icon-chevron-down"></i>
-                </a>
-
+                    <span class="float-left">侍款单记录</span>
+                    <a href="javascript:;" class="float-right icon-separator btn toggle-button" title="侍款单记录">
+                        <i class="glyph-icon icon-toggle icon-chevron-down"></i>
+                    </a>
                     <div class="keyword-view float-right">
                         <div class="keyword-input-width float-left">
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
                                     <input type="text" placeholder="Search notifications..."
-                                           class="radius-top-left-100 radius-bottom-left-100 keyword-input"
+                                           class="radius-top-left-10 radius-bottom-left-10 keyword-input"
                                            id="keyword-input"/>
                                 </div>
                             </div>
                         </div>
-                        <button
-                                class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
-                                id="keyword-button">
+                        <button class="btn large medium float-left keyword-button radius-top-right-10 radius-bottom-right-10" id="keyword-button">
                             <span class="button-content">搜索</span>
+                        </button>
+                        <button class="btn large medium float-left keyword-button radius-all-10 mrg10L">
+                            <span class="button-content">筛选</span>
                         </button>
                     </div>
                 </div>
                 <div class="content-box-wrapper">
+                    <div class="pad3A mrg5B seach_panel clearfix" id="search_panel"></div>
                     <div class="col-md-12 page-bar pad0R">
                         <a href="javascript:;"
                            class="btn large float-left mrg5R ui-state-default"
@@ -52,8 +52,6 @@
                            class="btn large float-left mrg5L ui-state-default"
                            id="page-last"> <i class="glyph-icon icon-arrow-right"></i>
                         </a>
-                    </div>
-                    <div class="pad3A mrg5B seach_panel " id="search_panel">
                     </div>
                     <table id="payorder-table"
                            class="table table-striped text-center mrg0B"

@@ -566,8 +566,12 @@ h3 + p.font-gray-dark {
     width: 70px
 }
 
+.input-append-wrapper .append-left input{
+    border: 1px solid #cdcdcd;
+}
+
 .input:focus, .form-input input:focus, .form-input select:focus, .form-input textarea:focus, .chosen-container-active, .chosen-container-multi.chosen-container-active, .selector.focus, .bootstrap-timepicker-widget table td input:focus, .ui-toolbar select:focus, .ui-toolbar input:focus {
-    border-color: #3da6ff;
+    border: 1px solid #3da6ff;
     box-shadow: 0 0 0 transparent;
     -moz-box-shadow: 0 0 0 transparent;
     -webkit-box-shadow: 0 0 0 transparent;
@@ -790,8 +794,4 @@ body .popover {
 .content-box-header .toggle-button:hover{
     color: #333;
     background: #EEF2F9;
-}
-
-.input-append-wrapper .append-left input{
-    border-left: #cdcdcd solid 1px;
 }
