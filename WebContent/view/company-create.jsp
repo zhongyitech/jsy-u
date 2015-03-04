@@ -8,14 +8,14 @@
     <title>新增公司</title>
 </head>
 
-<body class="page-body">
+<body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
 
         <div id="page-content" class="page-view pad25T">
 
-            <div class="content-box box-toggle view-width" id="company-view">
+            <div class="content-box box-toggle " id="company-view">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">新增公司</span>
 
@@ -219,7 +219,7 @@
                 </div>
             </div>
 
-            <div class="content-box box-toggle view-width" id="yhzh-view">
+            <div class="content-box box-toggle " id="yhzh-view">
                 <h3 class="content-box-header primary-bg">
                     <span class="float-left">银行账户</span>
                     <a href="#" class="float-right icon-separator btn toggle-button" title="点击">

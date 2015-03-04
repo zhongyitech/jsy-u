@@ -8,7 +8,7 @@
 <title>委托付款处理申请表</title>
 
 </head>
-<body class="page-body">
+<body >
 	<div id="page-wrapper">
 		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">

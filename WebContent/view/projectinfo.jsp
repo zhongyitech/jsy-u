@@ -9,7 +9,7 @@
     <title>项目明细</title>
 </head>
 
-<body class="page-body">
+<body >
 <div id="page-wrapper">
 <jsp:include page="./navi.jsp"/>
         <div id="page-content-wrapper">

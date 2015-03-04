@@ -9,7 +9,7 @@
 <title>到期转投处理申请表</title>
 <link rel="stylesheet" type="text/css" href="../css/special_edit_treat.css"/>
 </head>
-<body class="page-body">
+<body >
 	<div id="page-content-wrapper">
 		<!-- #page-title -->
 		<div id="page-wrapper">

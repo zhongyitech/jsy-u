@@ -52,7 +52,7 @@
         <!-- #page-title -->
         <div id="page-content">
 
-            <div class="content-box box-toggle view-width">
+            <div class="content-box box-toggle ">
 
                 <div class="content-box-header primary-bg">
                     <span class="float-left">档案浏览</span>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
+                        <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
                                 id="keyword-button"><span class="button-content">搜索</span></button>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                 </div>
 
             </div>
-            <div class="content-box box-toggle view-width">
+            <div class="content-box box-toggle ">
                 <%--<h3 class="content-box-header primary-bg">--%>
                 <%--<span class="float-left">借阅记录</span> <a href="#"--%>
                 <%--class="float-right icon-separator btn toggle-button"--%>
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
+                        <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
                                 id="keyword-button2"><span class="button-content">搜索</span></button>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/authority-edit.css">
 </head>
 
-<body class="page-body">
+<body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
