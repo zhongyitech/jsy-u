@@ -8,14 +8,14 @@
     <link rel="stylesheet" type="text/css" href="../css/hetong-dengji.css">
 </head>
 
-<body class="page-body">
+<body >
 	<div id="page-wrapper">
 		<jsp:include page="./navi.jsp"/>
 		
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
 				
-				<div class="content-box box-toggle view-width" id="htdj-put">
+				<div class="content-box box-toggle " id="htdj-put">
 					<div class="content-box-header primary-bg">
 						<span class="float-left">合同登记</span>
 						
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				
-				<div class="content-box box-toggle view-width" id="htdj-list">
+				<div class="content-box box-toggle " id="htdj-list">
 				
 					<div class="content-box-header primary-bg">
 						<span class="float-left">最近登记记录</span>
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 							</div>
-							<button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100" id="keyword-button"><span class="button-content">搜索</span></button>
+							<button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100" id="keyword-button"><span class="button-content">搜索</span></button>
 						</div>
 					</div>
 					

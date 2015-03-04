@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/special_treat.css"/>
 	<title>到期转投处理申请表</title>
 </head>
-<body class="page-body">
+<body >
 <div id="page-wrapper">
 	<jsp:include page="./navi.jsp"/>
 	<div id="page-content-wrapper">

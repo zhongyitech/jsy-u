@@ -7,7 +7,7 @@
     <script type="text/javascript" src="../js/special_treat.js"></script>
     <title>合并计息申请表</title>
 </head>
-<body class="page-body">
+<body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">

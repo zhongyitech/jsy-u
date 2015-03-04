@@ -8,14 +8,14 @@
 <title>新增角色</title>
 </head>
 
-<body class="page-body">
+<body >
 	<div id="page-wrapper">
 		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">
 		
 			<div id="page-content" class="page-view pad25T">
 			
-				<div class="content-box box-toggle view-width" id="role-view">
+				<div class="content-box box-toggle " id="role-view">
 					<div class="content-box-header primary-bg">
 						<span class="float-left">新增角色</span>
 						

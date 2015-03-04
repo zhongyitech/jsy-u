@@ -792,3 +792,7 @@ body .popover {
     color: #333;
     background: #EEF2F9;
 }
+
+.input-append-wrapper .append-left input{
+    border-left: #cdcdcd solid 1px;
+}

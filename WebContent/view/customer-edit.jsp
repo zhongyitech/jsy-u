@@ -8,14 +8,14 @@
     <title>编辑客户信息</title>
 </head>
 
-<body class="page-body">
+<body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
 
         <div id="page-content" class="page-view pad25T">
 
-            <div class="content-box box-toggle view-width" id="customer-view">
+            <div class="content-box box-toggle " id="customer-view">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">编辑客户信息</span>
 
