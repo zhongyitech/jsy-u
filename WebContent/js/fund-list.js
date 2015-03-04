@@ -367,6 +367,9 @@ var FUND_REPORT={
 						]
 					};
 				report.setOption(option);
+                $(window).resize(function(){
+                    report.resize();
+                })
 			}
 		}
 }

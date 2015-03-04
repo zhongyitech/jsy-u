@@ -9,7 +9,7 @@
 <title>未到期转投处理申请表</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../css/special_untreat.css"/>
-<body class="page-body">
+<body >
 	<div id="page-wrapper">
 		<jsp:include page="./navi.jsp"/>
 		<div id="page-content-wrapper">

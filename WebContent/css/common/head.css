@@ -1,36 +1,6 @@
 @CHARSET "UTF-8";
 
-/* #header-logo, #page-header {
-	background: linear-gradient(to bottom, #454545 0, #565656 100%);
-	color: #fefefe;
-}
-
-#header-logo{
-	border-right: #dedede solid 1px;
-}
-
-.user-profile>a{
-	color: #fefefe;
-	border-left: #dedede solid 1px;
-}
-
-.dropdown>a {
-	color: #fefefe;
-}
-
-.user-profile>a:hover{
-	background: #121212;
-	color: #fefefe;
-} */
-
-/*.login-body{*/
-	/*background: #ffffdd url(../images/noise.png);*/
-	/*font-family: 微软雅黑;*/
-/*}*/
-
 .page-body{
-	/* background: #ffffff url(../images/noise.png); */
-	font-family: 微软雅黑!important;
 }
 
 .login-div{
@@ -46,7 +16,6 @@
 
 .login-title{
 	font-weight: bold;
-	font-family: 微软雅黑;
 }
 
 .login-dialog{
@@ -75,7 +44,6 @@
 }
 
 .keyword-input{
-	font-family: cursive;
 }
 
 .keyword-input-width{
@@ -145,9 +113,9 @@ select[disabled]{
 	margin-left: 1px!important;
 }
 
-.pages-div{
-	width: 1085px;
-}
+/*.pages-div{*/
+	/*width: 1085px;*/
+/*}*/
 
 .content-box-header{
 	font-weight: bold;
@@ -194,11 +162,6 @@ select[disabled]{
 
 .item-url{
 	color: #3399cc;
-}
-
-.bg-white{
-	color: #121212;
-	background: #fefefe;
 }
 
 .span-12{

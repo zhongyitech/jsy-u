@@ -8,13 +8,13 @@
     <title>投资档案</title>
 </head>
 
-<body class="page-body">
+<body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
         <div id="page-content" class="page-view pad25T">
 
-            <div class="content-box box-toggle view-width">
+            <div class="content-box box-toggle ">
 
                 <div class="content-box-header primary-bg">
                     <span class="float-left">投资档案</span>

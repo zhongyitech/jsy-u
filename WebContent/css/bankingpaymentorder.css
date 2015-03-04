@@ -1,50 +1,60 @@
 @CHARSET "UTF-8";
 
-.login-title{
-	font-weight: bold;
-	font-family: 微软雅黑!important;
-}
-#table tr{
-	padding: 5px;
-}
-.vailderror{
-	color:red;
+.login-title {
+    font-weight: bold;
+    font-family: 微软雅黑 !important;
 }
 
-.form-bordered .form-label{
-	padding:6px 10px !important;
+#table tr {
+    padding: 5px;
 }
-.form-bordered .form-input{
-	padding:6px 10px !important;
-}
-.jsy_black_overlay{
-			display: none;
-			position: absolute;
-			top: 0%;
-			left: 0%;
-			width: 100%;
-			height: 100%;
-			background-color: black;
-			z-index:5;
-			-moz-opacity: 0.8;
-			opacity:.80;
-			filter: alpha(opacity=80);
-		}
-		
-		.jsy_white_content {
-			display: none;
-			position: absolute;
-			top: 25%;
-			left: 25%;
-			width: 50%;
-			height: 100%;
-			padding: 16px;
-			border: 16px solid rgb(32, 63, 97);
-			background-color: white;
-			z-index:6;
-			overflow: auto;
-		}
 
-		.jsy_light {
-			height:150px;
-		}
+.vailderror {
+    color: red;
+}
+
+.form-bordered .form-label {
+    padding: 6px 10px !important;
+}
+
+.form-bordered .form-input {
+    padding: 6px 10px !important;
+}
+
+.jsy_black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 5;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+
+.jsy_white_content {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+    border: 16px solid rgb(32, 63, 97);
+    background-color: white;
+    z-index: 6;
+    overflow: auto;
+}
+
+.jsy_light {
+    height: 150px;
+}
+
+.seach_panel {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #e3e3e3;
+}

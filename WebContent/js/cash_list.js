@@ -9,8 +9,6 @@ $(document).ready(function(){
 	
 });
 
-
-
 var VIEWDATA = {
 	table_id: "#cash-interest",
 	KEYWORD_BUTTON_ID: '#filter-button',
@@ -464,3 +462,31 @@ var VIEWDATA = {
 	}
 };
 
+var DigitalBox={
+    show:function(){
+
+
+        $(this.box_id).show();
+    },
+    _hide:function(){
+        $(this.box_id).hide();
+    },
+    ini:function(){
+
+    },
+    _getData:function(){
+
+    },
+    _setInfo:function(){
+
+    },
+    _getBankAccounts:function(fundName){
+
+    },
+    //
+    box_id:'',
+    btn_ok:'',
+    btn_cancel:'',
+    okEvent:null,
+    cancelEvent:null
+}

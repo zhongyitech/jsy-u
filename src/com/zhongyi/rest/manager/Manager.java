@@ -41,9 +41,9 @@ public class Manager {
 //		return "http://192.168.3.109:8080/jsy";
 		//佳文
 //		return "http://192.168.8.122:8080/jsy";
-		return "http://127.0.0.1:18080/jsy";
+//		return "http://127.0.0.1:18080/jsy";
 //		return "http://192.168.7.116:8080/jsy";
-//		return "http://192.168.1.59:18080/jsy-rest";
+		return "http://192.168.1.59:18080/jsy-rest";
 //		return "http://192.168.0.37:8080/jsy";
 //		return "http://127.0.0.1:18080/jsy-rest";
 //		return "http://192.168.0.18:18080/jsy";
