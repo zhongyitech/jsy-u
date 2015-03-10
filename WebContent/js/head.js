@@ -1326,6 +1326,74 @@ var COMPANY_TYPE={
 			return '';
 		}
 };
+//公共字典类，提供对通用字典的访问
+var TYPECONFIG={
+    NAME_KEY: 'mapName',
+    SHOUYI_KEY: 'rest_yield',
+    TICHENG_KEY: 'rest_tc',
+    YEWU_KEY: 'businessCommision',
+    GUANLI_KEY: 'manageCommision',
+    result: {},
+    item: {},
+    map: {},
+    /*获取所有的类型配置数据*/
+    ini: function(async){
+        if(async=="undefined"){
+            async = false;
+        }
+        var params = JSON.stringify({type: type});
+        var data = {url: '/api/typeConfig', params: params};
+        var me = this;
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/get',
+            data: data,
+            dataType: 'json',
+            async: async,
+            success: function(result){
+                me.result=result;
+                if(result && result.rest_result){
+                    me.items = JSON.parse(result.rest_result);
+                    this.items_cache = true;
+                }
+            },
+            error: function(result){
+                me.result=result;
+                LOGIN.error(result);
+            }
+        });
+    },
+    getItems: function(){
+        //同步加载数据
+        if(!this.items_cache){
+            this.ini(false);
+            this.items_cache = true;
+        }
+        return this.items;
+    },
+    getMap: function(){
+        if(JSON.stringify(this.map) == "{}"){
+            var items = this.getItems();
+            for(var i in items){
+                this.map[items[i]['id']] = items[i];
+            }
+        }
+        return this.map;
+    },
+    get: function(id){
+        var map = this.getMap();
+        return map[id];
+    },
+    getName:function(id){
+        var item = this.get(id);
+        var name = item[this.NAME_KEY];
+        if(!name){
+            name = '无中文名';
+        }
+        return name;
+    }
+};
+
 
 var TypeConfig={//年化收益和提成
 	NAME_KEY: 'mapName',
