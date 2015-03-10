@@ -1170,7 +1170,7 @@ var YHZH_PURPOSE = {//用途
             success: function (response) {
                 me.response = response;
                 if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
+                    me.items = (response[REST.RESULT_KEY]);
                 }
             },
             error: function (response) {
@@ -1256,7 +1256,7 @@ var COMPANY_TYPE = {
             success: function (response) {
                 me.response = response;
                 if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
+                    me.items = (response[REST.RESULT_KEY]);
                 }
             },
             error: function (response) {
@@ -1353,7 +1353,7 @@ var TypeConfig = {//年化收益和提成
             success: function (result) {
                 me.result = result;
                 if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
+                    me.items = (result.rest_result);
                     this.items_cache = true;
                 }
             },
@@ -1420,7 +1420,7 @@ var RoomConfig = {//档案室
             success: function (result) {
                 me.result = result;
                 if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
+                    me.items = (result.rest_result);
                     this.items_cache = true;
                 }
             },
@@ -1499,7 +1499,7 @@ var BorrowStatus = {
             success: function (result) {
                 me.result = result;
                 if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
+                    me.items = (result.rest_result);
                     this.items_cache = true;
                 }
             },
@@ -1575,7 +1575,7 @@ var FUND_STATUS = {
             async: async,
             success: function (result) {
                 if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
+                    me.items = result.rest_result;
                 }
                 me.items_cache = true;
                 me.success();
@@ -1916,7 +1916,7 @@ var USER = {
             success: function (response) {
                 me.response = response;
                 if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
+                    me.item = (response[REST.RESULT_KEY]);
                 }
             },
             error: function (response) {

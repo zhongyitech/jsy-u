@@ -33,7 +33,7 @@ var BMJL={//异步加载所有部门经理
 				success: function(response){
 					me.response = response;
 					if(response && response[REST.RESULT_KEY]){
-						me.items = JSON.parse(response[REST.RESULT_KEY]);
+						me.items = (response[REST.RESULT_KEY]);
 					}
 				},
 				error: function(response){
