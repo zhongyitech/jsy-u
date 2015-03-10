@@ -243,9 +243,6 @@
     </div>
 </div>
 
-
-</div>
-
 <div class="content-box box-toggle view-width">
     <h3 class="content-box-header primary-bg">
         <span class="float-left">数据汇总</span>

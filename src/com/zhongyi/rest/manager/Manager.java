@@ -43,12 +43,12 @@ public class Manager {
 //		return "http://192.168.8.122:8080/jsy";
 //		return "http://127.0.0.1:18080/jsy";
 //		return "http://192.168.7.116:8080/jsy";
-		return "http://192.168.1.59:18080/jsy-rest";
+//		return "http://192.168.1.59:18080/jsy-rest";
 //		return "http://192.168.0.37:8080/jsy";
 //		return "http://127.0.0.1:18080/jsy-rest";
 //		return "http://192.168.0.18:18080/jsy";
 //		return "http://jsy-pc:18080/jsy-rest";
-//		return "http://localhost:8080/jsy";
+		return "http://localhost:8080/jsy";
 	}
 
 	public ManagerResponse get(String cookie, String url, JSONObject params) {

@@ -41,6 +41,23 @@
                                 <select id="company"></select>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label class="label-description">负责人：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input type="text" id="transfer">
+                                <input type="hidden" id="transferid">
+                            </div>
+                            <div class="form-label col-md-2">
+                                <label class="label-description">职能：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="performance">
+                                </select>
+                            </div>
+
+                        </div>
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
