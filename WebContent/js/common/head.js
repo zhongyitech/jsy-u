@@ -1843,23 +1843,31 @@ var USER = {
         var params = JSON.stringify({});
         var data = {url: '/api/user/findUserFromRole', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
+        DataOperation.async=async;
+        DataOperation.get(
+            data,
+            function(result,response){
+                me.response=response;
+                me.items=result;
             }
-        });
+        );
+//        $.ajax({
+//            type: "post",
+//            url: "../rest/item/get",
+//            async: async,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.items = JSON.parse(response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
     },
     getItems: function () {
         //同步加载数据
@@ -3255,20 +3263,26 @@ var MESSAGEBOX = {
 
 /* 数据请求类，封装了一些其它处理方法 */
 var DataOperation = {
+    async: false,
+    defaultAsync: false,
     put: function (data, success, failed, errorfunc) {
         this._ajax('put', data, success, failed, errorfunc);
     },
     post: function (data, success, failed, errorfunc) {
         this._ajax('post', data, success, failed, errorfunc);
     },
+    get: function (data, success, failed, errorfunc) {
+        this._ajax('get', data, success, failed, errorfunc);
+    },
     _ajax: function (method, data, success, failed, errorfunc) {
         var that = this;
         that.log('request:' + method);
         $.ajax(
             {
-                type: 'post', url: '../rest/item/' + method, data: data, async: false,
+                type: 'post', url: '../rest/item/' + method, data: data, async: that.async,
                 success: function (response) {
-                    if (response == null || response[REST.RESULT_KEY] == undefined) {
+                    that.async = that.defaultAsync;
+                    if (response == null) {
                         alert("方法调用返回值不正常，没有键？");
                         return;
                     }
@@ -3283,6 +3297,9 @@ var DataOperation = {
                         return;
                     } else {
                         that.log("return : err")
+                        if (response[REST.RESULT_KEY]) {
+                            that.log(response[REST.RESULT_KEY]);
+                        }
                         if (failed == null) {
                             that.alert("调用接口操作失败！\n\n提示：请提供 failed 回调方法以处理此操作结果。")
                         } else {
@@ -3304,7 +3321,7 @@ var DataOperation = {
         )
     },
     alert: function (msg) {
-        this.log("log:"+msg);
+        this.log("log:" + msg);
         alert(msg);
     }, log: function (obj) {
         console.log(obj);
