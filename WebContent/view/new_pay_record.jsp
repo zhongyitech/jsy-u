@@ -18,7 +18,7 @@
                 </div>
                 <form class="form-bordered " action="/" method="post">
                     <div class="form-row">
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>基金名称：</label>
                         </div>
 
@@ -26,7 +26,7 @@
                             <input type="text" id="fundname" placeholder="输入自动查询"/>
                             <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                         </div>
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>项目名称：</label>
                         </div>
 
@@ -35,14 +35,15 @@
                         </div>
 
                     </div>
+                    
                     <div class="form-row">
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>付款日期：</label>
                         </div>
                         <div class="form-input col-md-4">
                             <input class="tcal filter-input" id="paydate"/>
                         </div>
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>投资金额：</label>
                         </div>
                         <div class="form-input col-md-4">
@@ -51,7 +52,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>款项性质：</label>
                         </div>
                         <div class="form-input col-md-4">
@@ -67,7 +68,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-label col-md-2 ">
+                        <div class="form-label col-md-2">
                             <label>银行账户：</label>
                         </div>
                         <div id="banklist" class="form-input col-md-10">

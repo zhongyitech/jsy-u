@@ -56,13 +56,23 @@ var VIEWDATA={
             });
 
         $("#add_pay_record").click(function(){
-            var fundname = $("#_fundname").val();
+            var fundid = $("#_fundname").val();
             var project = $("#project").val();
             var paydate = $("#paydate").val();
-            var paytotal = $("#paytotal").val();
+            var paytotal = $("#paytotal").val().replace("￥","");;
+            var moneyUseType = $('input[name="moneyUseType"]:radio:checked').val();
+            var bankselect = $('input[name="bankselect"]:radio:checked').val();
 
-            var moneyUseType = $("input[name='moneyUseType'][checked]").val();
-            var bankselect = $("input[name='bankselect'][checked]").val();
+            var model = {
+                fundid:fundid,
+                project:project,
+                paydate:paydate,
+                paytotal:paytotal,
+                moneyUseType:moneyUseType,
+                bankselect:bankselect
+            };
+
+            me.post_complete('/api/payRecord/add_pay_record', model);
 
         });
     },
@@ -94,24 +104,24 @@ var VIEWDATA={
                     $.each(rest_result.banks,function(index,obj){
                         if(obj.defaultAccount){
                             $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label>'
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
                             );
                         }else{
                             $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label>'
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
                             );
                         }
 
                     });
 
-                    $("input[name='bankselect']").change(function(){
-                        var selected = $(this).val();
-                        $.each(rest_result.banks,function(index,obj){
-                            if(obj.id==selected){
-
-                            }
-                        });
-                    });
+                    //$("input[name='bankselect']").change(function(){
+                    //    var selected = $(this).val();
+                    //    $.each(rest_result.banks,function(index,obj){
+                    //        if(obj.id==selected){
+                    //
+                    //        }
+                    //    });
+                    //});
                 }
 
 
@@ -120,7 +130,31 @@ var VIEWDATA={
                 alert('提交时错误:'+result);
             }
         });
-    }
+    },
 
+    post_complete: function(url, model){
+        var me = this;
+        var data = {url: url, entity: JSON.stringify(model)};
+        console.log(data);
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/post',
+            data: data,
+            dataType: 'json',
+            async: false,
+            success: function(result){
+                console.log(result);
+                if(result && result.rest_status && result.rest_status == "200"){
+                    me.result = result;
+                    window.location.href = "new_pay_record.jsp";
+                }
+
+            },
+            error: function(result){
+                console.log(result);
+                alert('提交时错误:'+result.responseText);
+            }
+        });
+    }
 
 }
