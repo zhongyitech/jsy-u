@@ -68,6 +68,11 @@ var VIEWDATA={
                 }
             }
         });
+
+        $("#stopDate").change(function(){
+            //var stopDate = $("#stopDate").val();
+            console.log("ddd");
+        });
     },
 
     loadPayRecords: function(projectid){
@@ -193,6 +198,14 @@ var VIEWDATA={
         $("#label_penalty_per").html(project.penalty_per);
         $("#label_borrow_per").html(project.borrow_per);
         $("#label_interest_per").html(project.interest_per);
+        if("singleCount"==project.interestType){
+            $("#label_interest_type").html("单利");
+        }else if("costCount"==project.interestType){
+            $("#label_interest_type").html("复利");
+        }else if("dayCount"==project.interestType){
+            $("#label_interest_type").html("日复利");
+        }
+
 
 
     },

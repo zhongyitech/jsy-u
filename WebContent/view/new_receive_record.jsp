@@ -63,6 +63,15 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2">
+                        <label for="">利息计算方式：</label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <label id="label_interest_type"></label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-label col-md-2">
                         <label for="">款项性质：</label>
                     </div>
                     <div class="form-input col-md-8">
@@ -90,6 +99,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table table-striped text-center mrg0B" id="pay_records_table">
@@ -113,9 +124,31 @@
                     </div>
                 </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        单条记录辅助
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label>辅助计算逾期费：</label>
+                            </div>
+                            <div class="form-input col-md-8">
+                                截止日期：<input id="stopDate" class="tcal filter-input" />
+                                <input id="over_money" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        聚合记录辅助
+                    </div>
+                    <div class="panel-body">
 
-
+                    </div>
+                </div>
 
 
                 <div class="form-row pad3B">
