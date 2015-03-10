@@ -7,7 +7,7 @@ var FLOW={
 
     file: FILE,
 
-    stepPanels:["panel_gatherInfo","panel_gatherOA","panel_research","panel_researchOA","panel_meeting","panel_otherEA","panel_addCompany","panel_makeContact","panel_makeContactOA"],
+    stepPanels:["panel_gatherInfo","panel_gatherOA","panel_research","panel_researchOA","panel_meeting","panel_otherEA","panel_makeContact","panel_makeContactOA"],
 
     //panel_gatherInfo
     certificateFiles_attachments: [],
@@ -83,9 +83,9 @@ var FLOW={
             if(rest_result.otherEABean){
                 me.init_otherEA(rest_result.otherEABean);
             }
-            if(rest_result.addCompanyBean){
-                me.init_addCompany(rest_result.addCompanyBean);
-            }
+            //if(rest_result.addCompanyBean){
+            //    me.init_addCompany(rest_result.addCompanyBean);
+            //}
             if(rest_result.makeContactBean){
                 me.init_makeContact(rest_result.makeContactBean);
             }
@@ -857,10 +857,72 @@ var FLOW={
                 model.signers.push(obj)
             });
 
-            //var fund = $("#project_relate_fund").val();
-            //if(fund && fund!=""){
-            //    model.fund = fund;
-            //}
+            //有限合伴
+            var company = $("#company").val();
+            if(company && company!=""){
+                model.company = company;
+            }else{
+                alert("请选择有限合伴");
+            }
+            //基金
+            var fund = $("#relate_funds").val();
+            if(fund && fund!=""){
+                model.fund = fund;
+            }else{
+                alert("请选择基金");
+            }
+            //管理费率
+            var manage_per = $("#manage_per").val();
+            if(manage_per && manage_per!=""){
+                manage_per = manage_per.replace("%","")/100;
+                model.manage_per = manage_per;
+            }else{
+                alert("请选择管理费率");
+            }
+            //渠道费率
+            var community_per = $("#community_per").val();
+            if(community_per && community_per!=""){
+                community_per = community_per.replace("%","")/100;
+                model.community_per = community_per;
+            }else{
+                alert("请选择渠道费率");
+            }
+            //违约金率
+            var notNormal_per = $("#notNormal_per").val();
+            if(notNormal_per && notNormal_per!=""){
+                notNormal_per = notNormal_per.replace("%","")/100;
+                model.notNormal_per = notNormal_per;
+            }else{
+                alert("请选择违约金率");
+            }
+            //借款率
+            var borrow_per = $("#borrow_per").val();
+            if(borrow_per && borrow_per!=""){
+                borrow_per = borrow_per.replace("%","")/100;
+                model.borrow_per = borrow_per;
+            }else{
+                alert("请选择违借款率");
+            }
+            //期限
+            var year1 = $("#year1").val();
+            if(year1 && year1!=""){
+                model.year1 = year1;
+                var year2 = $("#year2").val();
+                if(year2 && year2!=""){
+                    model.year2 = year2;
+                }else{
+                    alert("请输入期限");
+                }
+            }else{
+                alert("请输入期限");
+            }
+            //利息计算方式
+            var interestType = $('input[name="interestType"]:radio:checked').val();
+            if(interestType && interestType!=""){
+                model.interestType = interestType;
+            }else{
+                alert("请选择利息计算方式");
+            }
 
             $("input[id^=attname]").each(function () {
                 var index = $(this).attr("id").replace("attname", "");
@@ -878,7 +940,36 @@ var FLOW={
             me.post_complete('/api/project/complete_makeContact', model);
         });
 
+        $("#company").change(function(){
+            var companyid = $("#company").val();
+            me.getFunds(companyid);
+        });
+
+        $("#manage_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+        $("#community_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+        $("#notNormal_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+        $("#borrow_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+
         /***加载数据***/
+        me.getCompany();
+        $("#company").val(makeContactBean.company);
+        $("#relate_funds").val(makeContactBean.fund);
+        $("#manage_per").val(makeContactBean.manage_per);
+        $("#community_per").val(makeContactBean.community_per);
+        $("#notNormal_per").val(makeContactBean.penalty_per);
+        $("#borrow_per").val(makeContactBean.borrow_per);
+        $("#year1").val(makeContactBean.year1);
+        $("#year2").val(makeContactBean.year2);
+        $('input[name="interestType"][value="'+makeContactBean.interestType+'"]:radio').attr("checked","checked");
+
         if(makeContactBean.signers && makeContactBean.signers.length > 0){
             //clear old data
             $("#div_default_signer1").remove();
@@ -986,7 +1077,6 @@ var FLOW={
     getCompany: function () {
         var me = this;
         var data = {url: '/api/fundCompanyInformation/listAll'};
-        console.log(data);
         $.ajax({
             type: 'post',
             url: '../rest/item/get',
@@ -994,16 +1084,39 @@ var FLOW={
             dataType: 'json',
             async: false,
             success: function(result){
-                console.log(result);
                 if(result && result.length>0){
                     $.each(result,function(index,obj){
                         $("#company").append(
                             '<option value="'+obj.id+'">'+obj.companyName+'</option>'
                         );
                     });
-
+                    $('#company').trigger('change');
                 }
 
+            },
+            error: function(result){
+                alert('提交时错误:'+result);
+            }
+        });
+    },
+
+    getFunds: function (companyid) {
+        var me = this;
+        var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid})};
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/get',
+            data: data,
+            dataType: 'json',
+            async: false,
+            success: function(result){
+                if(result && result.rest_result){
+                    $("#relate_funds").empty();
+                    var rest_result = JSON.parse(result.rest_result);
+                    $.each(rest_result.banks,function(index, obj){
+                        $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
+                    });
+                }
             },
             error: function(result){
                 alert('提交时错误:'+result);

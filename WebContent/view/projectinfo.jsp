@@ -463,157 +463,37 @@
 
 
                 <!-- flow instance -->
-                <div class="panel panel-default" id="panel_addCompany" style="display:none; ">
-                    <div class="panel-body">
-                        <section id="addCompany">
-                            <div class="page-header">
-                                <h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>
-                            </div>
-                            <form class="form-bordered " action="/" method="post" id="form_addCompany">
+                <%--<div class="panel panel-default" id="panel_addCompany" style="display:none; ">--%>
+                    <%--<div class="panel-body">--%>
+                        <%--<section id="addCompany">--%>
+                            <%--<div class="page-header">--%>
+                                <%--<h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>--%>
+                            <%--</div>--%>
+                            <%--<form class="form-bordered " action="/" method="post" id="form_addCompany">--%>
 
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2   ">
-                                        <label for="">选择公司：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <select id="company">
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <%--<div class="form-row">--%>
                                     <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">企业名称：</label>--%>
-                                    <%--</div>--%>
-
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">执行商务合伙人：</label>--%>
+                                        <%--<label for="">选择公司：</label>--%>
                                     <%--</div>--%>
                                     <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-
-                                <%--</div>--%>
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">法人国籍：</label>--%>
-                                    <%--</div>--%>
-
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">法人证件类型：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-
-                                <%--</div>--%>
-
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">法人证件号码：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-
-                                <%--</div>--%>
-
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">注册地址：</label>--%>
-                                    <%--</div>--%>
-
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text"/>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">注册编号：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input type="text" id="projectname"/>--%>
-                                    <%--</div>--%>
-
-                                <%--</div>--%>
-
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">营业执照：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input class="input-file" name="attachment" type="file">--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">组织机构代码证：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input class="input-file" name="attachment" type="file">--%>
+                                        <%--<select id="company">--%>
+                                        <%--</select>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
 
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">税务证件：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input class="input-file" name="attachment" type="file">--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">银行开户许可证：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input class="input-file" name="attachment" type="file">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">使用代码证：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<input class="input-file" name="attachment" type="file">--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-
-                                <%--<div class="form-row">--%>
+                                <%--<br />--%>
+                                <%--<div class="form-row pad3B">--%>
                                     <%--<div>--%>
-                                        <%--<table class="item-table" >--%>
-                                            <%--<thead>--%>
-                                            <%--<tr>--%>
-                                                <%--<th class="text-left"><input type="button" value="添加其他文件" style="width: 100px;"></th>--%>
-                                            <%--</tr>--%>
-                                            <%--</thead>--%>
-                                            <%--<tbody>--%>
-                                            <%--<tr>--%>
-                                                <%--<td class="text-left">--%>
-                                                    <%--<input class="input-file" name="attachment" type="file">--%>
-                                                <%--</td>--%>
-                                            <%--</tr>--%>
-                                            <%--</tbody>--%>
-                                        <%--</table>--%>
-                                        <%--<div class="form-input col-md-10" >--%>
-                                        <%--</div>--%>
+                                        <%--<button class="but-ui btn primary-bg large" type="button">--%>
+                                            <%--<span class="button-content" id="complete_addCompany">提交</span>--%>
+                                        <%--</button>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
-                                <br />
-                                <div class="form-row pad3B">
-                                    <div>
-                                        <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" id="complete_addCompany">提交</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </section>
-                    </div>
-                </div>
+                            <%--</form>--%>
+                        <%--</section>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
                 <!-- flow instance -->
                 <div class="panel panel-default" id="panel_makeContact" style="display:none; ">
@@ -667,21 +547,82 @@
 
                                 </div>
 
-
                                 <div class="form-row">
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">有限合伴：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <select id="company">
+                                        </select>
+                                    </div>
+
                                     <div class="form-label col-md-2">
                                         <label for="">关联基金：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="project_relate_fund" type="text"/>
+                                        <select id="relate_funds">
+                                        </select>
                                     </div>
-
                                 </div>
 
+
+                                <div class="form-row">
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">管理费率：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="manage_per" />
+                                    </div>
+
+                                    <div class="form-label col-md-2">
+                                        <label for="">渠道费率：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="community_per" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">违约金率：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="notNormal_per" />
+                                    </div>
+
+                                    <div class="form-label col-md-2">
+                                        <label for="">借款率：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="borrow_per" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-label col-md-2">
+                                        <label for="">期限（年）：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <div class="form-label col-md-2">
+                                            <input id="year1" placeholder="约定"/>
+                                        </div>
+                                        <div class="form-label col-md-2">
+                                            <input id="year2" placeholder="缓冲"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-label col-md-2   ">
+                                        <label for="">利息计算方式：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <label><input type="radio" name="interestType" value="singleCount">单利</label>
+                                        <label><input type="radio" name="interestType" value="costCount">复利</label>
+                                        <label><input type="radio" name="interestType" value="dayCount">日复利</label>
+                                    </div>
+
+
+                                </div>
                             </form>
-
-
-
 
                             <div class="panel panel-default">
                                 <div id="attention_head" class="panel-heading">
@@ -706,8 +647,9 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
+
                                         <tr><td>规模<input id="attname1" type="hidden" value="规模"/></td>            <td><input id="attvalue1" type="text"/></td></tr>
-                                        <tr><td>收益率<input id="attname2" type="hidden" value="收益率"/></td>          <td><input id="attvalue2" type="text"></td></tr>
                                         <tr><td>付息利息<input id="attname3" type="hidden" value="付息利息"/></td>        <td><input id="attvalue3" type="text"></td></tr>
                                         <tr><td>续存期年限<input id="attname4" type="hidden" value="续存期年限"/></td>       <td><input id="attvalue4" type="text"></td></tr>
                                         <tr><td>基金合作条件<input id="attname5" type="hidden" value="基金合作条件"/></td>     <td><input id="attvalue5" type="text"></td></tr>
