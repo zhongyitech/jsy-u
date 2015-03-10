@@ -156,7 +156,7 @@ var INVESTMENT_ITEM={
 					success: function(response){
 						me.response = response;
 						if(response && response[REST.RESULT_KEY]){
-							me.item = JSON.parse(response[REST.RESULT_KEY]);
+							me.item = response[REST.RESULT_KEY];
 							me.setView(me.item);
 						}
 					},
@@ -1273,7 +1273,7 @@ var INVESTMENT_ITEM={
 				success: function(response){
 					me.response=response;
 					if(response && response[REST.RESULT_KEY]){
-						me.item = JSON.parse(response[REST.RESULT_KEY]);
+						me.item = response[REST.RESULT_KEY];
 						window.location = me.page.INVESMENT_PRINT;
 					}else{
 						alert('rest服务异常，添加投资失败.');

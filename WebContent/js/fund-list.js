@@ -126,21 +126,25 @@ var FUND_LIST={
 			});
 			var data = {url: '/api/fund/mainPage', params: {}, entity: entity};
 			var me = this;
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+            DataOperation.post(data,function(result,response){
+                me.response=response;
+                me.setView(response);
+            })
+//			$.ajax({
+//				type: "post",
+//				url: "../rest/item/post",
+//				async: async,
+//				data: data,
+//				dataType: "json",
+//				success: function(response){
+//					me.response = response;
+//					me.setView(response);
+//				},
+//				error: function(response){
+//					me.response = response;
+//					LOGIN.error(response);
+//				}
+//			});
 		},
 		setView: function(response){
 			this.setTotal(response);
@@ -367,9 +371,6 @@ var FUND_REPORT={
 						]
 					};
 				report.setOption(option);
-                $(window).resize(function(){
-                    report.resize();
-                })
 			}
 		}
 }
