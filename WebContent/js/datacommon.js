@@ -74,9 +74,9 @@ function Search_Panel(panel_id)
         buildSearachPanel: function (columns)
         {
             var count = columns.length;
-            var rowmax = 6;
+            var rowmax = 4;
             var rowcount = 0;
-            var html = '<div class="form-row ">';
+            var html = '',endTag='';
             for (var i = 0; i < count; i++)
             {
                 var col = columns[i];
@@ -87,7 +87,8 @@ function Search_Panel(panel_id)
                 var rowhtml = this.getPanelItem(col.title, col.fieldName);
                 if (rowcount % rowmax == 0)
                 {
-                    html += '</div><div class="form-row  ">';
+                    html += endTag+'<div class="form-row  mrg10B">';
+                    endTag='</div>';
                 }
                 html += rowhtml;
                 rowcount += 1;
@@ -95,7 +96,7 @@ function Search_Panel(panel_id)
             html += '</div>';
             $(this.panel_id).html('');
             $(this.panel_id).append(html);
-            var searchbtn = '<button class="btn medium ui-state-default search_btn" type="button" id="search_btn">查询数据</button>';
+            var searchbtn = '<button class="btn medium ui-state-default float-right" type="button" id="search_btn">查询数据</button>';
             $(this.panel_id).append(searchbtn);
             var that = this;
             $('#search_btn').click(function ()
@@ -105,10 +106,10 @@ function Search_Panel(panel_id)
         },
         getPanelItem: function (title, fieldName)
         {
-            var html = '<div class="form-input col-md-2"><div class="input-append-wrapper">' +
-					   '<div class="input-append bg-gray pad5L pad5R">' +
-					   '<label>' + title + '</label>' +
-					   '</div><input type="text" placeholder="查询条件" name="' + fieldName + '" /></div></div>';
+            var html = '<div class="form-input col-md-3"><div class="input-append-wrapper">' +
+					   '<div class="input-append col-md-4 text-right">' +
+					    title +
+					   '</div><div class="append-left col-md-8 mrg0L"><input type="text" placeholder="查询条件" name="' + fieldName + '" /></div></div></div>';
             return html;
         },
         _getKeywords: function ()

@@ -26,7 +26,6 @@ var FUND_LIST={
 		filter_to: '',
 		page_start: 0,
 		page_size: 10,
-		page_total: 1,
 		pages_select: 1,
 		pages_size: 31,
 		status: {},
@@ -127,9 +126,10 @@ var FUND_LIST={
 			var data = {url: '/api/fund/mainPage', params: {}, entity: entity};
 			var me = this;
             DataOperation.post(data,function(result,response){
+                console.log(arguments);
                 me.response=response;
                 me.setView(response);
-            })
+            });
 //			$.ajax({
 //				type: "post",
 //				url: "../rest/item/post",
