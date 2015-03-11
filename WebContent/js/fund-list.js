@@ -126,7 +126,6 @@ var FUND_LIST={
 			var data = {url: '/api/fund/mainPage', params: {}, entity: entity};
 			var me = this;
             DataOperation.post(data,function(result,response){
-                console.log(arguments);
                 me.response=response;
                 me.setView(response);
             });
