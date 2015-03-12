@@ -87,15 +87,35 @@ var VIEWDATA={
                 return false;
             }
 
+            var fundid = $("#_fundname").val();
+            var projectid = $("#project").val();
+            var paydate = $("#paydate").val();
+            var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
+            var bankid = $("input[name='bankselect'][type='radio']:checked").val();
 
+            var targets = [];
+            var checkBoxs = $("input[name='target_type']:checkbox:checked");
+            $.each(checkBoxs,function(index,obj){
+                targets.push($(obj).val());
+            });
+
+            var payRecords = [];
+            var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
+            $.each(checkBoxs2,function(index,obj){
+                payRecords.push($(obj).val());
+            });
+
+            var remain_money = $("#remain_money").val(); //参考剩余价格
 
             var model = {
                 fundid:fundid,
-                project:project,
+                projectid:projectid,
                 paydate:paydate,
                 paytotal:paytotal,
-                moneyUseType:moneyUseType,
-                bankselect:bankselect
+                bankid:bankid,
+                targets:targets,
+                payRecords:payRecords,
+                remain_money_suggest:remain_money
             };
             me.post_complete("/api/receiveRecord/add_receive_record",model);
         });
@@ -174,7 +194,6 @@ var VIEWDATA={
 
                 $("input[name='pay_checkbox']").change(function(){
                     me.countRemainMoney();
-                    console.log($(this).val());
                 });
 
             },
@@ -265,17 +284,7 @@ var VIEWDATA={
                         }
 
                     });
-
-                    //$("input[name='bankselect']").change(function(){
-                    //    var selected = $(this).val();
-                    //    $.each(rest_result.banks,function(index,obj){
-                    //        if(obj.id==selected){
-                    //
-                    //        }
-                    //    });
-                    //});
                 }
-
 
             },
             error: function(result){
@@ -331,7 +340,7 @@ var VIEWDATA={
                 console.log(result);
                 if(result && result.rest_status && result.rest_status == "200"){
                     me.result = result;
-                    window.location.href = "projectinfo.jsp?id="+me.projectid;
+                    window.location.href = "new_receive_record.jsp";
                 }
 
             },
