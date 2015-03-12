@@ -22,7 +22,17 @@
             result:"rest_result",
             pager:"rest_pager"
         },
-        _callback:{},
+        _callback:{
+            success:function(data){
+                console.log("notice",data);
+            },
+            error:function(data){
+                alert(data);
+            },
+            fail:function(){
+                alert("请求失败!（非200返回）");
+            }
+        },
         _success: function (data) {
             return data&&data[this._key.status]==this._status.success;
         },
@@ -94,6 +104,9 @@
             xhr.error(function(data){
                 Util.doFail(data,fn);
             });
+            xhr.fail(function(data){
+                Util.doFail(data,fn);
+            });
             return this;
         };
         /**
@@ -162,16 +175,17 @@
         _getKey:function(type_id){
             return "_"+type_id;
         },
-        getItem:function(type_id){
+        getItem:function(type_id,sync){
             var key=this._getKey(type_id),
                 type=this._cache[key];
             if(type) return type;
-            return this._cache[key]=$.io.get({
+            var params={
                 url:this._type_config_uri,
-                params:{
+                    params:{
                     type:type_id
                 }
-            });
+            };
+            return this._cache[key]=sync?$.io.syncGet(params):$.io.get(params);
         },
         clearItem:function(type_id){
             delete this._cache[this._getKey(type_id)];
@@ -179,9 +193,15 @@
     };
     $.extend(true,{
         project:{
-            type: function (type,clear) {
+            /**
+             * @param type 类型id
+             * @param sync 是否同步
+             * @param clear 是否先清空缓存
+             * @returns {*}
+             */
+            type: function (type,sync,clear) {
                 if(clear) TypeConfig.clearItem(type);
-                return TypeConfig.getItem(type);
+                return TypeConfig.getItem(type,sync);
             }
         }
     });
@@ -230,14 +250,15 @@
             _self._object.html(_self._dom.join(Constant.empty));
         });
         _self.select=function(value){
-            _self._object.find(["option[value=",value,"]"].join(Constant.empty)).attr("selected",true);
+            var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));
+            option.attr("selected",true);
+            _self._selected={
+                text:option.text(),
+                value:option.val()
+            };
         };
         _self.getSelected=function(){
-            var selected=_self._object.find("option:checked");
-            return {
-                text:selected.text(),
-                value:selected.val()
-            };
+            return _self._selected;
         };
     };
     var Pager=function(id,curPage,fn){
