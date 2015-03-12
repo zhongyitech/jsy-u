@@ -3784,18 +3784,33 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
      * @constructor
      */
     var XHR=function(xhr){
+        /**
+         * rest success
+         * @param fn
+         * @returns {XHR}
+         */
         this.success=function(fn){
             xhr.then(function(data){
                 Util.doSuccess(data,fn);
             });
             return this;
         };
+        /**
+         * rest error
+         * @param fn
+         * @returns {XHR}
+         */
         this.error=function(fn){
             xhr.then(function(data){
                 Util.doError(data,fn);
             });
             return this;
         };
+        /**
+         * js error
+         * @param fn
+         * @returns {XHR}
+         */
         this.fail=function(fn){
             xhr.error(function(data){
                 Util.doFail(data,fn);
@@ -3814,24 +3829,40 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
      * @param url
      * @param data
      * @param options
+     * @param async
      * @returns {XHR}
      */
-    var request=function(url,data,options){
-        return new XHR($.Async.post(Util.buildOptions(data, $.extend(true,options||{},{url:url}))));
+    var request=function(url,data,options,async){
+        var useOptions=Util.buildOptions(data, $.extend(true,options||{},{url:url}));
+        if(async)
+            return new XHR($.Async.post(useOptions));
+        return new XHR($.Sync.post(useOptions));
     };
     $.extend(true,{
         io:{
             get: function (data,options) {
-                return request(RestURI.get,data,options);
+                return request(RestURI.get,data,options,!0);
             },
             post: function (data,options) {
-                return request(RestURI.post,data,options);
+                return request(RestURI.post,data,options,!0);
             },
             put: function (data,options) {
-                return request(RestURI.put,data,options);
+                return request(RestURI.put,data,options,!0);
             },
             delete: function (data,options) {
-                return request(RestURI.delete,data,options);
+                return request(RestURI.delete,data,options,!0);
+            },
+            syncGet: function (data,options) {
+                return request(RestURI.get,data,options,0);
+            },
+            syncPost: function (data,options) {
+                return request(RestURI.post,data,options,0);
+            },
+            syncPut: function (data,options) {
+                return request(RestURI.put,data,options,0);
+            },
+            syncDelete: function (data,options) {
+                return request(RestURI.delete,data,options,0);
             },
             registerCallback:function(callback){
                 Util.registerCallback(callback);

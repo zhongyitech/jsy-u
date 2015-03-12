@@ -17,6 +17,7 @@
 
 <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
 <script type="text/javascript" src="../js/common/common.js"></script>
+<script type="text/javascript" src="../js/common/plugin.js"></script>
 
 <!-- temp -->
 <link rel="stylesheet" type="text/css" href="../js/tigra-calendar/tcal.css"/>
