@@ -4,7 +4,6 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
     <title>档案管理-档案入库</title>
 </head>
 
@@ -198,6 +197,5 @@
     </div>
 </div>
 <script type="text/javascript" src="../js/new_project.js"></script>
-<script type="text/javascript" src="../view/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
