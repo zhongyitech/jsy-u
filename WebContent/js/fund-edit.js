@@ -21,26 +21,34 @@ var BMJL={//异步加载所有部门经理
 			if(!async){
 				async = false;
 			}
-			var params = JSON.stringify({authority: 'ROLE_MANAGER'});
-			var data = {url: '/api/user/findUserFromRole', params: params};
+			//var params = JSON.stringify({authority: 'ROLE_MANAGER'});
+			var data = {url: '/api/user/allDepartmentLader'};
 			var me = this;
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/get", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					if(response && response[REST.RESULT_KEY]){
-						me.items = JSON.parse(response[REST.RESULT_KEY]);
-					}
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+            DataOperation.async=async;
+            DataOperation.get(
+                data,
+                function(result,response){
+                    me.response=response;
+                    me.items=result;
+                }
+            );
+//			$.ajax({
+//				type: "post",
+//				url: "../rest/item/get",
+//				async: async,
+//				data: data,
+//				dataType: "json",
+//				success: function(response){
+//					me.response = response;
+//					if(response && response[REST.RESULT_KEY]){
+//						me.items = JSON.parse(response[REST.RESULT_KEY]);
+//					}
+//				},
+//				error: function(response){
+//					me.response = response;
+//					LOGIN.error(response);
+//				}
+//			});
 		},
 		getItems: function(){
 			if(!this.items || !this.items.length){

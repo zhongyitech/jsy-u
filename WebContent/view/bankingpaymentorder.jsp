@@ -35,7 +35,7 @@
                             <span class="button-content">搜索</span>
                         </button>
                         <button class="btn large medium float-left keyword-button radius-all-10 mrg10L">
-                            <span class="button-content">筛选</span>
+                            <span class="button-content">高级</span>
                         </button>
                     </div>
                 </div>

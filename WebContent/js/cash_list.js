@@ -463,30 +463,67 @@ var VIEWDATA = {
 };
 
 var DigitalBox={
-    show:function(){
-
-
+    show:function(fundNames){
+        this.input_items=fundNames;
         $(this.box_id).show();
     },
     _hide:function(){
         $(this.box_id).hide();
     },
     ini:function(){
-
+        var that=this;
+        $(this.btn_ok).click(function(){
+            if(that.okEvent!=null){
+                that.okEvent(that._getChoiceValue());
+            }
+            that._hide();
+        });
+        $(this.btn_cancel).click(function(){
+            if(that.cancelEvent!=null && that.cancelEvent!==undefined){
+                that.cancelEvent();
+            }
+            that._hide();
+        });
     },
-    _getData:function(){
-
+    _getData:function(fundName){
+        var params = JSON.stringify({fundName: fundName});
+        var data = {url: '/api/bankAccount/paylist', params: params};
+        var bankaccounts=null;
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/get',
+            data: data,
+            dataType: 'json',
+            async: false,
+            success: function(result){
+                console.log(result);
+                if(result && result.rest_status && result.rest_status == "suc"){
+                    bankaccounts=result.rest_result;
+                }
+            },
+            error: function(result){
+                if(LOGIN.error(result)){
+                    return;
+                }
+                alert('获取基金信息失败，请刷新页面.');
+            }
+        });
+        return bankaccounts;
     },
-    _setInfo:function(){
+    _setInfo:function(bankAccountGroup){
 
     },
     _getBankAccounts:function(fundName){
 
+    },
+    _getChoiceValue:function(){
+        return '';
     },
     //
     box_id:'',
     btn_ok:'',
     btn_cancel:'',
     okEvent:null,
-    cancelEvent:null
+    cancelEvent:null,
+    input_items:[]
 }

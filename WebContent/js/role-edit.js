@@ -84,10 +84,10 @@ var ROLE_FORM={
 				item[ROLE.NAME_KEY] = name;
 			}
 			
-			var authority = this.getAuthorityInput().val();
-			if(authority){
-				item[ROLE.AUTHORITY_KEY] = authority;
-			}
+//			var authority = this.getAuthorityInput().val();
+//			if(authority){
+//				item[ROLE.AUTHORITY_KEY] = authority;
+//			}
 			
 			me.item = item;
 			return item;

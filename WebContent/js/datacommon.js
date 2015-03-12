@@ -87,7 +87,7 @@ function Search_Panel(panel_id)
                 var rowhtml = this.getPanelItem(col.title, col.fieldName);
                 if (rowcount % rowmax == 0)
                 {
-                    html += endTag+'<div class="form-row  pad10B">';
+                    html += endTag+'<div class="form-row  mrg10B">';
                     endTag='</div>';
                 }
                 html += rowhtml;

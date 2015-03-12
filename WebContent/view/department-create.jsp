@@ -43,10 +43,21 @@
                         </div>
 
                         <div class="form-row">
+
+                            <div class="form-label col-md-2">
+                                <label class="label-description">职能：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                            <select id="performance">
+                            </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
                             <div class="form-label col-md-2">
                                 <label class="label-description">描述：</label>
                             </div>
-                            <div class="form-input col-md-10">
+                            <div class="form-input col-md-4">
                                 <textarea placeholder="" class="textarea-no-resize" id="description"></textarea>
                             </div>
                         </div>

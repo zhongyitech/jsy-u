@@ -26,7 +26,6 @@ var FUND_LIST={
 		filter_to: '',
 		page_start: 0,
 		page_size: 10,
-		page_total: 1,
 		pages_select: 1,
 		pages_size: 31,
 		status: {},
@@ -129,7 +128,7 @@ var FUND_LIST={
             DataOperation.post(data,function(result,response){
                 me.response=response;
                 me.setView(response);
-            })
+            });
 //			$.ajax({
 //				type: "post",
 //				url: "../rest/item/post",

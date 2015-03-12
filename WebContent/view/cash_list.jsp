@@ -259,7 +259,7 @@
         <form class="form-bordered " action="/" method="post">
             <div class="form-row">
                 <div class="form-input col-md-12 ">
-                    <h4>为选定的支付项选择支付账户</h4>
+                    <h4>设置支付账号</h4>
                 </div>
             </div>
             <div class="form-row" class="">
