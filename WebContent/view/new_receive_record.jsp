@@ -160,7 +160,7 @@
                 <div class="form-row pad3B">
                     <div>
                         <button class="but-ui btn primary-bg large" type="button">
-                            <span class="button-content" id="add-project">添加</span>
+                            <span class="button-content" id="add_receive">添加</span>
                         </button>
                     </div>
                 </div>

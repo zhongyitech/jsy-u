@@ -80,6 +80,26 @@ var VIEWDATA={
             me.countRemainMoney();
         });
 
+        $("#add_receive").click(function(){
+            var remain_money = $("#remain_money").val();
+            if(!remain_money || remain_money<0){
+                alert("请正确录入数据");
+                return false;
+            }
+
+
+
+            var model = {
+                fundid:fundid,
+                project:project,
+                paydate:paydate,
+                paytotal:paytotal,
+                moneyUseType:moneyUseType,
+                bankselect:bankselect
+            };
+            me.post_complete("/api/receiveRecord/add_receive_record",model);
+        });
+
 
 
     },
