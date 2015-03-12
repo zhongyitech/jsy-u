@@ -3750,21 +3750,8 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         _error: function (data) {
             return data&&data[this._key.status]==this._status.error;
         },
-        _return:function(fn,result){
-            if(!fn)return;
-            if(fn&&!fn.call){
-                throw new Error("the callback need be a Function!");
-            };
-            if(result&&typeof result=="string"){
-                try{
-                    result=JSON.parse(result);
-                    if(!result||$.isEmptyObject(result)){
-                        return fn.call(fn,result);
-                    }
-                }catch (e){
-                }
-            }
-            return fn.call(fn,result);
+        _return:function(fn,response){
+            if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,response[this._key.result],response[this._key.pager]):fn.call(fn,response[this._key.result])):fn.call(fn,response);
         },
         buildOptions:function(data,options){
             var useData=data||{params:{},entity:{}},
@@ -3779,10 +3766,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             return $.extend(true,options||{},{data:data},{data:{entity:entity,params:params}});
         },
         doSuccess:function(data,fn){
-            this._success(data)&&this._return(fn||this._callback.success, data[this._key.result]);
+            this._success(data)&&this._return(fn||this._callback.success, data);
         },
         doError:function(data,fn){
-            this._error(data)&&this._return(fn||this._callback.error,data[this._key.result]);
+            this._error(data)&&this._return(fn||this._callback.error,data);
         },
         doFail:function(data,fn){
             this._return(fn||this._callback.fail,data);
