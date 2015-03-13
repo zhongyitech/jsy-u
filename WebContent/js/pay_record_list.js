@@ -5,17 +5,17 @@ $(document).ready(function(){
 });
 
 var VIEWDATA={
-    table_id: "#project-table",
+
+    table_id: "#pay_records_table",
     PAGES_ID: '#model-pages',
     page_size: 10,
     page_start: 0,
     page_total: 1,
     pages_select: 1,
     pages_size: 21,
-    key : 0,
     status: {},
     dateformat: {},
-    SETTING_RMEBTN_ID : "setting-remove",
+
     init: function(sync){
         this.init_view();
         this.init_event();
@@ -23,33 +23,27 @@ var VIEWDATA={
 
     init_view: function(){
         this.getItems();
-
-
     },
-
-
     getItems: function () {
 
         var me = this;
         me.getFilter();
 
         //get 查询字段
-        var project_id = $("#project_id").val();
-        var project_name = $("#project_name").val();
-        var fund_name = $("#fund_name").val();
-        var project_incharge_name = $("#project_incharge_name").val();
-        var archived = $('#archived').is(":checked");
+        var fundid = $("#_fundname").val();
+        var payDate = $("#payDate").val();
+        var payAmount = STRINGFORMAT.toNumber($("#payAmount").val());
+        var bankaccount = $("#bankaccount").val();
+        var bankinfo = $("#bankinfo").val();
+        var bank_person = $("#bank_person").val();
+        var payer = $("#payer").val();
 
 
         var params = JSON.stringify(
             {
                 "page":{"offset": me.page_start, "max": me.page_size},
                 "and-prperties":[
-                    {"id":project_id,"operate":"eq"},
-                    {"name":project_name,"operate":"like"},
-                    {"fundNames":fund_name,"operate":"like"},
-                    {"isEnded":archived,"operate":"eq"},
-                    {"ownerName":project_incharge_name,"operate":"like"}
+                    {"fund":fundid,"operate":"eq"},
                 ],
                 "or-prperties":[],
                 "orderby-prperties":[{"lastUpdated":"desc"}]
@@ -57,7 +51,7 @@ var VIEWDATA={
         );
         console.log("params", params);
 
-        var data = { url: '/api/project/readAllForPage', entity: params };
+        var data = { url: '/api/payRecord/readAllForPage', entity: params };
         var me = this;
         $.ajax({
             type: 'post',
@@ -90,62 +84,127 @@ var VIEWDATA={
         this.setPage(this.page_total);
     },
     setTable: function (items) {
-        var pacts = $("#project-table tr");
+        var pacts = $("#pay_records_table tr");
         if (pacts && pacts.length) {
             for (var i = 1; i < pacts.length; i++) {
                 $(pacts[i]).remove();
             }
         }
 
-        var table = $("#project-table");
+        var table = $("#pay_records_table");
         if (table && items) {
             for (var i in items) {
                 var row = $("<tr></tr>");
                 table.append(row);
 
-                row.append('<td>' + items[i]["id"] + '</td>');
-                var link = "projectinfo.jsp?id="+ items[i]["id"];
-                row.append('<td><a href="'+link+'">' + items[i]["name"] + '</a></td>');
-                if(items[i]["fundNames"]){
-                    row.append('<td>' + items[i]["fundNames"] + '</td>');
-                }else{
-                    row.append('<td>尚未关联</td>');
-                }
-
-                row.append('<td>' + items[i]["currentStageName"] + '</td>');
-                row.append('<td>' + items[i]["creatorName"] + '</td>');
-                row.append('<td>' + items[i]["dateCreated"] + '</td>');
-                row.append('<td>' + '<button type="button" class="btn-ui btn bg-green large medium mrg10L btn_setting" data-value="'+items[i]["id"]+'"><span class="button-content">设置</span></button>' + '</td>');
+                row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
+                row.append('<td>' + items[i]["payDate"] + '</td>');
+                row.append('<td>' + items[i]["fundname"] + '</td>');
+                row.append('<td>' + items[i]["amount"] + '</td>');
+                row.append('<td>' + items[i]["interest_bill"] + '</td>');
+                row.append('<td>' + items[i]["manage_bill"] + '</td>');
+                row.append('<td>' + items[i]["community_bill"] + '</td>');
+                row.append('<td>' + items[i]["investDays"] + '</td>');
             }
-
-            $(".btn_setting").click(function(){
-
-                $.ajax({
-
-                });
-                var value=$(this).data("value");
-                console.log(value);
-                $('.theme-popover').show();
-
-            });
-
-            $('.theme-poptit .close').click(function(){
-                $('.theme-popover').hide();
-            })
         }
     },
 
     init_event: function(){
         var me = this;
-        $("#search_btn").click(function () {
+        $('#fundname').autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fund/nameLike'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#fundname").val(suggestion.value);
+                    $("#_fundname").val(suggestion.data);
+                    if(me.oldSelectData!=suggestion.data){
+                        me.oldSelectData=suggestion.data;
+                        //me.load_projectinfos(suggestion.data);
+                    }
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#fundname").val("");
+                    $("#_fundname").val("");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
+
+        $("#payAmount").keyup(function(){
+            $(this).val(STRINGFORMAT.toYuan($(this).val()));
+        });
+
+        $("#search_paylist_btn").click(function(){
             me.getItems();
         });
 
-        $("#setting-add").click(function(){
-            me.addXianshiTableRow();
+        $("input[name='pay_records'][type='radio']").click(function(){
+            var payRecordId = $(this).val();
+
+            var params = JSON.stringify({payRecordId:payRecordId});
+            console.log(params);
+            var data = { url: '/api/receiveRecord/findByPayRecord', params: params };
+            $.ajax({
+                type: 'post',
+                url: '../rest/item/get',
+                data: data,
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    if (result && result.rest_status && result.rest_status == "200") {
+                        console.log(result);
+                        var items = JSON.parse(result['rest_result']);
+                        me.setReceiveRecordItems(items);
+                    }
+                },
+                error: function (result) {
+                    if (LOGIN.error(result)) {
+                        return;
+                    }
+                }
+            });
         });
 
     },
+
+    setReceiveRecordItems: function (items) {
+        var pacts = $("#receive_records_table tr");
+        if (pacts && pacts.length) {
+            for (var i = 1; i < pacts.length; i++) {
+                $(pacts[i]).remove();
+            }
+        }
+
+        var table = $("#receive_records_table");
+        if (table && items) {
+            for (var i in items) {
+                var row = $("<tr></tr>");
+                table.append(row);
+
+                row.append('<td>' + items[i]["target"] + '</td>');
+                row.append('<td>' + items[i]["amount"] + '</td>');
+                row.append('<td>' + items[i]["dateCreated"] + '</td>');
+            }
+        }
+    },
+
     setPage: function (total) {
         this.page_total = total;
 
@@ -192,7 +251,6 @@ var VIEWDATA={
 
         var me = this;
         var data = {url: '/api/filePackage', entity: JSON.stringify(filepackage)};
-        console.log(data);
         var me = this;
         $.ajax({
             type: 'post',
@@ -218,30 +276,7 @@ var VIEWDATA={
                 if(LOGIN.error(result)){
                     return;
                 }
-                alert('提交时错误.');
             }
         });
-    },
-
-    addXianshiTableRow : function(){
-
-        var key = this.key++;
-        var xianshi_table = $("#xianshi_table");
-
-        var tr = $('<tr key="' + key + '"></tr>');
-        xianshi_table.append(tr);
-
-        var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
-        tr.append(checkbox);
-
-        var row = $('<td><div class="form-input "><input name="username" ></div></td>');
-        tr.append(row);
-
-        var row = $('<td><div class="form-input "><input name="fromdate" class="col-md-12 tcal tcalInput"></div></td>');
-        tr.append(row);
-
-        var row = $('<td><div class="form-input "><input name="todata" class="col-md-12 tcal tcalInput"></div></td>');
-        tr.append(row);
-        f_tcalInit();
     }
 }

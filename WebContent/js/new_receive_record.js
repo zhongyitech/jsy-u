@@ -82,10 +82,7 @@ var VIEWDATA={
 
         $("#add_receive").click(function(){
             var remain_money = $("#remain_money").val();
-            if(!remain_money || remain_money<0){
-                alert("请正确录入数据");
-                return false;
-            }
+
 
             var fundid = $("#_fundname").val();
             var projectid = $("#project").val();
@@ -93,17 +90,55 @@ var VIEWDATA={
             var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
             var bankid = $("input[name='bankselect'][type='radio']:checked").val();
 
+
+            if(!fundid || !projectid || !paydate || paytotal<0){
+                alert("请正确录入数据");
+                return false;
+            }
+
             var targets = [];
-            var checkBoxs = $("input[name='target_type']:checkbox:checked");
-            $.each(checkBoxs,function(index,obj){
-                targets.push($(obj).val());
-            });
+            if ($('#main_money').is(':checked')) {
+                targets.push({id:1,name:"main_money"});
+            }
+            if ($('#manage_money').is(':checked')) {
+                targets.push({id:2,name:"manage_money"});
+            }
+            if ($('#community_money').is(':checked')) {
+                targets.push({id:3,name:"community_money"});
+            }
+            if ($('#interest_money').is(':checked')) {
+                targets.push({id:4,name:"interest_money"});
+            }
+            if ($('#over_money').is(':checked')) {
+                targets.push({id:5,name:"over_money"});
+            }
+            if ($('#penalty_money').is(':checked')) {
+                targets.push({id:6,name:"penalty_money"});
+            }
+            if ($('#borrow_money').is(':checked')) {
+                targets.push({id:7,name:"borrow_money"});
+            }
+
+            if(targets.length==0){
+                alert("请选择款项性质");
+                return false;
+            }
+
+            //var checkBoxs = $("input[name='target_type']:checkbox:checked");
+            //$.each(checkBoxs,function(index,obj){
+            //    targets.push($(obj).val());
+            //});
 
             var payRecords = [];
             var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
             $.each(checkBoxs2,function(index,obj){
                 payRecords.push($(obj).val());
             });
+
+            if(payRecords.length==0){
+                alert("请选择汇款记录");
+                return false;
+            }
 
             var remain_money = $("#remain_money").val(); //参考剩余价格
 

@@ -24,17 +24,6 @@
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
 
-                    <div class="keyword-view float-right">
-                        <div class="keyword-input-width float-left">
-                            <div class="form-input">
-                                <div class="form-input-icon">
-                                    <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100" id="keyword-button"><span class="button-content">搜索</span></button>
-                    </div>
                 </div>
 
                 <div class="container-fluid">
@@ -43,35 +32,36 @@
                         <div class="panel-body">
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">项目基金</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="项目基金">
+                                    <label class="sr-only" for="fundname">项目基金</label>
+                                    <input id="fundname" class="form-control" placeholder="项目基金">
+                                    <input id="_fundname" type="hidden"/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">付款日期</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="付款日期">
+                                    <label class="sr-only" for="payDate">付款日期</label>
+                                    <input id="payDate" class="form-control tcal filter-input" placeholder="付款日期">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">投资金额</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword4" placeholder="投资金额">
+                                    <label class="sr-only" for="payAmount">投资金额</label>
+                                    <input id="payAmount" class="form-control" placeholder="投资金额">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">付款账户</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword5" placeholder="付款账户">
+                                    <label class="sr-only" for="bankaccount">付款账户</label>
+                                    <input id="bankaccount" class="form-control" placeholder="付款账户">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">付款银行</label>
-                                    <input type="password" class="form-control" placeholder="付款银行">
+                                    <label class="sr-only" for="bankinfo">付款银行</label>
+                                    <input id="bankinfo" class="form-control" placeholder="付款银行">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">收款人</label>
-                                    <input type="password" class="form-control" placeholder="收款人">
+                                    <label class="sr-only" for="bank_person">收款人</label>
+                                    <input id="bank_person" class="form-control" placeholder="收款人">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputPassword3">付款人</label>
-                                    <input type="password" class="form-control" placeholder="付款人">
+                                    <label class="sr-only" for="payer">付款人</label>
+                                    <input id="payer" class="form-control" placeholder="付款人">
                                 </div>
 
-                                <button type="submit" class="btn btn-default">查询</button>
+                                <button id="search_paylist_btn" type="submit" class="btn btn-default">查询</button>
                             </form>
 
                         </div>
@@ -90,10 +80,10 @@
                         </a>
                     </div>
 
-                    <table class="table table-striped text-center mrg0B" id="funds-table">
+                    <table class="table table-striped text-center mrg0B" id="pay_records_table">
                         <thead>
                             <tr>
-                                <th class="text-center">编号</th>
+                                <th class="text-center">选择</th>
                                 <th class="text-center">付款日期</th>
                                 <th class="text-center">项目基金</th>
                                 <th class="text-center">汇款金额</th>
@@ -104,36 +94,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>2</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>3</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>4</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>5</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>6</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>7</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>8</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>9</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
-                            <tr>
-                                <td>10</td><td>2015-06-09</td><td>￥200,0000</td><td>0.05</td><td>500</td><td>0.05</td><td>500</td><td>700天</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -143,15 +103,22 @@
                     <div class="panel-body">
                         <form class="form-inline">
                             <div class="form-group">
-                                <label>收管理费日期 </label>
-                                <span>2015-06-09</span>
+                                <label>仍然欠款 </label>
+                                <span>232323</span>
                             </div>
-                            <div class="form-group">
-                                <label>收渠道费日期 </label>
-                                <span>2015-06-09</span>
-                            </div>
-
                         </form>
+
+                        <table class="table table-striped text-center mrg0B" id="receive_records_table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">款项性质</th>
+                                    <th class="text-center">数额</th>
+                                    <th class="text-center">付款时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -181,6 +148,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/project_list.js"></script>
+<script type="text/javascript" src="../js/pay_record_list.js"></script>
 </body>
 </html>
