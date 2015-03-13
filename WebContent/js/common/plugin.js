@@ -16,6 +16,9 @@
  */
 (function($){
     var BaseURI="../rest/item/";
+    var SpecKeys={
+        "class":"className"
+    };
     var RestURI={
         get:BaseURI+"get",
         post:BaseURI+"post",
@@ -53,16 +56,18 @@
             if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,this.result(response),response[this._key.pager]):fn.call(fn,this.result(response))):fn.call(fn,response);
         },
         result:function(data){
-          return data[this._key.result];
+          return data&&data[this._key.result];
         },
         buildOptions:function(data,options){
             var useData=data||{params:{},entity:{}},
                 params=useData.params,
                 entity=useData.entity;
             if(typeof params=="object"){
+                this._fetchKeys(params);
                 params=JSON.stringify(params);
             }
             if(typeof entity=="object"){
+                this._fetchKeys(entity);
                 entity=JSON.stringify(entity);
             }
             return $.extend(true,options||{},{data:data},{data:{entity:entity,params:params}});
@@ -78,6 +83,17 @@
         },
         registerCallback: function (callback) {
             $.extend(true,this._callback,callback);
+        },
+        /**
+         * 替换异常key，如class，未进行递归
+         * @param data
+         * @private
+         */
+        _fetchKeys:function(data){
+            $.each(data||{},function(key,v){
+                if(SpecKeys[key]) data[SpecKeys[key]]= v;
+                if(typeof v=="string") delete data[key];
+            });
         }
     };
     /**
@@ -271,6 +287,11 @@
     var Constant={
         empty:""
     };
+    var Element={
+        options:'{#foreach $T as item}{$P.item=$P.callback($T.item)}' +
+                     '<option value="{$P.item.value}">{$P.item.text}</option>' +
+                     '{#/for}'
+    };
     var Utils={
     };
     /**
@@ -300,11 +321,7 @@
         }
         data.success(function(response){
             _self._data=response;
-            $.each(_self._data,function(i,v){
-                var object=_self._callback.call(v,v);
-                _self._dom.push(["<option value='", object.value,"'>", object.text,"</option>"].join(Constant.empty));
-            });
-            _self._object.html(_self._dom.join(Constant.empty));
+            $.renderData(_self._object,Element.options,response,_self._callback);
         });
         _self.select=function(value){
             var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));

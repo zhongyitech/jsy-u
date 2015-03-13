@@ -3723,3 +3723,32 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         Sync:new Ajax(false)
     });
 })(jQuery);
+
+/**
+ * jTemplate plugin
+ */
+(function($){
+    var Template={
+        render:function($selector,template,data,fn){
+            try{
+                if($selector&&!$selector.jquery) $selector=$($selector);
+                if(!$selector.hasTemplate()) $selector.setTemplate(template);
+                if(fn) $selector.setParam("callback",fn);
+                $selector.processTemplate(data);
+                return true;
+            }catch(e){
+                return false;
+            }
+        }
+    };
+    $.fn.extend(true,{
+        renderData:function(template,data,fn){
+            Template.render($(this),template,data,fn);
+        }
+    });
+    $.extend(true,{
+        renderData:function($selector,template,data,fn){
+            Template.render($selector,template,data,fn);
+        }
+    });
+})(jQuery);
