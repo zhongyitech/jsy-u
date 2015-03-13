@@ -59,7 +59,8 @@ var VIEWDATA={
             var fundid = $("#_fundname").val();
             var project = $("#project").val();
             var paydate = $("#paydate").val();
-            var paytotal = $("#paytotal").val().replace("￥","");;
+            var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
+
             var moneyUseType = $('input[name="moneyUseType"]:radio:checked').val();
             var bankselect = $('input[name="bankselect"]:radio:checked').val();
 
@@ -73,7 +74,6 @@ var VIEWDATA={
             };
 
             me.post_complete('/api/payRecord/add_pay_record', model);
-
         });
     },
     load_projectinfos: function(fundid){

@@ -10,6 +10,7 @@ var VIEWDATA={
     oldSelectData:null,
     oldSelectedProjectId:null,
     projects:{},
+    payRecords:{},
     init: function(){
         this.init_view();
 
@@ -57,6 +58,7 @@ var VIEWDATA={
 
         $("#paytotal").keyup(function(){
             $(this).val(STRINGFORMAT.toYuan($(this).val()));
+            me.countRemainMoney();
         });
 
         $('#project').change(function(){
@@ -73,6 +75,106 @@ var VIEWDATA={
             //var stopDate = $("#stopDate").val();
             console.log("ddd");
         });
+
+        $("input[name='target_type']").change(function(){
+            me.countRemainMoney();
+        });
+
+        $("#add_receive").click(function(){
+            var remain_money = $("#remain_money").val();
+            if(!remain_money || remain_money<0){
+                alert("请正确录入数据");
+                return false;
+            }
+
+            var fundid = $("#_fundname").val();
+            var projectid = $("#project").val();
+            var paydate = $("#paydate").val();
+            var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
+            var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+
+            var targets = [];
+            var checkBoxs = $("input[name='target_type']:checkbox:checked");
+            $.each(checkBoxs,function(index,obj){
+                targets.push($(obj).val());
+            });
+
+            var payRecords = [];
+            var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
+            $.each(checkBoxs2,function(index,obj){
+                payRecords.push($(obj).val());
+            });
+
+            var remain_money = $("#remain_money").val(); //参考剩余价格
+
+            var model = {
+                fundid:fundid,
+                projectid:projectid,
+                paydate:paydate,
+                paytotal:paytotal,
+                bankid:bankid,
+                targets:targets,
+                payRecords:payRecords,
+                remain_money_suggest:remain_money
+            };
+            me.post_complete("/api/receiveRecord/add_receive_record",model);
+        });
+
+
+
+    },
+
+    countRemainMoney: function () {
+        var me = this;
+        var paytotal = $("#paytotal").val();
+        paytotal = STRINGFORMAT.toNumber(paytotal);
+        paytotal = $.trim(paytotal);
+        if(!paytotal || paytotal=="" || paytotal=="0"){
+            return;
+        }
+
+        var targets = [];
+        var checkBoxs = $("input[name='target_type']:checkbox:checked");
+        $.each(checkBoxs,function(index,obj){
+            targets.push($(obj).val());
+        });
+        if(targets.length==0){
+            return;
+        }
+
+        var payRecords = [];
+        var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
+        $.each(checkBoxs2,function(index,obj){
+            payRecords.push(me.payRecords[$(obj).val()]);
+        });
+        if(payRecords.length==0){
+            return;
+        }
+
+
+        //开始扣钱
+        $.each(payRecords,function(index,payRecord){
+            $.each(targets,function(index2,target){
+                if("main_money"==target){
+                    paytotal= paytotal-payRecord["amount"];
+                }else if("manage_money"==target){
+                    paytotal= paytotal-payRecord["manage_pay"];
+                }else if("community_money"==target){
+                    paytotal= paytotal-payRecord["community_pay"];
+                }else if("interest_money"==target){
+                    paytotal= paytotal-payRecord["interest_pay"];
+                }else if("over_money"==target){
+                    paytotal= paytotal-payRecord["over_interest_pay"];
+                }else if("penalty_money"==target){
+                    paytotal= paytotal-payRecord["penalty_pay"];
+                }else if("borrow_money"==target){
+                    paytotal= paytotal-payRecord["borrow_pay"];
+                }
+            });
+        });
+
+        $("#remain_money").val(paytotal);
+
     },
 
     loadPayRecords: function(projectid){
@@ -90,6 +192,9 @@ var VIEWDATA={
                 console.log(result);
                 me.setTable(result);
 
+                $("input[name='pay_checkbox']").change(function(){
+                    me.countRemainMoney();
+                });
 
             },
             error: function(result){
@@ -98,6 +203,7 @@ var VIEWDATA={
         });
     },
     setTable: function (items) {
+        var me =  this;
         var pacts = $("#pay_records_table tr");
         if (pacts && pacts.length) {
             for (var i = 1; i < pacts.length; i++) {
@@ -109,12 +215,14 @@ var VIEWDATA={
         var table = $("#pay_records_table");
 
         if (table && items) {
+            me.payRecords = {};     // reset
             for (var i in items) {
+                me.payRecords[items[i]["id"]]=items[i];
 
                 var row = $("<tr></tr>");
                 table.append(row);
 
-                row.append('<td><input type="checkbox"/></td>');
+                row.append('<td><input type="checkbox" name="pay_checkbox" value="'+items[i]["id"]+'"/></td>');
                 row.append('<td>' + items[i]["id"] + '</td>');
                 row.append('<td>' + items[i]["payDate"] + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
@@ -141,10 +249,13 @@ var VIEWDATA={
             dataType: 'json',
             async: false,
             success: function(result){
-                console.log(result);
+                //clear old data
+                me.clearPageData();
+
+                //load new data
                 var rest_result = JSON.parse(result.rest_result);
                 if(rest_result&& rest_result.projects){
-
+                    me.projects = {}; // reset
                     $.each(rest_result.projects,function(index,obj){
                         me.projects[obj.id]=obj;
                         $('#project').append(
@@ -173,17 +284,7 @@ var VIEWDATA={
                         }
 
                     });
-
-                    //$("input[name='bankselect']").change(function(){
-                    //    var selected = $(this).val();
-                    //    $.each(rest_result.banks,function(index,obj){
-                    //        if(obj.id==selected){
-                    //
-                    //        }
-                    //    });
-                    //});
                 }
-
 
             },
             error: function(result){
@@ -193,6 +294,7 @@ var VIEWDATA={
     },
 
     reloadLabelRate:function(project){
+        if(!project)return;
         $("#label_manage_per").html(project.manage_per);
         $("#label_community_per").html(project.community_per);
         $("#label_penalty_per").html(project.penalty_per);
@@ -205,8 +307,23 @@ var VIEWDATA={
         }else if("dayCount"==project.interestType){
             $("#label_interest_type").html("日复利");
         }
+    },
+    clearPageData:function(project){
+        $("#label_manage_per").html("");
+        $("#label_community_per").html("");
+        $("#label_penalty_per").html("");
+        $("#label_borrow_per").html("");
+        $("#label_interest_per").html("");
+        $("#label_interest_type").html("");
 
+        var pacts = $("#pay_records_table tr");
+        if (pacts && pacts.length) {
+            for (var i = 1; i < pacts.length; i++) {
+                $(pacts[i]).remove();
+            }
+        }
 
+        $("#project").empty();
 
     },
     post_complete: function(url, model){
@@ -223,7 +340,7 @@ var VIEWDATA={
                 console.log(result);
                 if(result && result.rest_status && result.rest_status == "200"){
                     me.result = result;
-                    window.location.href = "projectinfo.jsp?id="+me.projectid;
+                    window.location.href = "new_receive_record.jsp";
                 }
 
             },

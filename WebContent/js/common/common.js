@@ -3626,3 +3626,100 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
     }
 
 })();
+
+/****************************************project lib****************************************/
+/**
+ *  jQuery.ajax wrapper
+ */
+(function($){
+    /**
+     * XHR is only wrapper Deferred now , can do some special things
+     * @param xhr
+     * @param options
+     * @constructor
+     */
+    var XHR=function(xhr,options){
+        this.isAsync=function(){
+            return options.async;
+        };
+        if(options&&!options.async){
+            this.data=function(){
+                return xhr&&xhr.getData();
+            };
+        }
+        this.then=function(fn){
+            xhr&&xhr.then(fn);
+            return this;
+        };
+        this.success=function(fn){
+            xhr&&xhr.success(fn);
+            return this;
+        };
+        this.error=function(fn){
+            xhr&&xhr.error(fn);
+            return this;
+        };
+        this.fail=function(fn){
+            xhr&&xhr.fail(fn);
+            return this;
+        };
+    };
+    var _AJAX={
+        _type:{
+            GET:"get",
+            POST:"post",
+            PUT:"put",
+            DELETE:"delete"
+        },
+        _defaultCfg:{
+            dataType:"json",
+            contentType:"application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        _ajax:function(options,type,async){
+            options=$.extend(true,this._defaultCfg,options,{type:type,async:async,data:{
+                _t:Date.now()
+            }});
+            var xhr=$.ajax(options);
+            if(!async){
+                xhr.getData=function(){
+                    var result=null;
+                    xhr.success(function(data){
+                        result=data;
+                    });
+                    return result;
+                };
+            }
+            return new XHR(xhr,options);
+        },
+        get:function(options,async){
+            return this._ajax(options,this._type.GET,async);
+        },
+        post:function(options,async){
+            return this._ajax(options,this._type.POST,async);
+        },
+        put:function(options,async){
+            return this._ajax(options,this._type.PUT,async);
+        },
+        delete:function(options,async){
+            return this._ajax(options,this._type.DELETE,async);
+        }
+    };
+    var Ajax=function(async){
+        this.get=function(options){
+            return _AJAX.get(options,async);
+        };
+        this.post=function(options){
+            return _AJAX.post(options,async);
+        };
+        this.put=function(options){
+            return _AJAX.put(options,async);
+        };
+        this.delete=function(options){
+            return _AJAX.delete(options,async);
+        };
+    };
+    $.extend(true,{
+        Async:new Ajax(true),
+        Sync:new Ajax(false)
+    });
+})(jQuery);

@@ -74,28 +74,34 @@
                     <div class="form-label col-md-2">
                         <label for="">款项性质：</label>
                     </div>
-                    <div class="form-input col-md-8">
+                    <div class="form-input col-md-4">
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox1" value="option1"> 本金
+                            <input type="checkbox" name="target_type" value="main_money"> 本金
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox4" value="option3"> 管理费 <label id="label_manage_per"></label>
+                            <input type="checkbox" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox5" value="option3"> 渠道费 <label id="label_community_per"></label>
+                            <input type="checkbox" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 第一年利息 <label id="label_interest_per"></label>
+                            <input type="checkbox" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox6" value="option3"> 逾期利息
+                            <input type="checkbox" name="target_type" value="over_money"> 逾期利息
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox7" value="option3"> 违约金 <label id="label_penalty_per"></label>
+                            <input type="checkbox" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="inlineCheckbox8" value="option3"> 借款 <label id="label_borrow_per"></label>
+                            <input type="checkbox" name="target_type" value="borrow_money"> 借款 <label id="label_borrow_per"></label>
                         </label>
+                    </div>
+                    <div class="form-label col-md-2">
+                        <label style="background-color: #ffbe00;">剩余金额：</label>
+                    </div>
+                    <div class="form-input col-md-4">
+                        <input type="text" id="remain_money" readonly="readonly"/>
                     </div>
                 </div>
 
@@ -154,7 +160,7 @@
                 <div class="form-row pad3B">
                     <div>
                         <button class="but-ui btn primary-bg large" type="button">
-                            <span class="button-content" id="add-project">添加</span>
+                            <span class="button-content" id="add_receive">添加</span>
                         </button>
                     </div>
                 </div>
