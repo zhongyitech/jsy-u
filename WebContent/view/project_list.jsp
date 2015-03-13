@@ -4,7 +4,6 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
     <title>项目列表</title>
 </head>
