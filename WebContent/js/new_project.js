@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+
     VIEWDATA.file = FILE;
     VIEWDATA.init(true);
 
@@ -17,8 +18,6 @@ var VIEWDATA={
     init_view: function(){
         $("#creatorName").val(LOGIN.getUser().chainName);
         $("#creator").val(LOGIN.getUser().id);
-
-
     },
 
     init_event: function(){
@@ -36,7 +35,6 @@ var VIEWDATA={
             var stockStructure = $("#stockStructure").val();
             var debt = $("#debt").val();
             var assets = $("#assets").val();
-
 
             if(!projectname){
                 alert("请输入项目名称");
@@ -200,7 +198,6 @@ var VIEWDATA={
                     console.log("relaod page...");
                     window.location.href = "project_list.jsp";
                 }
-
             },
             error: function(result){
                 isAllSuc = false;

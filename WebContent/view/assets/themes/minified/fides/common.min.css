@@ -794,5 +794,8 @@ body .popover {
 }
 
 .input-append-wrapper .append-left input{
-    border-left: #cdcdcd solid 1px;
+     border-left: #cdcdcd solid 1px;
+ }
+.input-append-wrapper .append-left input:focus{
+    border-left: #3da6ff solid 1px;
 }

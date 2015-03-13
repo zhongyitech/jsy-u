@@ -3627,7 +3627,6 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
 
 })();
 
-
 /****************************************project lib****************************************/
 /**
  *  jQuery.ajax wrapper
@@ -3640,6 +3639,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
      * @constructor
      */
     var XHR=function(xhr,options){
+        this.isAsync=function(){
+            return options.async;
+        };
         if(options&&!options.async){
             this.data=function(){
                 return xhr&&xhr.getData();
@@ -3720,122 +3722,4 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         Async:new Ajax(true),
         Sync:new Ajax(false)
     });
-})(jQuery);
-
-/**
- * project ajax
- */
-(function($){
-    var BaseURI="../rest/item/";
-    var RestURI={
-        get:BaseURI+"get",
-        post:BaseURI+"post",
-        put:BaseURI+"put",
-        delete:BaseURI+"delete"
-    };
-    var Util={
-        _status:{
-            success:"suc",
-            error:"err"
-        },
-        _key:{
-            status:"rest_status",
-            result:"rest_result",
-            pager:"rest_pager"
-        },
-        _callback:{},
-        _success: function (data) {
-            return data&&data[this._key.status]==this._status.success;
-        },
-        _error: function (data) {
-            return data&&data[this._key.status]==this._status.error;
-        },
-        _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,response[this._key.result],response[this._key.pager]):fn.call(fn,response[this._key.result])):fn.call(fn,response);
-        },
-        buildOptions:function(data,options){
-            var useData=data||{params:{},entity:{}},
-                params=useData.params,
-                entity=useData.entity;
-            if(typeof params=="object"){
-                params=JSON.stringify(params);
-            }
-            if(typeof entity=="object"){
-                entity=JSON.stringify(entity);
-            }
-            return $.extend(true,options||{},{data:data},{data:{entity:entity,params:params}});
-        },
-        doSuccess:function(data,fn){
-            this._success(data)&&this._return(fn||this._callback.success, data);
-        },
-        doError:function(data,fn){
-            this._error(data)&&this._return(fn||this._callback.error,data);
-        },
-        doFail:function(data,fn){
-            this._return(fn||this._callback.fail,data);
-        },
-        registerCallback: function (callback) {
-            $.extend(true,this._callback,callback);
-        }
-    };
-    /**
-     * 二次封装，success、error后台成功或异常，fail为js异常
-     * @param xhr
-     * @constructor
-     */
-    var XHR=function(xhr){
-        this.success=function(fn){
-            xhr.then(function(data){
-                Util.doSuccess(data,fn);
-            });
-            return this;
-        };
-        this.error=function(fn){
-            xhr.then(function(data){
-                Util.doError(data,fn);
-            });
-            return this;
-        };
-        this.fail=function(fn){
-            xhr.error(function(data){
-                Util.doFail(data,fn);
-            });
-            return this;
-        };
-        /**
-         * call default
-         */
-        this.success();
-        this.error();
-        this.fail();
-    };
-    /**
-     * 请求统一入口,暂时全部Post
-     * @param url
-     * @param data
-     * @param options
-     * @returns {XHR}
-     */
-    var request=function(url,data,options){
-        return new XHR($.Async.post(Util.buildOptions(data, $.extend(true,options||{},{url:url}))));
-    };
-    $.extend(true,{
-        io:{
-            get: function (data,options) {
-                return request(RestURI.get,data,options);
-            },
-            post: function (data,options) {
-                return request(RestURI.post,data,options);
-            },
-            put: function (data,options) {
-                return request(RestURI.put,data,options);
-            },
-            delete: function (data,options) {
-                return request(RestURI.delete,data,options);
-            },
-            registerCallback:function(callback){
-                Util.registerCallback(callback);
-            }
-        }
-    })
 })(jQuery);

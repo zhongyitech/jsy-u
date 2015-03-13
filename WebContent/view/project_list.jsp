@@ -4,7 +4,9 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
+    <link rel="stylesheet" type="text/css" href="../css/project.css">
+    <%--<link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />--%>
     <title>项目列表</title>
 </head>
 
@@ -18,14 +20,14 @@
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">项目列表</span>
-
                     <a href="#" class="float-right icon-separator btn toggle-button" title="项目信息维护及管理">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
-
-
                 </div>
 
+                <div class="content-box-wrapper">
+
+                </div>
                 <div class="container-fluid">
 
                     <div class="panel panel-default">
@@ -81,12 +83,46 @@
                             <th class="text-center">当前阶段</th>
                             <th class="text-center">创建人</th>
                             <th class="text-center">创建时间</th>
+                            <th class="text-center">限时访问设置</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         </tbody>
                     </table>
+
+                    <div class="theme-popover">
+                        <div class="content-box-wrapper theme-poptit">
+                            <a href="javascript:;" title="关闭" class="close">×</a>
+                            <h4>限时设置</h4>
+                        </div>
+                        <div class="page-view">
+                            <div class="content-box box-toggle ">
+                                <table class="table text-center mrg0B" id="xianshi_table">
+                                    <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                    <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                    <th class="text-center"><span class="text-overflow item-date"
+                                                                  title="限时开始时间">限时开始时间</span>
+                                    <th class="text-center"><span class="text-overflow item-date"
+                                                                  title="限时结束时间">限时结束时间</span>
+                                </table>
+
+                                <div class="button-pane">
+                                    <button type="button"
+                                            class="btn-ui btn bg-green large medium float-right mrg10L"
+                                            id="setting-remove"><span class="button-content">删除选中行</span></button>
+                                    <button type="button"
+                                            class="btn-ui btn bg-green large medium float-right mrg10L"
+                                            id="setting-add"><span class="button-content">增加一行</span></button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theme-popover-mask"></div>
+
                 </div>
             </div>
 

@@ -41,26 +41,25 @@ var DEPARTMENT_FORM = {
     iniPerformanceView: function () {
         var view = $(this.performance_ID);
         if (view) {
-            var items = this.getPerformanceItem();
-            for (var i in items) {
-                var item = items[i];
-                var id = item.id;
-                var name = item.mapName;
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                view.append(option);
-            }
+            $.dom.select(this.performance_ID, this.getPerformanceItem(),function(item){
+                return {
+                    text:item["mapName"]+(item['description'] ? ' | '+item['description'] :''),
+                    value:item["id"]
+                }
+            });
         }
     },
     getPerformanceItem: function () {
         var params = JSON.stringify({type: 8});
         var data = {url: '/api/typeConfig/type', params: params};
         var items = null;
-        DataOperation.get(
-            data,
-            function (result) {
-                items = result;
-            }
-        );
+
+
+        items= $.project.type(8).getItem();
+//        $.io.syncGet(data)
+//            .success(function (result) {
+//                items = result;
+//            });
         return items;
     },
     iniCompanyView: function (item) {
@@ -91,6 +90,9 @@ var DEPARTMENT_FORM = {
     setDescription: function (item) {
         this.getDescriptionView().val(DEPARTMENT.toDescription(item));
     },
+    setPerformance:function(item){
+       $(this.performance_ID).val(item.performance.id);
+    },
     getSubmitButton: function () {
         var view = this.getView();
         if (view) {
@@ -113,7 +115,6 @@ var DEPARTMENT_FORM = {
 
         this.iniCompanyView();
         this.iniPerformanceView();
-
         this.iniSubmitButton();
 
         var id = PAGE.getParam(DEPARTMENT.ID_KEY);
@@ -151,10 +152,15 @@ var DEPARTMENT_FORM = {
     },
     set: function (item) {
         this.item = item;
-
         this.setName(item);
         this.setCompany(item);
         this.setDescription(item);
+        this.setPerformance(item);''
+        //部门负责人
+        //todo:replace new method
+        var uid=item.leader ? item.leader.id : undefined;
+        var username= uid ? (USER.get(uid).chainName) :'NULL';
+        $('#transfer').val(username);
     },
     getItem: function () {
         var me = this;
@@ -175,6 +181,7 @@ var DEPARTMENT_FORM = {
             item[DEPARTMENT.DESCRIPTION_KEY] = description;
         }
         item['leader'] = $('#transferid').val();
+        item['performance'] = $(this.performance_ID).val();
         me.item = item;
         return item;
     },
@@ -184,15 +191,21 @@ var DEPARTMENT_FORM = {
         var params = JSON.stringify({id: DEPARTMENT.toId(item)});
         var entity = JSON.stringify(item);
         var data = {url: '/api/department', params: params, entity: entity};
-        DataOperation.put(
-            data,
-            function(result){
+        $.io.post(data)
+            .success(function(data){
                 window.location = PAGE.DEPARTMENT_LIST;
-            },
-            function(msg){
-                alert(msg);
-            }
-        )
+            })
+            .error(function(data){
+            });
+//        DataOperation.post(
+//            data,
+//            function(result){
+//                window.location = PAGE.DEPARTMENT_LIST;
+//            },
+//            function(msg){
+//                alert(msg);
+//            }
+//        )
 //        $.ajax({
 //            type: "post",
 //            url: "../rest/item/put",

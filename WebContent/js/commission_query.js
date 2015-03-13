@@ -126,7 +126,7 @@ var VIEWDATA = {
 
         $("#pay_"+item_id).val(deposit.pay);
         $("#fpje_"+item_id).html(STRINGFORMAT.toYuan(deposit.fp_amount));
-        $("#sj_"+item_id).html(STRINGFORMAT.toYuan(deposit.rate_amount.toFixed(0)));//TODO
+        $("#sj_"+item_id).html(STRINGFORMAT.toYuan(deposit.rate_amount.toFixed(0)));
         $("#fkje_"+item_id).html(STRINGFORMAT.toYuan(deposit.pay_amount));
 
         $("#c_fpje_"+item_id).val(deposit.fp_amount);
