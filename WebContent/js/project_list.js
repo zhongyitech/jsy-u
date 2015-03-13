@@ -5,7 +5,6 @@ $(document).ready(function(){
 });
 
 var VIEWDATA={
-
     table_id: "#project-table",
     PAGES_ID: '#model-pages',
     page_size: 10,
@@ -13,9 +12,10 @@ var VIEWDATA={
     page_total: 1,
     pages_select: 1,
     pages_size: 21,
+    key : 0,
     status: {},
     dateformat: {},
-
+    SETTING_RMEBTN_ID : "setting-remove",
     init: function(sync){
         this.init_view();
         this.init_event();
@@ -23,7 +23,11 @@ var VIEWDATA={
 
     init_view: function(){
         this.getItems();
+
+
     },
+
+
     getItems: function () {
 
         var me = this;
@@ -113,7 +117,23 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["currentStageName"] + '</td>');
                 row.append('<td>' + items[i]["creatorName"] + '</td>');
                 row.append('<td>' + items[i]["dateCreated"] + '</td>');
+                row.append('<td>' + '<button type="button" class="btn-ui btn bg-green large medium mrg10L btn_setting" data-value="'+items[i]["id"]+'"><span class="button-content">设置</span></button>' + '</td>');
             }
+
+            $(".btn_setting").click(function(){
+
+                $.ajax({
+
+                });
+                var value=$(this).data("value");
+                console.log(value);
+                $('.theme-popover').show();
+
+            });
+
+            $('.theme-poptit .close').click(function(){
+                $('.theme-popover').hide();
+            })
         }
     },
 
@@ -122,6 +142,11 @@ var VIEWDATA={
         $("#search_btn").click(function () {
             me.getItems();
         });
+
+        $("#setting-add").click(function(){
+            me.addXianshiTableRow();
+        });
+
     },
     setPage: function (total) {
         this.page_total = total;
@@ -198,5 +223,27 @@ var VIEWDATA={
                 alert('提交时错误.');
             }
         });
+    },
+
+    addXianshiTableRow : function(){
+
+        var key = this.key++;
+        var xianshi_table = $("#xianshi_table");
+
+        var tr = $('<tr key="' + key + '"></tr>');
+        xianshi_table.append(tr);
+
+        var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
+        tr.append(checkbox);
+
+        var row = $('<td><div class="form-input "><input name="username" ></div></td>');
+        tr.append(row);
+
+        var row = $('<td><div class="form-input "><input name="fromdate" class="col-md-12 tcal tcalInput"></div></td>');
+        tr.append(row);
+
+        var row = $('<td><div class="form-input "><input name="todata" class="col-md-12 tcal tcalInput"></div></td>');
+        tr.append(row);
+        f_tcalInit();
     }
 }
