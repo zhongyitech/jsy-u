@@ -200,6 +200,7 @@ var USER_FORM={
 			var item = me.getItem();
 			var entity = JSON.stringify(item);
 			var data = {url: '/api/user', params: params, entity: entity};
+
 			$.ajax({ 
 				type: "post", 
 				url: "../rest/item/put", 

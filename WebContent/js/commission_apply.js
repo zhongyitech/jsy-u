@@ -519,7 +519,7 @@ var CUSTOMER = {
 					"application/json;charset=UTF-8");
 			},
 			error : function(result) {
-						// me.error(result);
+						alert(result);
 					}
 				});
 		return me.item;
@@ -552,7 +552,7 @@ var USERS = {
 				me.success();
 			},
 			error : function(result) {
-				me.error(result);
+				alert(result);
 			}
 		});
 	},

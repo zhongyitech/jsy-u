@@ -39,13 +39,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2">
-                        <label for="">付款日期：</label>
+                        <label >付款日期：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input id="paydate" class="tcal filter-input" type="text" />
                     </div>
                     <div class="form-label col-md-2">
-                        <label for="">付款金额：</label>
+                        <label >付款金额：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="paytotal"/>
@@ -63,7 +63,7 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2">
-                        <label for="">利息计算方式：</label>
+                        <label >利息计算方式：</label>
                     </div>
                     <div class="form-input col-md-10">
                         <label id="label_interest_type"></label>
@@ -72,29 +72,29 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2">
-                        <label for="">款项性质：</label>
+                        <label >款项性质：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="main_money"> 本金
+                            <input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
+                            <input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
+                            <input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
+                            <input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="over_money"> 逾期利息
+                            <input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
+                            <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" name="target_type" value="borrow_money"> 借款 <label id="label_borrow_per"></label>
+                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款 <label id="label_borrow_per"></label>
                         </label>
                     </div>
                     <div class="form-label col-md-2">
@@ -141,7 +141,7 @@
                             </div>
                             <div class="form-input col-md-8">
                                 截止日期：<input id="stopDate" class="tcal filter-input" />
-                                <input id="over_money" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>
+                                <input id="over_money_test" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>
                             </div>
                         </div>
                     </div>

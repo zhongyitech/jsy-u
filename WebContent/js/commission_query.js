@@ -126,7 +126,7 @@ var VIEWDATA = {
 
         $("#pay_"+item_id).val(deposit.pay);
         $("#fpje_"+item_id).html(STRINGFORMAT.toYuan(deposit.fp_amount));
-        $("#sj_"+item_id).html(STRINGFORMAT.toYuan(deposit.rate_amount.toFixed(0)));//TODO
+        $("#sj_"+item_id).html(STRINGFORMAT.toYuan(deposit.rate_amount.toFixed(0)));
         $("#fkje_"+item_id).html(STRINGFORMAT.toYuan(deposit.pay_amount));
 
         $("#c_fpje_"+item_id).val(deposit.fp_amount);
@@ -170,7 +170,6 @@ var VIEWDATA = {
                     if(LOGIN.error(result)){
                         return;
                     }
-                    me.error(result);
                 }
             });
         }
@@ -232,8 +231,6 @@ var VIEWDATA = {
                 if(LOGIN.error(result)){
                     return;
                 }
-                me.error(result);
-                alert('获取基金信息失败，请刷新页面.');
             }
         });
     },
@@ -461,7 +458,7 @@ var CUSTOMER = {
 								"application/json;charset=UTF-8");
 				    },
 				    error: function (result) {
-				        // me.error(result);
+				        alert(result);
 				    }
 				});
         return me.item;
@@ -494,7 +491,7 @@ var USERS = {
                 }
             },
             error: function (result) {
-                me.error(result);
+                alert(result);
             }
         });
     },

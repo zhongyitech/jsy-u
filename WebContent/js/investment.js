@@ -1242,6 +1242,9 @@ var INVESTMENT_ITEM = {
 
         return item;
     },
+    setVaildInfo:function(data){
+
+    },
     save: function () {
         var finish = $('.buttonFinish');
         if (finish.hasClass('disabled')) {
@@ -1269,6 +1272,8 @@ var INVESTMENT_ITEM = {
                 me.itme = result;
                 window.location = me.page.INVESMENT_PRINT;
             }, function(msg,result){
+                console.log(result);
+                me.setVaildInfo(result);
                 alert(msg);
             },
             function (response) {
@@ -1576,7 +1581,6 @@ var GUANLI = {
             }
         }
     }
-
 };
 
 //业务提成
