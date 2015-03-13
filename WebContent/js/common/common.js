@@ -3640,6 +3640,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
      * @constructor
      */
     var XHR=function(xhr,options){
+        this.isAsync=function(){
+            return options.async;
+        };
         if(options&&!options.async){
             this.data=function(){
                 return xhr&&xhr.getData();

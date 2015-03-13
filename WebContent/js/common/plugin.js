@@ -27,7 +27,7 @@
                 console.log("notice",data);
             },
             error:function(data){
-                alert(data);
+                alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
             },
             fail:function(){
                 alert("请求失败!（非200返回）");
@@ -40,7 +40,10 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,response[this._key.result],response[this._key.pager]):fn.call(fn,response[this._key.result])):fn.call(fn,response);
+            if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,this.result(response),response[this._key.pager]):fn.call(fn,this.result(response))):fn.call(fn,response);
+        },
+        result:function(data){
+          return data[this._key.result];
         },
         buildOptions:function(data,options){
             var useData=data||{params:{},entity:{}},
@@ -74,12 +77,20 @@
      */
     var XHR=function(xhr){
         /**
+         * sync 方法可以直接取数据，不必要采用回调形式
+         */
+        if(xhr&&!xhr.isAsync()){
+            this.data=function(){
+                return Util.result(xhr.data());
+            }
+        }
+        /**
          * rest success
          * @param fn
          * @returns {XHR}
          */
         this.success=function(fn){
-            xhr.then(function(data){
+            xhr&&xhr.then(function(data){
                 Util.doSuccess(data,fn);
             });
             return this;
@@ -90,7 +101,7 @@
          * @returns {XHR}
          */
         this.error=function(fn){
-            xhr.then(function(data){
+            xhr&&xhr.then(function(data){
                 Util.doError(data,fn);
             });
             return this;
@@ -101,11 +112,12 @@
          * @returns {XHR}
          */
         this.fail=function(fn){
-            xhr.error(function(data){
-                Util.doFail(data,fn);
-            });
-            xhr.fail(function(data){
-                Util.doFail(data,fn);
+            var _this=this;
+            _this._notice=true;
+            xhr&&xhr.error(function(data){
+                if(_this._notice) _this._notice=Util.doFail(data,fn);
+            }).fail(function(data){
+                if(_this._notice) _this._notice=Util.doFail(data,fn);
             });
             return this;
         };
@@ -119,42 +131,37 @@
     /**
      * 请求统一入口,暂时全部Post
      * @param url
-     * @param data
-     * @param options
-     * @param async
+     * @param argsObj
      * @returns {XHR}
      */
-    var request=function(url,data,options,async){
-        var useOptions=Util.buildOptions(data, $.extend(true,options||{},{url:url}));
-        if(async)
+    var request=function(url,argsObj){
+        var args=Array.prototype.slice.apply(argsObj),_sync=false;
+        if(args.length){
+            if(args[0]&&typeof args[0]=="boolean") _sync=args.shift();
+            var useOptions=Util.buildOptions(args.shift(), $.extend(true,args.shift()||{},{url:url}));
+            if(_sync)
+                return new XHR($.Sync.post(useOptions));
             return new XHR($.Async.post(useOptions));
-        return new XHR($.Sync.post(useOptions));
+        }
+        return null;
     };
     $.extend(true,{
         io:{
-            get: function (data,options) {
-                return request(RestURI.get,data,options,!0);
+            /**
+             * sync/data options
+             * @returns {XHR}
+             */
+            get: function () {
+                return request(RestURI.get,arguments);
             },
-            post: function (data,options) {
-                return request(RestURI.post,data,options,!0);
+            post: function () {
+                return request(RestURI.post,arguments);
             },
-            put: function (data,options) {
-                return request(RestURI.put,data,options,!0);
+            put: function () {
+                return request(RestURI.put,arguments);
             },
-            delete: function (data,options) {
-                return request(RestURI.delete,data,options,!0);
-            },
-            syncGet: function (data,options) {
-                return request(RestURI.get,data,options,0);
-            },
-            syncPost: function (data,options) {
-                return request(RestURI.post,data,options,0);
-            },
-            syncPut: function (data,options) {
-                return request(RestURI.put,data,options,0);
-            },
-            syncDelete: function (data,options) {
-                return request(RestURI.delete,data,options,0);
+            delete: function () {
+                return request(RestURI.delete,arguments);
             },
             registerCallback:function(callback){
                 Util.registerCallback(callback);
@@ -171,37 +178,77 @@
 (function($){
     var TypeConfig={
         _cache:{},
+        _data:{},
         _type_config_uri:"/api/typeConfig/type",
-        _getKey:function(type_id){
-            return "_"+type_id;
+        _getKey:function(key){
+            return "_"+key;
         },
-        getItem:function(type_id,sync){
-            var key=this._getKey(type_id),
-                type=this._cache[key];
-            if(type) return type;
-            var params={
+        request:function(type,async){
+            var key=this._getKey(type),
+                typeObj=this._cache[key];
+            if(typeObj) return typeObj;
+            return this._cache[key]=$.io.get(!async,{
                 url:this._type_config_uri,
-                    params:{
-                    type:type_id
+                params:{
+                    type:type
                 }
-            };
-            return this._cache[key]=sync?$.io.syncGet(params):$.io.get(params);
+            });
         },
-        clearItem:function(type_id){
-            delete this._cache[this._getKey(type_id)];
+        clearCache:function(type){
+            var _key=this._getKey(type);
+            delete this._cache[_key];
+            delete this._data[_key];
+        },
+        cacheItems:function(type,data,propKey){
+            var _self=this;
+            this._data[this._getKey(type)]={};
+            $.each(data||[], function(i,v) {
+                if(!v)return;
+                _self._data[_self._getKey(type)][_self._getKey(v[propKey])]=v;
+            });
+        },
+        checkCache:function(type){
+            return !!this._data[this._getKey(type)];
+        },
+        search:function (type,key) {
+            var _key=this._getKey(type),obj=this._data[_key];
+            return key?obj&&obj[this._getKey(key)]||null:this._cache[_key].data();
         }
     };
     $.extend(true,{
         project:{
             /**
-             * @param type 类型id
-             * @param sync 是否同步
+             * @param async/type 是否异步/类型id
              * @param clear 是否先清空缓存
              * @returns {*}
              */
-            type: function (type,sync,clear) {
-                if(clear) TypeConfig.clearItem(type);
-                return TypeConfig.getItem(type,sync);
+            type: function () {
+                var args=Array.prototype.slice.apply(arguments),_async=false;
+                if(args.length){
+                    if(args[0]&&typeof args[0]=="boolean") _async=args.shift();
+                    var type=args.shift();
+                    if(args.shift()) TypeConfig.clearCache(type);
+                    var xhr=TypeConfig.request(type,_async);
+                    if(!_async){
+                        /**
+                         * @param id typeId
+                         * @param prop result->key/callback
+                         * @returns {*}
+                         */
+                        xhr.getItem=function(id,prop){
+                            TypeConfig.checkCache(type)||xhr.success(function(data){
+                                TypeConfig.cacheItems(type,data,"id");
+                            });
+                            var result=TypeConfig.search(type,id);
+                            if(prop&&typeof prop=="function"){
+                                return prop.call(this,result);
+                            }
+                            return result?(prop?result[prop]:result):null;
+                        };
+                    }
+                    return xhr;
+                }
+                return null;
             }
         }
     });
@@ -218,12 +265,12 @@
     };
     /**
      * select options
-     * @param id
+     * @param selector
      * @param data
      * @param fn
      * @constructor
      */
-    var Select=function(id,data,fn){
+    var Select=function(selector,data,fn){
         var _self=this;
         _self._callback=fn||function(item){
             return {
@@ -231,7 +278,7 @@
                 value:item["id"]
             }
         };
-        _self._object=$(id);
+        _self._object=$(selector);
         _self._dom=[];
         if(!$.io.isXHR(data)){
             var dataCopy= $.extend(true,{},data);
