@@ -3627,7 +3627,6 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
 
 })();
 
-
 /****************************************project lib****************************************/
 /**
  *  jQuery.ajax wrapper

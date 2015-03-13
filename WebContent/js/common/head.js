@@ -2988,7 +2988,6 @@ var FILE = {
     },
     getForm: function () {
         return $('<form></form>').append($('#invest-attachment')[0]);
-        ;
     }
 };
 

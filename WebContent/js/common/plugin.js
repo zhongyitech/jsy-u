@@ -2,6 +2,16 @@
  * Created by William.Wei on 2015/3/12. weizhansheng@outlook.com
  */
 /**
+ * hook
+ */
+(function () {
+    window.console=window.console||{
+        log:function(){
+            return;
+        }
+    }
+})();
+/**
  * project ajax
  */
 (function($){
