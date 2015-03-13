@@ -57,6 +57,7 @@
                             <th class="text-center"><input type="checkbox" name="checkbox"></th>
                             <th class="text-center">部门名称</th>
                             <th class="text-center">所属公司</th>
+                            <th class="text-center">职能</th>
                             <th class="text-center">描述</th>
                         </tr>
                         </thead>

@@ -9,12 +9,47 @@ function GetBIND_TABLE() {
         ini: function () {
             // this.Columns.push(column);
         },
+        showCheckBox:false,
+        getItems:function(){
+            if(!this.showCheckBox){
+                return [];
+            }
+            var trs=new Array();
+            $(this.table_id+' tr:gt(1)').each(function(index,tr){
+                trs.push(tr);
+            });
+            var items=new Array();
+            $(trs).each(function(i,tr){
+                var input=$(tr).find('input');
+                var item=new Object();
+                $(input).each(function(i,input){
+                   var key= $(input).attr('name');
+                    if(key){
+                        item[key]=$(input).val();
+                    }
+                });
+                items.push(item);
+            });
+            console.log(items);
+            return items;
+        },
+        addrow:function(item){
+            var row=this._getRow(item);
+            $(this.table_id).append(row);
+            return row;
+        },
+        delSelectRow:function(){
+            var rows=$(this.table_id +' input[type=checkbox]:checked').closest('tr');
+            var n=rows.length;
+            this.tr_key-=n;
+            rows.remove();
+        },
         binding: function (items) {
             if (items != null || items != undefined)
                 this.items = items;
             this._setTable();
         },
-        // 生成表格
+        //生成表格
         _setTable: function () {
             var tr = this._createTableHead();
             $(this.table_id + ' tr').remove();
@@ -29,6 +64,9 @@ function GetBIND_TABLE() {
         _createTableHead: function () {
             var tr = '<tr>';
             var th = '';
+            if(this.showCheckBox){
+                tr+='<th class="checkboxth"></th>';
+            }
             for (var key in this.Columns) {
                 var col = this.Columns[key];
                 if (col['visible'] && col['visible'] == false) {
@@ -47,9 +85,13 @@ function GetBIND_TABLE() {
         },
         tr_key: 0,
         _getRow: function (item) {
-            var tr = '<tr key="' + (this.tr_key++) + '">';
+            var tr = '<tr data-key="' + (this.tr_key++) + '">';
             var td = '';
+            if(this.showCheckBox){
+                tr+='<td><input type="checkbox"> </td>';
+            }
             for (var key in this.Columns) {
+
                 var col = this.Columns[key];
                 if (col['visible'] && col['visible'] == false) {
                     continue;
@@ -138,7 +180,7 @@ var COLUMN_TYPE = {
     baseClassName: '',
     checkbox: function (column, item) {
         var html = "<input type='checkbox'  name='" + column.fieldName + "'";
-        var value = item[column.fieldName];
+        var value = item ? item[column.fieldName] : null;
         if (column.formatString != null && column.formatString != '')
             value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
         html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
@@ -150,8 +192,8 @@ var COLUMN_TYPE = {
         // <input type="checkbox" name="checkbox">
     },
     textbox: function (column, item) {
-        var html = "<input name='" + column.fieldName + "'";
-        var value = FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]);
+        var html = "<input type='textbox' name='"  + column.fieldName + "'";
+        var value =item ? FORMATPRIVED.formatValue(column.formatString, item[column.fieldName]) :'';
         html = html + " class='" + this.baseClassName + ' ' + (column.className == undefined ? '' : column.className) + "'";
         html = html + " value='" + value + "' />";
         return html;

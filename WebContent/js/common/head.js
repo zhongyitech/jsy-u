@@ -2030,7 +2030,7 @@ var YHZH = {//银行账户
     get: function (id) {
         var me = this;
         var params = JSON.stringify({id: id});
-        var data = {url: '/api/bankAccount/findById', params: params};
+        var data = {url: '/api/bankAccount/'+id, params: params};
         $.ajax({
             type: 'post',
             url: '../rest/item/get',
@@ -2047,7 +2047,7 @@ var YHZH = {//银行账户
         });
 
         if (this.response[REST.RESULT_KEY]) {
-            me.item = JSON.parse(me.response[REST.RESULT_KEY]);
+            me.item = (me.response[REST.RESULT_KEY]);
         }
         return me.item;
     },

@@ -53,26 +53,29 @@ var DEPARTMENT_FORM = {
     iniPerformanceView: function () {
         var view = $(this.performance_ID);
         if (view) {
-            var items = this.getPerformanceItem();
-            for (var i in items) {
-                var item = items[i];
-                var id = item.id;
-                var name = item.mapName;
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                view.append(option);
-            }
+//            var items = this.getPerformanceItem();
+//            for (var i in items) {
+//                var item = items[i];
+//                var id = item.id;
+//                var name = item.mapName;
+//                var option = $('<option value="' + id + '">' + name + '</option>');
+//                view.append(option);
+//            }
+            $.dom.select(this.performance_ID, this.getPerformanceItem(),function(item){
+                return {
+                    text:item["mapName"]+(item['description'] ? ' | '+item['description'] :''),
+                    value:item["id"]
+                }
+            });
         }
     },
     getPerformanceItem: function () {
         var params = JSON.stringify({type: 8});
         var data = {url: '/api/typeConfig/type', params: params};
         var items = null;
-        DataOperation.get(
-            data,
-            function (result) {
-                items = result;
-            }
-        );
+        $.project.type(8,true).success(function(result){
+            items = result;
+        });
         return items;
     },
     getDescriptionView: function () {
@@ -152,9 +155,9 @@ var DEPARTMENT_FORM = {
         if (description) {
             item[DEPARTMENT.DESCRIPTION_KEY] = description;
         }
-        item['performance']=$(this.performance_ID).val();
-//        item['leader']=$('#transferid').val();
+        item['performance'] = $(this.performance_ID).val();
 
+//        item['leader']=$('#transferid').val();
         me.item = item;
         return item;
     },
@@ -165,16 +168,24 @@ var DEPARTMENT_FORM = {
         var entity = JSON.stringify(item);
         var data = {url: '/api/department', params: params, entity: entity};
 
-        DataOperation.async = true;
-        DataOperation.post(
-            data,
-            function (result) {
+        $.io.post(data)
+            .success(function (result) {
                 window.location = PAGE.DEPARTMENT_LIST;
-            },
-            function (msg) {
-                alert("创建部门失败：" + msg);
-            }
-        );
+            })
+            .error(function (result) {
+                alert("创建部门失败：" + result);
+            });
+//
+//        DataOperation.async = true;
+//        DataOperation.post(
+//            data,
+//            function (result) {
+//                window.location = PAGE.DEPARTMENT_LIST;
+//            },
+//            function (msg) {
+//                alert("创建部门失败：" + msg);
+//            }
+//        );
 //        $.ajax({
 //            type: "post",
 //            url: "../rest/item/post",
