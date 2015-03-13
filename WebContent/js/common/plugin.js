@@ -222,7 +222,7 @@
         },
         search:function (type,key) {
             var _key=this._getKey(type),obj=this._data[_key];
-            return key?obj&&obj[this._getKey(key)]||null:this._cache[_key].data();
+            return key&&obj&&obj[this._getKey(key)]||null;
         }
     };
     $.extend(true,{
@@ -253,7 +253,7 @@
                             if(prop&&typeof prop=="function"){
                                 return prop.call(this,result);
                             }
-                            return result?(prop?result[prop]:result):null;
+                            return result&&(prop?result[prop]:result)||null;
                         };
                     }
                     return xhr;
