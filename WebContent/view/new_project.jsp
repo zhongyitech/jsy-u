@@ -12,8 +12,10 @@
 
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"></jsp:include>
+
     <div id="page-content-wrapper">
         <!-- #page-title -->
+
         <section id="dropdowns">
             <div class="page-header">
                 <h1>新建项目</h1>
@@ -187,8 +189,8 @@
                 <br />
                 <div class="form-row pad3B">
                     <div>
-                        <button class="but-ui btn primary-bg large" type="button">
-                            <span class="button-content" id="add-project">添加项目</span>
+                        <button class="but-ui btn primary-bg large" type="button" id="add-project">
+                            <span class="button-content" >添加项目</span>
                         </button>
                     </div>
                 </div>
@@ -198,6 +200,6 @@
     </div>
 </div>
 <script type="text/javascript" src="../js/new_project.js"></script>
-<script type="text/javascript" src="../view/bootstrap/bootstrap.min.js"></script>
+<%--<script type="text/javascript" src="../view/bootstrap/bootstrap.min.js"></script>--%>
 </body>
 </html>
