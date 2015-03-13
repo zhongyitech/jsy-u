@@ -747,7 +747,7 @@ var DM = {
 					me.success();
 				},
 				error: function(result){
-					me.error(result);
+					alert(result);
 				}
 			});
 		},
