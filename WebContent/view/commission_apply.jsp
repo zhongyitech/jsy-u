@@ -49,9 +49,8 @@
 
                         <div class="append-left">
                             <select class="" id="filter-status">
-                                <option value="not-apply"></option>
-                                <option value="not-apply">未付款</option>
-                                <option value="apply">已付款</option>
+                                <option value="0">未付款</option>
+                                <option value="1">付款中</option>
                             </select>
                         </div>
                     </div>
@@ -164,10 +163,9 @@
                         </div>
 
                         <div class="append-left">
-                            <select class="" id="filter-status">
-                                <option value="not-apply"></option>
-                                <option value="not-apply">未付款</option>
-                                <option value="apply">已付款</option>
+                            <select class="" id="filter-status2">
+                                <option value="0">未付款</option>
+                                <option value="1">付款中</option>
                             </select>
                         </div>
                     </div>
@@ -182,7 +180,7 @@
                         <div class="input-append bg-white">到</div>
 
                         <div class="append-left">
-                            <input class="tcal filter-input" id="filter_to"/>
+                            <input class="tcal filter-input" id="filter_to2"/>
                         </div>
                     </div>
                 </div>
@@ -196,7 +194,7 @@
                         <div class="input-append bg-white">从</div>
 
                         <div class="append-left">
-                            <input class="tcal filter-input" id="filter_from"/>
+                            <input class="tcal filter-input" id="filter_from2"/>
                         </div>
                     </div>
                 </div>

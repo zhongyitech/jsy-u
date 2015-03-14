@@ -169,15 +169,12 @@ var VIEWDATA = {
 		var me = this;
 		me.getFilter();
 
-		var params = JSON.stringify({type: "lx"});
-		var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-		if(me.filter_from==""||me.filter_to==""){
-			entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
-		}
-		console.log("params",params);
-		console.log("entity",entity);
+		var entity = JSON.stringify({
+			status:me.filter_status,
+			type: "lx",
+			startposition: me.page_start, pagesize: me.page_size,keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
+		var data = {url: '/api/payment/getPayments', entity: entity};
 
-		var data = {url: '/api/payment/getPayments', params: params, entity: entity};
 
 		$.ajax({
 			type: 'post',
@@ -197,8 +194,6 @@ var VIEWDATA = {
 				if(LOGIN.error(result)){
 					return;
 				}
-				me.error(result);
-				alert('获取基金信息失败，请刷新页面.');
 			}
 		});
 	},
@@ -342,15 +337,12 @@ var VIEWDATA = {
 		var me = this;
 		me.getFilter2();
 
-		var params = JSON.stringify({type: "bj"});
-		var entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
-		if(me.filter_from2==""||me.filter_to2==""){
-			entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
-		}
-		console.log("params",params);
-		console.log("entity",entity);
 
-		var data = {url: '/api/payment/getPayments', params: params, entity: entity};
+		var entity = JSON.stringify({
+			status:me.filter_status2,
+			type: "bj",
+			startposition: me.page_start2, pagesize: me.page_size2,keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
+		var data = {url: '/api/payment/getPayments', entity: entity};
 
 		$.ajax({
 			type: 'post',
@@ -370,8 +362,6 @@ var VIEWDATA = {
 				if(LOGIN.error(result)){
 					return;
 				}
-				me.error(result);
-				alert('获取基金信息失败，请刷新页面.');
 			}
 		});
 	},

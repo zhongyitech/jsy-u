@@ -1,9 +1,9 @@
 //页面加载完成后添加点击事件]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 $(document).ready(function() {
-	USERS.ini(true);
-	FUNDS.ini(true);
-	VIEWDATA.fund = FUNDS;
-	VIEWDATA.user = USERS;
+	USER.ini(true);
+	FUND.ini(true);
+	VIEWDATA.fund = FUND;
+	VIEWDATA.user = USER;
 	VIEWDATA.customer = CUSTOMER;
 	VIEWDATA.dateformat=DATEFORMAT;
 	VIEWDATA.init(true);
@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 var VIEWDATA = {
 	table_id: "#ywtc_table",
-	KEYWORD_BUTTON_ID: '#filter-button',
+	KEYWORD_BUTTON_ID: '#keyword-button',
 	KEYWORD_ID: '#filter-keyword',
 	PAGES_ID: '#page-numbers',
 	PAGES_TOTAL: '#pacts-page-total',
@@ -169,14 +169,20 @@ var VIEWDATA = {
 		var me = this;
 		me.getFilter();
 
-		var params = JSON.stringify({type: "yw"});
-		var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-		if(me.filter_from==""||me.filter_to==""){
-			entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
-		}
-		console.log("params",params);
-		console.log("entity",entity);
-		var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
+		var entity = JSON.stringify({
+			status:me.filter_status,
+			type: "yw", startposition: me.page_start, pagesize: me.page_size,
+			keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
+		var data = {url: '/api/payment/getCommissions', entity: entity};
+
+		//var params = JSON.stringify({type: "yw"});
+		//var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
+		//if(me.filter_from==""||me.filter_to==""){
+		//	entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
+		//}
+		//var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
+
+
 		var me = this;
 		$.ajax({
 			type: 'post',
@@ -185,12 +191,10 @@ var VIEWDATA = {
 			dataType: 'json',
 			async: false,
 			success: function(result){
-				console.log(result);
 				if(result && result.rest_status && result.rest_status == "suc"){
 					me.result = result;
 					me.success(result);
 				}
-
 			},
 			error: function(result){
 				if(LOGIN.error(result)){
@@ -217,24 +221,19 @@ var VIEWDATA = {
 				$(pacts[i]).remove();
 			}
 		}
-
-
 		var table = $("#ywtc_table");
-
-
 		if(table && items){
 			for(var i in items){
-
 				var row = $("<tr></tr>");
 				table.append(row);
 
-				//row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				if(items[i]["status"]==0){
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				}else{
-					$(row).attr("style","background-color: #FD0101;");
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-				}
+				row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//if(items[i]["status"]==0){
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//}else {
+				//	$(row).attr("style","background-color: #2381e9;");
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
+				//}
 
 				row.append('<td><span class="funds-item-name" title="' + items[i]["bmjl"] + '">' + items[i]["bmjl"] + '</span></td>');
 				row.append('<td>' + items[i]["fundName"] + '</td>');
@@ -246,8 +245,10 @@ var VIEWDATA = {
 					row.append('<td>未付</td>');
 				}else if(items[i]["status"]==1){
 					row.append('<td>付款中</td>');
-				}else{
+				}else  if(items[i]["status"]==2){
 					row.append('<td>已付</td>');
+				}else{
+					row.append('<td>未知状态</td>');
 				}
 
 			}
@@ -347,14 +348,19 @@ var VIEWDATA = {
 		var me = this;
 		me.getFilter2();
 
-		var params = JSON.stringify({type: "gl"});
-		var entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
-		if(me.filter_from2==""||me.filter_to2==""){
-			entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
-		}
-		console.log("params",params);
-		console.log("entity",entity);
-		var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
+		var entity = JSON.stringify({
+			type: "gl", startposition: me.page_start2, pagesize: me.page_size2,
+			keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2,
+			status:me.filter_status2
+		});
+		var data = {url: '/api/payment/getCommissions', entity: entity};
+
+		//var params = JSON.stringify({type: "gl"});
+		//var entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
+		//if(me.filter_from2==""||me.filter_to2==""){
+		//	entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
+		//}
+		//var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
 		var me = this;
 		$.ajax({
 			type: 'post',
@@ -401,13 +407,13 @@ var VIEWDATA = {
 				var row = $("<tr></tr>");
 				table.append(row);
 
-				//row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				if(items[i]["status"]==0){
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				}else{
-					$(row).attr("style","background-color: #FD0101;");
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-				}
+				row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//if(items[i]["status"]==0){
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//}else{
+				//	$(row).attr("style","background-color: #2381e9;");
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
+				//}
 
 				row.append('<td><span class="funds-item-name" title="' + items[i]["bmjl"] + '">' + items[i]["bmjl"] + '</span></td>');
 				row.append('<td>' + items[i]["fundName"] + '</td>');
@@ -417,8 +423,12 @@ var VIEWDATA = {
 				row.append('<td>' + items[i]["khh"] + '</td>');
 				if(items[i]["status"]==0){
 					row.append('<td>未付</td>');
-				}else{
+				}else if(items[i]["status"]==1){
+					row.append('<td>付款中</td>');
+				}else if(items[i]["status"]==2){
 					row.append('<td>已付</td>');
+				}else{
+					row.append('<td>未知状态</td>');
 				}
 
 			}
@@ -451,7 +461,7 @@ var VIEWDATA = {
 			}
 			pages_div.append(page_number);
 			page_number.append(i);
-			page_number.click(function(e){me.selectPage(e);});
+			page_number.click(function(e){me.selectPage2(e);});
 		}
 	},
 	selectPage2: function(e){
@@ -492,200 +502,6 @@ var FORMATPRIVED = {
 		return data * 100 + "%";
 	}
 };
-var CUSTOMER = {
-	itmes : {},
-	success : {},
-	item : {},
-	get : function(id) {
-		var me = this;
-		$
-		.ajax({
-			type : "get",
-			url : "http://192.168.1.59:18080/jsy/api/customer/getcustomer",
-			async : false,
-			data : {
-				cid : id
-			},
-			dataType : "json",
-			success : function(result) {
-				if (result && result.rest_result) {
-					me.item = JSON.parse(result.rest_result);
-				}
-			},
-			beforeSend : function(request) {
-				request.setRequestHeader("authorization", "r554ad1rchgd8j0j0aiql7itq3d1ted2");
-				request.setRequestHeader("accept", "application/json");
-				request.setRequestHeader("Content-Type",
-					"application/json;charset=UTF-8");
-			},
-			error : function(result) {
-						alert(result);
-					}
-				});
-		return me.item;
-	}
-};
-var USERS = {
-	items : [],
-	map : {},
-	success : function() {
-	},
-	error : function(result) {
-		LOGIN.error(result);
-	},
-	ini : function(async) {
-		// 默认异步加载数据
-		if (!async) {
-			async = false;
-		}
-		var me = this;
-		$.ajax({
-			type : "post",
-			url : "../rest/user/getAll",
-			async : async,
-			data : {},
-			dataType : "json",
-			success : function(result) {
-				if (result && result.rest_result) {
-					me.items = JSON.parse(result.rest_result);
-				}
-				me.success();
-			},
-			error : function(result) {
-				alert(result);
-			}
-		});
-	},
-	getItems : function() {
-		if (!this.items || this.items.length == 0) {
-			// 同步加载数据
-			this.ini(false);
-		}
-		return this.items;
-	},
-	getMap : function() {
-		if (JSON.stringify(this.map) == "{}") {
-			var items = this.getItems();
-			for ( var i in items) {
-				this.map[items[i]['id']] = items[i];
-			}
-		}
-		return this.map;
-	},
-	get : function(id) {
-		var map = this.getMap();
-		return map[id];
-	}
-};
-var FUNDS = {
-	items : [],
-	map : {},
-	success : function() {
-	},
-	error : function(result) {
-		LOGIN.error(result);
-	},
-	ini : function(async) {
-		// 默认异步加载数据
-		if (!async) {
-			async = false;
-		}
-		var me = this;
-		$.ajax({
-			type : "post",
-			url : "../rest/fund/getAll",
-			async : async,
-			data : {},
-			dataType : "json",
-			success : function(result) {
-				if (result && result.rest_result) {
-					me.items = JSON.parse(result.rest_result);
-				}
-				me.success();
-			},
-			error : function(result) {
-				me.error();
-			}
-		});
-	},
-	getItems : function() {
-		if (!this.items || this.items.length == 0) {
-			// 同步加载数据
-			this.ini();
-		}
-		return this.items;
-	},
-	getMap : function() {
-		if (JSON.stringify(this.map) == "{}") {
-			var items = this.getItems();
-			for ( var i in items) {
-				this.map[items[i]['id']] = items[i];
-			}
-		}
-		return this.map;
-	},
-	get
 
-	: function(id) {
-		var map = this.getMap();
-		return map[id];
-	}
-};
-var DEPARTMENTS = {
-	items : [],
-	itemMap : {},
-	item : {},
-	ini : function() {
-		var me = this;
-		$.ajax({
-			type : "post",
-			url : "../rest/department/getAll",
-			async : true,
-			data : {},
-			dataType : "json",
-			success : function(result) {
-				me.items = JSON.parse(result.rest_result);
-			},
-			error : function(result) {
-				if (LOGIN.error(result)) {
-					return;
-				}
-			}
-		});
-	},
-	get : function(id) {
-		if (JSON.stringify(this.itemMap) == "{}") {
-			for ( var i in this.items) {
-				this.itemMap[this.items[i]['id']] = this.items[i];
-			}
-		}
-		return this.itemMap[id];
-	},
-	getDepartMent : function(id) {
-		var me = this;
-		var url = "http://192.168.1.59:18080/jsy/api/department";
-		$.ajax({
-			type : "get",
-			url : url,
-			async : false,
-			data : {
-				id : id
-			},
-			dataType : "json",
-			success : function(result) {
-				me.item = JSON.parse(result.rest_result)[0];
-			},
-			beforeSend : function(request) {
-				request.setRequestHeader("authorization", "r554ad1rchgd8j0j0aiql7itq3d1ted2");
-				request.setRequestHeader("accept", "application/json");
-				request.setRequestHeader("Content-Type",
-					"application/json;charset=UTF-8");
-			},
-			error : function(result) {
-			}
-		});
-		return me.item;
-	}
-};
 
 

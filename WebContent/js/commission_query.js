@@ -203,14 +203,10 @@ var VIEWDATA = {
         var me = this;
         me.getFilter();
 
-        var params = [];
         var entity = JSON.stringify({type: this.filter_status, startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-        if(me.filter_from==""||me.filter_to==""){
-            entity = JSON.stringify({type: this.filter_status, startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
-        }
 
         //investment-print.js
-        var data = {url: '/api/commissionInfo/getcommissionInfo', params: params, entity: entity};
+        var data = {url: '/api/commissionInfo/getcommissionInfo', entity: entity};
         var me = this;
         $.ajax({
             type: 'post',
@@ -256,7 +252,7 @@ var VIEWDATA = {
                 if(items[i]["type"]==0){
                     row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
                 }else{
-                    $(row).attr("style","background-color: #FD0101;");
+                    $(row).attr("style","background-color: #2381e9;");
                     row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
                 }
 
