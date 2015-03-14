@@ -193,15 +193,13 @@ var REPORT={
 		var me = this;
 		me.getFilter();
 
+		var entity = JSON.stringify({
+			type:me.filter_status,
+			startposition: me.page_start, pagesize: me.page_size,
+			keyword: me.filter_keyword,
+			startsaledate1: me.filter_from, startsaledate2: me.filter_to});
 
-		var params = JSON.stringify({});
-		var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-		if(me.filter_from==""||me.filter_to==""){
-			entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
-		}
-		console.log("params", params,entity);
-
-		var data = {url: '/api/paymentInfo/readAllForPage', params: params, entity: entity};
+		var data = {url: '/api/paymentInfo/readAllForPage',  entity: entity};
 		$.ajax({
 			type: 'post',
 			url: '../rest/item/post',
@@ -220,8 +218,6 @@ var REPORT={
 				if(LOGIN.error(result)){
 					return;
 				}
-				me.error(result);
-				alert('获取基金信息失败，请刷新页面.');
 			}
 		});
 	},
@@ -245,13 +241,13 @@ var REPORT={
 				var row = $("<tr></tr>");
 				table.append(row);
 
-				//row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				if(items[i]["type"]==0){
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				}else{
-					$(row).attr("style","background-color: #FD0101;");
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-				}
+				row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//if(items[i]["type"]==0){
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//}else{
+				//	$(row).attr("style","background-color: #FD0101;");
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
+				//}
 
 				row.append('<td><span class="funds-item-name" title="' + items[i]["fundName"] + '">' + items[i]["fundName"] + '</span></td>');
 				row.append('<td>' + items[i]["htbh"] + '</td>');
