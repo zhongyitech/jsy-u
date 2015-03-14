@@ -22,7 +22,6 @@
 <body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
-    <script type="text/javascript" src="../js/commission_query.js"></script>
 
     <div id="page-content-wrapper">
         <div id="page-content" class="page-view pad25T">
@@ -60,9 +59,8 @@
 
                                     <div class="append-left">
                                         <select class="" id="filter-status">
-                                            <option value="not-apply"></option>
-                                            <option value="not-apply">未申请</option>
-                                            <option value="apply">已申请</option>
+                                            <option value="0">未申请</option>
+                                            <option value="1">已申请</option>
                                         </select>
                                     </div>
                                 </div>
@@ -169,12 +167,13 @@
                     </a>
                 </h3>
 
-                <div class="content-box-wrapper" style="">
-                    <div id="commission-report" class="cash-report"></div>
+                <div class="content-box-wrapper" style="width: 900px;height: 500px">
+                    <div id="commission-report" class="cash-report" style="width: 900px;height: 500px"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../js/commission_query.js"></script>
 </body>
 </html>
