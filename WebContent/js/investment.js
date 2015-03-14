@@ -53,22 +53,23 @@ var NIANHUA = {
         var params = JSON.stringify({fundid: fundid, managerid: managerid, investment: investment, vers: vers});
         var data = {url: '/api/investmentArchives/getYield', params: params};
         var me = this;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (result) {
-                me.result = result;
-            },
-            error: function (result) {
-                me.result = result;
-                LOGIN.error(result);
-            }
-        });
-
-        this.item = me.result[REST.RESULT_KEY];
+        this.item= $.io.get(true,data)
+            .data();
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/get',
+//            data: data,
+//            dataType: 'json',
+//            async: false,
+//            success: function (result) {
+//                me.result = result;
+//            },
+//            error: function (result) {
+//                me.result = result;
+//                LOGIN.error(result);
+//            }
+//        });
+//        this.item = me.result[REST.RESULT_KEY];
         return this.item;
     }
 };
@@ -289,6 +290,7 @@ var INVESTMENT_ITEM = {
             me.setKHMC();
         }
 
+        //生成业务经理选择框
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
         if (bm_select && users) {
@@ -804,7 +806,7 @@ var INVESTMENT_ITEM = {
 
             if (tcbl) {
                 var shouyi = tcbl[this.nianhua.SHOUYI_KEY];
-                var ticheng = JSON.parse(tcbl[this.nianhua.TICHENG_KEY]);
+                var ticheng = (tcbl[this.nianhua.TICHENG_KEY]);
                 var sfbx = ticheng[this.tcfpfw.SFBX_KEY];
                 var bxsyl = ticheng[this.tcfpfw.BXSYL_KEY];
 
@@ -833,7 +835,7 @@ var INVESTMENT_ITEM = {
         if (tcbl) {
             var tcfp_string = tcbl[this.nianhua.TICHENG_KEY];
             if (tcfp_string) {
-                var tcfp = JSON.parse(tcfp_string);
+                var tcfp = (tcfp_string);
                 var sfbx = tcfp[this.tcfpfw.SFBX_KEY];
                 if (sfbx) {
                     var jjsy = tcbl[this.nianhua.SHOUYI_KEY];
@@ -858,7 +860,7 @@ var INVESTMENT_ITEM = {
         if (tcbl) {
             var tcfp_string = tcbl[this.nianhua.TICHENG_KEY];
             if (tcfp_string) {
-                var tcfp = JSON.parse(tcfp_string);
+                var tcfp = (tcfp_string);
                 var sfbx = tcfp[this.tcfpfw.SFBX_KEY];
                 if (sfbx) {
                     $(me.INVEST_GUANLI_ID).val('');
@@ -1245,6 +1247,9 @@ var INVESTMENT_ITEM = {
     setVaildInfo:function(data){
 
     },
+    /**
+     * 新建投资档案，提交数据
+     */
     save: function () {
         var finish = $('.buttonFinish');
         if (finish.hasClass('disabled')) {
@@ -1267,6 +1272,9 @@ var INVESTMENT_ITEM = {
         var params = JSON.stringify({id: id});
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/CreateOrUpdate', params: params, entity: entity};
+
+
+
         DataOperation.put(data,
             function (result) {
                 me.itme = result;

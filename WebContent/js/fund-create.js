@@ -21,26 +21,16 @@ var BMJL={//异步加载所有部门经理
 			if(!async){
 				async = false;
 			}
-			var params = JSON.stringify({authority: 'ROLE_MANAGER'});
-			var data = {url: '/api/user/findUserFromRole', params: params};
+//			var params = JSON.stringify({authority: 'ROLE_MANAGER'});
+			var data = {url: '/api/user/allDepartmentLader'};
+
 			var me = this;
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/get", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					if(response && response[REST.RESULT_KEY]){
-						me.items = (response[REST.RESULT_KEY]);
-					}
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+
+            $.io.get(true,data)
+                .success(function(result){
+                    me.items=result;
+                });
+
 		},
 		getItems: function(){
 			if(!this.items || !this.items.length){

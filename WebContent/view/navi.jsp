@@ -142,14 +142,18 @@
             <li>
                 <a href="javascript:;" title="客户管理"><i class="glyph-icon icon-reorder"></i>客户管理</a>
                 <ul>
-                    <li><a href="invest-list.jsp" title="客户档案管理"><i
-                            class="glyph-icon icon-chevron-right"></i>客户投资档案管理</a></li>
+
                     <li><a href="./investment.jsp" title="添加投资档案"><i
                             class="glyph-icon icon-chevron-right"></i>添加投资档案</a></li>
                     <li><a href="./investment-print.jsp" title="打印投资确认书"><i class="glyph-icon icon-chevron-right"></i>打印投资确认书</a>
                     </li>
-                    <li><a href="./customer-list.jsp" title="客户信息修改"><i class="glyph-icon icon-chevron-right"></i>客户信息修改</a>
+                    <li><a href="./customer-list.jsp" title="填写档案客户信息"><i class="glyph-icon icon-chevron-right"></i>客户信息修改</a>
                     </li>
+                    <li><a href="invest-list.jsp" title="客户档案管理"><i
+                            class="glyph-icon icon-chevron-right"></i>投资档案管理</a></li>
+                    <li><a href="hetong-query.jsp" title="Layouts &amp; Elements"> <i
+                            class="glyph-icon icon-chevron-right"></i>合同查询
+                    </a></li>
                     <li><a href="commission_query.jsp" title="提成申请"><i
                             class="glyph-icon icon-chevron-right"></i>提成查询</a></li>
                     <li><a href="commission_apply.jsp" title="提成申请"><i
@@ -204,16 +208,14 @@
                     class="glyph-icon icon-reorder"></i>档案管理
             </a>
                 <ul>
-                    <li><a href="hetong-query.jsp" title="Layouts &amp; Elements"> <i
-                            class="glyph-icon icon-chevron-right"></i>合同查询
-                    </a></li>
+
                     <li><a href="filepackage-list.jsp"
                            title="Layouts &amp; Elements"> <i
-                            class="glyph-icon icon-chevron-right"></i> 借阅
+                            class="glyph-icon icon-chevron-right"></i>借阅/查询
                     </a></li>
                     <li><a href="filepackage-add.jsp"
                            title="Layouts &amp; Elements"> <i
-                            class="glyph-icon icon-chevron-right"></i> 档案入库
+                            class="glyph-icon icon-chevron-right"></i>档案入库
                     </a></li>
                     <%--<li><a href="forms.html" title="Layouts &amp; Elements"> <i--%>
                     <%--class="glyph-icon icon-chevron-right"></i> 档案查询--%>

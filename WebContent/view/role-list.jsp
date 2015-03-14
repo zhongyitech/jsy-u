@@ -51,8 +51,9 @@
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
-									<th class="text-center"><input type="checkbox" name="checkbox"></th>
-									<th class="text-center">角色名称</th>
+									<th class="text-center" width="56px"><input type="checkbox" name="checkbox"></th>
+									<th class="text-center" width="200px">角色名称</th>
+                                    <th></th>
 								</tr>
 							</thead>
 							<tbody></tbody>

@@ -32,13 +32,7 @@
 	                            </div><div class="form-input col-md-4">
 	                                <input placeholder="必填" type="text" id="name-input">
 	                            </div>
-	                            
-	                            <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)权限:</label>
-                                </div>
-                                <div class="form-input col-md-4">
-                                 	<input placeholder="必填" type="text" id="authority-input">
-                                </div>
+
 							</div>
 						</div>
 						<div style="clear:both;"></div>
