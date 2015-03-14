@@ -53,9 +53,7 @@ var DEPARTMENT_FORM = {
         var params = JSON.stringify({type: 8});
         var data = {url: '/api/typeConfig/type', params: params};
         var items = null;
-
-
-        items= $.project.type(8).getItem();
+        items= $.project.type(8).data();
 //        $.io.syncGet(data)
 //            .success(function (result) {
 //                items = result;

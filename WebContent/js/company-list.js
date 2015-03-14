@@ -165,6 +165,9 @@ var COMPANY_LIST ={
 			}
 		},
 		add: function (item){//table增加一行
+            if(!item){
+                return;
+            }
 			var key = this.tr_value++;
 			var table = this.getTable();
 			
