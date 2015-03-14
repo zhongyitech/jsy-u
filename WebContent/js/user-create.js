@@ -17,6 +17,7 @@ var USER_FORM = {
     KHH_ID: '#khh',
     YHZH_ID: '#yhzh',
     item: {},
+    action_mode:'create',
     getView: function () {
         return $(this.VIEW_ID);
     },
@@ -199,7 +200,6 @@ var USER_FORM = {
         if (!async) {
             async = false;
         }
-
         this.iniSubmitButton();
         this.iniDepartmentView();
         this.iniRoleButton();
@@ -213,9 +213,19 @@ var USER_FORM = {
             this.set({});
         }
     },
+    /**
+     * set from data
+     * @param item
+     */
     set: function (item) {
         this.item = item;
 
+        //load UserRole data
+        if(item.id != undefined && item.id) {
+            item['role'] = $.io.get(true,
+                {url: '/api/role/userRoleList', params: {id: item.id}}
+            ).data();
+        }
         this.setAccount(item);
         this.setName(item);
         this.setDepartment(item);
@@ -226,6 +236,10 @@ var USER_FORM = {
         var titems = [YHZH.get(1), YHZH.get(2), YHZH.get(2), YHZH.get(2), YHZH.get(3)];
         BANKACCOUNTS.setView(titems);
     },
+    /**
+     * get from input data
+     * @returns {*|USER_FORM.item}
+     */
     getItem: function () {
         var me = this;
         var item = me.item;
@@ -276,8 +290,14 @@ var USER_FORM = {
         var me = this;
         var item = me.getItem();
         item['bankAccount']=BANKACCOUNTS.getItems();
-        var params = {};
-        var data = {url: '/api/user', params: params, entity: item};
+        var rolelis='';
+        $.each(item.role,function(i,r){
+           console.log(r);
+           return rolelis+= r.id+',';
+        });
+        rolelis=(rolelis=='') ? '': rolelis.substr(0,rolelis.length-1);
+        var params =JSON.stringify({'rolelist':rolelis});
+        var data = {url: '/api/user', params: params, entity: JSON.stringify(item)};
         console.log(data.entity);
         $.io.put(data)
             .success(function(result,page){
@@ -286,7 +306,7 @@ var USER_FORM = {
             })
             .error(function(result){
                 console.log(result.msg);
-                alert("error"+result.msg);
+//                alert("error"+result.msg);
             });
     }
 };
