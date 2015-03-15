@@ -477,7 +477,7 @@ var PRINT_LIST={
 				});
 				
 				if(this.response[REST.RESULT_KEY]){
-					me.item = JSON.parse(this.response[REST.RESULT_KEY]);
+					me.item = (this.response[REST.RESULT_KEY]);
 					me.items[i]=me.item;
 				}else{
 					return false;

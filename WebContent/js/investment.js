@@ -52,24 +52,8 @@ var NIANHUA = {
     getByFidAndMidAndIid: function (fundid, managerid, investment, vers) {
         var params = JSON.stringify({fundid: fundid, managerid: managerid, investment: investment, vers: vers});
         var data = {url: '/api/investmentArchives/getYield', params: params};
-        var me = this;
         this.item= $.io.get(true,data)
             .data();
-//        $.ajax({
-//            type: 'post',
-//            url: '../rest/item/get',
-//            data: data,
-//            dataType: 'json',
-//            async: false,
-//            success: function (result) {
-//                me.result = result;
-//            },
-//            error: function (result) {
-//                me.result = result;
-//                LOGIN.error(result);
-//            }
-//        });
-//        this.item = me.result[REST.RESULT_KEY];
         return this.item;
     }
 };
@@ -361,9 +345,15 @@ var INVESTMENT_ITEM = {
             descrption_input.val(descrption);
         }
 
+        /**
+         * 设置管理提成的默认人选（业务经理）
+         */
         var gltcs = item[this.investment.GLTCS_KEY];
         this.guanli.set(gltcs);
 
+        /**
+         * 设置业务提成人默认人选
+         */
         var ywtcs = item[this.investment.YWTCS_KEY];
         this.yewu.set(ywtcs);
 
@@ -1274,19 +1264,27 @@ var INVESTMENT_ITEM = {
         var data = {url: '/api/investmentArchives/CreateOrUpdate', params: params, entity: entity};
 
 
-
-        DataOperation.put(data,
-            function (result) {
+        $.io.put(data)
+            .success(function(result){
                 me.itme = result;
                 window.location = me.page.INVESMENT_PRINT;
-            }, function(msg,result){
-                console.log(result);
-                me.setVaildInfo(result);
-                alert(msg);
-            },
-            function (response) {
-                me.response = response;
+            })
+            .error(function(result){
+                alert(result.msg);
             });
+
+//        DataOperation.put(data,
+//            function (result) {
+//                me.itme = result;
+//                window.location = me.page.INVESMENT_PRINT;
+//            }, function(msg,result){
+//                console.log(result);
+//                me.setVaildInfo(result);
+//                alert(msg);
+//            },
+//            function (response) {
+//                me.response = response;
+//            });
 //        $.ajax({
 //            type: 'post',
 //            url: '../rest/item/put',
@@ -1360,9 +1358,10 @@ var GUANLI = {
             }
         }
 
-        for (var i = 0; i < 3; i++) {
-            this.add();
-        }
+        //添加空行
+//        for (var i = 0; i < 3; i++) {
+//            this.add();
+//        }
     },
     add: function (item) {//增加一行
         var key = this.item_key++;
@@ -1372,7 +1371,17 @@ var GUANLI = {
         if (item && item[this.usercommission.ID_KEY]) {
             item = this.usercommission.get(item[this.usercommission.ID_KEY]);
         }
-
+        /**
+         * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
+         * @type {string}
+         */
+        if(item) {
+            var uid=item.user.id;
+            var userinfo=USER.get(uid);
+            item['yhzh'] = item && userinfo.yhzh;
+            item['skr'] = item && userinfo.skr;
+            item['khh'] = item && userinfo.khh;
+        }
         var tr = $('<tr key="' + key + '"></tr>');
         table.append(tr);
 
@@ -1471,7 +1480,8 @@ var GUANLI = {
         var skr_input = $('<input class="" name="jingshouren"/>');
         skr_div.append(skr_input);
         if (item) {
-            var skr = item[this.usercommission.SKR_KEY];
+//            var skr = item[this.usercommission.SKR_KEY];
+            var skr = item['skr'];
             skr_input.val(skr);
         }
 
@@ -1494,8 +1504,9 @@ var GUANLI = {
         var khh_input = $('<input class="bank-name" name="bankname"/>');
         khh_div.append(khh_input);
         if (item) {
-            var khh = item[this.usercommission.KHH_KEY];
-            khh_input.val(khh);
+            var khh = item['khh'];
+//            var khh = item[this.usercommission.KHH_KEY];
+            khh_input.val((khh)?khh:'');
         }
 
         var yhzh_td = $('<td></td>');
@@ -1505,7 +1516,8 @@ var GUANLI = {
         var yhzh_input = $('<input class="bank-number" name="banknumber"/>');
         yhzh_div.append(yhzh_input);
         if (item) {
-            var yhzh = item[this.usercommission.YHZH_KEY];
+            var yhzh = item['yhzh'] ? item['yhzh'] :'';
+//            var yhzh = item[this.usercommission.YHZH_KEY];
             yhzh_input.val(yhzh);
         }
 
@@ -1627,9 +1639,10 @@ var YEWU = {
             }
         }
 
-        for (var i = 0; i < 3; i++) {
-            this.add();
-        }
+        //添加空行
+//        for (var i = 0; i < 2; i++) {
+//            this.add();
+//        }
     },
     add: function (item) {//增加一行
         var key = this.item_key++;
@@ -1638,6 +1651,17 @@ var YEWU = {
 
         if (item && item[this.usercommission.ID_KEY]) {
             item = this.usercommission.get(item[this.usercommission.ID_KEY]);
+        }
+        /**
+         * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
+         * @type {string}
+         */
+        if(item) {
+            var uid=item.user.id;
+            var userinfo=USER.get(uid);
+            item['yhzh'] = item && userinfo.yhzh;
+            item['skr'] = item && userinfo.skr;
+            item['khh'] = item && userinfo.khh;
         }
 
         var tr = $('<tr key="' + key + '"></tr>');
@@ -1716,7 +1740,7 @@ var YEWU = {
         var skr_input = $('<input class="" name="jingshouren"/>');
         skr_div.append(skr_input);
         if (item) {
-            var skr = item[this.usercommission.SKR_KEY];
+            var skr = item['skr'] || "";
             skr_input.val(skr);
         }
 
@@ -1739,7 +1763,7 @@ var YEWU = {
         var khh_input = $('<input class="bank-name" name="bankname"/>');
         khh_div.append(khh_input);
         if (item) {
-            var khh = item[this.usercommission.KHH_KEY];
+            var khh = item['khh'];
             khh_input.val(khh);
         }
 
@@ -1750,7 +1774,7 @@ var YEWU = {
         var yhzh_input = $('<input class="bank-number" name="banknumber"/>');
         yhzh_div.append(yhzh_input);
         if (item) {
-            var yhzh = item[this.usercommission.YHZH_KEY];
+            var yhzh = item['yhzh'] || "";
             yhzh_input.val(yhzh);
         }
 
