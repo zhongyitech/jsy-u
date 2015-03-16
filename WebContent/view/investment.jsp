@@ -77,10 +77,10 @@
                                             <label class="label-description">(*)合同编号：</label>
                                         </div>
                                         <div class="form-input col-md-4">
-                                            <input type="text" id="invest-pact">
+                                            <input type="text" id="invest-pact" placeholder="参考合同登记编号">
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)客户名称：</label>
+                                            <label  class="label-description">(*)客户名称：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input type="text" id="invest-customername">
@@ -94,7 +94,7 @@
                                             <select id="invest-fund"></select>
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)业务经理：</label>
+                                            <label  class="label-description">(*)业务经理：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <select id="invest-busniessmanager"></select>
@@ -102,13 +102,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)投资金额：</label>
+                                            <label  class="label-description">(*)投资金额：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input type="text" id="invest-money">
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)部门经理：</label>
+                                            <label  class="label-description">(*)部门经理：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <select id="invest-dm" disabled></select>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)投资期限：</label>
+                                            <label  class="label-description">(*)投资期限：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <select id="invest-due" disabled>
@@ -124,7 +124,7 @@
                                             </select>
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)部门：</label>
+                                            <label  class="label-description">(*)部门：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <select id="invest-department" disabled></select>
@@ -132,13 +132,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)认购日期：</label>
+                                            <label  class="label-description">(*)认购日期：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input class="tcal" type="text" id="invest-from">
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)年化收益率：</label>
+                                            <label  class="label-description">(*)年化收益率：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input type="text" id="invest-yearrate" disabled>
@@ -146,13 +146,13 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)到期日期：</label>
+                                            <label  class="label-description">(*)到期日期：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input class="tcal" type="text" id="invest-to">
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)业务提成比例：</label>
+                                            <label  class="label-description">(*)业务提成比例：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input type="text" id="invest-yewu" disabled>
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">(*)付息方式：</label>
+                                            <label  class="label-description">(*)付息方式：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <select id="invest-paytype" disabled>
@@ -171,7 +171,7 @@
                                             </select>
                                         </div>
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">管理提成比例：</label>
+                                            <label  class="label-description">管理提成比例：</label>
                                         </div>
                                         <div class="form-input col-md-4">
                                             <input type="text" id="invest-guanli" disabled>
@@ -179,7 +179,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-label col-md-2">
-                                            <label for="" class="label-description">备注：</label>
+                                            <label  class="label-description">备注：</label>
                                         </div>
                                         <div class="form-input col-md-10">
                                             <textarea placeholder="请输入备注信息" class="textarea-no-resize"
@@ -334,7 +334,7 @@
                                         <input placeholder="输入客户名称" type="text" id="invest-customer-name">
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">国家（地区）:</label>
+                                        <label  class="label-description">国家（地区）:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <select id="invest-country">
@@ -347,7 +347,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">证件类型:</label>
+                                        <label  class="label-description">证件类型:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <select id="invest-cardtype">
@@ -357,7 +357,7 @@
                                         </select>
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">(*)证件号码:</label>
+                                        <label  class="label-description">(*)证件号码:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="请输入证件号" type="text" id="invest-cardnumber">
@@ -366,7 +366,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">(*)住址:</label>
+                                        <label  class="label-description">(*)住址:</label>
                                     </div>
                                     <div class="form-input col-md-10">
                                         <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="invest-sfzdz">
@@ -375,13 +375,13 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">开户行名称:</label>
+                                        <label  class="label-description">开户行名称:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="请输入开户行银行" type="text" id="invest-bankname">
                                     </div>
                                     <div class="form-label col-md-2 ">
-                                        <label for="" class="label-description">收益人账号:</label>
+                                        <label  class="label-description">收益人账号:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="请输入银行账号" type="text" id="invest-banknumber">
@@ -389,13 +389,13 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">联系电话:</label>
+                                        <label  class="label-description">联系电话:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="" type="text" id="invest-phone">
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">邮政编码:</label>
+                                        <label  class="label-description">邮政编码:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="" type="text" id="invest-zip">
@@ -404,13 +404,13 @@
                                 <div class="form-row">
 
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">E-Mail:</label>
+                                        <label  class="label-description">E-Mail:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="" type="text" id="invest-email">
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">通讯地址:</label>
+                                        <label  class="label-description">通讯地址:</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input placeholder="" type="text" id="invest-address">
@@ -420,7 +420,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="" class="label-description">附件:</label>
+                                        <label  class="label-description">附件:</label>
                                     </div>
 
                                     <div class="form-input col-md-10">

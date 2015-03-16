@@ -48,7 +48,7 @@
                                     <div class="append-left">
                                         <select class="" id="filter-status">
                                             <option value="0">未申请</option>
-                                            <option value="1">已申请</option>
+                                            <option value="1">待审批</option>
                                         </select>
                                     </div>
                                 </div>
