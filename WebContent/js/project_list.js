@@ -115,7 +115,10 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["currentStageName"] + '</td>');
                 row.append('<td>' + items[i]["creatorName"] + '</td>');
                 row.append('<td>' + items[i]["dateCreated"] + '</td>');
-                row.append('<td>' + '<button type="button" class="btn-ui btn bg-green large medium mrg10L btn_setting" data-value="'+items[i]["id"]+'"><span class="button-content">设置</span></button>' + '</td>');
+
+                link = "projectinfo.jsp?id="+ items[i]["id"];
+                row.append('<td><a class="btn-ui btn bg-green large medium mrg10L btn_setting" href="'+link+'">' + '<span class="button-content">设置</span>' + '</a></td>');
+//                row.append('<td>' + '<button type="button" class="btn-ui btn bg-green large medium mrg10L btn_setting" data-value="'+items[i]["id"]+'"><span class="button-content">设置</span></button>' + '</td>');
             }
 
             $(".btn_setting").click(function(){
