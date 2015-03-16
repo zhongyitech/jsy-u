@@ -147,10 +147,12 @@
                             class="glyph-icon icon-chevron-right"></i>添加投资档案</a></li>
                     <li><a href="./investment-print.jsp" title="打印投资确认书"><i class="glyph-icon icon-chevron-right"></i>打印投资确认书</a>
                     </li>
-                    <li><a href="./customer-list.jsp" title="填写档案客户信息"><i class="glyph-icon icon-chevron-right"></i>客户信息修改</a>
-                    </li>
+
                     <li><a href="invest-list.jsp" title="客户档案管理"><i
                             class="glyph-icon icon-chevron-right"></i>投资档案管理</a></li>
+                    <li><a href="./customer-list.jsp" title="填写档案客户信息">
+                        <i class="glyph-icon icon-chevron-right"></i>客户档案管理</a>
+                    </li>
                     <li><a href="hetong-query.jsp" title="Layouts &amp; Elements"> <i
                             class="glyph-icon icon-chevron-right"></i>合同查询
                     </a></li>
