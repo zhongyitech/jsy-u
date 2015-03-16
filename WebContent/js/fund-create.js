@@ -656,7 +656,7 @@ var SYLFW_LIST={//收益率范围
 			tr.append(vers_td);
 			var vers_div = $('<div class="form-input col-md-12"></div>');
 			vers_td.append(vers_div);
-			var vers_input = $('<input name="vers"/>');
+			var vers_input = $('<input name="vers" placeholder="输入字母"/>');
 			vers_div.append(vers_input);
 			$(vers_input).keyup(function(e){
 				$(this).val(me.string_jsy.toVers($(this).val()));

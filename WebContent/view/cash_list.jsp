@@ -71,7 +71,7 @@
                         <div class="append-left">
                             <select class="" id="filter-status">
                                 <option value="0">未付款</option>
-                                <option value="1">已付款</option>
+                                <option value="1">付款中</option>
                             </select>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                         <div class="append-left">
                             <select class="" id="filter-status2">
                                 <option value="0">未付款</option>
-                                <option value="1">已付款</option>
+                                <option value="1">付款中</option>
                             </select>
                         </div>
                     </div>
