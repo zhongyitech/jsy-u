@@ -509,7 +509,7 @@ var HTLY_LIST ={
 			var time_td = $('<td><span class="" title="' + time + '">' + time + '</span></td>');
 			item_tr.append(time_td);
 			
-			var department = item[this.htly.LYR_KEY];
+			var department = item[this.htly.DEPARTMENT_KEY];
 			var departmentname = '';
 			if(department){
 				departmentname = this.department.getName(department[this.department.ID_KEY]);

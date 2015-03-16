@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b58df2fd-dcc7-46b1-9bd9-7df4ad5bb85a" name="Default" comment="修改了前台的JSON转换，不使用JSON.pare">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/customer-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/customer-list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/fund-create.js" afterPath="$PROJECT_DIR$/WebContent/js/fund-create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/fund-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/fund-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/common/head.js" afterPath="$PROJECT_DIR$/WebContent/js/common/head.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/company-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/company-create.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/fund-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/fund-create.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" afterPath="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/investment-print.js" afterPath="$PROJECT_DIR$/WebContent/js/investment-print.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/investment.js" afterPath="$PROJECT_DIR$/WebContent/js/investment.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsy.iml" afterPath="$PROJECT_DIR$/jsy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/navi.jsp" afterPath="$PROJECT_DIR$/WebContent/view/navi.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/role-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/role-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/role-list.js" afterPath="$PROJECT_DIR$/WebContent/js/role-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/role-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/role-list.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsy.iws" />
@@ -26,7 +22,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="D:\Project\jsy-u" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -37,31 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="head.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/common/head.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="39556" max-vertical-offset="70140">
-              <caret line="1900" column="28" selection-start-line="1900" selection-start-column="28" selection-end-line="1900" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="investment.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/js/investment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10665137" vertical-offset="26493" max-vertical-offset="38514">
-              <caret line="1266" column="26" selection-start-line="1266" selection-start-column="26" selection-end-line="1266" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="department-create.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/department-create.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3368" max-vertical-offset="4494">
-              <caret line="166" column="35" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.28154206" vertical-offset="28718" max-vertical-offset="39018">
+              <caret line="1379" column="39" selection-start-line="1379" selection-start-column="39" selection-end-line="1379" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -96,7 +72,6 @@
         <option value="$PROJECT_DIR$/WebContent/css/user-create.css" />
         <option value="$PROJECT_DIR$/WebContent/js/datacommon.js" />
         <option value="$PROJECT_DIR$/WebContent/js/common/common.js" />
-        <option value="$PROJECT_DIR$/WebContent/js/department-create.js" />
         <option value="$PROJECT_DIR$/WebContent/js/commission_query.js" />
         <option value="$PROJECT_DIR$/WebContent/js/common/plugin.js" />
         <option value="$PROJECT_DIR$/WebContent/view/user-create.jsp" />
@@ -117,6 +92,11 @@
         <option value="$PROJECT_DIR$/WebContent/view/customer-list.jsp" />
         <option value="$PROJECT_DIR$/WebContent/view/navi.jsp" />
         <option value="$PROJECT_DIR$/WebContent/js/common/head.js" />
+        <option value="$PROJECT_DIR$/WebContent/js/investment-print.js" />
+        <option value="$PROJECT_DIR$/WebContent/js/department-create.js" />
+        <option value="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" />
+        <option value="$PROJECT_DIR$/WebContent/view/fund-create.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/view/company-create.jsp" />
         <option value="$PROJECT_DIR$/WebContent/js/investment.js" />
       </list>
     </option>
@@ -133,9 +113,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="y" value="-12" />
+    <option name="width" value="1918" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -223,6 +203,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -275,7 +256,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -710,7 +690,13 @@
       <workItem from="1426295546047" duration="4613000" />
       <workItem from="1426302034610" duration="7616000" />
       <workItem from="1426319130847" duration="30000" />
-      <workItem from="1426319174250" duration="7443000" />
+      <workItem from="1426319174250" duration="7496000" />
+      <workItem from="1426326915040" duration="40000" />
+      <workItem from="1426326963839" duration="2035000" />
+      <workItem from="1426334152472" duration="4000" />
+      <workItem from="1426345758033" duration="4016000" />
+      <workItem from="1426353359702" duration="851000" />
+      <workItem from="1426354600287" duration="7289000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1425108047708</created>
@@ -764,11 +750,19 @@
       <created>1426317443162</created>
       <updated>1426317443162</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="添加投资档案模块修改">
+      <created>1426326867381</created>
+      <updated>1426326867381</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修改创建部门的提交方式">
+      <created>1426354660021</created>
+      <updated>1426354660021</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189511000" />
+    <option name="totallyTimeSpent" value="203799000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -791,8 +785,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-12" width="1918" height="1038" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -815,8 +809,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40134528" sideWeight="0.49921754" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36534217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2382227" sideWeight="0.49921754" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36343613" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -893,7 +887,9 @@
     <MESSAGE value="修改部门与用户管理" />
     <MESSAGE value="排除*.iml文件" />
     <MESSAGE value="修改用户管理模块" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改用户管理模块" />
+    <MESSAGE value="添加投资档案模块修改" />
+    <MESSAGE value="修改创建部门的提交方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改创建部门的提交方式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -915,16 +911,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/WebContent/js/investment.js</url>
-          <line>173</line>
+          <line>157</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/WebContent/js/investment.js</url>
-          <line>306</line>
+          <line>290</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/WebContent/js/investment.js</url>
+          <line>1348</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/WebContent/js/investment.js</url>
+          <line>357</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/WebContent/js/investment.js</url>
+          <line>351</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -932,41 +943,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/view/new_pay_record.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2877">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/view/bankingpaymentorder.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.666667" vertical-offset="2747" max-vertical-offset="3591">
-          <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/view/investment.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9723">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/fund-list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2355" max-vertical-offset="7770">
-          <caret line="128" column="62" selection-start-line="128" selection-start-column="61" selection-end-line="128" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/role-edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="2625">
-          <caret line="106" column="44" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/new_pay_record.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1827">
@@ -1195,7 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64158165" vertical-offset="1" max-vertical-offset="819">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26785713" vertical-offset="0" max-vertical-offset="1701">
           <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,7 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.431629" vertical-offset="3228" max-vertical-offset="4935">
           <caret line="171" column="36" selection-start-line="171" selection-start-column="36" selection-end-line="171" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1235,7 +1208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.058411215" vertical-offset="475" max-vertical-offset="2625">
           <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,7 +1215,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24911033" vertical-offset="1680" max-vertical-offset="7539">
           <caret line="90" column="31" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,7 +1222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12177122" vertical-offset="405" max-vertical-offset="1218">
           <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1259,15 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43173432" vertical-offset="804" max-vertical-offset="1617">
           <caret line="55" column="45" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/department-create.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3368" max-vertical-offset="4494">
-          <caret line="166" column="35" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1275,7 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.49822065" vertical-offset="1008" max-vertical-offset="18942">
           <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1287,10 +1247,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/investment-print.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5609756" vertical-offset="9492" max-vertical-offset="10353">
+          <caret line="475" column="21" selection-start-line="475" selection-start-column="21" selection-end-line="475" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/department-create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3297" max-vertical-offset="4494">
+          <caret line="177" column="2" selection-start-line="177" selection-start-column="2" selection-end-line="177" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/hetong-dengji.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10857">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/hetong-lingyong.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="10444" max-vertical-offset="11781">
+          <caret line="517" column="42" selection-start-line="517" selection-start-column="42" selection-end-line="517" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/view/fund-create.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.0" vertical-offset="1470" max-vertical-offset="4767">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/view/company-create.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.9" vertical-offset="0" max-vertical-offset="5586">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/investment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10665137" vertical-offset="26493" max-vertical-offset="38514">
-          <caret line="1266" column="26" selection-start-line="1266" selection-start-column="26" selection-end-line="1266" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.28154206" vertical-offset="28718" max-vertical-offset="39018">
+          <caret line="1379" column="39" selection-start-line="1379" selection-start-column="39" selection-end-line="1379" selection-end-column="39" />
           <folding />
         </state>
       </provider>
