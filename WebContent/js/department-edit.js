@@ -159,6 +159,7 @@ var DEPARTMENT_FORM = {
         var uid=item.leader ? item.leader.id : undefined;
         var username= uid ? (USER.get(uid).chainName) :'NULL';
         $('#transfer').val(username);
+        $('#transferid').val(uid);
     },
     getItem: function () {
         var me = this;

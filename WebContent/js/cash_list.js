@@ -225,13 +225,13 @@ var VIEWDATA = {
 				var row = $("<tr></tr>");
 				table.append(row);
 
-				//row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				if(items[i]["status"]==0){
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				}else{
-					$(row).attr("style","background-color: #FD0101;");
-					row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-				}
+				row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//if(items[i]["status"]==0){
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
+				//}else{
+				//	$(row).attr("style","background-color: #FD0101;");
+				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
+				//}
 
 				row.append('<td>' + items[i]["fundName"] + '</td>');
 				row.append('<td>' + items[i]["contractNum"] + '</td>');
