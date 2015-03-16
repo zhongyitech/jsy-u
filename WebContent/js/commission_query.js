@@ -1,20 +1,20 @@
 $(document).ready(function () {
-    USERS.ini(true);
-    FUNDS.ini(true);
-    VIEWDATA.fund = FUNDS;
-    VIEWDATA.user = USERS;
+    USER.ini(true);
+    FUND.ini(true);
+    VIEWDATA.fund = FUND;
+    VIEWDATA.user = USER;
     VIEWDATA.customer = CUSTOMER;
     VIEWDATA.deposit = DEPOSIT;
     VIEWDATA.dateformat=DATEFORMAT;
     VIEWDATA.init(true);
     
-    COMMISSION_REPORT.ini(true);
+    //COMMISSION_REPORT.ini(true);
 });
 
 var VIEWDATA = {
     table_id: "#query_table",
     KEYWORD_BUTTON_ID: '#filter-button',
-    KEYWORD_ID: '#filter-keyword',
+    KEYWORD_ID: '#filter-input',
     PAGES_ID: '#page-numbers',
     PAGES_TOTAL: '#pacts-page-total',
     STATUS_ID: '#filter-status',
@@ -203,15 +203,10 @@ var VIEWDATA = {
         var me = this;
         me.getFilter();
 
-        var params = [];
-        var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-        if(me.filter_from==""||me.filter_to==""){
-            entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
-        }
+        var entity = JSON.stringify({type: this.filter_status, startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
 
         //investment-print.js
-        console.log("entity",entity);
-        var data = {url: '/api/commissionInfo/getcommissionInfo', params: params, entity: entity};
+        var data = {url: '/api/commissionInfo/getcommissionInfo', entity: entity};
         var me = this;
         $.ajax({
             type: 'post',
@@ -220,12 +215,10 @@ var VIEWDATA = {
             dataType: 'json',
             async: false,
             success: function(result){
-                console.log(result);
                 if(result && result.rest_status && result.rest_status == "suc"){
                     me.result = result;
                     me.success(result);
                 }
-
             },
             error: function(result){
                 if(LOGIN.error(result)){
@@ -259,7 +252,7 @@ var VIEWDATA = {
                 if(items[i]["type"]==0){
                     row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
                 }else{
-                    $(row).attr("style","background-color: #FD0101;");
+                    $(row).attr("style","background-color: #2381e9;");
                     row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
                 }
 
@@ -394,238 +387,6 @@ var VIEWDATA = {
 };
 
 
-var VIEWSCRIPT = {
-    /*通赤税率获取发票、税金、付款金额*/
-    getMoney: function (rate, amount) {
-        var result = {};
-        return result;
-    },
-
-};
-
-// 数据格式化类
-var FORMATPRIVED = {
-    formatValue: function (name, data) {
-        var fun = FORMATPRIVED[name];
-        if (fun != null) {
-            return fun(data);
-        }
-        return data;
-    },
-    money: function (data) {
-        if (data == null) {
-            data = 0;
-        }
-        return MONEYFORMAT.toYuan(data);
-    },
-    date: function (data) {
-        return DATEFORMAT.toDate(data);
-    },
-    time: function (data) {
-        return DATEFORMAT.toTime(data);
-    }
-	, money_zhcn: function (data) {
-	    return data;
-	},
-    rate: function (data) {
-        return data * 100 + "%";
-    }
-};
-var CUSTOMER = {
-    itmes: {},
-    success: {},
-    item: {},
-    get: function (id) {
-        var me = this;
-        $
-				.ajax({
-				    type: "get",
-				    url: "http://192.168.1.59:18080/jsy-rest/api/customer/getcustomer",
-				    async: false,
-				    data: {
-				        cid: id
-				    },
-				    dataType: "json",
-				    success: function (result) {
-				        if (result && result.rest_result) {
-				            me.item = JSON.parse(result.rest_result);
-				        }
-				    },
-				    beforeSend: function (request) {
-				        request.setRequestHeader("authorization", "r554ad1rchgd8j0j0aiql7itq3d1ted2");
-				        request.setRequestHeader("accept", "application/json");
-				        request.setRequestHeader("Content-Type",
-								"application/json;charset=UTF-8");
-				    },
-				    error: function (result) {
-				        alert(result);
-				    }
-				});
-        return me.item;
-    }
-};
-var USERS = {
-    items: [],
-    map: {},
-    success: function () {
-    },
-    error: function (result) {
-        LOGIN.error(result);
-    },
-    ini: function (async) {
-        // 默认异步加载数据
-        if (!async) {
-            async = false;
-        }
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/user/getAll",
-            async: async,
-            data: {},
-            dataType: "json",
-            success: function (result) {
-                if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
-                    me.success();
-                }
-            },
-            error: function (result) {
-                alert(result);
-            }
-        });
-    },
-    getItems: function () {
-        if (!this.items || this.items.length == 0) {
-            // 同步加载数据
-            this.ini(false);
-        }
-        return this.items;
-    },
-    getMap: function () {
-        if (JSON.stringify(this.map) == "{}") {
-            var items = this.getItems();
-            for (var i in items) {
-                this.map[items[i]['id']] = items[i];
-            }
-        }
-        return this.map;
-    },
-    get: function (id) {
-        var map = this.getMap();
-        return map[id];
-    }
-};
-var FUNDS = {
-    items: [],
-    map: {},
-    success: function () {
-    },
-    error: function (result) {
-        LOGIN.error(result);
-    },
-    ini: function (async) {
-        // 默认异步加载数据
-        if (!async) {
-            async = false;
-        }
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/fund/getAll",
-            async: async,
-            data: {},
-            dataType: "json",
-            success: function (result) {
-                if (result && result.rest_result) {
-                    me.items = JSON.parse(result.rest_result);
-                }
-                me.success();
-            },
-            error: function (result) {
-                me.error();
-            }
-        });
-    },
-    getItems: function () {
-        if (!this.items || this.items.length == 0) {
-            // 同步加载数据
-            this.ini();
-        }
-        return this.items;
-    },
-    getMap: function () {
-        if (JSON.stringify(this.map) == "{}") {
-            var items = this.getItems();
-            for (var i in items) {
-                this.map[items[i]['id']] = items[i];
-            }
-        }
-        return this.map;
-    },
-    get
-
-	: function (id) {
-	    var map = this.getMap();
-	    return map[id];
-	}
-};
-var DEPARTMENTS = {
-    items: [],
-    itemMap: {},
-    item: {},
-    ini: function () {
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/department/getAll",
-            async: true,
-            data: {},
-            dataType: "json",
-            success: function (result) {
-                me.items = JSON.parse(result.rest_result);
-            },
-            error: function (result) {
-                if (LOGIN.error(result)) {
-                    return;
-                }
-            }
-        });
-    },
-    get: function (id) {
-        if (JSON.stringify(this.itemMap) == "{}") {
-            for (var i in this.items) {
-                this.itemMap[this.items[i]['id']] = this.items[i];
-            }
-        }
-        return this.itemMap[id];
-    },
-    getDepartMent: function (id) {
-        var me = this;
-        var url = "http://192.168.1.59:18080/jsy/api/department";
-        $.ajax({
-            type: "get",
-            url: url,
-            async: false,
-            data: {
-                id: id
-            },
-            dataType: "json",
-            success: function (result) {
-                me.item = JSON.parse(result.rest_result)[0];
-            },
-            beforeSend: function (request) {
-                request.setRequestHeader("authorization", "r554ad1rchgd8j0j0aiql7itq3d1ted2");
-                request.setRequestHeader("accept", "application/json");
-                request.setRequestHeader("Content-Type",
-						"application/json;charset=UTF-8");
-            },
-            error: function (result) {
-            }
-        });
-        return me.item;
-    }
-};
 var DEPOSIT= {
     getData:function(sfgs,rate,ratetbefore,amount){
         this.rate=rate;

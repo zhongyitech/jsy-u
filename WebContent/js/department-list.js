@@ -200,7 +200,6 @@ var DEPARTMENT_LIST = {
 
             //todo:
             var perName = '';
-            console.log(item);
             if (item.performance) {
                 perName = this.performanceTypes.getItem(item.performance.id, "mapName");
             }

@@ -168,7 +168,7 @@ var DEPARTMENT_FORM = {
         var entity = JSON.stringify(item);
         var data = {url: '/api/department', params: params, entity: entity};
 
-        $.io.post(data)
+        $.io.put(data)
             .success(function (result) {
                 window.location = PAGE.DEPARTMENT_LIST;
             })

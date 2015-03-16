@@ -1899,31 +1899,38 @@ var USER = {
     },
     getDM: function (id) {
         var user = this.get(id);
-        var authority = 'ROLE_MANAGER';
-        var department = user[this.DEPARTMENT_KEY];
-        var departmentid = department[DEPARTMENT.ID_KEY];
+//        var authority = 'ROLE_MANAGER';
+//        var department = user[this.DEPARTMENT_KEY];
+//        var departmentid = department[DEPARTMENT.ID_KEY];
 
+        var params=JSON.stringify({uid:id});
+        var data={url:'/api/user/findUserLeader',params:params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/user/get",
-            async: false,
-            data: {
-                authority: authority,
-                departmentid: departmentid
-            },
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.item = (response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+
+        me.item=$.io.get(true,data).data();
+
+//
+//
+//        $.ajax({
+//            type: "post",
+//            url: "../rest/user/get",
+//            async: false,
+//            data: {
+//                authority: authority,
+//                departmentid: departmentid
+//            },
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.item = (response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
 
         return me.item;
     },

@@ -89,6 +89,18 @@
                             </div>
                         </div>
 
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label>关联的有限合伙：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="fundCompany">
+                                    <option>选择一个有限合伙企业</option>
+                                </select>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>

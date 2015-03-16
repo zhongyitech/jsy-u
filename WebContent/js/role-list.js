@@ -165,6 +165,7 @@ var ROLE_LIST ={
 			}
 		},
 		add: function (item){//table增加一行
+            if(!item) return;
 			var key = this.tr_value++;
 			var table = this.getTable();
 			
@@ -185,6 +186,8 @@ var ROLE_LIST ={
 			}else{
 				name_td.append($('<span class="span-12"></span>')); 
 			}
+
+            tr.append('<td></td>');
 		},
 		remove: function(){//删除选中行
 			var table = this.getTable();
