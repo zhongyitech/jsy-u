@@ -16,6 +16,10 @@
  */
 (function($){
     var BaseURI="../rest/item/";
+    /**
+     * 特殊key过滤、映射
+     * @type {{class: string}}
+     */
     var SpecKeys={
         "class":"className"
     };
@@ -91,8 +95,10 @@
          */
         _fetchKeys:function(data){
             $.each(data||{},function(key,v){
-                if(SpecKeys[key]) data[SpecKeys[key]]= v;
-                if(typeof v=="string") delete data[key];
+                if(SpecKeys[key]){
+                    data[SpecKeys[key]]= v;
+                    if(typeof v=="string") delete data[key];
+                }
             });
         }
     };
@@ -202,43 +208,97 @@
  * common project method
  */
 (function($){
+    /**
+     * some utils
+     * @type {{key: Function, clear: Function}}
+     */
+    var Util={
+        key:function(key){
+            return ("_"+key).replace(/\.|,| /g,"_");
+        },
+        clear:function(obj,keys){
+            if(obj&&keys&&keys.length){
+                $.each(keys,function(i,key){
+                    delete obj[key];
+                });
+            }
+        }
+    };
+    /**
+     * type config tool
+     * @type {{_cache: {}, _data: {}, _data_uri: string, request: Function, clearCache: Function, cacheItems: Function, checkCache: Function, search: Function}}
+     */
     var TypeConfig={
         _cache:{},
         _data:{},
-        _type_config_uri:"/api/typeConfig/type",
-        _getKey:function(key){
-            return "_"+key;
-        },
+        _data_uri:"/api/typeConfig/type",
         request:function(type,async){
-            var key=this._getKey(type),
+            var key=Util.key(type),
                 typeObj=this._cache[key];
             if(typeObj) return typeObj;
             return this._cache[key]=$.io.get(!async,{
-                url:this._type_config_uri,
+                url:this._data_uri,
                 params:{
                     type:type
                 }
             });
         },
         clearCache:function(type){
-            var _key=this._getKey(type);
-            delete this._cache[_key];
-            delete this._data[_key];
+            var _key=Util.key(type);
+            Util.clear(this._cache,_key);
+            Util.clear(this._data,_key);
         },
         cacheItems:function(type,data,propKey){
             var _self=this;
-            this._data[this._getKey(type)]={};
+            this._data[Util.key(type)]={};
             $.each(data||[], function(i,v) {
                 if(!v)return;
-                _self._data[_self._getKey(type)][_self._getKey(v[propKey])]=v;
+                _self._data[Util.key(type)][Util.key(v[propKey])]=v;
             });
         },
         checkCache:function(type){
-            return !!this._data[this._getKey(type)];
+            return !!this._data[Util.key(type)];
         },
         search:function (type,key) {
-            var _key=this._getKey(type),obj=this._data[_key];
-            return key&&obj&&obj[this._getKey(key)]||null;
+            var _key=Util.key(type),obj=this._data[_key];
+            return key&&obj&&obj[Util.key(key)]||null;
+        }
+    };
+    var DomainReflect={
+        _cache:{},
+        _data:{},
+        _data_uri:"/api/reflect",
+        _key:function(params){
+            return params.id+params.className+params.fields;
+        },
+        request:function(params,async){
+            var key=Util.key(this._key(params)),
+                typeObj=this._cache[key];
+            if(typeObj) return typeObj;
+            return this._cache[key]=$.io.get(!async,{
+                url:this._data_uri,
+                params:params
+            });
+        },
+        clearCache:function(params){
+            var _key=Util.key(this._key(params));
+            Util.clear(this._cache,_key);
+            Util.clear(this._data,_key);
+        },
+        cacheItems:function(params,data,propKey){
+            var _self=this,cacheKey=Util.key(this._key(params));
+            this._data[cacheKey]={};
+            $.each(data||[], function(i,v) {
+                if(!v)return;
+                _self._data[cacheKey][Util.key(v[propKey])]=v;
+            });
+        },
+        checkCache:function(params){
+            return !!this._data[Util.key(this._key(params))];
+        },
+        search:function (params,key) {
+            var _key=Util.key(this._key(params)),obj=this._data[_key];
+            return key&&obj&&obj[Util.key(key)]||null;
         }
     };
     $.extend(true,{
@@ -266,6 +326,29 @@
                                 TypeConfig.cacheItems(type,data,"id");
                             });
                             var result=TypeConfig.search(type,id);
+                            if(prop&&typeof prop=="function"){
+                                return prop.call(this,result);
+                            }
+                            return result&&(prop?result[prop]:result)||null;
+                        };
+                    }
+                    return xhr;
+                }
+                return null;
+            },
+            domain:function(){
+                var args=Array.prototype.slice.apply(arguments),_async=false;
+                if(args.length&&args.length>=2){
+                    if(args[0]&&typeof args[0]=="boolean") _async=args.shift();
+                    var ids=args.shift(),className=args.shift(),fields=args.shift(),params={id:typeof ids=="string"?ids:ids&&ids.toString()||"",className:className,fields:typeof fields=="string"?fields:fields&&fields.toString()||""};
+                    if(args.shift()) TypeConfig.clearCache(params);
+                    var xhr=DomainReflect.request(params,_async);
+                    if(!_async){
+                        xhr.getItem=function(id,prop){
+                            DomainReflect.checkCache(params)||xhr.success(function(data){
+                                DomainReflect.cacheItems(params,data,"id");
+                            });
+                            var result=DomainReflect.search(params,id);
                             if(prop&&typeof prop=="function"){
                                 return prop.call(this,result);
                             }

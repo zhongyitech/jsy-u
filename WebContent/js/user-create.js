@@ -291,7 +291,7 @@ var USER_FORM = {
         var item = me.getItem();
         item['bankAccount']=BANKACCOUNTS.getItems();
         var rolelis='';
-        $.each(item.role,function(i,r){
+        $.each(item.role||[],function(i,r){
            console.log(r);
            return rolelis+= r.id+',';
         });
