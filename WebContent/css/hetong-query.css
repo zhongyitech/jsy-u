@@ -2,16 +2,13 @@
 
 .login-title{
 	font-weight: bold;
-	font-family: 微软雅黑!important;
+	font-family: "微软雅黑"!important;
 }
 #table tr{
 	padding: 5px;
 }
 .vailderror{
 	color:red;
-}
-. {
-	text-align: right;
 }
 
 .form-bordered .form-label{

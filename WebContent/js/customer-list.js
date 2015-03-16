@@ -71,23 +71,25 @@ var CUSTOMER_LIST ={
 				keyword: this.filter_keyword
 			});
 			var params = JSON.stringify({});
-			var data = {url: '/api/customer/readAllForPage', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+			var data = {url: '/api/customerArchives', params: params, entity: entity};
+
+            me.response= $.io.get(true,data).data();
+            me.setView(me.response);
+//			$.ajax({
+//				type: "post",
+//				url: "../rest/item/post",
+//				async: async,
+//				data: data,
+//				dataType: "json",
+//				success: function(response){
+//					me.response = response;
+//					me.setView(response);
+//				},
+//				error: function(response){
+//					me.response = response;
+//					LOGIN.error(response);
+//				}
+//			});
 		},
 		setView: function(response){
 			this.setPage(response);
@@ -136,8 +138,8 @@ var CUSTOMER_LIST ={
 			this.set(true);
 		},
 		setTable: function (response){
-			this.items = JSON.parse(response[REST.RESULT_KEY]);
-			
+			this.items = response;
+
 			var table = this.getView().find(this.TABLE_ID);
 			var trs = table.find('tr');
 			if(trs && trs.length){

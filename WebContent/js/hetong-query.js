@@ -174,8 +174,9 @@ var VIEWMODEL = {
         var entity = JSON.stringify({ startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword });
         var data = { url: '/api/paymentRecord/readAllForPage', params: params, entity: entity };
 
-        me.response=$.io.get(data).data();
+        me.response=$.io.post(true,data).data();
         me.setView(me.response);
+
 //        $.ajax({
 //            type: 'post',
 //            url: '../rest/item/post',
@@ -207,6 +208,12 @@ var VIEWMODEL = {
     },
     setTable: function (items)
     {
+        items=[
+            {customer:'safafaf'}
+        ];
+        /**
+         * 绑定数据源:生成表格
+         */
         this.DataBind.binding(items);
     },
     iniPage: function ()
