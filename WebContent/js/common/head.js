@@ -752,26 +752,7 @@ var CUSTOMER = {
         var me = this;
         var params = JSON.stringify({cid: id});
         var data = {url: '/api/customerArchives/getcustomer', params: params};
-
         me.item= $.io.get(true,data).data();
-//        $.ajax({
-//            type: 'post',
-//            url: '../rest/item/get',
-//            data: data,
-//            dataType: 'json',
-//            async: false,
-//            success: function (response) {
-//                me.response = response;
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
-//
-//        if (this.response[REST.RESULT_KEY]) {
-//            me.item = JSON.parse(me.response[REST.RESULT_KEY]);
-//        }
         return me.item;
     },
     getName: function (id) {
