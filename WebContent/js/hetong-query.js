@@ -156,6 +156,10 @@ var VIEWMODEL = {
             me.selectFirst();
         });
     },
+    /**
+     * 获取数据并显示到前台
+     * @param async
+     */
     setData: function (async)
     {
         // 异步加载数据
@@ -169,27 +173,30 @@ var VIEWMODEL = {
         var params = {};
         var entity = JSON.stringify({ startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword });
         var data = { url: '/api/paymentRecord/readAllForPage', params: params, entity: entity };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: async,
-            success: function (response)
-            {
-                me.response = response;
-                me.setView(response);
-            },
-            error: function (response)
-            {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+
+        me.response=$.io.get(data).data();
+        me.setView(me.response);
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/post',
+//            data: data,
+//            dataType: 'json',
+//            async: async,
+//            success: function (response)
+//            {
+//                me.response = response;
+//                me.setView(response);
+//            },
+//            error: function (response)
+//            {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
     },
     setView: function (response)
     {
-        this.items = JSON.parse(response[REST.RESULT_KEY]);
+        this.items = response;
         this.setTable(this.items);
         this.setPage(response);
     },
