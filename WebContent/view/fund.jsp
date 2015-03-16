@@ -27,7 +27,7 @@
                     <table class="table text-center mrg0B" id="funds-table">
                         <thead>
                         <tr>
-                            <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                            <th class="text-center"><input type="checkbox" name="checkbox" /></th>
                             <th class="text-center">基金编号</th>
                             <th class="text-center">基金名称(*)</th>
                             <th class="text-center">状态(*)</th>
