@@ -50,8 +50,10 @@
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
-									<th class="text-center">角色名称</th>
-								</tr>
+									<th class="text-center" width="300px">角色名称</th>
+								<th></th>
+                                </tr>
+
 							</thead>
 							<tbody></tbody>
 						</table>
