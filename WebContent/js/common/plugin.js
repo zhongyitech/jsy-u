@@ -372,7 +372,7 @@
     };
     var Element={
         options:'{#foreach $T as item}{$P.item=$P.callback($T.item)}' +
-                     '<option value="{$P.item.value}">{$P.item.text}</option>' +
+                     '<option data-class="{$P.item.class}" value="{$P.item.value}">{$P.item.text}</option>' +
                      '{#/for}'
     };
     var Utils={
