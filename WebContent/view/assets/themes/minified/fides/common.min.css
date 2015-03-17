@@ -1,6 +1,5 @@
 /*@import url(http://fonts.googleapis.com/css?family=Lato:300,400);*/
 .dz-message span, #page-title h3, #page-content > h3, #sidebar-menu li a, #header-logo, .content-box-header, .dashboard-panel .heading, .dashboard-panel .header {
-    font-family: Lato, sans-serif;
     font-style: normal;
     font-weight: 300
 }
