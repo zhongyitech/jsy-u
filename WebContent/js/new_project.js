@@ -40,7 +40,7 @@ var VIEWDATA={
                 alert("请输入项目名称");
                 return;
             }
-            if(!incharger){
+            if(!inchargerName){
                 alert("请输入项目负责人");
                 return;
             }

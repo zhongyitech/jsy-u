@@ -9,8 +9,10 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
+
     <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
     <link rel="stylesheet" type="text/css" href="../css/project.css">
+    <link rel="stylesheet" type="text/css" href="../css/project_limittime_setting.css">
     <title>项目访问时间限制设置</title>
 </head>
 <body>
@@ -26,10 +28,196 @@
                         </a>
                     </div>
 
+                    <div class='tabbed_content'>
+                        <div class='tabs'><!--$(.tabs span.current).ini("index")-->
+                           <div class='moving_bg'> &nbsp; </div>
+                           <span class='tab_item current'>资料采集</span>
+                           <span class='tab_item'> 资料评判 </span>
+                           <span class='tab_item'> 现场考察（方案确定）</span>
+                           <span class='tab_item'> 现场考察(OA审核) </span>
+                           <span class='tab_item'> 投决会 </span>
+                           <span class='tab_item'> 第三方法律机构 </span>
+                           <span class='tab_item'> 项目合同 </span>
+                        </div>
 
+                        <div class='slide_content'>
+                            <div class='tabslider'>
+                                <ul>
+                                    <div class="content-box box-toggle t1">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                    <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                    <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t2">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t3">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t4">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t5">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t6">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="content-box box-toggle t7">
+                                        <table class="table text-center mrg0B xianshi_table" >
+                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
+                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时开始时间">限时开始时间</span>
+                                            <th class="text-center"><span class="text-overflow item-date"
+                                                                          title="限时结束时间">限时结束时间</span>
+                                        </table>
+
+                                        <div class="button-pane">
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
+                                                <span class="button-content">删除选中行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
+                                                <span class="button-content">增加一行</span></button>
+                                            <button type="button"
+                                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
+                                                <span class="button-content">保存</span></button>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="../js/project_limittime_set.js"></script>
 </body>
 </html>
