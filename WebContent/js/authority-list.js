@@ -182,6 +182,7 @@ var ROLE_LIST ={
 			}else{
 				name_td.append($('<span class="span-12"></span>')); 
 			}
+            tr.append('<td></td>');
 		},
 		remove: function(){//删除选中行
 			var table = this.getTable();

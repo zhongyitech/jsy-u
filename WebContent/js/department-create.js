@@ -70,13 +70,7 @@ var DEPARTMENT_FORM = {
         }
     },
     getPerformanceItem: function () {
-        var params = JSON.stringify({type: 8});
-        var data = {url: '/api/typeConfig/type', params: params};
-        var items = null;
-        $.project.type(8,true).success(function(result){
-            items = result;
-        });
-        return items;
+        return $.project.type(8).data();
     },
     getDescriptionView: function () {
         var form = this.getForm();
