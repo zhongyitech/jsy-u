@@ -305,24 +305,30 @@ var CUSTOMER_FORM={//客户信息表单
 			var item = me.getItem();
 			var params = JSON.stringify({id: item[CUSTOMER.ID_KEY]});
 			var entity = JSON.stringify(item);
-			var data = {url: '/api/customer/update', params: params, entity: entity};
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/put", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					window.location = PAGE.CUSTOMER_LIST;
-				},
-				error: function(response){
-					me.response = response;
-					if(LOGIN.error(response)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
-				}
-			});
+			var data = {url: '/api/customerArchives/update', params: params, entity: entity};
+
+            $.io.put(data)
+                .success(function(result){
+                    window.location = PAGE.CUSTOMER_LIST;
+                });
+
+//			$.ajax({
+//				type: "post",
+//				url: "../rest/item/put",
+//				async: true,
+//				data: data,
+//				dataType: "json",
+//				success: function(response){
+//					me.response = response;
+//					window.location = PAGE.CUSTOMER_LIST;
+//				},
+//				error: function(response){
+//					me.response = response;
+//					if(LOGIN.error(response)){
+//						alert('提交失败，请补全带*号的必填信息.');
+//					}
+//				}
+//			});
 		}
 };
 
