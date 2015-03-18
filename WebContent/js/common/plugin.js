@@ -369,6 +369,7 @@
 (function($){
     var Constant={
         empty:"",
+        rest_total:"rest_total",
         button_disabled:"ui-state-disabled",
         pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
@@ -468,7 +469,7 @@
         };
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            var total=response["rest_total"]||_self._pageSize;
+            var total=response[Constant.rest_total]||_self._pageSize;
             _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
             $.renderData(_self._object,Element.pager,{
                 currentPage:_self._currentPage,
