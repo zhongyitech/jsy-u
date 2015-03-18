@@ -376,7 +376,7 @@
         options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
                      '<option value="{$P.item.value}">{$P.item.text}</option>' +
                      '{#/for}',
-        pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default"><i class="icon-caret-left"></i></a>' +
+        pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default mrg0L"><i class="icon-caret-left"></i></a>' +
                     '<a title="上一页" class="prev fg-button ui-button ui-state-default"><i class="icon-angle-left"></i></a>' +
                     '<span class="page-step">' +
                     '{#for index = 1 to $T.maxPage}' +
@@ -507,8 +507,8 @@
                 _self._resetCls(first,prev,last,next);
                 _self._resetPage(pageStep,pageStep.find("."+Constant.button_disabled));
                 _self.__fn&&_self.__fn.call&&_self.__fn.call(_self.__triggerObject,{
-                    pageSize:_self._pageSize,
-                    pageNum:_self._currentPage
+                    pagesize:_self._pageSize,
+                    startposition:(_self._currentPage-1)*_self._pageSize
                 });
             });
         });
@@ -522,8 +522,8 @@
             select:function(selector,data,fn){
                 return new Select(selector,data,fn);
             },
-            pager:function(selector,data,fn){
-                return new Pager(selector,data,fn);
+            pager:function(selector,data,options){
+                return new Pager(selector,data,options);
             }
         }
     })

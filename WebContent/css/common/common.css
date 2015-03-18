@@ -16,6 +16,12 @@
     width: auto;
 }
 
+.page-step a.fg-button.ui-button.ui-state-default.ui-state-disabled {
+    background: #FFFFFF;
+    border: 1px solid #B1B5BB;
+    color: #333;
+}
+
 .dataTables_filter, .dataTables_paginate{
     float: initial;
 }
