@@ -135,11 +135,11 @@ select[disabled]{
 	background-color: #dddddd;
 }
 
-.page-bar{
-    height: 34px;
-    padding-left: 3px;
-    margin-bottom: 12px;
-}
+/*.page-bar{*/
+    /*height: 34px;*/
+    /*padding-left: 3px;*/
+    /*margin-bottom: 12px;*/
+/*}*/
 
 .page-number{
     margin-left: 1px!important;

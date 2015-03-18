@@ -5,6 +5,26 @@
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 
+.page-bar{
+    height: 34px;
+    margin: 4px 0 0 0;
+}
+
+.page-step a{
+    min-width: 20px;
+    padding: 0 2px;
+    width: auto;
+}
+
+.dataTables_filter, .dataTables_paginate{
+    float: initial;
+}
+
+.ui-button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
 .tcalInput {
     background:#ffffff url('../../images/cal_32.png') no-repeat 100% 50% ;
 }

@@ -368,14 +368,51 @@
  */
 (function($){
     var Constant={
-        empty:""
+        empty:"",
+        button_disabled:"ui-state-disabled",
+        pager_style:"dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
     var Element={
-        options:'{#foreach $T as item}{$P.item=$P.callback($T.item)}' +
-                     '<option data-class="{$P.item.class}" value="{$P.item.value}">{$P.item.text}</option>' +
-                     '{#/for}'
+        options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
+                     '<option value="{$P.item.value}">{$P.item.text}</option>' +
+                     '{#/for}',
+        pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default"><i class="icon-caret-left"></i></a>' +
+                    '<a title="上一页" class="prev fg-button ui-button ui-state-default"><i class="icon-angle-left"></i></a>' +
+                    '<span class="page-step">' +
+                    '{#for index = 1 to $T.maxPage}' +
+                        '<a title="第{$T.index}页" data-index="{$T.index}" class="fg-button ui-button ui-state-default{$T.currentPage==$T.index?\" ui-state-disabled\":\"\"}">{$T.index}</a>' +
+                    '{#/for}' +
+                    '</span>' +
+                    '<a title="下一页" class="next fg-button ui-button ui-state-default"><i class="icon-angle-right"></i></a>' +
+                    '<a title="最后一页" class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default"><i class="icon-caret-right"></i></a>'
     };
     var Utils={
+        fetchCallback:function(data){
+            data=data||{};
+            if(!$.io.isXHR(data)){
+                var dataCopy= $.extend(true,{},data);
+                data={
+                    success:function(fn){
+                        fn.call(this,dataCopy);
+                    }
+                };
+            }
+            return data;
+        },
+        addClass:function(){
+            var args=Array.prototype.slice.apply(arguments);
+            if(args.length){
+                var cls=args.shift();
+                while(args.length) args.shift().addClass(cls);
+            }
+        },
+        removeClass:function(){
+            var args=Array.prototype.slice.apply(arguments);
+            if(args.length){
+                var cls=args.shift();
+                while(args.length) args.shift().removeClass(cls);
+            }
+        }
     };
     /**
      * select options
@@ -393,17 +430,8 @@
             }
         };
         _self._object=$(selector);
-        _self._dom=[];
-        if(!$.io.isXHR(data)){
-            var dataCopy= $.extend(true,{},data);
-            data={
-                success:function(fn){
-                    fn.call(this,dataCopy);
-                }
-            };
-        }
+        data=Utils.fetchCallback(data);
         data.success(function(response){
-            _self._data=response;
             $.renderData(_self._object,Element.options,response,_self._callback);
         });
         _self.select=function(value){
@@ -415,40 +443,87 @@
             };
         };
         _self.getSelected=function(){
-            return _self._selected;
+            return _self._selected||{};
         };
     };
-    var Pager=function(id,curPage,fn){
+    var Pager=function(selector,data,options){
         var _self=this;
-        _self._callback=fn|| function () {
-            alert("no callback!");
-        };
-        _self._curPage=curPage||1;
+        options=options||{};
+        _self._object=$(selector);
+        _self._object.addClass(Constant.pager_style);
+        //固定第一页
         _self._firstPage=1;
+        _self._maxPage=options.maxPage&&(options.maxPage<36?options.maxPage:36)||10;
+        _self._pageSize=options.pageSize&&(options.pageSize<100?options.pageSize:100)||10;
         _self._lastPage=1;
-        _self.page=function(pageNum){
-
+        _self._currentPage=1;
+        _self._resetCls=function(first,prev,last,next){
+            if(_self._currentPage==_self._firstPage) Utils.addClass(Constant.button_disabled,first,prev);
+            if(_self._currentPage==_self._lastPage) Utils.addClass(Constant.button_disabled,last,next);
+            Utils.addClass(Constant.button_disabled,_self._object.find(".page-step a[data-index="+_self._currentPage+"]"));
         };
-        _self.prev=function(){
-
+        _self._resetPage=function(pageStep,currentPage){
+            if(!currentPage.next().length&&_self._currentPage<_self._lastPage) pageStep.append(pageStep.find("[data-index]:eq(0)").text(_self._currentPage+1).attr("data-index",_self._currentPage+1));
+            if(!currentPage.prev().length&&_self._currentPage>_self._firstPage) pageStep.find("[data-index]:eq(-1)").text(_self._currentPage-1).attr("data-index",_self._currentPage-1).insertBefore(pageStep.find("[data-index]:eq(0)"));
         };
-        _self.next=function(){
-
-        };
-        _self.first=function(){
-
-        };
-        _self.last=function(){
-
-        };
+        data=Utils.fetchCallback(data);
+        data.success(function(response){
+            var total=response["rest_total"]||_self._pageSize;
+            _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
+            $.renderData(_self._object,Element.pager,{
+                currentPage:_self._currentPage,
+                maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage
+            },_self._callback);
+            var first=_self._object.find(".first"),last=_self._object.find(".last"),prev=_self._object.find(".prev"),next=_self._object.find(".next");
+           _self._resetCls(first,prev,last,next);
+            _self._object.find(".ui-button").on("click",function(){
+                var _this=$(this),pageStep=$(".page-step");
+                if(_this.hasClass(Constant.button_disabled)) return false;
+                _self._object.find(".ui-button."+Constant.button_disabled).removeClass(Constant.button_disabled);
+                if(_this.hasClass("first")){
+                    _self._currentPage=_self._firstPage;
+                    Utils.addClass(Constant.button_disabled,_this,prev);
+                    pageStep.find("a[data-index]").each(function(i){
+                        var index=_self._currentPage+i;
+                        $(this).attr({"data-index":index,"title":"第"+index+"页"}).text(index);
+                    });
+                }else if(_this.hasClass("last")){
+                    _self._currentPage=_self._lastPage;
+                    Utils.addClass(Constant.button_disabled,_this,next);
+                    pageStep.find("a[data-index]").each(function(i){
+                        var index=_self._currentPage+i+1-_self._maxPage;
+                        $(this).attr({"data-index":index,"title":"第"+index+"页"}).text(index);
+                    });
+                }else if(_this.hasClass("next")){
+                    _self._currentPage+=1;
+                    if(_self._currentPage>=_self._lastPage) Utils.addClass(Constant.button_disabled,_this,last);
+                }else if(_this.hasClass("prev")){
+                    _self._currentPage-=1;
+                    if(_self._currentPage<=_self._firstPage) Utils.addClass(Constant.button_disabled,_this,first);
+                }else{
+                    _self._currentPage=parseInt(_this.attr("data-index"));
+                    Utils.addClass(Constant.button_disabled,_this);
+                }
+                _self._resetCls(first,prev,last,next);
+                _self._resetPage(pageStep,pageStep.find("."+Constant.button_disabled));
+                _self.__fn&&_self.__fn.call&&_self.__fn.call(_self.__triggerObject,{
+                    pageSize:_self._pageSize,
+                    pageNum:_self._currentPage
+                });
+            });
+        });
+        _self.onChange=function(fn,_this){
+            _self.__triggerObject=_this;
+            _self.__fn=fn;
+        }
     };
     $.extend(true,{
         dom:{
-            select:function(id,data,fn){
-                return new Select(id,data,fn);
+            select:function(selector,data,fn){
+                return new Select(selector,data,fn);
             },
-            pager:function(id,curPage){
-                return new Pager(id,curPage);
+            pager:function(selector,data,fn){
+                return new Pager(selector,data,fn);
             }
         }
     })
