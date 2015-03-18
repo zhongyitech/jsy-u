@@ -370,7 +370,7 @@
     var Constant={
         empty:"",
         button_disabled:"ui-state-disabled",
-        pager_style:"dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
+        pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
     var Element={
         options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
@@ -448,7 +448,7 @@
     };
     var Pager=function(selector,data,options){
         var _self=this;
-        options=options||{};
+        options= $.extend(true,{pageSize:10,maxPage:10},options);
         _self._object=$(selector);
         _self._object.addClass(Constant.pager_style);
         //固定第一页
