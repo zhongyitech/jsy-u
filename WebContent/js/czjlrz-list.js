@@ -3,13 +3,7 @@
         _entity:{
             startposition: 0,
             pagesize: 10,
-            query:{
-                type:"or",
-                condition:{
-                    fields:[],
-                    value:""
-                }
-            }
+            query:{type:"or",condition:{fields:["czr","url","method","params","address"],value:""}}
         },
         _request:function(options){
             return $.io.post($.extend(true,{
@@ -42,10 +36,10 @@
         _bindEvent:function(){
             var _this=this,keyword=$("#keyword-input"),searchButton=$("#keyword-button");
             keyword.unbind("keyup").bind("keyup",function(e){
-                if(e.keyCode==13) _this._render({entity:{query:{condition:{value:keyword.val()}}}});
+                if(e.keyCode==13) _this._render({entity:{startposition: 0,query:{condition:{value:keyword.val()}}}});
             });
             searchButton.unbind("click").bind("click",function(){
-                _this._render({entity:{query:{condition:{value:keyword.val()}}}});
+                _this._render({entity:{startposition: 0,query:{condition:{value:keyword.val()}}}});
             });
         },
         render:function(){
