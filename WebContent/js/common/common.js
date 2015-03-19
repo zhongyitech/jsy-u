@@ -1686,6 +1686,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             this._tree.push(new TextNode('', 1, this));
             return;
         }
+        s = s.replace(/<!--|-->/g, ''); //remove endlines
         s = s.replace(/[\n\r]/g, ''); //remove endlines
         s = s.replace(/\{\*.*?\*\}/g, ''); //remove comments
         this._includes = jQuery.extend({}, this._templates || {}, includes || {});
@@ -2616,9 +2617,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
      * @memberOf jQuery.fn
      */
     jQuery.fn.setTemplateElement = function (elementName, includes, settings) {
-        var s = jQuery('#' + elementName).val();
-        if(s == null) {
-            s = jQuery('#' + elementName).html();
+        var el = elementName.jquery?elementName:jQuery('#' + elementName);
+        var s = el.val();
+        if(s == null||s == "") {
+            s = el.html();
             s = s.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
         }
 
@@ -3922,7 +3924,38 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         Sync:new Ajax(false)
     });
 })(jQuery);
-
+/**
+ * Tools
+ */
+(function($){
+    var UtilsPrototype={
+        dateFormat: function (date,format) {
+            if(!date)return "";
+            var time = new Date(date);
+            var o = {
+                "M+": time.getMonth() + 1, //月份
+                "d+": time.getDate(), //日
+                "h+": time.getHours(), //小时
+                "m+": time.getMinutes(), //分
+                "s+": time.getSeconds(), //秒
+                "q+": Math.floor((time.getMonth() + 3) / 3), //季度
+                "S": time.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(format)) format = format.replace(RegExp.$1, (time.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return format;
+        }
+    };
+    var Utils=function(){
+        this.dateFormat=function(date,format){
+            return UtilsPrototype.dateFormat(date,format);
+        };
+    };
+    $.extend(true,{
+        utils:new Utils()
+    });
+})(jQuery);
 /**
  * jTemplate plugin
  */
@@ -3931,7 +3964,13 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         render:function($selector,template,data,fn){
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
-                if(!$selector.hasTemplate()) $selector.setTemplate(template);
+                if(!$selector.hasTemplate()&&template){
+                    if(template.jquery||template.indexOf("#")==0||template.indexOf(".")==0){
+                        $selector.setTemplateElement($(template));
+                    }else{
+                        $selector.setTemplate(template);
+                    }
+                }
                 if(fn) $selector.setParam("callback",fn);
                 $selector.processTemplate(data);
                 return true;
