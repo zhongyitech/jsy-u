@@ -3972,6 +3972,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                     }
                 }
                 if(fn) $selector.setParam("callback",fn);
+                if(typeof data=="string")data=JSON.parse(data);
                 $selector.processTemplate(data);
                 return true;
             }catch(e){

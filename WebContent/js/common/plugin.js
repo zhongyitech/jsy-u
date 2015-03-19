@@ -37,7 +37,7 @@
         _key:{
             status:"rest_status",
             result:"rest_result",
-            pager:"rest_pager"
+            total:"rest_total"
         },
         _callback:{
             success:function(data){
@@ -57,7 +57,7 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.pager]?fn.call(fn,this.result(response),response[this._key.pager]):fn.call(fn,this.result(response))):fn.call(fn,response);
+            if(fn&&fn.call)response?(response[this._key.total]?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
         },
         result:function(data){
           return data&&data[this._key.result];
