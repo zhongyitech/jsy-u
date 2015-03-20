@@ -150,9 +150,7 @@
 
                     <li><a href="invest-list.jsp" title="客户档案管理"><i
                             class="glyph-icon icon-chevron-right"></i>投资档案管理</a></li>
-                    <li><a href="./customer-list.jsp" title="填写档案客户信息">
-                        <i class="glyph-icon icon-chevron-right"></i>客户档案管理</a>
-                    </li>
+
                     <li><a href="hetong-query.jsp" title="Layouts &amp; Elements"> <i
                             class="glyph-icon icon-chevron-right"></i>合同查询
                     </a></li>
@@ -241,13 +239,13 @@
                             class="glyph-icon icon-chevron-right"></i>记账凭证查询
                     </a></li>
                     <li><a href="./bankingTransportation.jsp" title="查询各银行的余额及其它信息"> <i
-                            class="glyph-icon icon-chevron-right"></i>银行信息查询
+                            class="glyph-icon icon-chevron-right"></i>银行余额查询
                     </a></li>
                     <li><a href="./bankingTransportation.jsp" title="查询从银行同步的交易流水信息"> <i
-                            class="glyph-icon icon-chevron-right"></i>交易信息查询
+                            class="glyph-icon icon-chevron-right"></i>交易明细查询
                     </a></li>
                     <li><a href="./bankingTransportation.jsp" title="查询从银行同步的交易流水信息"> <i
-                            class="glyph-icon icon-chevron-right"></i>退款查询
+                            class="glyph-icon icon-chevron-right"></i>失败退票查询
                     </a></li>
                     <li><a href="./bankingTransportation.jsp" title="查询从银行同步的交易流水信息"> <i
                             class="glyph-icon icon-chevron-right"></i>电子回单管理
@@ -262,6 +260,9 @@
                     class="glyph-icon icon-reorder"></i> 系统设置
             </a>
                 <ul>
+                    <li><a href="./customer-list.jsp" title="填写档案客户信息">
+                        <i class="glyph-icon icon-chevron-right"></i>客户档案管理</a>
+                    </li>
                     <li>
                         <a href="./authority-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>权限管理</a>
                     </li>
