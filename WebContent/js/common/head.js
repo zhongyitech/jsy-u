@@ -752,7 +752,7 @@ var CUSTOMER = {
         var me = this;
         var params = JSON.stringify({cid: id});
         var data = {url: '/api/customerArchives/getcustomer', params: params};
-        me.item= $.io.get(true,data).data();
+        me.item = $.io.get(true, data).data();
         return me.item;
     },
     getName: function (id) {
@@ -1823,17 +1823,17 @@ var USER = {
             async = false;
         }
 
-        var params = JSON.stringify({});
-        var data = {url: '/api/user/findUserFromRole', params: params};
-        var me = this;
-        DataOperation.async=async;
-        DataOperation.get(
-            data,
-            function(result,response){
-                me.response=response;
-                me.items=result;
-            }
-        );
+//        var params = JSON.stringify({});
+//        var data = {url: '/api/user/findUserFromRole', params: params};
+//        var me = this;
+//        DataOperation.async=async;
+//        DataOperation.get(
+//            data,
+//            function(result,response){
+//                me.response=response;
+//                me.items=result;
+//            }
+//        );
 //        $.ajax({
 //            type: "post",
 //            url: "../rest/item/get",
@@ -1869,8 +1869,10 @@ var USER = {
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+//        var map = this.getMap();
+        return $.project.domain(id, "com.jsy.auth.User").getItem(id)
+
+//        return map[id];
     },
     getName: function (id) {
         var item = this.get(id);
@@ -1882,39 +1884,13 @@ var USER = {
     },
     getDM: function (id) {
         var user = this.get(id);
-//        var authority = 'ROLE_MANAGER';
-//        var department = user[this.DEPARTMENT_KEY];
-//        var departmentid = department[DEPARTMENT.ID_KEY];
 
-        var params=JSON.stringify({uid:id});
-        var data={url:'/api/user/findUserLeader',params:params};
+        var params = JSON.stringify({uid: id});
+        var data = {url: '/api/user/findUserLeader', params: params};
+
         var me = this;
 
-        me.item=$.io.get(true,data).data();
-
-//
-//
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/user/get",
-//            async: false,
-//            data: {
-//                authority: authority,
-//                departmentid: departmentid
-//            },
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                if (response && response[REST.RESULT_KEY]) {
-//                    me.item = (response[REST.RESULT_KEY]);
-//                }
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
-
+        me.item = $.io.get(true, data).data();
         return me.item;
     },
     toId: function (item) {
@@ -2020,7 +1996,7 @@ var YHZH = {//银行账户
     get: function (id) {
         var me = this;
         var params = JSON.stringify({id: id});
-        var data = {url: '/api/bankAccount/'+id, params: params};
+        var data = {url: '/api/bankAccount/' + id, params: params};
         $.ajax({
             type: 'post',
             url: '../rest/item/get',
@@ -2535,7 +2511,6 @@ var DEPARTMENT = {
                 return v;
             }
         }
-
         return '';
     }
 };
@@ -2592,46 +2567,34 @@ var LOGIN = {
     },
     setView: function () {
         var me = this;
-        var params = JSON.stringify({});
-        var entity = JSON.stringify({});
-        var data = {url: '/api/user/getUser', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: '../rest/item/get',
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                me.setUser(response);
-            },
-            error: function (response) {
-                me.response = response;
-                me.setUser(response);
-                me.error(response);
-            }
-        });
+        var data = {url: '/api/user/getUser'};
+        me.setUser($.io.get(true, data).data());
     },
     getUser: function () {
-        var me = this;
-        var params = JSON.stringify({});
-        var entity = JSON.stringify({});
-        var data = {url: '/api/user/getUser', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: '../rest/item/get',
-            async: false,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-            },
-            error: function (response) {
-                me.response = response;
-                me.error(response);
-            }
-        });
-        return me.response;
+//        var me = this;
+//        var params = JSON.stringify({});
+//        var entity = JSON.stringify({});
+//        var data = {url: '/api/user/getUser', params: params, entity: entity};
+
+        return  $.io.get(true, {url: '/api/user/getUser'})
+            .error(function (result) {
+
+            }).data();
+//
+//        $.ajax({
+//            type: "post",
+//            url: '../rest/item/get',
+//            async: false,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                me.error(response);
+//            }
+//        });
     },
     logout: function () {
         var me = this;
@@ -2648,8 +2611,8 @@ var LOGIN = {
                 me.response = response;
             }
         });
-
         this.setView();
+        location.reload();
     },
     login: function () {
         var username = $(this.USER_ID);
@@ -2676,6 +2639,7 @@ var LOGIN = {
 
         var me = this;
         var login_status = true;
+
         $.ajax({
             type: "post",
             url: '../rest/login/login',
@@ -2695,7 +2659,7 @@ var LOGIN = {
                 alert('登录失败，请刷新页面.');
             }
         });
-
+        location.reload();
         return login_status;
     },
     error: function (response) {
@@ -2712,10 +2676,7 @@ var DATEFORMAT = {
         if (!date) {
             return '';
         }
-
         var time = new Date(date);
-
-
         var o = {
             "M+": time.getMonth() + 1, //月份 
             "d+": time.getDate(), //日 
