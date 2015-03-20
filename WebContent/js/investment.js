@@ -809,19 +809,19 @@ var INVESTMENT_ITEM = {
                 var bxsyl = ticheng[this.tcfpfw.BXSYL_KEY];
 
                 if (sfbx) {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', false);
+                    $(me.INVEST_YEARRATE_ID).attr('readonly', false);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(bxsyl));
                 } else {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                    $(me.INVEST_YEARRATE_ID).attr('readonly', true);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(shouyi));
                 }
             } else {
-                $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                $(me.INVEST_YEARRATE_ID).attr('readonly', true);
                 $(me.INVEST_YEARRATE_ID).val('');
             }
         } else {
             me.tcbl = null;
-            $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+            $(me.INVEST_YEARRATE_ID).attr('readonly', true);
             $(me.INVEST_YEARRATE_ID).val('');
         }
 

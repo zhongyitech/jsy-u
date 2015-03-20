@@ -44,13 +44,17 @@
                             <div class='tabslider'>
                                 <ul>
                                     <div class="content-box box-toggle t1">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table1" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                    <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                    <th class="text-center"><span class="text-overflow item-date"
+                                                                                  title="限时开始时间">限时开始时间</span>
+                                                    <th class="text-center"><span class="text-overflow item-date"
+                                                                                  title="限时结束时间">限时结束时间</span>
+                                                </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
@@ -68,13 +72,17 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t2">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table2" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
@@ -92,13 +100,17 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t3">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table3" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
@@ -116,13 +128,17 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t4">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table4" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
@@ -140,15 +156,18 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t5">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table5" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
-
                                         <div class="button-pane">
                                             <button type="button"
                                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
@@ -164,13 +183,17 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t6">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table6" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
@@ -188,13 +211,17 @@
                                 </ul>
                                 <ul>
                                     <div class="content-box box-toggle t7">
-                                        <table class="table text-center mrg0B xianshi_table" >
-                                            <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
-                                            <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时开始时间">限时开始时间</span>
-                                            <th class="text-center"><span class="text-overflow item-date"
-                                                                          title="限时结束时间">限时结束时间</span>
+                                        <table id = "xianshi_table7" class="table text-center mrg0B xianshi_table" >
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
+                                                <th class="text-center"><span class="text-overflow">用户名称</span></th>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时开始时间">限时开始时间</span>
+                                                <th class="text-center"><span class="text-overflow item-date"
+                                                                              title="限时结束时间">限时结束时间</span>
+                                            </tr>
+                                            </thead>
                                         </table>
 
                                         <div class="button-pane">
