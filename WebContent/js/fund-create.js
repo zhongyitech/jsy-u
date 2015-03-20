@@ -100,9 +100,11 @@ var TZQX_LIST={//投资期限
 			this.iniRemoveButton();
 		},
 		iniTable: function(){
-			for(var i=0; i<3; i++){
-				this.addTr();
-			}
+//			for(var i=0; i<3; i++){
+//				this.addTr();
+//			}
+            //修改为只增加一行数据
+            this.addTr();
 		},
 		iniAddButton: function(){
 			var me = this;

@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)公司简称:</label>
+                                <label for="" class="label-description">(*)公司简称(英文):</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="nickname">
@@ -139,13 +139,6 @@
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="frdb" disabled="disabled">
                             </div>
-                            <div class="form-label col-md-2">
-                                <label class="label-description" id="fund-label">基金：</label>
-                            </div>
-                            <div class="form-input col-md-4">
-                                <select id="fund" disabled="disabled"></select>
-                            </div>
-
 
                         </div>
                         <div class="form-row">
@@ -167,7 +160,7 @@
                                 <label for="" class="label-description">负责人:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="assigner" disabled="disabled">
+                                <input placeholder="" type="text" id="assigner" readonly="true">
                             </div>
                         </div>
 

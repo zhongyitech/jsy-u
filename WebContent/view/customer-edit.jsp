@@ -69,7 +69,7 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)住址:</label>
+                                <label for="" class="label-description">住址:</label>
                             </div>
                             <div class="form-input col-md-10">
                                 <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="sfzdz">

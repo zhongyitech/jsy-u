@@ -34,3 +34,9 @@ textarea.template,div.template{display: none;}
 .tcalInput {
     background:#ffffff url('../../images/cal_32.png') no-repeat 100% 50% ;
 }
+.input, .form-input input.valierror, .form-input select.valierror, .form-input textarea.valierror, .chosen-container-multi, .bootstrap-timepicker-widget table td input.valierror, .ui-toolbar select.valierror, .ui-toolbar input.valierror{
+    border: 1px solid red;
+}
+input[readonly=true] {
+    background: #EAE5E5;
+}

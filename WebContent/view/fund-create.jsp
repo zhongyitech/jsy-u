@@ -98,6 +98,14 @@
                                     <option>选择一个有限合伙企业</option>
                                 </select>
                             </div>
+                            <div class="form-label col-md-2">
+                                <label>选择项目：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="fundProject">
+                                    <option>选择一个项目</option>
+                                </select>
+                            </div>
 
                         </div>
 
