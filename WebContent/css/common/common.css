@@ -5,38 +5,11 @@
 .autocomplete-group { padding: 2px 5px; }
 .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 textarea.template,div.template{display: none;}
-.page-bar{
-    height: 34px;
-    margin: 4px 0 0 0;
-}
-
-.page-step a{
-    min-width: 20px;
-    padding: 0 2px;
-    width: auto;
-}
-
-.page-step a.fg-button.ui-button.ui-state-default.ui-state-disabled {
-    background: #FFFFFF;
-    border: 1px solid #B1B5BB;
-    color: #333;
-}
-
-.dataTables_filter, .dataTables_paginate{
-    float: initial;
-}
-
-.ui-button {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-}
-
-.tcalInput {
-    background:#ffffff url('../../images/cal_32.png') no-repeat 100% 50% ;
-}
-.input, .form-input input.valierror, .form-input select.valierror, .form-input textarea.valierror, .chosen-container-multi, .bootstrap-timepicker-widget table td input.valierror, .ui-toolbar select.valierror, .ui-toolbar input.valierror{
-    border: 1px solid red;
-}
-input[readonly=true] {
-    background: #EAE5E5;
-}
+.page-bar{height: 34px;margin: 4px 0 0 0;}
+.page-step a{min-width: 20px;padding: 0 2px;width: auto;}
+.page-step a.fg-button.ui-button.ui-state-default.ui-state-disabled {background: #FFFFFF;border: 1px solid #B1B5BB;color: #333;}
+.dataTables_filter, .dataTables_paginate{float: initial;}
+.ui-button { -webkit-user-select: none;-moz-user-select: none;}
+.tcalInput { background:#ffffff url('../../images/cal_32.png') no-repeat 100% 50% ;}
+.input, .form-input input.valid_error, .form-input select.valid_error, .form-input textarea.valid_error, .chosen-container-multi, .bootstrap-timepicker-widget table td input.valid_error, .ui-toolbar select.valid_error, .ui-toolbar input.valid_error{border: 1px solid #FF0000;}
+input[readonly=true] {background: #EAE5E5;}

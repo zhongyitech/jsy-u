@@ -41,12 +41,23 @@
         },
         _callback:{
             success:function(data){
-                console.log("notice",data);
+                console.log("success",data);
             },
             error:function(data){
-                alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
+                //alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
+                console.error("error",data);
+                if(data&&data.result&&data.result.errors&&data.result.errors.length){
+                    $.each(data.result.errors,function(idx,item){
+                        var obj=$('#'+item.field);
+                        if(!obj.length) obj=$('.'+item.field);
+                        obj.addClass('valid_error').unbind("focus").bind("focus",function(){
+                            obj.removeClass("valid_error");
+                        });
+                    });
+                }
             },
-            fail:function(){
+            fail:function(data){
+                console.error("fail",data);
                 alert("请求失败!（非200返回）");
             }
         },
@@ -108,11 +119,14 @@
      * @constructor
      */
     var XHR=function(xhr){
+        if(!xhr)return this;
+        var _this=this;
+        _this.callback={};
         /**
          * sync 方法可以直接取数据，不必要采用回调形式
          */
-        if(xhr&&!xhr.isAsync()){
-            this.data=function(){
+        if(!xhr.isAsync()){
+            _this.data=function(){
                 return Util.result(xhr.data());
             }
         }
@@ -121,8 +135,9 @@
          * @param fn
          * @returns {XHR}
          */
-        this.success=function(fn){
-            xhr&&xhr.then(function(data){
+        _this.success=function(fn){
+            _this.callback["success"]=fn;
+            xhr.then(function(data){
                 Util.doSuccess(data,fn);
             });
             return this;
@@ -132,8 +147,9 @@
          * @param fn
          * @returns {XHR}
          */
-        this.error=function(fn){
-            xhr&&xhr.then(function(data){
+        _this.error=function(fn){
+            _this.callback["error"]=fn;
+            xhr.then(function(data){
                 Util.doError(data,fn);
             });
             return this;
@@ -143,10 +159,10 @@
          * @param fn
          * @returns {XHR}
          */
-        this.fail=function(fn){
-            var _this=this;
+        _this.fail=function(fn){
+            _this.callback["fail"]=fn;
             _this._notice=true;
-            xhr&&xhr.error(function(data){
+            xhr.error(function(data){
                 if(_this._notice) _this._notice=Util.doFail(data,fn);
             }).fail(function(data){
                 if(_this._notice) _this._notice=Util.doFail(data,fn);
@@ -156,9 +172,12 @@
         /**
          * call default
          */
-        this.success();
-        this.error();
-        this.fail();
+        xhr.then(function(){
+            //取消error局部覆盖全局
+            _this.error();
+            !_this.callback["success"]&&_this.success();
+            !_this.callback["fail"]&&_this.fail();
+        });
     };
     /**
      * 请求统一入口,暂时全部Post
