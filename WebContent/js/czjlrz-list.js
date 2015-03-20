@@ -21,7 +21,9 @@
         },
         _renderData:function(result,pager,options){
             var _this=this;
-            $("#table-data").renderData("#table-data-template",result);
+            $("#table-data").renderData("#table-data-template",result,function(){
+                return _this._entity.startposition+1;
+            });
             if(!options||!options.paged){
                 $.dom.pager("#table-pager",pager,{
                     pageSize:_this._entity.pagesize

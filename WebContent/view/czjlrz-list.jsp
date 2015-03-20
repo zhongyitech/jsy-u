@@ -13,6 +13,7 @@
     <jsp:include page="./navi.jsp"/>
     <textarea id="table-data-template" class="template">
             {#param name=fields value=["czr","czsj","url","method","params","address"]}
+            {#param name=start value=$P.callback()}
             <table class="table table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
@@ -26,7 +27,7 @@
                 </thead>
                 <tbody>
                 {#foreach $T as item}
-                    <tr data-key="{$T.item$index}">
+                    <tr data-key="{$T.item$index}" data-row="{$P.start++}">
                         {#foreach $P.fields as field}
                         <td class="text-center">
                             <span class="text-overflow">{$T.field=="czsj"?$.utils.dateFormat($T.item['czsj'],'yyyy-MM-dd hh:mm:ss'):$T.item[$T.field]}</span>
