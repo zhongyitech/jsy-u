@@ -36,7 +36,7 @@
         _renderData:function(result){
             var _this=this;
             $("#table-data").renderData("#table-data-template",result,function(){
-                return _this._entity.startposition+1;
+                return _this._entity.startposition;
             });
         },
         _renderPage:function(pager){
