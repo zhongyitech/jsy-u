@@ -89,7 +89,9 @@ var DEPARTMENT_FORM = {
         this.getDescriptionView().val(DEPARTMENT.toDescription(item));
     },
     setPerformance:function(item){
-       $(this.performance_ID).val(item.performance.id);
+        if(item){
+            $(this.performance_ID).val(item.performance.id);
+        }
     },
     getSubmitButton: function () {
         var view = this.getView();
@@ -149,6 +151,7 @@ var DEPARTMENT_FORM = {
         });
     },
     set: function (item) {
+        if(!item)return;
         this.item = item;
         this.setName(item);
         this.setCompany(item);
@@ -157,7 +160,7 @@ var DEPARTMENT_FORM = {
         //部门负责人
         //todo:replace new method
         var uid=item.leader ? item.leader.id : undefined;
-        var username= uid ? (USER.get(uid).chainName) :'NULL';
+        var username= uid ? (USER.get(uid).chainName) :'';
         $('#transfer').val(username);
         $('#transferid').val(uid);
     },
