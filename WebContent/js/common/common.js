@@ -1,6 +1,31 @@
 /**
  * Created by William.Wei on 2015/3/3. weizhansheng@outlook.com
  */
+(function(){
+    if(!String.prototype.trim){
+        String.prototype.trim = function(){
+            return this.trimLeft(this.trimRight(this));
+        };
+        String.prototype.trimLeft = function(str){
+            var i;
+            for(i=0;i<str.length;i++)
+            {
+                if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+            }
+            str=str.substring(i,str.length);
+            return str;
+        };
+        String.prototype.trimRight = function(str){
+            var i;
+            for(i=str.length-1;i>=0;i--)
+            {
+                if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+            }
+            str=str.substring(0,i+1);
+            return str;
+        };
+    }
+})();
  /*
     json2.js
     2015-02-25
@@ -3892,31 +3917,31 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             }
             return new XHR(xhr,options);
         },
-        get:function(options,async){
+        _get:function(options,async){
             return this._ajax(options,this._type.GET,async);
         },
-        post:function(options,async){
+        _post:function(options,async){
             return this._ajax(options,this._type.POST,async);
         },
-        put:function(options,async){
+        _put:function(options,async){
             return this._ajax(options,this._type.PUT,async);
         },
-        delete:function(options,async){
+        _delete:function(options,async){
             return this._ajax(options,this._type.DELETE,async);
         }
     };
     var Ajax=function(async){
         this.get=function(options){
-            return _AJAX.get(options,async);
+            return _AJAX._get(options,async);
         };
         this.post=function(options){
-            return _AJAX.post(options,async);
+            return _AJAX._post(options,async);
         };
         this.put=function(options){
-            return _AJAX.put(options,async);
+            return _AJAX._put(options,async);
         };
-        this.delete=function(options){
-            return _AJAX.delete(options,async);
+        this.del=function(options){
+            return _AJAX._delete(options,async);
         };
     };
     $.extend(true,{
@@ -3929,9 +3954,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  */
 (function($){
     var UtilsPrototype={
-        dateFormat: function (date,format) {
-            if(!date)return "";
-            var time = new Date(date);
+        dateFormat: function (dateString,format) {
+            if(!dateString)return "";
+            var time = new Date(dateString.replace(/-/g,'/').replace(/T|Z/g,' ').trim());
             var o = {
                 "M+": time.getMonth() + 1, //月份
                 "d+": time.getDate(), //日
@@ -3945,6 +3970,20 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             for (var k in o)
                 if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             return format;
+        },
+        _fixedDate:function(dateString){
+            var isoExp = /^\s*(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\s*$/,
+                date = new Date(NaN), month,
+                parts = isoExp.exec(dateString);
+
+            if(parts) {
+                month = +parts[2];
+                date.setFullYear(parts[1], month - 1, parts[3]);
+                if(month != date.getMonth() + 1) {
+                    date.setTime(NaN);
+                }
+            }
+            return date;
         }
     };
     var Utils=function(){

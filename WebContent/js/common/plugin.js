@@ -24,10 +24,10 @@
         "class":"className"
     };
     var RestURI={
-        get:BaseURI+"get",
-        post:BaseURI+"post",
-        put:BaseURI+"put",
-        delete:BaseURI+"delete"
+        _get:BaseURI+"get",
+        _post:BaseURI+"post",
+        _put:BaseURI+"put",
+        _delete:BaseURI+"delete"
     };
     var Util={
         _status:{
@@ -203,16 +203,16 @@
              * @returns {XHR}
              */
             get: function () {
-                return request(RestURI.get,arguments);
+                return request(RestURI._get,arguments);
             },
             post: function () {
-                return request(RestURI.post,arguments);
+                return request(RestURI._post,arguments);
             },
             put: function () {
-                return request(RestURI.put,arguments);
+                return request(RestURI._put,arguments);
             },
-            delete: function () {
-                return request(RestURI.delete,arguments);
+            del: function () {
+                return request(RestURI._delete,arguments);
             },
             registerCallback:function(callback){
                 Util.registerCallback(callback);
