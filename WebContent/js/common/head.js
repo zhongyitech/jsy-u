@@ -2659,7 +2659,9 @@ var LOGIN = {
                 alert('登录失败，请刷新页面.');
             }
         });
-        location.reload();
+        if(window.location.pathname!='/view/login.jsp'){
+          window.location.reload();
+        }
         return login_status;
     },
     error: function (response) {
