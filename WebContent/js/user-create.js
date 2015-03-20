@@ -305,18 +305,6 @@ var USER_FORM = {
                 me.response=result;
                 alert('新增用户成功!');
                 window.location=PAGE.USER_LIST;
-            })
-            .error(function(error){
-                if(error.result){
-                    $.each(error.result.errors,function(i,er){
-
-                        $('#'+er.field).addClass('valierror');
-                        $(".valierror").focus(function(){
-                            $(this).removeClass("valierror");
-                        });
-                        console.log(er);
-                    });
-                }
             });
     }
 };

@@ -7,7 +7,7 @@
 (function () {
     window.console=window.console||{
         log:function(){
-            return;
+            return false;
         }
     }
 })();
@@ -39,7 +39,7 @@
             result:"rest_result",
             total:"rest_total"
         },
-        _callback:{
+        _system:{
             success:function(data){
                 console.log("success",data);
             },
@@ -51,6 +51,7 @@
                         var obj=$('#'+item.field);
                         if(!obj.length) obj=$('.'+item.field);
                         obj.addClass('valid_error').unbind("focus").bind("focus",function(){
+                            if(obj.hasClass("valid_error"))obj.val("");
                             obj.removeClass("valid_error");
                         });
                     });
@@ -88,16 +89,16 @@
             return $.extend(true,options||{},{data:data},{data:{entity:entity,params:params}});
         },
         doSuccess:function(data,fn){
-            this._success(data)&&this._return(fn||this._callback.success, data);
+            this._success(data)&&this._return(fn||this._system.success, data);
         },
         doError:function(data,fn){
-            this._error(data)&&this._return(fn||this._callback.error,data);
+            this._error(data)&&this._return(fn||this._system.error,data);
         },
         doFail:function(data,fn){
-            this._return(fn||this._callback.fail,data);
+            this._return(fn||this._system.fail,data);
         },
         registerCallback: function (callback) {
-            $.extend(true,this._callback,callback);
+            $.extend(true,this._system,callback);
         },
         /**
          * 替换异常key，如class，未进行递归
