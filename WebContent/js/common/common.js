@@ -3971,24 +3971,47 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             return format;
         },
-        _fixedDate:function(dateString){
-            var isoExp = /^\s*(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)\s*$/,
-                date = new Date(NaN), month,
-                parts = isoExp.exec(dateString);
-
-            if(parts) {
-                month = +parts[2];
-                date.setFullYear(parts[1], month - 1, parts[3]);
-                if(month != date.getMonth() + 1) {
-                    date.setTime(NaN);
-                }
+        getValue:function(string,key){
+            var r = string.match(new RegExp("(^|&)"+key +"=([^&]*)(&|$)"));
+            return key?(r?decodeURIComponent(decodeURIComponent(r[2])):null):null;
+        },
+        getObject:function(string){
+            var params={},nameValuePairs=string.split("&");
+            for(var i=0;i<nameValuePairs.length;i++){
+                if(nameValuePairs[i]=="") break;
+                var nameValuePair=nameValuePairs[i].split("=");
+                params[nameValuePair[0]]=decodeURIComponent(decodeURIComponent(nameValuePair[1]));
             }
-            return date;
+            return params;
+        },
+        getParam:function(key){
+            return this.getValue(window.location.search.substr(1),key);
+        },
+        getHash:function(key){
+            return this.getValue(window.location.hash.substr(1),key);
+        },
+        getParams:function(){
+            return this.getObject(window.location.search.substr(1));
+        },
+        getHashs:function(){
+            return this.getObject(window.location.hash.substr(1));
         }
     };
     var Utils=function(){
-        this.dateFormat=function(date,format){
+        this.dateFormat = function(date,format){
             return UtilsPrototype.dateFormat(date,format);
+        };
+        this.getParam = function (key) {
+            return UtilsPrototype.getParam(key);
+        };
+        this.getHash = function (key) {
+            return UtilsPrototype.getHash(key);
+        };
+        this.getParams = function () {
+            return UtilsPrototype.getParams();
+        };
+        this.getHashs = function () {
+            return UtilsPrototype.getHashs();
         };
     };
     $.extend(true,{
