@@ -109,7 +109,7 @@ var FUND_LIST={
 			this.items = JSON.parse(response[REST.RESULT_KEY]);
 			var table = $(this.TABLE_ID);
 			var items = this.items;
-            table.empty();
+            table.find("tbody").empty();
 			if(table && items){
 				for(var i=0; i<items.length; i++){
 					 this.addTr(items[i]);
