@@ -11,7 +11,7 @@
 <body >
 	<div id="page-wrapper">
 		<jsp:include page="navi.jsp"/>
-	
+
 		<div id="page-content-wrapper">
 			<div id="page-content" class="page-view pad25T">
 			
@@ -136,16 +136,8 @@
 							</tr>
 						</table>
 					
-						<div class="col-md-12 page-bar pad0R">
-			                <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-			                    <i class="glyph-icon icon-arrow-left"></i>
-			                </a>
-			                <div class="button-group float-left pages-div" id="funds-pages"></div>
-			                <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-			                    <i class="glyph-icon icon-arrow-right"></i>
-			                </a>
-						</div>
-            
+						<div id="table-pager" class="page-bar"></div>
+
 						<table class="table table-striped text-center mrg0B" id="funds-table">
 				            <thead>
 				                <tr>

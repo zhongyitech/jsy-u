@@ -440,20 +440,27 @@
      * @param selector
      * @param data
      * @param fn
+     * @param defaultFn
      * @constructor
      */
-    var Select=function(selector,data,fn){
+    var Select=function(selector,data,fn,defaultFn){
         var _self=this;
         _self._callback=fn||function(item){
             return {
-                text:item["mapName"],
-                value:item["id"]
+                text:item["text"]||item["mapName"],
+                value:item["value"]||item["id"]
             }
+        };
+        _self._default=defaultFn||function(){
+            return {
+                text:"请选择",
+                value:""
+            };
         };
         _self._object=$(selector);
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            $.renderData(_self._object,Element.options,response,_self._callback);
+            $.renderData(_self._object,Element.options,[_self._default()].concat(response),_self._callback);
         });
         _self.select=function(value){
             var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));
@@ -540,12 +547,27 @@
     };
     $.extend(true,{
         dom:{
-            select:function(selector,data,fn){
-                return new Select(selector,data,fn);
+            select:function(selector,data,fn,defaultFn){
+                return new Select(selector,data,fn,defaultFn);
             },
             pager:function(selector,data,options){
                 return new Pager(selector,data,options);
+            },
+            checkbox:function(selector,rootSelector){
+                var checkbox=$(selector),checkboxList=checkbox.closest(rootSelector).find("input[type=checkbox]");
+                checkbox.bind("click", function() {
+                    checkboxList.prop("checked",$(this).prop("checked"));
+                });
             }
         }
     })
+})(jQuery);
+
+/**
+ * utils
+ */
+(function($){
+    $.extend(true, $.utils,{
+        //TODO
+    });
 })(jQuery);

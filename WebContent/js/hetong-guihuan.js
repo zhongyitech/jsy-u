@@ -360,7 +360,7 @@ var HTLY_LIST ={
 			return $(this.VIEW_ID);
 		},
 		getTable: function(){
-			return this.getView().find(this.TABLE_ID);
+			return this.getView().find("tbody");
 		},
 		ini: function(async){
 			//是否异步加载数据
@@ -371,21 +371,15 @@ var HTLY_LIST ={
 			var me = this;
 			this.getView().find(this.KEYWORD_BUTTON_ID).click(function(){
 				//每次点击搜索翻至搜索结果的第1页
-				me.selectFirst();
+                me.page_start=0;
+                me.set(async);
 			});
 			
 			this.getView().find(this.KEYWORD_INPUT_ID).keyup(function(e){
-				if(e.which == 13){
-					me.selectFirst();
+				if(e.keyCode == 13){
+					me.page_start=0;
+                    me.set(async);
 				}
-			});
-			
-			this.getView().find(this.PAGES_FIRST_ID).click(function(){
-				me.selectFirst();
-			});
-			
-			this.getView().find(this.PAGES_LAST_ID).click(function(){
-				me.selectLast();
 			});
 			
 			this.set(async);
@@ -396,8 +390,6 @@ var HTLY_LIST ={
 			if(!async){
 				async = false;
 			}
-			
-			this.page_start = (this.pages_select - 1) * this.page_size;
 			
 			var keyword_input = this.getView().find(this.KEYWORD_INPUT_ID);
 			this.filter_keyword = keyword_input.val();
@@ -431,59 +423,17 @@ var HTLY_LIST ={
 			this.setTable(response);
 		},
 		setPage: function(response){
-//			var total = 900;
-			var total = response[REST.TOTAL_KEY];
-			this.page_total = total;
-			
-			var pages_div = this.getView().find(this.PAGES_LIST_ID);
-			var pages = pages_div.find("a");
-			if(pages.length){
-				for(var i=0; i<pages.length; i++){
-					$(pages[i]).remove();
-				}
-			}
-			
-			var pages_from = this.pages_select - 16;
-			if(pages_from<1){
-				pages_from = 1;
-			}
-			var pages_to = pages_from + this.pages_size;
-			var pages_total =  Math.ceil(total/this.page_size);
-			
-			var me = this;
-			for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-				var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-				if(i == this.pages_select){
-					page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-				}
-				pages_div.append(page_number);
-				page_number.append(i);
-				page_number.click(function(e){me.selectPage(e);});
-			}
-		},
-		selectPage: function(e){
-			this.pages_select = $(e.currentTarget).text();
-			this.set(true);
-		},
-		selectFirst: function(){
-			this.pages_select = 1;
-			this.set(true);
-		},
-		selectLast: function(){
-			this.pages_select = Math.ceil(this.page_total/this.page_size);
-			this.set(true);
+            var _this=this;
+            $.dom.pager("#table-pager",response).onChange(function(param){
+                _this.page_start=param.startposition;
+                _this.page_size=param.pagesize;
+                _this.set();
+            });
 		},
 		setTable: function (response){
 			this.items = JSON.parse(response[REST.RESULT_KEY]);
-			
-			var table = this.getView().find(this.TABLE_ID);
-			var trs = table.find('tr');
-			if(trs && trs.length){
-				for(var i=1; i<trs.length; i++){
-					$(trs[i]).remove();
-				}
-			}
-			
+
+            this.getTable().empty();
 			var items = this.items;
 			if(items){
 				for(var i in items){
