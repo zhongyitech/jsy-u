@@ -46,12 +46,6 @@
                     <div class="form-input col-md-4">
                         <input type="text" id="inchargerName"/>
                         <input type="hidden" id="incharger"/>
-                    </div>
-                    <div class="form-label col-md-2  ">
-                        <label for="">制单人：</label>
-                    </div>
-                    <div class="form-input col-md-4">
-                        <input type="text" id="creatorName" readonly="readonly"/>
                         <input type="hidden" id="creator"/>
                     </div>
                 </div>

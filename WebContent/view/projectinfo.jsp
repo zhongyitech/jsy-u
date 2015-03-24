@@ -20,11 +20,6 @@
                     </div>
                 </section>
 
-                <%--<p>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">汇款</button>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">收款</button>--%>
-                    <%--<button class="btn btn-large btn-primary" type="button">结算</button>--%>
-                <%--</p>--%>
 
 
                 <div class="center-margin col-md-10" id="fund-form">
@@ -462,38 +457,6 @@
 
 
 
-                <!-- flow instance -->
-                <%--<div class="panel panel-default" id="panel_addCompany" style="display:none; ">--%>
-                    <%--<div class="panel-body">--%>
-                        <%--<section id="addCompany">--%>
-                            <%--<div class="page-header">--%>
-                                <%--<h3>步骤2：添加有限合伙企业（项目部负责发起申请，法务部，财务部配合）</h3>--%>
-                            <%--</div>--%>
-                            <%--<form class="form-bordered " action="/" method="post" id="form_addCompany">--%>
-
-
-                                <%--<div class="form-row">--%>
-                                    <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label >选择公司：</label>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="form-input col-md-4">--%>
-                                        <%--<select id="company">--%>
-                                        <%--</select>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-                                <%--<br />--%>
-                                <%--<div class="form-row pad3B">--%>
-                                    <%--<div>--%>
-                                        <%--<button class="but-ui btn primary-bg large" type="button">--%>
-                                            <%--<span class="button-content" id="complete_addCompany">提交</span>--%>
-                                        <%--</button>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</form>--%>
-                        <%--</section>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
 
                 <!-- flow instance -->
                 <div class="panel panel-default" id="panel_makeContact" style="display:none; ">
