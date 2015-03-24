@@ -1,54 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b58df2fd-dcc7-46b1-9bd9-7df4ad5bb85a" name="Default" comment="删除无用类">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/js/end_project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/assets/js/minified/aui-production.min.js" afterPath="$PROJECT_DIR$/WebContent/view/assets/js/minified/aui-production.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/authority-list.js" afterPath="$PROJECT_DIR$/WebContent/js/authority-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/authority-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/authority-list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/bankingpaymentorder.js" afterPath="$PROJECT_DIR$/WebContent/js/bankingpaymentorder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/cash_app.jsp" afterPath="$PROJECT_DIR$/WebContent/view/cash_app.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/cash_list.js" afterPath="$PROJECT_DIR$/WebContent/js/cash_list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/cash_list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/cash_list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/css/common/common.css" afterPath="$PROJECT_DIR$/WebContent/css/common/common.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/common/common.js" afterPath="$PROJECT_DIR$/WebContent/js/common/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/assets/themes/minified/fides/common.min.css" afterPath="$PROJECT_DIR$/WebContent/view/assets/themes/minified/fides/common.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/company-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/company-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/customer-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/customer-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/customer-edit.jsp" afterPath="$PROJECT_DIR$/WebContent/view/customer-edit.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/customer-list.js" afterPath="$PROJECT_DIR$/WebContent/js/customer-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/customer-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/customer-list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/czjlrz-list.js" afterPath="$PROJECT_DIR$/WebContent/js/czjlrz-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/czjlrz-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/czjlrz-list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/department-create.js" afterPath="$PROJECT_DIR$/WebContent/js/department-create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/department-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/department-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/end_project.jsp" afterPath="$PROJECT_DIR$/WebContent/view/end_project.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/flowLogic.js" afterPath="$PROJECT_DIR$/WebContent/js/flowLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/fund-create.js" afterPath="$PROJECT_DIR$/WebContent/js/fund-create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/fund-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/fund-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/fund-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/fund-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/fund.jsp" afterPath="$PROJECT_DIR$/WebContent/view/fund.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/css/common/head.css" afterPath="$PROJECT_DIR$/WebContent/css/common/head.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/common/head.js" afterPath="$PROJECT_DIR$/WebContent/js/common/head.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" afterPath="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/css/hetong-query.css" afterPath="$PROJECT_DIR$/WebContent/css/hetong-query.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/hetong-query.js" afterPath="$PROJECT_DIR$/WebContent/js/hetong-query.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/investment-print.js" afterPath="$PROJECT_DIR$/WebContent/js/investment-print.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/investment.js" afterPath="$PROJECT_DIR$/WebContent/js/investment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/investment.jsp" afterPath="$PROJECT_DIR$/WebContent/view/investment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/navi.jsp" afterPath="$PROJECT_DIR$/WebContent/view/navi.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/pay_record_list.js" afterPath="$PROJECT_DIR$/WebContent/js/pay_record_list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/pay_record_list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/pay_record_list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/common/plugin.js" afterPath="$PROJECT_DIR$/WebContent/js/common/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/project_limittime_set.js" afterPath="$PROJECT_DIR$/WebContent/js/project_limittime_set.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/projectinfo.jsp" afterPath="$PROJECT_DIR$/WebContent/view/projectinfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/role-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/role-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/role-list.js" afterPath="$PROJECT_DIR$/WebContent/js/role-list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/role-list.jsp" afterPath="$PROJECT_DIR$/WebContent/view/role-list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/user-create.js" afterPath="$PROJECT_DIR$/WebContent/js/user-create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/user-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/user-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/user-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/user-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/user-list.js" afterPath="$PROJECT_DIR$/WebContent/js/user-list.js" />
+    <list default="true" id="b58df2fd-dcc7-46b1-9bd9-7df4ad5bb85a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsy.iws" />
@@ -693,7 +646,7 @@
       <workItem from="1425433737391" duration="229000" />
       <workItem from="1425433970894" duration="970000" />
       <workItem from="1425434953167" duration="5607000" />
-      <workItem from="1427161644798" duration="1411000" />
+      <workItem from="1427161644798" duration="1444000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1425108047708</created>
@@ -707,11 +660,15 @@
       <created>1425445541647</created>
       <updated>1425445541647</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="删除无用类">
+      <created>1427163122922</created>
+      <updated>1427163122922</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62371000" />
+    <option name="totallyTimeSpent" value="62404000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -806,9 +763,9 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="init" />
-    <MESSAGE value="删除无用类" />
     <MESSAGE value="兑付申请的银行账户选择功能界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="兑付申请的银行账户选择功能界面" />
+    <MESSAGE value="删除无用类" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无用类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1126,6 +1083,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.2271634" vertical-offset="4985" max-vertical-offset="6447">
           <caret line="286" column="55" selection-start-line="286" selection-start-column="55" selection-end-line="286" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
