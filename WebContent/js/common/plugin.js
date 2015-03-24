@@ -497,6 +497,8 @@
         data=Utils.fetchCallback(data);
         data.success(function(response){
             var total=response[Constant.rest_total]||_self._pageSize;
+            if(_self._compare_data&&total==_self._compare_data)return;
+            _self._compare_data= total;
             _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
             $.renderData(_self._object,Element.pager,{
                 currentPage:_self._currentPage,

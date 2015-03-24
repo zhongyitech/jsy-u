@@ -27,7 +27,6 @@ var VIEWDATA = {
     filter_to: '',
     page_size: 10,
     page_start: 0,
-    page_total: 1,
     pages_select: 1,
     pages_size: 21,
     status: {},
@@ -40,15 +39,7 @@ var VIEWDATA = {
     init: function () {
         //http://192.168.1.59:8080/jsy-rest/api/commissionInfo/getcommissionInfo
         this.getView();
-        console.log("getView01");
-
-        this.iniPage();
-        console.log("getView02");
-
-        //set event
         this.set_event();
-        console.log("getView03");
-
     },
     set_event: function(){
         var me = this;
@@ -102,12 +93,14 @@ var VIEWDATA = {
 
         $(this.KEYWORD_BUTTON_ID).click(function(){
             //过滤时翻至第一页
-            me.selectFirst();
+            me.page_start=0;
+            me.getItems(true);
         });
 
         $(this.KEYWORD_ID).keyup(function(e){
-            if(e && e.keyCode==13){
-                me.selectFirst();
+            if(e.keyCode==13){
+                me.page_start=0;
+                me.getItems(true);
             }
         });
 
@@ -207,7 +200,6 @@ var VIEWDATA = {
 
         //investment-print.js
         var data = {url: '/api/commissionInfo/getcommissionInfo', entity: entity};
-        var me = this;
         $.ajax({
             type: 'post',
             url: '../rest/item/post',
@@ -230,18 +222,10 @@ var VIEWDATA = {
     success: function(result){
         this.items = JSON.parse(result['rest_result']);
         this.setTable(this.items);
-        console.log("rest_total",result['rest_total']);
-        this.page_total = result['rest_total'];
-        this.setPage(this.page_total);
+        this.setPage(result);
     },
     setTable: function(items){
-        var pacts = $("#query_table tr");
-        if(pacts && pacts.length){
-            for(var i=1; i<pacts.length; i++){
-                $(pacts[i]).remove();
-            }
-        }
-
+        $("#query_table tbody").empty();
         var table = $("#query_table");
         if(table && items){
             for(var i in items){
@@ -329,61 +313,14 @@ var VIEWDATA = {
         }
 
     },
-    iniPage: function(){
-        var me = this;
-        $('#page-first').click(function(){
-            //过滤时翻至第一页
-            me.selectFirst();
+    setPage: function(response){
+        var _this=this;
+        $.dom.pager("#table-pager",response).onChange(function (param) {
+            _this.page_start=param.startposition;
+            _this.page_size=param.pagesize;
+            _this.getItems(true);
         });
-
-        $('#page-last').click(function(){
-            //过滤时翻至第一页
-            me.selectLast();
-        });
-    },
-    setPage: function(total){
-        this.page_total = total;
-
-        var pages_div = $(this.PAGES_ID);
-        var pages = pages_div.find("a");
-        if(pages.length){
-            for(var i=0; i<pages.length; i++){
-                $(pages[i]).remove();
-            }
-        }
-
-        var pages_from = this.pages_select - 16;
-        if(pages_from<1){
-            pages_from = 1;
-        }
-        var pages_to = pages_from + this.pages_size;
-        var pages_total =  Math.ceil(total/this.page_size);
-
-        var me = this;
-        for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-            var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if(i == this.pages_select){
-                page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-            }
-            pages_div.append(page_number);
-            page_number.append(i);
-            page_number.click(function(e){me.selectPage(e);});
-        }
-
-    },
-    selectPage: function(e){
-        this.pages_select = e.toElement.textContent;
-        this.getItems(true);
-    },
-    selectFirst: function(){
-        this.pages_select = 1;
-        this.getItems(true);
-    },
-    selectLast: function(){
-        this.pages_select = this.pages_total;
-        this.getItems(true);
     }
-
 };
 
 
