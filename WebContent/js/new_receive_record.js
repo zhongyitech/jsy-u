@@ -7,10 +7,11 @@ $(document).ready(function(){
 });
 
 var VIEWDATA={
-    oldSelectData:null,
-    oldSelectedProjectId:null,
-    projects:{},
-    payRecords:{},
+    oldSelectData:null,             //缓存基金字段选择的id
+    oldSelectedProjectId:null,      //缓存项目字段选择的id
+    projects:{},                    //缓存项目下拉列表记录
+    //project:null,                 =》  me.projects[me.projectid]
+    payRecords:{},                  //缓存汇款记录
     init: function(){
         this.init_view();
 
@@ -71,9 +72,22 @@ var VIEWDATA={
             }
         });
 
-        $("#stopDate").change(function(){
-            //var stopDate = $("#stopDate").val();
-            console.log("ddd");
+        $("#stopDate").blur(function(){
+            var stopDate = $("#stopDate").val();
+
+            var payRecords = [];
+            var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
+            $.each(checkBoxs2,function(index,obj){
+                payRecords.push(me.payRecords[$(obj).val()]);
+            });
+            if(payRecords.length!=1){
+                return;
+            }
+            var payRecord = me.payRecords[1];
+            var label_interest_type = $("#label_interest_type").html();
+            var over_money = me.getOverDue(payRecord,label_interest_type,stopDate);
+            $("#over_money_test").val(over_money);
+
         });
 
         $("input[name='target_type']").change(function(){
@@ -157,6 +171,26 @@ var VIEWDATA={
 
 
 
+    },
+
+    getOverDue: function(payRecord,label_interest_type,stopDate){
+        var project = this.projects[this.projectid]
+        var owe_money = payRecord.amount - payRecord.payMainBack;
+        var over_days = stopDate - payRecord.lastDate;
+        var over_interest_pay;
+
+        //不利用缓存了，麻烦，直接搞
+        if("单利"==label_interest_type){
+            over_interest_pay = (owe_money * project.interest_per * over_days / 365);
+        }else if("复利"==label_interest_type){
+            over_interest_pay = (owe_money * (1+project.interest_per) * over_days / 365);
+        }else if("日复利"==label_interest_type){
+            over_interest_pay=(owe_money * (1+project.interest_per) / 365);  //第一天
+            for(var i=1;i<over_days;i++){//第二天起
+                over_interest_pay += (over_interest_pay * (1+project.interest_per) / 365);
+            }
+        }
+        return over_interest_pay;
     },
 
     countRemainMoney: function () {
@@ -266,6 +300,7 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["penalty_pay"] + '</td>');
                 row.append('<td>' + items[i]["interest_pay"] + '</td>');
                 row.append('<td>' + items[i]["borrow_pay"] + '</td>');
+                row.append('<td>' + items[i]["over_interest_pay"] + '</td>');
                 row.append('<td>' + items[i]["dateCount"] + '</td>');
             }
         }
@@ -301,6 +336,7 @@ var VIEWDATA={
 
                 var projectid = $('#project').val();
                 if(projectid){
+                    me.projectid=projectid;
                     me.loadPayRecords(projectid);
                     me.reloadLabelRate(me.projects[projectid]);
                 }

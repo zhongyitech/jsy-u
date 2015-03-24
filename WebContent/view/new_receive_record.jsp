@@ -94,7 +94,7 @@
                             <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
                         </label>
                         <label class="checkbox ">
-                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款 <label id="label_borrow_per"></label>
+                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>
                         </label>
                     </div>
                     <div class="form-label col-md-2">
@@ -121,7 +121,8 @@
                                 <th class="text-center">应收违约金</th>
                                 <th class="text-center">应收利息</th>
                                 <th class="text-center">应收借贷费</th>
-                                <th class="text-center">投资天数</th>
+                                <th class="text-center">逾期利息费</th>
+                                <th class="text-center">投资天数<input id="stopDate" class="tcal filter-input" /></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -131,20 +132,20 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        单条记录辅助
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label>辅助计算逾期费：</label>
-                            </div>
-                            <div class="form-input col-md-8">
-                                截止日期：<input id="stopDate" class="tcal filter-input" />
-                                <input id="over_money_test" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>
-                            </div>
-                        </div>
-                    </div>
+                    <%--<div class="panel-heading">--%>
+                        <%--单条记录辅助--%>
+                    <%--</div>--%>
+                    <%--<div class="panel-body">--%>
+                        <%--<div class="form-row">--%>
+                            <%--<div class="form-label col-md-2">--%>
+                                <%--<label>辅助计算逾期费：</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-input col-md-8">--%>
+                                <%--截止日期：<input id="stopDate" class="tcal filter-input" />--%>
+                                <%--<input id="over_money_test" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
 
                 <div class="panel panel-default">
