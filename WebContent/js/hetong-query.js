@@ -75,13 +75,13 @@ var VIEWMODEL = {
             formatString: 'money'
         }, {
             title: '下次提成日期',
-            fieldName: 'next_gltc_time', // 'payTime',
+            fieldName: 'next_tc_time', // 'payTime',
             formatString: 'date'
         },
         {
             title: '提成金额',
             // fieldName: 'dealStatus',
-            fieldName: 'next_gltc_amount',
+            fieldName: 'next_tc_amount',
             formatString: 'money'
         },
         {
@@ -91,8 +91,8 @@ var VIEWMODEL = {
         },
         {
             title: '付息金额',
-            fieldName: 'next_pay_time',
-            formatString: 'date'
+            fieldName: 'next_pay_amount',
+            formatString: 'money'
         }];
         var that = this;
         this.DataBind.table_id = this.TABLE_ID;
@@ -170,10 +170,13 @@ var VIEWMODEL = {
         var me = this;
         var params = {};
         var entity = JSON.stringify({ startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword });
-        var data = { url: '/api/paymentRecord/readAllForPage', params: params, entity: entity };
+        var data = { url: '/api/investmentArchives/ArchivesByNO', params: params, entity: entity };
 
-        me.response=$.io.post(true,data).data();
-        me.setView(me.response);
+
+//        $.io.post(true,{url:'/api/investmentArchives/ArchivesByNO'}).data
+        me.response=$.io.post(data).success(function(result){
+            me.setView( JSON.parse( result.data));
+        })
     },
     setView: function (response)
     {
@@ -188,9 +191,6 @@ var VIEWMODEL = {
     },
     setTable: function (items)
     {
-        items=[
-            {customer:'safafaf'}
-        ];
         /**
          * 绑定数据源:生成表格
          */
