@@ -30,7 +30,7 @@
 
 .page-body{
 	/* background: #ffffff url(../images/noise.png); */
-	font-family: 微软雅黑!important;
+	/*font-family: 微软雅黑!important;*/
 }
 
 .login-div{
@@ -46,7 +46,7 @@
 
 .login-title{
 	font-weight: bold;
-	font-family: 微软雅黑;
+	/*font-family: 微软雅黑;*/
 }
 
 .login-dialog{
@@ -75,7 +75,7 @@
 }
 
 .keyword-input{
-	font-family: cursive;
+	/*font-family: cursive;*/
 }
 
 .keyword-input-width{
@@ -135,19 +135,19 @@ select[disabled]{
 	background-color: #dddddd;
 }
 
-.page-bar{
-	height: 34px;
-	padding-left: 3px;
-	margin-bottom: 12px;
-}
+/*.page-bar{*/
+    /*height: 34px;*/
+    /*padding-left: 3px;*/
+    /*margin-bottom: 12px;*/
+/*}*/
 
 .page-number{
-	margin-left: 1px!important;
+    margin-left: 1px!important;
 }
 
-.pages-div{
-	width: 1085px;
-}
+/*.pages-div{*/
+	/*width: 1085px;*/
+/*}*/
 
 .content-box-header{
 	font-weight: bold;

@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="../css/customer-list.css">
-    <title>客户信息修改</title>
+    <title>完成投资档案的客户信息</title>
 </head>
 
 <body >
@@ -17,7 +17,7 @@
 
             <div class="content-box box-toggle " id="customer-list">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">客户信息修改</span>
+                    <span class="float-left">修改客户信息(非投资档案关联的客户信息)</span>
 
                     <a href="#" class="float-right icon-separator btn toggle-button" title="客户信息修改">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>

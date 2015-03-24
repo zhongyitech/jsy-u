@@ -751,25 +751,8 @@ var CUSTOMER = {
     get: function (id) {
         var me = this;
         var params = JSON.stringify({cid: id});
-        var data = {url: '/api/customer/getcustomer', params: params};
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (response) {
-                me.response = response;
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
-
-        if (this.response[REST.RESULT_KEY]) {
-            me.item = JSON.parse(me.response[REST.RESULT_KEY]);
-        }
+        var data = {url: '/api/customerArchives/getcustomer', params: params};
+        me.item= $.io.get(true,data).data();
         return me.item;
     },
     getName: function (id) {
@@ -1899,31 +1882,38 @@ var USER = {
     },
     getDM: function (id) {
         var user = this.get(id);
-        var authority = 'ROLE_MANAGER';
-        var department = user[this.DEPARTMENT_KEY];
-        var departmentid = department[DEPARTMENT.ID_KEY];
+//        var authority = 'ROLE_MANAGER';
+//        var department = user[this.DEPARTMENT_KEY];
+//        var departmentid = department[DEPARTMENT.ID_KEY];
 
+        var params=JSON.stringify({uid:id});
+        var data={url:'/api/user/findUserLeader',params:params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/user/get",
-            async: false,
-            data: {
-                authority: authority,
-                departmentid: departmentid
-            },
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.item = (response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+
+        me.item=$.io.get(true,data).data();
+
+//
+//
+//        $.ajax({
+//            type: "post",
+//            url: "../rest/user/get",
+//            async: false,
+//            data: {
+//                authority: authority,
+//                departmentid: departmentid
+//            },
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.item = (response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
 
         return me.item;
     },

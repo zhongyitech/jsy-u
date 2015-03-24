@@ -942,7 +942,7 @@ var FLOW={
 
         $("#company").change(function(){
             var companyid = $("#company").val();
-            me.getFunds(companyid);
+            me.getFunds(companyid,this.projectid);
         });
 
         $("#manage_per").change(function(){
@@ -1100,9 +1100,9 @@ var FLOW={
         });
     },
 
-    getFunds: function (companyid) {
+    getFunds: function (companyid, projectid) {
         var me = this;
-        var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid})};
+        var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid, projectid:projectid})};
         $.ajax({
             type: 'post',
             url: '../rest/item/get',

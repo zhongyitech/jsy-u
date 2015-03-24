@@ -20,17 +20,18 @@
             <form class="form-bordered " action="/" method="post">
                 <div class="form-row">
                     <div class="form-label col-md-2">
-                        <label for="">项目：</label>
+                        <label for="">基金：</label>
                     </div>
 
                     <div class="form-input col-md-4">
-                        <input type="text" id="projectname" placeholder="输入自动查询"/>
+                        <input type="text" id="fundname" placeholder="输入自动查询"/>
+                        <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                     </div>
                     <div class="form-label col-md-2">
-                        <label for="">基金：</label>
+                        <label for="">项目：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="paydate"/>
+                        <input type="text" id="projectname"/>
                     </div>
 
                 </div>
@@ -75,8 +76,8 @@
 
                 <div class="form-row pad3B">
                     <div>
-                        <button class="but-ui btn primary-bg large" type="button">
-                            <span class="button-content" id="add-project">添加</span>
+                        <button class="but-ui btn primary-bg large" type="button" id="end-project">
+                            <span class="button-content" >添加</span>
                         </button>
                     </div>
                 </div>
@@ -84,6 +85,6 @@
         </section>
     </div>
 </div>
-<script type="text/javascript" src="../js/new_project.js"></script>
+<script type="text/javascript" src="../js/end_project.js"></script>
 </body>
 </html>

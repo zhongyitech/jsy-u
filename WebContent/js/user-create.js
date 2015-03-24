@@ -8,10 +8,10 @@ var USER_FORM = {
     VIEW_ID: '#user-view',
     FORM_ID: '#user-form',
     SUBMIT_ID: '#submit-button',
-    ACCOUNT_ID: '#account',
+    ACCOUNT_ID: '#username',
     PASSWORD_ID: '#password',
     ENABLED_ID: '#enabled',
-    NAME_ID: '#name',
+    NAME_ID: '#chainName',
     DEPARTMENT_ID: '#department',
     SKR_ID: '#skr',
     KHH_ID: '#khh',
@@ -291,7 +291,7 @@ var USER_FORM = {
         var item = me.getItem();
         item['bankAccount']=BANKACCOUNTS.getItems();
         var rolelis='';
-        $.each(item.role,function(i,r){
+        $.each(item.role || [],function(i,r){
            console.log(r);
            return rolelis+= r.id+',';
         });
@@ -299,14 +299,24 @@ var USER_FORM = {
         var params =JSON.stringify({'rolelist':rolelis});
         var data = {url: '/api/user', params: params, entity: JSON.stringify(item)};
         console.log(data.entity);
+
         $.io.put(data)
             .success(function(result,page){
                 me.response=result;
-                alert("ok");
+                alert('新增用户成功!');
+                window.location=PAGE.USER_LIST;
             })
-            .error(function(result){
-                console.log(result.msg);
-//                alert("error"+result.msg);
+            .error(function(error){
+                if(error.result){
+                    $.each(error.result.errors,function(i,er){
+
+                        $('#'+er.field).addClass('valierror');
+                        $(".valierror").focus(function(){
+                            $(this).removeClass("valierror");
+                        });
+                        console.log(er);
+                    });
+                }
             });
     }
 };

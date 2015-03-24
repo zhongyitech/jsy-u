@@ -21,26 +21,16 @@ var BMJL={//异步加载所有部门经理
 			if(!async){
 				async = false;
 			}
-			var params = JSON.stringify({authority: 'ROLE_MANAGER'});
-			var data = {url: '/api/user/findUserFromRole', params: params};
+//			var params = JSON.stringify({authority: 'ROLE_MANAGER'});
+			var data = {url: '/api/user/allDepartmentLader'};
+
 			var me = this;
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/get", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					if(response && response[REST.RESULT_KEY]){
-						me.items = (response[REST.RESULT_KEY]);
-					}
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+
+            $.io.get(true,data)
+                .success(function(result){
+                    me.items=result;
+                });
+
 		},
 		getItems: function(){
 			if(!this.items || !this.items.length){
@@ -110,9 +100,11 @@ var TZQX_LIST={//投资期限
 			this.iniRemoveButton();
 		},
 		iniTable: function(){
-			for(var i=0; i<3; i++){
-				this.addTr();
-			}
+//			for(var i=0; i<3; i++){
+//				this.addTr();
+//			}
+            //修改为只增加一行数据
+            this.addTr();
 		},
 		iniAddButton: function(){
 			var me = this;
@@ -666,7 +658,7 @@ var SYLFW_LIST={//收益率范围
 			tr.append(vers_td);
 			var vers_div = $('<div class="form-input col-md-12"></div>');
 			vers_td.append(vers_div);
-			var vers_input = $('<input name="vers"/>');
+			var vers_input = $('<input name="vers" placeholder="输入字母"/>');
 			vers_div.append(vers_input);
 			$(vers_input).keyup(function(e){
 				$(this).val(me.string_jsy.toVers($(this).val()));

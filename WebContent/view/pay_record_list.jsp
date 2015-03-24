@@ -104,7 +104,7 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <label>仍然欠款 </label>
-                                <span>232323</span>
+                                <span id="payrecord_own_money"></span>
                             </div>
                         </form>
 

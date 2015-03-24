@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="../css/company-create.css">
-    <title>新增公司</title>
+    <title>新增公司/有限合伙企业</title>
 </head>
 
 <body >
@@ -17,7 +17,7 @@
 
             <div class="content-box box-toggle " id="company-view">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">新增公司</span>
+                    <span class="float-left">新增公司/有限合伙企业</span>
 
                     <a href="#" class="float-right icon-separator btn toggle-button" title="点击">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)公司简称:</label>
+                                <label for="" class="label-description">(*)公司简称(英文):</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="nickname">
@@ -139,13 +139,6 @@
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="frdb" disabled="disabled">
                             </div>
-                            <div class="form-label col-md-2">
-                                <label class="label-description" id="fund-label">基金：</label>
-                            </div>
-                            <div class="form-input col-md-4">
-                                <select id="fund" disabled="disabled"></select>
-                            </div>
-
 
                         </div>
                         <div class="form-row">
@@ -167,7 +160,7 @@
                                 <label for="" class="label-description">负责人:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="assigner" disabled="disabled">
+                                <input placeholder="" type="text" id="assigner" readonly="true">
                             </div>
                         </div>
 

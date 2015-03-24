@@ -77,7 +77,7 @@
                             <form class="form-bordered " action="/" method="post" id="form_gatherInfo">
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 项目证照：</label>
+                                        <label >(*) 项目证照：</label>
                                     </div>
 
                                     <div class="form-input col-md-4">
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 债务报告：</label>
+                                        <label >(*) 债务报告：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 财务报表：</label>
+                                        <label >(*) 财务报表：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 对公批文：</label>
+                                        <label >(*) 对公批文：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -139,7 +139,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 商务计划书：</label>
+                                        <label >(*) 商务计划书：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -197,7 +197,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-label col-md-2">
-                                    <label for="">评审结果：</label>
+                                    <label >评审结果：</label>
                                 </div>
 
                                 <div class="form-input col-md-4">
@@ -220,7 +220,7 @@
                                 <div class="form-row">
 
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 法律进调报告：</label>
+                                        <label >(*) 法律进调报告：</label>
                                     </div>
 
                                     <div class="form-input col-md-2">
@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">(*) 项目进调报告：</label>
+                                        <label >(*) 项目进调报告：</label>
                                     </div>
                                     <div class="form-input col-md-2">
                                         <div >
@@ -261,7 +261,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">财务报告：</label>
+                                        <label >财务报告：</label>
                                     </div>
                                     <div class="form-input col-md-2">
                                         <div >
@@ -327,7 +327,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-label col-md-2   ">
-                                    <label for="">评审结果：</label>
+                                    <label >评审结果：</label>
                                 </div>
 
                                 <div class="form-input col-md-4">
@@ -352,7 +352,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">(*) 会议纪要：</label>
+                                        <label >(*) 会议纪要：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -412,7 +412,7 @@
                             <form id="form_thirdpartyLow" class="form-bordered " action="/" method="post">
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">法律证件：</label>
+                                        <label >法律证件：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div >
@@ -474,7 +474,7 @@
 
                                 <%--<div class="form-row">--%>
                                     <%--<div class="form-label col-md-2   ">--%>
-                                        <%--<label for="">选择公司：</label>--%>
+                                        <%--<label >选择公司：</label>--%>
                                     <%--</div>--%>
                                     <%--<div class="form-input col-md-4">--%>
                                         <%--<select id="company">--%>
@@ -505,7 +505,7 @@
                             <form id="form_signer" class="form-bordered " action="/" method="post">
                                 <div id="div_default_signer1" class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">甲方：</label>
+                                        <label >甲方：</label>
                                         <input id="signname1" value="甲方" name="exist_signer_name" type="hidden"/>
                                     </div>
 
@@ -513,7 +513,7 @@
                                         <input id="signvalue1" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="">乙方：</label>
+                                        <label >乙方：</label>
                                         <input id="signname2" value="乙方" name="exist_signer_name" type="hidden"/>
                                     </div>
                                     <div class="form-input col-md-4">
@@ -523,7 +523,7 @@
                                 </div>
                                 <div id="div_default_signer2" class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">丙方：</label>
+                                        <label >丙方：</label>
                                         <input id="signname3" value="丙方" name="exist_signer_name" type="hidden"/>
                                     </div>
 
@@ -549,7 +549,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">有限合伴：</label>
+                                        <label >有限合伴：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <select id="company">
@@ -557,7 +557,7 @@
                                     </div>
 
                                     <div class="form-label col-md-2">
-                                        <label for="">关联基金：</label>
+                                        <label >关联基金：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <select id="relate_funds">
@@ -568,14 +568,14 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">管理费率：</label>
+                                        <label >管理费率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="manage_per" />
                                     </div>
 
                                     <div class="form-label col-md-2">
-                                        <label for="">渠道费率：</label>
+                                        <label >渠道费率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="community_per" />
@@ -584,14 +584,14 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2   ">
-                                        <label for="">违约金率：</label>
+                                        <label >违约金率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="notNormal_per" />
                                     </div>
 
                                     <div class="form-label col-md-2">
-                                        <label for="">借款率：</label>
+                                        <label >借款率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="borrow_per" />
@@ -600,7 +600,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">期限（年）：</label>
+                                        <label >期限（年）：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <div class="form-label col-md-2">
@@ -612,7 +612,7 @@
                                     </div>
 
                                     <div class="form-label col-md-2   ">
-                                        <label for="">利息计算方式：</label>
+                                        <label >利息计算方式：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <label><input type="radio" name="interestType" value="singleCount">单利</label>
@@ -706,7 +706,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-label col-md-2   ">
-                                    <label for="">评审结果：</label>
+                                    <label >评审结果：</label>
                                 </div>
 
                                 <div class="form-input col-md-4">

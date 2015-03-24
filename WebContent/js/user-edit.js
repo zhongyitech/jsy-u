@@ -134,7 +134,7 @@ var USER_FORM = {
         }
     },
     setYHZH: function (item) {
-        this.getYHZHView().val(USER.toSKR(item));
+        this.getYHZHView().val(USER.toYHZH(item));
     },
     getRoleButton: function () {
         var view = this.getForm();
@@ -230,8 +230,9 @@ var USER_FORM = {
         this.setAccount(item);
         this.setName(item);
         this.setDepartment(item);
-        this.setSKR(item);
-        this.setYHZH(item);
+        this.setSKR(item);//收款人
+        this.setYHZH(item);//银行账号
+        this.setKHH(item);//开户行
         this.setRole(item);
         //todo:test data
         var titems = [YHZH.get(1), YHZH.get(2), YHZH.get(2), YHZH.get(2), YHZH.get(3)];

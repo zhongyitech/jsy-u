@@ -171,6 +171,7 @@ var VIEWDATA={
                     if (result && result.rest_status && result.rest_status == "200") {
                         console.log(result);
                         var items = JSON.parse(result['rest_result']);
+                        $("#payrecord_own_money").html(result['rest_totalBalance']);
                         me.setReceiveRecordItems(items);
                     }
                 },

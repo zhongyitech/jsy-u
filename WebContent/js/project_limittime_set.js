@@ -55,10 +55,7 @@ var ProjectLimittimeSetting = {
      * project ID 缓存
      */
     PROJECT_ID : 0,
-    /**
-     * 字段数据
-     */
-    PROJECT_ID: "projectId",
+
 
     /**
      * 初始化
@@ -72,8 +69,8 @@ var ProjectLimittimeSetting = {
      * 初始化界面数据
      */
     initView : function(){
-        this.PROJECT_ID  = PAGE.getParam(this.PROJECT_ID);
-//        console.log(projectId);
+        this.PROJECT_ID  = PAGE.getParam("projectId");
+        console.log(this.PROJECT_ID);
         this.initViewLimittime(this.PROJECT_ID);
     },
 
@@ -82,14 +79,18 @@ var ProjectLimittimeSetting = {
      * @param result
      */
     initViewLimittime:function(projectId){
-        for(var i=1; i<2; i++){
-            var params = JSON.stringify({"projectId":projectId,"phaseIndex":i});
-            var data   = {url:"/api/project/getSpecailAccess",params:params};
+        for(var i=1; i<8; i++){
+            var params = {
+                projectId:projectId,
+                phaseIndex:i
+            };
+            var data   = {url:"/api/project/getSpecailAccess",params:JSON.stringify(params)};
+            console.log(data);
             var _this = this;
             $.io.get(data)
                 .success(function(result){
                     console.log(result);
-                    _this.initTable(result);
+                    _this.initTable(i,result);
                 })
                 .error(function(result){
                     alert(result);
@@ -99,8 +100,7 @@ var ProjectLimittimeSetting = {
 
     initTable:function(index,result){
         var tabletr;
-
-        var item = JSON.parse(result["rest_result"]);
+        var item = JSON.parse(result);
         console.log(item);
         switch(index){
             case 1 :
@@ -129,7 +129,7 @@ var ProjectLimittimeSetting = {
         }
 
         if (tabletr && tabletr.length) {
-            for (var i = 1; i < tabletr.length; i++) {
+            for (var i = 0; i < tabletr.length; i++) {
                 $(tabletr[i]).remove();
             }
         }
@@ -162,9 +162,9 @@ var ProjectLimittimeSetting = {
         }
 
         if(table && item){
+
             for(var it in item){
-
-
+                console.log(item[it]["accessor"]);
                 var key = this.key++;
                 var tr = $('<tr key="' + key + '"></tr>');
                 table.append(tr);
@@ -172,13 +172,13 @@ var ProjectLimittimeSetting = {
                 var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
                 tr.append(checkbox);
 
-                var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field" value=\""+item[it]["accessor"]+"\" ></div></td>');
+                var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field" value="'+item[it]["accessor"]+'" ></div></td>');
                 tr.append(row);
 
-                var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12" value=\""+item[it]["fromDate"]+"\"></div></td>');
+                var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12" value="'+item[it]["fromDate"]+'"></div></td>');
                 tr.append(row);
 
-                var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12" value=\""+item[it]["toDate"]+"\"></div></td>');
+                var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12" value="'+item[it]["toDate"]+'"></div></td>');
                 tr.append(row);
                 f_tcalInit();
             }
@@ -335,6 +335,7 @@ var ProjectLimittimeSetting = {
                 var obj=cells.eq(idx);
                 tempObj[obj.attr("name")]=obj.val();
             });
+
             if($.isEmptyObject(tempObj))return;
 
             var model = $.extend(true,{

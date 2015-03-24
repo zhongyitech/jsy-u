@@ -24,35 +24,7 @@ var BMJL = {//异步加载所有部门经理
         //var params = JSON.stringify({authority: 'ROLE_MANAGER'});
         var data = {url: '/api/user/allDepartmentLader'};
         var me = this;
-        me.items = $.io.get(data)
-            .success(function (result) {
-                me.items = result;
-            });
-//        DataOperation.async = async;
-//        DataOperation.get(
-//            data,
-//            function (result, response) {
-//                me.response = response;
-//                me.items = result;
-//            }
-//        );
-//			$.ajax({
-//				type: "post",
-//				url: "../rest/item/get",
-//				async: async,
-//				data: data,
-//				dataType: "json",
-//				success: function(response){
-//					me.response = response;
-//					if(response && response[REST.RESULT_KEY]){
-//						me.items = JSON.parse(response[REST.RESULT_KEY]);
-//					}
-//				},
-//				error: function(response){
-//					me.response = response;
-//					LOGIN.error(response);
-//				}
-//			});
+        me.items = $.io.get(true,data).data();
     },
     getItems: function () {
         if (!this.items || !this.items.length) {
@@ -599,7 +571,11 @@ var SYLFW_LIST = {//收益率范围
         this.iniRemoveButton();
     },
     set: function (items) {
-        this.items = items;
+        this.items=items.sort(
+          function(a,b){
+              return a.id>b.id;
+          }
+        );
         if (items && items.length > 0) {
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
@@ -608,7 +584,6 @@ var SYLFW_LIST = {//收益率范围
                 this.addTr(item);
             }
         }
-
         for (var i = 0; i < 3; i++) {
             this.addTr();
         }
