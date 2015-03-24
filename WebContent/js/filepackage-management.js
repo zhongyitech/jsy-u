@@ -468,7 +468,7 @@ var VIEWDATA = {
         });
 
         $(this.KEYWORD_ID).keyup(function (e) {
-            if (e && e.keyCode == 13) {
+            if (e.keyCode == 13) {
                 me.selectFirst();
             }
         });

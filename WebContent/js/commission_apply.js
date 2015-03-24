@@ -98,13 +98,13 @@ var VIEWDATA = {
 
 		$(this.KEYWORD_BUTTON_ID2).click(function(){
 			//过滤时翻至第一页
-            me.page_start=0;
+            me.page_start2=0;
             me.getItems2(true);
 		});
 
 		$(this.KEYWORD_ID2).keyup(function(e){
 			if(e.keyCode==13){
-                me.page_start=0;
+                me.page_start2=0;
                 me.getItems2(true);
 			}
 		});
@@ -288,7 +288,6 @@ var VIEWDATA = {
 		//	entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
 		//}
 		//var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
-		var me = this;
 		$.ajax({
 			type: 'post',
 			url: '../rest/item/post',
@@ -296,7 +295,6 @@ var VIEWDATA = {
 			dataType: 'json',
 			async: false,
 			success: function(result){
-				console.log(result);
 				if(result && result.rest_status && result.rest_status == "suc"){
 					me.result = result;
 					me.success2(result);
@@ -357,9 +355,9 @@ var VIEWDATA = {
 	},
 	setPage2: function(response){
         var _this=this;
-        _this.page_start==0&&$.dom.pager("#table-pager-2",response).onChange(function (param) {
-            _this.page_start=param.startposition;
-            _this.page_size=param.pagesize;
+        _this.page_start2==0&&$.dom.pager("#table-pager-2",response).onChange(function (param) {
+            _this.page_start2=param.startposition;
+            _this.page_size2=param.pagesize;
             _this.getItems2(true);
         });
 	}

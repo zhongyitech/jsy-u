@@ -64,7 +64,6 @@ var VIEWDATA = {
 	getView : function() {
 		this.getItems();
 		this.getItems2();
-		this.iniPage();
 		this.setEvent();
 	},
 	setEvent : function() {
@@ -79,29 +78,32 @@ var VIEWDATA = {
 				selected.push($(this).val());
 			});
 
-			console.log(selected);
 			me.post_request(selected);
 		});
 
 		$(this.KEYWORD_BUTTON_ID).click(function(){
 			//过滤时翻至第一页
-			me.selectFirst();
+            me.page_start=0;
+            me.getItems(true);
 		});
 
 		$(this.KEYWORD_ID).keyup(function(e){
-			if(e && e.keyCode==13){
-				me.selectFirst();
+			if(e.keyCode==13){
+                me.page_start=0;
+                me.getItems(true);
 			}
 		});
 
 		$(this.KEYWORD_BUTTON_ID2).click(function(){
 			//过滤时翻至第一页
-			me.selectFirst2();
+            me.page_start2=0;
+            me.getItems2(true);
 		});
 
 		$(this.KEYWORD_ID2).keyup(function(e){
-			if(e && e.keyCode==13){
-				me.selectFirst2();
+			if(e.keyCode==13){
+                me.page_start2=0;
+                me.getItems2(true);
 			}
 		});
 	},
@@ -116,7 +118,6 @@ var VIEWDATA = {
 		var params = items.join(",");
 		var data = {url: '/api/payment/toPay?ids='+params};
 		console.log(data);
-		var me = this;
 		$.ajax({
 			type: 'post',
 			url: '../rest/item/get',
@@ -159,12 +160,7 @@ var VIEWDATA = {
 
 		var keyword_input = $(this.KEYWORD_ID);
 		this.filter_keyword = keyword_input.val();
-
-		this.page_start = (this.pages_select - 1) * this.page_size;
 	},
-
-
-
 	getItems: function(){
 		var me = this;
 		me.getFilter();
@@ -198,28 +194,16 @@ var VIEWDATA = {
 		});
 	},
 
-
 	success: function(result){
 		this.items = JSON.parse(result['rest_result']);
 		this.setTable(this.items);
-		this.page_total = result['rest_total'];
-		this.setPage(this.page_total);
+		this.setPage(result);
 	},
-
 
 	//业务提成申请单
 	setTable: function(items){
-		var pacts = $("#cash-interest tr");
-		if(pacts && pacts.length){
-			for(var i=1; i<pacts.length; i++){
-				$(pacts[i]).remove();
-			}
-		}
-
-
 		var table = $("#cash-interest");
-
-
+        table.find("tbody").empty();
 		if(table && items){
 			for(var i in items){
 				var row = $("<tr></tr>");
@@ -247,70 +231,14 @@ var VIEWDATA = {
 
 	},
 
-	iniPage: function(){
-		var me = this;
-		$('#page-first').click(function(){
-			//过滤时翻至第一页
-			me.selectFirst();
-		});
-
-		$('#page-last').click(function(){
-			//过滤时翻至第一页
-			me.selectLast();
-		});
-
-		$('#page-first2').click(function(){
-			//过滤时翻至第一页
-			me.selectFirst2();
-		});
-
-		$('#page-last2').click(function(){
-			//过滤时翻至第一页
-			me.selectLast2();
-		});
+	setPage: function(response){
+		var _this=this;
+        _this.page_start==0&& $.dom.pager("#table-pager-1",response).onChange(function (param) {
+            _this.page_start=param.startposition;
+            _this.page_size=param.pagesize;
+            _this.getItems(true);
+        });
 	},
-	setPage: function(total){
-		this.page_total = total;
-
-		var pages_div = $(this.PAGES_ID);
-		var pages = pages_div.find("a");
-		if(pages.length){
-			for(var i=0; i<pages.length; i++){
-				$(pages[i]).remove();
-			}
-		}
-
-		var pages_from = this.pages_select - 16;
-		if(pages_from<1){
-			pages_from = 1;
-		}
-		var pages_to = pages_from + this.pages_size;
-		var pages_total =  Math.ceil(total/this.page_size);
-
-		var me = this;
-		for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-			var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-			if(i == this.pages_select){
-				page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-			}
-			pages_div.append(page_number);
-			page_number.append(i);
-			page_number.click(function(e){me.selectPage(e);});
-		}
-	},
-	selectPage: function(e){
-		this.pages_select = e.toElement.textContent;
-		this.getItems(true);
-	},
-	selectFirst: function(){
-		this.pages_select = 1;
-		this.getItems(true);
-	},
-	selectLast: function(){
-		this.pages_select = this.pages_total;
-		this.getItems(true);
-	},
-
 	//set page for table2
 	getFilter2: function(){//获取过滤条件
 		var from_input = $(this.FROM_ID2);
@@ -330,8 +258,6 @@ var VIEWDATA = {
 
 		var keyword_input = $(this.KEYWORD_ID2);
 		this.filter_keyword2 = keyword_input.val();
-
-		this.page_start2 = (this.pages_select2 - 1) * this.page_size2;
 	},
 	getItems2: function(){
 		var me = this;
@@ -368,18 +294,11 @@ var VIEWDATA = {
 	success2: function(result){
 		this.items = JSON.parse(result['rest_result']);
 		this.setTable2(this.items);
-		this.page_total2 = result['rest_total'];
-		this.setPage2(this.page_total2);
+		this.setPage2(result);
 	},
 	setTable2: function(items){
-		var pacts = $("#cash-benjin tr");
-		if(pacts && pacts.length){
-			for(var i=1; i<pacts.length; i++){
-				$(pacts[i]).remove();
-			}
-		}
 		var table = $("#cash-benjin");
-
+        table.find("tbody").empty();
 		if(table && items){
 			for(var i in items){
 				var row = $("<tr></tr>");
@@ -407,48 +326,13 @@ var VIEWDATA = {
 
 	},
 
-	setPage2: function(total){
-		this.page_total = total;
-
-		var pages_div = $(this.PAGES_ID2);
-		var pages = pages_div.find("a");
-		if(pages.length){
-			for(var i=0; i<pages.length; i++){
-				$(pages[i]).remove();
-			}
-		}
-
-		var pages_from = this.pages_select2 - 16;
-		if(pages_from<1){
-			pages_from = 1;
-		}
-		var pages_to = pages_from + this.pages_size2;
-		var pages_total =  Math.ceil(total/this.page_size2);
-
-		var me = this;
-		for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-			var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-			if(i == this.pages_select2){
-				page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-			}
-			pages_div.append(page_number);
-			page_number.append(i);
-			page_number.click(function(e){me.selectPage(e);});
-		}
-
-
-	},
-	selectPage2: function(e){
-		this.pages_select2 = e.toElement.textContent;
-		this.getItems2(true);
-	},
-	selectFirst2: function(){
-		this.pages_select2 = 1;
-		this.getItems2(true);
-	},
-	selectLast2: function(){
-		this.pages_select2 = this.pages_total2;
-		this.getItems2(true);
+	setPage2: function(response){
+        var _this=this;
+        _this.page_start==0&& $.dom.pager("#table-pager-2",response).onChange(function (param) {
+            _this.page_start2=param.startposition;
+            _this.page_size2=param.pagesize;
+            _this.getItems(true);
+        });
 	}
 };
 

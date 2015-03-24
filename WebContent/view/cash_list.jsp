@@ -51,7 +51,7 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="Search notifications..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="filter-keyword"/>
                     </div>
                 </div>
@@ -112,29 +112,20 @@
 
     <div class="content-box-wrapper">
 
-        <div class="col-md-12 page-bar pad0R">
-            <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                <i class="glyph-icon icon-arrow-left"></i>
-            </a>
-
-            <div class="button-group float-left pages-div" id="page-numbers"></div>
-            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                <i class="glyph-icon icon-arrow-right"></i>
-            </a>
-        </div>
+        <div id="table-pager-1" class="page-bar"></div>
 
         <table class="table table-striped text-center mrg0B" id="cash-interest">
             <thead>
-            <tr>
-                <th class="text-center"><input type="checkbox"></th>
-                <th class="text-center">基金</th>
-                <th class="text-center">合同编号</th>
-                <th class="text-center">客户名称</th>
-                <th class="text-center">应付利息</th>
-                <th class="text-center">开户行</th>
-                <th class="text-center">账户</th>
-                <th class="text-center">部门经理</th>
-            </tr>
+                <tr>
+                    <th class="text-center"><input type="checkbox"></th>
+                    <th class="text-center">基金</th>
+                    <th class="text-center">合同编号</th>
+                    <th class="text-center">客户名称</th>
+                    <th class="text-center">应付利息</th>
+                    <th class="text-center">开户行</th>
+                    <th class="text-center">账户</th>
+                    <th class="text-center">部门经理</th>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>
@@ -154,7 +145,7 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="Search notifications..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="filter-keyword2"/>
                     </div>
                 </div>
@@ -216,29 +207,20 @@
 
     <div class="content-box-wrapper">
 
-        <div class="col-md-12 page-bar pad0R">
-            <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first2">
-                <i class="glyph-icon icon-arrow-left"></i>
-            </a>
-
-            <div class="button-group float-left pages-div" id="page-numbers2"></div>
-            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last2">
-                <i class="glyph-icon icon-arrow-right"></i>
-            </a>
-        </div>
+        <div id="table-pager-2" class="page-bar"></div>
 
         <table class="table table-striped text-center mrg0B" id="cash-benjin">
             <thead>
-            <tr>
-                <th class="text-center"><input type="checkbox"></th>
-                <th class="text-center">基金</th>
-                <th class="text-center">合同编号</th>
-                <th class="text-center">客户名称</th>
-                <th class="text-center">应付本金</th>
-                <th class="text-center">开户行</th>
-                <th class="text-center">账户</th>
-                <th class="text-center">部门经理</th>
-            </tr>
+                <tr>
+                    <th class="text-center"><input type="checkbox"></th>
+                    <th class="text-center">基金</th>
+                    <th class="text-center">合同编号</th>
+                    <th class="text-center">客户名称</th>
+                    <th class="text-center">应付本金</th>
+                    <th class="text-center">开户行</th>
+                    <th class="text-center">账户</th>
+                    <th class="text-center">部门经理</th>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>

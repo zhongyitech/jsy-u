@@ -29,7 +29,7 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="搜索关键字..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                id="filter-keyword"/>
                     </div>
@@ -134,7 +134,7 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="搜索关键字..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                id="filter-keyword2"/>
                     </div>
