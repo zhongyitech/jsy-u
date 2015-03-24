@@ -200,7 +200,7 @@ var INVESTMENT_LIST={
 		},
 		setPage: function(response){
             var _this=this;
-            $.dom.pager("#table-pager",response).onChange(function(param){
+            _this.page_start==0&&$.dom.pager("#table-pager",response).onChange(function(param){
                 _this.page_start=param.startposition;
                 _this.page_size=param.pagesize;
                 _this.set(true);
