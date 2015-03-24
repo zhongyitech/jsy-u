@@ -176,7 +176,7 @@
         xhr.then(function(){
             //取消error局部覆盖全局
             _this.error();
-            !_this.callback["success"]&&_this.success();
+            !_this.callback["success"]&&xhr.isAsync()&&_this.success();
             !_this.callback["fail"]&&_this.fail();
         });
     };

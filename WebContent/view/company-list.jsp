@@ -40,30 +40,21 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-list"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar"></div>
 
                     <table class="table table-striped text-center mrg0B" id="view-table">
                         <thead>
-                        <tr>
-                            <th class="text-center"><input type="checkbox" name="checkbox"></th>
-                            <th class="text-center">公司名称</th>
-                            <th class="text-center">公司简称</th>
-                            <th class="text-center">公司类型</th>
-                            <th class="text-center">注册地址</th>
-                            <th class="text-center">基金</th>
-                            <th class="text-center">法人代表</th>
-                            <th class="text-center">省</th>
-                            <th class="text-center">市</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                                <th class="text-center">公司名称</th>
+                                <th class="text-center">公司简称</th>
+                                <th class="text-center">公司类型</th>
+                                <th class="text-center">注册地址</th>
+                                <th class="text-center">基金</th>
+                                <th class="text-center">法人代表</th>
+                                <th class="text-center">省</th>
+                                <th class="text-center">市</th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>

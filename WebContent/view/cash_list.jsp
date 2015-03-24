@@ -7,7 +7,7 @@
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
 <jsp:include page="./navi.jsp"/>
 <div id="page-content-wrapper">

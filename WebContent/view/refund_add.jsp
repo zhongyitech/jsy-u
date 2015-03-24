@@ -8,7 +8,7 @@
     <title>退伙处理申请表</title>
 
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 

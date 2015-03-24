@@ -8,7 +8,7 @@
     <title>续投申请表</title>
 </head>
 
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 

@@ -10,7 +10,7 @@
 	
 	</style>
 </head>
-<body class="jsy-body">
+<body>
 
 <div id="print-body">
     <h2>委 托 书</h2>

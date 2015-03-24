@@ -8,8 +8,7 @@
 </head>
 <link rel="stylesheet" type="text/css" href="../css/special_treat_list.css"/>
 
-<body class="jsy-body">
-		<script type="text/javascript" src="../js/special_treat_list.js"></script>
+<body>
 	<div id="page-content-wrapper">
 		<!-- #page-title -->
 		<div id="page-content" style="padding-left: 5px;">
@@ -26,16 +25,16 @@
 						<th><span class="">原基金名稱</span></th>
 						<th><span class="">客户名称</span></th>
 					</tr>
-					<tr>
-					<td>待审批</td>
-					<td>s</td>
-					<td>s</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><span class="btn">张三</span></td>
-					</tr>
+					<%--<tr>--%>
+					<%--<td>待审批</td>--%>
+					<%--<td>s</td>--%>
+					<%--<td>s</td>--%>
+					<%--<td></td>--%>
+					<%--<td></td>--%>
+					<%--<td></td>--%>
+					<%--<td></td>--%>
+					<%--<td><span class="btn">张三</span></td>--%>
+					<%--</tr>--%>
 				</table>
 				
 			</div>
