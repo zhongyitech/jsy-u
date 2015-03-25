@@ -20,6 +20,7 @@ var VIEWDATA={
     init_view: function(){
         var me = this;
 
+        $("#paydate").val(me.formatDate());
 
         $('#fundname').autocomplete(
             {
@@ -202,22 +203,32 @@ var VIEWDATA={
             return;
         }
 
+        //首先看投资款table的选中情况
+        paytotal = this.countRemainMoneyByDomain(paytotal,"#invest_div");
+        //然后看借款table的选中情况
+        paytotal = this.countRemainMoneyByDomain(paytotal,"#borrow_div");
+
+        $("#remain_money").val(paytotal);
+    },
+
+    countRemainMoneyByDomain: function (paytotal,domain) {
+        var me = this;
         var targets = [];
-        var checkBoxs = $("input[name='target_type']:checkbox:checked");
+        var checkBoxs = $("input[name='target_type']:checkbox:checked",domain);
         $.each(checkBoxs,function(index,obj){
             targets.push($(obj).val());
         });
         if(targets.length==0){
-            return;
+            return paytotal;
         }
 
         var payRecords = [];
-        var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked");
+        var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked",domain);
         $.each(checkBoxs2,function(index,obj){
             payRecords.push(me.payRecords[$(obj).val()]);
         });
         if(payRecords.length==0){
-            return;
+            return paytotal;
         }
 
 
@@ -242,8 +253,7 @@ var VIEWDATA={
             });
         });
 
-        $("#remain_money").val(paytotal);
-
+        return paytotal;
     },
 
     loadPayRecords: function(projectid){
@@ -280,34 +290,57 @@ var VIEWDATA={
             }
         }
 
+        var pacts2 = $("#pay_records_table2 tr");
+        if (pacts2 && pacts2.length) {
+            for (var i = 1; i < pacts2.length; i++) {
+                $(pacts2[i]).remove();
+            }
+        }
+
 
         var table = $("#pay_records_table");
+        var table2 = $("#pay_records_table2");
 
         if (table && items) {
-            me.payRecords = {};     // reset
+            me.payRecords = {};             // reset
             for (var i in items) {
                 me.payRecords[items[i]["id"]]=items[i];
 
                 var row = $("<tr></tr>");
-                table.append(row);
+                if(items[i]["payType"]=="invest"){
+                    table.append(row);
+                    row.append('<td><input type="checkbox" name="pay_checkbox" value="'+items[i]["id"]+'"/></td>');
+                    row.append('<td>' + items[i]["id"] + '</td>');
+                    row.append('<td>' + items[i]["payDate"] + '</td>');
+                    row.append('<td>' + items[i]["amount"] + '</td>');
+                    row.append('<td>' + items[i]["manage_pay"] + '</td>');
+                    row.append('<td>' + items[i]["community_pay"] + '</td>');
+                    row.append('<td>' + items[i]["penalty_pay"] + '</td>');
+                    row.append('<td>' + items[i]["interest_pay"] + '</td>');
+                    row.append('<td>' + items[i]["borrow_pay"] + '</td>');
+                    row.append('<td>' + items[i]["dateCount"] + '</td>');
+                }else{
+                    table2.append(row);
+                    row.append('<td><input type="checkbox" name="pay_checkbox" value="'+items[i]["id"]+'"/></td>');
+                    row.append('<td>' + items[i]["id"] + '</td>');
+                    row.append('<td>' + items[i]["payDate"] + '</td>');
+                    row.append('<td>' + items[i]["amount"] + '</td>');
+                    row.append('<td>' + items[i]["penalty_pay"] + '</td>');
+                    row.append('<td>' + items[i]["borrow_pay"] + '</td>');
+                    row.append('<td>' + items[i]["over_interest_pay"] + '</td>');
+                    row.append('<td>' + items[i]["dateCount"] + '</td>');
 
-                row.append('<td><input type="checkbox" name="pay_checkbox" value="'+items[i]["id"]+'"/></td>');
-                row.append('<td>' + items[i]["id"] + '</td>');
-                row.append('<td>' + items[i]["payDate"] + '</td>');
-                row.append('<td>' + items[i]["amount"] + '</td>');
-                row.append('<td>' + items[i]["manage_pay"] + '</td>');
-                row.append('<td>' + items[i]["community_pay"] + '</td>');
-                row.append('<td>' + items[i]["penalty_pay"] + '</td>');
-                row.append('<td>' + items[i]["interest_pay"] + '</td>');
-                row.append('<td>' + items[i]["borrow_pay"] + '</td>');
-                row.append('<td>' + items[i]["over_interest_pay"] + '</td>');
-                row.append('<td>' + items[i]["dateCount"] + '</td>');
+                }
+
+
+
+
+
             }
         }
 
     },
     load_projectinfos: function(fundid){
-        console.log("loading fundinfo:"+fundid);
         var me = this;
         var params = JSON.stringify({ id: fundid});
         var data = { url: '/api/fundCompanyInformation/findByFund', params: params };
@@ -420,6 +453,15 @@ var VIEWDATA={
                 alert('提交时错误:'+result.responseText);
             }
         });
+    },
+
+
+    formatDate: function (){
+        var datetime = new Date();
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        return year + "-" + month + "-" + date;
     }
 
 }

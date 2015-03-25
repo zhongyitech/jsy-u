@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-input col-md-4">
                                 <label>
-                                    <input type="radio" name="moneyUseType" id="moneyUsepay" value="pay" checked  style="height: 16px;width: 16px; position: relative;top: 3px;">
+                                    <input type="radio" name="moneyUseType" id="moneyUsepay" value="invest" checked  style="height: 16px;width: 16px; position: relative;top: 3px;">
                                     投资款
                                 </label>
                                 <label>
