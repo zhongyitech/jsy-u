@@ -5,7 +5,6 @@
 <head>
 <jsp:include page="./head.jsp"/>
 <link rel="stylesheet" type="text/css" href="../css/specialSummary.css"/>
-<script type="text/javascript" src="../js/specialSummary.js"></script>
 <title>特殊申请汇总查询</title>
 </head>
 
@@ -27,7 +26,7 @@
 								<div class="form-input">
 									<div class="form-input-icon">
 										<i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-										<input type="text" placeholder="Search notifications..."
+										<input type="text" placeholder="关键字搜索..."
 											class="radius-top-left-100 radius-bottom-left-100 keyword-input"
 											id="keyword-input" />
 									</div>
@@ -70,34 +69,34 @@
 								<th><span class="">客户名称</span></th>
 								<th><span class="">备注</span></th>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td></td>
-								<td>3</td>
-								<td>2</td>
-								<td>2</td>
-								<td>2</td>
-								<td>2</td>
-								<td>2</td>
-								<td>2</td>
-								<td>
-									<div class="dropdown">
-										<a href="javascript:;" title="" class="btn medium "
-											data-toggle="dropdown"> <span class="button-content">
-												<i class="glyph-icon font-size-11 icon-cog"></i> <i
-												class="glyph-icon font-size-11 icon-chevron-down"></i>
-										</span>
-										</a>
-										<ul class="dropdown-menu float-right">
-											<li><a href="javascript:;" title=""><i
-													class="glyph-icon icon-calendar mrg5R"></i>打印委托协议</a></li>
-											<li class="divider"></li>
-											<li><a href="javascript:;" title=""><i
-													class="glyph-icon icon-calendar mrg5R"></i>作废申请单</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
+							<%--<tr>--%>
+								<%--<td>1</td>--%>
+								<%--<td></td>--%>
+								<%--<td>3</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>2</td>--%>
+								<%--<td>--%>
+									<%--<div class="dropdown">--%>
+										<%--<a href="javascript:;" title="" class="btn medium "--%>
+											<%--data-toggle="dropdown"> <span class="button-content">--%>
+												<%--<i class="glyph-icon font-size-11 icon-cog"></i> <i--%>
+												<%--class="glyph-icon font-size-11 icon-chevron-down"></i>--%>
+										<%--</span>--%>
+										<%--</a>--%>
+										<%--<ul class="dropdown-menu float-right">--%>
+											<%--<li><a href="javascript:;" title=""><i--%>
+													<%--class="glyph-icon icon-calendar mrg5R"></i>打印委托协议</a></li>--%>
+											<%--<li class="divider"></li>--%>
+											<%--<li><a href="javascript:;" title=""><i--%>
+													<%--class="glyph-icon icon-calendar mrg5R"></i>作废申请单</a></li>--%>
+										<%--</ul>--%>
+									<%--</div>--%>
+								<%--</td>--%>
+							<%--</tr>--%>
 						</table>
 					</div>
 				</div>
@@ -140,6 +139,6 @@
 	</div>
 	<div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 	<!-- Message box  -->
-
+    <script type="text/javascript" src="../js/specialSummary.js"></script>
 </body>
 </html>

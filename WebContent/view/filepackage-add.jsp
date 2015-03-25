@@ -7,7 +7,7 @@
     <title>档案管理-档案入库</title>
 
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">

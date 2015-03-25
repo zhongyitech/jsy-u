@@ -26,7 +26,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="搜素关键字..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -39,85 +39,29 @@
 
                 </div>
                 <div class="content-box-wrapper">
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5R ui-state-default"
-                           id="page-first"> <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-numbers"></div>
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5L ui-state-default"
-                           id="page-last"> <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar"></div>
                     <table class="table table-striped" id="investment-table">
-                        <colgroup>
-                            <col style="width: 90px;"/>
-                        </colgroup>
-                        <tr>
-                            <th><span class="text-overflow">认购人</span></th>
-                            <th><span class="text-overflow">基金名称</span></th>
-                            <th><span class="text-overflow">档案编号</span></th>
-                            <th><span class="text-overflow">合同编号</span></th>
-                            <th><span class="text-overflow">认购日期</span></th>
-                            <th><span class="text-overflow">认购金额</span></th>
-                            <th><span class="text-overflow">认购期限</span></th>
-                            <th><span class="text-overflow">理财经理</span></th>
-                            <th><span class="text-overflow">地区</span></th>
-                            <th><span class="text-overflow">年经收益率</span></th>
-                            <th><span class="text-overflow">付息方式</span></th>
-                            <th><span class="text-overflow">到期日期</span></th>
-                            <th><span class="text-overflow">委托情况</span></th>
-                            <th><span class="text-overflow">已付利息</span></th>
-                            <th><span class="text-overflow">已付本金</span></th>
-                            <th><span class="text-overflow">操作</span></th>
-                            <th><span class="text-overflow"></span></th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>3</td>
-                            <td></td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a href="javascript:;" title="" class="btn medium "
-                                       data-toggle="dropdown"> <span class="button-content">
-												<i class="glyph-icon font-size-11 icon-cog"></i> <i
-                                            class="glyph-icon font-size-11 icon-chevron-down"></i>
-										</span>
-                                    </a>
-                                    <ul class="dropdown-menu float-right">
-                                        <li><a href="javascript:;" title=""><i
-                                                class="glyph-icon icon-calendar mrg5R"></i>完成客户信息</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;" class="" title=""><i
-                                                class="glyph-icon icon-edit mrg5R"></i>查看投资档案明细</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;" class="" title=""><i
-                                                class="glyph-icon icon-edit mrg5R"></i>到期转投处理申请</a></li>
-                                        <li><a href="javascript:;" class="" title=""><i
-                                                class="glyph-icon icon-edit mrg5R"></i>未到期转投处理申请</a></li>
-                                        <li><a href="javascript:;" class="" title=""><i
-                                                class="glyph-icon icon-edit mrg5R"></i>退伙处理申请</a></li>
-                                        <li><a href="javascript:;" class="" title=""><i
-                                                class="glyph-icon icon-edit mrg5R"></i>基金续投申请</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th><span class="text-overflow">认购人</span></th>
+                                <th><span class="text-overflow">基金名称</span></th>
+                                <th><span class="text-overflow">档案编号</span></th>
+                                <th><span class="text-overflow">合同编号</span></th>
+                                <th><span class="text-overflow">认购日期</span></th>
+                                <th><span class="text-overflow">认购金额</span></th>
+                                <th><span class="text-overflow">认购期限</span></th>
+                                <th><span class="text-overflow">理财经理</span></th>
+                                <th><span class="text-overflow">地区</span></th>
+                                <th><span class="text-overflow">年经收益率</span></th>
+                                <th><span class="text-overflow">付息方式</span></th>
+                                <th><span class="text-overflow">到期日期</span></th>
+                                <th><span class="text-overflow">委托情况</span></th>
+                                <th><span class="text-overflow">已付利息</span></th>
+                                <th><span class="text-overflow">已付本金</span></th>
+                                <th><span class="text-overflow">操作</span></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>

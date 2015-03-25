@@ -44,14 +44,13 @@
         }
     </style>
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 
     <div id="page-content-wrapper">
         <!-- #page-title -->
-        <div id="page-content">
-
+        <div id="page-content" class="page-view pad25T">
             <div class="content-box box-toggle ">
 
                 <div class="content-box-header primary-bg">
@@ -66,7 +65,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="关键字搜索..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -80,35 +79,26 @@
 
                 <div class="content-box-wrapper">
 
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="pacts-get-pages"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager-1" class="page-bar"></div>
 
                     <table class="table table-striped text-center mrg0B" id="filepackage-get-table">
                         <thead>
-                        <tr>
-                            <th><span class="">档案号</span></th>
-                            <th><span class="">档案名称</span></th>
-                            <th><span class="">档案类型</span></th>
-                            <th><span class="">合同编号</span></th>
-                            <th><span class="">合同名称</span></th>
-                            <th><span class="">项目名称</span></th>
-                            <th><span class="">基金名称</span></th>
-                            <th><span class="">签约方</span></th>
-                            <th><span class="item-date">签约日期</span></th>
-                            <th><span class="">移交人</span></th>
-                            <th><span class="item-date">移交日期</span></th>
-                            <th><span class="">档案室</span></th>
-                            <th><span class="">档案柜编号</span></th>
-                            <th><span class="">状态</span></th>
-                        </tr>
+                            <tr>
+                                <th><span class="">档案号</span></th>
+                                <th><span class="">档案名称</span></th>
+                                <th><span class="">档案类型</span></th>
+                                <th><span class="">合同编号</span></th>
+                                <th><span class="">合同名称</span></th>
+                                <th><span class="">项目名称</span></th>
+                                <th><span class="">基金名称</span></th>
+                                <th><span class="">签约方</span></th>
+                                <th><span class="item-date">签约日期</span></th>
+                                <th><span class="">移交人</span></th>
+                                <th><span class="item-date">移交日期</span></th>
+                                <th><span class="">档案室</span></th>
+                                <th><span class="">档案柜编号</span></th>
+                                <th><span class="">状态</span></th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -146,7 +136,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="关键字搜索..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input2"/>
                                 </div>
@@ -167,33 +157,24 @@
                     <%--<div class="items-page-total" id="pacts-page-total2" title=""></div>--%>
                     <%--</div>--%>
 
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first2">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="pacts-get-pages2"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last2">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager-2" class="page-bar"></div>
 
                     <table class="table table-striped text-center mrg0B" id="inout_table">
                         <thead>
-                        <tr>
-                            <th><span class="">档案号</span></th>
-                            <th><span class="">档案名称</span></th>
-                            <th><span class="">档案类型</span></th>
-                            <th><span class="">合同编号</span></th>
-                            <th><span class="">合同名称</span></th>
-                            <th><span class="">借阅人</span></th>
-                            <th><span class="">借阅日期</span></th>
-                            <th><span class="">应归还日期</span></th>
-                            <th><span class="">归还日期</span></th>
-                            <th><span class="">备注</span></th>
-                        </tr>
+                            <tr>
+                                <th><span class="">档案号</span></th>
+                                <th><span class="">档案名称</span></th>
+                                <th><span class="">档案类型</span></th>
+                                <th><span class="">合同编号</span></th>
+                                <th><span class="">合同名称</span></th>
+                                <th><span class="">借阅人</span></th>
+                                <th><span class="">借阅日期</span></th>
+                                <th><span class="">应归还日期</span></th>
+                                <th><span class="">归还日期</span></th>
+                                <th><span class="">备注</span></th>
+                            </tr>
                         </thead>
-
+                        <tbody></tbody>
                     </table>
                     <br/>
 

@@ -8,7 +8,7 @@
     <title>提成申请</title>
     <link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
 <jsp:include page="./navi.jsp"/>
 <div id="page-content-wrapper">
@@ -29,13 +29,13 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="Search notifications..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                id="filter-keyword"/>
                     </div>
                 </div>
             </div>
-            <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
+            <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
                     id="keyword-button"><span class="button-content">搜索</span></button>
         </div>
 
@@ -43,7 +43,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">
+                        <div class="input-append">
                             <i class="glyph-icon icon-filter"></i>
                         </div>
 
@@ -62,7 +62,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">到</div>
+                        <div class="input-append">到</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_to"/>
@@ -76,7 +76,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">从</div>
+                        <div class="input-append">从</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_from"/>
@@ -89,31 +89,21 @@
     </div>
 
     <div class="content-box-wrapper">
-        <div class="col-md-12 page-bar pad0R">
-            <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                <i class="glyph-icon icon-arrow-left"></i>
-            </a>
-
-            <div class="button-group float-left pages-div" id="page-numbers"></div>
-            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                <i class="glyph-icon icon-arrow-right"></i>
-            </a>
-        </div>
+        <div id="table-pager-1" class="page-bar"></div>
         <table id="ywtc_table" class="table table-striped text-center mrg0B">
-            <colgroup>
-                <col width="30"/>
-            </colgroup>
-            <tr>
-                <th><input class="item-checkbox" type="checkbox"
-                           name="checkbox"></th>
-                <th data-bindtype="value" data-Member="ywjl">提成人员</th>
-                <th data-bindtype="value" data-Member="fundname">基金名称</th>
-                <th data-bindtype="value" data-Member="payamount" data-format="money">付款金额</th>
-                <th data-bindtype="value" data-Member="skr">收款人</th>
-                <th data-bindtype="value" data-Member="account">收款账户</th>
-                <th data-bindtype="value" data-Member="bank">开户行</th>
-                <th data-bindtype="value" data-Member="paystatus">付款状态</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th><input class="item-checkbox" type="checkbox"name="checkbox"></th>
+                    <th data-bindtype="value" data-Member="ywjl">提成人员</th>
+                    <th data-bindtype="value" data-Member="fundname">基金名称</th>
+                    <th data-bindtype="value" data-Member="payamount" data-format="money">付款金额</th>
+                    <th data-bindtype="value" data-Member="skr">收款人</th>
+                    <th data-bindtype="value" data-Member="account">收款账户</th>
+                    <th data-bindtype="value" data-Member="bank">开户行</th>
+                    <th data-bindtype="value" data-Member="paystatus">付款状态</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
         <%--<div class="items-page">--%>
         <%--<div onselectstart="return false" class="page-first" id="page-first">第一页</div>--%>
@@ -144,21 +134,20 @@
                 <div class="form-input">
                     <div class="form-input-icon">
                         <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                        <input type="text" placeholder="Search notifications..."
+                        <input type="text" placeholder="关键字搜索..."
                                class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                id="filter-keyword2"/>
                     </div>
                 </div>
             </div>
-            <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
-                    id="filter-button2"><span class="button-content">搜索</span></button>
+            <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100" id="filter-button2"><span class="button-content">搜索</span></button>
         </div>
 
         <div class="keyword-view float-right filter-status">
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">
+                        <div class="input-append">
                             <i class="glyph-icon icon-filter"></i>
                         </div>
 
@@ -177,7 +166,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">到</div>
+                        <div class="input-append">到</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_to2"/>
@@ -191,7 +180,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">从</div>
+                        <div class="input-append">从</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_from2"/>
@@ -206,32 +195,22 @@
 
     <div class="content-box-wrapper">
 
-        <div class="col-md-12 page-bar pad0R">
-            <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first2">
-                <i class="glyph-icon icon-arrow-left"></i>
-            </a>
-
-            <div class="button-group float-left pages-div" id="page-numbers2"></div>
-            <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last2">
-                <i class="glyph-icon icon-arrow-right"></i>
-            </a>
-        </div>
+        <div id="table-pager-2" class="page-bar"></div>
 
         <table id="gltc_table" class="table table-striped text-center mrg0B">
-            <colgroup>
-                <col width="30"/>
-            </colgroup>
-            <tr>
-                <th><input class="item-checkbox" type="checkbox"
-                           name="checkbox"></th>
-                <th>提成人员</th>
-                <th>基金名称</th>
-                <th>付款金额</th>
-                <th>收款人</th>
-                <th>收款账户</th>
-                <th>开户行</th>
-                <th data-bindtype="value" data-Member="paystatus">付款状态</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
+                    <th>提成人员</th>
+                    <th>基金名称</th>
+                    <th>付款金额</th>
+                    <th>收款人</th>
+                    <th>收款账户</th>
+                    <th>开户行</th>
+                    <th data-bindtype="value" data-Member="paystatus">付款状态</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
     </div>
 

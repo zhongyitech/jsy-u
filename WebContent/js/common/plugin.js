@@ -176,7 +176,7 @@
         xhr.then(function(){
             //取消error局部覆盖全局
             _this.error();
-            !_this.callback["success"]&&_this.success();
+            !_this.callback["success"]&&xhr.isAsync()&&_this.success();
             !_this.callback["fail"]&&_this.fail();
         });
     };
@@ -476,15 +476,15 @@
     };
     var Pager=function(selector,data,options){
         var _self=this;
-        options= $.extend(true,{pageSize:10,maxPage:10},options);
+        options= $.extend(true,{pageSize:10,maxPage:10,currentPage:1},options);
         _self._object=$(selector);
         _self._object.addClass(Constant.pager_style);
         //固定第一页
         _self._firstPage=1;
         _self._maxPage=options.maxPage&&(options.maxPage<36?options.maxPage:36)||10;
         _self._pageSize=options.pageSize&&(options.pageSize<100?options.pageSize:100)||10;
+        _self._currentPage=options.currentPage||1;
         _self._lastPage=1;
-        _self._currentPage=1;
         _self._resetCls=function(first,prev,last,next){
             if(_self._currentPage==_self._firstPage) Utils.addClass(Constant.button_disabled,first,prev);
             if(_self._currentPage==_self._lastPage) Utils.addClass(Constant.button_disabled,last,next);
@@ -543,7 +543,7 @@
         _self.onChange=function(fn,_this){
             _self.__triggerObject=_this;
             _self.__fn=fn;
-        }
+        };
     };
     $.extend(true,{
         dom:{

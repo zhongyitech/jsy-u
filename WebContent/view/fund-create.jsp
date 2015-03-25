@@ -26,7 +26,6 @@
 
                 <div class="content-box-wrapper">
                     <div class="center-margin col-md-10" id="fund-form">
-
                         <div class="form-row">
 
                             <div class="form-label col-md-2">
@@ -34,26 +33,23 @@
                             </div>
 
                             <div class="form-input col-md-10">
-                                <input type="text" name="name">
+                                <input type="text" name="name" class="fundName">
                             </div>
-
                         </div>
-
                         <div class="form-row">
                             <div class="form-label col-md-2">
                                 <label>(*)状态：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select name="status"></select>
+                                <select name="status" class="status"></select>
                             </div>
                             <div class="form-label col-md-2">
                                 <label>(*)开售日期：</label>
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="tcal" type="text" name="ksrq">
+                                <input class="tcal" type="text" name="ksrq" id="startSaleDate">
                             </div>
-
                         </div>
 
                         <div class="form-row">
@@ -61,7 +57,7 @@
                                 <label>预期募集款：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="yqmjk">
+                                <input class="" type="text" name="yqmjk" >
                             </div>
                             <div class="form-label col-md-2">
                                 <label>季付募集规模：</label>
@@ -78,14 +74,14 @@
                                 <label>半年付募集规模：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="bnfmjgm">
+                                <input class="" type="text" name="bnfmjgm"/>
                             </div>
                             <div class="form-label col-md-2">
                                 <label>年付募集规模：</label>
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="nfmjgm">
+                                <input class="" type="text" name="nfmjgm"/>
                             </div>
                         </div>
 
@@ -98,15 +94,11 @@
                                     <option>选择一个有限合伙企业</option>
                                 </select>
                             </div>
-                            <div class="form-label col-md-2">
-                                <label>选择项目：</label>
-                            </div>
-                            <div class="form-input col-md-4">
-                                <select id="fundProject">
-                                    <option>选择一个项目</option>
-                                </select>
-                            </div>
 
+
+                        </div>
+                        <div class="form-row">
+                            <label>基金与项目的关系在项目管理模块中进行操作.</label>
                         </div>
 
                     </div>

@@ -11,8 +11,6 @@ $(document).ready(function(){
 
 var INVESTMENT_LIST={
 		TABLE_ID: '#investment-table',
-		KEYWORD_ID: '#keyword-input',
-		KEYWORD_BUTTON_ID: '#keyword-button',
 		PAGES_ID: '#page-numbers',
 		page_start: 0,
 		page_size: 10,
@@ -31,23 +29,28 @@ var INVESTMENT_LIST={
 		stringformat: {},		
 		ini: function(async){
 			this.iniFilter();
-			this.iniPage();
 			this.setData(async);
 		},
 		iniFilter: function(){
 			var me = this;
-			$(this.KEYWORD_BUTTON_ID).click(function(){
+			$("#keyword-button").click(function(){
 				//过滤时翻至第一页
-				me.selectFirst();
+				me.page_start=0;
+                me.setData(true);
 			});
+            $("#keyword-input").on("keyup",function(e){
+                if(e.keyCode==13){
+                    me.page_start=0;
+                    me.setData(true);
+                }
+            });
 		},
 		setData: function(async){
 			//异步加载数据
 			if(!async){
 				async = false;
 			}			
-			this.page_start = (this.pages_select - 1) * this.page_size;		
-			this.setFilter();				
+			this.setFilter();
 			var me = this;
 			var params = {};
 			var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
@@ -76,17 +79,11 @@ var INVESTMENT_LIST={
 			
 		},
 		setFilter: function(){//获取过滤条件
-			var keyword_input = $(this.KEYWORD_ID);
+			var keyword_input = $("#keyword-input");
 			this.filter_keyword = keyword_input.val();
 		},
 		setTable: function (items){
-			//初始化
-			var items_tr = $(this.TABLE_ID + ' tr');
-			if(items_tr && items_tr.length){
-				for(var i=1; i<items_tr.length; i++){
-					$(items_tr.get(i)).remove();
-				}
-			}			
+            $(this.TABLE_ID).find("tbody").empty();
 			if(items){
 				this.tr_key = 0;
 				for(var i in items){
@@ -270,59 +267,13 @@ var INVESTMENT_LIST={
 			}
 		    };
 		},
-		iniPage: function(){
-			var me = this;
-			$('#page-first').click(function(){
-				//过滤时翻至第一页
-				me.selectFirst();
-			});
-			
-			$('#page-last').click(function(){
-				//过滤时翻至第一页
-				me.selectLast();
-			});
-		},
 		setPage: function(response){
-			var total = response[REST.TOTAL_KEY];
-			this.page_total = total;
-			
-			var pages_div = $(this.PAGES_ID);
-			var pages = pages_div.find("a");
-			if(pages.length){
-				for(var i=0; i<pages.length; i++){
-					$(pages[i]).remove();
-				}
-			}
-			
-			var pages_from = this.pages_select - 16;
-			if(pages_from<1){
-				pages_from = 1;
-			}
-			var pages_to = pages_from + this.pages_size;
-			var pages_total =  Math.ceil(total/this.page_size);
-			
-			var me = this;
-			for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-				var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-				if(i == this.pages_select){
-					page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-				}
-				pages_div.append(page_number);
-				page_number.append(i);
-				page_number.click(function(e){me.selectPage(e);});
-			}
-		},
-		selectPage: function(e){
-			this.pages_select = e.toElement.textContent;
-			this.setData(true);
-		},
-		selectFirst: function(){
-			this.pages_select = 1;
-			this.setData(true);
-		},
-		selectLast: function(){
-			this.pages_select = this.pages_total;
-			this.setData(true);
+            var _this=this;
+            _this.page_start==0&&$.dom.pager("#table-pager",response).onChange(function (param) {
+                _this.page_start=param.startposition;
+                _this.page_size=param.pagesize;
+                _this.setData(true);
+            });
 		}
 };
 

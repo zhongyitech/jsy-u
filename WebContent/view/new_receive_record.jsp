@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
 </head>
 
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">

@@ -65,7 +65,7 @@
 								<div class="form-input">
 									<div class="form-input-icon">
 										<i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-										<input type="text" placeholder="Search notifications..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
+										<input type="text" placeholder="关键字搜索..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
 									</div>
 								</div>
 							</div>

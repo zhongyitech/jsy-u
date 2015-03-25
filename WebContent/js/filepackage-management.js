@@ -29,7 +29,6 @@ var VIEWDATA = {
     filter_to: '',
     page_size: 10,
     page_start: 0,
-    page_total: 1,
     pages_select: 1,
     pages_size: 21,
     status: {},
@@ -50,7 +49,6 @@ var VIEWDATA = {
     filter_to2: '',
     page_size2: 10,
     page_start2: 0,
-    page_total2: 1,
     pages_select2: 1,
     pages_size2: 21,
     status2: {},
@@ -64,7 +62,6 @@ var VIEWDATA = {
         this.getView();
         this.getView2();
         this.setEvent();
-        this.iniPage();
     },
     getView: function () {
         this.getItems();
@@ -135,8 +132,6 @@ var VIEWDATA = {
 
         var keyword_input = $(this.KEYWORD_ID);
         this.filter_keyword = keyword_input.val();
-
-        this.page_start = (this.pages_select - 1) * this.page_size;
     },
     getItems: function () {
 
@@ -147,7 +142,6 @@ var VIEWDATA = {
         console.log("params", params);
 
         var data = { url: '/api/filePackage/readAllForPage', params: params };
-        var me = this;
         $.ajax({
             type: 'post',
             url: '../rest/item/post',
@@ -172,18 +166,11 @@ var VIEWDATA = {
     success: function (result) {
         this.items = JSON.parse(result['rest_result']);
         this.setTable(this.items);
-        this.page_total = result['rest_total'];
-        this.setPage(this.page_total);
+        this.setPage(result);
     },
     setTable: function (items) {
-        var pacts = $("#filepackage-get-table tr");
-        if (pacts && pacts.length) {
-            for (var i = 1; i < pacts.length; i++) {
-                $(pacts[i]).remove();
-            }
-        }
-
         var table = $("#filepackage-get-table");
+        table.find("tbody").empty();
         if (table && items) {
             for (var i in items) {
                 var row = $("<tr></tr>");
@@ -363,8 +350,7 @@ var VIEWDATA = {
                     };
                 } else {
                     var result = JSON.parse(response);
-                    var suggestions = JSON.parse(result.suggestions);
-                    result.suggestions = suggestions;
+                    result.suggestions = JSON.parse(result.suggestions);
                     return result;
                 }
             }
@@ -380,10 +366,6 @@ var VIEWDATA = {
 
         $("#comfirm_dialog").click(function () {
             var returnTime = DATEFORMAT.toRest($("#dialog_ghrq").val());
-
-            console.log($("#dialog_ghrq").val());
-            console.log($("#dialog_bz").val());
-
 
             $("#light").css("display", "none");
             $("#fade").css("display", "none");
@@ -428,7 +410,6 @@ var VIEWDATA = {
         $("#b_comfirm_dialog").click(function () {
             var ShouldReturnTime = DATEFORMAT.toRest($("#b_dialog_ghrq").val());
             var BorrowTime = DATEFORMAT.toRest($("#b_dialog_jyrq").val());
-            console.log($("#b_dialog_bz").val());
 
 
             $("#b_light").css("display", "none");
@@ -464,12 +445,14 @@ var VIEWDATA = {
 
         $(this.KEYWORD_BUTTON_ID).click(function () {
             //过滤时翻至第一页
-            me.selectFirst();
+            me.page_start=0;
+            me.getItems(true);
         });
 
         $(this.KEYWORD_ID).keyup(function (e) {
-            if (e && e.keyCode == 13) {
-                me.selectFirst();
+            if (e.keyCode == 13) {
+                me.page_start=0;
+                me.getItems(true);
             }
         });
 
@@ -508,62 +491,14 @@ var VIEWDATA = {
         //备注
         $("#b_dialog_bz").val("");
     },
-    iniPage: function () {
-        var me = this;
-        $('#page-first').click(function () {
-            //过滤时翻至第一页
-            me.selectFirst();
-        });
-
-        $('#page-last').click(function () {
-            //过滤时翻至第一页
-            me.selectLast();
+    setPage: function (response) {
+        var _this=this;
+        _this.page_start==0&&$.dom.pager("#table-pager-1",response).onChange(function (param) {
+            _this.page_size=param.pagesize;
+            _this.page_start=param.startposition;
+            _this.getItems2(true);
         });
     },
-    setPage: function (total) {
-        this.page_total = total;
-
-        var pages_div = $(this.PAGES_ID);
-        var pages = pages_div.find("a");
-        if (pages.length) {
-            for (var i = 0; i < pages.length; i++) {
-                $(pages[i]).remove();
-            }
-        }
-
-        var pages_from = this.pages_select - 16;
-        if (pages_from < 1) {
-            pages_from = 1;
-        }
-        var pages_to = pages_from + this.pages_size;
-        var pages_total = Math.ceil(total / this.page_size);
-
-        var me = this;
-        for (var i = pages_from; i < pages_to && i <= pages_total; i++) {
-            var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if (i == this.pages_select) {
-                page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-            }
-            pages_div.append(page_number);
-            page_number.append(i);
-            page_number.click(function (e) { me.selectPage(e); });
-        }
-    },
-    selectPage: function (e) {
-        this.pages_select = e.toElement.textContent;
-        this.getItems(true);
-    },
-    selectFirst: function () {
-        this.pages_select = 1;
-        this.getItems(true);
-    },
-    selectLast: function () {
-        this.pages_select = this.pages_total;
-        this.getItems(true);
-    },
-
-
-
     //set page for table2
 
     getFilter2: function () {//获取过滤条件
@@ -584,8 +519,6 @@ var VIEWDATA = {
 
         var keyword_input = $(this.KEYWORD_ID2);
         this.filter_keyword2 = keyword_input.val();
-
-        this.page_start2 = (this.pages_select2 - 1) * this.page_size2;
     },
     getItems2: function () {
         var me = this;
@@ -596,10 +529,7 @@ var VIEWDATA = {
         if (me.filter_from2 == "" || me.filter_to2 == "") {
             entity = JSON.stringify({ startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2 });
         }
-        console.log("params", params);
-        console.log("entity", entity);
         var data = { url: '/api/borrowFilesPackageRecords/readAllForPage', params: params, entity: entity };
-        var me = this;
         $.ajax({
             type: 'post',
             url: '../rest/item/post',
@@ -625,20 +555,11 @@ var VIEWDATA = {
     success2: function (result) {
         this.items = JSON.parse(result['rest_result']);
         this.setTable2(this.items);
-        this.page_total = result['rest_total'];
-        this.setPage2(this.page_total);
+        this.setPage2(result);
     },
     setTable2: function (items) {
-        var pacts = $("#inout_table tr");
-        if (pacts && pacts.length) {
-            for (var i = 1; i < pacts.length; i++) {
-                $(pacts[i]).remove();
-            }
-        }
-
-
         var table = $("#inout_table");
-
+        table.find("tbody").empty();
         if (table && items) {
             for (var i in items) {
 
@@ -663,48 +584,14 @@ var VIEWDATA = {
         }
 
     },
-    setPage2: function (total) {
-        this.page_total = total;
-
-        var pages_div = $(this.PAGES_ID2);
-        var pages = pages_div.find("a");
-        if (pages.length) {
-            for (var i = 0; i < pages.length; i++) {
-                $(pages[i]).remove();
-            }
-        }
-
-        var pages_from = this.pages_select2 - 16;
-        if (pages_from < 1) {
-            pages_from = 1;
-        }
-        var pages_to = pages_from + this.pages_size2;
-        var pages_total = Math.ceil(total / this.page_size2);
-
-        var me = this;
-        for (var i = pages_from; i < pages_to && i <= pages_total; i++) {
-            var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if (i == this.pages_select2) {
-                page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-            }
-            pages_div.append(page_number);
-            page_number.append(i);
-            page_number.click(function (e) { me.selectPage(e); });
-        }
-    },
-    selectPage2: function (e) {
-        this.pages_select2 = e.toElement.textContent;
-        this.getItems2(true);
-    },
-    selectFirst2: function () {
-        this.pages_select2 = 1;
-        this.getItems2(true);
-    },
-    selectLast2: function () {
-        this.pages_select2 = this.pages_total2;
-        this.getItems2(true);
+    setPage2: function (response) {
+        var _this=this;
+        _this.page_start2==0&&$.dom.pager("#table-pager-2",response).onChange(function (param) {
+            _this.page_size2=param.pagesize;
+            _this.page_start2=param.startposition;
+            _this.getItems2(true);
+        });
     }
-
 };
 
 

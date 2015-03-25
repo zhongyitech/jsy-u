@@ -8,7 +8,7 @@
     <title>项目结算</title>
 </head>
 
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">

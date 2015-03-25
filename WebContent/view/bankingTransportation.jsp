@@ -27,7 +27,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="关键字搜索..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -42,69 +42,55 @@
 
                 </div>
                 <div class="content-box-wrapper">
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5R ui-state-default"
-                           id="page-first"> <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-numbers"></div>
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5L ui-state-default"
-                           id="page-last"> <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar"></div>
                     <table class="table table-striped text-center" id="summary-table">
-                        <colgroup>
-                            <col style="width: 50px;">
-                            <col style="width: 80px;">
-                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th style="width: 10px;"></th>
+                                <th><span class="">状态</span></th>
+                                <th><span class="">基金名称</span></th>
+                                <th><span class="">合同编号</span></th>
+                                <th><span class="">申请部门</span></th>
+                                <th><span class="">申请人</span></th>
+                                <th><span class="">申请日期</span></th>
+                                <th><span class="">特殊表类型</span></th>
+                                <th><span class="">客户名称</span></th>
+                                <th><span class="">备注</span></th>
+                            </tr>
+                        </thead>
                         <tbody>
-                        <tr>
-                            <th style="width: 10px;"></th>
-                            <th><span class="">状态</span></th>
-                            <th><span class="">基金名称</span></th>
-                            <th><span class="">合同编号</span></th>
-                            <th><span class="">申请部门</span></th>
-                            <th><span class="">申请人</span></th>
-                            <th><span class="">申请日期</span></th>
-                            <th><span class="">特殊表类型</span></th>
-                            <th><span class="">客户名称</span></th>
-                            <th><span class="">备注</span></th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td>3</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a href="javascript:;" title="" class="btn medium " data-toggle="dropdown"> <span
-                                            class="button-content">
-												<i class="glyph-icon font-size-11 icon-cog"></i> <i
-                                            class="glyph-icon font-size-11 icon-chevron-down"></i>
-										</span>
-                                    </a>
-                                    <ul class="dropdown-menu float-right">
-                                        <li><a href="javascript:;" title=""><i
-                                                class="glyph-icon icon-calendar mrg5R"></i>打印委托协议</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="javascript:;" title=""><i
-                                                class="glyph-icon icon-calendar mrg5R"></i>作废申请单</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
+                        <%--<tr>--%>
+                            <%--<td>1</td>--%>
+                            <%--<td></td>--%>
+                            <%--<td>3</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>2</td>--%>
+                            <%--<td>--%>
+                                <%--<div class="dropdown">--%>
+                                    <%--<a href="javascript:;" title="" class="btn medium " data-toggle="dropdown"> <span--%>
+                                            <%--class="button-content">--%>
+												<%--<i class="glyph-icon font-size-11 icon-cog"></i> <i--%>
+                                            <%--class="glyph-icon font-size-11 icon-chevron-down"></i>--%>
+										<%--</span>--%>
+                                    <%--</a>--%>
+                                    <%--<ul class="dropdown-menu float-right">--%>
+                                        <%--<li><a href="javascript:;" title=""><i--%>
+                                                <%--class="glyph-icon icon-calendar mrg5R"></i>打印委托协议</a></li>--%>
+                                        <%--<li class="divider"></li>--%>
+                                        <%--<li><a href="javascript:;" title=""><i--%>
+                                                <%--class="glyph-icon icon-calendar mrg5R"></i>作废申请单</a></li>--%>
+                                    <%--</ul>--%>
+                                <%--</div>--%>
+                            <%--</td>--%>
+                        <%--</tr>--%>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

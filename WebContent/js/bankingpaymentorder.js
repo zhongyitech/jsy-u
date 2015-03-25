@@ -131,7 +131,6 @@ var VIEWMODEL = {
             MESSAGEBOX.dialog('此付款单已手工支付，将此单标记为已支付状态？', 'yes,no', [{ name: 'yes', func: function () { alert('yes'); } }]);
         });
         this.iniFilter();
-        this.iniPage();
         this.setData(async);
     },    
     pay: function (payOrderID)
@@ -158,8 +157,8 @@ var VIEWMODEL = {
         var me = this;
         $(this.KEYWORD_BUTTON_ID).click(function ()
         {
-            //过滤时翻至第一页
-            me.selectFirst();
+            me.page_start=0;
+            me.setData(true);
         });
     },
     setData: function (async)
@@ -211,69 +210,14 @@ var VIEWMODEL = {
     {
         this.DataBind.binding(items);
     },
-    iniPage: function ()
-    {
-        var me = this;
-        $('#page-first').click(function ()
-        {
-            //过滤时翻至第一页
-            me.selectFirst();
-        });
-        $('#page-last').click(function ()
-        {
-            //过滤时翻至第一页
-            me.selectLast();
-        });
-    },
     setPage: function (response)
     {
-        var total = response[REST.TOTAL_KEY];
-        this.page_total = total;
-
-        var pages_div = $(this.PAGES_ID);
-        var pages = pages_div.find("a");
-        if (pages.length)
-        {
-            for (var i = 0; i < pages.length; i++)
-            {
-                $(pages[i]).remove();
-            }
-        }
-        var pages_from = this.pages_select - 16;
-        if (pages_from < 1)
-        {
-            pages_from = 1;
-        }
-        var pages_to = pages_from + this.pages_size;
-        var pages_total = Math.ceil(total / this.page_size);
-
-        var me = this;
-        for (var i = pages_from; i < pages_to && i <= pages_total; i++)
-        {
-            var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if (i == this.pages_select)
-            {
-                page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-            }
-            pages_div.append(page_number);
-            page_number.append(i);
-            page_number.click(function (e) { me.selectPage(e); });
-        }
-    },
-    selectPage: function (e)
-    {
-        this.pages_select = e.toElement.textContent;
-        this.setData(true);
-    },
-    selectFirst: function ()
-    {
-        this.pages_select = 1;
-        this.setData(true);
-    },
-    selectLast: function ()
-    {
-        this.pages_select = this.pages_total;
-        this.setData(true);
+        var _this=this;
+        _this.page_start==0&& $.dom.pager("#table-pager",response).onChange(function (param) {
+            _this.page_size=param.pagesize;
+            _this.page_start=param.startposition;
+            _this.setData(true);
+        });
     },
     getSelectRow: function ()
     {

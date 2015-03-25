@@ -2543,7 +2543,7 @@ var LOGIN = {
 
         var password_input = $(this.KEY_ID);
         password_input.keyup(function (e) {
-            if (e && e.keyCode == 13) {
+            if( e.keyCode == 13) {
                 me.login();
             }
         });
