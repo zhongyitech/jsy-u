@@ -49,11 +49,6 @@ var USER_LIST = {
     },
     set: function (async) {
         var me = this;
-
-        if (!async) {
-            async = false;
-        }
-
         var keyword_input = this.getView().find(this.KEYWORD_INPUT_ID);
         this.filter_keyword = keyword_input.val();
 
@@ -66,17 +61,10 @@ var USER_LIST = {
         var data = {url: '/api/user/readAllForPage', params: params, entity: entity};
 
         $.io.post(data)
-            .success(function (result) {
-                me.response=result;
-                me.setView(me.response);
-            })
-            .fail(function (result) {
-                alert("fail:"+result);
+            .success(function (result,pager) {
+                me.setPage(pager);
+                me.setTable(result);
             });
-    },
-    setView: function (response) {
-        this.setPage(response);
-        this.setTable(response);
     },
     setPage: function (response) {//设置页数选择列表
         var _this=this;
@@ -87,19 +75,11 @@ var USER_LIST = {
         });
     },
     setTable: function (response) {
-        var s = response[REST.RESULT_KEY];
-        if (s) {
-            this.items = JSON.parse(s);
-        } else {
-            s = [];
-        }
-
         var table = this.getView().find(this.TABLE_ID);
         table.find("tbody").empty();
-        var items = this.items;
-        if (items) {
-            for (var i = 0; i < items.length || i < this.page_size; i++) {
-                this.add(items[i]);
+        if (response) {
+            for (var i = 0; i < response.length; i++) {
+                this.add(response[i]);
             }
         }
     },

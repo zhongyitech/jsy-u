@@ -19,7 +19,7 @@
                 <div class="content-box-header primary-bg">
                     <span class="float-left">公司管理</span>
 
-                    <a href="#" class="float-right icon-separator btn toggle-button" title="点击">
+                    <a href="javascript:;" class="float-right icon-separator btn toggle-button" title="点击">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
 
@@ -28,14 +28,11 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="关键字搜索..."
-                                           class="radius-top-left-100 radius-bottom-left-100 keyword-input"
-                                           id="keyword-input"/>
+                                    <input type="text" placeholder="关键字搜索..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input"/>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
-                                id="keyword-button"><span class="button-content">搜索</span></button>
+                        <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100" id="keyword-button"><span class="button-content">搜索</span></button>
                     </div>
                 </div>
 
@@ -45,7 +42,7 @@
                     <table class="table table-striped text-center mrg0B" id="view-table">
                         <thead>
                             <tr>
-                                <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                                <th class="text-center"><input type="checkbox" name="checkbox" /></th>
                                 <th class="text-center">公司名称</th>
                                 <th class="text-center">公司简称</th>
                                 <th class="text-center">公司类型</th>
@@ -61,8 +58,7 @@
                 </div>
 
                 <div class="button-pane">
-                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L"
-                            id="remove-button"><span class="button-content">删除选中行</span></button>
+                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="remove-button"><span class="button-content">删除选中行</span></button>
                 </div>
             </div>
 

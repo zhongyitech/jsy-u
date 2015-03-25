@@ -127,7 +127,7 @@ var COMPANY_LIST ={
 			tr.attr(this.tr_key, key);
 			table.append(tr);
 			
-			var checkbox_td = $('<td class="text-center"><input type="checkbox" name="checkbox"></td>');
+			var checkbox_td = $('<td class="text-center"><input type="checkbox" name="checkbox" /></td>');
 			tr.append(checkbox_td);
 			
 			var name = COMPANY.toName(item);

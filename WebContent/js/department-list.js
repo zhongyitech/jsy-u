@@ -179,7 +179,7 @@ var DEPARTMENT_LIST = {
             var params = JSON.stringify({id: DEPARTMENT.toId(item)});
             var data = {url: '/api/department', params: params, entity: entity};
 
-            $.io.delete(data)
+            $.io.del(data)
                 .success(function (result) {
                     me.set(true);
                 })

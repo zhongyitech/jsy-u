@@ -100,16 +100,9 @@ var ROLE_LIST ={
             });
 		},
 		setTable: function (response){
-			var s = response[REST.RESULT_KEY];
-			if(s){
-				this.items = JSON.parse(s);
-			}else{
-				s = [];
-			}
-			
+			var items = this.items = response[REST.RESULT_KEY];
 			var table = this.getView().find(this.TABLE_ID);
 			table.find('tbody').empty();
-			var items = this.items;
 			if(items){
 				for(var i=0; i<items.length || i<this.page_size; i++){
 					this.add(items[i]);
@@ -134,7 +127,6 @@ var ROLE_LIST ={
 			}else{
 				name_td.append($('<span class="span-12"></span>')); 
 			}
-            tr.append('<td></td>');
 		},
 		remove: function(){//删除选中行
 			var table = this.getTable();
