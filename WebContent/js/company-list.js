@@ -32,24 +32,20 @@ var COMPANY_LIST ={
 			if(!async){
 				async = false;
 			}
-			
 			var me = this;
 			this.getView().find(this.KEYWORD_BUTTON_ID).click(function(){
 				me.page_start=0;
                 me.set(true);
 			});
-			
 			this.getView().find(this.KEYWORD_INPUT_ID).keyup(function(e){
 				if(e.keyCode == 13){
                     me.page_start=0;
                     me.set(true);
 				}
 			});
-			
 			this.getView().find(this.REMOVE_ID).click(function(){
 				me.remove();
 			});
-			
 			this.set(async);
 		},
 		set: function(async){
@@ -100,16 +96,9 @@ var COMPANY_LIST ={
             });
 		},
 		setTable: function (response){
-			var s = response[REST.RESULT_KEY];
-			if(s){
-				this.items = JSON.parse(s);
-			}else{
-				s = [];
-			}
-			
+			var items = this.items = response[REST.RESULT_KEY];
 			var table = this.getView().find(this.TABLE_ID);
 			table.find('tbody').empty();
-			var items = this.items;
 			if(items){
 				for(var i=0; i<items.length || i<this.page_size; i++){
 					this.add(items[i]);
