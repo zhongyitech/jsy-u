@@ -65,38 +65,10 @@
                     <div class="form-label col-md-2">
                         <label >利息计算方式：</label>
                     </div>
-                    <div class="form-input col-md-10">
+                    <div class="form-input col-md-4">
                         <label id="label_interest_type"></label>
                     </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-label col-md-2">
-                        <label >款项性质：</label>
-                    </div>
-                    <div class="form-input col-md-4">
-                        <label class="checkbox ">
-                            <input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
-                        </label>
-                        <label class="checkbox ">
-                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>
-                        </label>
-                    </div>
                     <div class="form-label col-md-2">
                         <label style="background-color: #ffbe00;">剩余金额：</label>
                     </div>
@@ -105,9 +77,53 @@
                     </div>
                 </div>
 
+                <%--<div class="form-row">--%>
+                    <%--<div class="form-label col-md-2">--%>
+                        <%--<label >款项性质：</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-input col-md-4">--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>--%>
+                        <%--</label>--%>
+                        <%--<label class="checkbox ">--%>
+                            <%--<input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>--%>
+                        <%--</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-label col-md-2">--%>
+                        <%--<label style="background-color: #ffbe00;">剩余金额：</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-input col-md-4">--%>
+                        <%--<input type="text" id="remain_money" readonly="readonly"/>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
 
-                <div class="panel panel-default">
+
+                <div class="panel panel-default" id="invest_div">
+                    <div class="panel-heading">
+                        投资款——款项性质：
+                        <input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金
+                        <input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
+                        <input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
+                        <input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
+                        <input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息
+                        <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
+                    </div>
                     <div class="panel-body">
                         <table class="table table-striped text-center mrg0B" id="pay_records_table">
                             <thead>
@@ -120,9 +136,8 @@
                                 <th class="text-center">应收渠道费</th>
                                 <th class="text-center">应收违约金</th>
                                 <th class="text-center">应收利息</th>
-                                <th class="text-center">应收借贷费</th>
                                 <th class="text-center">逾期利息费</th>
-                                <th class="text-center">投资天数<input id="stopDate" class="tcal filter-input" /></th>
+                                <th class="text-center">投资天数</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -131,29 +146,31 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <%--<div class="panel-heading">--%>
-                        <%--单条记录辅助--%>
-                    <%--</div>--%>
-                    <%--<div class="panel-body">--%>
-                        <%--<div class="form-row">--%>
-                            <%--<div class="form-label col-md-2">--%>
-                                <%--<label>辅助计算逾期费：</label>--%>
-                            <%--</div>--%>
-                            <%--<div class="form-input col-md-8">--%>
-                                <%--截止日期：<input id="stopDate" class="tcal filter-input" />--%>
-                                <%--<input id="over_money_test" type="text" placeholder="到截止日期应付逾期费" readonly="readonly" style="width: auto"/>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                </div>
-
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="borrow_div">
                     <div class="panel-heading">
-                        聚合记录辅助
+                        借款——款项性质：
+                            <input type="checkbox" id="main_money2" name="target_type" value="main_money"> 本金
+                            <input type="checkbox" id="over_money2" name="target_type" value="over_money"> 逾期利息
+                            <input type="checkbox" id="penalty_money2" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per2"></label>
+                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>
                     </div>
                     <div class="panel-body">
-
+                        <table class="table table-striped text-center mrg0B" id="pay_records_table2">
+                            <thead>
+                            <tr>
+                                <th class="text-center">选择</th>
+                                <th class="text-center">编号</th>
+                                <th class="text-center">汇款日期</th>
+                                <th class="text-center">汇款金额</th>
+                                <th class="text-center">应收违约金</th>
+                                <th class="text-center">应收借贷费</th>
+                                <th class="text-center">逾期利息费</th>
+                                <th class="text-center">投资天数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
