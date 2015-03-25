@@ -105,7 +105,7 @@ var ROLE_LIST ={
             table.find("tbody").empty();
 			var items = this.items;
 			if(items){
-				for(var i=0; i<items.length || i<this.page_size; i++){
+				for(var i=0; i<items.length; i++){
 					this.add(items[i]);
 				}
 			}

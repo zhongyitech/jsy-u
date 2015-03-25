@@ -21,7 +21,6 @@ var ROLE_LIST ={
 		filter_keyword: '',
 		tr_key: 'tr_key',
 		tr_value: 0,
-		items: [],
 		getView: function(){
 			return $(this.VIEW_ID);
 		},
@@ -54,42 +53,17 @@ var ROLE_LIST ={
 		},
 		set: function(async){
 			var me = this;
-			
-			if(!async){
-				async = false;
-			}
-
 			var keyword_input = this.getView().find(this.KEYWORD_INPUT_ID);
 			this.filter_keyword = keyword_input.val();
-			
-			var entity = JSON.stringify({
+			var data = {url: '/api/role/readAllForPage', params: {}, entity: {
 				startposition: me.page_start,
 				pagesize: me.page_size,
 				keyword: this.filter_keyword
+			}};
+			$.io.post(data).success(function(result,pager){
+				me.setPage(pager);
+				me.setTable(result);
 			});
-			var params = JSON.stringify({});
-			var data = {url: '/api/role/readAllForPage', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					me.setView(response);
-					LOGIN.error(response);
-				}
-			});
-		},
-		setView: function(response){
-			this.setPage(response);
-			this.setTable(response);
 		},
 		setPage: function(response){//设置页数选择列表
 			var _this=this;
@@ -100,12 +74,11 @@ var ROLE_LIST ={
             });
 		},
 		setTable: function (response){
-			var items = this.items = response[REST.RESULT_KEY];
 			var table = this.getView().find(this.TABLE_ID);
 			table.find('tbody').empty();
-			if(items){
-				for(var i=0; i<items.length; i++){
-					this.add(items[i]);
+			if(response){
+				for(var i=0; i<response.length; i++){
+					this.add(response[i]);
 				}
 			}
 		},
@@ -144,24 +117,9 @@ var ROLE_LIST ={
 		},
 		submit: function(item){
 			var me = this;
-			var entity = JSON.stringify({});
-			var params = JSON.stringify({id: DEPARTMENT.toId(item)});
-			var data = {url: '/api/role/delete', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/delete", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.set(true);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
+			var data = {url: '/api/role/delete', params: {id: DEPARTMENT.toId(item)}, entity: {}};
+			$.io.del(data).success(function(){
+				me.set();
 			});
 		}
 };

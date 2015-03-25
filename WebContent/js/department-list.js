@@ -101,7 +101,7 @@ var DEPARTMENT_LIST = {
             });
         },
         setTable: function (response) {
-            var s = response[REST.RESULT_KEY];
+            var items = this.items = response[REST.RESULT_KEY];
             if (s) {
                 this.items = JSON.parse(s);
             } else {
