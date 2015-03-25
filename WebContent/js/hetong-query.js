@@ -174,15 +174,11 @@ var VIEWMODEL = {
 
 
 //        $.io.post(true,{url:'/api/investmentArchives/ArchivesByNO'}).data
-        me.response=$.io.post(data).success(function(result){
-            me.setView( JSON.parse( result.data));
+        me.response=$.io.post(data).success(function(result,pager){
+            me.items = result;
+            me.setTable(result);
+            me.setPage(pager);
         })
-    },
-    setView: function (response)
-    {
-        this.items = response;
-        this.setTable(this.items);
-        this.setPage(response);
     },
     setFilter: function ()
     {// 获取过滤条件
