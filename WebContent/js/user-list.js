@@ -52,13 +52,11 @@ var USER_LIST = {
         var keyword_input = this.getView().find(this.KEYWORD_INPUT_ID);
         this.filter_keyword = keyword_input.val();
 
-        var entity = JSON.stringify({
+        var data = {url: '/api/user/readAllForPage', params: {}, entity: {
             startposition: me.page_start,
             pagesize: me.page_size,
             keyword: this.filter_keyword
-        });
-        var params = JSON.stringify({});
-        var data = {url: '/api/user/readAllForPage', params: params, entity: entity};
+        }};
 
         $.io.post(data)
             .success(function (result,pager) {
