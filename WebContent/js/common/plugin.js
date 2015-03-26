@@ -69,7 +69,7 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.total]?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+            if(fn&&fn.call)response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
         },
         result:function(data){
           return data&&data[this._key.result];
