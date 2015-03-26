@@ -4,9 +4,9 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<script type="text/javascript" src="../js/special-paytreat.js"></script>
-<script type="text/javascript" src="../js/special-common.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/special-paytreat.css"/>
+<script type="text/javascript" src="/js/special-paytreat.js"></script>
+<script type="text/javascript" src="/js/special-common.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/special-paytreat.css"/>
 <title>委托付款申请表</title>
 </head>
 <body >

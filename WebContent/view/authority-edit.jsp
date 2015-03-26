@@ -5,7 +5,7 @@
 <head>
     <title>编辑权限</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/authority-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/authority-edit.css">
 </head>
 
 <body >
@@ -231,6 +231,6 @@
     </div>
 
 </div>
-<script type="text/javascript" src="../js/authority-edit.js"></script>
+<script type="text/javascript" src="/js/authority-edit.js"></script>
 </body>
 </html>

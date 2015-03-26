@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/customer-history.css">
+	<link rel="stylesheet" type="text/css" href="/css/customer-history.css">
 	<title>客户信息修改记录</title>
 </head>
 
@@ -69,6 +69,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/customer-history.js"></script>
+    <script type="text/javascript" src="/js/customer-history.js"></script>
 </body>
 </html>

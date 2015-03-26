@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/customer-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/customer-list.css">
     <title>完成投资档案的客户信息</title>
 </head>
 
@@ -62,6 +62,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/customer-list.js"></script>
+<script type="text/javascript" src="/js/customer-list.js"></script>
 </body>
 </html>

@@ -8,6 +8,6 @@
     <jsp:include page="head.jsp"/>
 </head>
 <body>
-<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>

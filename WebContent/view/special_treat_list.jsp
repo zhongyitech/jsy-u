@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>特殊申请</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../css/special_treat_list.css"/>
+<link rel="stylesheet" type="text/css" href="/css/special_treat_list.css"/>
 
 <body>
 	<div id="page-content-wrapper">

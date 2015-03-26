@@ -336,6 +336,6 @@
     </div>
 </div>
 <div id="b_fade" class="black_overlay"></div>
-<script type="text/javascript" src="../js/filepackage-management.js"></script>
+<script type="text/javascript" src="/js/filepackage-management.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <jsp:include page="./head.jsp"/>
     <title>提成查询</title>
-    <link rel="stylesheet" type="text/css" href="../css/commission_query.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/commission_query.css"/>
     <style type="text/css">
         .input-rate {
             text-align: center;
@@ -160,6 +160,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/commission_query.js"></script>
+<script type="text/javascript" src="/js/commission_query.js"></script>
 </body>
 </html>

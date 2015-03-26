@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/bankingpaymentorder.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bankingpaymentorder.css"/>
     <title>银行付款单</title>
 </head>
 
@@ -160,7 +160,7 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/datacommon.js"></script>
-<script type="text/javascript" src="../js/fundCompany-Management.js"></script>
+<script type="text/javascript" src="/js/datacommon.js"></script>
+<script type="text/javascript" src="/js/fundCompany-Management.js"></script>
 </body>
 </html>

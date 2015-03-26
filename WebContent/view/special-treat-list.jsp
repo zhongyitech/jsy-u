@@ -4,8 +4,8 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<link rel="stylesheet" type="text/css" href="../css/special-treat-list.css"/>
-<script type="text/javascript" src="../js/special-treat-list.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/special-treat-list.css"/>
+<script type="text/javascript" src="/js/special-treat-list.js"></script>
 <title>特殊申请表管理</title>
 </head>
 

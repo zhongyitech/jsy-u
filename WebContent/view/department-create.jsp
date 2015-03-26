@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/department-create.css">
+    <link rel="stylesheet" type="text/css" href="/css/department-create.css">
     <title>新增部门</title>
 </head>
 
@@ -75,6 +75,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/department-create.js"></script>
+<script type="text/javascript" src="/js/department-create.js"></script>
 </body>
 </html>

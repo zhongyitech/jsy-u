@@ -4,10 +4,10 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<script type="text/javascript" src="../js/special_edit_treat.js"></script>
+<script type="text/javascript" src="/js/special_edit_treat.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>到期转投处理申请表</title>
-<link rel="stylesheet" type="text/css" href="../css/special_edit_treat.css"/>
+<link rel="stylesheet" type="text/css" href="/css/special_edit_treat.css"/>
 </head>
 <body >
 	<div id="page-content-wrapper">

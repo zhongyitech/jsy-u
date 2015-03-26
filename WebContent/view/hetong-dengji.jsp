@@ -5,7 +5,7 @@
 <head>
     <title>合同登记</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/hetong-dengji.css">
+    <link rel="stylesheet" type="text/css" href="/css/hetong-dengji.css">
 </head>
 
 <body >
@@ -97,6 +97,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/hetong-dengji.js"></script>
+    <script type="text/javascript" src="/js/hetong-dengji.js"></script>
 </body>
 </html>

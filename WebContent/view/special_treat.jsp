@@ -4,8 +4,8 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<script type="text/javascript" src="../js/special_treat.js"></script>
-	<link rel="stylesheet" type="text/css" href="../css/special_treat.css"/>
+<script type="text/javascript" src="/js/special_treat.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/special_treat.css"/>
 	<title>到期转投处理申请表</title>
 </head>
 <body >

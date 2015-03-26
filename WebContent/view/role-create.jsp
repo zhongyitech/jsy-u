@@ -4,7 +4,7 @@
 
 <head>
 <jsp:include page="./head.jsp"/>
-<link rel="stylesheet" type="text/css" href="../css/role-create.css">
+<link rel="stylesheet" type="text/css" href="/css/role-create.css">
 <title>新增角色</title>
 </head>
 
@@ -48,6 +48,6 @@
 		</div>
 		
 	</div>
-    <script type="text/javascript" src="../js/role-create.js"></script>
+    <script type="text/javascript" src="/js/role-create.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/role-list.css">
+	<link rel="stylesheet" type="text/css" href="/css/role-list.css">
 	<title>角色管理</title>
 </head>
 
@@ -58,6 +58,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/role-list.js"></script>
+    <script type="text/javascript" src="/js/role-list.js"></script>
 </body>
 </html>

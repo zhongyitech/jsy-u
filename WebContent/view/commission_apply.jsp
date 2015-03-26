@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <jsp:include page="./head.jsp"/>
     <title>提成申请</title>
-    <link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cash_list.css"/>
 </head>
 <body>
 <div id="page-wrapper">
@@ -245,6 +245,6 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="../js/commission_apply.js"></script>
+<script type="text/javascript" src="/js/commission_apply.js"></script>
 </body>
 </html>

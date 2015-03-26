@@ -5,7 +5,7 @@
 <head>
     <title>新增基金</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-create.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-create.css">
 </head>
 
 <body >
@@ -217,6 +217,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/fund-create.js"></script>
+<script type="text/javascript" src="/js/fund-create.js"></script>
 </body>
 </html>

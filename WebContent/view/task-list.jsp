@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/task-list.css">
+	<link rel="stylesheet" type="text/css" href="/css/task-list.css">
 	<title>待办事项</title>
 </head>
 
@@ -58,6 +58,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/task-list.js"></script>
+    <script type="text/javascript" src="/js/task-list.js"></script>
 </body>
 </html>

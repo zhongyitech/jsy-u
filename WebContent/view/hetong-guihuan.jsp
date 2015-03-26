@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/hetong-guihuan.css">
+	<link rel="stylesheet" type="text/css" href="/css/hetong-guihuan.css">
 	<title>合同归还</title>
 </head>
 
@@ -96,6 +96,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/hetong-guihuan.js"></script>
+    <script type="text/javascript" src="/js/hetong-guihuan.js"></script>
 </body>
 </html>

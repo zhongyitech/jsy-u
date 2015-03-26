@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/user-list.css">
+	<link rel="stylesheet" type="text/css" href="/css/user-list.css">
 	<title>用户管理</title>
 </head>
 
@@ -60,6 +60,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/user-list.js"></script>
+    <script type="text/javascript" src="/js/user-list.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/heton-query.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/heton-query.css"/>
     <title>合同使用查询/投资档案查询</title>
 </head>
 
@@ -100,7 +100,7 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/datacommon.js"></script>
-<script type="text/javascript" src="../js/hetong-query.js"></script>
+<script type="text/javascript" src="/js/datacommon.js"></script>
+<script type="text/javascript" src="/js/hetong-query.js"></script>
 </body>
 </html>

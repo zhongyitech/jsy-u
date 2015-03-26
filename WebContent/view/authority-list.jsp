@@ -4,7 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/authority-list.css">
+	<link rel="stylesheet" type="text/css" href="/css/authority-list.css">
 	<title>权限管理</title>
 </head>
 
@@ -57,6 +57,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/authority-list.js"></script>
+    <script type="text/javascript" src="/js/authority-list.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/bankingTransportation.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bankingTransportation.css"/>
     <title>未到期转投处理申请表</title>
 </head>
 <body >
@@ -109,6 +109,6 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/bankingTransportation.js"></script>
+<script type="text/javascript" src="/js/bankingTransportation.js"></script>
 </body>
 </html>

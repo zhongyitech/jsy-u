@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-edit.css">
     <title>编辑基金</title>
 </head>
 
@@ -203,6 +203,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/fund-edit.js"></script>
+<script type="text/javascript" src="/js/fund-edit.js"></script>
 </body>
 </html>

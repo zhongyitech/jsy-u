@@ -90,6 +90,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/new_pay_record.js"></script>
+<script type="text/javascript" src="/js/new_pay_record.js"></script>
 </body>
 </html>

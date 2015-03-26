@@ -15,7 +15,7 @@
  * project ajax
  */
 (function($){
-    var BaseURI="../rest/item/";
+    var BaseURI="/rest/item/";
     /**
      * 特殊key过滤、映射
      * @type {{class: string}}

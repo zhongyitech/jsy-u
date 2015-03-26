@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/czjlrz-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/czjlrz-list.css">
     <title>操作记录日志</title>
 </head>
 
@@ -70,6 +70,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/czjlrz-list.js"></script>
+<script type="text/javascript" src="/js/czjlrz-list.js"></script>
 </body>
 </html>

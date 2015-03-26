@@ -180,6 +180,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/filepackage-add.js"></script>
+<script type="text/javascript" src="/js/filepackage-add.js"></script>
 </body>
 </html>

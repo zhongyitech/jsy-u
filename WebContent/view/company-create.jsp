@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/company-create.css">
+    <link rel="stylesheet" type="text/css" href="/css/company-create.css">
     <title>新增公司/有限合伙企业</title>
 </head>
 
@@ -249,6 +249,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/company-create.js"></script>
+<script type="text/javascript" src="/js/company-create.js"></script>
 </body>
 </html>

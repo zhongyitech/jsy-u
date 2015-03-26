@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/bankingpaymentorder.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bankingpaymentorder.css"/>
     <title>合同查询</title>
 </head>
 
@@ -159,6 +159,6 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/bankingpaymentorder.js"></script>
+<script type="text/javascript" src="/js/bankingpaymentorder.js"></script>
 </body>
 </html>

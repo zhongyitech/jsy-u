@@ -187,6 +187,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/new_receive_record.js"></script>
+<script type="text/javascript" src="/js/new_receive_record.js"></script>
 </body>
 </html>

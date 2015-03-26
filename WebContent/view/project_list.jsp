@@ -4,8 +4,8 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
-    <link rel="stylesheet" type="text/css" href="../css/project.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/project.css">
     <%--<link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />--%>
     <title>项目列表</title>
 </head>
@@ -129,6 +129,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/project_list.js"></script>
+<script type="text/javascript" src="/js/project_list.js"></script>
 </body>
 </html>

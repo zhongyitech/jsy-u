@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/investment-print.css">
+    <link rel="stylesheet" type="text/css" href="/css/investment-print.css">
     <title>打印投资确认书</title>
 </head>
 
@@ -72,6 +72,6 @@
     </div>
 
 </div>
-<script type="text/javascript" src="../js/investment-print.js"></script>
+<script type="text/javascript" src="/js/investment-print.js"></script>
 </body>
 </html>

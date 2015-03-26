@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-list.css">
     <title>收款列表</title>
 </head>
 
@@ -180,6 +180,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/project_list.js"></script>
+<script type="text/javascript" src="/js/project_list.js"></script>
 </body>
 </html>

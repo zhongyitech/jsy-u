@@ -183,7 +183,7 @@ var NOTIFICATION_TASK = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/post",
+            url: "/rest/item/post",
             async: true,
             data: data,
             dataType: "json",
@@ -300,7 +300,7 @@ var FUND = {//基金
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -499,7 +499,7 @@ var TZQX_REST = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -523,7 +523,7 @@ var TZQX_REST = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -621,7 +621,7 @@ var INVESTMENT = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: false,
             data: data,
             dataType: "json",
@@ -704,7 +704,7 @@ var USERCOMMISSION = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: false,
             data: data,
             dataType: "json",
@@ -1002,7 +1002,7 @@ var TCFPFW = {
     GLTCBL_KEY: 'manageCommision',
     BXSYL_KEY: 'investment',
     ajax_type: 'post',
-    ajax_url: "../rest/item/get",
+    ajax_url: "/rest/item/get",
     ajax_data: {},
     ajax_dataType: 'json',
     ajax_async: false,
@@ -1146,7 +1146,7 @@ var YHZH_PURPOSE = {//用途
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1232,7 +1232,7 @@ var COMPANY_TYPE = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1329,7 +1329,7 @@ var TypeConfig = {//年化收益和提成
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1396,7 +1396,7 @@ var RoomConfig = {//档案室
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1475,7 +1475,7 @@ var BorrowStatus = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1532,7 +1532,7 @@ var FUND_STATUS = {
     ID_KEY: 'id',
     NAME_KEY: 'mapName',
     ajax_type: 'post',
-    ajax_url: "../rest/status/get",
+    ajax_url: "/rest/status/get",
     ajax_data: {type: 1},
     ajax_dataType: 'json',
     items_cache: false,//是否缓存完毕
@@ -1629,7 +1629,7 @@ var AUTHORITY = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1724,7 +1724,7 @@ var ROLE = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1836,7 +1836,7 @@ var USER = {
 //        );
 //        $.ajax({
 //            type: "post",
-//            url: "../rest/item/get",
+//            url: "/rest/item/get",
 //            async: async,
 //            data: data,
 //            dataType: "json",
@@ -1999,7 +1999,7 @@ var YHZH = {//银行账户
         var data = {url: '/api/bankAccount/' + id, params: params};
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -2138,7 +2138,7 @@ var COMPANY = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -2421,7 +2421,7 @@ var DEPARTMENT = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -2583,7 +2583,7 @@ var LOGIN = {
 //
 //        $.ajax({
 //            type: "post",
-//            url: '../rest/item/get',
+//            url: '/rest/item/get',
 //            async: false,
 //            data: data,
 //            dataType: "json",
@@ -2600,7 +2600,7 @@ var LOGIN = {
         var me = this;
         $.ajax({
             type: "post",
-            url: '../rest/login/logout',
+            url: '/rest/login/logout',
             async: false,
             data: {},
             dataType: "json",
@@ -2642,7 +2642,7 @@ var LOGIN = {
 
         $.ajax({
             type: "post",
-            url: '../rest/login/login',
+            url: '/rest/login/login',
             async: false,
             data: {username: usernameValue, password: passwordValue},
             dataType: "json",
@@ -2877,7 +2877,7 @@ var FILE = {
         var data = {url: '/api/uploadFile/getById', params: params};
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -2923,7 +2923,7 @@ var FILE = {
 
         $.ajax({
             type: 'POST',
-            url: '../rest/file/upload',
+            url: '/rest/file/upload',
             data: data, /*必须false才会自动加上正确的Content-Type*/
             contentType: false, /*必须false才会避开jQuery对 formdata的默认处理,XMLHttpRequest会对formdata进行正确的处理*/
             processData: false,
@@ -3112,7 +3112,7 @@ var INVESTMENT_SY = {
         var result = 0;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -3231,7 +3231,7 @@ var DataOperation = {
         that.log('request:' + method);
         $.ajax(
             {
-                type: 'post', url: '../rest/item/' + method, data: data, async: that.async,
+                type: 'post', url: '/rest/item/' + method, data: data, async: that.async,
                 success: function (response) {
                     that.async = that.defaultAsync;
                     if (response == null) {

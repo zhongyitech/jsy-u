@@ -3,9 +3,9 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/user-edit.css">
-    <script type="text/javascript" src="../js/user-edit.js"></script>
-    <script type="text/javascript" src="../js/datacommon.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/user-edit.css">
+    <script type="text/javascript" src="/js/user-edit.js"></script>
+    <script type="text/javascript" src="/js/datacommon.js"></script>
     <title>修改用户信息</title>
 </head>
 <body>

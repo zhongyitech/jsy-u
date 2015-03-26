@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/projectinfo.css" />
+    <link rel="stylesheet" href="/css/projectinfo.css" />
     <title>项目明细</title>
 </head>
 
@@ -686,7 +686,7 @@
 
 
 </div>
-<script type="text/javascript" src="../js/flowLogic.js"></script>
-<script type="text/javascript" src="../js/projectinfo.js"></script>
+<script type="text/javascript" src="/js/flowLogic.js"></script>
+<script type="text/javascript" src="/js/projectinfo.js"></script>
 </body>
 </html>

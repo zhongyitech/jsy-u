@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <script type="text/javascript" src="../js/special_treat.js"></script>
+    <script type="text/javascript" src="/js/special_treat.js"></script>
     <title>合并计息申请表</title>
 </head>
 <body >
@@ -254,6 +254,6 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<link rel="stylesheet" type="text/css" href="../css/special_treat.css"/>
+<link rel="stylesheet" type="text/css" href="/css/special_treat.css"/>
 </body>
 </html>

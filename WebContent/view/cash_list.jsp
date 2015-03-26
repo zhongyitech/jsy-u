@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>兑付申请</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/cash_list.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cash_list.css"/>
 </head>
 <body>
 <div id="page-wrapper">
@@ -283,6 +283,6 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="../js/cash_list.js"></script>
+<script type="text/javascript" src="/js/cash_list.js"></script>
 </body>
 </html>

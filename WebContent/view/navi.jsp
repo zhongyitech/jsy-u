@@ -11,14 +11,14 @@
             <i class="glyph-icon icon-caret-right"></i>
         </a>
 
-        <i><img class="logo-image" src="../images/favicon.ico" alt="金赛银基金"></i>
+        <i><img class="logo-image" src="/images/favicon.ico" alt="金赛银基金"></i>
 
         <i class="logo-text pad10A">金赛银基金</i>
     </div>
 
     <div class="user-profile dropdown">
         <a href="javascript:;" title="" class="user-ico clearfix" data-toggle="dropdown">
-            <img width="36" src="../images/face_defaults.png" alt="Admin">
+            <img width="36" src="/images/face_defaults.png" alt="Admin">
             <span id="login-username">未登录</span>
             <i class="glyph-icon icon-chevron-down"></i>
         </a>

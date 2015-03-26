@@ -5,7 +5,7 @@
 <head>
     <title>基金管理</title>
     <jsp:include page="head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-list.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fund-list.css"/>
 </head>
 
 <body >
@@ -163,6 +163,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/fund-list.js"></script>
+    <script type="text/javascript" src="/js/fund-list.js"></script>
 </body>
 </html>

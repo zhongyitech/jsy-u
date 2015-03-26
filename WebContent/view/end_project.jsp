@@ -84,6 +84,6 @@
         </section>
     </div>
 </div>
-<script type="text/javascript" src="../js/new_project.js"></script>
+<script type="text/javascript" src="/js/new_project.js"></script>
 </body>
 </html>

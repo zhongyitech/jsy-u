@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/department-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/department-edit.css">
     <title>编辑部门信息</title>
 </head>
 
@@ -81,6 +81,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/department-edit.js"></script>
+<script type="text/javascript" src="/js/department-edit.js"></script>
 </body>
 </html>

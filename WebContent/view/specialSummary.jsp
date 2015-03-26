@@ -4,7 +4,7 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<link rel="stylesheet" type="text/css" href="../css/specialSummary.css"/>
+<link rel="stylesheet" type="text/css" href="/css/specialSummary.css"/>
 <title>特殊申请汇总查询</title>
 </head>
 
@@ -139,6 +139,6 @@
 	</div>
 	<div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 	<!-- Message box  -->
-    <script type="text/javascript" src="../js/specialSummary.js"></script>
+    <script type="text/javascript" src="/js/specialSummary.js"></script>
 </body>
 </html>
