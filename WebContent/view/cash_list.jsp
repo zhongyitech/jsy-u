@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
+            <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
                     id="filter-button"><span class="button-content">搜索</span></button>
         </div>
 
@@ -64,7 +64,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">
+                        <div class="input-append">
                             <i class="glyph-icon icon-filter"></i>
                         </div>
 
@@ -84,7 +84,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">到</div>
+                        <div class="input-append">到</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_to"/>
@@ -98,7 +98,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">从</div>
+                        <div class="input-append">从</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_from"/>
@@ -150,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn bg-white large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
+            <button class="btn large medium float-left keyword-button radius-top-right-100 radius-bottom-right-100"
                     id="filter-button2"><span class="button-content">搜索</span></button>
         </div>
 
@@ -159,7 +159,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">
+                        <div class="input-append">
                             <i class="glyph-icon icon-filter"></i>
                         </div>
 
@@ -179,7 +179,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">到</div>
+                        <div class="input-append">到</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_to2"/>
@@ -193,7 +193,7 @@
             <div class="form-row pad0B">
                 <div class="form-input col-md-12">
                     <div class="input-append-wrapper">
-                        <div class="input-append bg-white">从</div>
+                        <div class="input-append">从</div>
 
                         <div class="append-left">
                             <input class="tcal filter-input" id="filter_from2"/>

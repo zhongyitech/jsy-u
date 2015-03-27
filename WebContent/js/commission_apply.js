@@ -176,33 +176,36 @@ var VIEWDATA = {
 			type: "yw", startposition: me.page_start, pagesize: me.page_size,
 			keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
 		var data = {url: '/api/payment/getCommissions', entity: entity};
-
-		$.ajax({
-			type: 'post',
-			url: '../rest/item/post',
-			data: data,
-			dataType: 'json',
-			async: false,
-			success: function(result){
-				if(result && result.rest_status && result.rest_status == "suc"){
-					me.result = result;
-					me.success(result);
-				}
-			},
-			error: function(result){
-				if(LOGIN.error(result)){
-					return;
-				}
-				alert('获取基金信息失败，请刷新页面.');
-			}
+		$.io.post(data).success(function(result,pager){
+			me.setTable(result);
+			me.setPage(pager);
 		});
+		//$.ajax({
+		//	type: 'post',
+		//	url: '../rest/item/post',
+		//	data: data,
+		//	dataType: 'json',
+		//	async: false,
+		//	success: function(result){
+		//		if(result && result.rest_status && result.rest_status == "suc"){
+		//			me.result = result;
+		//			me.success(result);
+		//		}
+		//	},
+		//	error: function(result){
+		//		if(LOGIN.error(result)){
+		//			return;
+		//		}
+		//		alert('获取基金信息失败，请刷新页面.');
+		//	}
+		//});
 	},
-
-	success: function(result){
-		this.items = JSON.parse(result['rest_result']);
-		this.setTable(this.items);
-		this.setPage(result);
-	},
+    //
+	//success: function(result){
+	//	this.items = JSON.parse(result['rest_result']);
+	//	this.setTable(this.items);
+	//	this.setPage(result);
+	//},
 
 
 
@@ -275,12 +278,11 @@ var VIEWDATA = {
 		var me = this;
 		me.getFilter2();
 
-		var entity = JSON.stringify({
+		var data = {url: '/api/payment/getCommissions', entity: {
 			type: "gl", startposition: me.page_start2, pagesize: me.page_size2,
 			keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2,
 			status:me.filter_status2
-		});
-		var data = {url: '/api/payment/getCommissions', entity: entity};
+		}};
 
 		//var params = JSON.stringify({type: "gl"});
 		//var entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
@@ -288,32 +290,37 @@ var VIEWDATA = {
 		//	entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
 		//}
 		//var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
-		$.ajax({
-			type: 'post',
-			url: '../rest/item/post',
-			data: data,
-			dataType: 'json',
-			async: false,
-			success: function(result){
-				if(result && result.rest_status && result.rest_status == "suc"){
-					me.result = result;
-					me.success2(result);
-				}
 
-			},
-			error: function(result){
-				if(LOGIN.error(result)){
-					return;
-				}
-				alert('获取基金信息失败，请刷新页面.');
-			}
+		$.io.post(data).success(function(result,pager){
+			me.setTable2(result);
+			me.setPage2(pager);
 		});
+		//$.ajax({
+		//	type: 'post',
+		//	url: '../rest/item/post',
+		//	data: data,
+		//	dataType: 'json',
+		//	async: false,
+		//	success: function(result){
+		//		if(result && result.rest_status && result.rest_status == "suc"){
+		//			me.result = result;
+		//			me.success2(result);
+		//		}
+        //
+		//	},
+		//	error: function(result){
+		//		if(LOGIN.error(result)){
+		//			return;
+		//		}
+		//		alert('获取基金信息失败，请刷新页面.');
+		//	}
+		//});
 	},
-	success2: function(result){
-		this.items = JSON.parse(result['rest_result']);
-		this.setTable2(this.items);
-		this.setPage2(result);
-	},
+	//success2: function(result){
+	//	this.items = JSON.parse(result['rest_result']);
+	//	this.setTable2(this.items);
+	//	this.setPage2(result);
+	//},
 	setTable2: function(items){
         $("#gltc_table tbody").empty();
 
