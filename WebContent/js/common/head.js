@@ -1804,34 +1804,34 @@ var USER = {
             async = false;
         }
 
-//        var params = JSON.stringify({});
-//        var data = {url: '/api/user/findUserFromRole', params: params};
-//        var me = this;
-//        DataOperation.async=async;
-//        DataOperation.get(
-//            data,
-//            function(result,response){
-//                me.response=response;
-//                me.items=result;
-//            }
-//        );
-//        $.ajax({
-//            type: "post",
-//            url: "/rest/item/get",
-//            async: async,
-//            data: data,
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                if (response && response[REST.RESULT_KEY]) {
-//                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-//                }
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
+        var params = JSON.stringify({});
+        var data = {url: '/api/user/getUsers', params: params};
+        var me = this;
+        DataOperation.async=async;
+        DataOperation.get(
+            data,
+            function(result,response){
+                me.response=response;
+                me.items=result;
+            }
+        );
+        //$.ajax({
+        //    type: "post",
+        //    url: "/rest/item/get",
+        //    async: async,
+        //    data: data,
+        //    dataType: "json",
+        //    success: function (response) {
+        //        me.response = response;
+        //        if (response && response[REST.RESULT_KEY]) {
+        //            me.items = JSON.parse(response[REST.RESULT_KEY]);
+        //        }
+        //    },
+        //    error: function (response) {
+        //        me.response = response;
+        //        LOGIN.error(response);
+        //    }
+        //});
     },
     getItems: function () {
         //同步加载数据

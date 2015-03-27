@@ -275,6 +275,7 @@ var INVESTMENT_ITEM = {
         }
 
         //生成业务经理选择框
+        USER.getItems();
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
         if (bm_select && users) {
