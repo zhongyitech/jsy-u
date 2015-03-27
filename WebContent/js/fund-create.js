@@ -759,8 +759,9 @@ var FUND_FORM = {//基金表单
         me.iniSelectCompany();
     },
     iniSelectCompany: function () {
-        var list = $.io.get(true, "/api/fundCompanyInformation/listForAddFund").data();
-        $.dom.select("#fundCompany", list);
+        $.dom.select("#fundCompany", $.io.get({url:"/api/fundCompanyInformation/listForAddFund"}),function(item){
+            console.log(item);
+        });
 //        {
 //
 //            return {key:item.id,value:item.companyName};
@@ -776,7 +777,7 @@ var FUND_FORM = {//基金表单
                 var status = status_list[i];
                 var id = FUND_STATUS.toId(status);
                 var name = FUND_STATUS.toName(status);
-                var option = $('<option value="' + id + '">' + name + '</option>');
+                option = $('<option value="' + id + '">' + name + '</option>');
                 status_select.append(option);
             }
         }
@@ -883,34 +884,13 @@ var FUND_FORM = {//基金表单
     },
     submit: function () {//提交
         var me = this;
-        var item = me.getItem();
-        var params = JSON.stringify({});
-        var entity = JSON.stringify(item);
-        var data = {url: '/api/fund', params: params, entity: entity};
+        var data = {url: '/api/fund', entity: me.getItem()};
 
         $.io.put(true,data).success(function(result){
             window.location = PAGE.FUND_LIST
         }).error(function(error){
             console.log(error);
         });
-
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/item/post",
-//            async: true,
-//            data: data,
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                window.location = PAGE.FUND_LIST;
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                if (LOGIN.error(response)) {
-//                    alert('新增基金失败，请补全带*号的必填信息.');
-//                }
-//            }
-//        });
     }
 };
 
