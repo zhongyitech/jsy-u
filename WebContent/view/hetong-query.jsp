@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="/css/heton-query.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/hetong-query.css"/>
     <title>合同使用查询/投资档案查询</title>
 </head>
 
