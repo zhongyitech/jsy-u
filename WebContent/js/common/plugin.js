@@ -394,7 +394,8 @@
         pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
     var Element={
-        options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
+        options:'{#if $P.defaultValue}<option value="{$P.defaultValue.value}">{$P.defaultValue.text}</option>{#/if}' +
+                     '{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
                      '<option value="{$P.item.value}">{$P.item.text}</option>' +
                      '{#/for}',
         pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default mrg0L"><i class="icon-caret-left"></i></a>' +
@@ -440,27 +441,27 @@
      * @param selector
      * @param data
      * @param fn
-     * @param defaultFn
+     * @param defaultValue
      * @constructor
      */
-    var Select=function(selector,data,fn,defaultFn){
+    var Select=function(selector,data,fn,defaultValue){
         var _self=this;
         _self._callback=fn||function(item){
             return {
-                text:item["text"]||item["mapName"],
-                value:item["value"]||item["id"]
+                text:item["mapName"],
+                value:item["id"]
             }
-        };
-        _self._default=defaultFn||function(){
-            return {
-                text:"请选择",
-                value:""
-            };
         };
         _self._object=$(selector);
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            $.renderData(_self._object,Element.options,[_self._default()].concat(response),_self._callback);
+            $.renderData(_self._object,Element.options,response,{
+                callback:_self._callback,
+                defaultValue:defaultValue||{
+                    text:"请选择",
+                    value:""
+                }
+            });
         });
         _self.select=function(value){
             var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));

@@ -4023,7 +4023,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  */
 (function($){
     var Template={
-        render:function($selector,template,data,fn){
+        render:function($selector,template,data,params){
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
                 if(!$selector.hasTemplate()&&template){
@@ -4033,7 +4033,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                         $selector.setTemplate(template);
                     }
                 }
-                if(fn) $selector.setParam("callback",fn);
+                if(params) typeof params=="function"?$selector.setParam("callback",params):$.each(params,function(i,v){$selector.setParam(i,v);});
                 if(typeof data=="string")data=JSON.parse(data);
                 $selector.processTemplate(data);
                 return true;
@@ -4043,13 +4043,13 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         }
     };
     $.fn.extend(true,{
-        renderData:function(template,data,fn){
-            Template.render($(this),template,data,fn);
+        renderData:function(template,data,params){
+            Template.render($(this),template,data,params);
         }
     });
     $.extend(true,{
-        renderData:function($selector,template,data,fn){
-            Template.render($selector,template,data,fn);
+        renderData:function($selector,template,data,params){
+            Template.render($selector,template,data,params);
         }
     });
 })(jQuery);
