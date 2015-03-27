@@ -402,26 +402,10 @@ var HTLY_LIST ={
 				keyword: this.filter_keyword
 			});
 			var data = {url: '/api/registerContract/readUseForPage', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
+			$.io.post(data).success(function(result,pager){
+				me.setTable(result);
+				me.setPage(pager);
 			});
-		},
-		setView: function(response){
-			this.setPage(response);
-			this.setTable(response);
 		},
 		setPage: function(response){
             var _this=this;
@@ -432,13 +416,10 @@ var HTLY_LIST ={
             });
 		},
 		setTable: function (response){
-			this.items = JSON.parse(response[REST.RESULT_KEY]);
-			
             this.getTable().empty();
-			var items = this.items;
-			if(items){
-				for(var i in items){
-					this.add(items[i]);
+			if(response){
+				for(var i in response){
+					this.add(response[i]);
 				}
 			}
 		},

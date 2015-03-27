@@ -117,7 +117,6 @@ var VIEWDATA = {
 		//var params = JSON.stringify({payIds: items});
 		var params = items.join(",");
 		var data = {url: '/api/payment/toPay?ids='+params};
-		console.log(data);
 		$.ajax({
 			type: 'post',
 			url: '../rest/item/get',
@@ -125,7 +124,6 @@ var VIEWDATA = {
 			dataType: 'json',
 			async: false,
 			success: function(result){
-				console.log(result);
 				if(result && result.rest_status && result.rest_status == "suc"){
 					me.result = result;
 					console.log("relaod page...");
@@ -170,35 +168,38 @@ var VIEWDATA = {
 			type: "lx",
 			startposition: me.page_start, pagesize: me.page_size,keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
 		var data = {url: '/api/payment/getPayments', entity: entity};
-
-
-		$.ajax({
-			type: 'post',
-			url: '../rest/item/post',
-			data: data,
-			dataType: 'json',
-			async: false,
-			success: function(result){
-				console.log(result);
-				if(result && result.rest_status && result.rest_status == "suc"){
-					me.result = result;
-					me.success(result);
-				}
-
-			},
-			error: function(result){
-				if(LOGIN.error(result)){
-					return;
-				}
-			}
+		$.io.post(data).success(function(result,pager){
+			me.setTable(result);
+			me.setPage(pager);
 		});
+        //
+		//$.ajax({
+		//	type: 'post',
+		//	url: '../rest/item/post',
+		//	data: data,
+		//	dataType: 'json',
+		//	async: false,
+		//	success: function(result){
+		//		console.log(result);
+		//		if(result && result.rest_status && result.rest_status == "suc"){
+		//			me.result = result;
+		//			me.success(result);
+		//		}
+        //
+		//	},
+		//	error: function(result){
+		//		if(LOGIN.error(result)){
+		//			return;
+		//		}
+		//	}
+		//});
 	},
 
-	success: function(result){
-		this.items = JSON.parse(result['rest_result']);
-		this.setTable(this.items);
-		this.setPage(result);
-	},
+	//success: function(result){
+	//	this.items = result['rest_result'];
+	//	this.setTable(this.items);
+	//	this.setPage(result);
+	//},
 
 	//业务提成申请单
 	setTable: function(items){
@@ -269,33 +270,36 @@ var VIEWDATA = {
 			type: "bj",
 			startposition: me.page_start2, pagesize: me.page_size2,keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
 		var data = {url: '/api/payment/getPayments', entity: entity};
-
-		$.ajax({
-			type: 'post',
-			url: '../rest/item/post',
-			data: data,
-			dataType: 'json',
-			async: false,
-			success: function(result){
-				console.log(result);
-				if(result && result.rest_status && result.rest_status == "suc"){
-					me.result = result;
-					me.success2(result);
-				}
-
-			},
-			error: function(result){
-				if(LOGIN.error(result)){
-					return;
-				}
-			}
+		$.io.post(data).success(function(result,pager){
+			me.setTable2(result);
+			me.setPage2(pager);
 		});
+		//$.ajax({
+		//	type: 'post',
+		//	url: '../rest/item/post',
+		//	data: data,
+		//	dataType: 'json',
+		//	async: false,
+		//	success: function(result){
+		//		console.log(result);
+		//		if(result && result.rest_status && result.rest_status == "suc"){
+		//			me.result = result;
+		//			me.success2(result);
+		//		}
+        //
+		//	},
+		//	error: function(result){
+		//		if(LOGIN.error(result)){
+		//			return;
+		//		}
+		//	}
+		//});
 	},
-	success2: function(result){
-		this.items = JSON.parse(result['rest_result']);
-		this.setTable2(this.items);
-		this.setPage2(result);
-	},
+	//success2: function(result){
+	//	this.items = result['rest_result'];
+	//	this.setTable2(this.items);
+	//	this.setPage2(result);
+	//},
 	setTable2: function(items){
 		var table = $("#cash-benjin");
         table.find("tbody").empty();
