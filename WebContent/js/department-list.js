@@ -101,16 +101,11 @@ var DEPARTMENT_LIST = {
             });
         },
         setTable: function (response) {
-            var items = this.items = response[REST.RESULT_KEY];
-            if (s) {
-                this.items = JSON.parse(s);
-            } else {
-                s = [];
-            }
+            var items = response[REST.RESULT_KEY];
+            items = items&&JSON.parse(items)||[];
 
             var table = this.getView().find(this.TABLE_ID);
             table.find("tbody").empty();
-            var items = this.items;
             if (items) {
                 for (var i = 0; i < items.length; i++) {
                     this.add(items[i]);

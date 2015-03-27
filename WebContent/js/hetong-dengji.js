@@ -361,33 +361,15 @@ var HTDJ_LIST ={
 			var keyword_input = this.getView().find(this.KEYWORD_INPUT_ID);
 			this.filter_keyword = keyword_input.val();
 			
-			var params = JSON.stringify({});
-			var entity = JSON.stringify({
+			var data = {url: '/api/contractRegister/readAllForPage', entity: {
 				startposition: me.page_start,
 				pagesize: me.page_size,
 				keyword: this.filter_keyword
+			}};
+			$.io.post(data).success(function(result,pager){
+				me.setTable(result);
+				me.setPage(pager);
 			});
-			var data = {url: '/api/contractRegister/readAllForPage', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
-		},
-		setView: function(response){
-			this.setPage(response);
-			this.setTable(response);
 		},
 		setPage: function(response){
             var _this=this;
@@ -398,12 +380,10 @@ var HTDJ_LIST ={
             });
 		},
 		setTable: function (response){
-			this.items = JSON.parse(response[REST.RESULT_KEY]);
             this.getTable().empty();
-			var items = this.items;
-			if(items){
-				for(var i in items){
-					this.add(items[i]);
+			if(response){
+				for(var i in response){
+					this.add(response[i]);
 				}
 			}
 		},

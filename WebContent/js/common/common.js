@@ -3902,10 +3902,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             contentType:"application/x-www-form-urlencoded;charset=UTF-8"
         },
         _ajax:function(options,type,async){
-            options=$.extend(true,this._defaultCfg,options,{type:type,async:async,data:{
+            var opts=$.extend(true,{},this._defaultCfg,options,{type:type,async:async,data:{
                 _t:Date.now()
             }});
-            var xhr=$.ajax(options);
+            var xhr=$.ajax(opts);
             if(!async){
                 xhr.getData=function(){
                     var result=null;
@@ -3915,7 +3915,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                     return result;
                 };
             }
-            return new XHR(xhr,options);
+            return new XHR(xhr,opts);
         },
         _get:function(options,async){
             return this._ajax(options,this._type.GET,async);
@@ -4023,7 +4023,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  */
 (function($){
     var Template={
-        render:function($selector,template,data,fn){
+        render:function($selector,template,data,params){
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
                 if(!$selector.hasTemplate()&&template){
@@ -4033,7 +4033,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                         $selector.setTemplate(template);
                     }
                 }
-                if(fn) $selector.setParam("callback",fn);
+                if(params) typeof params=="function"?$selector.setParam("callback",params):$.each(params,function(i,v){$selector.setParam(i,v);});
                 if(typeof data=="string")data=JSON.parse(data);
                 $selector.processTemplate(data);
                 return true;
@@ -4043,13 +4043,13 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         }
     };
     $.fn.extend(true,{
-        renderData:function(template,data,fn){
-            Template.render($(this),template,data,fn);
+        renderData:function(template,data,params){
+            Template.render($(this),template,data,params);
         }
     });
     $.extend(true,{
-        renderData:function($selector,template,data,fn){
-            Template.render($selector,template,data,fn);
+        renderData:function($selector,template,data,params){
+            Template.render($selector,template,data,params);
         }
     });
 })(jQuery);

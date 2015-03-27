@@ -181,7 +181,6 @@ var TZQX_LIST = {//投资期限
         var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
         tr.append(checkbox);
 
-        var me = this;
         var jsz_td = $('<td></td>');
         tr.append(jsz_td);
         var jsz_div = $('<div class="form-input col-md-12"></div>');
@@ -571,13 +570,12 @@ var SYLFW_LIST = {//收益率范围
         this.iniRemoveButton();
     },
     set: function (items) {
+        this.items=items&&items.sort(
+          function(a,b){
+              return a.id>b.id;
+          }
+        );
         if (items && items.length > 0) {
-            this.items=items.sort(
-                function(a,b){
-                    return a.id>b.id;
-                }
-            );
-
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var id = SYLFW.toId(item);

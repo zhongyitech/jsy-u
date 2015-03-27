@@ -191,6 +191,7 @@
         if(args.length){
             if(args[0]&&typeof args[0]=="boolean") _sync=args.shift();
             var useOptions=Util.buildOptions(args.shift(), $.extend(true,args.shift()||{},{url:url}));
+            if(!useOptions.url) throw Error("no ajax url");
             if(_sync)
                 return new XHR($.Sync.post(useOptions));
             return new XHR($.Async.post(useOptions));
@@ -219,7 +220,7 @@
                 Util.registerCallback(callback);
             },
             isXHR:function(xhr){
-                return xhr.constructor==XHR;
+                return xhr&&xhr.constructor==XHR;
             }
         }
     })
@@ -394,7 +395,8 @@
         pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
     var Element={
-        options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
+        options:'{#if $P.defaultValue}<option value="{$P.defaultValue.value}">{$P.defaultValue.text}</option>{#/if}' +
+                     '{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
                      '<option value="{$P.item.value}">{$P.item.text}</option>' +
                      '{#/for}',
         pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default mrg0L"><i class="icon-caret-left"></i></a>' +
@@ -409,12 +411,10 @@
     };
     var Utils={
         fetchCallback:function(data){
-            data=data||{};
             if(!$.io.isXHR(data)){
-                var dataCopy= $.extend(true,{},data);
-                data={
+                return {
                     success:function(fn){
-                        fn.call(this,dataCopy);
+                        fn.call(this,data);
                     }
                 };
             }
@@ -440,27 +440,27 @@
      * @param selector
      * @param data
      * @param fn
-     * @param defaultFn
+     * @param defaultValue
      * @constructor
      */
-    var Select=function(selector,data,fn,defaultFn){
+    var Select=function(selector,data,fn,defaultValue){
         var _self=this;
         _self._callback=fn||function(item){
             return {
-                text:item["text"]||item["mapName"],
-                value:item["value"]||item["id"]
+                text:item["mapName"],
+                value:item["id"]
             }
-        };
-        _self._default=defaultFn||function(){
-            return {
-                text:"请选择",
-                value:""
-            };
         };
         _self._object=$(selector);
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            $.renderData(_self._object,Element.options,[_self._default()].concat(response),_self._callback);
+            $.renderData(_self._object,Element.options,response,{
+                callback:_self._callback,
+                defaultValue:defaultValue||{
+                    text:"请选择",
+                    value:""
+                }
+            });
         });
         _self.select=function(value){
             var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));
@@ -497,11 +497,11 @@
         data=Utils.fetchCallback(data);
         data.success(function(response){
             var total=response[Constant.rest_total]||_self._pageSize;
+            //计算最后页
             _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
-            $.renderData(_self._object,Element.pager,{
-                currentPage:_self._currentPage,
-                maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage
-            },_self._callback);
+            //渲染分页
+            _self._object.renderData(Element.pager,{currentPage:_self._currentPage,maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage},_self._callback);
+            //获取对象，绑定事件
             var first=_self._object.find(".first"),last=_self._object.find(".last"),prev=_self._object.find(".prev"),next=_self._object.find(".next");
            _self._resetCls(first,prev,last,next);
             _self._object.find(".ui-button").on("click",function(){
@@ -547,8 +547,8 @@
     };
     $.extend(true,{
         dom:{
-            select:function(selector,data,fn,defaultFn){
-                return new Select(selector,data,fn,defaultFn);
+            select:function(selector,data,fn,defaultValue){
+                return new Select(selector,data,fn,defaultValue);
             },
             pager:function(selector,data,options){
                 return new Pager(selector,data,options);
