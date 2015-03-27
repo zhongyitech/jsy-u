@@ -1713,31 +1713,12 @@ var ROLE = {
     NAME_KEY: 'name',//角色名称
     AUTHORITY_KEY: 'authority',//权限
     map: {},
-    ini: function (async) {
-        //默认异步加载数据
-        if (!async) {
-            async = false;
-        }
-
+    ini: function (sync) {
         var params = JSON.stringify({});
         var data = {url: '/api/role', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
+        $.io.get(!sync,data).success(function(result){
+            me.items=result;
         });
     },
     getItems: function () {

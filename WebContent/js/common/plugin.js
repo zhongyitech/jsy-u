@@ -191,6 +191,7 @@
         if(args.length){
             if(args[0]&&typeof args[0]=="boolean") _sync=args.shift();
             var useOptions=Util.buildOptions(args.shift(), $.extend(true,args.shift()||{},{url:url}));
+            if(!useOptions.url) throw Error("no ajax url");
             if(_sync)
                 return new XHR($.Sync.post(useOptions));
             return new XHR($.Async.post(useOptions));
@@ -219,7 +220,7 @@
                 Util.registerCallback(callback);
             },
             isXHR:function(xhr){
-                return xhr.constructor==XHR;
+                return xhr&&xhr.constructor==XHR;
             }
         }
     })
@@ -410,12 +411,10 @@
     };
     var Utils={
         fetchCallback:function(data){
-            data=data||{};
             if(!$.io.isXHR(data)){
-                var dataCopy= $.extend(true,{},data);
-                data={
+                return {
                     success:function(fn){
-                        fn.call(this,dataCopy);
+                        fn.call(this,data);
                     }
                 };
             }
@@ -548,8 +547,8 @@
     };
     $.extend(true,{
         dom:{
-            select:function(selector,data,fn,defaultFn){
-                return new Select(selector,data,fn,defaultFn);
+            select:function(selector,data,fn,defaultValue){
+                return new Select(selector,data,fn,defaultValue);
             },
             pager:function(selector,data,options){
                 return new Pager(selector,data,options);

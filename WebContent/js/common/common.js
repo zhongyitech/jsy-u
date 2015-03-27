@@ -3902,10 +3902,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             contentType:"application/x-www-form-urlencoded;charset=UTF-8"
         },
         _ajax:function(options,type,async){
-            options=$.extend(true,this._defaultCfg,options,{type:type,async:async,data:{
+            var opts=$.extend(true,{},this._defaultCfg,options,{type:type,async:async,data:{
                 _t:Date.now()
             }});
-            var xhr=$.ajax(options);
+            var xhr=$.ajax(opts);
             if(!async){
                 xhr.getData=function(){
                     var result=null;
@@ -3915,7 +3915,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                     return result;
                 };
             }
-            return new XHR(xhr,options);
+            return new XHR(xhr,opts);
         },
         _get:function(options,async){
             return this._ajax(options,this._type.GET,async);
