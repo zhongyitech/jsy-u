@@ -6,8 +6,8 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<link rel="icon" href="/favicon.ico">
-<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="icon" href="/images/favicon.ico">
+<link rel="shortcut icon" href="/images/favicon.ico"/>
 
 <link rel="stylesheet" type="text/css" href="/assets/css/minified/aui-production.min.css" />
 <link rel="stylesheet" type="text/css" href="/assets/themes/minified/fides/color-schemes/dark-blue.min.css" />
