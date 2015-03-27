@@ -17,9 +17,6 @@ public class Mapping{
     }
     @RequestMapping(value = "/{module}", method = RequestMethod.GET)
     public String moduleAndAction(@PathVariable("module") String module) {
-        if("login".equalsIgnoreCase(module)){
-            return module.toLowerCase();
-        }
         return module+"-"+"list";
     }
 }
