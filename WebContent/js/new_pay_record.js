@@ -98,7 +98,7 @@ var VIEWDATA={
             async: false,
             success: function(result){
                 console.log(result);
-                var rest_result = JSON.parse(result.rest_result);
+                var rest_result = result.rest_result;
                 if(rest_result&& rest_result.projects){
                     $.each(rest_result.projects,function(index,obj){
                         //selected="selected"
