@@ -69,8 +69,8 @@ var HTDJ_PUT = {
 			this.getView().find(this.SAVE_ID).click(function(){
 				me.save();
 			});
-			
-			for(var i=0; i<5; i++){
+			//更改为只显示一行
+			for(var i=0; i<1; i++){
 				me.add();
 			}
 		},
@@ -114,18 +114,23 @@ var HTDJ_PUT = {
 			tr.append(fund_td);
 			var fund_select = $('<select name="' + HTDJ.FUND_KEY + '"></select>');
 			fund_td.append(fund_select);
-			var funds = this.fund.getItems();
-			if(funds){
-				var option = $('<option></option>');
-				fund_select.append(option);
-				for(var i in funds){
-					var fund = funds[i];
-					var id = this.fund.toId(fund);
-					var name = this.fund.toName(fund);
-					var option = $('<option value="' + id + '">' + name + '</option>');
-					fund_select.append(option);
-				}
-			}
+
+            var funds=$.io.get(true,{url:'/api/fund/selectList'}).data()
+
+            $.dom.select(fund_select,funds);
+
+//			var funds = this.fund.getItems();
+//			if(funds){
+//				var option = $('<option></option>');
+//				fund_select.append(option);
+//				for(var i in funds){
+//					var fund = funds[i];
+//					var id = this.fund.toId(fund);
+//					var name = this.fund.toName(fund);
+//					var option = $('<option value="' + id + '">' + name + '</option>');
+//					fund_select.append(option);
+//				}
+//			}
 			
 			var from_td = $('<td></td>');
 			tr.append(from_td);
