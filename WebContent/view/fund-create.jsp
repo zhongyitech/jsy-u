@@ -90,11 +90,9 @@
                                 <label>关联的有限合伙：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select id="fundCompany">
-                                    <option>选择一个有限合伙企业</option>
+                                <select id="fundCompany" class="funcCompany">
                                 </select>
                             </div>
-
 
                         </div>
                         <div class="form-row">
@@ -106,10 +104,7 @@
                 </div>
 
                 <div style="clear:both;"></div>
-                <div class="button-pane">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                            class="button-content">提交</span></button>
-                </div>
+
             </div>
 
             <div class="content-box box-toggle " id="sylfw-view">
@@ -209,6 +204,10 @@
                 </div>
 
                 <div style="clear:both;"></div>
+                <div class="button-pane">
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
+                            class="button-content">提交</span></button>
+                </div>
 
             </div>
 
