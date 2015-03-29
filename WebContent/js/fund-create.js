@@ -736,7 +736,7 @@ var FUND_FORM = {//基金表单
     },
     iniSubmitButton: function () {
         var me = this;
-        var button = this.getSubmitButton();
+        var button = $("#submit-button");
         if (button) {
             button.click(function () {
                 me.submit();
@@ -766,18 +766,8 @@ var FUND_FORM = {//基金表单
     iniStatus: function () {
         var status_select = this.getStatusSelect();
         if (status_select) {
-//            var status_list = FUND_STATUS.getItems();
-//            var option = $('<option value=""></option>');
-//            status_select.append(option);
-//            for (var i in status_list) {
-//                var status = status_list[i];
-//                var id = FUND_STATUS.toId(status);
-//                var name = FUND_STATUS.toName(status);
-//                option = $('<option value="' + id + '">' + name + '</option>');
-//                status_select.append(option);
-//            }
-            $.dom.select(status_select, $.project.type(1).data(),function(item){
-                return {text:item.mapName,value:item.id};
+            $.dom.select(status_select, $.project.type(1).data(), function (item) {
+                return {text: item.mapName, value: item.id};
             });
         }
     },

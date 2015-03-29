@@ -72,7 +72,7 @@ var HTLY_PUT = {
     },
     getAndDemparent: function (id, eventObj) {
 
-        if (id != null && id != undefined) {
+        if (id != null && id != '') {
             var data = $.io.get(true,{url:'/api/user/findUserDepartment',params:{uid:id}}).data()
 //                $.project.domain(1, 'com.jsy.system.Department').data()
             if (data.count == 0) return;
@@ -98,10 +98,10 @@ var HTLY_PUT = {
         tr.append(number_td);
         var number_div = $('<div class="form-input col-md-12"></div>');
         number_td.append(number_div);
-        var number_input = $('<input name="' + me.htly.NUMBER_KEY + '" class="col-md-12" readonly="true" disabled/>');
+        var number_input = $('<input name="' + me.htly.NUMBER_KEY + '" class="col-md-12 disabled" readonly="true" />');
         number_div.append(number_input);
 
-        var department_td = $('<td></td>');
+        var department_td = $('<td class="form-input"></td>');
         tr.append(department_td);
 //        var department_select = $('<select name="' + me.htly.DEPARTMENT_KEY + '"></select>');
         var department_select = $('<div class="form-input col-md-12"><input readonly="true" name="' + me.htly.DEPARTMENT_KEY + '" class="col-md-12 disabled"/></div>');
@@ -120,7 +120,7 @@ var HTLY_PUT = {
 //            }
 //        }
 
-        var user_td = $('<td></td>');
+        var user_td = $('<td class="form-input"></td>');
         tr.append(user_td);
         var user_select = $('<select class="user-name" name="' + me.htly.LYR_KEY + '"></select>');
         user_td.append(user_select);
@@ -145,7 +145,7 @@ var HTLY_PUT = {
         date_div.append(date_input);
         f_tcalInit();
 
-        var fund_td = $('<td></td>');
+        var fund_td = $('<td class="form-input"></td>');
         tr.append(fund_td);
 
 
@@ -191,7 +191,7 @@ var HTLY_PUT = {
         tr.append(count_td);
         var count_div = $('<div class="form-input col-md-12"></div>');
         count_td.append(count_div);
-        var count_input = $('<input name="' + me.htly.TS_KEY + '" class="col-md-12" readonly="true" disabled/>');
+        var count_input = $('<input name="' + me.htly.TS_KEY + '" class="col-md-12 disabled" readonly="true" />');
         count_div.append(count_input);
 
         this.items.push({});
@@ -329,37 +329,13 @@ var HTLY_PUT = {
         var data = {url: '/api/registerContract/useContract', params: params, entity: entity};
         var ajax_status = true;
         var tr_key = item[this.tr_key];
-        $.ajax({
-            type: "post",
-            url: "../rest/item/post",
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
 
-                if (response[REST.REST_STATUS_KEY] == REST.REST_STATUS_ERROR) {
-                    ajax_status = false;
-                    alert(response[REST.MSG_KEY]);
-                } else if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
-                    me.item[me.tr_key] = tr_key;
+        $.io.post(data).success(function (result) {
+            alert('合同归还成功。');
+            window.location.reload();
 
-                    me.setTr(me.item);
-                    ajax_status = true;
-                    alert('合同领用成功。');
-                } else {
-                    ajax_status = false;
-                    alert('合同领用失败，请补全带*号的必填字段.');
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                ajax_status = false;
-                if (LOGIN.error(response)) {
-                    alert('合同领用失败，请补全带*号的必填字段.');
-                }
-            }
+        }).error(function (error) {
+            alert(error.msg);
         });
 
         return ajax_status;

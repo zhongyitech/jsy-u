@@ -43,7 +43,7 @@
 					</div>
 					
 					<div class="button-pane">
-						<span class="font-red float-left">起始编号和结束编号格式为(JSYAN001)：5位英文+数字</span>
+						<span class="font-red float-left">起始编号和结束编号格式为(JSYAN0001)：5位英文+4位数字</span>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-save"><span class="button-content">保存</span></button>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-remove"><span class="button-content">删除选中行</span></button>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-add"><span class="button-content">增加一行</span></button>
