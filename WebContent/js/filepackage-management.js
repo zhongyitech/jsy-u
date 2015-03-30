@@ -350,8 +350,8 @@ var VIEWDATA = {
                         "suggestions": []
                     };
                 } else {
-                    var result = JSON.parse(response);
-                    result.suggestions = JSON.parse(result.suggestions);
+                    var result = JSON.parse(response).rest_result;
+                    result.suggestions = (result.suggestions);
                     return result;
                 }
             }
@@ -575,16 +575,17 @@ var VIEWDATA = {
                 row.append('<td>' + this.filePackages[items[i]["filePackage"].id].fpcode + '</td>');
                 row.append('<td>' + this.filePackages[items[i]["filePackage"].id].contractNo + '</td>');
 
-                row.append('<td>' + items[i]["user"].id + '</td>');
-                row.append('<td>' + items[i]["borrowTime"] + '</td>');
-                row.append('<td>' + items[i]["shouldReturnTime"] + '</td>');
-                row.append('<td>' + items[i]["returnTime"] + '</td>');
+                row.append('<td>' + this.user.getName(items[i]["user"].id)+ '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["borrowTime"]) + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["shouldReturnTime"]) + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["returnTime"]) + '</td>');
                 row.append('<td>' + items[i]["returnRemark"] + '</td>');
 
             }
         }
 
     },
+
     setPage2: function (response) {
         var _this=this;
         _this.page_start2==0&&$.dom.pager("#table-pager-2",response).onChange(function (param) {
