@@ -297,32 +297,32 @@ var INVESTMENT_ITEM = {
         }
 
         var dm_select = $(this.INVEST_DM_ID);
-        if (dm_select && users) {
-            var option = $('<option></option>');
-            dm_select.append(option);
-            for (var i in users) {
-                var userid = users[i][this.user.ID_KEY];
-                var username = this.user.getName(userid);
-                var option = $('<option value="' + userid + '">' + username + '</option>');
-                dm_select.append(option);
-            }
-        }
+//        if (dm_select && users) {
+//            var option = $('<option></option>');
+//            dm_select.append(option);
+//            for (var i in users) {
+//                var userid = users[i][this.user.ID_KEY];
+//                var username = this.user.getName(userid);
+//                var option = $('<option value="' + userid + '">' + username + '</option>');
+//                dm_select.append(option);
+//            }
+//        }
         var dm = item[this.investment.BMJL_KEY];
         if (dm) {
             dm_select.val(dm[this.user.ID_KEY]);
         }
         var departments = this.department.getItems();
         var department_select = $(this.INVEST_DEPARTMENT_ID);
-        if (departments) {
-            var option = $('<option></option>');
-            department_select.append(option);
-            for (var i in departments) {
-                var departmentid = departments[i][this.department.ID_KEY];
-                var departmentname = departments[i][this.department.NAME_KEY];
-                var option = $('<option value="' + departmentid + '">' + departmentname + '</option>');
-                department_select.append(option);
-            }
-        }
+//        if (departments) {
+//            var option = $('<option></option>');
+//            department_select.append(option);
+//            for (var i in departments) {
+//                var departmentid = departments[i][this.department.ID_KEY];
+//                var departmentname = departments[i][this.department.NAME_KEY];
+//                var option = $('<option value="' + departmentid + '">' + departmentname + '</option>');
+//                department_select.append(option);
+//            }
+//        }
         var department = item[this.investment.BM_KEY];
         if (department) {
             department_select.val(department);
@@ -742,12 +742,12 @@ var INVESTMENT_ITEM = {
         if (ywjl) {
             var bmjl = me.user.getDM(ywjl);
             if (bmjl) {
-                $(me.INVEST_DM_ID).val(bmjl[me.user.ID_KEY]);
+                $(me.INVEST_DM_ID).html(bmjl[me.user.NAME_KEY]);
             } else {
-                $(me.INVEST_DM_ID).val('');
+                $(me.INVEST_DM_ID).html('');
             }
         } else {
-            $(me.INVEST_DM_ID).val('');
+            $(me.INVEST_DM_ID).html('');
         }
     },
     setBM: function () {
@@ -756,12 +756,13 @@ var INVESTMENT_ITEM = {
         if (ywjl) {
             ywjl = me.user.get(ywjl);
             if (ywjl) {
-                $(me.INVEST_DEPARTMENT_ID).val(ywjl[me.user.DEPARTMENT_KEY][me.department.ID_KEY]);
+                var deparment= $.project.domain(ywjl.department.id,ywjl.department['class'],'deptName').getItem(ywjl.department.id);
+                $(me.INVEST_DEPARTMENT_ID).html(deparment.deptName);
             } else {
-                $(me.INVEST_DEPARTMENT_ID).val('');
+                $(me.INVEST_DEPARTMENT_ID).html('');
             }
         } else {
-            $(me.INVEST_DEPARTMENT_ID).val('');
+            $(me.INVEST_DEPARTMENT_ID).html('');
         }
     },
     setNHSYL: function () {//设置年化收益率

@@ -332,8 +332,12 @@ var FUND = {//基金
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+
+        return $.project.domain(id, 'com.jsy.fundObject.Fund').getItem(id);
+
+//        return $.io.get(true,{url:'/api/fund',params:{id:id}}).data();
+//        var map = this.getMap();
+//        return map[id];
     },
     getName: function (id) {
         if (id) {
@@ -513,7 +517,7 @@ var TZQX_REST = {
         });
 
         if (me.response) {
-            me.item = JSON.parse(me.response[REST.RESULT_KEY]);
+            me.item = (me.response[REST.RESULT_KEY]);
         }
         return me.item;
     },
@@ -628,7 +632,7 @@ var INVESTMENT = {
             success: function (response) {
                 me.response = response;
                 if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
+                    me.item = (response[REST.RESULT_KEY]);
                 }
             },
             error: function (response) {
@@ -702,23 +706,27 @@ var USERCOMMISSION = {
         var params = JSON.stringify({id: id});
         var data = {url: '/api/userCommision', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: false,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+
+
+        me.item = $.io.get(true, data).data();
+
+//        $.ajax({
+//            type: "post",
+//            url: "/rest/item/get",
+//            async: false,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.item = JSON.parse(response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
         return me.item;
     },
     toUser: function (item) {
@@ -1057,7 +1065,7 @@ var TCFPFW = {
         });
 
         if (this.result[REST.RESULT_KEY]) {
-            item = JSON.parse(this.result[REST.RESULT_KEY]);
+            item = (this.result[REST.RESULT_KEY]);
         }
         return item;
     },
@@ -1627,23 +1635,24 @@ var AUTHORITY = {
         var params = JSON.stringify({});
         var data = {url: '/api/role/readAll', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+        me.items = $.io.get(true, data).data();
+//        $.ajax({
+//            type: "post",
+//            url: "/rest/item/get",
+//            async: async,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.items = JSON.parse(response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
     },
     getItems: function () {
         //同步加载数据
@@ -1717,8 +1726,8 @@ var ROLE = {
         var params = JSON.stringify({});
         var data = {url: '/api/role', params: params};
         var me = this;
-        $.io.get(!sync,data).success(function(result){
-            me.items=result;
+        $.io.get(!sync, data).success(function (result) {
+            me.items = result;
         });
     },
     getItems: function () {
@@ -1807,12 +1816,12 @@ var USER = {
         var params = JSON.stringify({});
         var data = {url: '/api/user/getUsers', params: params};
         var me = this;
-        DataOperation.async=async;
+        DataOperation.async = async;
         DataOperation.get(
             data,
-            function(result,response){
-                me.response=response;
-                me.items=result;
+            function (result, response) {
+                me.response = response;
+                me.items = result;
             }
         );
         //$.ajax({
@@ -2524,7 +2533,7 @@ var LOGIN = {
 
         var password_input = $(this.KEY_ID);
         password_input.keyup(function (e) {
-            if( e.keyCode == 13) {
+            if (e.keyCode == 13) {
                 me.login();
             }
         });
@@ -2640,8 +2649,8 @@ var LOGIN = {
                 alert('登录失败，请刷新页面.');
             }
         });
-        if(window.location.pathname!='/view/login.jsp'){
-          window.location.reload();
+        if (window.location.pathname != '/view/login.jsp') {
+            window.location.reload();
         }
         return login_status;
     },

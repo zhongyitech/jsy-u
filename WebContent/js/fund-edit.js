@@ -501,7 +501,7 @@ var SYLFW = {//收益率范围
                 me.error();
             }
         });
-        this.item = JSON.parse(this.result[REST.RESULT_KEY]);
+        this.item = (this.result[REST.RESULT_KEY]);
         return this.item;
     },
     toId: function (item) {
