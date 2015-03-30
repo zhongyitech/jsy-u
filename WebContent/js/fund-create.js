@@ -736,7 +736,7 @@ var FUND_FORM = {//基金表单
     },
     iniSubmitButton: function () {
         var me = this;
-        var button = this.getSubmitButton();
+        var button = $("#submit-button");
         if (button) {
             button.click(function () {
                 me.submit();
@@ -759,27 +759,16 @@ var FUND_FORM = {//基金表单
         me.iniSelectCompany();
     },
     iniSelectCompany: function () {
-        $.dom.select("#fundCompany", $.io.get({url:"/api/fundCompanyInformation/listForAddFund"}),function(item){
-            console.log(item);
+        $.dom.select("#fundCompany", $.io.get({url: "/api/fundCompanyInformation/listForAddFund"}), function (item) {
+            return {text: item.companyName, value: item.id}
         });
-//        {
-//
-//            return {key:item.id,value:item.companyName};
-//        });
     },
     iniStatus: function () {
         var status_select = this.getStatusSelect();
         if (status_select) {
-            var status_list = FUND_STATUS.getItems();
-            var option = $('<option value=""></option>');
-            status_select.append(option);
-            for (var i in status_list) {
-                var status = status_list[i];
-                var id = FUND_STATUS.toId(status);
-                var name = FUND_STATUS.toName(status);
-                option = $('<option value="' + id + '">' + name + '</option>');
-                status_select.append(option);
-            }
+            $.dom.select(status_select, $.project.type(1).data(), function (item) {
+                return {text: item.mapName, value: item.id};
+            });
         }
     },
     iniYQMJK: function () {
@@ -877,7 +866,7 @@ var FUND_FORM = {//基金表单
             item[FUND.TCFPFW_KEY] = tcfpfw;
         }
 
-        item["fundCompany"]=$('#fundCompany').val();
+        item["funcCompany"] = $('#fundCompany').val();
 
         me.item = item;
         return item;
@@ -886,9 +875,9 @@ var FUND_FORM = {//基金表单
         var me = this;
         var data = {url: '/api/fund', entity: me.getItem()};
 
-        $.io.put(true,data).success(function(result){
+        $.io.put(true, data).success(function (result) {
             window.location = PAGE.FUND_LIST
-        }).error(function(error){
+        }).error(function (error) {
             console.log(error);
         });
     }
