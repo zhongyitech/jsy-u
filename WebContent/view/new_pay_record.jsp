@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <title>新建汇款记录</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common/bootstrap.css" />
 </head>
 <body>
 <div id="page-wrapper">

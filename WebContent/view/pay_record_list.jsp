@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="/css/fund-list.css">
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common/bootstrap.css" />
     <title>项目转款明细表</title>
 </head>
 
