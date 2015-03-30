@@ -554,7 +554,7 @@ var VIEWDATA = {
         });
     },
     success2: function (result) {
-        this.items = JSON.parse(result['rest_result']);
+        this.items = (result['rest_result']);
         this.setTable2(this.items);
         this.setPage2(result);
     },
