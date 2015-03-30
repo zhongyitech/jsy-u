@@ -241,30 +241,36 @@ var VIEWDATA = {
     },
 
     getBorrower: function (filePackage_id) {
-        var params = JSON.stringify({ fpid: filePackage_id });
+        var params = JSON.stringify({ pid: filePackage_id });
         var data = { url: '/api/borrowFilesPackageRecords/findByFilepackageId', params: params };
-        var me = this;
-        console.log(params);
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (result) {
-                console.log("result:", result);
-                if (result && result.rest_status && result.rest_status == 'suc') {
-                    $("#dialog_jyr").val(result.rest_result);
-                }
-            },
-            error: function (result) {
-                isAllSuc = false;
-                if (LOGIN.error(result)) {
-                    return;
-                }
-            }
-        });
+//        var me = this;
+//        console.log(params);
+
+        return $.io.get(true,data).data();
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/get',
+//            data: data,
+//            dataType: 'json',
+//            async: false,
+//            success: function (result) {
+//                console.log("result:", result);
+//                if (result && result.rest_status && result.rest_status == 'suc') {
+//                    $("#dialog_jyr").val(result.rest_result);
+//                }
+//            },
+//            error: function (result) {
+//                isAllSuc = false;
+//                if (LOGIN.error(result)) {
+//                    return;
+//                }
+//            }
+//        });
     },
+    getBorrowUser:function(id){
+
+    },
+
     setEvent: function () {
         var me = this;
         $("a[id^=return_]").click(function () {
@@ -287,7 +293,8 @@ var VIEWDATA = {
 
 
             //借阅人 当前人
-            me.getBorrower($("td:eq(1)", $(this).closest("tr")).html());
+//            me.getBorrower($("td:eq(1)", $(this).closest("tr")).html());
+            var buser=me.getBorrower(fpid);
 
             //借阅时间 当前时间
             var d = new Date();
@@ -300,7 +307,7 @@ var VIEWDATA = {
 				(day < 10 ? '0' : '') + day;
             $("#dialog_jyrq").val(output);
             
-            $('#dialog_jyr').val()
+            $('#dialog_jyr').val(buser)
         });
 
         $("a[id^=borrow_]").click(function () {
@@ -585,6 +592,7 @@ var VIEWDATA = {
         }
 
     },
+
 
     setPage2: function (response) {
         var _this=this;
