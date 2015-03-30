@@ -184,17 +184,24 @@ var INVESTMENT_ITEM = {
         }
 
         var fund_select = $(this.INVEST_FUND_ID);
-        var funds = this.fund.getItems();
-        if (funds) {
-            var option = $('<option></option>');
-            fund_select.append(option);
-            for (var i in funds) {
-                var fundid = funds[i][this.fund.ID_KEY];
-                var fundname = this.fund.getName(fundid);
-                var option = $('<option value="' + fundid + '">' + fundname + '</option>');
-                fund_select.append(option);
-            }
-        }
+        var funds = $.io.get(true,{url:'/api/fund/selectList'}).data();
+        $.dom.select(this.INVEST_FUND_ID,funds,function(item){
+            return {text:item.mapName,value:item.id};
+        });
+
+
+
+//
+//        if (funds) {
+//            var option = $('<option></option>');
+//            fund_select.append(option);
+//            for (var i in funds) {
+//                var fundid = funds[i][this.fund.ID_KEY];
+//                var fundname = this.fund.getName(fundid);
+//                var option = $('<option value="' + fundid + '">' + fundname + '</option>');
+//                fund_select.append(option);
+//            }
+//        }
         fund_select.change(function () {
             me.setFund();
         });
@@ -588,9 +595,9 @@ var INVESTMENT_ITEM = {
         var fxfs = fxfs_select.val();
         var tzqx_select = $(this.INVEST_DUE_ID);
         if (fxfs == 'N') {
-            tzqx_select.attr('disabled', false);
+            tzqx_select.attr('readonly', false);
         } else {
-            tzqx_select.attr('disabled', true);
+            tzqx_select.attr('readonly', true);
         }
 
         var fid = $(this.INVEST_FUND_ID).val();
@@ -803,19 +810,19 @@ var INVESTMENT_ITEM = {
                 var bxsyl = ticheng[this.tcfpfw.BXSYL_KEY];
 
                 if (sfbx) {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', false);
+                    $(me.INVEST_YEARRATE_ID).attr('readonly', false);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(bxsyl));
                 } else {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                    $(me.INVEST_YEARRATE_ID).attr('readonly', true);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(shouyi));
                 }
             } else {
-                $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                $(me.INVEST_YEARRATE_ID).attr('readonly', true);
                 $(me.INVEST_YEARRATE_ID).val('');
             }
         } else {
             me.tcbl = null;
-            $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+            $(me.INVEST_YEARRATE_ID).attr('readonly', true);
             $(me.INVEST_YEARRATE_ID).val('');
         }
 
@@ -1274,51 +1281,6 @@ var INVESTMENT_ITEM = {
             .error(function(result){
                 alert(result.msg);
             });
-
-//        DataOperation.put(data,
-//            function (result) {
-//                me.itme = result;
-//                window.location = me.page.INVESMENT_PRINT;
-//            }, function(msg,result){
-//                console.log(result);
-//                me.setVaildInfo(result);
-//                alert(msg);
-//            },
-//            function (response) {
-//                me.response = response;
-//            });
-//        $.ajax({
-//            type: 'post',
-//            url: '../rest/item/put',
-//            data: data,
-//            dataType: 'json',
-//            async: false,
-//            success: function (response) {
-//                me.response = response;
-//                if (response && response[REST.RESULT_KEY] && response[REST.REST_STATUS_KEY] == 'suc') {
-//                    me.item = response[REST.RESULT_KEY];
-//                    window.location = me.page.INVESMENT_PRINT;
-//                } else {
-//                    if (response[REST.MSG_KEY]) {
-//                        alert(response[REST.MSG_KEY]);
-//                        console.log(response[REST.RESULT_KEY]);
-//                        var msg = '';
-//                        var result = response[REST.RESULT_KEY];
-//                        for (var key in result) {
-//                            console.log(result[key]);
-//                        }
-//                    } else {
-//                        alert('调用服务出错!');
-//                    }
-//                }
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//                //alert('添加投资失败，请补全带*号的必填信息.');
-//                alert('rest服务异常，添加投资失败.');
-//            }
-//        });
     }
 };
 
@@ -1491,7 +1453,7 @@ var GUANLI = {
         tr.append(sjffsj_td);
         var sjffsj_div = $('<div class="form-input col-md-12"></div>');
         sjffsj_td.append(sjffsj_div);
-        var sjffsj_input = $('<input class="item-date tcal" name="shiji" disabled/>');
+        var sjffsj_input = $('<input class="item-date tcal disabled" name="shiji" readonly="true"/>');
         sjffsj_div.append(sjffsj_input);
         f_tcalInit();
         if (item) {
@@ -1750,7 +1712,7 @@ var YEWU = {
         tr.append(sjffsj_td);
         var sjffsj_div = $('<div class="form-input col-md-12"></div>');
         sjffsj_td.append(sjffsj_div);
-        var sjffsj_input = $('<input class="tcal" name="shiji" disabled/>');
+        var sjffsj_input = $('<input class="tcal disabled" name="shiji" readonly="true"/>');
         sjffsj_div.append(sjffsj_input);
         f_tcalInit();
         if (item) {

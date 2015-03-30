@@ -40,7 +40,7 @@
                 </div>
                 <div class="content-box-wrapper">
                     <div id="table-pager" class="page-bar"></div>
-                    <table class="table table-striped" id="investment-table">
+                    <table class="table table-striped text-center" id="investment-table">
                         <thead>
                             <tr>
                                 <th><span class="text-overflow">认购人</span></th>
@@ -58,7 +58,7 @@
                                 <th><span class="text-overflow">委托情况</span></th>
                                 <th><span class="text-overflow">已付利息</span></th>
                                 <th><span class="text-overflow">已付本金</span></th>
-                                <th><span class="text-overflow">操作</span></th>
+                                <%--<th><span class="text-overflow">操作</span></th>--%>
                             </tr>
                         </thead>
                         <tbody></tbody>

@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-input col-md-4">
-            <input type="text" id="invest-number" disabled>
+            <input type="text" id="invest-number" readonly="true">
         </div>
 
         <div class="form-label col-md-2">
@@ -66,8 +66,8 @@
         </div>
 
         <div class="form-input col-md-4">
-            <select id="invest-status" disabled>
-                <option value="1">正常</option>
+            <select readonly="true" id="invest-status" class="disabled">
+                <option value="2">正常</option>
             </select>
         </div>
     </div>
@@ -77,7 +77,7 @@
             <label class="label-description">(*)合同编号：</label>
         </div>
         <div class="form-input col-md-4">
-            <input type="text" id="invest-pact" placeholder="参考合同登记编号">
+            <input type="text" class="contractNum" id="invest-pact" placeholder="参考合同登记编号">
         </div>
         <div class="form-label col-md-2">
             <label class="label-description">(*)客户名称：</label>
@@ -91,7 +91,7 @@
             <label class="label-description">(*)基金名称：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-fund"></select>
+            <select id="invest-fund" class="fund"></select>
         </div>
         <div class="form-label col-md-2">
             <label class="label-description">(*)业务经理：</label>
@@ -108,10 +108,12 @@
             <input type="text" id="invest-money">
         </div>
         <div class="form-label col-md-2">
-            <label class="label-description">(*)部门经理：</label>
+            <label class="label-description">部门经理：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-dm" disabled></select>
+            <%--<select id="invest-dm" disabled></select>--%>
+            <%--<input id="invest-dm"  class="disabled" readonly="true"/>--%>
+            <span id="invest-dm" ></span>
         </div>
     </div>
     <div class="form-row">
@@ -119,15 +121,16 @@
             <label class="label-description">(*)投资期限：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-due" disabled>
+            <select id="invest-due" readonly="true" >
                 <option value="1年">1年</option>
             </select>
         </div>
         <div class="form-label col-md-2">
-            <label class="label-description">(*)部门：</label>
+            <label class="label-description">部门：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-department" disabled></select>
+            <%--<select id="invest-department" readonly="true" ></select>--%>
+            <label id="invest-department"></label>
         </div>
     </div>
     <div class="form-row">
@@ -141,7 +144,7 @@
             <label class="label-description">(*)年化收益率：</label>
         </div>
         <div class="form-input col-md-4">
-            <input type="text" id="invest-yearrate" disabled>
+            <input type="text" id="invest-yearrate" readonly="true" >
         </div>
     </div>
     <div class="form-row">
@@ -155,7 +158,7 @@
             <label class="label-description">(*)业务提成比例：</label>
         </div>
         <div class="form-input col-md-4">
-            <input type="text" id="invest-yewu" disabled>
+            <input type="text" id="invest-yewu" readonly="true" >
         </div>
     </div>
     <div class="form-row">
@@ -163,7 +166,7 @@
             <label class="label-description">(*)付息方式：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-paytype" disabled>
+            <select id="invest-paytype" readonly="true" >
                 <option value=""></option>
                 <option value="N">年付</option>
                 <option value="J">季付</option>
@@ -174,7 +177,7 @@
             <label class="label-description">管理提成比例：</label>
         </div>
         <div class="form-input col-md-4">
-            <input type="text" id="invest-guanli" disabled>
+            <input type="text" id="invest-guanli" readonly="true" >
         </div>
     </div>
     <div class="form-row">
