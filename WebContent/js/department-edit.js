@@ -142,12 +142,13 @@ var DEPARTMENT_FORM = {
                         "suggestions": []
                     };
                 } else {
-                    var result =(response.result);
+                    var result =JSON.parse(response).rest_result;
                     var suggestions = result.suggestions;
                     result.suggestions = suggestions;
                     return result;
                 }
             }
+
         });
     },
     set: function (item) {

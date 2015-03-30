@@ -164,7 +164,8 @@ var VIEWDATA = {
         });
     },
     success: function (result) {
-        this.items = JSON.parse(result['rest_result']);
+        this.items = result.rest_result
+//            JSON.parse(result['rest_result']);
         this.setTable(this.items);
         this.setPage(result);
     },
@@ -186,9 +187,9 @@ var VIEWDATA = {
                 row.append('<td>' + items[i]["projectName"] + '</td>');
                 row.append('<td><span class="funds-item-name" title="' + items[i]["fundName"] + '">' + items[i]["fundName"] + '</span></td>');
                 row.append('<td>' + items[i]["signedPartner"] + '</td>');
-                row.append('<td>' + items[i]["signedDate"] + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["signedDate"]) + '</td>');
                 row.append('<td>' + USER.getName(items[i]["transfer"].id) + '</td>');
-                row.append('<td>' + items[i]["transferDate"] + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["transferDate"]) + '</td>');
                 row.append('<td>' + items[i]["saveposition"] + '</td>');
                 row.append('<td>' + items[i]["cabinetno"] + '</td>');
                 var pid = items[i]['id'];
