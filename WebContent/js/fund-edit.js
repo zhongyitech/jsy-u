@@ -103,9 +103,9 @@ var TZQX_LIST = {//投资期限
             }
         }
 
-        for (var i = 0; i < 3; i++) {
-            this.addTr();
-        }
+//        for (var i = 0; i < 3; i++) {
+//            this.addTr();
+//        }
     },
     iniAddButton: function () {
         var me = this;
@@ -583,9 +583,9 @@ var SYLFW_LIST = {//收益率范围
                 this.addTr(item);
             }
         }
-        for (var i = 0; i < 3; i++) {
-            this.addTr();
-        }
+//        for (var i = 0; i < 3; i++) {
+//            this.addTr();
+//        }
     },
     iniAddButton: function () {
         var me = this;
