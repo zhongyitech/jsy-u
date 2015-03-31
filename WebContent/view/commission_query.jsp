@@ -19,7 +19,7 @@
     </style>
 </head>
 
-<body >
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 
@@ -102,35 +102,39 @@
 
                     <div id="table-pager" class="page-bar"></div>
 
-                    <table id="query_table" class="table table-striped text-center mrg0B">
+                    <table id="query_table" class="table table-striped text-center mrg0B text-center">
                         <thead>
-                            <tr>
-                                <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
-                                <th data-bindtype="value" data-Member="ywjl"><span class="text-overflow"
-                                                                                   title="理财经理">理财经理</span></th>
-                                <th data-bindtype="value" data-Member="fundName" class="text-center"><span
-                                        class="text-overflow" title="基金">基金</span></th>
-                                <th data-bindtype="value" data-Member="rgrq" data-format="date">认购日期</th>
-                                <th data-bindtype="value" data-Member="customer">客户名称</th>
-                                <th data-bindtype="value" data-Member="tzje" data-format="money"><span class="text-overflow"
-                                                                                                       title="基金">投资金额</span>
-                                </th>
-                                <th data-bindtype="value" data-Member="syl" data-format="rate"><span class="text-overflow"
-                                                                                                     title="基金">客户收益率</span>
-                                </th>
-                                <th data-bindtype="value" data-Member="tzqx" data-format="">认购期限</th>
-                                <th><span class="text-overflow" title="理财经理">税前/税后</span></th>
-                                <th>税率</th>
-                                <th data-bindtype="value" data-Member="tcl" data-format="rate"><span class="text-overflow"
-                                                                                                     title="提成率">提成率</span>
-                                </th>
-                                <th data-bindtype="value" data-member="type"><span class="text-overflow"
-                                                                                   title="理财经理">提成类型</span></th>
-                                <th>提成额</th>
-                                <th>发票金额</th>
-                                <th><span class="text-overflow" title="税金">税金</span></th>
-                                <th><span>付款金额</span></th>
-                            </tr>
+                        <tr>
+                            <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
+                            <th class="text-center"><span class="text-overflow"
+                                                                               title="理财经理">理财经理</span></th>
+                            <th class="text-center"><span
+                                    class="text-overflow" title="基金">基金</span></th>
+                            <th class="text-center">认购日期</th>
+                            <th class="text-center"><span class="text-overflow"
+                                                                                   title="客户名称">客户名称</span></th>
+                            <th class="text-center" data-bindtype="value" data-Member="tzje" data-format="money"><span class="text-overflow"
+                                                                                                   title="基金">投资金额</span>
+                            </th>
+                            <th class="text-center"><span class="text-overflow"
+                                                                                                 title="基金">客户收益率</span>
+                            </th>
+                            <th class="text-center">
+                                <span class="text-overflow"
+                                      title="认购期限">认购期限</span></th>
+                            <th><span class="text-overflow" title="税前/税后">税前/税后</span></th>
+                            <th><span class="text-overflow" title="税率">税率</span></th>
+                            <th class="text-center"><span class="text-overflow"
+                                                                                                 title="提成率">提成率</span>
+                            </th>
+                            <th class="text-center"><span class="text-overflow"
+                                                                               title="理财经理">提成类型</span></th>
+                            <th class="text-center"><span class="text-overflow" title="提成额">提成额</span></th>
+                            <th class="text-center"><span class="text-overflow" title="发票金额">发票金额</span></th>
+                            <th class="text-center"><span class="text-overflow" title="税金"><span class="text-overflow"
+                                                                             title="提税金">提税金</span></span></th>
+                            <th class="text-center"><span class="text-overflow">付款金额</span></th>
+                        </tr>
                         </thead>
                         <tbody></tbody>
                     </table>

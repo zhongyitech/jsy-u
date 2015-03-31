@@ -37,15 +37,15 @@
     <li>
         <a href="#step-2">
             <label class="wizard-step">2</label>
-            <span class="wizard-description">确认书打印<small>投资档案打印预览</small></span>
+            <span class="wizard-description">预览投资确认书<small>确认所填信息的正确性</small></span>
         </a>
     </li>
-    <li>
-        <a href="#step-3">
-            <label class="wizard-step">3</label>
-            <span class="wizard-description">客户信息<small>填写客户信息时必须填写证件号码</small></span>
-        </a>
-    </li>
+    <%--<li>--%>
+        <%--<a href="#step-3">--%>
+            <%--<label class="wizard-step">3</label>--%>
+            <%--<span class="wizard-description">客户信息<small>填写客户信息时必须填写证件号码</small></span>--%>
+        <%--</a>--%>
+    <%--</li>--%>
 </ul>
 
 <div id="step-1">
@@ -77,7 +77,7 @@
             <label class="label-description">(*)合同编号：</label>
         </div>
         <div class="form-input col-md-4">
-            <input type="text" class="contractNum" id="invest-pact" placeholder="参考合同登记编号">
+            <input type="text" class="contractNum" id="invest-pact" maxlength="9" placeholder="参考合同登记编号">
         </div>
         <div class="form-label col-md-2">
             <label class="label-description">(*)客户名称：</label>
@@ -327,128 +327,6 @@
     </form>
 </div>
 
-<div id="step-3">
-    <form action="" class="col-md-10 center-margin">
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">客户名称：</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="输入客户名称" type="text" id="invest-customer-name">
-            </div>
-            <div class="form-label col-md-2">
-                <label class="label-description">国家（地区）:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <select id="invest-country">
-                    <option value=""></option>
-                    <option value="中国">中国</option>
-                    <option value="其它地区">其它地区</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">证件类型:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <select id="invest-cardtype">
-                    <option></option>
-                    <option value="身份证">身份证</option>
-                    <option value="护照">护照</option>
-                </select>
-            </div>
-            <div class="form-label col-md-2">
-                <label class="label-description">(*)证件号码:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="请输入证件号" type="text" id="invest-cardnumber">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">(*)住址:</label>
-            </div>
-            <div class="form-input col-md-10">
-                <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="invest-sfzdz">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">开户行名称:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="请输入开户行银行" type="text" id="invest-bankname">
-            </div>
-            <div class="form-label col-md-2 ">
-                <label class="label-description">收益人账号:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="请输入银行账号" type="text" id="invest-banknumber">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">联系电话:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="" type="text" id="invest-phone">
-            </div>
-            <div class="form-label col-md-2">
-                <label class="label-description">邮政编码:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="" type="text" id="invest-zip">
-            </div>
-        </div>
-        <div class="form-row">
-
-            <div class="form-label col-md-2">
-                <label class="label-description">E-Mail:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="" type="text" id="invest-email">
-            </div>
-            <div class="form-label col-md-2">
-                <label class="label-description">通讯地址:</label>
-            </div>
-            <div class="form-input col-md-4">
-                <input placeholder="" type="text" id="invest-address">
-            </div>
-        </div>
-
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">附件:</label>
-            </div>
-
-            <div class="form-input col-md-10">
-                <input id="invest-attachment" class="input-file" name="attachment" type="file"
-                       multiple="multiple">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-label col-md-2"></div>
-            <div class="form-input col-md-10" id="invest-attachment-img"></div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-label col-md-2">
-                <label class="label-description">备注信息:</label>
-            </div>
-            <div class="form-input col-md-10">
-                <textarea placeholder="请输入备注信息" class="textarea-no-resize"
-                          id="invest-yhbz"></textarea>
-            </div>
-        </div>
-    </form>
-</div>
 
 </div>
 </div>
