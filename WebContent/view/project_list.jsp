@@ -26,39 +26,52 @@
                 </div>
 
                 <div class="content-box-wrapper">
-
-                </div>
-                <div class="container-fluid">
-
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label class="sr-only" for="project_id">项目单号</label>
+                    <div style="width: 700px" id="item_settingPanel">
+                        <form class="form-bordered " action="/" method="post">
+                            <div class="form-row">
+                                <div class="form-label col-md-3">
+                                    <label class="sr-only" for="">项目单号</label>
+                                </div>
+                                <div class="form-input col-md-4">
                                     <input type="text" class="form-control" id="project_id" placeholder="项目单号">
                                 </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="project_name">项目名称</label>
+                                <div class="form-label col-md-2">
+                                    <label class="sr-only" for="">项目名称</label>
+                                </div>
+                                <div class="form-input col-md-3">
                                     <input type="text" class="form-control" id="project_name" placeholder="项目名称">
                                 </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="fund_name">基金名称</label>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-3   ">
+                                    <label class="sr-only" for="">基金名称</label>
+                                </div>
+                                <div class="form-input col-md-4">
                                     <input type="text" class="form-control" id="fund_name" placeholder="基金名称">
                                 </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="project_incharge_name">项目负责人</label>
+                                <div class="form-label col-md-2   ">
+                                    <label class="sr-only" for="">项目负责人</label>
+                                </div>
+                                <div class="form-input col-md-3">
                                     <input type="text" class="form-control" id="project_incharge_name" placeholder="项目负责人">
                                 </div>
+                            </div>
 
-                                <div class="checkbox">
+                            <div class="form-row">
+                                <div class="form-label">
                                     <label>
                                         <input type="checkbox" id="archived"> 归档的结算项目
                                     </label>
                                 </div>
-                                <button type="button" class="btn btn-default" id="search_btn">查询</button>
-                            </form>
+                            </div>
 
-                        </div>
+                            <div class="form-row">
+                                <div class="form-label">
+                                    <button type="button" class="btn-ui btn bg-green large medium" id="search_btn">查  询</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
