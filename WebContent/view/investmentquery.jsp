@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/bankingpaymentorder.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bankingpaymentorder.css"/>
     <title>合同查询</title>
 </head>
 
@@ -28,7 +28,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="关键字搜索..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -159,6 +159,6 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/bankingpaymentorder.js"></script>
+<script type="text/javascript" src="/js/bankingpaymentorder.js"></script>
 </body>
 </html>

@@ -31,7 +31,6 @@ var REPORT={
 		//兑付信息与汇总表格数据加载
 		this.getView();
 		this.set_event();
-		this.iniPage();
 
 		//报表测试数据
 		var report = echarts.init(document.getElementById('cash-report'));
@@ -107,19 +106,16 @@ var REPORT={
 
 		});
 
-		//附件event
-		//$("a[id^=attach_]").each(function() {
-		//	console.log(this.attr("id"));
-		//});
-
 		$(this.KEYWORD_BUTTON_ID).click(function(){
 			//过滤时翻至第一页
-			me.selectFirst();
+			me.page_start=0;
+            me.getItems(true);
 		});
 
 		$(this.KEYWORD_ID).keyup(function(e){
-			if(e && e.keyCode==13){
-				me.selectFirst();
+			if(e.keyCode==13){
+                me.page_start=0;
+                me.getItems(true);
 			}
 		});
 
@@ -186,8 +182,6 @@ var REPORT={
 
 		var keyword_input = $(this.KEYWORD_ID);
 		this.filter_keyword = keyword_input.val();
-
-		this.page_start = (this.pages_select - 1) * this.page_size;
 	},
 	getItems: function(){
 		var me = this;
@@ -224,31 +218,16 @@ var REPORT={
 	success: function(result){
 		this.items = JSON.parse(result['rest_result']);
 		this.setTable(this.items);
-		this.page_total = result['rest_total'];
-		this.setPage(this.page_total);
+		this.setPage(result);
 	},
 	setTable: function(items){
-		var pacts = $("#pacts-get-table tr");
-		if(pacts && pacts.length){
-			for(var i=1; i<pacts.length; i++){
-				$(pacts[i]).remove();
-			}
-		}
-
-		var table = $("#pacts-get-table");
+        var table=$("#pacts-get-table");
+        table.find("tbody").empty();
 		if(table && items){
 			for(var i in items){
 				var row = $("<tr></tr>");
 				table.append(row);
-
 				row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				//if(items[i]["type"]==0){
-				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-				//}else{
-				//	$(row).attr("style","background-color: #FD0101;");
-				//	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-				//}
-
 				row.append('<td><span class="funds-item-name" title="' + items[i]["fundName"] + '">' + items[i]["fundName"] + '</span></td>');
 				row.append('<td>' + items[i]["htbh"] + '</td>');
 				row.append('<td>' + items[i]["customerName"] + '</td>');
@@ -264,64 +243,16 @@ var REPORT={
 				row.append('<td>' + items[i]["zjlx"] + '</td>');
 				row.append('<td>' + items[i]["zjhm"] + '</td>');
 				row.append('<td>  <a href="#" class="btn medium bg-green tooltip-button" data-placement="top" title="" data-original-title="Content" id="attach_'+items[i]["id"] +'"><i class="glyph-icon icon-hdd"></i></a> </td>');
-
-
-
 			}
 		}
 
 	},
-	iniPage: function(){
-		var me = this;
-		$('#page-first').click(function(){
-			//过滤时翻至第一页
-			me.selectFirst();
-		});
-
-		$('#page-last').click(function(){
-			//过滤时翻至第一页
-			me.selectLast();
-		});
-	},
-	setPage: function(total){
-		this.page_total = total;
-
-		var pages_div = $(this.PAGES_ID);
-		var pages = pages_div.find("a");
-		if(pages.length){
-			for(var i=0; i<pages.length; i++){
-				$(pages[i]).remove();
-			}
-		}
-
-		var pages_from = this.pages_select - 16;
-		if(pages_from<1){
-			pages_from = 1;
-		}
-		var pages_to = pages_from + this.pages_size;
-		var pages_total =  Math.ceil(total/this.page_size);
-
-		var me = this;
-		for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-			var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-			if(i == this.pages_select){
-				page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-			}
-			pages_div.append(page_number);
-			page_number.append(i);
-			page_number.click(function(e){me.selectPage(e);});
-		}
-	},
-	selectPage: function(e){
-		this.pages_select = e.toElement.textContent;
-		this.getItems(true);
-	},
-	selectFirst: function(){
-		this.pages_select = 1;
-		this.getItems(true);
-	},
-	selectLast: function(){
-		this.pages_select = this.pages_total;
-		this.getItems(true);
+	setPage: function(response){
+        var _this=this;
+        _this.page_start==0&& $.dom.pager("#table-pager",response).onChange(function (param) {
+            _this.page_start=param.startposition;
+            _this.page_size=param.pagesize;
+            _this.getItems(true);
+        });
 	}
 };

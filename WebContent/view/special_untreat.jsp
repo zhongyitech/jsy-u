@@ -5,10 +5,10 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<script type="text/javascript" src="../js/special_untreat.js"></script>
+<script type="text/javascript" src="/js/special_untreat.js"></script>
 <title>未到期转投处理申请表</title>
 </head>
-<link rel="stylesheet" type="text/css" href="../css/special_untreat.css"/>
+<link rel="stylesheet" type="text/css" href="/css/special_untreat.css"/>
 <body >
 	<div id="page-wrapper">
 		<jsp:include page="./navi.jsp"/>

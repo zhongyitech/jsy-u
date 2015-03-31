@@ -5,7 +5,7 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/projectinfo.css" />
+    <link rel="stylesheet" href="/css/projectinfo.css" />
     <title>项目明细</title>
 </head>
 

@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/account-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/account-edit.css">
     <title>账号设置</title>
 </head>
 
@@ -110,6 +110,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/account-edit.js"></script>
+<script type="text/javascript" src="/js/account-edit.js"></script>
 </body>
 </html>

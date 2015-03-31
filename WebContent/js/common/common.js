@@ -1,6 +1,31 @@
 /**
  * Created by William.Wei on 2015/3/3. weizhansheng@outlook.com
  */
+(function(){
+    if(!String.prototype.trim){
+        String.prototype.trim = function(){
+            return this.trimLeft(this.trimRight(this));
+        };
+        String.prototype.trimLeft = function(str){
+            var i;
+            for(i=0;i<str.length;i++)
+            {
+                if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+            }
+            str=str.substring(i,str.length);
+            return str;
+        };
+        String.prototype.trimRight = function(str){
+            var i;
+            for(i=str.length-1;i>=0;i--)
+            {
+                if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+            }
+            str=str.substring(0,i+1);
+            return str;
+        };
+    }
+})();
  /*
     json2.js
     2015-02-25
@@ -3877,10 +3902,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             contentType:"application/x-www-form-urlencoded;charset=UTF-8"
         },
         _ajax:function(options,type,async){
-            options=$.extend(true,this._defaultCfg,options,{type:type,async:async,data:{
+            var opts=$.extend(true,{},this._defaultCfg,options,{type:type,async:async,data:{
                 _t:Date.now()
             }});
-            var xhr=$.ajax(options);
+            var xhr=$.ajax(opts);
             if(!async){
                 xhr.getData=function(){
                     var result=null;
@@ -3890,33 +3915,33 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                     return result;
                 };
             }
-            return new XHR(xhr,options);
+            return new XHR(xhr,opts);
         },
-        get:function(options,async){
+        _get:function(options,async){
             return this._ajax(options,this._type.GET,async);
         },
-        post:function(options,async){
+        _post:function(options,async){
             return this._ajax(options,this._type.POST,async);
         },
-        put:function(options,async){
+        _put:function(options,async){
             return this._ajax(options,this._type.PUT,async);
         },
-        delete:function(options,async){
+        _delete:function(options,async){
             return this._ajax(options,this._type.DELETE,async);
         }
     };
     var Ajax=function(async){
         this.get=function(options){
-            return _AJAX.get(options,async);
+            return _AJAX._get(options,async);
         };
         this.post=function(options){
-            return _AJAX.post(options,async);
+            return _AJAX._post(options,async);
         };
         this.put=function(options){
-            return _AJAX.put(options,async);
+            return _AJAX._put(options,async);
         };
-        this.delete=function(options){
-            return _AJAX.delete(options,async);
+        this.del=function(options){
+            return _AJAX._delete(options,async);
         };
     };
     $.extend(true,{
@@ -3929,9 +3954,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  */
 (function($){
     var UtilsPrototype={
-        dateFormat: function (date,format) {
-            if(!date)return "";
-            var time = new Date(date);
+        dateFormat: function (dateString,format) {
+            if(!dateString)return "";
+            var time = new Date(dateString.replace(/-/g,'/').replace(/T|Z/g,' ').trim());
             var o = {
                 "M+": time.getMonth() + 1, //月份
                 "d+": time.getDate(), //日
@@ -3945,11 +3970,48 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             for (var k in o)
                 if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             return format;
+        },
+        getValue:function(string,key){
+            var r = string.match(new RegExp("(^|&)"+key +"=([^&]*)(&|$)"));
+            return key?(r?decodeURIComponent(decodeURIComponent(r[2])):null):null;
+        },
+        getObject:function(string){
+            var params={},nameValuePairs=string.split("&");
+            for(var i=0;i<nameValuePairs.length;i++){
+                if(nameValuePairs[i]=="") break;
+                var nameValuePair=nameValuePairs[i].split("=");
+                params[nameValuePair[0]]=decodeURIComponent(decodeURIComponent(nameValuePair[1]));
+            }
+            return params;
+        },
+        getParam:function(key){
+            return this.getValue(window.location.search.substr(1),key);
+        },
+        getHash:function(key){
+            return this.getValue(window.location.hash.substr(1),key);
+        },
+        getParams:function(){
+            return this.getObject(window.location.search.substr(1));
+        },
+        getHashs:function(){
+            return this.getObject(window.location.hash.substr(1));
         }
     };
     var Utils=function(){
-        this.dateFormat=function(date,format){
+        this.dateFormat = function(date,format){
             return UtilsPrototype.dateFormat(date,format);
+        };
+        this.getParam = function (key) {
+            return UtilsPrototype.getParam(key);
+        };
+        this.getHash = function (key) {
+            return UtilsPrototype.getHash(key);
+        };
+        this.getParams = function () {
+            return UtilsPrototype.getParams();
+        };
+        this.getHashs = function () {
+            return UtilsPrototype.getHashs();
         };
     };
     $.extend(true,{
@@ -3961,7 +4023,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  */
 (function($){
     var Template={
-        render:function($selector,template,data,fn){
+        render:function($selector,template,data,params){
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
                 if(!$selector.hasTemplate()&&template){
@@ -3971,7 +4033,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                         $selector.setTemplate(template);
                     }
                 }
-                if(fn) $selector.setParam("callback",fn);
+                if(params) typeof params=="function"?$selector.setParam("callback",params):$.each(params,function(i,v){$selector.setParam(i,v);});
                 if(typeof data=="string")data=JSON.parse(data);
                 $selector.processTemplate(data);
                 return true;
@@ -3981,13 +4043,13 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         }
     };
     $.fn.extend(true,{
-        renderData:function(template,data,fn){
-            Template.render($(this),template,data,fn);
+        renderData:function(template,data,params){
+            Template.render($(this),template,data,params);
         }
     });
     $.extend(true,{
-        renderData:function($selector,template,data,fn){
-            Template.render($selector,template,data,fn);
+        renderData:function($selector,template,data,params){
+            Template.render($selector,template,data,params);
         }
     });
 })(jQuery);

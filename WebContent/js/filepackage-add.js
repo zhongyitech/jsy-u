@@ -78,7 +78,7 @@ var VIEWDATA = {
                 paramName: 'params',
                 onSelect: function (suggestion) {
                     //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-                    $("#fundName_show").val(suggestion.data);
+                    $("#fundName").val(suggestion.data);
                 },
                 transformResult: function (response) {
                     //clear old value
@@ -116,8 +116,8 @@ var VIEWDATA = {
                         "suggestions": []
                     };
                 } else {
-                    var result = JSON.parse(response);
-                    var suggestions = JSON.parse(result.suggestions);
+                    var result = JSON.parse(response).rest_result;
+                    var suggestions = (result.suggestions);
                     result.suggestions = suggestions;
                     return result;
                 }

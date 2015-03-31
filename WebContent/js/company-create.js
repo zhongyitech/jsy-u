@@ -83,7 +83,7 @@ var COMPANY_FORM={
 			
 			var me = this;
 			var type = COMPANY_TYPE.get(me.getTypeView().val());
-			var value = COMPANY_TYPE.toValue(type);
+			value = COMPANY_TYPE.toValue(type);
 			
 			var frdb_label = me.getFRDBLabel();
 			var frdb_input = me.getFRDBView();
@@ -130,7 +130,7 @@ var COMPANY_FORM={
 					var item = items[i];
 					var id = COMPANY_TYPE.toId(item);
 					var name = COMPANY_TYPE.toName(item);
-					var option = $('<option value="' + id + '">' + name + '</option>');
+					option = $('<option value="' + id + '">' + name + '</option>');
 					view.append(option);
 				}
 			}
@@ -260,7 +260,7 @@ var COMPANY_FORM={
 					var item = items[i];
 					var id = FUND.toId(item);
 					var name = FUND.toName(item);
-					var option = $('<option value="' + id + '">' + name + '</option>');
+					option = $('<option value="' + id + '">' + name + '</option>');
 					view.append(option);
 				}
 			}
@@ -288,7 +288,7 @@ var COMPANY_FORM={
 					
 					if(cid != id ){
 						var name = COMPANY.toName(item);
-						var option = $('<option value="' + id + '">' + name + '</option>');
+						option = $('<option value="' + id + '">' + name + '</option>');
 						view.append(option);
 					}
 				}

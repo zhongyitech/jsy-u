@@ -8,7 +8,7 @@
     <title>档案管理-档案入库</title>
 </head>
 
-<body class="jsy-body">
+<body>
 
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"></jsp:include>
@@ -46,12 +46,6 @@
                     <div class="form-input col-md-4">
                         <input type="text" id="inchargerName"/>
                         <input type="hidden" id="incharger"/>
-                    </div>
-                    <div class="form-label col-md-2  ">
-                        <label for="">制单人：</label>
-                    </div>
-                    <div class="form-input col-md-4">
-                        <input type="text" id="creatorName" readonly="readonly"/>
                         <input type="hidden" id="creator"/>
                     </div>
                 </div>
@@ -199,7 +193,7 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/new_project.js"></script>
-<%--<script type="text/javascript" src="../view/bootstrap/bootstrap.min.js"></script>--%>
+<script type="text/javascript" src="/js/new_project.js"></script>
+<%--<script type="text/javascript" src="/view/bootstrap/bootstrap.min.js"></script>--%>
 </body>
 </html>

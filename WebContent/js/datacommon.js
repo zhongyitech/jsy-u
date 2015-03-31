@@ -116,7 +116,7 @@ function Search_Panel(panel_id)
         buildSearachPanel: function (columns)
         {
             var count = columns.length;
-            var rowmax = 4;
+            var rowmax = 10;
             var rowcount = 0;
             var html = '',endTag='';
             for (var i = 0; i < count; i++)
@@ -129,7 +129,7 @@ function Search_Panel(panel_id)
                 var rowhtml = this.getPanelItem(col.title, col.fieldName);
                 if (rowcount % rowmax == 0)
                 {
-                    html += endTag+'<div class="form-row  mrg10B">';
+                    html += endTag+'<div class="form-row">';
                     endTag='</div>';
                 }
                 html += rowhtml;
@@ -148,8 +148,8 @@ function Search_Panel(panel_id)
         },
         getPanelItem: function (title, fieldName)
         {
-            var html = '<div class="form-input col-md-3"><div class="input-append-wrapper">' +
-					   '<div class="input-append col-md-4 text-right">' +
+            var html = '<div class="form-input float-left"><div class="input-append-wrapper">' +
+					   '<div class="input-append">' +
 					    title +
 					   '</div><div class="append-left col-md-8 mrg0L"><input type="text" placeholder="查询条件" name="' + fieldName + '" /></div></div></div>';
             return html;

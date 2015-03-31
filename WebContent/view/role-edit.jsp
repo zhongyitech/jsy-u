@@ -4,8 +4,8 @@
 
 <head>
 <jsp:include page="./head.jsp"/>
-<link rel="stylesheet" type="text/css" href="../css/role-edit.css">
-<script type="text/javascript" src="../js/role-edit.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/role-edit.css">
+<script type="text/javascript" src="/js/role-edit.js"></script>
 <title>编辑角色</title>
 </head>
 

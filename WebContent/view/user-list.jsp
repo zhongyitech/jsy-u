@@ -4,8 +4,7 @@
 
 <head>
 	<jsp:include page="./head.jsp"/>
-	<link rel="stylesheet" type="text/css" href="../css/user-list.css">
-	<script type="text/javascript" src="../js/user-list.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/user-list.css">
 	<title>用户管理</title>
 </head>
 
@@ -38,15 +37,7 @@
 					</div>
 					
 					<div class="content-box-wrapper">
-						<div class="col-md-12 page-bar pad0R">
-							<a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-								<i class="glyph-icon icon-arrow-left"></i>
-							</a>
-							<div class="button-group float-left pages-div" id="page-list"></div>
-							<a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-								<i class="glyph-icon icon-arrow-right"></i>
-							</a>
-						</div>
+                        <div id="table-pager" class="page-bar"></div>
 						
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
@@ -69,5 +60,6 @@
 			</div>
 		</div>
 	</div>
+    <script type="text/javascript" src="/js/user-list.js"></script>
 </body>
 </html>

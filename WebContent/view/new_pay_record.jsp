@@ -5,9 +5,9 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <title>新建汇款记录</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/common/bootstrap.css" />
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-input col-md-4">
                                 <label>
-                                    <input type="radio" name="moneyUseType" id="moneyUsepay" value="pay" checked  style="height: 16px;width: 16px; position: relative;top: 3px;">
+                                    <input type="radio" name="moneyUseType" id="moneyUsepay" value="invest" checked  style="height: 16px;width: 16px; position: relative;top: 3px;">
                                     投资款
                                 </label>
                                 <label>
@@ -90,6 +90,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/new_pay_record.js"></script>
+<script type="text/javascript" src="/js/new_pay_record.js"></script>
 </body>
 </html>

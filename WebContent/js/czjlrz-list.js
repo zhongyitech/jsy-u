@@ -3,43 +3,59 @@
         _entity:{
             startposition: 0,
             pagesize: 10,
-            query:{type:"or",condition:{fields:["czr","url","method","params","address"],value:""}}
+            type:"or",
+            fields:["czr","url","method","params","address"],
+            value:"",
+            order:{id:"desc"}
         },
+        /**
+         * 发送请求，接收Options参数可包含entity、params
+         * @param options
+         * @returns {*}
+         * @private
+         */
         _request:function(options){
-            return $.io.post($.extend(true,{
-                url: '/api/operationRecord/readAllForPage'
-            },options));
-        },
-        _render:function(options){
-            var _this=this;
-            _this._options= $.extend(true,{
-                entity:_this._entity
-            },options);
-            _this._request(_this._options).success(function(result,pager){
-                _this._renderData(result,pager,options);
+            $.extend(true,this._entity,options.entity)
+            return $.io.post({
+                url: '/api/operationRecord/readAllForPage',
+                entity:this._entity
             });
         },
-        _renderData:function(result,pager,options){
+        /**
+         * 渲染方法，当前页面只接收entity参数
+         * @param entity
+         * @private
+         */
+        _render:function(entity){
             var _this=this;
-            $("#table-data").renderData("#table-data-template",result);
-            if(!options||!options.paged){
+            _this._request({entity:entity}).success(function(result,pager){
+                _this._renderData(result);
+                _this._renderPage(pager);
+            });
+        },
+        _renderData:function(result){
+            var _this=this;
+            $("#table-data").renderData("#table-data-template",result,function(){
+                return _this._entity.startposition;
+            });
+        },
+        _renderPage:function(pager){
+            var _this=this;
+            if(!_this._entity.startposition){
                 $.dom.pager("#table-pager",pager,{
                     pageSize:_this._entity.pagesize
                 }).onChange(function(entity){
-                    _this._render({
-                        entity:entity,
-                        paged:true
-                    });
+                    _this._render(entity);
                 });
             }
         },
         _bindEvent:function(){
             var _this=this,keyword=$("#keyword-input"),searchButton=$("#keyword-button");
             keyword.unbind("keyup").bind("keyup",function(e){
-                if(e.keyCode==13) _this._render({entity:{startposition: 0,query:{condition:{value:keyword.val()}}}});
+                if(e.keyCode==13) _this._render({startposition: 0,value:keyword.val()});
             });
             searchButton.unbind("click").bind("click",function(){
-                _this._render({entity:{startposition: 0,query:{condition:{value:keyword.val()}}}});
+                _this._render({startposition: 0,value:keyword.val()});
             });
         },
         render:function(){

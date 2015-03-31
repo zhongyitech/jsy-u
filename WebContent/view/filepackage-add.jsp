@@ -7,7 +7,7 @@
     <title>档案管理-档案入库</title>
 
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
@@ -180,6 +180,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/filepackage-add.js"></script>
+<script type="text/javascript" src="/js/filepackage-add.js"></script>
 </body>
 </html>

@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>特殊申请单打印</title>
-	<link rel="stylesheet" type="text/css" href="../css/special_printview.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/special_printview.css"/>
 	<style>
 	
 	</style>
 </head>
-<body class="jsy-body">
+<body>
 
 <div id="print-body">
     <h2>委 托 书</h2>

@@ -70,7 +70,7 @@ var DEPARTMENT_FORM = {
         }
     },
     getPerformanceItem: function () {
-        return $.project.type(8).data();
+        return $.project.type(8);
     },
     getDescriptionView: function () {
         var form = this.getForm();

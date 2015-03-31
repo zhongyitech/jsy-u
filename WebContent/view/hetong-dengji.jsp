@@ -5,7 +5,7 @@
 <head>
     <title>合同登记</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/hetong-dengji.css">
+    <link rel="stylesheet" type="text/css" href="/css/hetong-dengji.css">
 </head>
 
 <body >
@@ -43,7 +43,7 @@
 					</div>
 					
 					<div class="button-pane">
-						<span class="font-red float-left">起始编号和结束编号格式为(JSYAN001)：5位英文+数字</span>
+						<span class="font-red float-left">起始编号和结束编号格式为(JSYAN0001)：5位英文+4位数字</span>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-save"><span class="button-content">保存</span></button>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-remove"><span class="button-content">删除选中行</span></button>
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="tr-add"><span class="button-content">增加一行</span></button>
@@ -64,7 +64,7 @@
 								<div class="form-input">
 									<div class="form-input-icon">
 										<i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-										<input type="text" placeholder="Search notifications..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
+										<input type="text" placeholder="关键字搜索..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
 									</div>
 								</div>
 							</div>
@@ -74,17 +74,7 @@
 					
 					<div class="content-box-wrapper">
 					
-						<div class="col-md-12 page-bar pad0R">
-							<a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-								<i class="glyph-icon icon-arrow-left"></i>
-							</a>
-							
-							<div class="button-group float-left pages-div" id="page-list"></div>
-							
-							<a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-								<i class="glyph-icon icon-arrow-right"></i>
-							</a>
-						</div>
+						<div id="table-pager" class="page-bar"></div>
 						
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
@@ -107,6 +97,6 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" src="../js/hetong-dengji.js"></script>
+    <script type="text/javascript" src="/js/hetong-dengji.js"></script>
 </body>
 </html>

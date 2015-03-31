@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>兑付查询</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/cash_app.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cash_app.css"/>
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
@@ -88,37 +88,28 @@
 
                 <div class="content-box-wrapper">
 
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-numbers"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar"></div>
 
                     <table class="table table-striped text-center mrg0B" id="pacts-get-table">
                         <thead>
-                        <tr>
-                            <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
-                            <th><span class=" text-center cash-fund">基金</span></th>
-                            <th><span class=" text-center cash-pact">合同编号</span></th>
-                            <th><span class=" text-center cash-customer">客户名称</span></th>
-                            <th><span class=" text-center cash-invest">投资金额</span></th>
-                            <th><span class=" text-center cash-due">投资期限</span></th>
-                            <th><span class=" text-center cash-shouyi">收益率</span></th>
-                            <th><span class=" text-center cash-lixi">应付利息</span></th>
-                            <th><span class=" text-center cash-benjin">应付本金</span></th>
-                            <th><span class=" text-center cash-zongji">总计</span></th>
-                            <th><span class=" text-center bank-name">开户行</span></th>
-                            <th><span class=" text-center bank-number">账户</span></th>
-                            <th><span class="text-center  country-name">国籍</span></th>
-                            <th><span class="text-center card-type">证件类型</span></th>
-                            <th><span class="text-center card-number">证件号码</span></th>
-                            <th><span class=" text-center cash-fujian">附件</span></th>
-                        </tr>
+                            <tr>
+                                <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
+                                <th><span class=" text-center cash-fund">基金</span></th>
+                                <th><span class=" text-center cash-pact">合同编号</span></th>
+                                <th><span class=" text-center cash-customer">客户名称</span></th>
+                                <th><span class=" text-center cash-invest">投资金额</span></th>
+                                <th><span class=" text-center cash-due">投资期限</span></th>
+                                <th><span class=" text-center cash-shouyi">收益率</span></th>
+                                <th><span class=" text-center cash-lixi">应付利息</span></th>
+                                <th><span class=" text-center cash-benjin">应付本金</span></th>
+                                <th><span class=" text-center cash-zongji">总计</span></th>
+                                <th><span class=" text-center bank-name">开户行</span></th>
+                                <th><span class=" text-center bank-number">账户</span></th>
+                                <th><span class="text-center  country-name">国籍</span></th>
+                                <th><span class="text-center card-type">证件类型</span></th>
+                                <th><span class="text-center card-number">证件号码</span></th>
+                                <th><span class=" text-center cash-fujian">附件</span></th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -142,13 +133,13 @@
                 <div class="content-box-wrapper">
                     <table class="table table-striped text-center mrg0B" id="pacts-get-table2">
                         <thead>
-                        <tr>
-                            <th><span class=" text-center cash-fund">基金</span></th>
-                            <th><span class=" text-center cash-total">总金额</span></th>
-                            <th><span class=" text-center cash-count">笔数</span></th>
-                            <th><span class=" text-center cash-lixi">利息</span></th>
-                            <th><span class=" text-center cash-benjin">本金</span></th>
-                        </tr>
+                            <tr>
+                                <th><span class=" text-center cash-fund">基金</span></th>
+                                <th><span class=" text-center cash-total">总金额</span></th>
+                                <th><span class=" text-center cash-count">笔数</span></th>
+                                <th><span class=" text-center cash-lixi">利息</span></th>
+                                <th><span class=" text-center cash-benjin">本金</span></th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -171,6 +162,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/cash_app.js"></script>
+<script type="text/javascript" src="/js/cash_app.js"></script>
 </body>
 </html>

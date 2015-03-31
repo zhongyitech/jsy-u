@@ -5,7 +5,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/bankingpaymentorder.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bankingpaymentorder.css"/>
     <title>银行付款单</title>
 </head>
 <body >
@@ -25,7 +25,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeHolder="关键字搜索..."
                                            class="radius-top-left-10 radius-bottom-left-10 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -41,21 +41,8 @@
                 </div>
                 <div class="content-box-wrapper">
                     <div class="pad3A mrg5B seach_panel clearfix" id="search_panel"></div>
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5R ui-state-default"
-                           id="page-first"> <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-numbers"></div>
-                        <a href="javascript:;"
-                           class="btn large float-left mrg5L ui-state-default"
-                           id="page-last"> <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
-                    <table id="payorder-table"
-                           class="table table-striped text-center mrg0B"
-                           id="filepackage-get-table">
+                    <div id="table-pager" class="page-bar"></div>
+                    <table id="payorder-table" class="table table-striped text-center mrg0B" id="filepackage-get-table">
                         <tr>
                             <th></th>
                         </tr>
@@ -158,7 +145,7 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/datacommon.js"></script>
-<script type="text/javascript" src="../js/bankingpaymentorder.js"></script>
+<script type="text/javascript" src="/js/datacommon.js"></script>
+<script type="text/javascript" src="/js/bankingpaymentorder.js"></script>
 </body>
 </html>

@@ -16,6 +16,8 @@ var VIEWDATA={
     init_view: function(){
         var me = this;
 
+        $("#paydate").val(me.formatDate());
+
         $("#paytotal").keyup(function(){
             $(this).val(STRINGFORMAT.toYuan($(this).val()));
         });
@@ -59,6 +61,13 @@ var VIEWDATA={
             var fundid = $("#_fundname").val();
             var project = $("#project").val();
             var paydate = $("#paydate").val();
+            var d=new Date(Date.parse(paydate.replace(/-/g,"/")));
+            var curDate=new Date();
+            if(d >=curDate) {
+                alert("付款日期不能选择未来的时间！");
+                return;
+            }
+
             var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
 
             var moneyUseType = $('input[name="moneyUseType"]:radio:checked').val();
@@ -77,7 +86,6 @@ var VIEWDATA={
         });
     },
     load_projectinfos: function(fundid){
-        console.log("loading fundinfo:"+fundid);
         var me = this;
         var params = JSON.stringify({ id: fundid});
         var data = { url: '/api/fundCompanyInformation/findByFund', params: params };
@@ -90,7 +98,7 @@ var VIEWDATA={
             async: false,
             success: function(result){
                 console.log(result);
-                var rest_result = JSON.parse(result.rest_result);
+                var rest_result = result.rest_result;
                 if(rest_result&& rest_result.projects){
                     $.each(rest_result.projects,function(index,obj){
                         //selected="selected"
@@ -155,6 +163,14 @@ var VIEWDATA={
                 alert('提交时错误:'+result.responseText);
             }
         });
+    },
+
+    formatDate: function (){
+        var datetime = new Date();
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        return year + "-" + month + "-" + date;
     }
 
 }

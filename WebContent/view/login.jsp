@@ -11,7 +11,7 @@
 		<div class="content-box mrg0B">
 			<div class="content-box-header primary-bg">
 				<div class="glyph-icon icon-separator">
-		            <img class="login-img" src="../favicon.ico"></img>
+		            <img class="login-img" src="/images/favicon.ico" />
 		        </div>
 		        <span class="login-title">欢迎使用金赛银基金</span>
 		    </div>

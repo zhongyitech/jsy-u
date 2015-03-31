@@ -33,69 +33,32 @@ var FUND_LIST={
 		result: {},
 		items: [],
 		page_total: 0,
-		success: function(result){
-			this.setTotal(result);
-			this.items = JSON.parse(result['rest_result']);
-			this.setTable(this.items);
-			this.page_total = result['rest_total'];
-			this.setPage(this.page_total);
-		},
-		error: function(result){
-			
-		},
-		ini: function(async){
+		ini: function(){
 			this.iniFilter();
-			this.iniPage();
-			
-			this.set(true);
+			this.set();
 		},
 		iniFilter: function(){
 			var me = this;
 			$(this.KEYWORD_BUTTON_ID).click(function(){
 				//每次点击搜索翻至搜索结果的第1页
-				me.selectFirst();
+				me.page_start=0;
+                me.set();
 			});
 			
 			$(this.KEYWORD_ID).keyup(function(e){
-				if(e.which == 13){
-					me.selectFirst();
+				if(e.keyCode == 13){
+                    me.page_start=0;
+                    me.set();
 				}
 			});
-			
-			var status_select = $(this.STATUS_ID);
-			if(status_select){
-				var status_list = FUND_STATUS.getItems();
-				var option = $('<option value=""></option>');
-				status_select.append(option);
-				for(var i in status_list){
-					var status = status_list[i];
-					var id = FUND_STATUS.toId(status);
-					var name = FUND_STATUS.toName(status);
-					var option = $('<option value="' + id + '">' + name + '</option>');
-					status_select.append(option);
-				}
-			}
+            $.dom.select("#filter-status", $.project.type(1),null,function(){
+                return {
+                    text:"全部",
+                    value:""
+                };
+            });
 		},
-		iniPage: function(){
-			var me = this;
-			$('#page-first').click(function(){
-				//过滤时翻至第一页
-				me.selectFirst();
-			});
-			
-			$('#page-last').click(function(){
-				//过滤时翻至第一页
-				me.selectLast();
-			});
-		},
-		set: function(async){
-			//默认异步加载数据
-			if(!async){
-				async = false;
-			}
-			
-			this.page_start = (this.pages_select - 1) * this.page_size;
-			
+		set: function(){
 			var from_input = $(this.FROM_ID);
 			this.filter_from = from_input.val();
 			if(this.filter_from){
@@ -114,7 +77,6 @@ var FUND_LIST={
 			var keyword_input = $(this.KEYWORD_ID);
 			this.filter_keyword = keyword_input.val();
 			
-			this.page_start = (this.pages_select - 1) * this.page_size;
 			var entity = JSON.stringify({
 				startposition:	this.page_start,
 				pagesize: 		this.page_size,
@@ -129,21 +91,6 @@ var FUND_LIST={
                 me.response=response;
                 me.setView(response);
             });
-//			$.ajax({
-//				type: "post",
-//				url: "../rest/item/post",
-//				async: async,
-//				data: data,
-//				dataType: "json",
-//				success: function(response){
-//					me.response = response;
-//					me.setView(response);
-//				},
-//				error: function(response){
-//					me.response = response;
-//					LOGIN.error(response);
-//				}
-//			});
 		},
 		setView: function(response){
 			this.setTotal(response);
@@ -151,61 +98,20 @@ var FUND_LIST={
 			this.setTable(response);
 		},
 		setPage: function(response){
-			var total = response[REST.TOTAL_KEY];
-			this.page_total = total;
-			
-			var pages_div = $(this.PAGES_ID);
-			var pages = pages_div.find("a");
-			if(pages.length){
-				for(var i=0; i<pages.length; i++){
-					$(pages[i]).remove();
-				}
-			}
-			
-			var pages_from = this.pages_select - 16;
-			if(pages_from<1){
-				pages_from = 1;
-			}
-			var pages_to = pages_from + this.pages_size;
-			var pages_total =  Math.ceil(total/this.page_size);
-			
-			var me = this;
-			for(var i=pages_from; i<pages_to && i<=pages_total; i++){
-				var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-				if(i == this.pages_select){
-					page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-				}
-				pages_div.append(page_number);
-				page_number.append(i);
-				page_number.click(function(e){me.selectPage(e);});
-			}
-		},
-		selectPage: function(e){
-			this.pages_select = $(e.currentTarget).text();
-			this.set(true);
-		},
-		selectFirst: function(){
-			this.pages_select = 1;
-			this.set(true);
-		},
-		selectLast: function(){
-			this.pages_select = Math.ceil(this.page_total/this.page_size);
-			this.set(true);
+            var _this=this;
+            _this.page_start==0&&$.dom.pager("#table-pager",response).onChange(function(param){
+                _this.page_start=param.startposition;
+                _this.page_size=param.pagesize;
+                _this.set();
+            });
 		},
 		setTable: function(response){
 			this.items = JSON.parse(response[REST.RESULT_KEY]);
-			
 			var table = $(this.TABLE_ID);
-			var trs = table.find('tr');
-			if(trs && trs.length){
-				for(var i=1; i<trs.length; i++){
-					$(trs[i]).remove();
-				}
-			}
-			
 			var items = this.items;
+            table.find("tbody").empty();
 			if(table && items){
-				for(var i=0; i<items.length || i<this.page_size; i++){
+				for(var i=0; i<items.length; i++){
 					 this.addTr(items[i]);
 				}
 			}
@@ -241,22 +147,6 @@ var FUND_LIST={
 			 status = this.status.get(id);
 			 var statusName = this.status.toName(status);
 			 row.append('<td>' + statusName + '</td>');
-		},
-		getFilter: function(){//获取过滤条件
-			var from_input = $(this.FROM_ID);
-			this.filter_from = from_input.val();
-			if(this.filter_from){
-				this.filter_from = this.dateformat.toRest(this.filter_from);
-			}
-			
-			var to_input = $(this.TO_ID);
-			this.filter_to = to_input.val();
-			if(this.filter_to){
-				this.filter_to = this.dateformat.toRest(this.filter_to);
-			}
-			
-			var status_select = $(this.STATUS_ID);
-			this.filter_status = status_select.val();
 		},
 		setTotal: function(result){
 			var fund_count = $("#fund-fund-count");

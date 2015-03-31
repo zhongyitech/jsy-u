@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-list.css">
     <title>收款列表</title>
 </head>
 
@@ -28,7 +28,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
+                                    <input type="text" placeholder="关键字搜索..." class="radius-top-left-100 radius-bottom-left-100 keyword-input" id="keyword-input" />
                                 </div>
                             </div>
                         </div>
@@ -180,6 +180,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/project_list.js"></script>
+<script type="text/javascript" src="/js/project_list.js"></script>
 </body>
 </html>

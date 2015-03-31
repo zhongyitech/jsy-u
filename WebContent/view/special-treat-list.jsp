@@ -4,8 +4,8 @@
 <html>
 <head>
 <jsp:include page="./head.jsp"/>
-<link rel="stylesheet" type="text/css" href="../css/special-treat-list.css"/>
-<script type="text/javascript" src="../js/special-treat-list.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/special-treat-list.css"/>
+<script type="text/javascript" src="/js/special-treat-list.js"></script>
 <title>特殊申请表管理</title>
 </head>
 
@@ -27,7 +27,7 @@
 								<div class="form-input">
 									<div class="form-input-icon">
 										<i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-										<input type="text" placeholder="Search notifications..."
+										<input type="text" placeholder="关键字搜索..."
 											class="radius-top-left-100 radius-bottom-left-100 keyword-input"
 											id="keyword-input" />
 									</div>

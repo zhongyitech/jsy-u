@@ -183,7 +183,7 @@ var NOTIFICATION_TASK = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/post",
+            url: "/rest/item/post",
             async: true,
             data: data,
             dataType: "json",
@@ -300,7 +300,7 @@ var FUND = {//基金
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -332,8 +332,12 @@ var FUND = {//基金
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+
+        return $.project.domain(id, 'com.jsy.fundObject.Fund').getItem(id);
+
+//        return $.io.get(true,{url:'/api/fund',params:{id:id}}).data();
+//        var map = this.getMap();
+//        return map[id];
     },
     getName: function (id) {
         if (id) {
@@ -499,7 +503,7 @@ var TZQX_REST = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -513,7 +517,7 @@ var TZQX_REST = {
         });
 
         if (me.response) {
-            me.item = JSON.parse(me.response[REST.RESULT_KEY]);
+            me.item = (me.response[REST.RESULT_KEY]);
         }
         return me.item;
     },
@@ -523,7 +527,7 @@ var TZQX_REST = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -621,14 +625,14 @@ var INVESTMENT = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: false,
             data: data,
             dataType: "json",
             success: function (response) {
                 me.response = response;
                 if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
+                    me.item = (response[REST.RESULT_KEY]);
                 }
             },
             error: function (response) {
@@ -702,23 +706,27 @@ var USERCOMMISSION = {
         var params = JSON.stringify({id: id});
         var data = {url: '/api/userCommision', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/item/get",
-            async: false,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+
+
+        me.item = $.io.get(true, data).data();
+
+//        $.ajax({
+//            type: "post",
+//            url: "/rest/item/get",
+//            async: false,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.item = JSON.parse(response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
         return me.item;
     },
     toUser: function (item) {
@@ -752,7 +760,7 @@ var CUSTOMER = {
         var me = this;
         var params = JSON.stringify({cid: id});
         var data = {url: '/api/customerArchives/getcustomer', params: params};
-        me.item= $.io.get(true,data).data();
+        me.item = $.io.get(true, data).data();
         return me.item;
     },
     getName: function (id) {
@@ -1002,7 +1010,7 @@ var TCFPFW = {
     GLTCBL_KEY: 'manageCommision',
     BXSYL_KEY: 'investment',
     ajax_type: 'post',
-    ajax_url: "../rest/item/get",
+    ajax_url: "/rest/item/get",
     ajax_data: {},
     ajax_dataType: 'json',
     ajax_async: false,
@@ -1057,7 +1065,7 @@ var TCFPFW = {
         });
 
         if (this.result[REST.RESULT_KEY]) {
-            item = JSON.parse(this.result[REST.RESULT_KEY]);
+            item = (this.result[REST.RESULT_KEY]);
         }
         return item;
     },
@@ -1146,7 +1154,7 @@ var YHZH_PURPOSE = {//用途
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1232,7 +1240,7 @@ var COMPANY_TYPE = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -1329,7 +1337,7 @@ var TypeConfig = {//年化收益和提成
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1396,7 +1404,7 @@ var RoomConfig = {//档案室
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1475,7 +1483,7 @@ var BorrowStatus = {
         var me = this;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: async,
@@ -1532,7 +1540,7 @@ var FUND_STATUS = {
     ID_KEY: 'id',
     NAME_KEY: 'mapName',
     ajax_type: 'post',
-    ajax_url: "../rest/status/get",
+    ajax_url: "/rest/status/get",
     ajax_data: {type: 1},
     ajax_dataType: 'json',
     items_cache: false,//是否缓存完毕
@@ -1627,23 +1635,24 @@ var AUTHORITY = {
         var params = JSON.stringify({});
         var data = {url: '/api/role/readAll', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+        me.items = $.io.get(true, data).data();
+//        $.ajax({
+//            type: "post",
+//            url: "/rest/item/get",
+//            async: async,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//                if (response && response[REST.RESULT_KEY]) {
+//                    me.items = JSON.parse(response[REST.RESULT_KEY]);
+//                }
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
     },
     getItems: function () {
         //同步加载数据
@@ -1713,31 +1722,12 @@ var ROLE = {
     NAME_KEY: 'name',//角色名称
     AUTHORITY_KEY: 'authority',//权限
     map: {},
-    ini: function (async) {
-        //默认异步加载数据
-        if (!async) {
-            async = false;
-        }
-
+    ini: function (sync) {
         var params = JSON.stringify({});
         var data = {url: '/api/role', params: params};
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "../rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
+        $.io.get(!sync, data).success(function (result) {
+            me.items = result;
         });
     },
     getItems: function () {
@@ -1824,33 +1814,33 @@ var USER = {
         }
 
         var params = JSON.stringify({});
-        var data = {url: '/api/user/findUserFromRole', params: params};
+        var data = {url: '/api/user/getUsers', params: params};
         var me = this;
-        DataOperation.async=async;
+        DataOperation.async = async;
         DataOperation.get(
             data,
-            function(result,response){
-                me.response=response;
-                me.items=result;
+            function (result, response) {
+                me.response = response;
+                me.items = result;
             }
         );
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/item/get",
-//            async: async,
-//            data: data,
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                if (response && response[REST.RESULT_KEY]) {
-//                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-//                }
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
+        //$.ajax({
+        //    type: "post",
+        //    url: "/rest/item/get",
+        //    async: async,
+        //    data: data,
+        //    dataType: "json",
+        //    success: function (response) {
+        //        me.response = response;
+        //        if (response && response[REST.RESULT_KEY]) {
+        //            me.items = JSON.parse(response[REST.RESULT_KEY]);
+        //        }
+        //    },
+        //    error: function (response) {
+        //        me.response = response;
+        //        LOGIN.error(response);
+        //    }
+        //});
     },
     getItems: function () {
         //同步加载数据
@@ -1869,8 +1859,10 @@ var USER = {
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+//        var map = this.getMap();
+        return $.project.domain(id, "com.jsy.auth.User").getItem(id)
+
+//        return map[id];
     },
     getName: function (id) {
         var item = this.get(id);
@@ -1882,39 +1874,13 @@ var USER = {
     },
     getDM: function (id) {
         var user = this.get(id);
-//        var authority = 'ROLE_MANAGER';
-//        var department = user[this.DEPARTMENT_KEY];
-//        var departmentid = department[DEPARTMENT.ID_KEY];
 
-        var params=JSON.stringify({uid:id});
-        var data={url:'/api/user/findUserLeader',params:params};
+        var params = JSON.stringify({uid: id});
+        var data = {url: '/api/user/findUserLeader', params: params};
+
         var me = this;
 
-        me.item=$.io.get(true,data).data();
-
-//
-//
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/user/get",
-//            async: false,
-//            data: {
-//                authority: authority,
-//                departmentid: departmentid
-//            },
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                if (response && response[REST.RESULT_KEY]) {
-//                    me.item = (response[REST.RESULT_KEY]);
-//                }
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
-
+        me.item = $.io.get(true, data).data();
         return me.item;
     },
     toId: function (item) {
@@ -2020,10 +1986,10 @@ var YHZH = {//银行账户
     get: function (id) {
         var me = this;
         var params = JSON.stringify({id: id});
-        var data = {url: '/api/bankAccount/'+id, params: params};
+        var data = {url: '/api/bankAccount/' + id, params: params};
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -2162,7 +2128,7 @@ var COMPANY = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -2445,7 +2411,7 @@ var DEPARTMENT = {
         var me = this;
         $.ajax({
             type: "post",
-            url: "../rest/item/get",
+            url: "/rest/item/get",
             async: async,
             data: data,
             dataType: "json",
@@ -2535,7 +2501,6 @@ var DEPARTMENT = {
                 return v;
             }
         }
-
         return '';
     }
 };
@@ -2568,7 +2533,7 @@ var LOGIN = {
 
         var password_input = $(this.KEY_ID);
         password_input.keyup(function (e) {
-            if (e && e.keyCode == 13) {
+            if (e.keyCode == 13) {
                 me.login();
             }
         });
@@ -2592,52 +2557,40 @@ var LOGIN = {
     },
     setView: function () {
         var me = this;
-        var params = JSON.stringify({});
-        var entity = JSON.stringify({});
-        var data = {url: '/api/user/getUser', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: '../rest/item/get',
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                me.setUser(response);
-            },
-            error: function (response) {
-                me.response = response;
-                me.setUser(response);
-                me.error(response);
-            }
-        });
+        var data = {url: '/api/user/getUser'};
+        me.setUser($.io.get(true, data).data());
     },
     getUser: function () {
-        var me = this;
-        var params = JSON.stringify({});
-        var entity = JSON.stringify({});
-        var data = {url: '/api/user/getUser', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: '../rest/item/get',
-            async: false,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-            },
-            error: function (response) {
-                me.response = response;
-                me.error(response);
-            }
-        });
-        return me.response;
+//        var me = this;
+//        var params = JSON.stringify({});
+//        var entity = JSON.stringify({});
+//        var data = {url: '/api/user/getUser', params: params, entity: entity};
+
+        return  $.io.get(true, {url: '/api/user/getUser'})
+            .error(function (result) {
+
+            }).data();
+//
+//        $.ajax({
+//            type: "post",
+//            url: '/rest/item/get',
+//            async: false,
+//            data: data,
+//            dataType: "json",
+//            success: function (response) {
+//                me.response = response;
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                me.error(response);
+//            }
+//        });
     },
     logout: function () {
         var me = this;
         $.ajax({
             type: "post",
-            url: '../rest/login/logout',
+            url: '/rest/login/logout',
             async: false,
             data: {},
             dataType: "json",
@@ -2648,8 +2601,8 @@ var LOGIN = {
                 me.response = response;
             }
         });
-
         this.setView();
+        location.reload();
     },
     login: function () {
         var username = $(this.USER_ID);
@@ -2676,9 +2629,10 @@ var LOGIN = {
 
         var me = this;
         var login_status = true;
+
         $.ajax({
             type: "post",
-            url: '../rest/login/login',
+            url: '/rest/login/login',
             async: false,
             data: {username: usernameValue, password: passwordValue},
             dataType: "json",
@@ -2695,7 +2649,9 @@ var LOGIN = {
                 alert('登录失败，请刷新页面.');
             }
         });
-
+        if (window.location.pathname != '/view/login.jsp') {
+            window.location.reload();
+        }
         return login_status;
     },
     error: function (response) {
@@ -2712,10 +2668,7 @@ var DATEFORMAT = {
         if (!date) {
             return '';
         }
-        date = date.replace('-','/');
-
         var time = new Date(date);
-        console.log(time)
         var o = {
             "M+": time.getMonth() + 1, //月份 
             "d+": time.getDate(), //日 
@@ -2728,7 +2681,6 @@ var DATEFORMAT = {
         if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (time.getFullYear() + "").substr(4 - RegExp.$1.length));
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        console.log(fmt)
         return fmt;
     },
     toNumber: function (date) {
@@ -2915,7 +2867,7 @@ var FILE = {
         var data = {url: '/api/uploadFile/getById', params: params};
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -2961,7 +2913,7 @@ var FILE = {
 
         $.ajax({
             type: 'POST',
-            url: '../rest/file/upload',
+            url: '/rest/file/upload',
             data: data, /*必须false才会自动加上正确的Content-Type*/
             contentType: false, /*必须false才会避开jQuery对 formdata的默认处理,XMLHttpRequest会对formdata进行正确的处理*/
             processData: false,
@@ -3150,7 +3102,7 @@ var INVESTMENT_SY = {
         var result = 0;
         $.ajax({
             type: 'post',
-            url: '../rest/item/get',
+            url: '/rest/item/get',
             data: data,
             dataType: 'json',
             async: false,
@@ -3269,7 +3221,7 @@ var DataOperation = {
         that.log('request:' + method);
         $.ajax(
             {
-                type: 'post', url: '../rest/item/' + method, data: data, async: that.async,
+                type: 'post', url: '/rest/item/' + method, data: data, async: that.async,
                 success: function (response) {
                     that.async = that.defaultAsync;
                     if (response == null) {

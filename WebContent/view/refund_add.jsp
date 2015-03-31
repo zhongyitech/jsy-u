@@ -4,11 +4,11 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/refund_add.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/refund_add.css"/>
     <title>退伙处理申请表</title>
 
 </head>
-<body class="jsy-body">
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 
@@ -314,6 +314,6 @@
 </div>
 <div id="jsy_msgbox_fade" class="jsy_black_overlay"></div>
 <!-- Message box  -->
-<script type="text/javascript" src="../js/refund_add.js"></script>
+<script type="text/javascript" src="/js/refund_add.js"></script>
 </body>
 </html>

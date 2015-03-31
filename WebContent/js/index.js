@@ -1,1 +1,1 @@
-window.location = './view/login.jsp';
+window.location = '/view/login.jsp';

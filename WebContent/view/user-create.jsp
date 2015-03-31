@@ -3,9 +3,9 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/user-create.css">
-    <script type="text/javascript" src="../js/user-create.js"></script>
-    <script type="text/javascript" src="../js/datacommon.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/user-create.css">
+    <script type="text/javascript" src="/js/user-create.js"></script>
+    <script type="text/javascript" src="/js/datacommon.js"></script>
     <title>新增用户</title>
 </head>
 <body>

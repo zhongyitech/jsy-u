@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/investment-print.css">
+    <link rel="stylesheet" type="text/css" href="/css/investment-print.css">
     <title>打印投资确认书</title>
 </head>
 
@@ -27,7 +27,7 @@
                             <div class="form-input">
                                 <div class="form-input-icon">
                                     <i class="glyph-icon icon-search transparent keyowrd-icon"></i>
-                                    <input type="text" placeholder="Search notifications..."
+                                    <input type="text" placeholder="搜素关键字..."
                                            class="radius-top-left-100 radius-bottom-left-100 keyword-input"
                                            id="keyword-input"/>
                                 </div>
@@ -39,17 +39,7 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-numbers"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
-
+                    <div id="table-pager" class="page-bar"></div>
                     <table class="table table-striped text-center mrg0B" id="investment-table">
                         <thead>
                         <tr>
@@ -82,6 +72,6 @@
     </div>
 
 </div>
-<script type="text/javascript" src="../js/investment-print.js"></script>
+<script type="text/javascript" src="/js/investment-print.js"></script>
 </body>
 </html>

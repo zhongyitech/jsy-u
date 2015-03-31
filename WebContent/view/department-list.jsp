@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/department-list.css">
+    <link rel="stylesheet" type="text/css" href="/css/department-list.css">
     <title>部门管理</title>
 </head>
 
@@ -40,26 +40,17 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-
-                        <div class="button-group float-left pages-div" id="page-list"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar"></div>
 
                     <table class="table table-striped text-center mrg0B" id="view-table">
                         <thead>
-                        <tr>
-                            <th class="text-center"><input type="checkbox" name="checkbox"></th>
-                            <th class="text-center">部门名称</th>
-                            <th class="text-center">所属公司</th>
-                            <th class="text-center">职能</th>
-                            <th class="text-center">描述</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                                <th class="text-center">部门名称</th>
+                                <th class="text-center">所属公司</th>
+                                <th class="text-center">职能</th>
+                                <th class="text-center">描述</th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -74,6 +65,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/department-list.js"></script>
+<script type="text/javascript" src="/js/department-list.js"></script>
 </body>
 </html>

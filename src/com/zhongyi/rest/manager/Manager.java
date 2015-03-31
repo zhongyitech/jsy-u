@@ -15,6 +15,9 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.annotate.JsonValue;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 public class Manager {
@@ -53,7 +56,6 @@ public class Manager {
 
 	public ManagerResponse get(String cookie, String url, JSONObject params) {
 		ManagerResponse manageResponse = new ManagerResponse();
-
 		HttpClient client = HttpClients.createDefault();
 		StringBuffer paramUrl = new StringBuffer();
 		for (Object o : params.entrySet()) {
@@ -144,7 +146,7 @@ public class Manager {
 			}
 			paramUrl.append(entry.getKey());
 			paramUrl.append("=");
-			paramUrl.append(entry.getValue());
+			paramUrl.append(String.valueOf(entry.getValue()));
 		}
 		HttpPost post = new HttpPost(url + paramUrl);
 		try {

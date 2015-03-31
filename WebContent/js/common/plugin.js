@@ -7,7 +7,7 @@
 (function () {
     window.console=window.console||{
         log:function(){
-            return;
+            return false;
         }
     }
 })();
@@ -15,7 +15,7 @@
  * project ajax
  */
 (function($){
-    var BaseURI="../rest/item/";
+    var BaseURI="/rest/item/";
     /**
      * 特殊key过滤、映射
      * @type {{class: string}}
@@ -24,10 +24,10 @@
         "class":"className"
     };
     var RestURI={
-        get:BaseURI+"get",
-        post:BaseURI+"post",
-        put:BaseURI+"put",
-        delete:BaseURI+"delete"
+        _get:BaseURI+"get",
+        _post:BaseURI+"post",
+        _put:BaseURI+"put",
+        _delete:BaseURI+"delete"
     };
     var Util={
         _status:{
@@ -39,14 +39,26 @@
             result:"rest_result",
             total:"rest_total"
         },
-        _callback:{
+        _system:{
             success:function(data){
-                console.log("notice",data);
+                console.log("success",data);
             },
             error:function(data){
-                alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
+                //alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
+                console.error("error",data);
+                if(data&&data.result&&data.result.errors&&data.result.errors.length){
+                    $.each(data.result.errors,function(idx,item){
+                        var obj=$('#'+item.field);
+                        if(!obj.length) obj=$('.'+item.field);
+                        obj.addClass('valid_error').unbind("focus").bind("focus",function(){
+                            if(obj.hasClass("valid_error"))obj.val("");
+                            obj.removeClass("valid_error");
+                        });
+                    });
+                }
             },
-            fail:function(){
+            fail:function(data){
+                console.error("fail",data);
                 alert("请求失败!（非200返回）");
             }
         },
@@ -57,7 +69,7 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.total]?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+            if(fn&&fn.call)response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
         },
         result:function(data){
           return data&&data[this._key.result];
@@ -77,16 +89,16 @@
             return $.extend(true,options||{},{data:data},{data:{entity:entity,params:params}});
         },
         doSuccess:function(data,fn){
-            this._success(data)&&this._return(fn||this._callback.success, data);
+            this._success(data)&&this._return(fn||this._system.success, data);
         },
         doError:function(data,fn){
-            this._error(data)&&this._return(fn||this._callback.error,data);
+            this._error(data)&&this._return(fn||this._system.error,data);
         },
         doFail:function(data,fn){
-            this._return(fn||this._callback.fail,data);
+            this._return(fn||this._system.fail,data);
         },
         registerCallback: function (callback) {
-            $.extend(true,this._callback,callback);
+            $.extend(true,this._system,callback);
         },
         /**
          * 替换异常key，如class，未进行递归
@@ -108,11 +120,14 @@
      * @constructor
      */
     var XHR=function(xhr){
+        if(!xhr)return this;
+        var _this=this;
+        _this.callback={};
         /**
          * sync 方法可以直接取数据，不必要采用回调形式
          */
-        if(xhr&&!xhr.isAsync()){
-            this.data=function(){
+        if(!xhr.isAsync()){
+            _this.data=function(){
                 return Util.result(xhr.data());
             }
         }
@@ -121,8 +136,9 @@
          * @param fn
          * @returns {XHR}
          */
-        this.success=function(fn){
-            xhr&&xhr.then(function(data){
+        _this.success=function(fn){
+            _this.callback["success"]=fn;
+            xhr.then(function(data){
                 Util.doSuccess(data,fn);
             });
             return this;
@@ -132,8 +148,9 @@
          * @param fn
          * @returns {XHR}
          */
-        this.error=function(fn){
-            xhr&&xhr.then(function(data){
+        _this.error=function(fn){
+            _this.callback["error"]=fn;
+            xhr.then(function(data){
                 Util.doError(data,fn);
             });
             return this;
@@ -143,10 +160,10 @@
          * @param fn
          * @returns {XHR}
          */
-        this.fail=function(fn){
-            var _this=this;
+        _this.fail=function(fn){
+            _this.callback["fail"]=fn;
             _this._notice=true;
-            xhr&&xhr.error(function(data){
+            xhr.error(function(data){
                 if(_this._notice) _this._notice=Util.doFail(data,fn);
             }).fail(function(data){
                 if(_this._notice) _this._notice=Util.doFail(data,fn);
@@ -156,9 +173,12 @@
         /**
          * call default
          */
-        this.success();
-        this.error();
-        this.fail();
+        xhr.then(function(){
+            //取消error局部覆盖全局
+            _this.error();
+            !_this.callback["success"]&&xhr.isAsync()&&_this.success();
+            !_this.callback["fail"]&&_this.fail();
+        });
     };
     /**
      * 请求统一入口,暂时全部Post
@@ -171,6 +191,7 @@
         if(args.length){
             if(args[0]&&typeof args[0]=="boolean") _sync=args.shift();
             var useOptions=Util.buildOptions(args.shift(), $.extend(true,args.shift()||{},{url:url}));
+            if(!useOptions.url) throw Error("no ajax url");
             if(_sync)
                 return new XHR($.Sync.post(useOptions));
             return new XHR($.Async.post(useOptions));
@@ -184,22 +205,22 @@
              * @returns {XHR}
              */
             get: function () {
-                return request(RestURI.get,arguments);
+                return request(RestURI._get,arguments);
             },
             post: function () {
-                return request(RestURI.post,arguments);
+                return request(RestURI._post,arguments);
             },
             put: function () {
-                return request(RestURI.put,arguments);
+                return request(RestURI._put,arguments);
             },
-            delete: function () {
-                return request(RestURI.delete,arguments);
+            del: function () {
+                return request(RestURI._delete,arguments);
             },
             registerCallback:function(callback){
                 Util.registerCallback(callback);
             },
             isXHR:function(xhr){
-                return xhr.constructor==XHR;
+                return xhr&&xhr.constructor==XHR;
             }
         }
     })
@@ -374,7 +395,8 @@
         pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
     };
     var Element={
-        options:'{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
+        options:'{#if $P.defaultValue}<option value="{$P.defaultValue.value}">{$P.defaultValue.text}</option>{#/if}' +
+                     '{#foreach $T as item}{#param name=item value=$P.callback($T.item)}' +
                      '<option value="{$P.item.value}">{$P.item.text}</option>' +
                      '{#/for}',
         pager:'<a title="第一页" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default mrg0L"><i class="icon-caret-left"></i></a>' +
@@ -389,12 +411,10 @@
     };
     var Utils={
         fetchCallback:function(data){
-            data=data||{};
             if(!$.io.isXHR(data)){
-                var dataCopy= $.extend(true,{},data);
-                data={
+                return {
                     success:function(fn){
-                        fn.call(this,dataCopy);
+                        fn.call(this,data);
                     }
                 };
             }
@@ -420,9 +440,10 @@
      * @param selector
      * @param data
      * @param fn
+     * @param defaultValue
      * @constructor
      */
-    var Select=function(selector,data,fn){
+    var Select=function(selector,data,fn,defaultValue){
         var _self=this;
         _self._callback=fn||function(item){
             return {
@@ -433,7 +454,13 @@
         _self._object=$(selector);
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            $.renderData(_self._object,Element.options,response,_self._callback);
+            $.renderData(_self._object,Element.options,response,{
+                callback:_self._callback,
+                defaultValue:defaultValue||{
+                    text:"请选择",
+                    value:""
+                }
+            });
         });
         _self.select=function(value){
             var option=_self._object.find(["option[value=",value,"]"].join(Constant.empty));
@@ -449,15 +476,15 @@
     };
     var Pager=function(selector,data,options){
         var _self=this;
-        options= $.extend(true,{pageSize:10,maxPage:10},options);
+        options= $.extend(true,{pageSize:10,maxPage:10,currentPage:1},options);
         _self._object=$(selector);
         _self._object.addClass(Constant.pager_style);
         //固定第一页
         _self._firstPage=1;
         _self._maxPage=options.maxPage&&(options.maxPage<36?options.maxPage:36)||10;
         _self._pageSize=options.pageSize&&(options.pageSize<100?options.pageSize:100)||10;
+        _self._currentPage=options.currentPage||1;
         _self._lastPage=1;
-        _self._currentPage=1;
         _self._resetCls=function(first,prev,last,next){
             if(_self._currentPage==_self._firstPage) Utils.addClass(Constant.button_disabled,first,prev);
             if(_self._currentPage==_self._lastPage) Utils.addClass(Constant.button_disabled,last,next);
@@ -470,11 +497,11 @@
         data=Utils.fetchCallback(data);
         data.success(function(response){
             var total=response[Constant.rest_total]||_self._pageSize;
+            //计算最后页
             _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
-            $.renderData(_self._object,Element.pager,{
-                currentPage:_self._currentPage,
-                maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage
-            },_self._callback);
+            //渲染分页
+            _self._object.renderData(Element.pager,{currentPage:_self._currentPage,maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage},_self._callback);
+            //获取对象，绑定事件
             var first=_self._object.find(".first"),last=_self._object.find(".last"),prev=_self._object.find(".prev"),next=_self._object.find(".next");
            _self._resetCls(first,prev,last,next);
             _self._object.find(".ui-button").on("click",function(){
@@ -516,16 +543,31 @@
         _self.onChange=function(fn,_this){
             _self.__triggerObject=_this;
             _self.__fn=fn;
-        }
+        };
     };
     $.extend(true,{
         dom:{
-            select:function(selector,data,fn){
-                return new Select(selector,data,fn);
+            select:function(selector,data,fn,defaultValue){
+                return new Select(selector,data,fn,defaultValue);
             },
             pager:function(selector,data,options){
                 return new Pager(selector,data,options);
+            },
+            checkbox:function(selector,rootSelector){
+                var checkbox=$(selector),checkboxList=checkbox.closest(rootSelector).find("input[type=checkbox]");
+                checkbox.bind("click", function() {
+                    checkboxList.prop("checked",$(this).prop("checked"));
+                });
             }
         }
     })
+})(jQuery);
+
+/**
+ * utils
+ */
+(function($){
+    $.extend(true, $.utils,{
+        //TODO
+    });
 })(jQuery);

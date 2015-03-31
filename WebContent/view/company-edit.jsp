@@ -4,7 +4,7 @@
 
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/company-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/company-edit.css">
     <title>编辑公司信息</title>
 </head>
 
@@ -253,6 +253,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/company-edit.js"></script>
+<script type="text/javascript" src="/js/company-edit.js"></script>
 </body>
 </html>

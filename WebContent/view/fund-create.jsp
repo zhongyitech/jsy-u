@@ -5,7 +5,7 @@
 <head>
     <title>新增基金</title>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="../css/fund-create.css">
+    <link rel="stylesheet" type="text/css" href="/css/fund-create.css">
 </head>
 
 <body >
@@ -26,7 +26,6 @@
 
                 <div class="content-box-wrapper">
                     <div class="center-margin col-md-10" id="fund-form">
-
                         <div class="form-row">
 
                             <div class="form-label col-md-2">
@@ -34,26 +33,23 @@
                             </div>
 
                             <div class="form-input col-md-10">
-                                <input type="text" name="name">
+                                <input type="text" name="name" class="fundName">
                             </div>
-
                         </div>
-
                         <div class="form-row">
                             <div class="form-label col-md-2">
                                 <label>(*)状态：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select name="status"></select>
+                                <select name="status" class="status"></select>
                             </div>
                             <div class="form-label col-md-2">
                                 <label>(*)开售日期：</label>
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="tcal" type="text" name="ksrq">
+                                <input class="tcal" type="text" name="ksrq" id="startSaleDate">
                             </div>
-
                         </div>
 
                         <div class="form-row">
@@ -61,7 +57,7 @@
                                 <label>预期募集款：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="yqmjk">
+                                <input class="" type="text" name="yqmjk" >
                             </div>
                             <div class="form-label col-md-2">
                                 <label>季付募集规模：</label>
@@ -78,14 +74,14 @@
                                 <label>半年付募集规模：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="bnfmjgm">
+                                <input class="" type="text" name="bnfmjgm"/>
                             </div>
                             <div class="form-label col-md-2">
                                 <label>年付募集规模：</label>
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="nfmjgm">
+                                <input class="" type="text" name="nfmjgm"/>
                             </div>
                         </div>
 
@@ -94,19 +90,13 @@
                                 <label>关联的有限合伙：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select id="fundCompany">
-                                    <option>选择一个有限合伙企业</option>
-                                </select>
-                            </div>
-                            <div class="form-label col-md-2">
-                                <label>选择项目：</label>
-                            </div>
-                            <div class="form-input col-md-4">
-                                <select id="fundProject">
-                                    <option>选择一个项目</option>
+                                <select id="fundCompany" class="funcCompany">
                                 </select>
                             </div>
 
+                        </div>
+                        <div class="form-row">
+                            <label>基金与项目的关系在项目管理模块中进行操作.</label>
                         </div>
 
                     </div>
@@ -114,10 +104,7 @@
                 </div>
 
                 <div style="clear:both;"></div>
-                <div class="button-pane">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                            class="button-content">提交</span></button>
-                </div>
+
             </div>
 
             <div class="content-box box-toggle " id="sylfw-view">
@@ -217,6 +204,10 @@
                 </div>
 
                 <div style="clear:both;"></div>
+                <div class="button-pane">
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
+                            class="button-content">提交</span></button>
+                </div>
 
             </div>
 
@@ -225,6 +216,6 @@
 
     </div>
 </div>
-<script type="text/javascript" src="../js/fund-create.js"></script>
+<script type="text/javascript" src="/js/fund-create.js"></script>
 </body>
 </html>
