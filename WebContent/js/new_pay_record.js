@@ -69,6 +69,10 @@ var VIEWDATA={
             }
 
             var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
+            if(!paytotal || paytotal<=0){
+                alert("请输入金额！");
+                return;
+            }
 
             var moneyUseType = $('input[name="moneyUseType"]:radio:checked').val();
             var bankselect = $('input[name="bankselect"]:radio:checked').val();
