@@ -1,12 +1,13 @@
 <div class="print-paper">
     <div class="print-header">
+        <img class="logo" src="/images/logo.jpg" />
         <div class="print-no"> 编号（<span class="underline">{$T.contractNum}</span>）</div>
         <div class="print-title">客户投资确认书</div>
     </div>
     <div class="print-body">
         <span>尊敬的客户<span class="underline">{$T.username}</span></span>
         <p>您好！</p>
-        <p>感谢您投资<span class="underline">{$T.fundName}</span>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<span class="underline">{$T.}</span>万元整，期限为<span class="underline">{$T.}</span>年。本合伙企业承诺预期收益率为<span class="underline">{$T.}</span>/年。</p>
+        <p>感谢您投资<span class="underline">{$T.fundName}</span>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<span class="underline">{$.utils.toCNY($T.mon)}</span>万元整，期限为<span class="underline">{$T.year}</span>年。本合伙企业承诺预期收益率为<span class="underline">{$T.}</span>/年。</p>
         <p>您的计息起始日期为<span class="underline">{$.utils.dateFormat($T.date,"yyyy年MM月dd日")}</span>。</p>
         {#foreach $T.items as item}
         {#if !$T.item$last}
@@ -21,6 +22,7 @@
         <p>友情提示：若您于本投资期限届满后继续投资本合伙企业或转投本公司其他基金合伙企业，请与投资期限届满前三个工作日与您的理财经理联系，并办理相关续投或转投手续。</p>
     </div>
     <div class="print-footer">
+        <img class="seal" src="/images/seal.png" />
         <div>{$T.fundName}</div>
         <div>{$.utils.dateFormat($T.date,"yyyy年MM月dd日")}</div>
     </div>
