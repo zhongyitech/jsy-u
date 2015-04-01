@@ -7,9 +7,9 @@
         render: function () {
 
             var data=$.io.post(true,{url:'/api/investmentArchives/readAllForPage'}).data()
-            $("#table-data").renderData("#table-data-template", data, function () {
-                return 10;
-            });
+
+            $("#show_table").setTemplateElement("Template");
+            $("#show_table").processTemplate(data);
         }
     };
     Util.render();

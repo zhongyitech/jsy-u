@@ -11,6 +11,40 @@
 <body >
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
+    <textarea id="table-data-template" class="template">
+        {#param name=fields value=["fundName","contractNum","customerName","yfk","khh","zh","fpe","zfsj","yfsj","scsj","status"]}
+        {#param name=start value=$P.callback()+1}
+        {#param name=pos value=$P.start}
+        <table class="table table-striped text-center mrg0B" id="view-table">
+            <thead>
+            <tr>
+                <th class="text-center">基金名称</th>
+                <th class="text-center">合同编号</th>
+                <th class="text-center">客户名称</th>
+                <th class="text-center">应付款</th>
+                <th class="text-center">开户行</th>
+                <th class="text-center">账号</th>
+                <th class="text-center">发票额</th>
+                <th class="text-center">支付时间</th>
+                <th class="text-center">已付时间</th>
+                <th class="text-center">生成时间</th>
+                <th class="text-center">兑付状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            {#foreach $T as item}
+            <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
+                {#foreach $P.fields as field}
+                <td class="text-center">
+                    <span class="text-overflow">{format($T.item[$T.field],$T.field)}</span>
+                </td>
+                {#/for}
+            </tr>
+            {#/for}
+            </tbody>
+        </table>
+        <div class="data-rows">第{$P.start}-{$P.start+$T.length-1}条</div>
+    </textarea>
     <div id="page-content-wrapper">
         <!-- #page-title -->
         <div id="page-content" class="page-view pad25T">
@@ -42,83 +76,11 @@
                 <div class="content-box-wrapper">
                     <div class="pad3A mrg5B seach_panel clearfix" id="search_panel"></div>
                     <div id="table-pager" class="page-bar"></div>
-                    <table id="payorder-table" class="table table-striped text-center mrg0B" id="filepackage-get-table">
+                    <table id="table-data" class="table table-striped text-center mrg0B" >
                         <tr>
                             <th></th>
                         </tr>
                     </table>
-                    <div class="button-pane" class="hide">
-                        <button type="button"
-                                class="btn-ui btn bg-green large medium mrg10L" id="submit_pay">
-                            <span class="button-content">确认支付</span>
-                        </button>
-                        <button type="button"
-                                class="btn-ui btn primary large medium mrg10L"
-                                id="submit_cancelPay">
-                            <span class="button-content">取消付款单</span>
-                        </button>
-                        <button type="button"
-                                class="btn-ui btn primary large medium mrg10L"
-                                id="submit_otherPay">
-                            <span class="button-content">已支付</span>
-                        </button>
-                    </div>
-                    <div class="mrg10T hide" id='pay_panel'>
-                        <form class="form-bordered " id="bindtarget_id" action="/"
-                              style="width: 500px;">
-                            <div class="form-row">
-                                <div class="form-label col-md-12   ">
-                                    <label for="">选择用来支付的账户</label>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-label col-md-3 text-right">
-                                    <label for="">基金公司：</label>
-                                </div>
-                                <div class="form-input col-md-9 ">
-                                    <select id="select_fundAccount" name="fundINC">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-label col-md-3 text-right  ">
-                                    <label for="">银行账户：</label>
-                                </div>
-                                <div class="form-input col-md-9 ">
-                                    <select id="paymentBankAcccountName" name="bankaccount">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-label col-md-3 text-right">
-                                    <label for="">开户行：</label>
-                                </div>
-                                <div class="form-label col-md-9">
-                                    <label for="" id="paymentBankName"></label>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-label col-md-3 text-right">
-                                    <label for="">付款账号：</label>
-                                </div>
-                                <div class="form-label col-md-9">
-                                    <label for="" id="paymentBankAccount"></label>
-                                </div>
-                            </div>
-                            <div class="form-row pad5A text-right">
-                                <button type="button"
-                                        class="btn-ui btn primary large medium mrg10L"
-                                        id="submit_cancelpayorder">
-                                    <span class="button-content">取消</span>
-                                </button>
-                                <button type="button"
-                                        class="btn-ui btn bg-green large medium mrg10L"
-                                        id="submit_acceptpayorder">
-                                    <span class="button-content">支付 付款单</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>

@@ -454,7 +454,7 @@
         _self._object=$(selector);
         data=Utils.fetchCallback(data);
         data.success(function(response){
-            $.renderData(_self._object,Element.options,response,{
+            _self._object.renderData(Element.options,response,{
                 callback:_self._callback,
                 defaultValue:defaultValue||{
                     text:"请选择",

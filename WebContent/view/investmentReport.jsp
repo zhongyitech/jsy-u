@@ -6,20 +6,24 @@
     <jsp:include page="./head.jsp"/>
     <%--<link rel="stylesheet" type="text/css" href="/css/czjlrz-list.css">--%>
     <title>操作记录日志</title>
+    <style type="text/css">
+        .report-page p{
+            text-indent:2em;
+            line-height:2em;
+            margin-top:0px;
+            margin-bottom:0px;
+        }
+    </style>
 </head>
 
 <body>
 <div>
 
-    <textarea id="report-confirm" class="template">
-
+    <textarea id="Template_confirm" class="template">
         <div class="report-page" >
-            <p></p>
-            <p class="title text-center">客户投资确认书</p>
-            <p>尊敬的客户 <span>{$P}</span></p>
-            {#foreach $T as $P.item}
-            <p>{$P[$T]}</p>
-            {/for}
+            <p>编号:<span>{T.num}</span></p>
+            <p>客户投资确认书</p>
+           <p></p>
 
         </div>
     </textarea>
@@ -54,9 +58,7 @@
         </table>
         <div class="data-rows">第{$P.start}-{$P.start+$T.length-1}条</div>
     </textarea>
-
-    <div id="show-area">
-
+    <div id="show_table">
     </div>
 </div>
 <script type="text/javascript" src="/js/investmentReport.js"></script>
