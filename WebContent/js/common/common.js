@@ -4038,10 +4038,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
                 if(!$selector.hasTemplate()&&template||template.isURI){
-                    if(template.jquery||template.indexOf("#")==0||template.indexOf(".")==0){
-                        $selector.setTemplateElement($(template));
-                    }else if(template.isURI) {
+                    if(template.isURI) {
                         $selector.setTemplateURL(template.value);
+                    }else if(template.jquery||template.indexOf("#")==0||template.indexOf(".")==0){
+                        $selector.setTemplateElement($(template));
                     }else{
                         $selector.setTemplate(template);
                     }

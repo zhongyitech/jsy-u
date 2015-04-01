@@ -292,6 +292,7 @@
 
 <div id="step-2">
     <form action="" class="col-md-12 center-margin">
+        <%--要进行模块内容替换的位置--%>
         <div class="print-page" id="invest-print">
             <div class="print-head">
                 <span class="print-number"> 编号（<a name="print-number">________</a>）</span>
