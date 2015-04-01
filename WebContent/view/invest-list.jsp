@@ -4,7 +4,7 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" type="text/css" href="/css/invest-list.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="/css/invest-list.css"/>--%>
     <title>客户投资信息管理</title>
 </head>
 <body >

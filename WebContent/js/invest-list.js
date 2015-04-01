@@ -54,10 +54,14 @@ var INVESTMENT_LIST = {
         var me = this;
         var params = {};
         //todo: 定义指定查询功能参数
-        var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
+        var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, type: "or",
+            fields: ["tzqx"],
+            value: $("#keyword-input").val(),
+            order: {customer: "asc"}}
+            );
         var data = {url: '/api/investmentArchives/IAOutput', params: params, entity: entity};
 
-        $.io.post(data).success(function (result, page) {
+        $.io.post(data).success(function (result, page){
             me.setView(result);
             me.setPage(page);
         }).error(function (error) {
@@ -126,7 +130,7 @@ var INVESTMENT_LIST = {
         if (customer) {
             customer_td = $('<td><span   title="' + customer + '">' + customer + '</span></td>');
         } else {
-            customer_td = $('<td>'+ item['username'] +'<a href="./customer.jsp?id='+ item['id'] +'&type=complted" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
+            customer_td = $('<td>' + item['username'] + '<a href="./customer.jsp?id=' + item['id'] + '&type=complted" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
 
         }
 
@@ -251,13 +255,13 @@ var INVESTMENT_LIST = {
         this.menus = {
             editInvestment: {
                 title: '修改投资档案', name: 'editInvestment', actionfunc: function (item) {
-                    var location = "./investment.jsp?id=" + item.id +"&type=edit";
+                    var location = "./investment.jsp?id=" + item.id + "&type=edit";
                     window.location = location;
                 }
             },
             completedInvestmentUserInfo: {
                 title: '填写或修改客户信息', name: 'completedInvestmentUserInfo', actionfunc: function (item) {
-                    var location = "./customer.jsp?id=" + item.id +"&type=edit";
+                    var location = "./customer.jsp?id=" + item.id + "&type=edit";
                     window.location = location;
                 }
             },

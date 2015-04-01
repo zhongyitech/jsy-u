@@ -337,7 +337,7 @@ var CUSTOMER_FORM = {//客户信息表单
             .success(function (result) {
 
 
-                window.location = PAGE.CUSTOMER_LIST;
+                window.location = "./invest-list.jsp";
             }).error(function(error){
                 alert(error.msg);
             });

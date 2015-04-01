@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     VIEWDATA.fund = FUND;
     VIEWDATA.file = FILE;
@@ -47,6 +46,8 @@ var VIEWDATA = {
 
         //合同编号 变更事件：根据档案类型进行数据获取和设置
         $("#contractNum").focusout(function (e) {
+
+
             var contractNum = $("#contractNum").val();
             me.getDataOfHtbh(contractNum);
         });
@@ -292,48 +293,68 @@ var VIEWDATA = {
     },
     getDataOfHtbh: function (htbh) {
         var me = this;
-        var params = JSON.stringify({
-            keyword: htbh
-        });
-        var data = {
-            url: '/api/investmentArchives/readAllForPage',
-            entity: params
-        };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (rest_result) {
-                me.rest_result = rest_result;
-                var result = rest_result[REST.RESULT_KEY];
-                if (result) {
-                    if (result.length > 0) {
-                        me.item = result[0];
-                        console.log(me.item);
-                        me.resetDefaultDate(result);
-                    } else {
-                        //me.error("没有找到此合同编号的投资档案");
-                    }
-                } else {
-                    //me.error("返回数据有误");
-                }
-            },
-            error: function (result) {
-                me.rest_result = result;
-                ("error:" + result);
-            }
-        });
+//        var params = JSON.stringify({
+//            keyword: htbh
+//        });
+
+
+//        var data = {
+//            url: '/api/investmentArchives/readAllForPage',
+//            entity: params
+//        };
+
+        $.io.get({url: '/api/investmentArchives/contractNumIsUse', params: {num: htbh}})
+            .success(function (result) {
+                me.resetDefaultDate(result);
+            }).error(function (error) {
+                alert("请求数据出错!" + error.msg);
+            });
+
+
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/post',
+//            data: data,
+//            dataType: 'json',
+//            async: false,
+//            success: function (rest_result) {
+//                me.rest_result = rest_result;
+//                var result = rest_result[REST.RESULT_KEY];
+//                if (result) {
+//                    if (result.length > 0) {
+//                        me.item = result[0];
+//                        console.log(me.item);
+//                        me.resetDefaultDate(result);
+//                    } else {
+//                        //me.error("没有找到此合同编号的投资档案");
+//                    }
+//                } else {
+//                    //me.error("返回数据有误");
+//                }
+//            },
+//            error: function (result) {
+//                me.rest_result = result;
+//                ("error:" + result);
+//            }
+//        });
     },
     //设置界面数据
     resetDefaultDate: function (result) {
-        if (result && result[0]) {
-            var fund = this.fund.get(result[0].fund.id)
+        if (result) {
+            var fund = this.fund.get(result.fund.id)
             $("#fundName_show").val(fund.fundName);
             $("#fundName").val(fund.id);
-            console.log(result[0].rgrq);
-            $("#signedDate").val(DATEFORMAT.toDate(result[0].rgrq));
+            $("#signedDate").val(DATEFORMAT.toDate(result.rgrq));
+            $("#contractNum").removeClass('valid_error');
+
+        } else {
+            $("#contractNum").addClass('valid_error');
+
+            $("#contractNum").val('');
+            $("#contractNum").attr("placeholder", "合同编号没有使用")
+            $("#fundName_show").val("");
+            $("#fundName").val("");
+            $("#signedDate").val("");
         }
     },
     post_request: function (filepackage, isContinue) {
@@ -343,31 +364,44 @@ var VIEWDATA = {
         var data = { url: '/api/filePackage', entity: JSON.stringify(filepackage) };
         console.log(data);
         var me = this;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (result) {
-                console.log(result);
-                if (result && result.rest_status && result.rest_status == "suc") {
-                    me.result = result;
-                    console.log("relaod page...");
-                    if (isContinue) {
-                        window.location.href = "filepackage-add.jsp";
-                    } else {
-                        window.location.href = "filepackage-list.jsp";
-                    }
+
+        $.io.post(true,data)
+            .success(function(result){
+                me.result = result;
+                if (isContinue) {
+                    window.location.href = "filepackage-add.jsp";
+                } else {
+                    window.location.href = "filepackage-list.jsp";
                 }
-            },
-            error: function (result) {
-                isAllSuc = false;
-                if (LOGIN.error(result)) {
-                    return;
-                }
-                alert('提交时错误.');
-            }
-        });
+            }).error(function(error){
+                alert(error.msg);
+            });
+
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/post',
+//            data: data,
+//            dataType: 'json',
+//            async: false,
+//            success: function (result) {
+//                console.log(result);
+//                if (result && result.rest_status && result.rest_status == "suc") {
+//                    me.result = result;
+//                    console.log("relaod page...");
+//                    if (isContinue) {
+//                        window.location.href = "filepackage-add.jsp";
+//                    } else {
+//                        window.location.href = "filepackage-list.jsp";
+//                    }
+//                }
+//            },
+//            error: function (result) {
+//                isAllSuc = false;
+//                if (LOGIN.error(result)) {
+//                    return;
+//                }
+//                alert('提交时错误.');
+//            }
+//        });
     }
 }
