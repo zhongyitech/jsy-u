@@ -79,29 +79,28 @@ var ProjectLimittimeSetting = {
      * @param result
      */
     initViewLimittime:function(projectId){
+        var _this = this;
         for(var i=1; i<8; i++){
+            _this.removeTableItem(i);
             var params = {
                 projectId:projectId,
                 phaseIndex:i
             };
             var data   = {url:"/api/project/getSpecailAccess",params:JSON.stringify(params)};
-            console.log(data);
-            var _this = this;
+
             $.io.get(data)
                 .success(function(result){
-                    console.log(result);
-                    _this.initTable(i,result);
+                    _this.initTable(result);
+
                 })
                 .error(function(result){
-                    alert(result);
+                    //alert(result);
                 });
         }
     },
 
-    initTable:function(index,result){
+    removeTableItem:function(index){
         var tabletr;
-        var item = JSON.parse(result);
-        console.log(item);
         switch(index){
             case 1 :
                 tabletr = $("#xianshi_table1 tr");
@@ -133,38 +132,50 @@ var ProjectLimittimeSetting = {
                 $(tabletr[i]).remove();
             }
         }
+    },
+    initTable:function(result){
+        var json = JSON.parse(result);
+        //console.log(json);
+        if(!json)
+            return;
 
-        var table = null;
-        switch(index){
-            case 1 :
-                table = $("#xianshi_table1");
-                break;
-            case 2 :
-                table = $("#xianshi_table2");
-                break;
-            case 3 :
-                table = $("#xianshi_table3");
-                break;
-            case 4 :
-                table = $("#xianshi_table4");
-                break;
-            case 5 :
-                table = $("#xianshi_table5");
-                break;
-            case 6 :
-                table = $("#xianshi_table6");
-                break;
-            case 7 :
-                table = $("#xianshi_table7");
-                break;
-            default :
-                table = $("#xianshi_table1");
-        }
+        var item = [];
+        item = json;
+        console.log(item);
+        var table = null
+        if(item){
 
-        if(table && item){
+            for(var i =1; i<item.length + 1; i++){
+                var it = item[i-1];
+                console.log(it);
+                var index = it["phaseIndex"];
+                console.log("index=" + index);
+                switch(index){
+                    case 1 :
+                        table = $("#xianshi_table1");
+                        break;
+                    case 2 :
+                        table = $("#xianshi_table2");
+                        break;
+                    case 3 :
+                        table = $("#xianshi_table3");
+                        break;
+                    case 4 :
+                        table = $("#xianshi_table4");
+                        break;
+                    case 5 :
+                        table = $("#xianshi_table5");
+                        break;
+                    case 6 :
+                        table = $("#xianshi_table6");
+                        break;
+                    case 7 :
+                        table = $("#xianshi_table7");
+                        break;
+                    default :
+                        table = $("#xianshi_table1");
+                }
 
-            for(var it in item){
-                console.log(item[it]["accessor"]);
                 var key = this.key++;
                 var tr = $('<tr key="' + key + '"></tr>');
                 table.append(tr);
@@ -172,15 +183,15 @@ var ProjectLimittimeSetting = {
                 var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
                 tr.append(checkbox);
 
-                var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field" value="'+item[it]["accessor"]+'" ></div></td>');
+                var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field" value="'+it["accessor"]+'" ></div></td>');
                 tr.append(row);
 
-                var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12" value="'+item[it]["fromDate"]+'"></div></td>');
+                var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12" value="'+it["fromDate"]+'"></div></td>');
                 tr.append(row);
 
-                var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12" value="'+item[it]["toDate"]+'"></div></td>');
+                var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12" value="'+it["toDate"]+'"></div></td>');
                 tr.append(row);
-                f_tcalInit();
+                //f_tcalInit();
             }
         }
     },
