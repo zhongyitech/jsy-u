@@ -162,6 +162,7 @@ var INVESTMENT_ITEM = {
     BuildReviewPage:function(){
 
         var item=this.getItem();
+        item['fundName']=$("#invest-fund option:selected").text();
         var entity={date:DATEFORMAT.toRest(item['rgrq']),qx:item['tzqx'],fxfs:item['fxfs']};
         var payTimes=$.io.post(true,{url:'/api/investmentArchives/getPayTimes',entity:entity})
             .success(function(result){
