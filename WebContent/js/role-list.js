@@ -93,7 +93,9 @@ var ROLE_LIST = {
         var entity = JSON.stringify({
             startposition: me.page_start,
             pagesize: me.page_size,
-            keyword: this.filter_keyword
+            type:'or',
+            fields:['name'],
+            value:$('#keyword-input').val()
         });
         var params = JSON.stringify({});
         var data = {url: '/api/role/readAllForPage', params: params, entity: entity};
