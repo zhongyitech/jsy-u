@@ -94,6 +94,13 @@
                                 </select>
                             </div>
 
+                            <div class="form-label col-md-2">
+                                <label>关联的项目：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="project" class="project">
+                                </select>
+                            </div>
                         </div>
                         <div class="form-row">
                             <label>基金与项目的关系在项目管理模块中进行操作.</label>

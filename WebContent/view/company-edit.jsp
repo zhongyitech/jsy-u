@@ -139,13 +139,6 @@
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="frdb" disabled="disabled">
                             </div>
-                            <div class="form-label col-md-2">
-                                <label class="label-description" id="fund-label">基金：</label>
-                            </div>
-                            <div class="form-input col-md-4">
-                                <select id="fund" disabled="disabled"></select>
-                            </div>
-
 
                         </div>
                         <div class="form-row">

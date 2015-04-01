@@ -762,6 +762,9 @@ var FUND_FORM = {//基金表单
         $.dom.select("#fundCompany", $.io.get({url: "/api/fundCompanyInformation/listForAddFund"}), function (item) {
             return {text: item.companyName, value: item.id}
         });
+        $.dom.select("#project", $.io.get({url: "/api/project/selectList"}), function (item) {
+            return {text: item.mapName, value: item.id}
+        });
     },
     iniStatus: function () {
         var status_select = this.getStatusSelect();
@@ -867,6 +870,7 @@ var FUND_FORM = {//基金表单
         }
 
         item["funcCompany"] = $('#fundCompany').val();
+        item["project"] = $('#project').val();
 
         me.item = item;
         return item;
