@@ -198,32 +198,12 @@ var REPORT = {
 
         var data = {url: '/api/paymentInfo/readAllForPage', entity: entity};
 
-        $.io.post(true, data).success(function (result, page) {
+        $.io.post(data).success(function (result, page) {
             me.result = result;
             me.success(result);
             me.setPage(page);
 
         });
-//		$.ajax({
-//			type: 'post',
-//			url: '../rest/item/post',
-//			data: data,
-//			dataType: 'json',
-//			async: false,
-//			success: function(result){
-//				console.log(result);
-//				if(result && result.rest_total>=0){
-//					me.result = result;
-//					me.success(result);
-//				}
-//
-//			},
-//			error: function(result){
-//				if(LOGIN.error(result)){
-//					return;
-//				}
-//			}
-//		});
     },
     success: function (result) {
         this.items = result;

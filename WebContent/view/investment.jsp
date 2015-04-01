@@ -170,7 +170,10 @@
                 <option value=""></option>
                 <option value="N">年付</option>
                 <option value="J">季付</option>
+                <option value="M">月付</option>
+                <option value="D">立即付息</option>
                 <option value="W">半年付</option>
+
             </select>
         </div>
         <div class="form-label col-md-2">
