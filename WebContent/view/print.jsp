@@ -35,7 +35,6 @@
           item.items=result;
           filter[item.id].renderURI("/templates/report_1.html",item);
         });
-
       });
     }
   })();
