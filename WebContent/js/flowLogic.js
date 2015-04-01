@@ -863,6 +863,7 @@ var FLOW={
                 model.company = company;
             }else{
                 alert("请选择有限合伴");
+                return false;
             }
             //基金
             var fund = $("#relate_funds").val();
@@ -870,6 +871,7 @@ var FLOW={
                 model.fund = fund;
             }else{
                 alert("请选择基金");
+                return false;
             }
             //管理费率
             var manage_per = $("#manage_per").val();
@@ -878,6 +880,7 @@ var FLOW={
                 model.manage_per = manage_per;
             }else{
                 alert("请选择管理费率");
+                return false;
             }
             //渠道费率
             var community_per = $("#community_per").val();
@@ -886,6 +889,7 @@ var FLOW={
                 model.community_per = community_per;
             }else{
                 alert("请选择渠道费率");
+                return false;
             }
             //违约金率
             var notNormal_per = $("#notNormal_per").val();
@@ -894,6 +898,7 @@ var FLOW={
                 model.notNormal_per = notNormal_per;
             }else{
                 alert("请选择违约金率");
+                return false;
             }
             //借款率
             var borrow_per = $("#borrow_per").val();
@@ -902,6 +907,7 @@ var FLOW={
                 model.borrow_per = borrow_per;
             }else{
                 alert("请选择违借款率");
+                return false;
             }
             //期限
             var year1 = $("#year1").val();
@@ -912,9 +918,11 @@ var FLOW={
                     model.year2 = year2;
                 }else{
                     alert("请输入期限");
+                    return false;
                 }
             }else{
                 alert("请输入期限");
+                return false;
             }
             //利息计算方式
             var interestType = $('input[name="interestType"]:radio:checked').val();
@@ -922,6 +930,7 @@ var FLOW={
                 model.interestType = interestType;
             }else{
                 alert("请选择利息计算方式");
+                return false;
             }
 
             $("input[id^=attname]").each(function () {
@@ -959,7 +968,7 @@ var FLOW={
         });
 
         /***加载数据***/
-        me.getCompany();
+        me.getCompany(); //加载有限合作下拉数据
         $("#company").val(makeContactBean.company);
         $("#relate_funds").val(makeContactBean.fund);
         $("#manage_per").val(makeContactBean.manage_per);
@@ -1084,8 +1093,8 @@ var FLOW={
             dataType: 'json',
             async: false,
             success: function(result){
-                if(result && result.length>0){
-                    $.each(result,function(index,obj){
+                if(result && result.rest_result ){
+                    $.each(result.rest_result,function(index,obj){
                         $("#company").append(
                             '<option value="'+obj.id+'">'+obj.companyName+'</option>'
                         );
@@ -1112,7 +1121,8 @@ var FLOW={
             success: function(result){
                 if(result && result.rest_result){
                     $("#relate_funds").empty();
-                    var rest_result = JSON.parse(result.rest_result);
+                    //var rest_result = JSON.parse(result.rest_result);
+                    var rest_result = result.rest_result;
                     $.each(rest_result.banks,function(index, obj){
                         $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
                     });

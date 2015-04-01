@@ -468,14 +468,14 @@
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input id="signvalue1" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue1" name="exist_signer_value" type="text" placeholder="输入名称"/>
                                     </div>
                                     <div class="form-label col-md-2">
                                         <label >乙方：</label>
                                         <input id="signname2" value="乙方" name="exist_signer_name" type="hidden"/>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="signvalue2" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue2" name="exist_signer_value" type="text" placeholder="输入名称"/>
                                     </div>
 
                                 </div>
@@ -486,7 +486,7 @@
                                     </div>
 
                                     <div class="form-input col-md-4">
-                                        <input id="signvalue3" name="exist_signer_value" type="text" placeholder="输入公司名称"/>
+                                        <input id="signvalue3" name="exist_signer_value" type="text" placeholder="输入名称"/>
                                     </div>
 
                                 </div>
@@ -529,14 +529,14 @@
                                         <label >管理费率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="manage_per" />
+                                        <input id="manage_per" placeholder="例如：0.3"/>
                                     </div>
 
                                     <div class="form-label col-md-2">
                                         <label >渠道费率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="community_per" />
+                                        <input id="community_per" placeholder="例如：0.3"/>
                                     </div>
                                 </div>
 
@@ -545,14 +545,14 @@
                                         <label >违约金率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="notNormal_per" />
+                                        <input id="notNormal_per" placeholder="例如：0.3"/>
                                     </div>
 
                                     <div class="form-label col-md-2">
                                         <label >借款率：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input id="borrow_per" />
+                                        <input id="borrow_per" placeholder="例如：0.3"/>
                                     </div>
                                 </div>
 
@@ -561,11 +561,11 @@
                                         <label >期限（年）：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <div class="form-label col-md-2">
-                                            <input id="year1" placeholder="约定"/>
+                                        <div class="form-label col-md-5">
+                                            <input id="year1" placeholder="约定归还年数"/>
                                         </div>
-                                        <div class="form-label col-md-2">
-                                            <input id="year2" placeholder="缓冲"/>
+                                        <div class="form-label col-md-5">
+                                            <input id="year2" placeholder="缓冲归还年数"/>
                                         </div>
                                     </div>
 

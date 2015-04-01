@@ -49,7 +49,7 @@
                                     <label > 项目负责人：<span class="required">*</span></label>
                                 </div>
                                 <div class="form-input col-md-3">
-                                    <input type="text" id="inchargerName"/>
+                                    <input type="text" id="inchargerName" placeholder="自动联想"/>
                                     <input type="hidden" id="incharger"/>
                                     <input type="hidden" id="creator"/>
                                 </div>
