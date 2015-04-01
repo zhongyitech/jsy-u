@@ -48,7 +48,9 @@
                         <tr>
                             <th class="text-center" width="56px"><input type="checkbox" name="checkbox"></th>
                             <th class="text-center" width="200px">角色名称</th>
-                            <th></th>
+                            <th class="text-center" width="200px"></th>
+                            <th class="text-center" ></th>
+
                         </tr>
                         </thead>
                         <tbody></tbody>

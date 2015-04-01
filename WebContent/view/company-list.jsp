@@ -55,6 +55,11 @@
                         </thead>
                         <tbody></tbody>
                     </table>
+                    <div class="mrg10T">
+                        <a href="./company-create.jsp" class="btn medium bg-green" title="">
+                            <span class="button-content">+ 添加公司(有限合伙)</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="button-pane">
