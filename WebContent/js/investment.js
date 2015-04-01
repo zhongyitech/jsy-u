@@ -167,6 +167,7 @@ var INVESTMENT_ITEM = {
         var payTimes=$.io.post(true,{url:'/api/investmentArchives/getPayTimes',entity:entity})
             .success(function(result){
                 item["items"]=result;
+                $("#step-2").renderURI("/templates/report_1.html",item);
             })
             .error(function(error){
                 alert("获取付息次数出错了,请确认投资期限和付息方式已经填写?");
