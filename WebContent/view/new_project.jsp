@@ -32,22 +32,22 @@
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-3   ">
-                                    <label for=""> 项目方： </label>
+                                    <label for=""> 项目方：<span class="required">*</span> </label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" id="projectdealer"/>
                                 </div>
                                 <div class="form-label col-md-2  ">
-                                    <label for=""> 项目名称：</label>
+                                    <label for=""> 项目名称： <span class="required">*</span></label>
                                 </div>
                                 <div class="form-input col-md-3">
-                                    <input type="text" id="projectname"/>
+                                    <input type="text" id="projectname" />
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-label col-md-3   ">
-                                    <label for=""> 项目负责人： </label>
+                                    <label for=""> 项目负责人：<span class="required">*</span></label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" id="inchargerName"/>
@@ -63,6 +63,8 @@
                                 <div class="form-input col-md-10">
                                     <textarea name="input_text" id="description" class="small-textarea"></textarea>
                                 </div>
+                            </div>
+                            <div style="height: 20px">
                             </div>
 
                             <div class="form-row">

@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-
     VIEWDATA.file = FILE;
     VIEWDATA.init(true);
 
@@ -108,8 +107,8 @@ var VIEWDATA={
                         "suggestions": []
                     };
                 } else {
-                    var result = JSON.parse(response);
-                    var suggestions = JSON.parse(result.suggestions);
+                    var result = JSON.parse(response).rest_result;
+                    var suggestions = (result.suggestions);
                     result.suggestions = suggestions;
                     return result;
                 }

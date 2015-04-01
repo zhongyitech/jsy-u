@@ -93,7 +93,6 @@ var EndProject = {
                 }
             });
     },
-
     /**
      * 设置项目属性
      * @param fundName
