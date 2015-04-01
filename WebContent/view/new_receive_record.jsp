@@ -117,12 +117,12 @@
                 <div class="panel panel-default" id="invest_div">
                     <div class="panel-heading">
                         投资款——款项性质：
-                        <input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金
-                        <input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
-                        <input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
-                        <input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
-                        <input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息
-                        <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
+                        <%--<input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金--%>
+                        <%--<input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>--%>
+                        <%--<input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>--%>
+                        <%--<input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>--%>
+                        <%--<input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息--%>
+                        <%--<input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>--%>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped text-center mrg0B" id="pay_records_table">
@@ -149,10 +149,10 @@
                 <div class="panel panel-default" id="borrow_div">
                     <div class="panel-heading">
                         借款——款项性质：
-                            <input type="checkbox" id="main_money2" name="target_type" value="main_money"> 本金
-                            <input type="checkbox" id="over_money2" name="target_type" value="over_money"> 逾期利息
-                            <input type="checkbox" id="penalty_money2" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per2"></label>
-                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>
+                            <%--<input type="checkbox" id="main_money2" name="target_type" value="main_money"> 本金--%>
+                            <%--<input type="checkbox" id="over_money2" name="target_type" value="over_money"> 逾期利息--%>
+                            <%--<input type="checkbox" id="penalty_money2" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per2"></label>--%>
+                            <%--<input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>--%>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped text-center mrg0B" id="pay_records_table2">

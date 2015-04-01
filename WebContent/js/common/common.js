@@ -3953,6 +3953,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  * Tools
  */
 (function($){
+    var Constant={
+        number:["零","一","二","三","四","五","六","七","八","九"],
+        unit:["","十","百","千","万","亿"]
+    };
     var UtilsPrototype={
         dateFormat: function (dateString,format) {
             if(!dateString)return "";
@@ -3970,6 +3974,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             for (var k in o)
                 if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             return format;
+        },
+        numberText:function(number){
+
         },
         getValue:function(string,key){
             var r = string.match(new RegExp("(^|&)"+key +"=([^&]*)(&|$)"));
@@ -4013,6 +4020,9 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         this.getHashs = function () {
             return UtilsPrototype.getHashs();
         };
+        this.chineseNumber = function(number){
+            return Constant.number[number];
+        };
     };
     $.extend(true,{
         utils:new Utils()
@@ -4026,9 +4036,11 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         render:function($selector,template,data,params){
             try{
                 if($selector&&!$selector.jquery) $selector=$($selector);
-                if(!$selector.hasTemplate()&&template){
+                if(!$selector.hasTemplate()&&template||template.isURI){
                     if(template.jquery||template.indexOf("#")==0||template.indexOf(".")==0){
                         $selector.setTemplateElement($(template));
+                    }else if(template.isURI) {
+                        $selector.setTemplateURL(template.value);
                     }else{
                         $selector.setTemplate(template);
                     }
@@ -4038,18 +4050,19 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 $selector.processTemplate(data);
                 return true;
             }catch(e){
-                return false;
             }
+            return false;
         }
     };
     $.fn.extend(true,{
         renderData:function(template,data,params){
-            Template.render($(this),template,data,params);
-        }
-    });
-    $.extend(true,{
-        renderData:function($selector,template,data,params){
-            Template.render($selector,template,data,params);
+            Template.render(this,template,data,params);
+        },
+        renderURI:function(uri,data,params){
+            Template.render(this,{
+                isURI:true,
+                value:uri
+            },data,params);
         }
     });
 })(jQuery);
