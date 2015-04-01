@@ -268,29 +268,29 @@
                     </li>
 
                     <li>
-                        <a href="./company-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>公司管理</a>
+                        <a href="./company-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>公司(有限合伙)管理</a>
                     </li>
 
-                    <li>
-                        <a href="./company-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增公司</a>
-                    </li>
+                        <%--<li>--%>
+                            <%--<a href="./company-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增公司</a>--%>
+                        <%--</li>--%>
 
                     <li>
                         <a href="./department-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>部门管理</a>
                     </li>
 
-                    <li>
-                        <a href="./department-create.jsp" title="点击"><i
-                                class="glyph-icon icon-chevron-right"></i>新增部门</a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="./department-create.jsp" title="点击"><i--%>
+                                <%--class="glyph-icon icon-chevron-right"></i>新增部门</a>--%>
+                    <%--</li>--%>
 
                     <li>
                         <a href="./role-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>角色管理</a>
                     </li>
 
-                    <li>
-                        <a href="./role-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增角色</a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="./role-create.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>新增角色</a>--%>
+                    <%--</li>--%>
 
                     <li>
                         <a href="./user-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>用户管理</a>
