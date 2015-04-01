@@ -3954,10 +3954,6 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
  * Tools
  */
 (function($){
-    var Constant={
-        number:["零","一","二","三","四","五","六","七","八","九"],
-        unit:["","十","百","千","万","亿"]
-    };
     var UtilsPrototype={
         dateFormat: function (dateString,format) {
             if(!dateString)return "";
@@ -3976,8 +3972,38 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 if (new RegExp("(" + k + ")").test(format)) format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             return format;
         },
-        numberText:function(number){
-
+        getCNY:function(number){
+            if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(number))
+                return "数据非法";
+            var unit = "千百拾亿千百拾万千百拾元角分", str = "";
+            number += "00";
+            var p = number.indexOf('.');
+            if (p >= 0)
+                number = number.substring(0, p) + number.substr(p+1, 2);
+            unit = unit.substr(unit.length - number.length);
+            for (var i=0; i < number.length; i++)
+                str += '零壹贰叁肆伍陆柒捌玖'.charAt(number.charAt(i)) + unit.charAt(i);
+            return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
+        },
+        /**
+         * 1-99
+         * @param number
+         * @returns {string}
+         */
+        getCnIndex:function(number){
+            var num=Number(number),numArray=["","一","二","三","四","五","六","七","八","九"];
+            if(num){
+                if(num<10){
+                    return numArray[num];
+                }else if(num<100){
+                    var val=parseInt(num/10);
+                    return [val-1?numArray[val]:"","十",numArray[num%10]].join("");
+                }else if(num<1000){
+                    //TODO 扩展更大
+                    return "";
+                }
+            }
+            return "";
         },
         getValue:function(string,key){
             var r = string.match(new RegExp("(^|&)"+key +"=([^&]*)(&|$)"));
@@ -4021,8 +4047,11 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
         this.getHashs = function () {
             return UtilsPrototype.getHashs();
         };
-        this.chineseNumber = function(number){
-            return Constant.number[number];
+        this.getCNY = function(number){
+            return UtilsPrototype.getCNY(number);
+        };
+        this.getCnIndex=function(number){
+            return UtilsPrototype.getCnIndex(number);
         };
     };
     $.extend(true,{
