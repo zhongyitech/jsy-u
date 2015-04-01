@@ -50,7 +50,15 @@ var INVESTMENT_LIST = {
     iniMenu: function () {
         var me = this;
         $(this.PRINT_BUTTON_ID).click(function () {
-            me.print();
+            var id=[],trs=$("#investment-table input[type=checkbox]:checked").closest("tr");
+            trs.each(function(i){
+                id.push(me.items[trs.eq(i).attr("key")].id);
+            });
+            if(id.length){
+                window.open("./print.jsp?id="+id.toString());
+            }else{
+                alert("请选择要打印的项！");
+            }
         });
     },
     iniFilter: function () {
