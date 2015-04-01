@@ -46,14 +46,13 @@
                                         <label for="">付款日期：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text" id="fundname" placeholder="输入自动查询"/>
-                                        <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
+                                        <input id="paydate" class="tcal filter-input" type="text" />
                                     </div>
                                     <div class="form-label col-md-2">
                                         <label for="">付款金额：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <select id="project"></select>
+                                        <input type="text" id="paytotal"/>
                                     </div>
                                 </div>
 
@@ -83,19 +82,19 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="content-box box-toggle ">
+                                    <div class="content-box box-toggle " id="invest_div">
                                         <div class="content-box-header primary-bg">
                                             <span class="float-left">投资款——款项性质：</span>
                                             <a href="#" class="float-right icon-separator btn toggle-button" title="投资款——款项性质：">
                                                 <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                                             </a>
 
-                                            <input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金
-                                            <input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>
-                                            <input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>
-                                            <input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>
-                                            <input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息
-                                            <input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>
+                                            <%--<input type="checkbox" id="main_money" name="target_type" value="main_money"> 本金--%>
+                                            <%--<input type="checkbox" id="manage_money" name="target_type" value="manage_money"> 管理费 <label id="label_manage_per"></label>--%>
+                                            <%--<input type="checkbox" id="community_money" name="target_type" value="community_money"> 渠道费 <label id="label_community_per"></label>--%>
+                                            <%--<input type="checkbox" id="interest_money" name="target_type" value="interest_money"> 第一年利息 <label id="label_interest_per"></label>--%>
+                                            <%--<input type="checkbox" id="over_money" name="target_type" value="over_money"> 逾期利息--%>
+                                            <%--<input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>--%>
                                         </div>
                                         <div class="content-box-wrapper">
                                             <table class="table table-striped text-center mrg0B" id="pay_records_table">
@@ -122,17 +121,17 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="content-box box-toggle ">
+                                    <div class="content-box box-toggle " id="borrow_div">
                                         <div class="content-box-header primary-bg">
                                             <span class="float-left">借款——款项性质：</span>
                                             <a href="#" class="float-right icon-separator btn toggle-button" title="借款——款项性质：">
                                                 <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                                             </a>
 
-                                            <input type="checkbox" id="main_money2" name="target_type" value="main_money"> 本金
-                                            <input type="checkbox" id="over_money2" name="target_type" value="over_money"> 逾期利息
-                                            <input type="checkbox" id="penalty_money2" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per2"></label>
-                                            <input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>
+                                            <%--<input type="checkbox" id="main_money2" name="target_type" value="main_money"> 本金--%>
+                                            <%--<input type="checkbox" id="over_money2" name="target_type" value="over_money"> 逾期利息--%>
+                                            <%--<input type="checkbox" id="penalty_money2" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per2"></label>--%>
+                                            <%--<input type="checkbox" id="borrow_money" name="target_type" value="borrow_money"> 借款利息 <label id="label_borrow_per"></label>--%>
                                         </div>
 
                                         <div class="content-box-wrapper">
@@ -158,8 +157,8 @@
 
                                 <div class="form-row pad3B">
                                     <div class="form-label col-md-12">
-                                        <button class="but-ui btn primary-bg large" type="button">
-                                            <span class="button-content" id="add_receive">添加</span>
+                                        <button class="but-ui btn primary-bg large" type="button" id="add_receive">
+                                            <span class="button-content" >添加</span>
                                         </button>
                                     </div>
                                 </div>

@@ -125,13 +125,11 @@
                                                 <thead>
                                                 <tr>
                                                     <th class="text-center">选择</th>
-                                                    <th class="text-center">付款日期</th>
+                                                    <th class="text-center">收款日期</th>
                                                     <th class="text-center">项目基金</th>
-                                                    <th class="text-center">汇款金额</th>
-                                                    <th class="text-center">应收利息</th>
-                                                    <th class="text-center">应收管理费</th>
-                                                    <th class="text-center">应收渠道费</th>
-                                                    <th class="text-center">投资天数</th>
+                                                    <th class="text-center">收款金额</th>
+                                                    <th class="text-center">银行户名</th>
+                                                    <th class="text-center">银行帐号</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -154,12 +152,12 @@
                             <div class="form-row">
                                 <div class="content-box box-toggle ">
                                     <div class="content-box-header primary-bg">
-                                        <span class="float-left">选择记录编号：1</span>
-                                        <a href="#" class="float-right icon-separator btn toggle-button" title="选择记录编号">
+                                        <span class="float-left">收款明细记录，仍然欠款【<span id="payrecord_own_money"></span>】</span>
+                                        <a href="#" class="float-right icon-separator btn toggle-button" title="仍然欠款">
                                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                                         </a>
-                                        <label>仍然欠款 </label>
                                     </div>
+
 
                                     <div class="content-box-wrapper">
                                         <table class="table table-striped text-center mrg0B" id="receive_records_table">
@@ -179,42 +177,42 @@
                         </form>
                     </div>
 
-                    <div style="height: 25px">
+                    <%--<div style="height: 25px">--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div style="width: 900px" id="item_settingPanel_Ex">
-                        <form class="form-bordered " action="/" method="post">
-                            <div class="form-row">
-                                <div class="content-box box-toggle ">
-                                    <div class="content-box-header primary-bg">
-                                        <span class="float-left">统计信息</span>
-                                        <a href="#" class="float-right icon-separator btn toggle-button" title="统计信息">
-                                            <i class="glyph-icon icon-toggle icon-chevron-down"></i>
-                                        </a>
-                                    </div>
+                    <%--<div style="width: 900px" id="item_settingPanel_Ex">--%>
+                    <%--<form class="form-bordered " action="/" method="post">--%>
+                    <%--<div class="form-row">--%>
+                    <%--<div class="content-box box-toggle ">--%>
+                    <%--<div class="content-box-header primary-bg">--%>
+                    <%--<span class="float-left">统计信息</span>--%>
+                    <%--<a href="#" class="float-right icon-separator btn toggle-button" title="统计信息">--%>
+                    <%--<i class="glyph-icon icon-toggle icon-chevron-down"></i>--%>
+                    <%--</a>--%>
+                    <%--</div>--%>
 
-                                    <div class="content-box-wrapper">
-                                        <form class="form-inline">
-                                            <div class="form-group">
-                                                <label>应收利息 (不含管理费和渠道费)</label>
-                                                <span>500</span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>已收管理费 (金赛银公司收) </label>
-                                                <span>200</span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>已收渠道费</label>
-                                                <span>200</span>
-                                            </div>
+                    <%--<div class="content-box-wrapper">--%>
+                    <%--<form class="form-inline">--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label>应收利息 (不含管理费和渠道费)</label>--%>
+                    <%--<span>500</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label>已收管理费 (金赛银公司收) </label>--%>
+                    <%--<span>200</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                    <%--<label>已收渠道费</label>--%>
+                    <%--<span>200</span>--%>
+                    <%--</div>--%>
 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <%--</form>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <%--</form>--%>
+                    <%--</div>--%>
                 </div>
             </div>
 

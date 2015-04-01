@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #F0F0F0; }
@@ -15,3 +16,10 @@ textarea.template,div.template{display: none;}
 input[readonly=true] {background: #EAE5E5;}
 .data-rows{ height: 30px; line-height: 30px;}
 .underline { text-decoration: underline;}
+.print-paper { font-family: '宋体', Verdana; padding:2em 4em; font-size: 17px; line-height: 2em; page-break-after:always;}
+.print-paper h3 { padding: 0; margin: 0;}
+.print-paper p { text-indent: 2em;}
+.print-paper .print-no { height: 2em; text-align: right;}
+.print-paper .print-title { height: 2em; text-align: center;}
+.print-paper .print-body {}
+.print-paper .print-footer { text-align: right; margin-top: 3em;}
