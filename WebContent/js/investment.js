@@ -134,7 +134,7 @@ var INVESTMENT_ITEM = {
             var me = this;
             $.ajax({
                 type: "post",
-                url: "../rest/item/get",
+                url: "/rest/item/get",
                 async: async,
                 data: data,
                 dataType: "json",
@@ -452,7 +452,7 @@ var INVESTMENT_ITEM = {
 
                 for (var i = 0; i < attachments.length; i++) {
                     var attachment_name = me.attachments[i][me.file.NAME_KEY];
-                    var attachment_src = '../rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
+                    var attachment_src = '/rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
                     var attachment_item = $('<div class="attachment-div"></div>');
                     attachment_div.append(attachment_item);
                     var attachment_i = $('<i class="attachment-i"></i>');
@@ -475,7 +475,7 @@ var INVESTMENT_ITEM = {
                 for (var i = 0; i < attachments.length; i++) {
                     var attachment = me.file.get(me.attachments[i][me.file.ID_KEY]);
                     var attachment_name = attachment[me.file.NAME_KEY];
-                    var attachment_src = '../rest/file/download?path=' + attachment[me.file.PATH_KEY];
+                    var attachment_src = '/rest/file/download?path=' + attachment[me.file.PATH_KEY];
                     var attachment_item = $('<div class="attachment-div"></div>');
                     attachment_div.append(attachment_item);
                     var attachment_i = $('<i class="attachment-i"></i>');
