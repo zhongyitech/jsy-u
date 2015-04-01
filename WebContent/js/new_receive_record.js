@@ -106,14 +106,12 @@ var VIEWDATA={
             var bankid = $("input[name='bankselect'][type='radio']:checked").val();
 
 
-            if(!fundid || !projectid || !paydate || paytotal<0){
+            if(!fundid || !projectid || !paydate || paytotal=="" || paytotal<0){
                 alert("请正确录入数据");
                 return false;
             }
 
-            var remain_money = $("#remain_money").val(); //参考剩余价格
-            //先组织投资款的数据结构
-
+            //应收款的数据结构
             var receiveDetail_struct = [];
             $("input[name='shouldReceiveCheckbox'][type='checkbox']:checked").each(function(){
                 //payid1_targetoriginal
@@ -212,12 +210,11 @@ var VIEWDATA={
                     if($(this).is(':checked')){
                         me.appendShouldPayInfo($(this).val(),$(this).closest('tr'));
                     }else{
-                        $(this).closest('tr').next("ul").remove();
+                        var tr = $(this).closest('tr').next("tr");
+                        if(tr.attr("id")=="tr"+$(this).val()){
+                            tr.remove();
+                        }
                     }
-
-
-
-
                 });
 
             },
@@ -240,12 +237,13 @@ var VIEWDATA={
                 console.log(result);
                 if(result&& result.rest_result){
                     var rest_result = JSON.parse(result.rest_result)
-                    var ul = $('<ul>');
-                    $(targetTr).after(ul);
+                    var tr = $('<tr id="tr'+payRecordId+'">');
+                    $(targetTr).after(tr);
+                    var td = $('<td colspan="10" align="left">');
+                    $(tr).append(td);
                     $.each(rest_result,function(index,obj){
                         var checkbox = $('<input id="'+obj.id+'" name="shouldReceiveCheckbox" type="checkbox" value="'+obj.amount+'" style="height: 16px;width: 16px; position: relative;top: 3px;">');
-                        var li = $("<li>");
-                        li.append(checkbox);
+                        td.append(checkbox);
                         var cn_change = "";
                         if(obj.target=="original"){
                             cn_change = "应再收本金";
@@ -254,16 +252,16 @@ var VIEWDATA={
                         }else if(obj.target=="channel"){
                             cn_change = "应再收渠道费";
                         }else if(obj.target=="firstyear"){
-                            cn_change = "应再第一年利息费";
+                            cn_change = "应再收第一年利息费";
                         }else if(obj.target=="borrow"){
-                            cn_change = "应再第一年借款费";
+                            cn_change = "应再收第一年借款费";
                         }else if(obj.target=="penalty"){
-                            cn_change = "应再第一年违约费";
+                            cn_change = "应再收第一年违约费";
                         }else if(obj.target=="overdue"){
-                            cn_change = "应再第一年逾期费";
+                            cn_change = "应再收第一年逾期费";
                         }
-                        li.append(cn_change+':'+obj.amount);
-                        $(ul).append(li);
+                        td.append(cn_change+':'+obj.amount);
+
                         checkbox.click(function(){
                             me.countRemainMoney();
                         });

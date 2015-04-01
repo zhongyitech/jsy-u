@@ -118,14 +118,8 @@
 
 
                 <div class="panel panel-default">
+                    <div class="panel-heading">收款明细记录，仍然欠款【<span id="payrecord_own_money"></span>】</div>
                     <div class="panel-body">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label>仍然欠款 </label>
-                                <span id="payrecord_own_money"></span>
-                            </div>
-                        </form>
-
                         <table class="table table-striped text-center mrg0B" id="receive_records_table">
                             <thead>
                             <tr>
