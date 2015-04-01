@@ -10,9 +10,9 @@
         <p>您的计息起始日期为<span class="underline">{$.utils.dateFormat($T.date,"yyyy年MM月dd日")}</span>。</p>
         {#foreach $T.items as item}
         {#if !$T.item$last}
-        <p>第{$.utils.chineseNumber($T.item$index+1)}次付息日为<span class="underline">{$.utils.dateFormat($T.item,"yyyy年MM月dd日")}</span>。</p>
+        <p>第{$.utils.getCnIndex($T.item$index+1)}次付息日为<span class="underline">{$.utils.dateFormat($T.item,"yyyy年MM月dd日")}</span>。</p>
         {#else}
-        <p>{#if !$T.item$first}第{$.utils.chineseNumber($T.item$index+1)}次{#/if}付息和归还本金日为<span class="underline">{$.utils.dateFormat($T.item,"yyyy年MM月dd日")}</span>。</p>
+        <p>{#if !$T.item$first}第{$.utils.getCnIndex($T.item$index+1)}次{#/if}付息和归还本金日为<span class="underline">{$.utils.dateFormat($T.item,"yyyy年MM月dd日")}</span>。</p>
         {#/if}
         {#/for}
         <p>到账时间为付息日或归还本金日起三个工作日内。(周六、周日及法定节假日顺延)</p>
