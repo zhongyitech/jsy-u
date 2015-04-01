@@ -290,7 +290,7 @@
 </form>
 </div>
 
-<div id="step-2">
+<div id="step-2" style="width: 700px; margin: 0 auto;">
     <form action="" class="col-md-12 center-margin">
         <%--要进行模块内容替换的位置--%>
         <div class="print-page" id="invest-print">
