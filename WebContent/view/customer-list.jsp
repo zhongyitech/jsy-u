@@ -94,20 +94,27 @@
                         </thead>
                         <tbody></tbody>
                     </table>
+                    <div CLASS="mrg10T">
+                        <a href="./customer-create.jsp" class="btn medium bg-green" title="">
+                            <span class="button-content">+ 新客户</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="content-box box-toggle " id="customer_details">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">客户详细信息</span>
-
                     <a href="#" class="float-right icon-separator btn toggle-button" title="客户信息修改">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
 
+                </div>
+                <div class="content-box-wrapper">
+
+
 
                 </div>
-
 
             </div>
 

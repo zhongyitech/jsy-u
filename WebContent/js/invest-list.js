@@ -53,29 +53,38 @@ var INVESTMENT_LIST = {
         this.setFilter();
         var me = this;
         var params = {};
+        //todo: 定义指定查询功能参数
         var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword});
         var data = {url: '/api/investmentArchives/IAOutput', params: params, entity: entity};
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: async,
-            success: function (response) {
-                me.response = response;
-                me.setView(response);
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
+
+        $.io.post(data).success(function (result, page) {
+            me.setView(result);
+            me.setPage(page);
+        }).error(function (error) {
+            alert(error.msg);
         });
+
+//        $.ajax({
+//            type: 'post',
+//            url: '../rest/item/post',
+//            data: data,
+//            dataType: 'json',
+//            async: async,
+//            success: function (response) {
+//                me.response = response;
+//                me.setView(response);
+//            },
+//            error: function (response) {
+//                me.response = response;
+//                LOGIN.error(response);
+//            }
+//        });
     },
 
     setView: function (response) {
-        this.items = JSON.parse(response[REST.RESULT_KEY]);
+        this.items = response;
         this.setTable(this.items);
-        this.setPage(response);
+//        this.setPage(response);
 
     },
     setFilter: function () {//获取过滤条件
@@ -113,13 +122,18 @@ var INVESTMENT_LIST = {
         table.append(tr);
 
         var customer = item['customer'];
+        var customer_td = ""
+        if (customer) {
+            customer_td = $('<td><span   title="' + customer + '">' + customer + '</span></td>');
+        } else {
+            customer_td = $('<td>'+ item['username'] +'<a href="./customer.jsp?id='+ item['id'] +'&type=complted" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
 
-        var customer_td = $('<td><span   title="' + customer + '">' + customer + '</span></td>');
+        }
+
         tr.append(customer_td);
 
-        var fund = item['fundname'];
 
-        var fund_td = $('<td><span   title="' + fund + '">' + fund + '</span></td>');
+        var fund_td = $('<td><span   title="' + item['fund'] + '">' + item['fund'] + '</span></td>');
         tr.append(fund_td);
 
 
@@ -141,6 +155,9 @@ var INVESTMENT_LIST = {
             var menus = this.getMenus();
             for (var mkey in menus) {
                 var m = menus[mkey];
+                if (m.name === "dqzt") {
+                    contractNum_td += '<li class="divider"></li>';
+                }
                 contractNum_td = contractNum_td + "<li><a href='javascript:;' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='" + m.name + "'><i class='glyph-icon icon-edit mrg5R'></i>" + m.title + "</a></li>";
             }
         }
@@ -153,7 +170,7 @@ var INVESTMENT_LIST = {
         var rqrq_td = $('<td><span   class="text-overflow" title="' + rqrq + '">' + rqrq + '</span></td>');
         tr.append(rqrq_td);
 
-        var rqje = item['sjtzje'];
+        var rqje = NUMBERFORMAT.toYuan(item['sjtzje']);
 
         var rqje_td = $('<td><span   class="text-overflow" title="' + rqje + '">' + rqje + '</span></td>');
         tr.append(rqje_td);
@@ -193,12 +210,12 @@ var INVESTMENT_LIST = {
         row = $("<td><a class='' target='_blank' href='" + vurl + "' class='text-overflow' title='" + value + "'>" + value + "</a></td>");
         tr.append(row);
 
-        value = item['lx'];
+        value = NUMBERFORMAT.toYuan(item['lx']);
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
 
-        value = item['bj'];
+        value = NUMBERFORMAT.toYuan(item['bj']);
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
@@ -234,37 +251,37 @@ var INVESTMENT_LIST = {
         this.menus = {
             editInvestment: {
                 title: '修改投资档案', name: 'editInvestment', actionfunc: function (item) {
-                    var location = "./investment.jsp?id=" + item.oid;
+                    var location = "./investment.jsp?id=" + item.id +"&type=edit";
                     window.location = location;
                 }
             },
             completedInvestmentUserInfo: {
-                title: '完善客户信息', name: 'completedInvestmentUserInfo', actionfunc: function (item) {
-                    var location = "./investment.jsp?id=" + item.oid;
+                title: '填写或修改客户信息', name: 'completedInvestmentUserInfo', actionfunc: function (item) {
+                    var location = "./customer.jsp?id=" + item.id +"&type=edit";
                     window.location = location;
                 }
             },
             dqzt: {
                 title: '到期转投处理申请', name: 'dqzt', actionfunc: function (item) {
-                    var location = "./special_treat.jsp?investmentid=" + item.oid;
+                    var location = "./special_treat.jsp?investmentid=" + item.id;
                     window.location = location;
                 }
             },
             wdqzt: {
                 title: '未到期转投处理申请', name: 'wdqzt', actionfunc: function (item) {
-                    var location = "./special_untreat.jsp?investmentid=" + item.oid;
+                    var location = "./special_untreat.jsp?investmentid=" + item.id;
                     window.location = location;
                 }
             },
             thcq: {
                 title: '退伙处理申请', name: 'thcq', actionfunc: function (item) {
-                    var location = "./refund_add.jsp?investmentid=" + item.oid;
+                    var location = "./refund_add.jsp?investmentid=" + item.id;
                     window.location = location;
                 }
             },
             jjxt: {
                 title: '基金续投申请', name: 'jjxt', actionfunc: function (item) {
-                    var location = "./continuedinvestment-add.jsp?investmentid=" + item.oid;
+                    var location = "./continuedinvestment-add.jsp?investmentid=" + item.id;
                     window.location = location;
                 }
             }

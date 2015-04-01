@@ -17,7 +17,7 @@
 
             <div class="content-box box-toggle " id="customer-view">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">编辑客户信息</span>
+                    <span class="float-left" id="action_title">-</span>
 
                     <a href="#" class="float-right icon-separator btn toggle-button" title="编辑客户信息">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
@@ -32,14 +32,14 @@
                                 <label class="label-description">客户名称：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="输入客户名称" type="text" id="name">
+                                <input placeholder="输入客户名称" type="text" id="name" class="name">
                             </div>
 
                             <div class="form-label col-md-2">
                                 <label for="" class="label-description">国家（地区）:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select id="country">
+                                <select id="country" name="country">
                                     <option value=""></option>
                                     <option value="中国">中国</option>
                                     <option value="其它地区">其它地区</option>
@@ -52,7 +52,7 @@
                                 <label for="" class="label-description">证件类型:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select id="cardtype">
+                                <select id="cardtype" class="credentialsType">
                                     <option></option>
                                     <option value="身份证">身份证</option>
                                     <option value="护照">护照</option>
@@ -63,7 +63,7 @@
                                 <label for="" class="label-description">(*)证件号码:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="请输入证件号" type="text" id="cardnumber">
+                                <input placeholder="请输入证件号" class="credentialsNumber" type="text" id="cardnumber">
                             </div>
                         </div>
 
@@ -81,13 +81,13 @@
                                 <label for="" class="label-description">开户行名称:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="请输入开户行银行" type="text" id="bankname">
+                                <input placeholder="请输入开户行银行" type="text" id="bankname" class="khh">
                             </div>
                             <div class="form-label col-md-2 ">
                                 <label for="" class="label-description">收益人账号:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="请输入银行账号" type="text" id="banknumber">
+                                <input placeholder="请输入银行账号" type="text" id="banknumber" class="yhzh">
                             </div>
                         </div>
                         <div class="form-row">
@@ -95,13 +95,13 @@
                                 <label for="" class="label-description">联系电话:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="phone">
+                                <input placeholder="" type="text" id="phone" class="telephone">
                             </div>
                             <div class="form-label col-md-2">
                                 <label for="" class="label-description">邮政编码:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="zip">
+                                <input placeholder="" type="text" id="zip" class="postalcode">
                             </div>
                         </div>
 
@@ -110,13 +110,13 @@
                                 <label for="" class="label-description">E-Mail:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="email">
+                                <input placeholder="" type="text" id="email" class="email">
                             </div>
                             <div class="form-label col-md-2">
                                 <label for="" class="label-description">通讯地址:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="address">
+                                <input placeholder="" type="text" id="address" class="callAddress">
                             </div>
                         </div>
 

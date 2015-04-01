@@ -153,7 +153,9 @@ var INVESTMENT_LIST = {
 
         var fund = item[this.investment.FUND_KEY];
         if (fund) {
-            fund = this.fund.getName(fund[this.fund.ID_KEY]);
+//            fund = this.fund.getName(fund[this.fund.ID_KEY]);
+            fund = $.project.domain(this.fundids, "com.jsy.fundObject.Fund", 'fundName').getItem(fund[this.fund.ID_KEY]).fundName;
+
         }
         var fund_td = $('<td><span class="fund-name" title="' + fund + '">' + fund + '</span></td>');
         tr.append(fund_td);
