@@ -19,7 +19,7 @@ var PAGE = {
     FUND_LIST: './fund-list.jsp',
     FUND_EDIT: './fund-edit.jsp',
     CUSTOMER_LIST: './customer-list.jsp',
-    CUSTOMER_EDIT: './customer-edit.jsp',
+    CUSTOMER_EDIT: './customer.jsp',
     USER_LIST: './user-list.jsp',
     USER_CREATE: './user-create.jsp',
     USER_EDIT: './user-edit.jsp',

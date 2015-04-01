@@ -14,3 +14,4 @@ textarea.template,div.template{display: none;}
 .input, .form-input input.valid_error, .form-input select.valid_error, .form-input textarea.valid_error, .chosen-container-multi, .bootstrap-timepicker-widget table td input.valid_error, .ui-toolbar select.valid_error, .ui-toolbar input.valid_error{border: 1px solid #FF0000;}
 input[readonly=true] {background: #EAE5E5;}
 .data-rows{ height: 30px; line-height: 30px;}
+.underline { text-decoration: underline;}

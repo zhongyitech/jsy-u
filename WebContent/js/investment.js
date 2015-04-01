@@ -49,10 +49,10 @@ var NIANHUA = {
     GUANLI_KEY: 'manageCommision',
     result: {},
     item: {},
-    getByFidAndMidAndIid: function (fundid, managerid, investment, vers) {
-        var params = JSON.stringify({fundid: fundid, managerid: managerid, investment: investment, vers: vers});
-        var data = {url: '/api/investmentArchives/getYield', params: params};
-        this.item= $.io.get(true,data)
+    getByFidAndMidAndIid: function (fundid, userId, investment, vers) {
+        var params = JSON.stringify({fundId: fundid, userId: userId, amount: investment, ver: vers});
+        var data = {url: '/api/investmentArchives/getYieldInfo', params: params};
+        this.item = $.io.get(true, data)
             .data();
         return this.item;
     }
@@ -134,7 +134,7 @@ var INVESTMENT_ITEM = {
             var me = this;
             $.ajax({
                 type: "post",
-                url: "../rest/item/get",
+                url: "/rest/item/get",
                 async: async,
                 data: data,
                 dataType: "json",
@@ -184,11 +184,10 @@ var INVESTMENT_ITEM = {
         }
 
         var fund_select = $(this.INVEST_FUND_ID);
-        var funds = $.io.get(true,{url:'/api/fund/selectList'}).data();
-        $.dom.select(this.INVEST_FUND_ID,funds,function(item){
-            return {text:item.mapName,value:item.id};
+        var funds = $.io.get(true, {url: '/api/fund/selectList'}).data();
+        $.dom.select(this.INVEST_FUND_ID, funds, function (item) {
+            return {text: item.mapName, value: item.id};
         });
-
 
 
 //
@@ -370,8 +369,10 @@ var INVESTMENT_ITEM = {
         var customer = item[this.investment.CUSTOMER_KEY];
         if (customer) {
             customer = this.customer.get(customer[this.customer.ID_KEY]);
-            var customer_name = this.customer.getName(customer[this.customer.ID_KEY]);
-            customer_name_input.val(customer_name);
+            if (customer) {
+                var customer_name = this.customer.getName(customer[this.customer.ID_KEY]);
+                customer_name_input.val(customer_name);
+            }
         }
 
         var country_select = $(this.INVEST_COUNTRY_ID);
@@ -451,7 +452,7 @@ var INVESTMENT_ITEM = {
 
                 for (var i = 0; i < attachments.length; i++) {
                     var attachment_name = me.attachments[i][me.file.NAME_KEY];
-                    var attachment_src = '../rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
+                    var attachment_src = '/rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
                     var attachment_item = $('<div class="attachment-div"></div>');
                     attachment_div.append(attachment_item);
                     var attachment_i = $('<i class="attachment-i"></i>');
@@ -474,7 +475,7 @@ var INVESTMENT_ITEM = {
                 for (var i = 0; i < attachments.length; i++) {
                     var attachment = me.file.get(me.attachments[i][me.file.ID_KEY]);
                     var attachment_name = attachment[me.file.NAME_KEY];
-                    var attachment_src = '../rest/file/download?path=' + attachment[me.file.PATH_KEY];
+                    var attachment_src = '/rest/file/download?path=' + attachment[me.file.PATH_KEY];
                     var attachment_item = $('<div class="attachment-div"></div>');
                     attachment_div.append(attachment_item);
                     var attachment_i = $('<i class="attachment-i"></i>');
@@ -763,7 +764,7 @@ var INVESTMENT_ITEM = {
         if (ywjl) {
             ywjl = me.user.get(ywjl);
             if (ywjl) {
-                var deparment= $.project.domain(ywjl.department.id,ywjl.department['class'],'deptName').getItem(ywjl.department.id);
+                var deparment = $.project.domain(ywjl.department.id, ywjl.department['class'], 'deptName').getItem(ywjl.department.id);
                 $(me.INVEST_DEPARTMENT_ID).html(deparment.deptName);
             } else {
                 $(me.INVEST_DEPARTMENT_ID).html('');
@@ -792,15 +793,15 @@ var INVESTMENT_ITEM = {
     },
     setTCBL: function () {
         var me = this;
-        var dmid = $(me.INVEST_DM_ID).val();
+        var uid = $(me.INVEST_BUSNIESSMANAGER_ID).val();
         var fid = $(this.INVEST_FUND_ID).val();
         var tzje = $(this.INVEST_MONEY_ID).val();
         var investment = this.moneyformat.toNumber(tzje);
         var htbh = $(this.INVEST_PACT_ID).val();
         var vers = this.stringformat.toVers(htbh);
 
-        if (dmid && fid && investment && vers) {
-            me.tcbl = this.nianhua.getByFidAndMidAndIid(fid, dmid, investment, vers);
+        if (uid && fid && investment && vers) {
+            me.tcbl = this.nianhua.getByFidAndMidAndIid(fid, uid, investment, vers);
             var tcbl = me.tcbl;
 
             if (tcbl) {
@@ -1119,7 +1120,7 @@ var INVESTMENT_ITEM = {
             customer[this.customer.UPLOADFILES_KEY] = this.attachments;
         }
 
-        item['customer'] = customer;
+        //item['customer'] = customer;
 
         //档案信息
         var invest_pact = $(this.INVEST_PACT_ID).val();
@@ -1181,15 +1182,15 @@ var INVESTMENT_ITEM = {
         }
 
         //提成信息
-        var dm = $(this.INVEST_DM_ID).val();
-        if (dm) {
-            item['bmjl'] = {id: dm.trim()};
-        }
+//        var dm = $(this.INVEST_DM_ID).val();
+//        if (dm) {
+//            item['bmjl'] = {id: dm.trim()};
+//        }
 
-        var department = $(this.INVEST_DEPARTMENT_ID).val();
-        if (department) {
-            item['bm'] = department.trim();
-        }
+//        var department = $(this.INVEST_DEPARTMENT_ID).val();
+//        if (department) {
+//            item['bm'] = department.trim();
+//        }
 
         var yewu = $(this.INVEST_YEWU_ID).val();
         if (yewu) {
@@ -1243,7 +1244,7 @@ var INVESTMENT_ITEM = {
 
         return item;
     },
-    setVaildInfo:function(data){
+    setVaildInfo: function (data) {
 
     },
     /**
@@ -1261,11 +1262,11 @@ var INVESTMENT_ITEM = {
             id = "";
         }
 
-        var customer = item[this.investment.CUSTOMER_KEY];
-        if (JSON.stringify(customer) != '{}' && !customer[this.customer.CARDNUMBER_KEY]) {
-            alert('请填写客户证件号码.');
-            return;
-        }
+//        var customer = item[this.investment.CUSTOMER_KEY];
+//        if (JSON.stringify(customer) != '{}' && !customer[this.customer.CARDNUMBER_KEY]) {
+//            alert('请填写客户证件号码.');
+//            return;
+//        }
 
         var me = this;
         var params = JSON.stringify({id: id});
@@ -1274,11 +1275,11 @@ var INVESTMENT_ITEM = {
 
 
         $.io.put(data)
-            .success(function(result){
+            .success(function (result) {
                 me.itme = result;
                 window.location = me.page.INVESMENT_PRINT;
             })
-            .error(function(result){
+            .error(function (result) {
                 alert(result.msg);
             });
     }
@@ -1339,9 +1340,9 @@ var GUANLI = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if(item) {
-            var uid=item.user.id;
-            var userinfo=USER.get(uid);
+        if (item) {
+            var uid = item.user.id;
+            var userinfo = USER.get(uid);
             item['yhzh'] = item && userinfo.yhzh;
             item['skr'] = item && userinfo.skr;
             item['khh'] = item && userinfo.khh;
@@ -1470,7 +1471,7 @@ var GUANLI = {
         if (item) {
             var khh = item['khh'];
 //            var khh = item[this.usercommission.KHH_KEY];
-            khh_input.val((khh)?khh:'');
+            khh_input.val((khh) ? khh : '');
         }
 
         var yhzh_td = $('<td></td>');
@@ -1480,7 +1481,7 @@ var GUANLI = {
         var yhzh_input = $('<input class="bank-number" name="banknumber"/>');
         yhzh_div.append(yhzh_input);
         if (item) {
-            var yhzh = item['yhzh'] ? item['yhzh'] :'';
+            var yhzh = item['yhzh'] ? item['yhzh'] : '';
 //            var yhzh = item[this.usercommission.YHZH_KEY];
             yhzh_input.val(yhzh);
         }
@@ -1620,9 +1621,9 @@ var YEWU = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if(item) {
-            var uid=item.user.id;
-            var userinfo=USER.get(uid);
+        if (item) {
+            var uid = item.user.id;
+            var userinfo = USER.get(uid);
             item['yhzh'] = item && userinfo.yhzh;
             item['skr'] = item && userinfo.skr;
             item['khh'] = item && userinfo.khh;
@@ -1712,7 +1713,7 @@ var YEWU = {
         tr.append(sjffsj_td);
         var sjffsj_div = $('<div class="form-input col-md-12"></div>');
         sjffsj_td.append(sjffsj_div);
-        var sjffsj_input = $('<input class="tcal disabled" name="shiji" readonly="true"/>');
+        var sjffsj_input = $('<input class="disabled" name="shiji" readonly="true"/>');
         sjffsj_div.append(sjffsj_input);
         f_tcalInit();
         if (item) {

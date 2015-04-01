@@ -1,0 +1,27 @@
+<div class="print-paper">
+    <div class="print-header">
+        <div class="float-right"> 编号（<span class="underline">{$T.contractNum}</span>）</div>
+        <h3>客户投资确认书</h3>
+    </div>
+    <div class="print-content">
+        <p>尊敬的客户<span class="underline">{$T.username}</span></p>
+        <p>您好！</p>
+        <p>感谢您投资<span class="underline">{$T.fundName}</span>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<span class="underline">{$T.}</span>万元整，期限为<span class="underline">{$T.}</span>年。本合伙企业承诺预期收益率为<span class="underline">{$T.}</span>/年。</p>
+        <p>您的计息起始日期为<span class="underline">{$T.date}</span>。</p>
+        {#foreach $T.times as item}
+        {#if $T.item.last}
+        <p>第{$.utils.chineseNumber($T.item$index+1)}次付息日为<span class="underline">{$.utils.dateFormat($T.item)}</span>。</p>
+        {#else}
+        <p>第{$.utils.chineseNumber($T.item$index+1)}次付息和归还本金日为<span class="underline">{$.utils.dateFormat($T.item)}</span>。</p>
+        {#/if}
+        {#/for}
+        <p>到账时间为付息日或归还本金日起三个工作日内。(周六、周日及法定节假日顺延)</p>
+        <p>根据《XXXX》、《XXXXXX》等约定，您作为<span class="underline">{$T.fundName}</span>的有限合伙人，享受权利并承担相应义务。本合伙企业将按照上述协议的约定，积极履行自己的职责，确保您的投资安全！</p>
+        <p>特此确认！</p>
+        <p>友情提示：若您于本投资期限届满后继续投资本合伙企业或转投本公司其他基金合伙企业，请与投资期限届满前三个工作日与您的理财经理联系，并办理相关续投或转投手续。</p>
+    </div>
+    <div class="print-footer">
+        <div class="float-right">{$T.fundName}</div>
+        <div class="float-right">{$T.date}</div>
+    </div>
+</div>

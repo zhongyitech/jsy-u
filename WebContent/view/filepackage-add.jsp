@@ -52,13 +52,13 @@
                         <label for="">合同编号：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="contractNum"/>
+                        <input type="text" id="contractNum" maxlength="9" placeholder="输入9位合同编号"/>
                     </div>
                     <div class="form-label col-md-2  ">
                         <label for="">合同名称： </label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="contractNo"/>
+                        <input type="text" id="contractNo" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -72,7 +72,7 @@
                         <label for="">基金名称： </label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="fundName_show"/>
+                        <input type="text" id="fundName_show" readonly="true" class="disabled"/>
                         <input type="text" hidden="hidden" id="fundName"/>
                         <%--<select id="fundName" disabled="disabled">--%>
                         <%--</select>--%>
