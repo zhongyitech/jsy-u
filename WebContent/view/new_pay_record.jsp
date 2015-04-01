@@ -85,8 +85,8 @@
 
                             <div class="form-row pad3B">
                                 <div class="form-label">
-                                    <button class="but-ui btn primary-bg large" type="button">
-                                        <span class="button-content" id="add_pay_record">添加</span>
+                                    <button class="but-ui btn primary-bg large" type="button" id="add_pay_record">
+                                        <span class="button-content" >添加</span>
                                     </button>
                                 </div>
                             </div>

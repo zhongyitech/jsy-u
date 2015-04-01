@@ -30,13 +30,13 @@
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-3">
-                                    <label class="sr-only" for="">项目单号</label>
+                                    <label  for="">项目单号</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" class="form-control" id="project_id" placeholder="项目单号">
                                 </div>
                                 <div class="form-label col-md-2">
-                                    <label class="sr-only" for="">项目名称</label>
+                                    <label  for="">项目名称</label>
                                 </div>
                                 <div class="form-input col-md-3">
                                     <input type="text" class="form-control" id="project_name" placeholder="项目名称">
@@ -45,13 +45,13 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-3   ">
-                                    <label class="sr-only" for="">基金名称</label>
+                                    <label  for="">基金名称</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" class="form-control" id="fund_name" placeholder="基金名称">
                                 </div>
                                 <div class="form-label col-md-2   ">
-                                    <label class="sr-only" for="">项目负责人</label>
+                                    <label for="">项目负责人</label>
                                 </div>
                                 <div class="form-input col-md-3">
                                     <input type="text" class="form-control" id="project_incharge_name" placeholder="项目负责人">
