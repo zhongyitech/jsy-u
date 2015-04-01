@@ -21,10 +21,9 @@
         <div id="page-content" class="page-view pad25T">
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">新建项目</span> <a href="#"
-                                                               class="float-right icon-separator btn toggle-button"
-                                                               title="新建项目"> <i
-                        class="glyph-icon icon-toggle icon-chevron-down"></i>
+                    <span class="float-left">新建项目</span>
+                    <a href="#" class="float-right icon-separator btn toggle-button" title="新建项目">
+                        <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
                 </div>
                 <div class="content-box-wrapper">
