@@ -111,98 +111,24 @@ var VIEWDATA={
                 return false;
             }
 
-            var isInvestEmpty = false;
-            //先组织投资款的数据结构
-            var invest_struct = {targets: null, payRecords: null};
-            var invest_payRecords = [];
-            var invest_checkBoxs = $("input[name='pay_checkbox']:checkbox:checked","#pay_records_table");
-            $.each(invest_checkBoxs,function(index,obj){
-                invest_payRecords.push($(obj).val());
-            });
-
-            if(invest_payRecords.length==0){
-                isInvestEmpty = true;
-            }else{
-                var targets = [];
-                if ($('#main_money',"#invest_div").is(':checked')) {
-                    targets.push({id:1,name:"main_money"});
-                }
-                if ($('#manage_money',"#invest_div").is(':checked')) {
-                    targets.push({id:2,name:"manage_money"});
-                }
-                if ($('#community_money',"#invest_div").is(':checked')) {
-                    targets.push({id:3,name:"community_money"});
-                }
-                if ($('#interest_money',"#invest_div").is(':checked')) {
-                    targets.push({id:4,name:"interest_money"});
-                }
-                if ($('#over_money',"#invest_div").is(':checked')) {
-                    targets.push({id:5,name:"over_money"});
-                }
-                if ($('#penalty_money',"#invest_div").is(':checked')) {
-                    targets.push({id:6,name:"penalty_money"});
-                }
-                if ($('#borrow_money',"#invest_div").is(':checked')) {
-                    targets.push({id:7,name:"borrow_money"});
-                }
-
-                if(targets.length==0){
-                    alert("请选择投资款————款项性质");
-                    return false;
-                }else{
-                    invest_struct.targets = targets;
-                    invest_struct.payRecords = invest_payRecords;
-                }
-
-            }
-
-
-            //然后组织借款的组织结构
-            var borrow_struct = {targets: null, payRecords: null};
-            var borrow_payRecords = [];
-            var borrow_checkBoxs = $("input[name='pay_checkbox']:checkbox:checked","#pay_records_table2");
-            $.each(borrow_checkBoxs,function(index,obj){
-                borrow_payRecords.push($(obj).val());
-            });
-
-            if(borrow_payRecords.length==0 && isInvestEmpty){
-                alert("请选择一条汇款记录");
-                return false;
-            }else if(borrow_payRecords.length>0){
-                var targets = [];
-                if ($('#main_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:1,name:"main_money"});
-                }
-                if ($('#manage_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:2,name:"manage_money"});
-                }
-                if ($('#community_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:3,name:"community_money"});
-                }
-                if ($('#interest_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:4,name:"interest_money"});
-                }
-                if ($('#over_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:5,name:"over_money"});
-                }
-                if ($('#penalty_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:6,name:"penalty_money"});
-                }
-                if ($('#borrow_money',"#borrow_div").is(':checked')) {
-                    targets.push({id:7,name:"borrow_money"});
-                }
-
-                if(targets.length==0){
-                    alert("请选择借款————款项性质");
-                    return false;
-                }else{
-                    borrow_struct.targets = targets;
-                    borrow_struct.payRecords = borrow_payRecords;
-                }
-
-            }
-
             var remain_money = $("#remain_money").val(); //参考剩余价格
+            //先组织投资款的数据结构
+
+            var receiveDetail_struct = [];
+            $("input[name='shouldReceiveCheckbox'][type='checkbox']:checked").each(function(){
+                //payid1_targetoriginal
+                var compositeid = $(this).attr("id");
+                //var splitids = compositeid.split("_");
+                //var payid = splitids[0].replace("payid","");
+                //var target = splitids[1].replace("target","");
+                //receiveDetail_struct.push({payid:payid,target:target});
+                receiveDetail_struct.push(compositeid);
+            });
+
+            if(receiveDetail_struct.length == 0){
+                alert("请选择应收款项！");
+                return false;
+            }
 
             var model = {
                 fundid:fundid,
@@ -210,8 +136,7 @@ var VIEWDATA={
                 paydate:paydate,
                 paytotal:paytotal,
                 bankid:bankid,
-                invest_struct:invest_struct,
-                borrow_struct:borrow_struct,
+                receiveDetail_struct:receiveDetail_struct,
                 remain_money_suggest:remain_money
             };
             me.post_complete("/api/receiveRecord/add_receive_record",model);
@@ -251,64 +176,28 @@ var VIEWDATA={
             return;
         }
 
-        //首先看投资款table的选中情况
-        paytotal = this.countRemainMoneyByDomain(paytotal,"#invest_div");
-        //然后看借款table的选中情况
-        paytotal = this.countRemainMoneyByDomain(paytotal,"#borrow_div");
+        //看table的li选中情况
+        paytotal = this.countRemainMoneyByDomain(paytotal);
 
         $("#remain_money").val(paytotal);
     },
 
-    countRemainMoneyByDomain: function (paytotal,domain) {
+    countRemainMoneyByDomain: function (paytotal) {
         var me = this;
-        var targets = [];
-        var checkBoxs = $("input[name='target_type']:checkbox:checked",domain);
-        $.each(checkBoxs,function(index,obj){
-            targets.push($(obj).val());
-        });
-        if(targets.length==0){
-            return paytotal;
-        }
 
         var payRecords = [];
-        var checkBoxs2 = $("input[name='pay_checkbox']:checkbox:checked",domain);
+        var checkBoxs2 = $("input[name='shouldReceiveCheckbox']:checkbox:checked");
         $.each(checkBoxs2,function(index,obj){
-            payRecords.push(me.payRecords[$(obj).val()]);
+            paytotal= paytotal-$(obj).val();
         });
-        if(payRecords.length==0){
-            return paytotal;
-        }
-
-
-        //开始扣钱
-        $.each(payRecords,function(index,payRecord){
-            $.each(targets,function(index2,target){
-                if("main_money"==target){
-                    paytotal= paytotal-payRecord["amount"];
-                }else if("manage_money"==target){
-                    paytotal= paytotal-payRecord["manage_pay"];
-                }else if("community_money"==target){
-                    paytotal= paytotal-payRecord["community_pay"];
-                }else if("interest_money"==target){
-                    paytotal= paytotal-payRecord["interest_pay"];
-                }else if("over_money"==target){
-                    paytotal= paytotal-payRecord["over_interest_pay"];
-                }else if("penalty_money"==target){
-                    paytotal= paytotal-payRecord["penalty_pay"];
-                }else if("borrow_money"==target){
-                    paytotal= paytotal-payRecord["borrow_pay"];
-                }
-            });
-        });
-
         return paytotal;
+
     },
 
     loadPayRecords: function(projectid){
         var me = this;
         var params = JSON.stringify({ projectid: projectid});
         var data = { url: '/api/payRecord/loadPayRecordsByProject',params:params};
-        console.log(data);
         $.ajax({
             type: 'post',
             url: '../rest/item/get',
@@ -316,13 +205,19 @@ var VIEWDATA={
             dataType: 'json',
             async: false,
             success: function(result){
-                console.log(result);
                 me.setTable(result);
 
                 $("input[name='pay_checkbox']").change(function(){
-                    //me.countRemainMoney();
-                    me.appendShouldPayInfo($(this).val(),$(this).closest('tr'));
-                    console.log($(this).val());
+                    //clear old record
+                    if($(this).is(':checked')){
+                        me.appendShouldPayInfo($(this).val(),$(this).closest('tr'));
+                    }else{
+                        $(this).closest('tr').next("ul").remove();
+                    }
+
+
+
+
                 });
 
             },
@@ -335,7 +230,6 @@ var VIEWDATA={
         var me = this;
         var params = JSON.stringify({ payRecordId: payRecordId});
         var data = { url: '/api/receiveRecord/shouldReceiveDetail',params:params};
-        console.log(data);
         $.ajax({
             type: 'post',
             url: '../rest/item/get',
@@ -344,14 +238,35 @@ var VIEWDATA={
             async: false,
             success: function(result){
                 console.log(result);
-                if(result){
+                if(result&& result.rest_result){
+                    var rest_result = JSON.parse(result.rest_result)
                     var ul = $('<ul>');
-                    $(targetTr).append(ul);
-                    $.each(result,function(index,obj){
-                        $(ul).append(
-                            '<li>'+obj.target+'<li>'
-                        );
-
+                    $(targetTr).after(ul);
+                    $.each(rest_result,function(index,obj){
+                        var checkbox = $('<input id="'+obj.id+'" name="shouldReceiveCheckbox" type="checkbox" value="'+obj.amount+'" style="height: 16px;width: 16px; position: relative;top: 3px;">');
+                        var li = $("<li>");
+                        li.append(checkbox);
+                        var cn_change = "";
+                        if(obj.target=="original"){
+                            cn_change = "应再收本金";
+                        }else if(obj.target=="maintain"){
+                            cn_change = "应再收管理费";
+                        }else if(obj.target=="channel"){
+                            cn_change = "应再收渠道费";
+                        }else if(obj.target=="firstyear"){
+                            cn_change = "应再第一年利息费";
+                        }else if(obj.target=="borrow"){
+                            cn_change = "应再第一年借款费";
+                        }else if(obj.target=="penalty"){
+                            cn_change = "应再第一年违约费";
+                        }else if(obj.target=="overdue"){
+                            cn_change = "应再第一年逾期费";
+                        }
+                        li.append(cn_change+':'+obj.amount);
+                        $(ul).append(li);
+                        checkbox.click(function(){
+                            me.countRemainMoney();
+                        });
                     });
                 }
             },
@@ -436,7 +351,7 @@ var VIEWDATA={
 
                 //load new data
                 var rest_result = result.rest_result;//JSON.parse(result.rest_result);
-                if(rest_result&& rest_result.projects){
+                if(rest_result && rest_result.projects){
                     me.projects = {}; // reset
                     $.each(rest_result.projects,function(index,obj){
                         me.projects[obj.id]=obj;

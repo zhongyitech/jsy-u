@@ -134,7 +134,7 @@ var INVESTMENT_ITEM = {
             var me = this;
             $.ajax({
                 type: "post",
-                url: "/rest/item/get",
+                url: "../rest/item/get",
                 async: async,
                 data: data,
                 dataType: "json",
@@ -365,132 +365,132 @@ var INVESTMENT_ITEM = {
         this.yewu.set(ywtcs);
 
         //客户信息
-        var customer_name_input = $(this.INVEST_CUSTOMER_NAME_ID);
-        var customer = item[this.investment.CUSTOMER_KEY];
-        if (customer) {
-            customer = this.customer.get(customer[this.customer.ID_KEY]);
-            if (customer) {
-                var customer_name = this.customer.getName(customer[this.customer.ID_KEY]);
-                customer_name_input.val(customer_name);
-            }
-        }
+//        var customer_name_input = $(this.INVEST_CUSTOMER_NAME_ID);
+//        var customer = item[this.investment.CUSTOMER_KEY];
+//        if (customer) {
+//            customer = this.customer.get(customer[this.customer.ID_KEY]);
+//            if (customer) {
+//                var customer_name = this.customer.getName(customer[this.customer.ID_KEY]);
+//                customer_name_input.val(customer_name);
+//            }
+//        }
 
-        var country_select = $(this.INVEST_COUNTRY_ID);
-        if (customer) {
-            var country = this.customer.getCountry(customer[this.customer.ID_KEY]);
-            country_select.val(country);
-        }
-
-        var cardtype_select = $(this.INVEST_CARDTYPE_ID);
-        if (customer) {
-            var cardtype = this.customer.getCardType(customer[this.customer.ID_KEY]);
-            cardtype_select.val(cardtype);
-        }
-
-        var cardnumber_select = $(this.INVEST_CARDNUMBER_ID);
-        if (customer) {
-            var cardnumber = this.customer.getCardNumber(customer[this.customer.ID_KEY]);
-            cardnumber_select.val(cardnumber);
-        }
-
-        var sfzdz_input = $(this.INVEST_SFZDZ_ID);
-        if (customer) {
-            var sfzdz = CUSTOMER.toSFZDZ(customer);
-            sfzdz_input.val(sfzdz);
-        }
-
-        var khh_input = $(this.INVEST_BANKNAME_ID);
-        if (customer) {
-            var khh = this.customer.getKHH(customer[this.customer.ID_KEY]);
-            khh_input.val(khh);
-        }
-
-        var yhzh_input = $(this.INVEST_BANKNUMBER_ID);
-        if (customer) {
-            var yhzh = this.customer.getYHZH(customer[this.customer.ID_KEY]);
-            yhzh_input.val(yhzh);
-        }
-
-        var phone_input = $(this.INVEST_PHONE_ID);
-        if (customer) {
-            var phone = this.customer.toPhone(customer);
-            phone_input.val(phone);
-        }
-
-        var postalcode_input = $(this.INVEST_ZIP_ID);
-        if (customer) {
-            var postalcode = this.customer.toPostalCode(customer);
-            postalcode_input.val(postalcode);
-        }
-
-        var email_input = $(this.INVEST_EMAIL_ID);
-        if (customer) {
-            var email = this.customer.toEmail(customer);
-            email_input.val(email);
-        }
-
-        var calladdress_input = $(this.INVEST_ADDRESS_ID);
-        if (customer) {
-            var calladdress = this.customer.toCallAddress(customer);
-            calladdress_input.val(calladdress);
-        }
-        if (customer) {
-            var calladdress = this.customer.toCallAddress(customer);
-            calladdress_input.val(calladdress);
-        }
-
-        var attachment = $(this.INVEST_ATTACHMENT_ID);
-        attachment.change(function () {
-            me.attachments = me.file.upload($(this)[0].files);
-            var attachments = me.attachments;
-            if (attachments) {
-                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
-                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
-                for (var i = 0; i < attachment_imgs.length; i++) {
-                    $(attachment_imgs[i]).remove()
-                }
-
-                for (var i = 0; i < attachments.length; i++) {
-                    var attachment_name = me.attachments[i][me.file.NAME_KEY];
-                    var attachment_src = '/rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
-                    var attachment_item = $('<div class="attachment-div"></div>');
-                    attachment_div.append(attachment_item);
-                    var attachment_i = $('<i class="attachment-i"></i>');
-                    attachment_item.append(attachment_i);
-                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
-                    attachment_i.append(attachment);
-                }
-            }
-        });
-        if (customer) {
-            me.attachments = this.customer.toUploadFiles(customer);
-            var attachments = me.attachments;
-            if (attachments) {
-                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
-                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
-                for (var i = 0; i < attachment_imgs.length; i++) {
-                    $(attachment_imgs[i]).remove()
-                }
-
-                for (var i = 0; i < attachments.length; i++) {
-                    var attachment = me.file.get(me.attachments[i][me.file.ID_KEY]);
-                    var attachment_name = attachment[me.file.NAME_KEY];
-                    var attachment_src = '/rest/file/download?path=' + attachment[me.file.PATH_KEY];
-                    var attachment_item = $('<div class="attachment-div"></div>');
-                    attachment_div.append(attachment_item);
-                    var attachment_i = $('<i class="attachment-i"></i>');
-                    attachment_item.append(attachment_i);
-                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
-                    attachment_i.append(attachment);
-                }
-            }
-        }
-
-        var khbz_input = $(this.INVEST_KHBZ_ID);
-        if (customer) {
-            var khbz = this.customer.toRemark(customer);
-            khbz_input.val(khbz);
-        }
+//        var country_select = $(this.INVEST_COUNTRY_ID);
+//        if (customer) {
+//            var country = this.customer.getCountry(customer[this.customer.ID_KEY]);
+//            country_select.val(country);
+//        }
+//
+//        var cardtype_select = $(this.INVEST_CARDTYPE_ID);
+//        if (customer) {
+//            var cardtype = this.customer.getCardType(customer[this.customer.ID_KEY]);
+//            cardtype_select.val(cardtype);
+//        }
+//
+//        var cardnumber_select = $(this.INVEST_CARDNUMBER_ID);
+//        if (customer) {
+//            var cardnumber = this.customer.getCardNumber(customer[this.customer.ID_KEY]);
+//            cardnumber_select.val(cardnumber);
+//        }
+//
+//        var sfzdz_input = $(this.INVEST_SFZDZ_ID);
+//        if (customer) {
+//            var sfzdz = CUSTOMER.toSFZDZ(customer);
+//            sfzdz_input.val(sfzdz);
+//        }
+//
+//        var khh_input = $(this.INVEST_BANKNAME_ID);
+//        if (customer) {
+//            var khh = this.customer.getKHH(customer[this.customer.ID_KEY]);
+//            khh_input.val(khh);
+//        }
+//
+//        var yhzh_input = $(this.INVEST_BANKNUMBER_ID);
+//        if (customer) {
+//            var yhzh = this.customer.getYHZH(customer[this.customer.ID_KEY]);
+//            yhzh_input.val(yhzh);
+//        }
+//
+//        var phone_input = $(this.INVEST_PHONE_ID);
+//        if (customer) {
+//            var phone = this.customer.toPhone(customer);
+//            phone_input.val(phone);
+//        }
+//
+//        var postalcode_input = $(this.INVEST_ZIP_ID);
+//        if (customer) {
+//            var postalcode = this.customer.toPostalCode(customer);
+//            postalcode_input.val(postalcode);
+//        }
+//
+//        var email_input = $(this.INVEST_EMAIL_ID);
+//        if (customer) {
+//            var email = this.customer.toEmail(customer);
+//            email_input.val(email);
+//        }
+//
+//        var calladdress_input = $(this.INVEST_ADDRESS_ID);
+//        if (customer) {
+//            var calladdress = this.customer.toCallAddress(customer);
+//            calladdress_input.val(calladdress);
+//        }
+//        if (customer) {
+//            var calladdress = this.customer.toCallAddress(customer);
+//            calladdress_input.val(calladdress);
+//        }
+//
+//        var attachment = $(this.INVEST_ATTACHMENT_ID);
+//        attachment.change(function () {
+//            me.attachments = me.file.upload($(this)[0].files);
+//            var attachments = me.attachments;
+//            if (attachments) {
+//                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
+//                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
+//                for (var i = 0; i < attachment_imgs.length; i++) {
+//                    $(attachment_imgs[i]).remove()
+//                }
+//
+//                for (var i = 0; i < attachments.length; i++) {
+//                    var attachment_name = me.attachments[i][me.file.NAME_KEY];
+//                    var attachment_src = '../rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
+//                    var attachment_item = $('<div class="attachment-div"></div>');
+//                    attachment_div.append(attachment_item);
+//                    var attachment_i = $('<i class="attachment-i"></i>');
+//                    attachment_item.append(attachment_i);
+//                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
+//                    attachment_i.append(attachment);
+//                }
+//            }
+//        });
+//        if (customer) {
+//            me.attachments = this.customer.toUploadFiles(customer);
+//            var attachments = me.attachments;
+//            if (attachments) {
+//                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
+//                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
+//                for (var i = 0; i < attachment_imgs.length; i++) {
+//                    $(attachment_imgs[i]).remove()
+//                }
+//
+//                for (var i = 0; i < attachments.length; i++) {
+//                    var attachment = me.file.get(me.attachments[i][me.file.ID_KEY]);
+//                    var attachment_name = attachment[me.file.NAME_KEY];
+//                    var attachment_src = '../rest/file/download?path=' + attachment[me.file.PATH_KEY];
+//                    var attachment_item = $('<div class="attachment-div"></div>');
+//                    attachment_div.append(attachment_item);
+//                    var attachment_i = $('<i class="attachment-i"></i>');
+//                    attachment_item.append(attachment_i);
+//                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
+//                    attachment_i.append(attachment);
+//                }
+//            }
+//        }
+//
+//        var khbz_input = $(this.INVEST_KHBZ_ID);
+//        if (customer) {
+//            var khbz = this.customer.toRemark(customer);
+//            khbz_input.val(khbz);
+//        }
 
         //通过定时任务为动态生成的控件绑定事件
         this.task(450);
@@ -811,19 +811,19 @@ var INVESTMENT_ITEM = {
                 var bxsyl = ticheng[this.tcfpfw.BXSYL_KEY];
 
                 if (sfbx) {
-                    $(me.INVEST_YEARRATE_ID).attr('readonly', false);
+                    $(me.INVEST_YEARRATE_ID).attr('disabled', false);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(bxsyl));
                 } else {
-                    $(me.INVEST_YEARRATE_ID).attr('readonly', true);
+                    $(me.INVEST_YEARRATE_ID).attr('disabled', true);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(shouyi));
                 }
             } else {
-                $(me.INVEST_YEARRATE_ID).attr('readonly', true);
+                $(me.INVEST_YEARRATE_ID).attr('disabled', true);
                 $(me.INVEST_YEARRATE_ID).val('');
             }
         } else {
             me.tcbl = null;
-            $(me.INVEST_YEARRATE_ID).attr('readonly', true);
+            $(me.INVEST_YEARRATE_ID).attr('disabled', true);
             $(me.INVEST_YEARRATE_ID).val('');
         }
 

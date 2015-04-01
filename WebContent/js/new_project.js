@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-
     VIEWDATA.file = FILE;
     VIEWDATA.init(true);
 
@@ -40,7 +39,7 @@ var VIEWDATA={
                 alert("请输入项目名称");
                 return;
             }
-            if(!incharger){
+            if(!inchargerName){
                 alert("请输入项目负责人");
                 return;
             }
@@ -108,8 +107,8 @@ var VIEWDATA={
                         "suggestions": []
                     };
                 } else {
-                    var result = JSON.parse(response);
-                    var suggestions = JSON.parse(result.suggestions);
+                    var result = JSON.parse(response).rest_result;
+                    var suggestions = (result.suggestions);
                     result.suggestions = suggestions;
                     return result;
                 }

@@ -1304,6 +1304,7 @@ if (typeof JSON !== 'object') {
 
         verifySuggestionsFormat: function (suggestions) {
             // If suggestions is string array, convert them to supported format:
+            console.log(suggestions);
             if (suggestions.length && typeof suggestions[0] === 'string') {
                 return $.map(suggestions, function (value) {
                     return { value: value, data: null };
