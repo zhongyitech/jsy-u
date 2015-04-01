@@ -21,10 +21,9 @@
         <div id="page-content" class="page-view pad25T">
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">新建项目</span> <a href="#"
-                                                               class="float-right icon-separator btn toggle-button"
-                                                               title="新建项目"> <i
-                        class="glyph-icon icon-toggle icon-chevron-down"></i>
+                    <span class="float-left">新建项目</span>
+                    <a href="#" class="float-right icon-separator btn toggle-button" title="新建项目">
+                        <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
                 </div>
                 <div class="content-box-wrapper">
@@ -32,13 +31,13 @@
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-3   ">
-                                    <label for=""> 项目方：<span class="required">*</span> </label>
+                                    <label > 项目方：<span class="required">*</span> </label>
                                 </div>
                                 <div class="form-input col-md-3">
                                     <input type="text" id="projectdealer"/>
                                 </div>
                                 <div class="form-label col-md-3  ">
-                                    <label for=""> 项目名称： <span class="required">*</span></label>
+                                    <label > 项目名称： <span class="required">*</span></label>
                                 </div>
                                 <div class="form-input col-md-3">
                                     <input type="text" id="projectname" />
@@ -47,7 +46,7 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-3   ">
-                                    <label for=""> 项目负责人：<span class="required">*</span></label>
+                                    <label > 项目负责人：<span class="required">*</span></label>
                                 </div>
                                 <div class="form-input col-md-3">
                                     <input type="text" id="inchargerName"/>
@@ -58,7 +57,7 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">备注：</label>
+                                    <label class="font-size-20">备注：</label>
                                 </div>
                                 <div class="form-input col-md-10">
                                     <textarea name="input_text" id="description" class="small-textarea"></textarea>
@@ -90,14 +89,14 @@
                                         <div class="form-bordered">
                                             <div class="form-row">
                                                 <div class="form-label col-md-2">
-                                                    <label for="">董事：</label>
+                                                    <label >董事：</label>
                                                 </div>
 
                                                 <div class="form-input col-md-4">
                                                     <input type="text" id="director"/>
                                                 </div>
                                                 <div class="form-label col-md-2   ">
-                                                    <label for="">监事：</label>
+                                                    <label >监事：</label>
                                                 </div>
                                                 <div class="form-input col-md-4">
                                                     <input type="text"  id="supervisor"/>
@@ -105,7 +104,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-label col-md-12">
-                                                    <label for="" class="font-size-20">股干人员架构：</label>
+                                                    <label class="font-size-20">股干人员架构：</label>
                                                 </div>
                                                 <div class="form-input col-md-10">
                                                     <textarea name="input_text" class="small-textarea" id="stockStructure"></textarea>
@@ -157,7 +156,7 @@
                                         <div class="form-bordered">
                                             <div class="form-row">
                                                 <div class="form-label col-md-12">
-                                                    <label for="" class="font-size-20">债务：</label>
+                                                    <label class="font-size-20">债务：</label>
                                                 </div>
                                                 <div class="form-input col-md-10">
                                                     <textarea name="input_text" class="small-textarea" id="debt"></textarea>
@@ -166,7 +165,7 @@
 
                                             <div class="form-row">
                                                 <div class="form-label col-md-12">
-                                                    <label for="" class="font-size-20">资产：</label>
+                                                    <label class="font-size-20">资产：</label>
                                                 </div>
                                                 <div class="form-input col-md-10">
                                                     <textarea name="input_text" class="small-textarea" id="assets"></textarea>
@@ -201,7 +200,7 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">附件：</label>
+                                    <label class="font-size-20">附件：</label>
                                 </div>
                             </div>
                             <div class="form-row">
