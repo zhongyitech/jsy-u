@@ -102,13 +102,11 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">选择</th>
-                                    <th class="text-center">付款日期</th>
+                                    <th class="text-center">收款日期</th>
                                     <th class="text-center">项目基金</th>
-                                    <th class="text-center">汇款金额</th>
-                                    <th class="text-center">应收利息</th>
-                                    <th class="text-center">应收管理费</th>
-                                    <th class="text-center">应收渠道费</th>
-                                    <th class="text-center">投资天数</th>
+                                    <th class="text-center">收款金额</th>
+                                    <th class="text-center">银行户名</th>
+                                    <th class="text-center">银行帐号</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,7 +118,6 @@
 
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">选择记录编号：1</div>
                     <div class="panel-body">
                         <form class="form-inline">
                             <div class="form-group">
@@ -143,26 +140,26 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">统计信息</div>
-                    <div class="panel-body">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <label>应收利息 (不含管理费和渠道费)</label>
-                                <span>500</span>
-                            </div>
-                            <div class="form-group">
-                                <label>已收管理费 (金赛银公司收) </label>
-                                <span>200</span>
-                            </div>
-                            <div class="form-group">
-                                <label>已收渠道费</label>
-                                <span>200</span>
-                            </div>
+                <%--<div class="panel panel-default">--%>
+                    <%--<div class="panel-heading">统计信息</div>--%>
+                    <%--<div class="panel-body">--%>
+                        <%--<form class="form-inline">--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label>应收利息 (不含管理费和渠道费)</label>--%>
+                                <%--<span>500</span>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label>已收管理费 (金赛银公司收) </label>--%>
+                                <%--<span>200</span>--%>
+                            <%--</div>--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label>已收渠道费</label>--%>
+                                <%--<span>200</span>--%>
+                            <%--</div>--%>
 
-                        </form>
-                    </div>
-                </div>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
             </div>
 
