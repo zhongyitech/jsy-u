@@ -49,6 +49,34 @@ var ROLE_LIST ={
 			this.getView().find(this.REMOVE_ID).click(function(){
 				me.remove();
 			});
+
+
+            $("#role_add").click(function(){
+
+                var item ={
+                    name:$("#newRole_name").val()
+                };
+
+                if(item.name==""){
+                    $("#newRole_name").addClass("valid_error");
+                    return;
+                }else{
+                    $("#newRole_name").removeClass("valid_error");
+                }
+                var entity = item;
+                var data = {url: '/api/role',entity: entity};
+
+                $.io.post(data)
+                    .success(function(result){
+                        $("#newRole_name").removeClass("valid_error");
+//                        window.location = PAGE.ROLE_LIST;
+                        me.set();
+                    })
+                    .error(function(error){
+                        alert("添加角色出错了!"+error.msg);
+                        $("#newRole_name").addClass("valid_error");
+                    });
+            });
 			
 			this.set(async);
 		},
@@ -69,27 +97,17 @@ var ROLE_LIST ={
 			});
 			var params = JSON.stringify({});
 			var data = {url: '/api/role/readAllForPage', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: async,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.setView(response);
-				},
-				error: function(response){
-					me.response = response;
-					me.setView(response);
-					LOGIN.error(response);
-				}
-			});
+
+
+            $.io.post(data).success(function(result,page){
+                me.response=result;
+                me.setView(result,page);
+
+            });
 		},
-		setView: function(response){
-			this.setPage(response);
-			this.setTable(response);
+		setView: function(result,page){
+			this.setPage(page);
+			this.setTable(result);
 		},
 		setPage: function(response){//设置页数选择列表
             var _this=this;
@@ -99,11 +117,12 @@ var ROLE_LIST ={
                 _this.set(true);
             });
 		},
-		setTable: function (response){
-			this.items = response[REST.RESULT_KEY];
+		setTable: function (result){
+			this.items = result
 			var table = this.getView().find(this.TABLE_ID);
             table.find("tbody").empty();
 			var items = this.items;
+            this.tr_value=0;
 			if(items){
 				for(var i=0; i<items.length; i++){
 					this.add(items[i]);
@@ -151,25 +170,31 @@ var ROLE_LIST ={
 		},
 		submit: function(item){
 			var me = this;
-			var entity = JSON.stringify({});
 			var params = JSON.stringify({id: DEPARTMENT.toId(item)});
-			var data = {url: '/api/role/delete', params: params, entity: entity};
-			
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/delete", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					me.set(true);
-				},
-				error: function(response){
-					me.response = response;
-					LOGIN.error(response);
-				}
-			});
+			var data = {url: '/api/role', params: params};
+
+
+            $.io.del(data).success(function(result){
+               me.set();
+            }).error(function(e){
+                alert(e.msg);
+            });
+
+//			$.ajax({
+//				type: "post",
+//				url: "../rest/item/delete",
+//				async: true,
+//				data: data,
+//				dataType: "json",
+//				success: function(response){
+//					me.response = response;
+//					me.set(true);
+//				},
+//				error: function(response){
+//					me.response = response;
+//					LOGIN.error(response);
+//				}
+//			});
 		}
 };
 
