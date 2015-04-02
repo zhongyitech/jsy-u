@@ -10,6 +10,44 @@
 <body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
+    <textarea id="summary-data-template" class="template">
+        {#param name=fields value=["fundName","amount","count","lx","bj"]}
+        {#param name=start value=$P.callback()+1}
+        {#param name=pos value=$P.start}
+        <table class="table table-striped text-center mrg0B" id="view-table">
+            <thead>
+            <tr>
+                <th class="text-center">基金</th>
+                <th class="text-center">总金额</th>
+                <th class="text-center">总笔数</th>
+                <th class="text-center">利息</th>
+                <th class="text-center">本金</th>
+            </tr>
+            </thead>
+            <tbody>
+            {#foreach $T as item}
+            <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
+                <%--{#foreach $P.fields as field}--%>
+
+                <td class="text-center">
+                    <span class="text-overflow">{$T.item["fundName"]}</span>
+                </td>  <td class="text-center">
+                    <span class="text-overflow">{NUMBERFORMAT.toYuan($T.item["amount"])}</span>
+                </td>  <td class="text-center">
+                    <span class="text-overflow">{$T.item["count"]}</span>
+                </td>  <td class="text-center">
+                    <span class="text-overflow">{NUMBERFORMAT.toYuan($T.item["lx"])}</span>
+                </td>
+                    <td class="text-center">
+                        <span class="text-overflow">{NUMBERFORMAT.toYuan($T.item["bj"])}</span>
+                    </td>
+                <%--{#/for}--%>
+            </tr>
+            {#/for}
+            </tbody>
+        </table>
+        <div class="data-rows">第{$P.start}-{$P.start+$T.length-1}条</div>
+    </textarea>
     <div id="page-content-wrapper">
         <div id="page-content" class="page-view pad25T">
 
@@ -131,17 +169,9 @@
                 </h3>
 
                 <div class="content-box-wrapper">
-                    <table class="table table-striped text-center mrg0B" id="pacts-get-table2">
-                        <thead>
-                            <tr>
-                                <th><span class="text-overflow text-center cash-fund">基金</span></th>
-                                <th><span class="text-overflow text-center cash-total">总金额</span></th>
-                                <th><span class="text-overflow text-center cash-count">笔数</span></th>
-                                <th><span class="text-overflow text-center cash-lixi">利息</span></th>
-                                <th><span class="text-overflow text-center cash-benjin">本金</span></th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
+                    <div id="table-pager-summary" class="page-bar"></div>
+                    <table class="table table-striped text-center mrg0B" id="summary-data">
+
                     </table>
                 </div>
             </div>
