@@ -37,20 +37,22 @@
                                         <input id="fundname" class="form-control" placeholder="基金名称">
                                         <input id="_fundname" type="hidden"/>
                                     </div>
+
+                                    <div class="form-label col-md-2">
+                                        <label >汇款人：</label>
+                                    </div>
+                                    <div class="form-input col-md-4">
+                                        <input id="payer" class="form-control" placeholder="汇款人">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label >收款人：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="bank_person" class="form-control" placeholder="收款人">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-label col-md-2">
-                                        <label >付款人：</label>
-                                    </div>
-                                    <div class="form-input col-md-10">
-                                        <input id="payer" class="form-control" placeholder="付款人">
                                     </div>
                                 </div>
 
@@ -67,13 +69,16 @@
                                     <div class="content-box box-toggle ">
                                         <div class="content-box-header primary-bg">
                                             <span class="float-left">汇款记录</span>
+
                                             <a href="#" class="float-right icon-separator btn toggle-button" title="汇款记录">
                                                 <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                                             </a>
+
                                         </div>
 
                                         <div class="content-box-wrapper">
-                                            <div class="col-md-12 page-bar pad0R">
+
+                                            <div class="col-md-4 page-bar pad0R">
                                                 <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
                                                     <i class="glyph-icon icon-arrow-left"></i>
                                                 </a>
@@ -81,6 +86,10 @@
                                                 <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
                                                     <i class="glyph-icon icon-arrow-right"></i>
                                                 </a>
+                                            </div>
+
+                                            <div class="col-md-8 page-bar pad0R">
+                                                查看变化情况请修改截止日期:<input id="paydate" class=" filter-input" type="text" />
                                             </div>
                                             <table class="table table-striped text-center mrg0B" id="pay_records_table">
                                                 <thead>
@@ -92,6 +101,8 @@
                                                     <th class="text-center">应收利息</th>
                                                     <th class="text-center">应收管理费</th>
                                                     <th class="text-center">应收渠道费</th>
+                                                    <th class="text-center">应收逾期费</th>
+                                                    <th class="text-center">应收违约费</th>
                                                     <th class="text-center">投资天数</th>
                                                 </tr>
                                                 </thead>
@@ -130,6 +141,7 @@
                                                     <th class="text-center">收款金额</th>
                                                     <th class="text-center">银行户名</th>
                                                     <th class="text-center">银行帐号</th>
+                                                    <th class="text-center">多收的钱</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

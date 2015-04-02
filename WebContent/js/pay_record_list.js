@@ -32,7 +32,48 @@ var VIEWDATA={
     },
 
     init_view: function(){
+        var me = this;
         //this.getItems();
+        $("#paydate").val(DATEFORMAT.toDate(new Date()));
+
+        $("#paydate").datepicker({
+            onSelect: function(dateText) {
+                var stopDate = DATEFORMAT.toDate($(this).val());
+                var pay_records = [];
+                $("input[name='pay_records'][type='radio']", "#pay_records_table").each(function(){
+                    pay_records.push($(this).val());
+                });
+
+                //获取数据变化情况
+                var params = JSON.stringify(
+                    {
+                        "payRecords":pay_records,
+                        "stopDate":stopDate
+                    }
+                );
+                var data = { url: '/api/payRecord/changeByDate', entity: params };
+                $.ajax({
+                    type: 'post',
+                    url: '../rest/item/post',
+                    data: data,
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        console.log("readAllForPage", result);
+                        if (result && result.rest_status && result.rest_status == "200") {
+                            var items = JSON.parse(result['rest_result']);
+                            me.setTable(items);
+                        }
+
+                    },
+                    error: function (result) {
+                        if (LOGIN.error(result)) {
+                            return;
+                        }
+                    }
+                });
+            }
+        });
     },
     getItems: function () {
 
@@ -97,6 +138,7 @@ var VIEWDATA={
             {
                 "page":{"offset": me.page_start2, "max": me.page_size2},
                 "fundid":parseInt(fundid),
+                "bank_person":bank_person,
                 "orderby-prperties":[{"lastUpdated":"desc"}]
             }
         );
@@ -146,12 +188,14 @@ var VIEWDATA={
                 table.append(row);
 
                 row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
-                row.append('<td>' + items[i]["payDate"] + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["payDate"]) + '</td>');
                 row.append('<td>' + items[i]["fundname"] + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
                 row.append('<td>' + items[i]["interest_bill"] + '</td>');
                 row.append('<td>' + items[i]["manage_bill"] + '</td>');
                 row.append('<td>' + items[i]["community_bill"] + '</td>');
+                row.append('<td>' + items[i]["overDue"] + '</td>');
+                row.append('<td>' + items[i]["penalty_bill"] + '</td>');
                 row.append('<td>' + items[i]["investDays"] + '</td>');
             }
         }
@@ -250,12 +294,13 @@ var VIEWDATA={
                 table.append(row);
 
                 row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
-                row.append('<td>' + items[i]["receiveDate"] + '</td>');
+                row.append('<td>' + DATEFORMAT.toDate(items[i]["receiveDate"]) + '</td>');
                 row.append('<td>' + items[i]["fundname"] + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
 
                 row.append('<td>' + items[i]["accountName"] + '</td>');
                 row.append('<td>' + items[i]["account"] + '</td>');
+                row.append('<td>' + items[i]["remain_charge"] + '</td>');
             }
         }
 
