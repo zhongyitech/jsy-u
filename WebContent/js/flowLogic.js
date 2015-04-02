@@ -1123,9 +1123,11 @@ var FLOW={
                     $("#relate_funds").empty();
                     //var rest_result = JSON.parse(result.rest_result);
                     var rest_result = result.rest_result;
-                    $.each(rest_result.banks,function(index, obj){
-                        $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
-                    });
+                    if(rest_result && rest_result.banks){
+                        $.each(rest_result.banks,function(index, obj){
+                            $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
+                        });
+                    }
                 }
             },
             error: function(result){

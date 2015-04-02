@@ -27,14 +27,14 @@
                             <div class="form-row">
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">基金名称：</label>
+                                        <label >基金名称：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input type="text" id="fundname" placeholder="输入自动查询"/>
                                         <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="">项目名称：</label>
+                                        <label >项目名称：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <select id="project"></select>
@@ -43,16 +43,16 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">付款日期：</label>
+                                        <label >付款日期：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="paydate" class="tcal filter-input" type="text" />
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="">付款金额：</label>
+                                        <label >付款金额：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text" id="paytotal"/>
+                                        <input type="text" id="paytotal" placeholder="输入金额"/>
                                     </div>
                                 </div>
 
@@ -77,7 +77,7 @@
                                         <label style="background-color: #ffbe00;">剩余金额：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <input type="text" id="remain_money" readonly="readonly"/>
+                                        <input type="text" id="remain_money" readonly="readonly" placeholder="自动计算余额"/>
                                     </div>
                                 </div>
 

@@ -31,14 +31,14 @@
                             <div class="form-row">
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">基金名称：</label>
+                                        <label >基金名称：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="fundname" class="form-control" placeholder="基金名称">
                                         <input id="_fundname" type="hidden"/>
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label for="">收款人：</label>
+                                        <label >收款人：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="bank_person" class="form-control" placeholder="收款人">
@@ -47,7 +47,7 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label for="">付款人：</label>
+                                        <label >付款人：</label>
                                     </div>
                                     <div class="form-input col-md-10">
                                         <input id="payer" class="form-control" placeholder="付款人">
