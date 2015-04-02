@@ -43,7 +43,7 @@
                     <table class="table table-striped text-center mrg0B" id="investment-table">
                         <thead>
                         <tr>
-                            <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                            <th class="text-center"><input id="checkbox-selector" type="checkbox" name="checkbox"></th>
                             <th class="text-center"><span class="text-overflow">合同编号</span></th>
                             <th class="text-center"><span class="text-overflow">基金名称</span></th>
                             <th class="text-center"><span class="text-overflow">客户名称</span></th>

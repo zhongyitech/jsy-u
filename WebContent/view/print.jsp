@@ -29,6 +29,7 @@
       xhr=$.project.domain(idArray,"com.jsy.archives.InvestmentArchives");
       $.each(idArray,function(idx,id){
         var item=xhr.getItem(id);
+        if(!item||item=="")return;
         if(item.id&&!filter[item.id]) filter[item.id]=$("<div>").prop("id","print-"+item.id).addClass("print").appendTo(print);
         item.fundName=$.project.domain(item.fund.id,"com.jsy.fundObject.Fund","fundName").getItem(item.fund.id).fundName;
         $.io.post({url:'/api/investmentArchives/getPayTimes',entity:{date:DATEFORMAT.toRest(item['rgrq']),qx:item['tzqx'],fxfs:item['fxfs']}}).success(function(result){

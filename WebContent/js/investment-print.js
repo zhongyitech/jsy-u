@@ -52,7 +52,8 @@ var INVESTMENT_LIST = {
         $(this.PRINT_BUTTON_ID).click(function () {
             var id=[],trs=$("#investment-table input[type=checkbox]:checked").closest("tr");
             trs.each(function(i){
-                id.push(me.items[trs.eq(i).attr("key")].id);
+                var item=me.items[trs.eq(i).attr("key")];
+                item&&item.id&&id.push(item.id);
             });
             if(id.length){
                 window.open("./print.jsp?id="+id.toString());
@@ -124,6 +125,7 @@ var INVESTMENT_LIST = {
     setView: function (response) {
         this.setTable(response);
         this.setPage(response);
+        $.dom.checkbox("#checkbox-selector","#investment-table");
     },
     fundids: [],
     setTable: function (response) {
