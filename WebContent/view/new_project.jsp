@@ -26,6 +26,7 @@
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
                 </div>
+
                 <div class="content-box-wrapper">
                     <div style="width: 900px" id="item_settingPanel">
                         <form class="form-bordered " action="/" method="post">

@@ -71,6 +71,7 @@ var DEPARTMENT_LIST = {
             var params = JSON.stringify({});
             var data = {url: '/api/department/readAllForPage', params: params, entity: entity};
             this.performanceTypes = $.project.type(8);
+
             $.ajax({
                 type: "post",
                 url: "../rest/item/post",

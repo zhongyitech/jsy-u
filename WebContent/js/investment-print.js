@@ -56,7 +56,9 @@ var INVESTMENT_LIST = {
                 item&&item.id&&id.push(item.id);
             });
             if(id.length){
+                PRINT_LIST.update(id);
                 window.open("./print.jsp?id="+id.toString());
+                location.reload();
             }else{
                 alert("请选择要打印的项！");
             }
@@ -429,7 +431,7 @@ var PRINT_LIST = {
     },
     update: function (items) {
         for (var i = 0; i < items.length; i++) {
-            var id = items[i][this.investment.ID_KEY];
+            var id = items[i];
             var params = JSON.stringify({id: id});
             var entity = JSON.stringify({});
             var data = {url: '/api/investmentArchives/updateforprint', params: params, entity: entity};
