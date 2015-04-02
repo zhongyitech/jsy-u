@@ -2406,26 +2406,26 @@ var DEPARTMENT = {
             async = false;
         }
 
-        var params = JSON.stringify({});
-        var data = {url: '/api/department/readAll', params: params};
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+        //var params = JSON.stringify({});
+        //var data = {url: '/api/department/readAll', params: params};
+        //var me = this;
+        //$.ajax({
+        //    type: "post",
+        //    url: "/rest/item/get",
+        //    async: async,
+        //    data: data,
+        //    dataType: "json",
+        //    success: function (response) {
+        //        me.response = response;
+        //        if (response && response[REST.RESULT_KEY]) {
+        //            me.items = JSON.parse(response[REST.RESULT_KEY]);
+        //        }
+        //    },
+        //    error: function (response) {
+        //        me.response = response;
+        //        LOGIN.error(response);
+        //    }
+        //});
     },
     getItems: function () {
         if (!this.items || !this.items.length) {

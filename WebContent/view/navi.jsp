@@ -264,6 +264,10 @@
                         <i class="glyph-icon icon-chevron-right"></i>客户档案管理</a>
                     </li>
                     <li>
+                        <a href="./project-model-setting.jsp" title="项目模板角色设置">
+                            <i class="glyph-icon icon-chevron-right"></i>项目模板角色设置</a>
+                    </li>
+                    <li>
                         <a href="./authority-list.jsp" title="点击"><i class="glyph-icon icon-chevron-right"></i>权限管理</a>
                     </li>
 
@@ -303,5 +307,6 @@
             </li>
 
         </ul>
+        <%--<OBJECT id="WebBrowser1" height=0 width=0 classid=CLSID:8856F961-340A-11D0-A96B-00C04FD705A2 name=wb></OBJECT>--%>
     </div>
 </div>

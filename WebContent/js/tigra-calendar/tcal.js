@@ -153,6 +153,7 @@ function f_tcalUpdate (n_date, b_keepOpen) {
 	}
 	else {
 		e_input.value = f_tcalGenerateDate(d_date, A_TCALCONF.format);
+		$(e_input).change();
 		f_tcalCancel();
 	}
 }

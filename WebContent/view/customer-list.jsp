@@ -80,20 +80,20 @@
                 <div class="content-box-wrapper">
                     <div id="table-pager" class="page-bar"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="table-data">
-                        <thead>
-                        <tr>
-                            <th class="text-center">证照号码</th>
-                            <th class="text-center">客户名称</th>
-                            <th class="text-center">身份证地址</th>
-                            <th class="text-center">开户行名称</th>
-                            <th class="text-center">收益人账号</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">E-Mail</th>
-                        </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <div class="table table-striped text-center mrg0B" id="table-data">
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th class="text-center">证照号码</th>--%>
+                            <%--<th class="text-center">客户名称</th>--%>
+                            <%--<th class="text-center">身份证地址</th>--%>
+                            <%--<th class="text-center">开户行名称</th>--%>
+                            <%--<th class="text-center">收益人账号</th>--%>
+                            <%--<th class="text-center">联系电话</th>--%>
+                            <%--<th class="text-center">E-Mail</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody></tbody>--%>
+                    </div>
                     <div CLASS="mrg10T">
                         <a href="./customer-create.jsp" class="btn medium bg-green" title="">
                             <span class="button-content">+ 新客户</span>

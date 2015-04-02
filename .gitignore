@@ -154,3 +154,4 @@ ClientBin/
 *.publishsettings
 /.git/
 /.git/
+src/com/zhongyi/web/Mapping.java
