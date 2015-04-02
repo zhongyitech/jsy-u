@@ -1,9 +1,12 @@
 /**
+ * Created by libosong on 2015/4/2.
+ */
+/**
  * Created by libosong on 2015/3/16.
  */
 
 /**
- * ÂàùÂßãÂåñ
+ * ≥ı ºªØ
  */
 $(document).ready(function() {
     $.io.registerCallback({
@@ -13,11 +16,11 @@ $(document).ready(function() {
     });
     TabbedContent.init();
 
-    ProjectLimittimeSetting.init();
+    ProjectModelRoleSetting.init();
 });
 
 /**
- * tab Ê†áÁ≠æ
+ * tab ±Í«©
  * @type {{init: init, slideContent: slideContent}}
  */
 var TabbedContent = {
@@ -50,43 +53,35 @@ var TabbedContent = {
     }
 }
 
-var ProjectLimittimeSetting = {
-    /**
-     * project ID ÁºìÂ≠ò
-     */
-    PROJECT_ID : 0,
-
+var ProjectModelRoleSetting = {
 
     /**
-     * ÂàùÂßãÂåñ
+     * ≥ı ºªØ
      */
     init : function(){
-        ProjectLimittimeSetting.initView();
-        ProjectLimittimeSetting.initEvent();
+        ProjectModelRoleSetting.initView();
+        ProjectModelRoleSetting.initEvent();
     },
 
     /**
-     * ÂàùÂßãÂåñÁïåÈù¢Êï∞ÊçÆ
+     * ≥ı ºªØΩÁ√Ê ˝æ›
      */
     initView : function(){
-        this.PROJECT_ID  = PAGE.getParam("projectId");
-        console.log(this.PROJECT_ID);
-        this.initViewLimittime(this.PROJECT_ID);
+        this.initViewRoles();
     },
 
     /**
-     * ÂàùÂßãÂåñtable
+     * ≥ı ºªØtable
      * @param result
      */
-    initViewLimittime:function(projectId){
+    initViewRoles:function(){
         var _this = this;
         for(var i=1; i<8; i++){
             _this.removeTableItem(i);
             var params = {
-                projectId:projectId,
                 phaseIndex:i
             };
-            var data   = {url:"/api/project/getSpecailAccess",params:JSON.stringify(params)};
+            var data   = {url:"/api/project/getProjectModelRole",params:JSON.stringify(params)};
 
             $.io.get(data)
                 .success(function(result){
@@ -139,16 +134,17 @@ var ProjectLimittimeSetting = {
         if(!json)
             return;
 
+        var index = json["phaseIndex"];
         var item = [];
-        item = json;
+        item = JSON.parse(json["roles"]);
         console.log(item);
-        var table = null
+        var table = null;
         if(item){
 
             for(var i =1; i<item.length + 1; i++){
                 var it = item[i-1];
                 console.log(it);
-                var index = it["phaseIndex"];
+
                 console.log("index=" + index);
                 switch(index){
                     case 1 :
@@ -183,13 +179,8 @@ var ProjectLimittimeSetting = {
                 var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
                 tr.append(checkbox);
 
-                var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field" value="'+it["accessor"]+'" ></div></td>');
+                var row = $('<td><div class="form-input "><input name="name" class="form-data-field" value="'+it["name"]+'" ><input name="id" type="hidden" class="form-data-field-hidden" value="'+it["id"]+'" ></div></td>');
                 tr.append(row);
-
-                var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12" value="'+it["fromDate"]+'"></div></td>');
-                tr.append(row);
-
-                var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12" value="'+it["toDate"]+'"></div></td>');
                 tr.append(row);
                 //f_tcalInit();
             }
@@ -197,82 +188,82 @@ var ProjectLimittimeSetting = {
     },
 
     /**
-     * ÁªëÂÆö‰∫ã‰ª∂
+     * ∞Û∂® ¬º˛
      */
     initEvent : function() {
-        //‰øùÂ≠ò ÁªëÂÆö
+        //±£¥Ê ∞Û∂®
         $(".t1 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(1);
+            ProjectModelRoleSetting.saveSettingResult(1);
         });
         $(".t2 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(2);
+            ProjectModelRoleSetting.saveSettingResult(2);
         });
         $(".t3 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(3);
+            ProjectModelRoleSetting.saveSettingResult(3);
         });
         $(".t4 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(4);
+            ProjectModelRoleSetting.saveSettingResult(4);
         });
         $(".t5 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(5);
+            ProjectModelRoleSetting.saveSettingResult(5);
         });
         $(".t6 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(6);
+            ProjectModelRoleSetting.saveSettingResult(6);
         });
         $(".t7 .setting-save").click(function () {
-            ProjectLimittimeSetting.saveSettingResult(7);
+            ProjectModelRoleSetting.saveSettingResult(7);
         });
 
-        //Ê∑ªÂä†Ë°å ÁªëÂÆö
+        //ÃÌº”–– ∞Û∂®
         $(".t1 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(1);
+            ProjectModelRoleSetting.addXianshiTableRow(1);
         });
         $(".t2 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(2);
+            ProjectModelRoleSetting.addXianshiTableRow(2);
         });
         $(".t3 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(3);
+            ProjectModelRoleSetting.addXianshiTableRow(3);
         });
         $(".t4 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(4);
+            ProjectModelRoleSetting.addXianshiTableRow(4);
         });
         $(".t5 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(5);
+            ProjectModelRoleSetting.addXianshiTableRow(5);
         });
         $(".t6 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(6);
+            ProjectModelRoleSetting.addXianshiTableRow(6);
         });
         $(".t7 .setting-add").click(function () {
-            ProjectLimittimeSetting.addXianshiTableRow(7);
+            ProjectModelRoleSetting.addXianshiTableRow(7);
         });
 
-        //Âà†Èô§Ë°å ÁªëÂÆö
+        //…æ≥˝–– ∞Û∂®
         $(".t1 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(1);
+            ProjectModelRoleSetting.removeTr(1);
         });
         $(".t2 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(2);
+            ProjectModelRoleSetting.removeTr(2);
         });
         $(".t3 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(3);
+            ProjectModelRoleSetting.removeTr(3);
         });
         $(".t4 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(4);
+            ProjectModelRoleSetting.removeTr(4);
         });
         $(".t5 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(5);
+            ProjectModelRoleSetting.removeTr(5);
         });
         $(".t6 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(6);
+            ProjectModelRoleSetting.removeTr(6);
         });
         $(".t7 .setting-remove").click(function () {
-            ProjectLimittimeSetting.removeTr(7);
+            ProjectModelRoleSetting.removeTr(7);
         });
     },
 
     /**
-     * Ê∑ªÂä†‰∏ÄË°å
-     * @param index tab‰∏ãÊ†á
+     * ÃÌº”“ª––
+     * @param index tabœ¬±Í
      */
     addXianshiTableRow : function(index){
         var xianshi_table;
@@ -305,23 +296,53 @@ var ProjectLimittimeSetting = {
         var tr = $('<tr key="' + key + '"></tr>');
         xianshi_table.append(tr);
 
-        var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
+        var checkbox = $('<td><input type="checkbox" name="checkbox" ></td>');
         tr.append(checkbox);
 
-        var row = $('<td><div class="form-input "><input name="accessor" class="form-data-field"></div></td>');
-        tr.append(row);
+        var td  = $('<td></td>');
+        tr.append(td);
 
-        var row = $('<td><div class="form-input "><input name="fromDate" class="form-data-field col-md-12 tcal tcalInput"></div></td>');
-        tr.append(row);
-
-        var row = $('<td><div class="form-input "><input name="toDate" class="form-data-field col-md-12 tcal tcalInput"></div></td>');
-        tr.append(row);
-        f_tcalInit();
+        var div = $('<div class="form-input"></div>');
+        td.append(div);
+        var name = $('<input name="name" class="form-data-field">');
+        var id  = $('<input name="id" class="form-data-field-hidden" type="hidden">');
+        div.append(name);
+        div.append(id);
+        $(name).autocomplete({
+            serviceUrl: '../rest/auto/get',
+            type: 'POST',
+            params: {
+                url: '/api/role/nameLike'
+            },
+            paramName: 'params',
+            onSelect: function (suggestion) {
+                //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                console.log(suggestion.data)
+                $(name).val(suggestion.value);
+                $(id).val(suggestion.data);
+            },
+            transformResult: function (response) {
+                //clear old value
+                $(name).val("");
+                $(id).val("");
+                if (!response || response == '') {
+                    return {
+                        "query": "Unit",
+                        "suggestions": []
+                    };
+                } else {
+                    var result = JSON.parse(response).rest_result;
+                    var suggestions = (result.suggestions);
+                    result.suggestions = suggestions;
+                    return result;
+                }
+            }
+        });
     },
 
     /**
-     * ‰øùÂ≠ò
-     * @param index tab‰∏ãÊ†á
+     * ±£¥Ê
+     * @param index tabœ¬±Í
      */
     saveSettingResult : function(index){
         var xianshi_table;
@@ -359,37 +380,41 @@ var ProjectLimittimeSetting = {
                 xianshi_table = $("#xianshi_table1");
         }
 
-        var rows = xianshi_table.find("tr");
-
         var _this=this;
-        rows.each(function(i){
-            var cells = rows.eq(i).find("input.form-data-field");
-            var tempObj={};
-            cells.each(function(idx){
-                var obj=cells.eq(idx);
-                tempObj[obj.attr("name")]=obj.val();
+
+        var params = JSON.stringify({phaseIndex:index });
+        var data   = {url:"/api/project/removeProjectModelrRoles",params:params};
+        $.io.del(data)
+            .success(function(result){
+                var rows = xianshi_table.find("tr");
+                rows.each(function(i){
+                    var cells = rows.eq(i).find("input.form-data-field-hidden");
+                    var tempObj={};
+                    cells.each(function(idx){
+                        var obj=cells.eq(idx);
+                        tempObj["id"]=obj.val();
+                    });
+                    console.log(tempObj);
+                    if($.isEmptyObject(tempObj))return;
+                    var model = $.extend(true, {
+                            phaseIndex:phaseIndex
+                        },tempObj);
+                    var data   = {url:"/api/project/setProjectModelRole",params:JSON.stringify(model)};
+                    $.io.post(data)
+                        .success(function(result){
+
+                        })
+                        .error(function(result){
+                            alert(result)
+                        });
+                });
+            })
+            .error(function(result){
+                alert(result)
             });
-
-            if($.isEmptyObject(tempObj))return;
-
-            var model = $.extend(true,{
-                projectId:_this.PROJECT_ID,
-                phaseIndex:index
-            },tempObj);
-
-            var data   = {url:"/api/project/setSpecailAccess",entity:JSON.stringify(model)};
-            $.io.post(data)
-                .success(function(result){
-
-                })
-                .error(function(result){
-                    alert(result)
-            });
-        });
-
-
     },
-    removeTr: function (index) {//Âà†Èô§ÈÄâ‰∏≠Ë°å
+
+    removeTr: function (index) {//…æ≥˝—°÷–––
         var xianshi_table;
         switch (index){
             case 1 :
