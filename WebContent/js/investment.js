@@ -57,6 +57,10 @@ var NIANHUA = {
         return this.item;
     }
 };
+function nextStepCallback(setpIndex){
+//    alert(setpIndex);
+    INVESTMENT_ITEM.BuildReviewPage();
+};
 
 var INVESTMENT_ITEM = {
     INVEST_CUSTOMER_NAME_ID: '#invest-customer-name',
@@ -153,6 +157,22 @@ var INVESTMENT_ITEM = {
         } else {
             this.setView(this.item);
         }
+    },
+    //确认书预览觖发方法
+    BuildReviewPage:function(){
+
+        var item=this.getItem();
+        item['fundName']=$("#invest-fund option:selected").text();
+        var entity={date:DATEFORMAT.toRest(item['rgrq']),qx:item['tzqx'],fxfs:item['fxfs']};
+        var payTimes=$.io.post(true,{url:'/api/investmentArchives/getPayTimes',entity:entity})
+            .success(function(result){
+                item["items"]=result;
+                $("#step-2").renderURI("/templates/report_1.html",item);
+            })
+            .error(function(error){
+                alert("获取付息次数出错了,请确认投资期限和付息方式已经填写?");
+            });
+
     },
     setView: function (item) {
         var me = this;
@@ -1211,31 +1231,31 @@ var INVESTMENT_ITEM = {
 
         item['ywtcs'] = this.yewu.getItems();
 
-        var last = new Date(from);
-        last = last.setMonth(last.getMonth() + 12);
-        if (item['fxfs'] == 'N') {
-            item['fxsj1'] = this.dateformat.toRest(last);
-        } else if (item['fxfs'] == 'J') {
-            var first = new Date(from);
-            first = first.setMonth(first.getMonth() + 3);
-            item['fxsj1'] = this.dateformat.toRest(first);
-
-            var second = new Date(from);
-            second = second.setMonth(second.getMonth() + 6);
-            item['fxsj2'] = this.dateformat.toRest(second);
-
-            var third = new Date(from);
-            third = third.setMonth(third.getMonth() + 9);
-            item['fxsj3'] = this.dateformat.toRest(third);
-
-            item['fxsj4'] = this.dateformat.toRest(last);
-        } else if (item['fxfs'] == 'W') {
-            var first = new Date(from);
-            first = first.setMonth(first.getMonth() + 6);
-            item['fxsj1'] = this.dateformat.toRest(first);
-
-            item['fxsj2'] = this.dateformat.toRest(last);
-        }
+//        var last = new Date(from);
+//        last = last.setMonth(last.getMonth() + 12);
+//        if (item['fxfs'] == 'N') {
+//            item['fxsj1'] = this.dateformat.toRest(last);
+//        } else if (item['fxfs'] == 'J') {
+//            var first = new Date(from);
+//            first = first.setMonth(first.getMonth() + 3);
+//            item['fxsj1'] = this.dateformat.toRest(first);
+//
+//            var second = new Date(from);
+//            second = second.setMonth(second.getMonth() + 6);
+//            item['fxsj2'] = this.dateformat.toRest(second);
+//
+//            var third = new Date(from);
+//            third = third.setMonth(third.getMonth() + 9);
+//            item['fxsj3'] = this.dateformat.toRest(third);
+//
+//            item['fxsj4'] = this.dateformat.toRest(last);
+//        } else if (item['fxfs'] == 'W') {
+//            var first = new Date(from);
+//            first = first.setMonth(first.getMonth() + 6);
+//            item['fxsj1'] = this.dateformat.toRest(first);
+//
+//            item['fxsj2'] = this.dateformat.toRest(last);
+//        }
 
         item[this.investment.ID_KEY] = this.item[this.investment.ID_KEY];
         this.item = item;

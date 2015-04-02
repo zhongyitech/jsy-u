@@ -343,7 +343,8 @@ var COMPANY_FORM={
 			}
 		},
 		setStatus: function(item){
-			this.getStatusView().val(COMPANY.toStatus(item));
+            var status=COMPANY.toStatus(item)=="" ? "正常": COMPANY.toStatus(item);
+			this.getStatusView().val(status);
 		},
 		getFoundView: function(){
 			var form = this.getForm();
@@ -399,7 +400,7 @@ var COMPANY_FORM={
 		},
 		iniSubmitButton: function(){
 			var me = this;
-			var button = this.getSubmitButton();
+			var button = $("#submit-button");
 			if(button){
 				button.click(function(){
 					me.submit();

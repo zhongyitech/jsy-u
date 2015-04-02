@@ -54,6 +54,11 @@
 							</thead>
 							<tbody></tbody>
 						</table>
+                        <div class="mrg10T">
+                            <a href="./user-create.jsp" class="btn medium bg-green" title="">
+                                <span class="button-content">+ 新建用户</span>
+                            </a>
+                        </div>
 					</div>
 				</div>
 				

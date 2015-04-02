@@ -50,7 +50,16 @@ var INVESTMENT_LIST = {
     iniMenu: function () {
         var me = this;
         $(this.PRINT_BUTTON_ID).click(function () {
-            me.print();
+            var id=[],trs=$("#investment-table input[type=checkbox]:checked").closest("tr");
+            trs.each(function(i){
+                var item=me.items[trs.eq(i).attr("key")];
+                item&&item.id&&id.push(item.id);
+            });
+            if(id.length){
+                window.open("./print.jsp?id="+id.toString());
+            }else{
+                alert("请选择要打印的项！");
+            }
         });
     },
     iniFilter: function () {
@@ -116,6 +125,7 @@ var INVESTMENT_LIST = {
     setView: function (response) {
         this.setTable(response);
         this.setPage(response);
+        $.dom.checkbox("#checkbox-selector","#investment-table");
     },
     fundids: [],
     setTable: function (response) {

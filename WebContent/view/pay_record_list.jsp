@@ -152,11 +152,12 @@
                             <div class="form-row">
                                 <div class="content-box box-toggle ">
                                     <div class="content-box-header primary-bg">
-                                        <span class="float-left">仍然欠款</span>
+                                        <span class="float-left">收款明细记录，仍然欠款【<span id="payrecord_own_money"></span>】</span>
                                         <a href="#" class="float-right icon-separator btn toggle-button" title="仍然欠款">
                                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                                         </a>
                                     </div>
+
 
                                     <div class="content-box-wrapper">
                                         <table class="table table-striped text-center mrg0B" id="receive_records_table">

@@ -499,8 +499,9 @@
             var total=response[Constant.rest_total]||_self._pageSize;
             //计算最后页
             _self._lastPage=(total&&total>_self._pageSize&&parseInt(total/_self._pageSize)-(total%_self._pageSize?0:1)||0)+1;
+            _self._tmpMaxPage=_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage;
             //渲染分页
-            _self._object.renderData(Element.pager,{currentPage:_self._currentPage,maxPage:_self._lastPage<_self._maxPage?_self._lastPage:_self._maxPage},_self._callback);
+            _self._object.renderData(Element.pager,{currentPage:_self._currentPage,maxPage:_self._tmpMaxPage},_self._callback);
             //获取对象，绑定事件
             var first=_self._object.find(".first"),last=_self._object.find(".last"),prev=_self._object.find(".prev"),next=_self._object.find(".next");
            _self._resetCls(first,prev,last,next);
@@ -519,7 +520,7 @@
                     _self._currentPage=_self._lastPage;
                     Utils.addClass(Constant.button_disabled,_this,next);
                     pageStep.find("a[data-index]").each(function(i){
-                        var index=_self._currentPage+i+1-_self._maxPage;
+                        var index=_self._currentPage+i+1-_self._tmpMaxPage;
                         $(this).attr({"data-index":index,"title":"第"+index+"页"}).text(index);
                     });
                 }else if(_this.hasClass("next")){

@@ -15,11 +15,17 @@ textarea.template,div.template{display: none;}
 .input, .form-input input.valid_error, .form-input select.valid_error, .form-input textarea.valid_error, .chosen-container-multi, .bootstrap-timepicker-widget table td input.valid_error, .ui-toolbar select.valid_error, .ui-toolbar input.valid_error{border: 1px solid #FF0000;}
 input[readonly=true] {background: #EAE5E5;}
 .data-rows{ height: 30px; line-height: 30px;}
-.underline { text-decoration: underline;}
-.print-paper { font-family: '宋体', Verdana; padding:2em 4em; font-size: 17px; line-height: 2em; page-break-after:always;}
+
+/*print style*/
+.print-paper { font-family: '宋体', Verdana; padding:1.5em 4em 1em; font-size: 17px; line-height: 2em; page-break-after:always; overflow: hidden;}
 .print-paper h3 { padding: 0; margin: 0;}
 .print-paper p { text-indent: 2em;}
+.print-paper .underline { text-decoration: underline;}
+.print-paper .print-header { position: relative;}
 .print-paper .print-no { height: 2em; text-align: right;}
 .print-paper .print-title { height: 2em; text-align: center;}
-.print-paper .print-body {}
-.print-paper .print-footer { text-align: right; margin-top: 3em;}
+.print-paper .print-body { position: relative; z-index: 100;}
+.print-paper .print-footer { text-align: right; margin-top: 6em;position: relative;}
+.print-paper .print-footer div{ z-index: 100; position: relative;}
+.print-paper .logo { position: absolute; left: -40px; top: -40px;}
+.print-paper .seal { position: absolute; right: 0; bottom: 0; }
