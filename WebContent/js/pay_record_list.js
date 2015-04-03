@@ -413,7 +413,24 @@ var VIEWDATA={
                 var row = $("<tr></tr>");
                 table.append(row);
 
-                row.append('<td>' + items[i]["target"] + '</td>');
+                var cn_change;
+                if(items[i]["target"]=="original"){
+                    cn_change = "本金";
+                }else if(items[i]["target"]=="maintain"){
+                    cn_change = "管理费";
+                }else if(items[i]["target"]=="channel"){
+                    cn_change = "渠道费";
+                }else if(items[i]["target"]=="firstyear"){
+                    cn_change = "年利息费";
+                }else if(items[i]["target"]=="borrow"){
+                    cn_change = "借款费";
+                }else if(items[i]["target"]=="penalty"){
+                    cn_change = "违约费";
+                }else if(items[i]["target"]=="overdue"){
+                    cn_change = "逾期费";
+                }
+
+                row.append('<td>' + cn_change + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
                 row.append('<td>' + items[i]["dateCreated"] + '</td>');
             }
