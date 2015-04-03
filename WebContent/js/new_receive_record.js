@@ -252,13 +252,13 @@ var VIEWDATA={
                         }else if(obj.target=="channel"){
                             cn_change = "应再收渠道费";
                         }else if(obj.target=="firstyear"){
-                            cn_change = "应再收第一年利息费";
+                            cn_change = "应再收年利息费";
                         }else if(obj.target=="borrow"){
-                            cn_change = "应再收第一年借款费";
+                            cn_change = "应再收借款费";
                         }else if(obj.target=="penalty"){
-                            cn_change = "应再收第一年违约费";
+                            cn_change = "应再收违约费";
                         }else if(obj.target=="overdue"){
-                            cn_change = "应再收第一年逾期费";
+                            cn_change = "应再收逾期费";
                         }
                         td.append(cn_change+':'+obj.amount);
 
