@@ -3,11 +3,11 @@
     <ul>
         {#foreach $T as menu}
         <li>
-            <a href="javascript:;" title="{$T.menu.text}"><i class="glyph-icon icon-reorder"></i>{$T.menu.text}</a>
+            <a href="javascript:;" title="{$T.menu.title}"><i class="glyph-icon icon-reorder"></i>{$T.menu.title}</a>
             <ul>
-                {#foreach $T.menu.items as item}
+                {#foreach $T.menu.children as item}
                 <li>
-                    <a href="{$T.item.link}" title="{$T.item.text}"><i class="glyph-icon icon-chevron-right"></i>{$T.item.text}</a>
+                    <a href="{$T.item.url}" title="{$T.item.title}"><i class="glyph-icon icon-chevron-right"></i>{$T.item.title}</a>
                 </li>
                 {#/for}
             </ul>
@@ -114,66 +114,67 @@
     <div id="sidebar-menu"></div>
 </div>
 <script type="text/javascript">
-    $("#sidebar-menu").renderData("#navigate-template",[
-        {text:"基金管理",items:[
-            {text:"基金信息",link:"fund-list.jsp"},
-            {text:"新增基金",link:"fund-create.jsp"},
-            {text:"合同登记",link:"hetong-dengji.jsp"},
-            {text:"合同领用",link:"hetong-lingyong.jsp"},
-            {text:"合同归还",link:"hetong-guihuan.jsp"}
-        ]},
-        {text:"客户管理",items:[
-            {text:"添加投资档案",link:"investment.jsp"},
-            {text:"打印投资确认书",link:"investment-print.jsp"},
-            {text:"客户档案管理",link:"invest-list.jsp"},
-            {text:"合同查询",link:"hetong-query.jsp"},
-            {text:"提成查询",link:"commission_query.jsp"},
-            {text:"提成申请",link:"commission_apply.jsp"},
-            {text:"兑付查询",link:"cash_app.jsp"},
-            {text:"兑付申请",link:"cash_list.jsp"},
-            {text:"操作记录日志",link:"czjlrz-list.jsp"}
-        ]},
-        {text:"特殊申请",items:[
-            {text:"汇总信息",link:"specialSummary.jsp"},
-            {text:"特殊申请管理",link:"special-treat-list.jsp"},
-            {text:"委托付款申请",link:"special-paytreat.jsp"},
-            {text:"到期转投申请",link:"special_treat.jsp"},
-            {text:"未到期转投申请",link:"special_untreat.jsp"},
-            {text:"退伙申请",link:"refund_add.jsp"},
-            {text:"续投申请",link:"continuedinvestment-add.jsp"},
-            {text:"合并申请",link:"special-merge.jsp"}
-        ]},
-        {text:"项目管理",items:[
-            {text:"新建项目",link:"new_project.jsp"},
-            {text:"项目列表",link:"project_list.jsp"},
-            {text:"新增汇款记录",link:"new_pay_record.jsp"},
-            {text:"新增收款记录",link:"new_receive_record.jsp"},
-            {text:"项目转款明细表",link:"pay_record_list.jsp"},
-            {text:"项目结算",link:"end_project.jsp"}
-        ]},
-        {text:"档案管理",items:[
-            {text:"借阅/查询",link:"filepackage-list.jsp"},
-            {text:"档案入库",link:"filepackage-add.jsp"}
-        ]},
-        {text:"银行业务",items:[
-            {text:"付款单查询",link:"bankingpaymentorder.jsp"},
-            {text:"记账凭证生成设置",link:"bankingTransportation.jsp"},
-            {text:"记账凭证查询",link:"bankingTransportation.jsp"},
-            {text:"银行余额查询",link:"bankingTransportation.jsp"},
-            {text:"交易明细查询",link:"bankingTransportation.jsp"},
-            {text:"失败退票查询",link:"bankingTransportation.jsp"},
-            {text:"电子回单管理",link:"bankingTransportation.jsp"},
-            {text:"银行业务系统日志",link:"bankingTransportation.jsp"}
-        ]},
-        {text:"系统设置",items:[
-            {text:"客户档案管理",link:"customer-list.jsp"},
-            {text:"项目模板角色设置",link:"project-model-setting.jsp"},
-            {text:"权限管理",link:"authority-list.jsp"},
-            {text:"公司(有限合伙)管理",link:"company-list.jsp"},
-            {text:"部门管理",link:"department-list.jsp"},
-            {text:"角色管理",link:"role-list.jsp"},
-            {text:"用户管理",link:"user-list.jsp"},
-            {text:"新增用户",link:"user-create.jsp"}
-        ]}
-    ]);
+//    var data=[
+//        {text:"基金管理",items:[
+//            {text:"基金信息",link:"fund-list.jsp"},
+//            {text:"新增基金",link:"fund-create.jsp"},
+//            {text:"合同登记",link:"hetong-dengji.jsp"},
+//            {text:"合同领用",link:"hetong-lingyong.jsp"},
+//            {text:"合同归还",link:"hetong-guihuan.jsp"}
+//        ]},
+//        {text:"客户管理",items:[
+//            {text:"添加投资档案",link:"investment.jsp"},
+//            {text:"打印投资确认书",link:"investment-print.jsp"},
+//            {text:"客户档案管理",link:"invest-list.jsp"},
+//            {text:"合同查询",link:"hetong-query.jsp"},
+//            {text:"提成查询",link:"commission_query.jsp"},
+//            {text:"提成申请",link:"commission_apply.jsp"},
+//            {text:"兑付查询",link:"cash_app.jsp"},
+//            {text:"兑付申请",link:"cash_list.jsp"},
+//            {text:"操作记录日志",link:"czjlrz-list.jsp"}
+//        ]},
+//        {text:"特殊申请",items:[
+//            {text:"汇总信息",link:"specialSummary.jsp"},
+//            {text:"特殊申请管理",link:"special-treat-list.jsp"},
+//            {text:"委托付款申请",link:"special-paytreat.jsp"},
+//            {text:"到期转投申请",link:"special_treat.jsp"},
+//            {text:"未到期转投申请",link:"special_untreat.jsp"},
+//            {text:"退伙申请",link:"refund_add.jsp"},
+//            {text:"续投申请",link:"continuedinvestment-add.jsp"},
+//            {text:"合并申请",link:"special-merge.jsp"}
+//        ]},
+//        {text:"项目管理",items:[
+//            {text:"新建项目",link:"new_project.jsp"},
+//            {text:"项目列表",link:"project_list.jsp"},
+//            {text:"新增汇款记录",link:"new_pay_record.jsp"},
+//            {text:"新增收款记录",link:"new_receive_record.jsp"},
+//            {text:"项目转款明细表",link:"pay_record_list.jsp"},
+//            {text:"项目结算",link:"end_project.jsp"}
+//        ]},
+//        {text:"档案管理",items:[
+//            {text:"借阅/查询",link:"filepackage-list.jsp"},
+//            {text:"档案入库",link:"filepackage-add.jsp"}
+//        ]},
+//        {text:"银行业务",items:[
+//            {text:"付款单查询",link:"bankingpaymentorder.jsp"},
+//            {text:"记账凭证生成设置",link:"bankingTransportation.jsp"},
+//            {text:"记账凭证查询",link:"bankingTransportation.jsp"},
+//            {text:"银行余额查询",link:"bankingTransportation.jsp"},
+//            {text:"交易明细查询",link:"bankingTransportation.jsp"},
+//            {text:"失败退票查询",link:"bankingTransportation.jsp"},
+//            {text:"电子回单管理",link:"bankingTransportation.jsp"},
+//            {text:"银行业务系统日志",link:"bankingTransportation.jsp"}
+//        ]},
+//        {text:"系统设置",items:[
+//            {text:"客户档案管理",link:"customer-list.jsp"},
+//            {text:"项目模板角色设置",link:"project-model-setting.jsp"},
+//            {text:"权限管理",link:"authority-list.jsp"},
+//            {text:"公司(有限合伙)管理",link:"company-list.jsp"},
+//            {text:"部门管理",link:"department-list.jsp"},
+//            {text:"角色管理",link:"role-list.jsp"},
+//            {text:"用户管理",link:"user-list.jsp"},
+//            {text:"新增用户",link:"user-create.jsp"}
+//        ]}
+//    ];
+    $("#sidebar-menu").renderData("#navigate-template",$.io.get(true,{url:"/api/menusRole/getMenus"}).data());
 </script>
