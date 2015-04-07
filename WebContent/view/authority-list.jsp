@@ -39,10 +39,10 @@
 					<div class="content-box-wrapper">
 						<div id="table-pager" class="page-bar"></div>
 						
-						<table class="table table-striped text-center mrg0B" id="view-table">
+						<table class="table table-striped mrg0B" id="view-table">
 							<thead>
 								<tr>
-									<th class="text-center" width="300px">角色名称</th>
+									<th>角色名称</th>
                                 </tr>
 							</thead>
 							<tbody></tbody>
