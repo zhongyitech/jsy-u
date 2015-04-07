@@ -141,7 +141,7 @@
                                                     <th class="text-center">收款金额</th>
                                                     <th class="text-center">银行户名</th>
                                                     <th class="text-center">银行帐号</th>
-                                                    <th class="text-center">多收的钱</th>
+                                                    <%--<th class="text-center">多收的钱</th>--%>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

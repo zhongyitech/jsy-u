@@ -91,7 +91,7 @@ var ROLE_LIST ={
 			table.append(tr);
 			
 			var name = ROLE.toName(item);
-			var name_td = $('<td class="text-center"></td>');
+			var name_td = $('<td class="pad10L"></td>');
 			tr.append(name_td);
 			if(name){
 				var url = PAGE.AUTHORITY_EDIT + '?' + ROLE.ID_KEY + '=' + ROLE.toId(item);
@@ -100,7 +100,6 @@ var ROLE_LIST ={
 			}else{
 				name_td.append($('<span class="span-12"></span>')); 
 			}
-            tr.append('<td></td>');
 		},
 		remove: function(){//删除选中行
 			var table = this.getTable();
