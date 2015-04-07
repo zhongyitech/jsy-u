@@ -2443,8 +2443,11 @@ var DEPARTMENT = {
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+
+        return $.project.domain(id,"com.jsy.system.Department").getItem(id);
+
+        //var map = this.getMap();
+        //return map[id];
     },
     getName: function (id) {
         var item = this.get(id);

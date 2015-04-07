@@ -36,13 +36,13 @@ var DEPARTMENT_LIST = {
 
             var me = this;
             this.getView().find(this.KEYWORD_BUTTON_ID).click(function () {
-                me.page_start=0;
+                me.page_start = 0;
                 me.set(true);
             });
 
             this.getView().find(this.KEYWORD_INPUT_ID).keyup(function (e) {
                 if (e.keyCode == 13) {
-                    me.page_start=0;
+                    me.page_start = 0;
                     me.set(true);
                 }
             });
@@ -72,39 +72,24 @@ var DEPARTMENT_LIST = {
             var data = {url: '/api/department/readAllForPage', params: params, entity: entity};
             this.performanceTypes = $.project.type(8);
 
-            $.ajax({
-                type: "post",
-                url: "../rest/item/post",
-                async: async,
-                data: data,
-                dataType: "json",
-                success: function (response) {
-                    me.response = response;
-                    me.setView(response);
-                },
-                error: function (response) {
-                    me.response = response;
-                    me.setView(response);
-                    LOGIN.error(response);
-                }
+
+            $.io.post(data).success(function (result, page) {
+                me.setView(result, page);
             });
         },
-        setView: function (response) {
-            this.setPage(response);
+        setView: function (response, page) {
+            this.setPage(page);
             this.setTable(response);
         },
         setPage: function (response) {//设置页数选择列表
-            var _this=this;
-            _this.page_start==0&& $.dom.pager("#table-pager",response).onChange(function (param) {
-                _this.page_size=param.pagesize;
-                _this.page_start=param.startposition;
+            var _this = this;
+            _this.page_start == 0 && $.dom.pager("#table-pager", response).onChange(function (param) {
+                _this.page_size = param.pagesize;
+                _this.page_start = param.startposition;
                 _this.set(true);
             });
         },
-        setTable: function (response) {
-            var items = response[REST.RESULT_KEY];
-            items = items&&JSON.parse(items)||[];
-
+        setTable: function (items) {
             var table = this.getView().find(this.TABLE_ID);
             table.find("tbody").empty();
             if (items) {
@@ -180,7 +165,7 @@ var DEPARTMENT_LIST = {
                     me.set(true);
                 })
                 .error(function (result) {
-                    alert("删除部门失败：\n"+result.msg);
+                    alert("删除部门失败：\n" + result.msg);
                 });
         }
     }

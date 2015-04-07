@@ -153,7 +153,7 @@ var INVESTMENT_LIST = {
             "<i class='glyph-icon font-size-11 icon-chevron-down'></i>	</span></a>" +
             "<ul class='dropdown-menu float-right'>" +
 //		    "<li><a href='javascript:;' title='' btn_row_action data-rowindex='"+key+"' data-actionname='completedInvestment'><i class='glyph-icon icon-calendar mrg5R ' ></i>完成客户信息</a></li>"+
-            "<li><a href='javascript:;' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
+            "<li><a href='./investment-details.jsp?id="+ item.id +"' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
         "<li class='divider'></li>";
         if (item['dazt'] == 0) {
             var menus = this.getMenus();

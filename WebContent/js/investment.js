@@ -607,7 +607,7 @@ var INVESTMENT_ITEM = {
             fxfs_select.val(fxfs);
 
             me.iniTZQX();
-            me.setFXRQ();
+          //  me.setFXRQ();
         }
     },
     iniTZQX: function () {//设置投资期限
@@ -933,104 +933,6 @@ var INVESTMENT_ITEM = {
         var rgrq = $(this.INVEST_FROM_ID).val();
         var paytype = $(this.INVEST_PAYTYPE_ID)[0].value;
         var print = $(this.INVEST_PRINT_ID);
-        var pays = print.find(this.PRINT_PAYDATE_NAME);
-        for (var i = 0; i < pays.length; i++) {
-            var pay_div = $(pays.get(i));
-            var pay_p = pay_div.find('p');
-            for (var j = 0; j < pay_p.length; j++) {
-                $(pay_p.get(j)).remove();
-            }
-            var last = new Date(rgrq);
-            var dqrq_input = $(this.INVEST_TO_ID);
-            last = DATEFORMAT.toCH(dqrq_input.val());
-            if (paytype == 'N') {
-                pay_div.append('<p class="print-section">付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            } else if (paytype == 'J') {
-                var first = new Date(rgrq);
-                first = first.setMonth(first.getMonth() + 3);
-                first = DATEFORMAT.toCH(first);
-                pay_div.append('<p class="print-section">第一次付息日为<a class="print-underline">' + first + '</a>,</p>');
-
-                var second = new Date(rgrq);
-                second = second.setMonth(second.getMonth() + 6);
-                second = DATEFORMAT.toCH(second);
-                pay_div.append('<p class="print-section">第二次付息日为<a class="print-underline">' + second + '</a>,</p>');
-
-                var third = new Date(rgrq);
-                third = third.setMonth(third.getMonth() + 9);
-                third = DATEFORMAT.toCH(third);
-                pay_div.append('<p class="print-section">第三次付息日为<a class="print-underline">' + third + '</a>,</p>');
-
-                pay_div.append('<p class="print-section">第四次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            } else if (paytype == 'W') {
-                var first = new Date(rgrq);
-                first = first.setMonth(first.getMonth() + 6);
-                first = DATEFORMAT.toCH(first);
-                pay_div.append('<p class="pr-text">第一次付息日为<a class="print-underline">' + first + '</a>,</p>');
-
-                pay_div.append('<p class="pr-text">第二次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            }
-        }
-    },
-    upadatePrint: function () {
-        var print = $(this.INVEST_PRINT_ID);
-
-        var pact_input = $(this.INVEST_PACT_ID);
-        var numbers = print.find(this.PRINT_NUMBER_NAME);
-        for (var i = 0; i < numbers.length; i++) {
-            var number_a = $(numbers.get(i));
-            var number = pact_input.val();
-            if (number) {
-                number_a.text(pact_input.val() + "01");
-            }
-        }
-
-        var customer_input = $(this.INVEST_CUSTOMERNAME_ID);
-        var customers = print.find(this.PRINT_CUSTOMER_NAME);
-        for (var i = 0; i < customers.length; i++) {
-            var customer_a = $(customers.get(i));
-            customer_a.text(customer_input.val().trim());
-        }
-
-        var fund_select = $(this.INVEST_FUND_ID);
-        var funds = print.find(this.PRINT_FUND_NAME);
-        for (var i = 0; i < funds.length; i++) {
-            var fund_a = $(funds.get(i));
-            fund_a.text(fund_select.text().trim());
-        }
-
-        var money_input = $(this.INVEST_MONEY_ID);
-        var money_int = MONEYFORMAT.toNumber(money_input.val());
-        var money_wan = money_int / 10000;
-        money_wan = NUMBERFORMAT.toCount(money_wan);
-        var money_number = MONEYFORMAT.toNumber(money_wan);
-        var moneys = print.find(this.PRINT_MONEY_NAME);
-        for (var i = 0; i < moneys.length; i++) {
-            var money_a = $(moneys.get(i));
-            money_a.text(money_number);
-        }
-
-        var fund_select = $(this.INVEST_FUND_ID);
-        var funds = print.find(this.PRINT_FUND_NAME);
-        var fundid = fund_select.val();
-        var fundname = "";
-        if (fundid) {
-            fundname = this.fund.getName(fundid);
-        }
-        for (var i = 0; i < funds.length; i++) {
-            var fund_a = $(funds.get(i));
-            fund_a.text(fundname);
-        }
-
-        var rgrq = $(this.INVEST_FROM_ID).val();
-        var from = this.dateformat.toCH(rgrq);
-        var froms = print.find(this.PRINT_FROM_NAME);
-        for (var i = 0; i < froms.length; i++) {
-            var from_a = $(froms.get(i));
-            from_a.text(from);
-        }
-
-        var paytype = $(this.INVEST_PAYTYPE_ID)[0].value;
         var pays = print.find(this.PRINT_PAYDATE_NAME);
         for (var i = 0; i < pays.length; i++) {
             var pay_div = $(pays.get(i));
