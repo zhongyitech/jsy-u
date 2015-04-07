@@ -111,8 +111,7 @@ var EndProject = {
             });
     },
 
-    setView_ProjectName : function(project){
-        var pro = JSON.parse(project);
+    setView_ProjectName : function(pro){
         var projectName = pro["name"];
         this.PROJECT_ID = pro["id"];
         console.log(this.PROJECT_ID);
