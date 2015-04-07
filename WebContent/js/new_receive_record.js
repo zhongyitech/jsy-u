@@ -137,7 +137,17 @@ var VIEWDATA={
                 receiveDetail_struct:receiveDetail_struct,
                 remain_money_suggest:remain_money
             };
-            me.post_complete("/api/receiveRecord/add_receive_record",model);
+
+            var params = JSON.stringify(model);
+            var data = {url: '/api/receiveRecord/add_receive_record', entity: params};
+            $.io.post(data).success(function(result){
+                window.location.href = "new_receive_record.jsp";
+            }).error(function(result){
+                console.log(result);
+                alert('提交时错误:'+result.msg);
+            });
+
+
         });
 
 
@@ -175,7 +185,7 @@ var VIEWDATA={
         }
 
         //看table的li选中情况
-        paytotal = this.countRemainMoneyByDomain(paytotal);
+        paytotal = this.countRemainMoneyByDomain(parseFloat(paytotal));
 
         $("#remain_money").val(paytotal);
     },
@@ -186,8 +196,14 @@ var VIEWDATA={
         var payRecords = [];
         var checkBoxs2 = $("input[name='shouldReceiveCheckbox']:checkbox:checked");
         $.each(checkBoxs2,function(index,obj){
-            paytotal= paytotal-$(obj).val();
+            paytotal= paytotal-parseFloat($(obj).val());
         });
+
+
+        var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+        var bankidOverReceive= parseFloat($("#bankOverReceive_"+bankid).val());
+        paytotal = paytotal + bankidOverReceive*1;
+
         return paytotal;
 
     },
@@ -371,11 +387,11 @@ var VIEWDATA={
                     $.each(rest_result.banks,function(index,obj){
                         if(obj.defaultAccount){
                             $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
                             );
                         }else{
                             $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
                             );
                         }
 
@@ -425,6 +441,9 @@ var VIEWDATA={
     post_complete: function(url, model){
         var me = this;
         var data = {url: url, entity: JSON.stringify(model)};
+
+
+
         console.log(data);
         $.ajax({
             type: 'post',

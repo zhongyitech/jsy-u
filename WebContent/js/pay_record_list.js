@@ -300,7 +300,7 @@ var VIEWDATA={
 
                 row.append('<td>' + items[i]["accountName"] + '</td>');
                 row.append('<td>' + items[i]["account"] + '</td>');
-                row.append('<td>' + items[i]["remain_charge"] + '</td>');
+                //row.append('<td>' + items[i]["remain_charge"] + '</td>');
             }
         }
 
