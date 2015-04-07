@@ -47,7 +47,7 @@
                                 <th class="text-center">公司简称</th>
                                 <th class="text-center">公司类型</th>
                                 <th class="text-center">注册地址</th>
-                                <th class="text-center">基金</th>
+                                <%--<th class="text-center">基金</th>--%>
                                 <th class="text-center">法人代表</th>
                                 <th class="text-center">省</th>
                                 <th class="text-center">市</th>
