@@ -46,8 +46,6 @@ var VIEWDATA = {
 
         //合同编号 变更事件：根据档案类型进行数据获取和设置
         $("#contractNum").focusout(function (e) {
-
-
             var contractNum = $("#contractNum").val();
             me.getDataOfHtbh(contractNum);
         });

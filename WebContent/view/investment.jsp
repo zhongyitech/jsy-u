@@ -167,12 +167,13 @@
         </div>
         <div class="form-input col-md-4">
             <select id="invest-paytype" readonly="true" >
-                <option value=""></option>
-                <option value="N">年付</option>
-                <option value="J">季付</option>
-                <option value="M">月付</option>
-                <option value="D">立即付息</option>
-                <option value="W">半年付</option>
+                <option value="">选择付息方式</option>
+                <option value="Y">年付(Y)</option>
+                <option value="N">到期付(N)</option>
+                <option value="J">季付(J)</option>
+                <option value="M">月付(M)</option>
+                <option value="D">立即付息(D)</option>
+                <option value="W">半年付(W)</option>
 
             </select>
         </div>
