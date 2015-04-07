@@ -858,19 +858,19 @@ var FLOW={
             });
 
             //有限合伴
-            var company = $("#company").val();
+            var company = $("#company").html();
             if(company && company!=""){
-                model.company = company;
+                //model.company = company;
             }else{
-                alert("请选择有限合伴");
+                alert("请为给项目创建基金，并进行关联");
                 return false;
             }
             //基金
-            var fund = $("#relate_funds").val();
+            var fund = $("#relate_fund").html();
             if(fund && fund!=""){
-                model.fund = fund;
+                //model.fund = fund;
             }else{
-                alert("请选择基金");
+                alert("请为给项目创建基金，并进行关联");
                 return false;
             }
             //管理费率
@@ -949,10 +949,10 @@ var FLOW={
             me.post_complete('/api/project/complete_makeContact', model);
         });
 
-        $("#company").change(function(){
-            var companyid = $("#company").val();
-            me.getFunds(companyid,this.projectid);
-        });
+        //$("#company").change(function(){
+        //    var companyid = $("#company").val();
+        //    me.getFunds(companyid,this.projectid);
+        //});
 
         $("#manage_per").change(function(){
             $(this).val(NUMBERFORMAT.toRate($(this).val()));
@@ -968,9 +968,9 @@ var FLOW={
         });
 
         /***加载数据***/
-        me.getCompany(); //加载有限合作下拉数据
-        $("#company").val(makeContactBean.company);
-        $("#relate_funds").val(makeContactBean.fund);
+        //me.getCompany(); //加载有限合作下拉数据
+        $("#company").html(makeContactBean.company);
+        $("#relate_fund").html(makeContactBean.fund);
         $("#manage_per").val(makeContactBean.manage_per);
         $("#community_per").val(makeContactBean.community_per);
         $("#notNormal_per").val(makeContactBean.penalty_per);
@@ -1083,58 +1083,58 @@ var FLOW={
         $("#panel_makeContact").show();
     },
 
-    getCompany: function () {
-        var me = this;
-        var data = {url: '/api/fundCompanyInformation/listAll'};
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function(result){
-                if(result && result.rest_result ){
-                    $.each(result.rest_result,function(index,obj){
-                        $("#company").append(
-                            '<option value="'+obj.id+'">'+obj.companyName+'</option>'
-                        );
-                    });
-                    $('#company').trigger('change');
-                }
+    //getCompany: function () {
+    //    var me = this;
+    //    var data = {url: '/api/fundCompanyInformation/listAll'};
+    //    $.ajax({
+    //        type: 'post',
+    //        url: '../rest/item/get',
+    //        data: data,
+    //        dataType: 'json',
+    //        async: false,
+    //        success: function(result){
+    //            if(result && result.rest_result ){
+    //                $.each(result.rest_result,function(index,obj){
+    //                    $("#company").append(
+    //                        '<option value="'+obj.id+'">'+obj.companyName+'</option>'
+    //                    );
+    //                });
+    //                $('#company').trigger('change');
+    //            }
+    //
+    //        },
+    //        error: function(result){
+    //            alert('提交时错误:'+result);
+    //        }
+    //    });
+    //},
 
-            },
-            error: function(result){
-                alert('提交时错误:'+result);
-            }
-        });
-    },
-
-    getFunds: function (companyid, projectid) {
-        var me = this;
-        var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid, projectid:projectid})};
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function(result){
-                if(result && result.rest_result){
-                    $("#relate_funds").empty();
-                    //var rest_result = JSON.parse(result.rest_result);
-                    var rest_result = result.rest_result;
-                    if(rest_result && rest_result.banks){
-                        $.each(rest_result.banks,function(index, obj){
-                            $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
-                        });
-                    }
-                }
-            },
-            error: function(result){
-                alert('提交时错误:'+result);
-            }
-        });
-    },
+    //getFunds: function (companyid, projectid) {
+    //    var me = this;
+    //    var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid, projectid:projectid})};
+    //    $.ajax({
+    //        type: 'post',
+    //        url: '../rest/item/get',
+    //        data: data,
+    //        dataType: 'json',
+    //        async: false,
+    //        success: function(result){
+    //            if(result && result.rest_result){
+    //                $("#relate_funds").empty();
+    //                //var rest_result = JSON.parse(result.rest_result);
+    //                var rest_result = result.rest_result;
+    //                if(rest_result && rest_result.banks){
+    //                    $.each(rest_result.banks,function(index, obj){
+    //                        $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
+    //                    });
+    //                }
+    //            }
+    //        },
+    //        error: function(result){
+    //            alert('提交时错误:'+result);
+    //        }
+    //    });
+    //},
 
     init_makeContactOA: function(makeContactOABean){
         var me = this;

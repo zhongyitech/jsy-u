@@ -510,16 +510,18 @@
                                         <label >有限合伴：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <select id="company">
-                                        </select>
+                                        <%--<select id="company">--%>
+                                        <%--</select>--%>
+                                        <label id="company"></label>
                                     </div>
 
                                     <div class="form-label col-md-2">
                                         <label >关联基金：</label>
                                     </div>
                                     <div class="form-input col-md-4">
-                                        <select id="relate_funds">
-                                        </select>
+                                        <%--<select id="relate_funds">--%>
+                                        <%--</select>--%>
+                                        <label id="relate_fund"></label>
                                     </div>
                                 </div>
 

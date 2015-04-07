@@ -25,23 +25,23 @@
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-3">
-                                    <label for="">基金名称：</label>
+                                    <label >基金名称：</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" id="fundname" placeholder="输入自动查询"/>
                                     <input type="hidden" id="_fundname" placeholder="输入自动查询"/>
                                 </div>
                                 <div class="form-label col-md-2">
-                                    <label for="">项目名称：</label>
+                                    <label >项目名称：</label>
                                 </div>
                                 <div class="form-input col-md-3">
-                                    <input type="text" id="projectname"/>
+                                    <input type="text" id="projectname" readonly="readonly"/>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">附件：</label>
+                                    <label  class="font-size-20">附件：</label>
                                 </div>
                             </div>
 
@@ -69,7 +69,7 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-12">
-                                    <label for="" class="font-size-20">备注：</label>
+                                    <label  class="font-size-20">备注：</label>
                                 </div>
                                 <div class="form-input col-md-12">
                                     <textarea name="input_text" id="description" class="small-textarea"></textarea>
@@ -79,7 +79,7 @@
                             <div class="form-row">
                                 <div class="form-label col-md-12">
                                     <button class="but-ui btn primary-bg large" type="button">
-                                        <span class="button-content" id="add-project">添加</span>
+                                        <span class="button-content" id="end-project">提交</span>
                                     </button>
                                 </div>
                             </div>
