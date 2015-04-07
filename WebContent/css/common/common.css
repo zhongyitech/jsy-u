@@ -29,3 +29,6 @@ input[readonly=true] {background: #EAE5E5;}
 .print-paper .print-footer div{ z-index: 100; position: relative;}
 .print-paper .logo { position: absolute; left: -40px; top: -40px;}
 .print-paper .seal { position: absolute; right: 0; bottom: 0; }
+
+.auto-height { padding-bottom: 100000px !important; margin-bottom: -100000px !important; overflow: hidden !important;}
+.pos-rel { position: relative;}
