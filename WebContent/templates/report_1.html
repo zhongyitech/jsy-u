@@ -7,7 +7,7 @@
     <div class="print-body">
         <span>尊敬的客户<span class="underline">{$T.username}</span></span>
         <p>您好！</p>
-        <p>感谢您投资<span class="underline">{$T.fundName||""}</span>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<span class="underline">{$.utils.toCNY($T.tzje||0/10000)}</span>万元整，期限为<span class="underline">{$T.tzqx}</span>。本合伙企业承诺预期收益率为<span class="underline">{$T.nhsyl||0*100}%</span>/年。</p>
+        <p>感谢您投资<span class="underline">{$T.fundName||""}</span>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<span class="underline">{$.utils.toCNY($T.tzje||0/10000)}</span>万元整，期限为<span class="underline">{$T.tzqx}</span>。本合伙企业承诺预期收益率为<span class="underline">{$T.nhsyl*100 || 0*100} %</span>/年。</p>
         <p>您的计息起始日期为<span class="underline">{$.utils.dateFormat($T.rgrq,"yyyy年MM月dd日")}</span>。</p>
         {#foreach $T.items as item}
         {#if !$T.item$last}
