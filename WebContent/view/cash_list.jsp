@@ -234,51 +234,6 @@
 </div>
 
 
-<div id="bankaccount_select" class="white_content">
-    <div id="b_jy_panel" style="width: 600px;">
-        <form class="form-bordered " action="/" method="post">
-            <div class="form-row">
-                <div class="form-input col-md-12 ">
-                    <h4>设置支付账号</h4>
-                </div>
-            </div>
-            <div class="form-row" class="">
-                <table id="sel_table" class="table table-striped">
-                    <colgroup>
-                        <col width="40%"/>
-                    </colgroup>
-                    <tr>
-                        <th>基金名称</th>
-                        <th>支付银行账户</th>
-                    </tr>
-                    <tr>
-                        <td><span>基金名称基金名称基基金名称基金名称基金名称金名称基金名称基金名称</span></td>
-                        <td><select>
-                            <option>选择兑付账户</option>
-                            <option>中国建设刍深圳分行</option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td>d</td>
-                        <td><select>
-                            <option>选择兑付账户</option>
-                        </select></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="form-row">
-                <div class="form-input col-md-12 text-right">
-                    <a href="javascript:;" id="btn_ok" class="btn medium primary-bg" title="确认使用此账户进行支付">
-                        <span class="button-content">OK</span>
-                    </a>
-                    <a href="javascript:;" id="btn_cancel" class="btn medium ui-state-default" title="取消操作">
-                        <span class="button-content">取消</span>
-                    </a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
 </div>
 </div>

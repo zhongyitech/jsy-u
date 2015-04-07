@@ -182,7 +182,7 @@ var VIEWDATA = {
                 row.append('<td>' + items[i]["fpno"] + '</td>');
                 row.append('<td>' + items[i]["fpname"] + '</td>');
                 row.append('<td>' + TypeConfig.getName(items[i]["fptype"].id) + '</td>');
-                row.append('<td>' + items[i]["fpcode"] + '</td>');
+                row.append('<td>' + items[i]["contractNum"] + '</td>');
                 row.append('<td>' + items[i]["contractNo"] + '</td>');
                 row.append('<td>' + items[i]["projectName"] + '</td>');
                 row.append('<td><span class="funds-item-name" title="' + items[i]["fundName"] + '">' + items[i]["fundName"] + '</span></td>');
