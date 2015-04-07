@@ -114,42 +114,36 @@
 
             </div>
 
-            <div class="content-box box-toggle " id="sylfw-view">
-                <h3 class="content-box-header primary-bg">
-                    <span class="float-left">收益率范围</span>
-                    <a href="#" class="float-right icon-separator btn toggle-button" title="收益率范围">
-                        <i class="glyph-icon icon-toggle icon-chevron-down"></i>
-                    </a>
-                </h3>
+            <div class="col-md-12 pad0A clearfix">
+                <div class="col-md-6 pad0L auto-height">
+                    <div id="sylfw-view" class="content-box box-toggle">
+                        <h3 class="content-box-header primary-bg">
+                            <span class="float-left">收益率范围</span>
+                            <a href="#" class="float-right icon-separator btn toggle-button" title="收益率范围">
+                                <i class="glyph-icon icon-toggle icon-chevron-down"></i>
+                            </a>
+                        </h3>
 
-                <div class="content-box-wrapper">
-                    <table class="table text-center mrg0B" id="sylfw-table">
-                        <thead>
-                        <tr>
-                            <th class="text-center"><span class="text-overflow"><input type="checkbox" name="checkbox"></span>
-                            </th>
-                            <th class="text-center" colspan="3"><span class="text-overflow">(*)收益范围</span></th>
-                            <th class="text-center"><span class="text-overflow">(*)收益率</span></th>
-                            <th class="text-center"><span class="text-overflow">(*)合同版本</span></th>
-                        </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
+                        <div class="content-box-wrapper">
+                            <table class="table text-center mrg0B" id="sylfw-table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"><input type="checkbox" name="checkbox"></th>
+                                    <th class="text-center" colspan="3">(*)收益范围</th>
+                                    <th class="text-center">(*)收益率</th>
+                                    <th class="text-center">(*)合同版本</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
 
-                <div class="button-pane">
-                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L"
-                            id="remove-button"><span class="button-content">删除选中行</span></button>
-                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="add-button">
-                        <span class="button-content">增加一行</span></button>
-                </div>
-            </div>
-
-            <div class="">
-
-                <div class="width-12-6">
-
-                    <div class="content-box box-toggle mrg6R" id="tzqx-view">
+                        <div class="button-pane">
+                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="remove-button"><span class="button-content">删除选中行</span></button>
+                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="add-button"><span class="button-content">增加一行</span></button>
+                        </div>
+                    </div>
+                    <div class="content-box box-toggle" id="tzqx-view">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">投资期限</span>
                             <a href="#" class="float-right icon-separator btn toggle-button" title="投资期限">
@@ -161,11 +155,11 @@
                             <table class="table text-center mrg0B" id="tzqx-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><span class="text-overflow"><input type="checkbox"
-                                                                                               name="checkbox"></span>
+                                    <th class="text-center"><input type="checkbox"
+                                                                                               name="checkbox">
                                     </th>
-                                    <th class="text-center"><span class="text-overflow">(*)期限</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)单位</span></th>
+                                    <th class="text-center">(*)期限</th>
+                                    <th class="text-center">(*)单位</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -179,12 +173,9 @@
                                     id="add-button"><span class="button-content">增加一行</span></button>
                         </div>
                     </div>
-
                 </div>
-
-                <div class="width-12-6">
-
-                    <div class="content-box box-toggle mrg6L" id="tcfpfw-view">
+                <div class="col-md-6 pad0R auto-height clearfix">
+                    <div id="tcfpfw-view" class="content-box box-toggle auto-height">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
                             <a href="#" class="float-right icon-separator btn toggle-button" title="提成分配范围">
@@ -196,31 +187,27 @@
                             <table class="table text-center mrg0B" id="tcfpfw-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><span class="text-overflow">(*)部门经理</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)是否包销</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)业务提成比例</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)管理提成比例</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)包销收益率</span></th>
+                                    <th class="text-center">(*)部门经理</th>
+                                    <th class="text-center">(*)是否包销</th>
+                                    <th class="text-center">(*)业务提成比例</th>
+                                    <th class="text-center">(*)管理提成比例</th>
+                                    <th class="text-center">(*)包销收益率</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
-
-                <div style="clear:both;"></div>
-                <div class="button-pane">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                            class="button-content">提交</span></button>
-                </div>
-
             </div>
-
-
+            <div class="pos-rel">
+                <div class="button-pane">
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button">
+                        <span class="button-content">提交</span>
+                    </button>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
 <script type="text/javascript" src="/js/fund-create.js"></script>

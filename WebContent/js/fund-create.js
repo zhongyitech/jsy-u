@@ -524,9 +524,10 @@ var SYLFW_LIST = {//收益率范围
         this.iniRemoveButton();
     },
     iniTable: function () {
-        for (var i = 0; i < 3; i++) {
-            this.addTr();
-        }
+        //for (var i = 0; i < 3; i++) {
+        //
+        //}
+        this.addTr();
     },
     iniAddButton: function () {
         var me = this;
@@ -613,7 +614,6 @@ var SYLFW_LIST = {//收益率范围
         var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
         tr.append(checkbox);
 
-        var me = this;
         var min_td = $('<td></td>');
         tr.append(min_td);
         var min_div = $('<div class="form-input col-md-12"></div>');
@@ -625,7 +625,7 @@ var SYLFW_LIST = {//收益率范围
             $(this).val(money);
         });
 
-        var label = $('<td><span class="form-label"> ≤ 金额  < </span></td>');
+        var label = $('<td><span class="form-label"> ≤ 金额 < </span></td>');
         tr.append(label);
 
         var max_td = $('<td></td>');
