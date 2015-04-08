@@ -31,8 +31,8 @@ var VIEWDATA = {
             this.error("些投资档案已经有特殊申请了，不能再做特殊申请！");
             return;
         }
-        this.databind.BindObject = this.item;  
-                
+        this.databind.BindObject = this.item;
+
         this.setData();
         var fund_select = $('#fundselect');
         //		fund_select.clear();
@@ -45,7 +45,7 @@ var VIEWDATA = {
                 var fundid = funds[i][this.fund.ID_KEY];
                 var fundname = funds[i][this.fund.NAME_KEY];
                 var option = $('<option value="' + fundid + '">' + fundname
-					+ '</option>');
+                + '</option>');
                 fund_select.append(option);
             }
         }
@@ -109,13 +109,13 @@ var VIEWDATA = {
 
         $('#ztje_totalamount').text(total);
 
-        var result = this.validTotalAmount(total);
-        if (!result) {
-            $('#valid_lab').addClass("vailderror");
-        } else {
-            $('#valid_lab').removeClass("vailderror");
-        }
-        console.log(this.submit_error);
+        //var result = this.validTotalAmount(total);
+        //if (!result) {
+        //    $('#valid_lab').addClass("valid_error");
+        //} else {
+        //    $('#valid_lab').removeClass("valid_error");
+        //}
+        //console.log(this.submit_error);
     },
     validTotalAmount: function (amount) {
         var result = (amount % 100000) == 0;
@@ -123,7 +123,6 @@ var VIEWDATA = {
         return result;
     },
     save: function () {
-
         this.valid();
         this.sumTzje();
 
@@ -147,8 +146,8 @@ var VIEWDATA = {
             dqrq: DATEFORMAT.toRest(this.item.dqrq),
             rgrq: DATEFORMAT.toRest(this.item.rgrq),
             rgje: this.item.tzje,
-            
-            xhtbh:$("#new_htbh").val(),
+
+            xhtbh: $("#new_htbh").val(),
 
             // 转投收益额
             ztsye: $('#input_ztsye').val(),
@@ -161,48 +160,24 @@ var VIEWDATA = {
             // 备注
             bz: $('#lab-bz').val(),
         };
-        console.log(postData);
-
-        var params = {};
-        var entity = JSON.stringify(postData);
         var data = {
             url: '/api/dqztsq',
-            params: params,
-            entity: entity
+            entity: postData
         };
-
         $(this.savebtnid).attr("disabled", true);
         $(this.savebtnid).html("数据提交中。。。");
 
         var me = this;
-        var posResault = false;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (rest_result) {
-                console.log(rest_result);
-                this.rest_result = rest_result;
-                if (rest_result[REST.RESULT_KEY]) {
-                    me.showinfo('申请单提交成功');
-                    posResault = true;
-                }
-                else {
-                    me.error('提交申请出错。');
-                }
-            },
-            error: function (result) {
-                me.error("error");
-            }
-        });
-        $(this.savebtnid).attr('disabled', posResault);
-        if (posResault) {
-            $(this.savebtnid).html("申请单已经提交成功！");
-        } else {
-            $(this.savebtnid).html("提交申请");
-        }
+        $.io.post(data).success(function (resutl) {
+            $(me.savebtnid).attr('disabled', true);
+            $(me.savebtnid).html("申请单已经提交成功！");
+            me.showinfo('申请单提交成功');
+        })
+            .error(function (error) {
+                $(me.savebtnid).html("提交申请");
+                $(me.savebtnid).attr('disabled', false);
+                me.showinfo(error.msg);
+            });
     },
 
     setData: function () {
@@ -211,7 +186,7 @@ var VIEWDATA = {
         this.item.department = "部门";
         this.item.sqr = this.loginuser.chainName;
         //申请时间
-        this.item.scrq=DATEFORMAT.toDate(new Date());
+        this.item.scrq = DATEFORMAT.toDate(new Date());
 
         INVESTMENT_SY.getData(this.item.archiveNum);
         this.item.ysye = INVESTMENT_SY.getWFLX();  //this. getUnPayAmount();
@@ -265,69 +240,24 @@ var VIEWDATA = {
     },
     getDataOfHtbh: function (htbh) {
         var me = this;
-        var params = JSON.stringify({
-            keyword: htbh
-        });
         var data = {
-            url: '/api/investmentArchives/readAllForPage',
-            entity: params
+            url: '/api/investmentArchives/getByContractNum',
+            params: {contractNum: htbh}
         };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (rest_result) {
-                me.rest_result = rest_result;
-                var result = rest_result[REST.RESULT_KEY];
-                if (result) {
-                    if (result.length > 0) {
-                        me.item = result[0];
-                        console.log(me.item);
-                        me.success();
-                    } else {
-                        me.error("没有找到此合同编号的投资档案");
-                    }
-                } else {
-                    me.error("返回数据有误");
-                }
-            },
-            error: function (result) {
-                me.rest_result = result;
-                ("error:" + result);
-            }
+        $.io.get(data).success(function (result) {
+            me.item = result;
+            me.success();
         });
     },
     getData: function () {
         var me = this;
-        var params = JSON.stringify({
-            iaid: me.investmentid
-        });
         var data = {
-            url: '/api/dqztsq/getIAInfo',
-            params: params
+            url: '/api/investmentArchives/GetById',
+            params: {id: me.investmentid}
         };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: true,
-            success: function (rest_result) {
-                me.rest_result = rest_result;
-                if (rest_result[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(rest_result[REST.RESULT_KEY]);
-                    console.log(me.item);
-                    me.success();
-                } else {
-                    me.error("没有找到此合同编号的投资档案");
-                }
-            },
-            error: function (result) {
-                me.rest_result = result;
-                me.error("error");
-            }
+        $.io.get(data).success(function (result) {
+            me.item = result;
+            me.success();
         });
     }
 };
@@ -377,11 +307,11 @@ var DATABIND_FORM = {
                     var member = col['member'];
                     var value = null;
                     var tagtype = column.context.prop('tagName');
-                   
+
                     if (tagtype == "INPUT") {
                         value = column.context.val();
-                    }else{
-                    	value = column.context.html();
+                    } else {
+                        value = column.context.html();
                     }
                     this.setProperty(this.BindObject, member, value);
                 }
@@ -412,8 +342,8 @@ var DATABIND_FORM = {
             var tagtype = column.context.prop('tagName');
             if (tagtype == "INPUT") {
                 column.context.val(value);
-            }else{
-            	column.context.html(value);
+            } else {
+                column.context.html(value);
             }
         }
     }
@@ -479,8 +409,6 @@ var CUSTOMER = {
     success: {},
     item: {},
     get: function (id) {
-        var rest_result = {};
-        var item = {};
         var params = JSON.stringify({
             cid: id
         });
@@ -488,22 +416,6 @@ var CUSTOMER = {
             url: '/api/customer/getcustomer',
             params: params
         };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (result) {
-                rest_result = result;
-            },
-            error: function (result) {
-            }
-        });
-
-        if (rest_result[REST.RESULT_KEY]) {
-            item = JSON.parse(rest_result[REST.RESULT_KEY]);
-        }
-        return item;
+        return $.io.get(true, data).data();
     }
 };

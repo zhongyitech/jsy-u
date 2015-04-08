@@ -554,7 +554,6 @@ var COMPANY_FORM={
 			var me = this;
 			var item = me.getItem();
 			var params = JSON.stringify({id: COMPANY.toId(item)});
-			//var entity = JSON.stringify(item);
 			console.log(item);
 			var data = {url: '/api/fundCompanyInformation', params: params, entity: item};
 			$.io.post(data)
@@ -562,29 +561,10 @@ var COMPANY_FORM={
 					me.response = data;
 					window.location = PAGE.COMPANY_LIST;
 				})
-				.error(function(data){
+				.error(function(error){
 					me.response = data;
-					if(LOGIN.error(data)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
+					alert(error.msg);
 				});
-			//$.ajax({
-			//	type: "post",
-			//	url: "../rest/item/post",
-			//	async: true,
-			//	data: data,
-			//	dataType: "json",
-			//	success: function(response){
-			//		me.response = response;
-			//		window.location = PAGE.COMPANY_LIST;
-			//	},
-			//	error: function(response){
-			//		me.response = response;
-			//		if(LOGIN.error(response)){
-			//			alert('提交失败，请补全带*号的必填信息.');
-			//		}
-			//	}
-			//});
 		}
 };
 
