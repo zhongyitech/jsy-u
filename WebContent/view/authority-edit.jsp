@@ -249,13 +249,13 @@
                     {#foreach $T as item}
                         <div class="form-row form-checkbox-radio">
                             <div class="col-md-2 form-label">
-                                <input type="checkbox" id="menu-{$T.item.id}">
+                                <input type="checkbox" id="menu-{$T.item.id}" {$T.item.checked?"checked":""}>
                                 <label for="menu-{$T.item.id}">{$T.item.title}：</label>
                             </div>
                             <div class="col-md-10">
                                 {#foreach $T.item.children as children}
                                 <div class="col-md-2 mrg15B">
-                                    <input type="checkbox" id="menu-children-{$T.children.id}">
+                                    <input type="checkbox" id="menu-children-{$T.children.id}" {$T.item.checked?"checked":""}>
                                     <label for="menu-children-{$T.children.id}">{$T.children.title}</label>
                                 </div>
                                 {#/for}

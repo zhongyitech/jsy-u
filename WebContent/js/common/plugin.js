@@ -388,11 +388,13 @@
  * some dom element render plugin
  */
 (function($){
-    var Constant={
-        empty:"",
-        rest_total:"rest_total",
-        button_disabled:"ui-state-disabled",
-        pager_style:"page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers"
+    var Constant= {
+        empty: "",
+        rest_total: "rest_total",
+        button_disabled: "ui-state-disabled",
+        pager_style: "page-bar dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers",
+        checkbox: "input[type=checkbox]",
+        checkboxChecked: "input[type=checkbox]:checked"
     };
     var Element={
         options:'{#if $P.defaultValue}<option value="{$P.defaultValue.value}">{$P.defaultValue.text}</option>{#/if}' +
@@ -557,12 +559,12 @@
             checkbox:function(selector,rootSelector,linkAge){
                 var checkbox=$(selector);
                 checkbox.on("click", function() {
-                    $(this).closest(rootSelector).find("input[type=checkbox]").prop("checked",$(this).prop("checked"));
+                    $(this).closest(rootSelector).find(Constant.checkbox).prop("checked",$(this).prop("checked"));
                 });
                 if(linkAge){
-                    $(rootSelector).find("input[type=checkbox]").on("click",function(){
-                        if($(rootSelector).find("input[type=checkbox]:checked").length)
-                            $(this).closest(rootSelector).find(selector).prop("checked",$(this).prop("checked"));
+                    $(rootSelector).find(Constant.checkbox).not(selector).on("click",function(){
+                        var root=$(this).closest(rootSelector);
+                        root.find(selector).prop("checked",root.find(Constant.checkboxChecked).not(selector).length);
                     });
                 }
             }
