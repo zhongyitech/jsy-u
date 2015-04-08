@@ -554,11 +554,17 @@
             pager:function(selector,data,options){
                 return new Pager(selector,data,options);
             },
-            checkbox:function(selector,rootSelector){
-                var checkbox=$(selector),checkboxList=checkbox.closest(rootSelector).find("input[type=checkbox]");
-                checkbox.bind("click", function() {
-                    checkboxList.prop("checked",$(this).prop("checked"));
+            checkbox:function(selector,rootSelector,linkAge){
+                var checkbox=$(selector);
+                checkbox.on("click", function() {
+                    $(this).closest(rootSelector).find("input[type=checkbox]").prop("checked",$(this).prop("checked"));
                 });
+                if(linkAge){
+                    $(rootSelector).find("input[type=checkbox]").on("click",function(){
+                        if($(rootSelector).find("input[type=checkbox]:checked").length)
+                            $(this).closest(rootSelector).find(selector).prop("checked",$(this).prop("checked"));
+                    });
+                }
             }
         }
     })

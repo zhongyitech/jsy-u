@@ -31,14 +31,14 @@
                                 <label class="label-description">(*)角色名称：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="必填" type="text" id="name-input" disabled="disabled">
+                                <input placeholder="必填" type="text" id="name-input" readonly="readonly">
                             </div>
 
                             <div class="form-label col-md-2">
                                 <label for="" class="label-description">(*)权限:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="必填" type="text" id="authority-input" disabled="disabled">
+                                <input placeholder="必填" type="text" id="authority-input" readonly="readonly">
                             </div>
                         </div>
                     </div>
@@ -63,16 +63,16 @@
                             </div>
                             <div class="form-checkbox-radio col-md-10">
                                 <input type="checkbox" name="" id="fund-create-input">
-                                <label for="">新增</label>
+                                <label for="fund-create-input">新增</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">删除</label>
+                                <input type="checkbox" name="" id="fund-delete-input">
+                                <label for="fund-delete-input">删除</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">修改</label>
+                                <input type="checkbox" name="" id="fund-modify-input">
+                                <label for="fund-modify-input">修改</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">查看</label>
+                                <input type="checkbox" name="" id="fund-view-input">
+                                <label for="fund-view-input">查看</label>
                             </div>
                         </div>
 
@@ -81,43 +81,43 @@
                                 <label for="">字段权限：</label>
                             </div>
                             <div class="form-checkbox-radio col-md-10">
-                                <input type="checkbox" name="" id="">
-                                <label for="">编号</label>
+                                <input type="checkbox" name="" id="number">
+                                <label for="number">编号</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">基金名称</label>
+                                <input type="checkbox" name="" id="fund_name">
+                                <label for="fund_name">基金名称</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">预募规模</label>
+                                <input type="checkbox" name="" id="yumuguimo">
+                                <label for="yumuguimo">预募规模</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">实募金额</label>
+                                <input type="checkbox" name="" id="shimujijin">
+                                <label for="shimujijin">实募金额</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">季付募集规模</label>
+                                <input type="checkbox" name="" id="jifumujiguimo">
+                                <label for="jifumujiguimo">季付募集规模</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">季付实募</label>
+                                <input type="checkbox" name="" id="jifushimu">
+                                <label for="jifushimu">季付实募</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">半年付募集规模</label>
+                                <input type="checkbox" name="" id="bannianfumujiguimo">
+                                <label for="bannianfumujiguimo">半年付募集规模</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">半年付实募</label>
+                                <input type="checkbox" name="" id="bannianfushimu">
+                                <label for="bannianfushimu">半年付实募</label>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-label col-md-2"></div>
                             <div class="form-checkbox-radio col-md-10">
-                                <input type="checkbox" name="" id="">
-                                <label for="">年付募集规模</label>
+                                <input type="checkbox" name="" id="nianfumujiguimo2">
+                                <label for="nianfumujiguimo2">年付募集规模</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">年付实募</label>
+                                <input type="checkbox" name="" id="nianfushimu">
+                                <label for="nianfushimu">年付实募</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">状态</label>
+                                <input type="checkbox" name="" id="status">
+                                <label for="status">状态</label>
                             </div>
                         </div>
                     </div>
@@ -200,20 +200,20 @@
                         <div class="form-row">
                             <div class="form-label col-md-2"></div>
                             <div class="form-checkbox-radio col-md-10">
-                                <input type="checkbox" name="" id="">
-                                <label for="">年化收益率</label>
+                                <input type="checkbox" name="" id="nianhuashouyi">
+                                <label for="nianhuashouyi">年化收益率</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">付息方式</label>
+                                <input type="checkbox" name="" id="fuxifangshi">
+                                <label for="fuxifangshi">付息方式</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">到期日期</label>
+                                <input type="checkbox" name="" id="daoqiriqi">
+                                <label for="daoqiriqi">到期日期</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">已付利息</label>
+                                <input type="checkbox" name="" id="yifulixi">
+                                <label for="yifulixi">已付利息</label>
 
-                                <input type="checkbox" name="" id="">
-                                <label for="">已付本金</label>
+                                <input type="checkbox" name="" id="yifubenjin">
+                                <label for="yifubenjin">已付本金</label>
                             </div>
                         </div>
                     </div>
@@ -221,15 +221,51 @@
                 </div>
 
                 <div class="button-pane" id="menu">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                            class="button-content">提交</span></button>
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button">
+                        <span class="button-content">提交</span>
+                    </button>
                 </div>
             </div>
+            <!-- 菜单权限 -->
+            <div class="content-box box-toggle" id="menu-role">
+                <div class="content-box-header primary-bg">
+                    <span class="float-left">菜单权限</span>
 
+                    <a href="#" class="float-right icon-separator btn toggle-button" title="点击">
+                        <i class="glyph-icon icon-toggle icon-chevron-down"></i>
+                    </a>
+                </div>
+
+                <div class="content-box-wrapper">
+                    <div class="center-margin col-md-10" id="menu-role-inner"></div>
+                </div>
+
+                <div class="button-pane">
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="menu-role-submit">
+                        <span class="button-content">提交</span>
+                    </button>
+                </div>
+                <textarea class="template" id="menu-role-template">
+                    {#foreach $T as item}
+                        <div class="form-row form-checkbox-radio">
+                            <div class="col-md-2 form-label">
+                                <input type="checkbox" id="menu-{$T.item.id}">
+                                <label for="menu-{$T.item.id}">{$T.item.title}：</label>
+                            </div>
+                            <div class="col-md-10">
+                                {#foreach $T.item.children as children}
+                                <div class="col-md-2 mrg15B">
+                                    <input type="checkbox" id="menu-children-{$T.children.id}">
+                                    <label for="menu-children-{$T.children.id}">{$T.children.title}</label>
+                                </div>
+                                {#/for}
+                            </div>
+                        </div>
+                    {#/for}
+                </textarea>
+            </div>
         </div>
-
     </div>
-
 </div>
 <script type="text/javascript" src="/js/authority-edit.js"></script>
 </body>

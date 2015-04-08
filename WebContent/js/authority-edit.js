@@ -232,3 +232,9 @@ var FUND_FORM={
 			});
 		}
 };
+
+
+(function($){
+	$("#menu-role-inner").renderData("#menu-role-template", $.io.get(true,{url:"/api/menusRole/getMenuList"}).data())
+	$.dom.checkbox(".form-label input",".form-row",true)
+})(jQuery);
