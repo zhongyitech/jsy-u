@@ -43,13 +43,13 @@
 
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
-                                        <label >付款日期：</label>
+                                        <label >收款日期：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input id="paydate" class="tcal filter-input" type="text" />
                                     </div>
                                     <div class="form-label col-md-2">
-                                        <label >付款金额：</label>
+                                        <label >收款金额：</label>
                                     </div>
                                     <div class="form-input col-md-4">
                                         <input type="text" id="paytotal" placeholder="输入金额"/>

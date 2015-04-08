@@ -89,7 +89,7 @@
                                             </div>
 
                                             <div class="col-md-8 page-bar pad0R">
-                                                查看变化情况请修改截止日期:<input id="paydate" class=" filter-input" type="text" />
+                                                查看变化情况请修改截止日期:<input id="paydate" class="tcal filter-input" type="text" />
                                             </div>
                                             <table class="table table-striped text-center mrg0B" id="pay_records_table">
                                                 <thead>
