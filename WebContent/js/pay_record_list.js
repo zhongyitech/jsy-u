@@ -230,7 +230,7 @@ var VIEWDATA={
 
         $("input[name='pay_records'][type='radio']").click(function(){
             var payRecordId = $(this).val();
-            var stopDate  = $("#paydate").val();
+            var stopDate  = $.trim($("#paydate").val());
             var params = JSON.stringify({payRecordId:payRecordId,stopDate:stopDate});
 
             //获取收款记录
