@@ -197,6 +197,29 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["overDue"] + '</td>');
                 row.append('<td>' + items[i]["penalty_bill"] + '</td>');
                 row.append('<td>' + items[i]["investDays"] + '</td>');
+
+                var delbtn = $('<a data-id="' + items[i]["id"] + '" href="#">删除</a>');
+                delbtn.click(function(){
+                    var statu = confirm("确定删除?");
+                    if(!statu){
+                        return false;
+                    }
+                    var params = JSON.stringify({"payRecordId":$(this).data("id")});
+                    var data = { url: '/api/payRecord/del', params: params };
+                    $.io.post(data).success(function(){
+                        me.getItems();
+                    }).error(function(result){
+                        if(result.msg){
+                            alert(result.msg);
+                        }else{
+                            alert("删除错误，请重试！");
+                        }
+                    });
+
+                });
+                var td = $('<td>');
+                td.append(delbtn);
+                row.append(td);
             }
         }
 
@@ -293,7 +316,7 @@ var VIEWDATA={
                 var row = $("<tr></tr>");
                 table.append(row);
 
-                row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
+                //row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
                 row.append('<td>' + DATEFORMAT.toDate(items[i]["receiveDate"]) + '</td>');
                 row.append('<td>' + items[i]["fundname"] + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
@@ -301,6 +324,29 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["accountName"] + '</td>');
                 row.append('<td>' + items[i]["account"] + '</td>');
                 //row.append('<td>' + items[i]["remain_charge"] + '</td>');
+
+                var delbtn = $('<a data-id="' + items[i]["id"] + '" href="#">删除</a>');
+                delbtn.click(function(){
+                    var statu = confirm("确定删除?");
+                    if(!statu){
+                        return false;
+                    }
+                    var params = JSON.stringify({"recvRecordId":$(this).data("id")});
+                    var data = { url: '/api/receiveRecord/del', params: params };
+                    $.io.post(data).success(function(){
+                        me.getItems2();
+                    }).error(function(result){
+                        if(result.msg){
+                            alert(result.msg);
+                        }else{
+                            alert("删除错误，请重试！");
+                        }
+                    });
+
+                });
+                var td = $('<td>');
+                td.append(delbtn);
+                row.append(td);
             }
         }
 
@@ -435,35 +481,7 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["dateCreated"] + '</td>');
             }
         }
-    },
-
-
-
-    post_request: function(filepackage, isContinue){
-        console.log("filepackage:",JSON.stringify(filepackage));
-
-        var me = this;
-        var data = {url: '/api/filePackage', entity: JSON.stringify(filepackage)};
-        var me = this;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function(result){
-                console.log(result);
-                if(result && result.rest_status && result.rest_status == "200"){
-                    me.result = result;
-                }
-
-            },
-            error: function(result){
-                isAllSuc = false;
-                if(LOGIN.error(result)){
-                    return;
-                }
-            }
-        });
     }
+
+
 }
