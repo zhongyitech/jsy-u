@@ -55,6 +55,8 @@ var FLOW={
     show: function(projectid){
         this.projectid=projectid;
 
+        this.setProjectInterestInfo(projectid);
+
         this.getStepInfo();
     },
     getStepInfo: function(){
@@ -789,34 +791,6 @@ var FLOW={
 
         });
 
-        //$('#project_relate_fund').autocomplete(
-        //    {
-        //        serviceUrl: '../rest/auto/get',
-        //        type: 'POST',
-        //        params: {
-        //            url: '/api/fund/nameLike'
-        //        },
-        //        paramName: 'params',
-        //        onSelect: function (suggestion) {
-        //            $("#project_relate_fund").val(suggestion.data);
-        //        },
-        //        transformResult: function (response) {
-        //            //clear old value
-        //            $("#project_relate_fund").val("");
-        //            if (!response || response == '') {
-        //                return {
-        //                    "query": "Unit",
-        //                    "suggestions": []
-        //                };
-        //            } else {
-        //                var result = JSON.parse(response);
-        //                var suggestions = JSON.parse(result.suggestions);
-        //                result.suggestions = suggestions;
-        //                return result;
-        //            }
-        //        }
-        //    });
-
 
         $("#makeContact_attachment_1").change(function() {
             me.makeContact_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
@@ -909,6 +883,7 @@ var FLOW={
                 alert("请选择违借款率");
                 return false;
             }
+
             //期限
             var year1 = $("#year1").val();
             if(year1 && year1!=""){
@@ -968,6 +943,7 @@ var FLOW={
         });
 
         /***加载数据***/
+
         //me.getCompany(); //加载有限合作下拉数据
         $("#company").html(makeContactBean.company);
         $("#relate_fund").html(makeContactBean.fund);
@@ -1083,58 +1059,87 @@ var FLOW={
         $("#panel_makeContact").show();
     },
 
-    //getCompany: function () {
-    //    var me = this;
-    //    var data = {url: '/api/fundCompanyInformation/listAll'};
-    //    $.ajax({
-    //        type: 'post',
-    //        url: '../rest/item/get',
-    //        data: data,
-    //        dataType: 'json',
-    //        async: false,
-    //        success: function(result){
-    //            if(result && result.rest_result ){
-    //                $.each(result.rest_result,function(index,obj){
-    //                    $("#company").append(
-    //                        '<option value="'+obj.id+'">'+obj.companyName+'</option>'
-    //                    );
-    //                });
-    //                $('#company').trigger('change');
-    //            }
-    //
-    //        },
-    //        error: function(result){
-    //            alert('提交时错误:'+result);
-    //        }
-    //    });
-    //},
+    /**
+     * 设置项目利息类型和日复利信息
+     * @param projectid
+     */
+    setProjectInterestInfo: function (projectid) {
+        var me = this;
+        //隐藏日复利
+        $("#label_daycount").hide();
+        $("#value_daycount").hide();
 
-    //getFunds: function (companyid, projectid) {
-    //    var me = this;
-    //    var data = {url: '/api/fundCompanyInformation/getRelateFund', params: JSON.stringify({companyid:companyid, projectid:projectid})};
-    //    $.ajax({
-    //        type: 'post',
-    //        url: '../rest/item/get',
-    //        data: data,
-    //        dataType: 'json',
-    //        async: false,
-    //        success: function(result){
-    //            if(result && result.rest_result){
-    //                $("#relate_funds").empty();
-    //                //var rest_result = JSON.parse(result.rest_result);
-    //                var rest_result = result.rest_result;
-    //                if(rest_result && rest_result.banks){
-    //                    $.each(rest_result.banks,function(index, obj){
-    //                        $("#relate_funds").append('<option value="'+obj.id+'">'+obj.fundName+'</option>');
-    //                    });
-    //                }
-    //            }
-    //        },
-    //        error: function(result){
-    //            alert('提交时错误:'+result);
-    //        }
-    //    });
-    //},
+
+        //设置日复利input事件
+        $("#daycount_per").focusout(function(){
+            var daycount_per = $("#daycount_per").val();
+            var data = {url: '/api/project/updateProjectDaycount_per', params: JSON.stringify({daycount_per:daycount_per,projectid:projectid})};
+            $.io.post(data).success(function(result){
+            }).error(function(result){
+                alert('提交时错误:'+result);
+            });
+        });
+
+        //设置利息类型事件
+        $("#interestType").change(function(){
+            var interestType = $("#interestType").val();
+            if("singleCount"==interestType){
+                $("#label_daycount").hide();
+                $("#value_daycount").hide();
+                me.saveProjectInterestType(interestType, projectid);
+            }else if("costCount"==interestType){
+                $("#label_daycount").hide();
+                $("#value_daycount").hide();
+                me.saveProjectInterestType(interestType, projectid);
+            }else if("dayCount"==interestType){
+                $("#label_daycount").show();
+                $("#value_daycount").show();
+                me.saveProjectInterestType(interestType, projectid);
+            }
+        });
+        var me = this;
+
+        //加载数据
+        var data = {url: '/api/project/getProjectSimpleInterestInfo1', params: JSON.stringify({projectid:projectid})};
+        $.io.get(data).success(function(result){
+            //加载日复利
+            $("#daycount_per").val(result.daycount_per);
+
+            //加载利息类型
+            if(result.interestType=="singleCount"){
+                $("#interestType").val("singleCount");
+            }else if(result.interestType=="costCount"){
+                $("#interestType").val("costCount");
+            }else if(result.interestType=="dayCount"){
+                $("#interestType").val("dayCount");
+                $("#label_daycount").show();
+                $("#value_daycount").show();
+            }
+        }).error(function (result) {
+            alert('提交时错误:'+result);
+        });
+
+    },
+
+    saveProjectInterestType: function (interestType, projectid) {
+        var me = this;
+        var data = {url: '/api/project/saveProjectInterestType', params: JSON.stringify({interestType:interestType, projectid:projectid})};
+        $.ajax({
+            type: 'post',
+            url: '../rest/item/post',
+            data: data,
+            dataType: 'json',
+            async: false,
+            success: function(result){
+                if(result){
+
+                }
+            },
+            error: function(result){
+                alert('提交时错误:'+result);
+            }
+        });
+    },
 
     init_makeContactOA: function(makeContactOABean){
         var me = this;

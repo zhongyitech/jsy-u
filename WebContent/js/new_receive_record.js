@@ -106,9 +106,18 @@ var VIEWDATA={
             var bankid = $("input[name='bankselect'][type='radio']:checked").val();
 
 
-            if(!fundid || !projectid || !paydate || paytotal=="" || paytotal<0){
+            if(!fundid || !projectid){
                 alert("请正确录入数据");
                 return false;
+            }
+
+            if(!paydate || paytotal=="" || paytotal<0){
+                if(parseFloat(remain_money)<=0){
+                    alert("请输入收款金额或者保证余额大于零");
+                    return false;
+                }else{
+                    paytotal = 0;
+                }
             }
 
             //应收款的数据结构
@@ -179,10 +188,21 @@ var VIEWDATA={
         var me = this;
         var paytotal = $("#paytotal").val();
         paytotal = STRINGFORMAT.toNumber(paytotal);
-        paytotal = $.trim(paytotal);
-        if(!paytotal || paytotal=="" || paytotal=="0"){
+        if(!paytotal || paytotal=="" || paytotal<0){
+            if(parseFloat(remain_money)<=0){
+                return;
+            }else{
+                paytotal = 0;
+            }
+        }
+
+        var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+        if(!bankid){
             return;
         }
+        var bankOverReceive = parseFloat($("#bankOverReceive_"+bankid).val());
+        $("#remain_money").val(bankOverReceive+paytotal);
+
 
         //看table的li选中情况
         paytotal = this.countRemainMoneyByDomain(parseFloat(paytotal));
@@ -398,6 +418,13 @@ var VIEWDATA={
                     });
                 }
 
+
+                //加载完毕银行账户后，设置剩余余额为收款余额
+                var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+                $("#remain_money").val($("#bankOverReceive_"+bankid).val());
+                $("input[name='bankselect'][type='radio']").change(function(){
+                    console.log($("input[name='bankselect'][type='radio']:checked").val());
+                });
             },
             error: function(result){
                 alert('提交时错误:'+result);

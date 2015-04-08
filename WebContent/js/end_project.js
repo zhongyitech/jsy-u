@@ -44,7 +44,7 @@ var EndProject = {
                     mark:$("#description").val()
                 };
 
-                var data   ={url:"/api/project/updateProjectAttr",params:JSON.stringify(params)};
+                var data   ={url:"/api/project/updateProjectAttr",ok:JSON.stringify(params)};
 
                 $.io.post(data)
                     .success(function(result){

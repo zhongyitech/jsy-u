@@ -42,16 +42,35 @@
 
                     </div>
 
+
                     <div class="form-row">
+                        <div class="form-label col-md-2">
+                            <label >利息计算方式：</label>
+                        </div>
+                        <div class="form-input col-md-4">
+                            <select id="interestType">
+                                <option value="none"></option>
+                                <option value="singleCount">单利</option>
+                                <option value="costCount">复利</option>
+                                <option value="dayCount">日复利</option>
+                            </select>
+                        </div>
 
+                        <div id="label_daycount" class="form-label col-md-2">
+                            <label>日复利日利率：</label>
+                        </div>
+                        <div id="value_daycount" class="form-input col-md-4">
+                            <input id="daycount_per" placeholder="例如：0.0001"/>
+                        </div>
+                    </div>
 
+                    <div class="form-row">
                         <div class="form-label col-md-2">
                             <label>项目当前流程：</label>
                         </div>
                         <div class="form-input col-md-4">
                             <span id="currentStageName"></span>
                         </div>
-
                     </div>
 
                 </div>
@@ -558,6 +577,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-row">
                                     <div class="form-label col-md-2">
                                         <label >期限（年）：</label>
@@ -569,15 +589,6 @@
                                         <div class="form-label col-md-5">
                                             <input id="year2" placeholder="缓冲归还年数"/>
                                         </div>
-                                    </div>
-
-                                    <div class="form-label col-md-2   ">
-                                        <label >利息计算方式：</label>
-                                    </div>
-                                    <div class="form-input col-md-4">
-                                        <label><input type="radio" name="interestType" value="singleCount">单利</label>
-                                        <label><input type="radio" name="interestType" value="costCount">复利</label>
-                                        <label><input type="radio" name="interestType" value="dayCount">日复利</label>
                                     </div>
 
 
