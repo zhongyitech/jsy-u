@@ -91,7 +91,7 @@
             <label class="label-description">(*)基金名称：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-fund" class="fund"></select>
+            <select id="invest-fund" class="fund disabled" readonly="true" ></select>
         </div>
         <div class="form-label col-md-2">
             <label class="label-description">(*)业务经理：</label>

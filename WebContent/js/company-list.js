@@ -118,11 +118,11 @@ var COMPANY_LIST ={
 			var address_td = $('<td class="text-center"><span class="text-overflow" title="' + address + '">' + address + '</span></td>');
 			tr.append(address_td);
 			
-			var fund = COMPANY.toFund(item);
-			fund = FUND.toItem(fund);
-			var fname = FUND.toName(fund);
-			var fund_td = $('<td class="text-center"><span class="text-overflow" title="' + fname + '">' + fname + '</span></td>');
-			tr.append(fund_td);
+			//var fund = COMPANY.toFund(item);
+			//fund = FUND.toItem(fund);
+			//var fname = FUND.toName(fund);
+			//var fund_td = $('<td class="text-center"><span class="text-overflow" title="' + fname + '">' + fname + '</span></td>');
+			//tr.append(fund_td);
 			
 			var frdb = COMPANY.toFRDB(item);
 			var frdb_td = $('<td class="text-center"><span class="text-overflow" title="' + frdb + '">' + frdb + '</span></td>');

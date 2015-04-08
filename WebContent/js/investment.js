@@ -57,7 +57,7 @@ var NIANHUA = {
         return this.item;
     }
 };
-function nextStepCallback(setpIndex){
+function nextStepCallback(setpIndex) {
 //    alert(setpIndex);
     INVESTMENT_ITEM.BuildReviewPage();
 };
@@ -159,17 +159,17 @@ var INVESTMENT_ITEM = {
         }
     },
     //确认书预览觖发方法
-    BuildReviewPage:function(){
+    BuildReviewPage: function () {
 
-        var item=this.getItem();
-        item['fundName']=$("#invest-fund option:selected").text();
-        var entity={date:DATEFORMAT.toRest(item['rgrq']),qx:item['tzqx'],fxfs:item['fxfs']};
-        var payTimes=$.io.post(true,{url:'/api/investmentArchives/getPayTimes',entity:entity})
-            .success(function(result){
-                item["items"]=result;
-                $("#step-2").renderURI("/templates/report_1.html",item);
+        var item = this.getItem();
+        item['fundName'] = $("#invest-fund option:selected").text();
+        var entity = {date: DATEFORMAT.toRest(item['rgrq']), qx: item['tzqx'], fxfs: item['fxfs']};
+        var payTimes = $.io.post(true, {url: '/api/investmentArchives/getPayTimes', entity: entity})
+            .success(function (result) {
+                item["items"] = result;
+                $("#step-2").renderURI("/templates/report_1.html", item);
             })
-            .error(function(error){
+            .error(function (error) {
                 alert("获取付息次数出错了,请确认投资期限和付息方式已经填写?");
             });
 
@@ -185,12 +185,31 @@ var INVESTMENT_ITEM = {
 
         var pact_input = $(this.INVEST_PACT_ID);
         pact_input.keyup(function () {
-            me.setHTBH();
+            if (pact_input.val().length > 4) {
+                $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: pact_input.val()}})
+                    .success(function (result) {
+                        //me.resetDefaultDate(result);
+                        if (result) {
+                            $("#invest-fund").val(result.fund.id)
+                            me.setHTBH();
+                            $("#invest-pact").removeClass('valid_error');
+                            $("#invest-pact").attr("placeholder", "合同编号")
+                        } else {
+                            $("#invest-pact").addClass('valid_error');
+                            $("#invest-pact").attr("placeholder", "合同编号没有登记")
+                        }
+                    }).error(function(error){
+                        $("#invest-pact").addClass('valid_error');
+                        $("#invest-pact").attr("placeholder", error.msg);
+                    });
+            }else{
+                $("#invest-pact").addClass('valid_error');
+            }
         });
         var contract = item[this.investment.CONTRACT_KEY];
         if (contract) {
             pact_input.val(contract);
-            me.setHTBH();
+            //me.setHTBH();
         }
 
         var tzje_input = $(this.INVEST_MONEY_ID);
@@ -200,7 +219,7 @@ var INVESTMENT_ITEM = {
         var tzje = item[this.investment.TZJE_KEY];
         if (tzje) {
             tzje_input.val(this.numberformat.toYuan(tzje));
-            me.setTZJE();
+            //me.setTZJE();
         }
 
         var fund_select = $(this.INVEST_FUND_ID);
@@ -209,18 +228,6 @@ var INVESTMENT_ITEM = {
             return {text: item.mapName, value: item.id};
         });
 
-
-//
-//        if (funds) {
-//            var option = $('<option></option>');
-//            fund_select.append(option);
-//            for (var i in funds) {
-//                var fundid = funds[i][this.fund.ID_KEY];
-//                var fundname = this.fund.getName(fundid);
-//                var option = $('<option value="' + fundid + '">' + fundname + '</option>');
-//                fund_select.append(option);
-//            }
-//        }
         fund_select.change(function () {
             me.setFund();
         });
@@ -337,18 +344,6 @@ var INVESTMENT_ITEM = {
         if (dm) {
             dm_select.val(dm[this.user.ID_KEY]);
         }
-        var departments = this.department.getItems();
-        var department_select = $(this.INVEST_DEPARTMENT_ID);
-//        if (departments) {
-//            var option = $('<option></option>');
-//            department_select.append(option);
-//            for (var i in departments) {
-//                var departmentid = departments[i][this.department.ID_KEY];
-//                var departmentname = departments[i][this.department.NAME_KEY];
-//                var option = $('<option value="' + departmentid + '">' + departmentname + '</option>');
-//                department_select.append(option);
-//            }
-//        }
         var department = item[this.investment.BM_KEY];
         if (department) {
             department_select.val(department);
@@ -383,136 +378,6 @@ var INVESTMENT_ITEM = {
          */
         var ywtcs = item[this.investment.YWTCS_KEY];
         this.yewu.set(ywtcs);
-
-        //客户信息
-//        var customer_name_input = $(this.INVEST_CUSTOMER_NAME_ID);
-//        var customer = item[this.investment.CUSTOMER_KEY];
-//        if (customer) {
-//            customer = this.customer.get(customer[this.customer.ID_KEY]);
-//            if (customer) {
-//                var customer_name = this.customer.getName(customer[this.customer.ID_KEY]);
-//                customer_name_input.val(customer_name);
-//            }
-//        }
-
-//        var country_select = $(this.INVEST_COUNTRY_ID);
-//        if (customer) {
-//            var country = this.customer.getCountry(customer[this.customer.ID_KEY]);
-//            country_select.val(country);
-//        }
-//
-//        var cardtype_select = $(this.INVEST_CARDTYPE_ID);
-//        if (customer) {
-//            var cardtype = this.customer.getCardType(customer[this.customer.ID_KEY]);
-//            cardtype_select.val(cardtype);
-//        }
-//
-//        var cardnumber_select = $(this.INVEST_CARDNUMBER_ID);
-//        if (customer) {
-//            var cardnumber = this.customer.getCardNumber(customer[this.customer.ID_KEY]);
-//            cardnumber_select.val(cardnumber);
-//        }
-//
-//        var sfzdz_input = $(this.INVEST_SFZDZ_ID);
-//        if (customer) {
-//            var sfzdz = CUSTOMER.toSFZDZ(customer);
-//            sfzdz_input.val(sfzdz);
-//        }
-//
-//        var khh_input = $(this.INVEST_BANKNAME_ID);
-//        if (customer) {
-//            var khh = this.customer.getKHH(customer[this.customer.ID_KEY]);
-//            khh_input.val(khh);
-//        }
-//
-//        var yhzh_input = $(this.INVEST_BANKNUMBER_ID);
-//        if (customer) {
-//            var yhzh = this.customer.getYHZH(customer[this.customer.ID_KEY]);
-//            yhzh_input.val(yhzh);
-//        }
-//
-//        var phone_input = $(this.INVEST_PHONE_ID);
-//        if (customer) {
-//            var phone = this.customer.toPhone(customer);
-//            phone_input.val(phone);
-//        }
-//
-//        var postalcode_input = $(this.INVEST_ZIP_ID);
-//        if (customer) {
-//            var postalcode = this.customer.toPostalCode(customer);
-//            postalcode_input.val(postalcode);
-//        }
-//
-//        var email_input = $(this.INVEST_EMAIL_ID);
-//        if (customer) {
-//            var email = this.customer.toEmail(customer);
-//            email_input.val(email);
-//        }
-//
-//        var calladdress_input = $(this.INVEST_ADDRESS_ID);
-//        if (customer) {
-//            var calladdress = this.customer.toCallAddress(customer);
-//            calladdress_input.val(calladdress);
-//        }
-//        if (customer) {
-//            var calladdress = this.customer.toCallAddress(customer);
-//            calladdress_input.val(calladdress);
-//        }
-//
-//        var attachment = $(this.INVEST_ATTACHMENT_ID);
-//        attachment.change(function () {
-//            me.attachments = me.file.upload($(this)[0].files);
-//            var attachments = me.attachments;
-//            if (attachments) {
-//                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
-//                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
-//                for (var i = 0; i < attachment_imgs.length; i++) {
-//                    $(attachment_imgs[i]).remove()
-//                }
-//
-//                for (var i = 0; i < attachments.length; i++) {
-//                    var attachment_name = me.attachments[i][me.file.NAME_KEY];
-//                    var attachment_src = '../rest/file/download?path=' + me.attachments[i][me.file.PATH_KEY];
-//                    var attachment_item = $('<div class="attachment-div"></div>');
-//                    attachment_div.append(attachment_item);
-//                    var attachment_i = $('<i class="attachment-i"></i>');
-//                    attachment_item.append(attachment_i);
-//                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
-//                    attachment_i.append(attachment);
-//                }
-//            }
-//        });
-//        if (customer) {
-//            me.attachments = this.customer.toUploadFiles(customer);
-//            var attachments = me.attachments;
-//            if (attachments) {
-//                var attachment_div = $(me.INVEST_ATTACHMENT_IMG_ID);
-//                var attachment_imgs = attachment_div.find('div[class=attachment-div]');
-//                for (var i = 0; i < attachment_imgs.length; i++) {
-//                    $(attachment_imgs[i]).remove()
-//                }
-//
-//                for (var i = 0; i < attachments.length; i++) {
-//                    var attachment = me.file.get(me.attachments[i][me.file.ID_KEY]);
-//                    var attachment_name = attachment[me.file.NAME_KEY];
-//                    var attachment_src = '../rest/file/download?path=' + attachment[me.file.PATH_KEY];
-//                    var attachment_item = $('<div class="attachment-div"></div>');
-//                    attachment_div.append(attachment_item);
-//                    var attachment_i = $('<i class="attachment-i"></i>');
-//                    attachment_item.append(attachment_i);
-//                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
-//                    attachment_i.append(attachment);
-//                }
-//            }
-//        }
-//
-//        var khbz_input = $(this.INVEST_KHBZ_ID);
-//        if (customer) {
-//            var khbz = this.customer.toRemark(customer);
-//            khbz_input.val(khbz);
-//        }
-
-        //通过定时任务为动态生成的控件绑定事件
         this.task(450);
     },
     task: function (time) {
@@ -533,27 +398,13 @@ var INVESTMENT_ITEM = {
         var me = this;
         me.setVers();
         me.setFXFS();
-
-        var htbh = $(this.INVEST_PACT_ID).val();
-        var print = $(this.INVEST_PRINT_ID);
-        var numbers = print.find(this.PRINT_NUMBER_NAME);
-        for (var i = 0; i < numbers.length; i++) {
-            var number_a = $(numbers.get(i));
-            if (htbh) {
-                number_a.text(htbh + '01');
-            } else {
-                number_a.text("________");
-            }
-        }
     },
     setVers: function () {//设置合同版本
         var me = this;
         var htbh = $(this.INVEST_PACT_ID).val();
         var vers = this.stringformat.toVers(htbh);
-
         if (vers != me.vers) {//版本变更后更新年化收益率
             me.vers = vers;
-
             me.setTCBL();
         }
     },
@@ -561,40 +412,12 @@ var INVESTMENT_ITEM = {
         var me = this;
         me.iniTZQX();
         me.setTCBL();
-
-        var fund_select = $(this.INVEST_FUND_ID);
-        var fund = fund_select.find('option[value=' + fund_select.val() + ']').text();
-        var print = $(this.INVEST_PRINT_ID);
-        var funds = print.find(this.PRINT_FUND_NAME);
-        for (var i = 0; i < funds.length; i++) {
-            var fund_a = $(funds.get(i));
-            if (fund) {
-                fund_a.text(fund);
-            } else {
-                fund_a.text('________');
-            }
-        }
     },
     setTZJE: function () {
         var me = this;
-
         var tzje_input = $(this.INVEST_MONEY_ID);
         var tzje = me.stringformat.toYuan(tzje_input.val());
         $(tzje_input).val(tzje);
-
-        var money_number = me.stringformat.toNumber(tzje_input.val());
-        var money_wan = money_number / 10000;
-        var print = $(this.INVEST_PRINT_ID);
-        var moneys = print.find(this.PRINT_MONEY_NAME);
-        for (var i = 0; i < moneys.length; i++) {
-            var money_a = $(moneys.get(i));
-            if (money_wan) {
-                money_a.text(money_wan);
-            } else {
-                money_a.text(money_wan);
-            }
-        }
-
         me.setTCBL();
     },
     setFXFS: function () {//设置付息方式
@@ -607,7 +430,7 @@ var INVESTMENT_ITEM = {
             fxfs_select.val(fxfs);
 
             me.iniTZQX();
-          //  me.setFXRQ();
+            //  me.setFXRQ();
         }
     },
     iniTZQX: function () {//设置投资期限
@@ -897,18 +720,18 @@ var INVESTMENT_ITEM = {
 
     },
     setRGRQ: function () {//设置认购日期
-        var rgrq = $(this.INVEST_FROM_ID).val();
-        var rgrq_ch = this.dateformat.toCH(rgrq);
-        var print = $(this.INVEST_PRINT_ID);
-        var rgrq_print = print.find(this.PRINT_FROM_NAME);
-        for (var i = 0; i < rgrq_print.length; i++) {
-            var rgrq_a = $(rgrq_print.get(i));
-            if (rgrq_ch) {
-                rgrq_a.text(rgrq_ch);
-            } else {
-                rgrq_a.text('________');
-            }
-        }
+        //var rgrq = $(this.INVEST_FROM_ID).val();
+        //var rgrq_ch = this.dateformat.toCH(rgrq);
+        //var print = $(this.INVEST_PRINT_ID);
+        ////var rgrq_print = print.find(this.PRINT_FROM_NAME);
+        ////for (var i = 0; i < rgrq_print.length; i++) {
+        ////    var rgrq_a = $(rgrq_print.get(i));
+        ////    if (rgrq_ch) {
+        ////        rgrq_a.text(rgrq_ch);
+        ////    } else {
+        ////        rgrq_a.text('________');
+        ////    }
+        ////}
     },
     setDQRQ: function () {
         var me = this;
@@ -925,7 +748,6 @@ var INVESTMENT_ITEM = {
             var day = jsz * 1;
             dqrq_input.val(this.dateformat.toDate(date.setDate(date.getDate() + day)));
         }
-
         me.setFXRQ();
     },
     setFXRQ: function () {//付息日期
