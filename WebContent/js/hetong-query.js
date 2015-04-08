@@ -60,7 +60,7 @@ var VIEWMODEL = {
         {
             title: '投资日期',
             fieldName: 'rgrq',
-            formatString: '',
+            formatString: 'date',
             isSearch:true
         },
         {

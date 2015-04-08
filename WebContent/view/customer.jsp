@@ -40,8 +40,8 @@
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="country" name="country">
-                                    <option value=""></option>
-                                    <option value="中国">中国</option>
+                                    <option value="中国大陆">中国大陆</option>
+                                    <option value="港澳台">港澳台</option>
                                     <option value="其它地区">其它地区</option>
                                 </select>
                             </div>
@@ -53,9 +53,9 @@
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="cardtype" class="credentialsType">
-                                    <option></option>
-                                    <option value="身份证">身份证</option>
+                                    <option value="身份证" >身份证</option>
                                     <option value="护照">护照</option>
+                                    <option value="营业执照">护照</option>
                                 </select>
                             </div>
 

@@ -130,7 +130,7 @@
 						<label for="">基金名称： </label>
 					</div>
 					<div class="form-input col-md-4">
-						<select id="fundselect">
+						<select id="fundselect" class="newfundName">
 						</select>
 					</div>
 					<div class="form-label col-md-2  ">
@@ -160,7 +160,7 @@
 						<label for="">新合同编号： </label>
 					</div>
 					<div class="form-input col-md-4 ">
-					    <input type="text" class="col-md-6" id="new_htbh" />
+					    <input type="text" class="col-md-6 xhtbh" id="new_htbh" maxlength="9" />
 					</div>					
 					<div class="form-label col-md-2   ">
 						<label for="" >转投总金额： </label>
