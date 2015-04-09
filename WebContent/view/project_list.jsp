@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div style="width: 700px" id="item_settingPanel">
+                    <div style="width: 900px" id="item_settingPanel">
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-3">

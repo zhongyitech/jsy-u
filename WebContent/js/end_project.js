@@ -44,11 +44,11 @@ var EndProject = {
                     mark:$("#description").val()
                 };
 
-                var data   ={url:"/api/project/updateProjectAttr",params:JSON.stringify(params)};
+                var data   ={url:"/api/project/endProject",params:JSON.stringify(params)};
 
                 $.io.post(data)
                     .success(function(result){
-                        console.log(result);
+                        window.location.href = "end_project.jsp";
                     })
                     .error(function(result){
                         alert(result)

@@ -48,7 +48,7 @@ var VIEWDATA={
                     {"id":project_id,"operate":"eq"},
                     {"name":project_name,"operate":"like"},
                     {"fundNames":fund_name,"operate":"like"},
-                    {"isEnded":archived,"operate":"eq"},
+                    {"archive":archived,"operate":"eq"},
                     {"ownerName":project_incharge_name,"operate":"like"}
                 ],
                 "or-prperties":[],

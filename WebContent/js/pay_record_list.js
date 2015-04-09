@@ -36,44 +36,48 @@ var VIEWDATA={
         //this.getItems();
         $("#paydate").val(DATEFORMAT.toDate(new Date()));
 
-        $("#paydate").datepicker({
-            onSelect: function(dateText) {
-                var stopDate = DATEFORMAT.toDate($(this).val());
-                var pay_records = [];
-                $("input[name='pay_records'][type='radio']", "#pay_records_table").each(function(){
-                    pay_records.push($(this).val());
-                });
+        $("#paydate").change(function(){
+            var dateText = $("#paydate").val();
+            var stopDate = DATEFORMAT.toDate($(this).val());
+            var pay_records = [];
+            $("input[name='pay_records'][type='radio']", "#pay_records_table").each(function(){
+                pay_records.push($(this).val());
+            });
 
-                //获取数据变化情况
-                var params = JSON.stringify(
-                    {
-                        "payRecords":pay_records,
-                        "stopDate":stopDate
+            //获取数据变化情况
+            var params = JSON.stringify(
+                {
+                    "payRecords":pay_records,
+                    "stopDate":stopDate
+                }
+            );
+            var data = { url: '/api/payRecord/changeByDate', entity: params };
+            $.ajax({
+                type: 'post',
+                url: '../rest/item/post',
+                data: data,
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    console.log("readAllForPage", result);
+                    if (result && result.rest_status && result.rest_status == "200") {
+                        var items = JSON.parse(result['rest_result']);
+                        me.setTable(items);
                     }
-                );
-                var data = { url: '/api/payRecord/changeByDate', entity: params };
-                $.ajax({
-                    type: 'post',
-                    url: '../rest/item/post',
-                    data: data,
-                    dataType: 'json',
-                    async: false,
-                    success: function (result) {
-                        console.log("readAllForPage", result);
-                        if (result && result.rest_status && result.rest_status == "200") {
-                            var items = JSON.parse(result['rest_result']);
-                            me.setTable(items);
-                        }
 
-                    },
-                    error: function (result) {
-                        if (LOGIN.error(result)) {
-                            return;
-                        }
+                },
+                error: function (result) {
+                    if (LOGIN.error(result)) {
+                        return;
                     }
-                });
-            }
+                }
+            });
         });
+        //$("#paydate").datepicker({
+        //    onSelect: function(dateText) {
+        //
+        //    }
+        //});
     },
     getItems: function () {
 
@@ -197,34 +201,47 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["overDue"] + '</td>');
                 row.append('<td>' + items[i]["penalty_bill"] + '</td>');
                 row.append('<td>' + items[i]["investDays"] + '</td>');
+
+                var delbtn = $('<a data-id="' + items[i]["id"] + '" href="#">删除</a>');
+                delbtn.click(function(){
+                    var statu = confirm("确定删除?");
+                    if(!statu){
+                        return false;
+                    }
+                    var params = JSON.stringify({"payRecordId":$(this).data("id")});
+                    var data = { url: '/api/payRecord/del', params: params };
+                    $.io.post(data).success(function(){
+                        me.getItems();
+                    }).error(function(result){
+                        if(result.msg){
+                            alert(result.msg);
+                        }else{
+                            alert("删除错误，请重试！");
+                        }
+                    });
+
+                });
+                var td = $('<td>');
+                td.append(delbtn);
+                row.append(td);
             }
         }
 
 
         $("input[name='pay_records'][type='radio']").click(function(){
             var payRecordId = $(this).val();
-            var params = JSON.stringify({payRecordId:payRecordId});
+            var stopDate  = $.trim($("#paydate").val());
+            var params = JSON.stringify({payRecordId:payRecordId,stopDate:stopDate});
 
             //获取收款记录
+
             var data2 = { url: '/api/receiveRecord/findByPayRecord', params: params };
-            $.ajax({
-                type: 'post',
-                url: '../rest/item/get',
-                data: data2,
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    if (result && result.rest_status && result.rest_status == "200") {
-                        console.log(result);
-                        var items = JSON.parse(result['rest_result']);
-                        $("#payrecord_own_money").html(result['rest_totalBalance']);
-                        me.setReceiveDetailRecordItems(items);
-                    }
-                },
-                error: function (result) {
-                    if (LOGIN.error(result)) {
-                        return;
-                    }
+            $.io.get(data2).success(function (result) {
+                $("#payrecord_own_money").html(result.rest_totalBalance);
+                me.setReceiveDetailRecordItems(result.rest_result);
+            }).error(function (result) {
+                if (LOGIN.error(result)) {
+                    return;
                 }
             });
 
@@ -293,7 +310,7 @@ var VIEWDATA={
                 var row = $("<tr></tr>");
                 table.append(row);
 
-                row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
+                //row.append('<td><input type="radio" name="pay_records" value="' + items[i]["id"] + '"</td>');
                 row.append('<td>' + DATEFORMAT.toDate(items[i]["receiveDate"]) + '</td>');
                 row.append('<td>' + items[i]["fundname"] + '</td>');
                 row.append('<td>' + items[i]["amount"] + '</td>');
@@ -301,6 +318,29 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["accountName"] + '</td>');
                 row.append('<td>' + items[i]["account"] + '</td>');
                 //row.append('<td>' + items[i]["remain_charge"] + '</td>');
+
+                var delbtn = $('<a data-id="' + items[i]["id"] + '" href="#">删除</a>');
+                delbtn.click(function(){
+                    var statu = confirm("确定删除?");
+                    if(!statu){
+                        return false;
+                    }
+                    var params = JSON.stringify({"recvRecordId":$(this).data("id")});
+                    var data = { url: '/api/receiveRecord/del', params: params };
+                    $.io.post(data).success(function(){
+                        me.getItems2();
+                    }).error(function(result){
+                        if(result.msg){
+                            alert(result.msg);
+                        }else{
+                            alert("删除错误，请重试！");
+                        }
+                    });
+
+                });
+                var td = $('<td>');
+                td.append(delbtn);
+                row.append(td);
             }
         }
 
@@ -435,35 +475,7 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["dateCreated"] + '</td>');
             }
         }
-    },
-
-
-
-    post_request: function(filepackage, isContinue){
-        console.log("filepackage:",JSON.stringify(filepackage));
-
-        var me = this;
-        var data = {url: '/api/filePackage', entity: JSON.stringify(filepackage)};
-        var me = this;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function(result){
-                console.log(result);
-                if(result && result.rest_status && result.rest_status == "200"){
-                    me.result = result;
-                }
-
-            },
-            error: function(result){
-                isAllSuc = false;
-                if(LOGIN.error(result)){
-                    return;
-                }
-            }
-        });
     }
+
+
 }

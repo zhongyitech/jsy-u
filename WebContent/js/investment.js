@@ -311,16 +311,9 @@ var INVESTMENT_ITEM = {
         USER.getItems();
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
-        if (bm_select && users) {
-            var option = $('<option></option>');
-            bm_select.append(option);
-            for (var i in users) {
-                var userid = users[i][this.user.ID_KEY];
-                var username = USER.toView(users[i]);
-                var option = $('<option value="' + userid + '">' + username + '</option>');
-                bm_select.append(option);
-            }
-        }
+        $.io.get({url:'/api/user/selectList'}).success(function(result){
+            $.dom.select(bm_select,result);
+        });
         bm_select.change(function () {
             me.setYWJL();
         });
@@ -330,16 +323,6 @@ var INVESTMENT_ITEM = {
         }
 
         var dm_select = $(this.INVEST_DM_ID);
-//        if (dm_select && users) {
-//            var option = $('<option></option>');
-//            dm_select.append(option);
-//            for (var i in users) {
-//                var userid = users[i][this.user.ID_KEY];
-//                var username = this.user.getName(userid);
-//                var option = $('<option value="' + userid + '">' + username + '</option>');
-//                dm_select.append(option);
-//            }
-//        }
         var dm = item[this.investment.BMJL_KEY];
         if (dm) {
             dm_select.val(dm[this.user.ID_KEY]);

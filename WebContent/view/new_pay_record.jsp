@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div style="width: 700px" id="item_settingPanel">
+                    <div style="width: 900px" id="item_settingPanel">
                         <form class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-2">
@@ -44,13 +44,13 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-2">
-                                    <label>付款日期：</label>
+                                    <label>汇款日期：</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input class="tcal filter-input" id="paydate"/>
                                 </div>
                                 <div class="form-label col-md-2">
-                                    <label>投资金额：</label>
+                                    <label>汇款金额：</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <input type="text" id="paytotal"/>

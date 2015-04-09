@@ -89,7 +89,7 @@
                                             </div>
 
                                             <div class="col-md-8 page-bar pad0R">
-                                                查看变化情况请修改截止日期:<input id="paydate" class=" filter-input" type="text" />
+                                                查看变化情况请修改截止日期:<input id="paydate" class="tcal filter-input" type="text" />
                                             </div>
                                             <table class="table table-striped text-center mrg0B" id="pay_records_table">
                                                 <thead>
@@ -104,6 +104,7 @@
                                                     <th class="text-center">应收逾期费</th>
                                                     <th class="text-center">应收违约费</th>
                                                     <th class="text-center">投资天数</th>
+                                                    <th class="text-center">操作</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -135,13 +136,14 @@
                                             <table class="table table-striped text-center mrg0B" id="receives_table">
                                                 <thead>
                                                 <tr>
-                                                    <th class="text-center">选择</th>
+                                                    <%--<th class="text-center">选择</th>--%>
                                                     <th class="text-center">收款日期</th>
                                                     <th class="text-center">项目基金</th>
-                                                    <th class="text-center">收款金额</th>
+                                                    <th class="text-center">新收的金额</th>
                                                     <th class="text-center">银行户名</th>
                                                     <th class="text-center">银行帐号</th>
                                                     <%--<th class="text-center">多收的钱</th>--%>
+                                                    <th class="text-center">操作</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -176,8 +178,8 @@
                                             <thead>
                                             <tr>
                                                 <th class="text-center">款项性质</th>
-                                                <th class="text-center">数额</th>
-                                                <th class="text-center">付款时间</th>
+                                                <th class="text-center">当时收款金额</th>
+                                                <th class="text-center">收款时间</th>
                                             </tr>
                                             </thead>
                                             <tbody>
