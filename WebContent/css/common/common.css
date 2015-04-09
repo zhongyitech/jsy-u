@@ -32,3 +32,5 @@ input[readonly=true] {background: #EAE5E5;}
 
 .auto-height { padding-bottom: 100000px !important; margin-bottom: -100000px !important; overflow: hidden !important;}
 .pos-rel { position: relative;}
+
+.ms-controller,.ms-important,[ms-controller],[ms-important]{visibility: hidden;}

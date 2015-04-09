@@ -227,7 +227,7 @@
                 </div>
             </div>
             <!-- 菜单权限 -->
-            <div class="content-box box-toggle" id="menu-role">
+            <div class="content-box box-toggle" id="menu-role" ms-controller="menuRole">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">菜单权限</span>
 
@@ -237,32 +237,27 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <div class="center-margin col-md-10" id="menu-role-inner"></div>
+                    <div class="center-margin col-md-10" id="menu-role-inner">
+                        <div class="form-row form-checkbox-radio" ms-repeat-item="menu_items">
+                            <div class="col-md-2 form-label">
+                                <input type="checkbox" ms-attr-id="menu-{{item.id}}" ms-attr-checked="item.checked" ms-change="change(item.id)" />
+                                <label ms-attr-for="menu-{{item.id}}">{{item.title}}：</label>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-2 mrg15B" ms-repeat-child="item.children">
+                                    <input type="checkbox" ms-attr-id="menu-child-{{child.id}}" ms-attr-checked="child.checked" ms-change="change(child.parentId,child.id)" />
+                                    <label ms-attr-for="menu-child-{{child.id}}">{{child.title}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="button-pane">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="menu-role-submit">
+                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="menu-role-submit" ms-on-click="submit">
                         <span class="button-content">提交</span>
                     </button>
                 </div>
-                <textarea class="template" id="menu-role-template">
-                    {#foreach $T as item}
-                        <div class="form-row form-checkbox-radio">
-                            <div class="col-md-2 form-label">
-                                <input type="checkbox" id="menu-{$T.item.id}" {$T.item.checked?"checked":""}>
-                                <label for="menu-{$T.item.id}">{$T.item.title}：</label>
-                            </div>
-                            <div class="col-md-10">
-                                {#foreach $T.item.children as children}
-                                <div class="col-md-2 mrg15B">
-                                    <input type="checkbox" id="menu-children-{$T.children.id}" {$T.item.checked?"checked":""}>
-                                    <label for="menu-children-{$T.children.id}">{$T.children.title}</label>
-                                </div>
-                                {#/for}
-                            </div>
-                        </div>
-                    {#/for}
-                </textarea>
             </div>
         </div>
     </div>

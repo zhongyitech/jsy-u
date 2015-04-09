@@ -2,12 +2,15 @@
  * Created by William.Wei on 2015/3/12. weizhansheng@outlook.com
  */
 /**
- * hook
+ * hook ie
  */
 (function () {
     window.console=window.console||{
         log:function(){
-            return false;
+            //do nothing
+        },
+        error:function(){
+            //do nothing
         }
     }
 })();
@@ -69,7 +72,11 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+            if(fn&&fn.call){
+                var model=response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+                if(avalon&&model&&model.$id) avalon.define.call(window,model);
+                avalon.scan.call(window);
+            }
         },
         result:function(data){
           return data&&data[this._key.result];

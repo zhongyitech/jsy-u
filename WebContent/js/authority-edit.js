@@ -235,6 +235,66 @@ var FUND_FORM={
 
 
 (function($){
-	$("#menu-role-inner").renderData("#menu-role-template", $.io.get(true,{url:"/api/menusRole/getMenuList",params:{id: $.utils.getParam("id")}}).data());
-	$.dom.checkbox(".form-label input",".form-row",true)
+	var MenuRole={
+		id:$.utils.getParam("id"),
+		request:function(){
+			return $.io.get({url:"/api/menusRole/getMenuList",params:{id: this.id}})
+		},
+		submit:function(data){
+			if($.md5(data)!= $.md5(this.clean.data)){
+				var ids=[];
+				$.each(data,function(idx,item){
+					item.checked&&ids.push(item.id);
+					$.each(item.children,function(i,v){
+						v.checked&&ids.push(v.id);
+					});
+				});
+				console.log(ids,data);
+				//$.io.post({url:"/api/menusRole/updateMenuRole",params:{id: this.id},entity:this.data})
+			}else{
+				console.log("no change");
+			}
+		},
+		cacheMap:function(data){
+			var _this=this;
+			_this.mapping={};
+			_this.clean= $.extend(true,{},{data:data});
+			$.each(data,function(i){
+				_this.mapping[this.id]=i;
+			});
+		},
+		processData:function(data){
+			var _this=this;
+			var model=avalon.define({
+				$id: "menuRole",
+				menu_items: data,
+				submit:function(){
+					_this.submit(data);
+				},
+				change:function(id,childId){
+					var item=model.menu_items[_this.mapping[id]],checked=false;
+					if(childId){
+						$.each(item.children,function(idx,val){
+							if(val.id==childId) val.checked=!val.checked;
+							if(val.checked) checked=true;
+						});
+					}else{
+						checked=!item.checked;
+						$.each(item.children,function(idx,val){
+							val.checked=checked;
+						});
+					}
+					item.checked=checked;
+				}
+			});
+		},
+		render:function(){
+			var _this=this;
+			_this.request().success(function(data){
+				_this.cacheMap(data);
+				_this.processData(data);
+			});
+		}
+	};
+	MenuRole.render();
 })(jQuery);
