@@ -19,7 +19,7 @@
     <div id="page-content-wrapper">
         <!-- #page-title -->
         <div id="page-content" class="page-view pad25T">
-            <div class="content-box box-toggle ">
+            <div class="content-box box-toggle">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">新建项目</span>
                     <a href="#" class="float-right icon-separator btn toggle-button" title="新建项目">
@@ -57,10 +57,10 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-label col-md-12">
+                                <div class="form-label col-md-3">
                                     <label class="font-size-20">备注：</label>
                                 </div>
-                                <div class="form-input col-md-10">
+                                <div class="form-input col-md-9">
                                     <textarea name="input_text" id="description" class="small-textarea"></textarea>
                                 </div>
                             </div>
@@ -89,25 +89,25 @@
                                     <div id="normal-tabs-1">
                                         <div class="form-bordered">
                                             <div class="form-row">
-                                                <div class="form-label col-md-2">
+                                                <div class="form-label col-md-3">
                                                     <label >董事：</label>
                                                 </div>
 
-                                                <div class="form-input col-md-4">
+                                                <div class="form-input col-md-3">
                                                     <input type="text" id="director"/>
                                                 </div>
-                                                <div class="form-label col-md-2   ">
+                                                <div class="form-label col-md-3   ">
                                                     <label >监事：</label>
                                                 </div>
-                                                <div class="form-input col-md-4">
+                                                <div class="form-input col-md-3">
                                                     <input type="text"  id="supervisor"/>
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-label col-md-12">
+                                                <div class="form-label col-md-3">
                                                     <label class="font-size-20">股干人员架构：</label>
                                                 </div>
-                                                <div class="form-input col-md-10">
+                                                <div class="form-input col-md-9">
                                                     <textarea name="input_text" class="small-textarea" id="stockStructure"></textarea>
                                                 </div>
                                             </div>
@@ -119,22 +119,20 @@
                                                 <div class="form-input col-md-2">
                                                     <label class="sr-only" for="stockDate">时间</label>
                                                 </div>
-                                                <div class="form-input col-md-4">
+                                                <div class="form-input col-md-3">
                                                     <input class="tcal filter-input" id="stockDate" />
                                                 </div>
                                                 <div class="form-input col-md-2">
                                                     <label class="sr-only" for="structure">股份结构</label>
                                                 </div>
-                                                <div class="form-input col-md-4">
+                                                <div class="form-input col-md-3">
                                                     <input class="form-control" id="structure" placeholder="股份结构">
                                                 </div>
-                                            </div>
-
-                                            <div class="form-row">
                                                 <div class="form-input col-md-2">
                                                     <button class="but-ui btn primary-bg large" id="addStock">添加</button>
                                                 </div>
                                             </div>
+
 
                                             <div class="form-row">
                                                 <div class="panel-body">
@@ -156,19 +154,19 @@
                                     <div id="normal-tabs-3">
                                         <div class="form-bordered">
                                             <div class="form-row">
-                                                <div class="form-label col-md-12">
+                                                <div class="form-label col-md-3">
                                                     <label class="font-size-20">债务：</label>
                                                 </div>
-                                                <div class="form-input col-md-10">
+                                                <div class="form-input col-md-9">
                                                     <textarea name="input_text" class="small-textarea" id="debt"></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="form-row">
-                                                <div class="form-label col-md-12">
+                                                <div class="form-label col-md-3">
                                                     <label class="font-size-20">资产：</label>
                                                 </div>
-                                                <div class="form-input col-md-10">
+                                                <div class="form-input col-md-9">
                                                     <textarea name="input_text" class="small-textarea" id="assets"></textarea>
                                                 </div>
                                             </div>
