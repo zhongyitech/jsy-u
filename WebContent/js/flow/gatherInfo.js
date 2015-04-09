@@ -1,5 +1,7 @@
 var App = window.App || {};
 App.GatherInfo = {
+    projectid:null,
+    isCurrent:null,
     certificateFiles_attachments: [],
     debtFiles_attachments: [],
     financialFiles_attachments: [],
@@ -7,7 +9,9 @@ App.GatherInfo = {
     businessPlanFiles_attachments: [],
     other_attachments: [],
 
-    init: function(infoBean) {
+    init: function(project, infoBean) {
+        this.projectid=project.id;
+        this.isCurrent = project.currentStageEn == "gatherInfo";
         this.initEvent(infoBean);
         this.initView(infoBean);
         this.showView(infoBean);
@@ -16,22 +20,22 @@ App.GatherInfo = {
         var me = this;
         //初始化事件
         $("#certificateFiles").change(function() {
-            me.certificateFiles_attachments = me.file.upload($(this)[0].files);
+            me.certificateFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#debtFiles").change(function() {
-            me.debtFiles_attachments = me.file.upload($(this)[0].files);
+            me.debtFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#financialFiles").change(function() {
-            me.financialFiles_attachments = me.file.upload($(this)[0].files);
+            me.financialFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#toPublicFiles").change(function() {
-            me.toPublicFiles_attachments = me.file.upload($(this)[0].files);
+            me.toPublicFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#businessPlanFiles").change(function() {
-            me.businessPlanFiles_attachments = me.file.upload($(this)[0].files);
+            me.businessPlanFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#attachment_1").change(function() {
-            me.other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+            me.other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
         });
 
 
@@ -52,7 +56,7 @@ App.GatherInfo = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+                me.other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
             });
         });
 
@@ -84,7 +88,10 @@ App.GatherInfo = {
                 other_attachments: me.other_attachments
             };
 
-            me.post_complete('/api/project/complete_gather', model);
+            var data = {url: '/api/project/complete_gather', entity: JSON.stringify(model)};
+            $.io.post(data).success(function(){
+                window.location.href = "projectinfo.jsp?id="+me.projectid;
+            });
 
         });
     },
@@ -190,6 +197,7 @@ App.GatherInfo = {
 
     },
     showView: function(infoBean) {
+        var me = this;
         //处理显示效果
         if(infoBean.accessable){//可以编辑
             console.log("can modify gatherInfo");
@@ -201,6 +209,10 @@ App.GatherInfo = {
             $("#gatherInfo_add_file").hide();
             $("button[type='button']","#form_gatherInfo").hide();
             console.log("can not modify gatherInfo");
+        }
+
+        if(me.isCurrent){
+            $("#panel_gatherInfo").removeClass("content-box-closed");
         }
         $("#panel_gatherInfo").show();
     }

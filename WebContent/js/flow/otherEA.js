@@ -3,7 +3,11 @@ App.OtherEA = {
     thirdpartyLowFiles_attachments: [],
     thirdpartyLow_other_attachments: [],
 
-    init: function (infoBean) {
+    projectid:null,
+    isCurrent:null,
+    init: function (project, infoBean) {
+        this.projectid=project.id;
+        this.isCurrent = project.currentStageEn == "otherEA";
         this.initEvent(infoBean);
         this.initView(infoBean);
         this.showView(infoBean);
@@ -12,11 +16,11 @@ App.OtherEA = {
         var me = this;
         /***初始化事件***/
         $("#thirdpartyLowFiles").change(function() {
-            me.thirdpartyLowFiles_attachments = me.file.upload($(this)[0].files);
+            me.thirdpartyLowFiles_attachments = FILE.upload($(this)[0].files);
         });
 
         $("#thirdpartyLow_attachment_1").change(function() {
-            me.thirdpartyLow_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+            me.thirdpartyLow_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
         });
 
         $("#thirdpartyLow_add_file").click(function () {
@@ -37,14 +41,14 @@ App.OtherEA = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.thirdpartyLow_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+                me.thirdpartyLow_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
             });
         });
 
         $("#complete_thirdpartyLow").click(function(){
             var thirdpartyLowDesc= $("#thirdpartyLowDesc").val();
 
-            $.each(me.meeting_other_attachments, function( index, attachment ) {
+            $.each(me.thirdpartyLow_other_attachments, function( index, attachment ) {
                 attachment.desc=$("#thirdpartyLow_attachment_txt_"+attachment.index).val();
             });
 
@@ -55,8 +59,10 @@ App.OtherEA = {
                 thirdpartyLow_other_attachments: me.thirdpartyLow_other_attachments
             };
 
-            me.post_complete('/api/project/complete_thirdpartyLow', model);
-
+            var data = {url: '/api/project/complete_thirdpartyLow', entity: JSON.stringify(model)};
+            $.io.post(data).success(function(){
+                window.location.href = "projectinfo.jsp?id="+me.projectid;
+            });
         });
     },
     initView: function (infoBean) {
@@ -73,6 +79,7 @@ App.OtherEA = {
         }
     },
     showView: function (infoBean) {
+        var me = this;
         /****处理显示效果****/
         if(infoBean.accessable){//可以编辑
             console.log("can modify otherEA");
@@ -87,6 +94,9 @@ App.OtherEA = {
             console.log("can not modify otherEA");
         }
 
+        if(me.isCurrent){
+            $("#panel_otherEA").removeClass("content-box-closed");
+        }
         $("#panel_otherEA").show();
     }
 

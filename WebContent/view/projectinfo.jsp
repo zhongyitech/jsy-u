@@ -43,6 +43,24 @@
                     </div>
 
 
+
+
+                    <div class="form-row">
+                        <div class="form-label col-md-2">
+                            <label>项目当前流程：</label>
+                        </div>
+                        <div class="form-input col-md-4">
+                            <span id="currentStageName"></span>
+                        </div>
+
+                        <div class="form-label col-md-2">
+                            <label>项目状态：</label>
+                        </div>
+                        <div class="form-input col-md-4">
+                            <span id="currentStatus"></span>
+                        </div>
+                    </div>
+
                     <div class="form-row">
                         <div class="form-label col-md-2">
                             <label >利息计算方式：</label>
@@ -61,15 +79,6 @@
                         </div>
                         <div id="value_daycount" class="form-input col-md-4">
                             <input id="daycount_per" placeholder="例如：0.0001"/>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-label col-md-2">
-                            <label>项目当前流程：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <span id="currentStageName"></span>
                         </div>
                     </div>
 
@@ -477,8 +486,8 @@
                 <!-- flow instance -->
                 <div id="panel_makeContact" style="display:none; " class="content-box box-toggle content-box-closed">
                     <div class="content-box-header primary-bg">
-                        <span class="float-left">步骤3：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）</span>
-                        <a href="#" class="float-right icon-separator btn toggle-button" title="步骤3：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）">
+                        <span class="float-left">步骤2：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）</span>
+                        <a href="#" class="float-right icon-separator btn toggle-button" title="步骤2：项目合同——选择预发行基金以及录入合同资料（项目部负责发起申请，法务部，财务部配合）">
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>
                     </div>
@@ -706,7 +715,7 @@
 <script type="text/javascript" src="/js/flow/otherEA.js"></script>
 <script type="text/javascript" src="/js/flow/research.js"></script>
 <script type="text/javascript" src="/js/flow/researchOA.js"></script>
-<script type="text/javascript" src="/js/flowLogic.js"></script>
+<script type="text/javascript" src="/js/flow/flowLogic.js"></script>
 <script type="text/javascript" src="/js/projectinfo.js"></script>
 </body>
 </html>
