@@ -244,7 +244,7 @@
                                 <label ms-attr-for="menu-{{item.id}}">{{item.title}}：</label>
                             </div>
                             <div class="col-md-10">
-                                <div class="col-md-2 mrg15B" ms-repeat-child="item.children">
+                                <div class="col-md-3 mrg15B" ms-repeat-child="item.children">
                                     <input type="checkbox" ms-attr-id="menu-child-{{child.id}}" ms-attr-checked="child.checked" ms-change="change(child.parentId,child.id)" />
                                     <label ms-attr-for="menu-child-{{child.id}}">{{child.title}}</label>
                                 </div>

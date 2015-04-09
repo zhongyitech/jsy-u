@@ -242,15 +242,14 @@ var FUND_FORM={
 		},
 		submit:function(data){
 			if($.md5(data)!= $.md5(this.clean.data)){
-				var ids=[];
+				var entity=[];
 				$.each(data,function(idx,item){
-					item.checked&&ids.push(item.id);
+					item.checked&&entity.push(item);
 					$.each(item.children,function(i,v){
-						v.checked&&ids.push(v.id);
+						v.checked&&entity.push(v);
 					});
 				});
-				console.log(ids,data);
-				//$.io.post({url:"/api/menusRole/updateMenuRole",params:{id: this.id},entity:this.data})
+				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id: this.id},entity:entity})
 			}else{
 				console.log("no change");
 			}
