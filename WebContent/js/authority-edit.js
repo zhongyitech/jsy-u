@@ -241,7 +241,8 @@ var FUND_FORM={
 			return $.io.get({url:"/api/menusRole/getMenuList",params:{id: this.id}})
 		},
 		submit:function(data){
-			if($.md5(data)!= $.md5(this.clean.data)){
+			var _this=this;
+			if(_this.hasChange){
 				var entity=[],roleId=this.id;
 				$.each(data,function(idx,item){
 					item.checked&&entity.push({
@@ -257,6 +258,7 @@ var FUND_FORM={
 				});
 				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
 					$.message.log("保存成功！");
+					_this.hasChange=false;
 				}).error(function(){
 					$.message.log("保存出错！");
 				});
@@ -294,6 +296,7 @@ var FUND_FORM={
 						});
 					}
 					item.checked=checked;
+					_this.hasChange=JSON.stringify(data)!= JSON.stringify(_this.clean.data);
 				}
 			});
 		},
