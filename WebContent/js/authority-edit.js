@@ -242,14 +242,20 @@ var FUND_FORM={
 		},
 		submit:function(data){
 			if($.md5(data)!= $.md5(this.clean.data)){
-				var entity=[];
+				var entity=[],roleId=this.id;
 				$.each(data,function(idx,item){
-					item.checked&&entity.push(item);
+					item.checked&&entity.push({
+						menus:{id:item.id},
+						role:{id:roleId}
+					});
 					$.each(item.children,function(i,v){
-						v.checked&&entity.push(v);
+						v.checked&&entity.push({
+							menus:{id:v.id},
+							role:{id:roleId}
+						});
 					});
 				});
-				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id: this.id},entity:entity})
+				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity})
 			}else{
 				console.log("no change");
 			}

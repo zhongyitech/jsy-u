@@ -155,3 +155,4 @@ ClientBin/
 /.git/
 /.git/
 src/com/zhongyi/web/Mapping.java
+.idea
