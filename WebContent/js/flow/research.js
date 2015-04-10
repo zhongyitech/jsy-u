@@ -5,7 +5,11 @@ App.Research = {
     finanFiles_attachments: [],
     research_other_attachments: [],
 
-    init: function (infoBean) {
+    projectid:null,
+    isCurrent:null,
+    init: function (project, infoBean) {
+        this.projectid=project.id;
+        this.isCurrent = project.currentStageEn == "research";
         this.initEvent(infoBean);
         this.initView(infoBean);
         this.showView(infoBean);
@@ -14,16 +18,16 @@ App.Research = {
         var me = this;
         //初始化事件
         $("#lowFiles").change(function() {
-            me.lowFiles_attachments = me.file.upload($(this)[0].files);
+            me.lowFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#projectFiles").change(function() {
-            me.projectFiles_attachments = me.file.upload($(this)[0].files);
+            me.projectFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#finanFiles").change(function() {
-            me.finanFiles_attachments = me.file.upload($(this)[0].files);
+            me.finanFiles_attachments = FILE.upload($(this)[0].files);
         });
         $("#research_attachment_1").change(function() {
-            me.research_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+            me.research_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
         });
 
         $("#research_add_file").click(function () {
@@ -48,7 +52,7 @@ App.Research = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.research_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+                me.research_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
             });
         });
 
@@ -62,7 +66,7 @@ App.Research = {
             var finanDesc2= $("#finanDesc2").val();
 
 
-            $.each(me.other_attachments, function( index, attachment ) {
+            $.each(me.research_other_attachments, function( index, attachment ) {
                 attachment.desc=$("#attachment_txt_"+attachment.index).val();
                 attachment.desc2=$("#attachment2_txt_"+attachment.index).val();
             });
@@ -84,7 +88,10 @@ App.Research = {
                 research_other_attachments: me.research_other_attachments
             };
 
-            me.post_complete('/api/project/complete_research', model);
+            var data = {url: '/api/project/complete_research', entity: JSON.stringify(model)};
+            $.io.post(data).success(function(){
+                window.location.href = "projectinfo.jsp?id="+me.projectid;
+            });
 
         });
     },
@@ -184,6 +191,7 @@ App.Research = {
         }
     },
     showView: function (infoBean) {
+        var me = this;
         /****处理显示效果****/
         if(infoBean.accessable){//可以编辑
             console.log("can modify research");
@@ -197,6 +205,9 @@ App.Research = {
             console.log("can not modify research");
         }
 
+        if(me.isCurrent){
+            $("#panel_research").removeClass("content-box-closed");
+        }
         $("#panel_research").show();
     }
 }

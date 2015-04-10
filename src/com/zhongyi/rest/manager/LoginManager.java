@@ -2,6 +2,7 @@ package com.zhongyi.rest.manager;
 
 import javax.ws.rs.core.Response.Status;
 
+import com.zhongyi.utils.Util;
 import net.sf.json.JSONObject;
 
 import org.apache.http.HttpResponse;
@@ -41,10 +42,10 @@ public class LoginManager extends Manager{
         	JSONObject entity = new JSONObject();
         	entity.put(USERNAME_KEY, username);
         	entity.put(PASSWORD_KEY, password);
-        	post.setEntity(new StringEntity(entity.toString(), CHARSET));
+        	post.setEntity(Util.toEntity(entity.toString()));
             HttpResponse response = client.execute(post);
             mr.status = response.getStatusLine().getStatusCode();
-            mr.response = toString(response.getEntity());
+            mr.response = Util.toString(response.getEntity());
             if(mr.status == Status.OK.getStatusCode()){
             	JSONObject responseJSON = JSONObject.fromObject(mr.response);
             	TokenManager.getInstance().put(cookie, responseJSON.getString(ACCESS_TOKEN_RESPONSE));
@@ -84,7 +85,7 @@ public class LoginManager extends Manager{
         try{
             HttpResponse response = client.execute(get);
             mr.status = response.getStatusLine().getStatusCode();
-            mr.response = toString(response.getEntity());
+            mr.response = Util.toString(response.getEntity());
         }catch(Exception e){
             e.printStackTrace();
         }finally {

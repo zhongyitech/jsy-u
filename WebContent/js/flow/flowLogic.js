@@ -66,28 +66,28 @@ var FLOW={
 
             //然后就是流程信息
             if(rest_result.gatherInfoBean){
-                App.GatherInfo.init(rest_result.gatherInfoBean)
+                App.GatherInfo.init(rest_result.project, rest_result.gatherInfoBean)
             }
             if(rest_result.gatherOABean){
-                App.GatherOA.init(rest_result.gatherOABean);
+                App.GatherOA.init(rest_result.project, rest_result.gatherOABean);
             }
             if(rest_result.researchBean){
-                App.Research.init(rest_result.researchBean);
+                App.Research.init(rest_result.project, rest_result.researchBean);
             }
             if(rest_result.researchOABean){
-                App.ResearchOA.init(rest_result.researchOABean);
+                App.ResearchOA.init(rest_result.project, rest_result.researchOABean);
             }
             if(rest_result.meetingBeans){
-                App.Meeting.init(rest_result.meetingBeans);
+                App.Meeting.init(rest_result.project, rest_result.meetingBeans);
             }
             if(rest_result.otherEABean){
-                App.OtherEA.init(rest_result.otherEABean);
+                App.OtherEA.init(rest_result.project, rest_result.otherEABean);
             }
             if(rest_result.makeContactBean){
-                App.MakeContact.init(rest_result.makeContactBean);
+                App.MakeContact.init(rest_result.project, rest_result.makeContactBean);
             }
             if(rest_result.makeContactOABean){
-                App.MakeContactOA.init(rest_result.makeContactOABean);
+                App.MakeContactOA.init(rest_result.project, rest_result.makeContactOABean);
             }
 
         }).error(function(result){
@@ -101,6 +101,12 @@ var FLOW={
         $("#project_name").html(project.name);
         $("#fund_name").html(project.fundNames);
         $("#currentStageName").html(project.currentStageName);
+        if(project.archive){
+            $("#currentStatus").html("结项完毕");
+        }else{
+            $("#currentStatus").html("活跃");
+        }
+
 
         //加载日复利
         $("#daycount_per").val(project.daycount_per);

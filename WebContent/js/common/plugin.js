@@ -2,12 +2,15 @@
  * Created by William.Wei on 2015/3/12. weizhansheng@outlook.com
  */
 /**
- * hook
+ * hook ie
  */
 (function () {
     window.console=window.console||{
         log:function(){
-            return false;
+            //do nothing
+        },
+        error:function(){
+            //do nothing
         }
     }
 })();
@@ -44,6 +47,7 @@
                 console.log("success",data);
             },
             error:function(data){
+                $.message.error("出错啦 Oop~<br />详细信息请查看控制台！");
                 //alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
                 console.error("error",data);
                 if(data&&data.result&&data.result.errors&&data.result.errors.length){
@@ -69,7 +73,11 @@
             return data&&data[this._key.status]==this._status.error;
         },
         _return:function(fn,response){
-            if(fn&&fn.call)response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+            if(fn&&fn.call){
+                var model=response?(response[this._key.total]||response[this._key.total]==0?fn.call(fn,this.result(response),{rest_total:response[this._key.total]}):fn.call(fn,this.result(response))):fn.call(fn,response);
+                if(avalon&&model&&model.$id) avalon.define.call(window,model);
+                avalon.scan.call(window);
+            }
         },
         result:function(data){
           return data&&data[this._key.result];
@@ -576,7 +584,22 @@
  * utils
  */
 (function($){
-    $.extend(true, $.utils,{
-        //TODO
+    $.extend(true,{
+        message:{
+            log:function(msg){
+                $.jGrowl(msg, {
+                    sticky: false,
+                    position: "top-right",
+                    theme: "bg-green btn text-left"
+                })
+            },
+            error:function(msg){
+                $.jGrowl(msg, {
+                    sticky: false,
+                    position: "top-right",
+                    theme: "bg-red btn text-left"
+                })
+            }
+        }
     });
 })(jQuery);

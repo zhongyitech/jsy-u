@@ -11,7 +11,11 @@ App.MakeContact = {
     makeContact:"#panel_makeContact",
     makeContactOA:"#panel_makeContactOA",
 
-    init: function (infoBean) {
+    projectid:null,
+    isCurrent:null,
+    init: function (project, infoBean) {
+        this.projectid=project.id;
+        this.isCurrent = project.currentStageEn == "makeContact";
         this.initEvent(infoBean);
         this.initView(infoBean);
         this.showView(infoBean);
@@ -62,7 +66,7 @@ App.MakeContact = {
 
 
         $("#makeContact_attachment_1").change(function() {
-            me.makeContact_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+            me.makeContact_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
         });
         $("#makeContact_add_file").click(function () {
             var i =$("div .input-file","#makeContact_others_files").length+1;
@@ -81,7 +85,7 @@ App.MakeContact = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.makeContact_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+                me.makeContact_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
             });
         });
 
@@ -168,14 +172,6 @@ App.MakeContact = {
                 alert("请输入期限");
                 return false;
             }
-            //利息计算方式
-            var interestType = $('input[name="interestType"]:radio:checked').val();
-            if(interestType && interestType!=""){
-                model.interestType = interestType;
-            }else{
-                alert("请选择利息计算方式");
-                return false;
-            }
 
             $("input[id^=attname]").each(function () {
                 var index = $(this).attr("id").replace("attname", "");
@@ -190,13 +186,12 @@ App.MakeContact = {
             });
             model.other_attachments=me.makeContact_other_attachments;
 
-            me.post_complete('/api/project/complete_makeContact', model);
-        });
+            var data = {url: '/api/project/complete_makeContact', entity: JSON.stringify(model)};
+            $.io.post(data).success(function(){
+                window.location.href = "projectinfo.jsp?id="+me.projectid;
+            });
 
-        //$("#company").change(function(){
-        //    var companyid = $("#company").val();
-        //    me.getFunds(companyid,this.projectid);
-        //});
+        });
 
         $("#manage_per").change(function(){
             $(this).val(NUMBERFORMAT.toRate($(this).val()));
@@ -314,6 +309,7 @@ App.MakeContact = {
         }
     },
     showView: function (infoBean) {
+        var me = this;
         /****处理显示效果****/
         if(infoBean.accessable){//可以编辑
             console.log("can modify makeContact");
@@ -326,6 +322,9 @@ App.MakeContact = {
             console.log("can not modify makeContact");
         }
 
+        if(me.isCurrent){
+            $("#panel_makeContact").removeClass("content-box-closed");
+        }
         $("#panel_makeContact").show();
     }
 

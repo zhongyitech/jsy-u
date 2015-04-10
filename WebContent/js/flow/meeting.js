@@ -3,7 +3,11 @@ App.Meeting = {
     meetingFiles_attachments: [],
     meeting_other_attachments: [],
 
-    init: function (infoBean) {
+    projectid:null,
+    isCurrent:null,
+    init: function (project, infoBean) {
+        this.projectid=project.id;
+        this.isCurrent = project.currentStageEn == "meeting";
         this.initEvent(infoBean);
         this.initView(infoBean);
         this.showView(infoBean);
@@ -12,11 +16,11 @@ App.Meeting = {
         var me = this;
         /***初始化事件***/
         $("#meetingFiles").change(function() {
-            me.meetingFiles_attachments = me.file.upload($(this)[0].files);
+            me.meetingFiles_attachments = FILE.upload($(this)[0].files);
         });
 
         $("#meeting_attachment_1").change(function() {
-            me.meeting_other_attachments.push({index:1,files:me.file.upload($(this)[0].files)});
+            me.meeting_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
         });
 
         $("#meeting_add_file").click(function () {
@@ -37,7 +41,7 @@ App.Meeting = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.meeting_other_attachments.push({index:i,files:me.file.upload($(this)[0].files)});
+                me.meeting_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
             });
         });
 
@@ -55,8 +59,10 @@ App.Meeting = {
                 meeting_other_attachments: me.meeting_other_attachments
             };
 
-            me.post_complete('/api/project/complete_meeting', model);
-
+            var data = {url: '/api/project/complete_meeting', entity: JSON.stringify(model)};
+            $.io.post(data).success(function(){
+                window.location.href = "projectinfo.jsp?id="+me.projectid;
+            });
         });
     },
     initView: function (infoBean) {
@@ -74,6 +80,7 @@ App.Meeting = {
         }
     },
     showView: function (infoBean) {
+        var me = this;
         /****处理显示效果****/
         if(infoBean.accessable){//可以编辑
             console.log("can modify meeting");
@@ -87,6 +94,9 @@ App.Meeting = {
             console.log("can not modify meeting");
         }
 
+        if(me.isCurrent){
+            $("#panel_meeting").removeClass("content-box-closed");
+        }
         $("#panel_meeting").show();
     }
 }
