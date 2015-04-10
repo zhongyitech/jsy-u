@@ -255,9 +255,13 @@ var FUND_FORM={
 						});
 					});
 				});
-				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity})
+				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
+					$.message.log("保存成功！");
+				}).error(function(){
+					$.message.log("保存出错！");
+				});
 			}else{
-				console.log("no change");
+				$.message.log("没有变更，无需提交");
 			}
 		},
 		cacheMap:function(data){

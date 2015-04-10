@@ -47,6 +47,7 @@
                 console.log("success",data);
             },
             error:function(data){
+                $.message.error(JSON.stringify(data));
                 //alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
                 console.error("error",data);
                 if(data&&data.result&&data.result.errors&&data.result.errors.length){
@@ -583,7 +584,22 @@
  * utils
  */
 (function($){
-    $.extend(true, $.utils,{
-        //TODO
+    $.extend(true,{
+        message:{
+            log:function(msg){
+                $.jGrowl(msg, {
+                    sticky: false,
+                    position: "top-right",
+                    theme: "bg-green btn text-left"
+                })
+            },
+            error:function(msg){
+                $.jGrowl(msg, {
+                    sticky: false,
+                    position: "top-right",
+                    theme: "bg-red btn text-left"
+                })
+            }
+        }
     });
 })(jQuery);
