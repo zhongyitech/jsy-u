@@ -186,7 +186,7 @@ var INVESTMENT_ITEM = {
 
         var pact_input = $(this.INVEST_PACT_ID);
         pact_input.keyup(function () {
-            if (pact_input.val().length > 4) {
+            if (pact_input.val().length >8) {
                 $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: pact_input.val()}})
                     .success(function (result) {
                         //me.resetDefaultDate(result);

@@ -47,7 +47,8 @@
                 console.log("success",data);
             },
             error:function(data){
-                $.message.error("出错啦 Oop~<br />详细信息请查看控制台！");
+                //$.message.error("出错啦 Oop~<br />详细信息请查看控制台！");
+                $.message.error(data.msg);
                 //alert("[Error]: \""+data.msg+"\"\n[Result]: \""+data.result+"\"");
                 console.error("error",data);
                 if(data&&data.result&&data.result.errors&&data.result.errors.length){

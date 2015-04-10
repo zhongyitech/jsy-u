@@ -39,7 +39,7 @@
                 <td><span class="text-overflow">{$T.item["fddbr"]}</span></td>
                 <td><span class="text-overflow">{$T.item["phone"]}</span></td>
                 <td><span class="text-overflow">{$T.item["remark"]}</span></td>
-                <td><span class="text-overflow"><button class="detail-btn" data-itemid="{$T.item$index}">编辑信息</button>
+                <td><span class="text-overflow"><button class="detail-btn" data-itemid="{$T.item$index}">编辑</button>
                 <button class="del-btn" data-itemid="{$T.item$index}">删除</button></span></td>
             </tr>
             {#/for}

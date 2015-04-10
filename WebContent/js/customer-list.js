@@ -95,6 +95,7 @@
         },
         _saveUserInfo: function () {
             var obj = {};
+            var _this=this;
             $('#userinfo input,select,textarea').each(function (i, item) {
                 var key = $(item).prop('name');
                 if (key == "") {
@@ -124,8 +125,10 @@
                 //updaate
                 var data = {url: '/api/customerArchives/update', entity: obj, params: {id: $('#customerId').val()}};
                 $.io.post(data).success(function (result) {
-                    alert("修改成功!");
-                    window.location.reload();
+                    $('#userinfo').fadeOut(100);
+                    _this.render();
+                    $.message.log("修改成功");
+                    //alert("!");
                 })
                     .error(function (error) {
                         alert(error.msg);
@@ -134,8 +137,11 @@
                 //create
                 var data = {url: '/api/customerArchives', entity: obj};
                 $.io.put(data).success(function (result) {
-                    alert("保存成功!");
-                    window.location.reload();
+                    //alert("保存成功!");
+                    //window.location.reload();
+                    $('#userinfo').fadeOut(100);
+                    _this.render();
+                    $.message.log("新建客户成功!");
                 })
                     .error(function (error) {
                         alert(error.msg);
