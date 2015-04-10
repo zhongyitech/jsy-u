@@ -134,6 +134,7 @@
                             <div class="form-label col-md-2"></div>
                             <div class="form-input col-md-10" id="attachment-img"></div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-label col-md-2">
                                 <label class="label-description">备注信息:</label>
@@ -142,22 +143,18 @@
                                 <textarea placeholder="请输入备注信息" class="textarea-no-resize" id="remark"></textarea>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label class="label-description">同步添加客户信息</label>
-                            </div>
-                            <div class="form-input col-md-10">
-                                <input type="checkbox" checked="checked" id="syncCustomer" name="syncCustomer">
-                            </div>
-                        </div>
+
                     </div>
+
                 </div>
+
                 <div style="clear:both;"></div>
                 <div class="button-pane">
                     <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
                             class="button-content">提交</span></button>
                 </div>
             </div>
+
         </div>
 
     </div>

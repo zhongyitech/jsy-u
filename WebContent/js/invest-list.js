@@ -54,14 +54,16 @@ var INVESTMENT_LIST = {
         var me = this;
         var params = {};
         //todo: 定义指定查询功能参数
-        var entity = JSON.stringify({startposition: me.page_start, pagesize: me.page_size, type: "or",
-            fields: ["tzqx"],
-            value: $("#keyword-input").val(),
-            order: {customer: "asc"}}
-            );
+        var entity = JSON.stringify({
+                startposition: me.page_start, pagesize: me.page_size, type: "or",
+                fields: ["tzqx"],
+                value: $("#keyword-input").val(),
+                order: {customer: "asc"}
+            }
+        );
         var data = {url: '/api/investmentArchives/IAOutput', params: params, entity: entity};
 
-        $.io.post(data).success(function (result, page){
+        $.io.post(data).success(function (result, page) {
             me.setView(result);
             me.setPage(page);
         }).error(function (error) {
@@ -128,9 +130,9 @@ var INVESTMENT_LIST = {
         var customer = item['customer'];
         var customer_td = ""
         if (customer) {
-            customer_td = $('<td><span   title="' + customer + '">' + customer + '</span></td>');
+            customer_td = $('<td><span class=" text-overflow"  title="' + customer + '">' + customer + '</span></td>');
         } else {
-            customer_td = $('<td>' + item['username'] + '<a href="./customer.jsp?id=' + item['id'] + '&type=complted" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
+            customer_td = $('<td>' + item['username'] + '<a href="./customer.jsp?id=' + item['id'] + '&type=complted&username=' + item['username'] + '" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
 
         }
 
@@ -153,7 +155,7 @@ var INVESTMENT_LIST = {
             "<i class='glyph-icon font-size-11 icon-chevron-down'></i>	</span></a>" +
             "<ul class='dropdown-menu float-right'>" +
 //		    "<li><a href='javascript:;' title='' btn_row_action data-rowindex='"+key+"' data-actionname='completedInvestment'><i class='glyph-icon icon-calendar mrg5R ' ></i>完成客户信息</a></li>"+
-            "<li><a href='./investment-details.jsp?id="+ item.id +"' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
+            "<li><a href='./investment-details.jsp?id=" + item.id + "' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
         "<li class='divider'></li>";
         if (item['dazt'] == 0) {
             var menus = this.getMenus();
@@ -261,7 +263,7 @@ var INVESTMENT_LIST = {
             },
             completedInvestmentUserInfo: {
                 title: '填写或修改客户信息', name: 'completedInvestmentUserInfo', actionfunc: function (item) {
-                    var location = "./customer.jsp?id=" + item.id + "&type=edit";
+                    var location = "./customer.jsp?id=" + item.id + "&type=edit&username=" + item.username;
                     window.location = location;
                 }
             },

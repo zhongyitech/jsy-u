@@ -37,18 +37,9 @@ var VIEWDATA = {
         var fund_select = $('#fundselect');
         //		fund_select.clear();
         $('#fundselect').find('option').remove();
-        var funds = this.fund.getItems();
-        if (funds) {
-            var option = $('<option></option>');
-            fund_select.append(option);
-            for (var i in funds) {
-                var fundid = funds[i][this.fund.ID_KEY];
-                var fundname = funds[i][this.fund.NAME_KEY];
-                var option = $('<option value="' + fundid + '">' + fundname
-                + '</option>');
-                fund_select.append(option);
-            }
-        }
+        $.io.get({url:'/api/fund/selectList',params:{exInclude:this.item.fund.id}}).success(function(result){
+            $.dom.select(fund_select,result);
+        });
         NUMBERCHECK.startCheck();
     },
     init: function () {

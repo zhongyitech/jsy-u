@@ -240,6 +240,7 @@ var CUSTOMER_FORM = {//客户信息表单
         } else {
             this.edit_mode = false;
             $("#action_title").html("填写档案客户信息")
+            $('#name').val(PAGE.getParam('username')||"");
         }
     },
     set: function (item) {
@@ -329,36 +330,16 @@ var CUSTOMER_FORM = {//客户信息表单
     submit: function () {//提交
         var me = this;
         var item = me.getItem();
-        var params = {id:this.investmentid,sync:$("sync_select").val()==0 ? true : false };
+        var params = {id:this.investmentid,sync:$("#syncCustomer").prop('checked') };
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/customer', params: params, entity: entity};
 
         $.io.post(true,data)
             .success(function (result) {
-
-
                 window.location = "./invest-list.jsp";
             }).error(function(error){
                 alert(error.msg);
             });
-
-//			$.ajax({
-//				type: "post",
-//				url: "../rest/item/put",
-//				async: true,
-//				data: data,
-//				dataType: "json",
-//				success: function(response){
-//					me.response = response;
-//					window.location = PAGE.CUSTOMER_LIST;
-//				},
-//				error: function(response){
-//					me.response = response;
-//					if(LOGIN.error(response)){
-//						alert('提交失败，请补全带*号的必填信息.');
-//					}
-//				}
-//			});
     }
 };
 

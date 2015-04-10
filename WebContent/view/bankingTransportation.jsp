@@ -6,11 +6,47 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="/css/bankingTransportation.css"/>
-    <title>未到期转投处理申请表</title>
+    <title>银行交易流水查询</title>
 </head>
-<body >
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
+    <textarea id="table-data-template" class="template">
+            {#param name=fields value=["dealDate","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","balance","manageType"]}
+            {#param name=start "
+            {#param name=pos value=$P.start}
+            <table class="table table-striped text-center mrg0B" id="view-table">
+                <thead>
+                <tr>
+                    <th class="text-center">交易时间</th>
+                    <th class="text-center">流水号</th>
+                    <th class="text-center">摘要</th>
+                    <th class="text-center">银行名称</th>
+                    <th class="text-center">开户行</th>
+                    <th class="text-center">户名</th>
+                    <th class="text-center">账号</th>
+                    <th class="text-center">对方账号</th>
+                    <th class="text-center">对方户名</th>
+                    <th class="text-center">发生额</th>
+                    <th class="text-center">余额</th>
+                    <th class="text-center">处理状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#foreach $T as item}
+                <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
+                    {#foreach $P.fields as field}
+                    <td class="text-center">
+                        <span class="text-overflow">{$T.item[$T.field]}</span>
+                    </td>
+                    {#/for}
+                </tr>
+                {#/for}
+                </tbody>
+            </table>
+            <div class="data-rows">第{$P.start}-{$P.start+$T.length-1}条</div>
+    </textarea>
+
     <div id="page-content-wrapper">
         <!-- #page-title -->
         <div id="page-content" class="page-view pad25T">
@@ -18,7 +54,7 @@
                 <div class="content-box-header primary-bg">
                     <span class="float-left">交易流水信息查询</span> <a href="#"
                                                                 class="float-right icon-separator btn toggle-button"
-                                                                title="最近领用记录"> <i
+                                                                title="银行交易流水记录"> <i
                         class="glyph-icon icon-toggle icon-chevron-down"></i>
                 </a>
 
@@ -43,52 +79,7 @@
                 </div>
                 <div class="content-box-wrapper">
                     <div id="table-pager" class="page-bar"></div>
-                    <table class="table table-striped text-center" id="summary-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px;"></th>
-                                <th><span class="">状态</span></th>
-                                <th><span class="">基金名称</span></th>
-                                <th><span class="">合同编号</span></th>
-                                <th><span class="">申请部门</span></th>
-                                <th><span class="">申请人</span></th>
-                                <th><span class="">申请日期</span></th>
-                                <th><span class="">特殊表类型</span></th>
-                                <th><span class="">客户名称</span></th>
-                                <th><span class="">备注</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <%--<tr>--%>
-                            <%--<td>1</td>--%>
-                            <%--<td></td>--%>
-                            <%--<td>3</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>2</td>--%>
-                            <%--<td>--%>
-                                <%--<div class="dropdown">--%>
-                                    <%--<a href="javascript:;" title="" class="btn medium " data-toggle="dropdown"> <span--%>
-                                            <%--class="button-content">--%>
-												<%--<i class="glyph-icon font-size-11 icon-cog"></i> <i--%>
-                                            <%--class="glyph-icon font-size-11 icon-chevron-down"></i>--%>
-										<%--</span>--%>
-                                    <%--</a>--%>
-                                    <%--<ul class="dropdown-menu float-right">--%>
-                                        <%--<li><a href="javascript:;" title=""><i--%>
-                                                <%--class="glyph-icon icon-calendar mrg5R"></i>打印委托协议</a></li>--%>
-                                        <%--<li class="divider"></li>--%>
-                                        <%--<li><a href="javascript:;" title=""><i--%>
-                                                <%--class="glyph-icon icon-calendar mrg5R"></i>作废申请单</a></li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        </tbody>
-                    </table>
+                    <div id="table-data"></div>
                 </div>
             </div>
         </div>

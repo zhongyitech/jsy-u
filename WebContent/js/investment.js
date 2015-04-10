@@ -121,6 +121,7 @@ var INVESTMENT_ITEM = {
     rateformat: {},
     numberformat: {},
     syl: 0,
+    userlist:[],
     ini: function (async) {
         this.set(async);
     },
@@ -269,7 +270,6 @@ var INVESTMENT_ITEM = {
             rgrq_input.val(this.dateformat.toDate(new Date()));
             me.setRGRQ();
         }
-
         var dqrq_input = $(this.INVEST_TO_ID);
         var dqrq = item[this.investment.DQRQ_KEY];
         if (dqrq) {
@@ -312,6 +312,7 @@ var INVESTMENT_ITEM = {
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
         $.io.get({url:'/api/user/selectList'}).success(function(result){
+            me.userlist=result;
             $.dom.select(bm_select,result);
         });
         bm_select.change(function () {
@@ -988,13 +989,6 @@ var INVESTMENT_ITEM = {
         if (!id) {
             id = "";
         }
-
-//        var customer = item[this.investment.CUSTOMER_KEY];
-//        if (JSON.stringify(customer) != '{}' && !customer[this.customer.CARDNUMBER_KEY]) {
-//            alert('请填写客户证件号码.');
-//            return;
-//        }
-
         var me = this;
         var params = JSON.stringify({id: id});
         var entity = JSON.stringify(item);
@@ -1084,17 +1078,9 @@ var GUANLI = {
         tr.append(user_td);
         var user_select = $('<select class="user-name" name="user"></select>');
         user_td.append(user_select);
-        var users = this.user.getItems();
-        if (users) {
-            var option = $('<option></option>');
-            user_select.append(option);
-            for (var i in users) {
-                var userid = users[i][this.user.ID_KEY];
-                var username = this.user.getName(userid);
-                var option = $('<option value="' + userid + '">' + username + '</option>');
-                user_select.append(option);
-            }
-        }
+
+        $.dom.select(user_select,INVESTMENT_ITEM.userlist);
+
         if (item) {
             var user = item[this.usercommission.USER_KEY];
             user_select.val(user[this.user.ID_KEY]);
@@ -1366,17 +1352,7 @@ var YEWU = {
         tr.append(user_td);
         var user_select = $('<select class="user-name" name="user"></select>');
         user_td.append(user_select);
-        var users = this.user.getItems();
-        if (users) {
-            var option = $('<option></option>');
-            user_select.append(option);
-            for (var i in users) {
-                var userid = users[i][this.user.ID_KEY];
-                var username = this.user.getName(userid);
-                var option = $('<option value="' + userid + '">' + username + '</option>');
-                user_select.append(option);
-            }
-        }
+        $.dom.select(user_select,INVESTMENT_ITEM.userlist);
         if (item) {
             var user = item[this.usercommission.USER_KEY];
             user_select.val(user[this.user.ID_KEY]);

@@ -294,27 +294,27 @@ var FUND = {//基金
         if (!async) {
             async = false;
         }
-
-        var params = JSON.stringify({});
-        var data = {url: '/api/fund', params: params};
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
+        //
+        //var params = JSON.stringify({});
+        //var data = {url: '/api/fund', params: params};
+        //var me = this;
+        //$.ajax({
+        //    type: "post",
+        //    url: "/rest/item/get",
+        //    async: async,
+        //    data: data,
+        //    dataType: "json",
+        //    success: function (response) {
+        //        me.response = response;
+        //        if (response && response[REST.RESULT_KEY]) {
+        //            me.items = JSON.parse(response[REST.RESULT_KEY]);
+        //        }
+        //    },
+        //    error: function (response) {
+        //        me.response = response;
+        //        LOGIN.error(response);
+        //    }
+        //});
     },
     getItems: function () {
         if (!this.items || !this.items.length) {
@@ -332,12 +332,7 @@ var FUND = {//基金
         return this.map;
     },
     get: function (id) {
-
         return $.project.domain(id, 'com.jsy.fundObject.Fund').getItem(id);
-
-//        return $.io.get(true,{url:'/api/fund',params:{id:id}}).data();
-//        var map = this.getMap();
-//        return map[id];
     },
     getName: function (id) {
         if (id) {
@@ -359,7 +354,6 @@ var FUND = {//基金
                 return this.get(id);
             }
         }
-
         return '';
     },
     toId: function (item) {
@@ -1812,18 +1806,17 @@ var USER = {
         if (!async) {
             async = false;
         }
-
-        var params = JSON.stringify({});
-        var data = {url: '/api/user/getUsers', params: params};
-        var me = this;
-        DataOperation.async = async;
-        DataOperation.get(
-            data,
-            function (result, response) {
-                me.response = response;
-                me.items = result;
-            }
-        );
+        //var params = JSON.stringify({});
+        //var data = {url: '/api/user/getUsers', params: params};
+        //var me = this;
+        //DataOperation.async = async;
+        //DataOperation.get(
+        //    data,
+        //    function (result, response) {
+        //        me.response = response;
+        //        me.items = result;
+        //    }
+        //);
         //$.ajax({
         //    type: "post",
         //    url: "/rest/item/get",
@@ -3132,11 +3125,12 @@ var MESSAGEBOX = {
     cancelfunc: null,
     show: function (msg) {
         this.hidebutton();
+        var _this=this;
         $("#jsy_msgbox_comfirm_dialog").show();
         $("#jsy_msgbox_comfirm_dialog").click(function () {
             $("#jsy_msgbox_light").css("display", "none");
             $("#jsy_msgbox_fade").css("display", "none");
-            this.close();
+            _this.close();
         });
         $("#jsy_msgbox_light").css("display", "block");
         $("#jsy_msgbox_fade").css("display", "block");
