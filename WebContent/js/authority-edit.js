@@ -1,147 +1,78 @@
 (function($){
 	var roleId=$.utils.getParam("id");
-	var request=function(readURL){
-		return $.io.get({url:readURL,params:{id: roleId}});
+	$.project.domain(true,roleId,"com.jsy.auth.Role").success(function(item){
+		item=item.length&&item[0]||{};
+		avalon.define("baseInfo",function(vm){
+			vm.name=item.name;
+			vm.authority=item.authority;
+		});
+	});
+	var request=function(options){
+		return $.io.get({url:options.url,params: $.extend(true,{},{id: roleId},options.params)});
 	};
-	var BaseInfo={
-		render:function(){
-			$.project.domain(true,roleId,"com.jsy.auth.Role").success(function(item){
-				item=item.length&&item[0];
-				avalon.define("baseInfo",function(vm){
-					vm.name=item.name;
-					vm.authority=item.authority;
+	/**
+	 * 操作权限、字段权限
+	 * @type {{submit: Function, processData: Function, render: Function}}
+	 */
+	var RoleList={
+		submit:function(resourceId,data){
+			var _this=this;
+			if(_this.hasChange){
+				var entity={props:[],ops:[]};
+				$.each(data,function(){
+					if(this.id==resourceId){
+						$.each(this.props,function(){
+							if(this.checked){
+								entity.props.push(this)
+							}
+						});
+						$.each(this.ops,function(){
+							if(this.checked){
+								entity.ops.push(this)
+							}
+						});
+					}
 				});
-			});
-		}
-	};
-	var FundRole={
-		submit:function(data){
+				$.io.post({url:"/api/resourceRole/updateRoleList",params:{id:roleId,resourceId:resourceId},entity:entity}).success(function(data){
+					$.message.log("保存成功！");
+					_this.hasChange=false;
+				}).error(function(){
+					$.message.log("保存出错！");
+				});
+			}else{
+				$.message.log("没有变更，无需提交");
+				_this.hasChange=JSON.stringify(data)!=JSON.stringify(_this.clean.data);
+			}
 		},
 		processData:function(data){
 			var _this=this;
+			_this.clean= $.extend(true,{},{data:data});
 			avalon.define({
-				$id: "fundRole",
+				$id: "Role",
 				items: data,
-				submit:function(){
-					_this.submit(data);
+				submit:function(resourceId){
+					_this.submit(resourceId,data);
+				},
+				change:function(){
+					setTimeout(function(){
+						_this.hasChange=JSON.stringify(data)!=JSON.stringify(_this.clean.data);
+					},300);
 				}
 			});
 		},
 		render:function(){
 			var _this=this;
-			request("/api/menusRole/getMenuList").success(function(data){
-				_this.processData([
-					{id:1,title:"操作权限",children:[
-						{id:11,title:"新增"},
-						{id:12,title:"删除"},
-						{id:13,title:"修改"},
-						{id:14,title:"查看"}
-					]},
-					{id:2,title:"字段权限",children:[
-						{id:21,title:"编号"},
-						{id:22,title:"基金名称"},
-						{id:23,title:"预募规模"},
-						{id:24,title:"实募金额"},
-						{id:25,title:"季付募集规模"},
-						{id:26,title:"季付实募"},
-						{id:27,title:"半年付募集规模"},
-						{id:28,title:"半年付实募"},
-						{id:29,title:"年付募集规模"},
-						{id:30,title:"年付实募"},
-						{id:31,title:"状态"}
-					]}
-				]);
+			request({
+				url:"/api/resourceRole/getRoleList"
+			}).success(function(data){
+				_this.processData(data);
 			});
 		}
 	};
-	var InvestmentRole={
-		submit:function(data){
-		},
-		processData:function(data){
-			var _this=this;
-			avalon.define({
-				$id: "investmentRole",
-				items: data,
-				submit:function(){
-					_this.submit(data);
-				}
-			});
-		},
-		render:function(){
-			var _this=this;
-			request("/api/menusRole/getMenuList").success(function(data){
-				_this.processData([
-					{id:1,title:"操作权限",children:[
-						{id:11,title:"新增"},
-						{id:12,title:"删除"},
-						{id:13,title:"修改"},
-						{id:14,title:"查看"},
-						{id:15,title:"打印"}
-					]},
-					{id:2,title:"字段权限",children:[
-						{id:21,title:"档案编号"},
-						{id:22,title:"合同编号"},
-						{id:23,title:"基金名称"},
-						{id:24,title:"认购人"},
-						{id:25,title:"认购日期"},
-						{id:26,title:"认购金额"},
-						{id:27,title:"认购期限"},
-						{id:28,title:"理财经理"},
-						{id:29,title:"地区"},
-						{id:30,title:"年化收益率"},
-						{id:31,title:"付息方式"},
-						{id:31,title:"到期日期"},
-						{id:31,title:"已付利息"},
-						{id:31,title:"已付本金"}
-					]}
-				]);
-			});
-		}
-	};
-	var CustomerRole={
-		submit:function(data){
-		},
-		processData:function(data){
-			var _this=this;
-			avalon.define({
-				$id: "customerRole",
-				items: data,
-				submit:function(){
-					_this.submit(data);
-				}
-			});
-		},
-		render:function(){
-			var _this=this;
-			request("/api/menusRole/getMenuList").success(function(data){
-				_this.processData([
-					{id:1,title:"操作权限",children:[
-						{id:11,title:"新增"},
-						{id:12,title:"删除"},
-						{id:13,title:"修改"},
-						{id:14,title:"查看"},
-						{id:15,title:"打印"}
-					]},
-					{id:2,title:"字段权限",children:[
-						{id:21,title:"档案编号"},
-						{id:22,title:"合同编号"},
-						{id:23,title:"基金名称"},
-						{id:24,title:"认购人"},
-						{id:25,title:"认购日期"},
-						{id:26,title:"认购金额"},
-						{id:27,title:"认购期限"},
-						{id:28,title:"理财经理"},
-						{id:29,title:"地区"},
-						{id:30,title:"年化收益率"},
-						{id:31,title:"付息方式"},
-						{id:31,title:"到期日期"},
-						{id:31,title:"已付利息"},
-						{id:31,title:"已付本金"}
-					]}
-				]);
-			});
-		}
-	};
+	/**
+	 * 菜单权限
+	 * @type {{submit: Function, cacheMap: Function, processData: Function, render: Function}}
+	 */
 	var MenuRole={
 		submit:function(data){
 			var _this=this;
@@ -159,7 +90,7 @@
 						});
 					});
 				});
-				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
+				$.io.post({url:"/api/resourceRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
 					$.message.log("保存成功！");
 					_this.hasChange=false;
 				}).error(function(){
@@ -205,15 +136,12 @@
 		},
 		render:function(){
 			var _this=this;
-			request("/api/menusRole/getMenuList").success(function(data){
+			request({url:"/api/menusRole/getMenuList"}).success(function(data){
 				_this.cacheMap(data);
 				_this.processData(data);
 			});
 		}
 	};
-	BaseInfo.render();
-	FundRole.render();
-	CustomerRole.render();
-	InvestmentRole.render();
+	RoleList.render();
 	MenuRole.render();
 })(jQuery);
