@@ -23,17 +23,21 @@
 					if(this.id==resourceId){
 						$.each(this.props,function(){
 							if(this.checked){
-								entity.props.push(this)
+								entity.props.push({
+									id:this.id
+								})
 							}
 						});
 						$.each(this.ops,function(){
 							if(this.checked){
-								entity.ops.push(this)
+								entity.ops.push({
+									id:this.id
+								})
 							}
 						});
 					}
 				});
-				$.io.post({url:"/api/resourceRole/updateRoleList",params:{id:roleId,resourceId:resourceId},entity:entity}).success(function(data){
+				$.io.post({url:"/api/resourceRole/updateRoleList",params:{id:roleId,resourceId:resourceId},entity:entity}).success(function(){
 					$.message.log("保存成功！");
 					_this.hasChange=false;
 				}).error(function(){
@@ -45,9 +49,13 @@
 			}
 		},
 		processData:function(data){
-			var _this=this;
+			var _this=this,mapping={};
 			_this.clean= $.extend(true,{},{data:data});
-			avalon.define({
+			$.each(data,function(i,item){
+				item.close=false;
+				mapping[item.id]=i;
+			});
+			var model=avalon.define({
 				$id: "Role",
 				items: data,
 				submit:function(resourceId){
@@ -57,6 +65,10 @@
 					setTimeout(function(){
 						_this.hasChange=JSON.stringify(data)!=JSON.stringify(_this.clean.data);
 					},300);
+				},
+				toggle:function(id){
+					var items=model.items,index=mapping[id],item=items[index];
+					item.close=!item.close;
 				}
 			});
 		},
