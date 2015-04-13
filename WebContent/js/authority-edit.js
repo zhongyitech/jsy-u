@@ -37,7 +37,7 @@
 					$.message.log("保存成功！");
 					_this.hasChange=false;
 				}).error(function(){
-					$.message.log("保存出错！");
+					$.message.error("保存出错！");
 				});
 			}else{
 				$.message.log("没有变更，无需提交");
