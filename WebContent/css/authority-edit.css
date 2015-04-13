@@ -57,3 +57,5 @@ input[type=file] {
 	max-width: 230px;
 	vertical-align: middle;
 }
+
+label { margin-left: -5px; text-indent: 5px;}

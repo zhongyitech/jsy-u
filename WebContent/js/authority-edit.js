@@ -1,249 +1,83 @@
-//数据加载、按钮点击事件等
-$(document).ready(function(){
-	ROLE_FORM.ini(true);
-});
-
-//角色信息表单
-var ROLE_FORM={
-		item: {},
-		getView: function(){
-			return $('#role-view');
-		},
-		getMenu: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#menu');
-			}
-		},
-		getForm: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#view-form');
-			}
-		},
-		getNameInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#name-input');
-			}
-		},
-		setName: function(item){
-			this.getNameInput().val(ROLE.toName(item));
-		},
-		getAuthorityInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#authority-input');
-			}
-		},
-		setAuthority: function(item){
-			this.getAuthorityInput().val(ROLE.toAuthority(item));
-		},
-		getSubmitButton: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#submit-button');
-			}
-		},
-		iniSubmitButton: function(){
-			var me = this;
-			var button = this.getSubmitButton();
-			if(button){
-				button.click(function(){
-					me.submit();
-				});
-			}
-		},
-		ini: function(async){
-			if(!async){
-				async = false;
-			}
-			
-			this.iniSubmitButton();
-			
-			var id = PAGE.getParam(ROLE.ID_KEY);
-			var item = ROLE.get(id);
-			if(item){
-				this.set(item);
-			}else{
-				this.set({});
-			}
-		},
-		set: function(item){
-			this.item = item;
-			
-			this.setName(item);
-			this.setAuthority(item);
-		},
-		getItem: function(){
-			var me = this;
-			var item = me.item;
-			
-			var name = this.getNameInput().val();
-			if(name){
-				item[ROLE.NAME_KEY] = name;
-			}
-			
-			var authority = this.getAuthorityInput().val();
-			if(authority){
-				item[ROLE.AUTHORITY_KEY] = authority;
-			}
-			
-			me.item = item;
-			return item;
-		},
-		submit: function(){//提交
-			var me = this;
-			var item = me.getItem();
-			var params = JSON.stringify({id: ROLE.toId(item)});
-			var entity = JSON.stringify(item);
-			var data = {url: '/api/role', params: params, entity: entity};
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					window.location = PAGE.ROLE_LIST;
-				},
-				error: function(response){
-					me.response = response;
-					if(LOGIN.error(response)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
-				}
-			});
-		}
-};
-
-//基金权限表单
-var FUND_FORM={
-		item: {},
-		getView: function(){
-			return $('#fund-view');
-		},
-		getMenu: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#menu');
-			}
-		},
-		getForm: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#view-form');
-			}
-		},
-		getCreateInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#create-input');
-			}
-		},
-		setCreate: function(item){
-			this.getCreateInput().val(ROLE.toName(item));
-		},
-		getAuthorityInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#authority-input');
-			}
-		},
-		setAuthority: function(item){
-			this.getAuthorityInput().val(ROLE.toAuthority(item));
-		},
-		getSubmitButton: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#submit-button');
-			}
-		},
-		iniSubmitButton: function(){
-			var me = this;
-			var button = this.getSubmitButton();
-			if(button){
-				button.click(function(){
-					me.submit();
-				});
-			}
-		},
-		ini: function(async){
-			if(!async){
-				async = false;
-			}
-			
-			this.iniSubmitButton();
-			
-			var id = PAGE.getParam(ROLE.ID_KEY);
-			var item = ROLE.get(id);
-			if(item){
-				this.set(item);
-			}else{
-				this.set({});
-			}
-		},
-		set: function(item){
-			this.item = item;
-			
-			this.setName(item);
-			this.setAuthority(item);
-		},
-		getItem: function(){
-			var me = this;
-			var item = me.item;
-			
-			var name = this.getNameInput().val();
-			if(name){
-				item[ROLE.NAME_KEY] = name;
-			}
-			
-			var authority = this.getAuthorityInput().val();
-			if(authority){
-				item[ROLE.AUTHORITY_KEY] = authority;
-			}
-			
-			me.item = item;
-			return item;
-		},
-		submit: function(){//提交
-			var me = this;
-			var item = me.getItem();
-			var params = JSON.stringify({id: ROLE.toId(item)});
-			var entity = JSON.stringify(item);
-			var data = {url: '/api/role', params: params, entity: entity};
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					window.location = PAGE.ROLE_LIST;
-				},
-				error: function(response){
-					me.response = response;
-					if(LOGIN.error(response)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
-				}
-			});
-		}
-};
-
-
 (function($){
-	var MenuRole={
-		id:$.utils.getParam("id"),
-		request:function(){
-			return $.io.get({url:"/api/menusRole/getMenuList",params:{id: this.id}})
+	var roleId=$.utils.getParam("id");
+	$.project.domain(true,roleId,"com.jsy.auth.Role").success(function(item){
+		item=item.length&&item[0]||{};
+		avalon.define("baseInfo",function(vm){
+			vm.name=item.name;
+			vm.authority=item.authority;
+		});
+	});
+	var request=function(options){
+		return $.io.get({url:options.url,params: $.extend(true,{},{id: roleId},options.params)});
+	};
+	/**
+	 * 操作权限、字段权限
+	 * @type {{submit: Function, processData: Function, render: Function}}
+	 */
+	var RoleList={
+		submit:function(resourceId,data){
+			var _this=this;
+			if(_this.hasChange){
+				var entity={props:[],ops:[]};
+				$.each(data,function(){
+					if(this.id==resourceId){
+						$.each(this.props,function(){
+							if(this.checked){
+								entity.props.push(this)
+							}
+						});
+						$.each(this.ops,function(){
+							if(this.checked){
+								entity.ops.push(this)
+							}
+						});
+					}
+				});
+				$.io.post({url:"/api/resourceRole/updateRoleList",params:{id:roleId,resourceId:resourceId},entity:entity}).success(function(data){
+					$.message.log("保存成功！");
+					_this.hasChange=false;
+				}).error(function(){
+					$.message.error("保存出错！");
+				});
+			}else{
+				$.message.log("没有变更，无需提交");
+				_this.hasChange=JSON.stringify(data)!=JSON.stringify(_this.clean.data);
+			}
 		},
+		processData:function(data){
+			var _this=this;
+			_this.clean= $.extend(true,{},{data:data});
+			avalon.define({
+				$id: "Role",
+				items: data,
+				submit:function(resourceId){
+					_this.submit(resourceId,data);
+				},
+				change:function(){
+					setTimeout(function(){
+						_this.hasChange=JSON.stringify(data)!=JSON.stringify(_this.clean.data);
+					},300);
+				}
+			});
+		},
+		render:function(){
+			var _this=this;
+			request({
+				url:"/api/resourceRole/getRoleList"
+			}).success(function(data){
+				_this.processData(data);
+			});
+		}
+	};
+	/**
+	 * 菜单权限
+	 * @type {{submit: Function, cacheMap: Function, processData: Function, render: Function}}
+	 */
+	var MenuRole={
 		submit:function(data){
 			var _this=this;
 			if(_this.hasChange){
-				var entity=[],roleId=this.id;
+				var entity=[];
 				$.each(data,function(idx,item){
 					item.checked&&entity.push({
 						menus:{id:item.id},
@@ -256,7 +90,7 @@ var FUND_FORM={
 						});
 					});
 				});
-				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
+				$.io.post({url:"/api/resourceRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
 					$.message.log("保存成功！");
 					_this.hasChange=false;
 				}).error(function(){
@@ -278,12 +112,12 @@ var FUND_FORM={
 			var _this=this;
 			var model=avalon.define({
 				$id: "menuRole",
-				menu_items: data,
+				items: data,
 				submit:function(){
 					_this.submit(data);
 				},
 				change:function(id,childId){
-					var item=model.menu_items[_this.mapping[id]],checked=false;
+					var item=model.items[_this.mapping[id]],checked=false;
 					if(childId){
 						$.each(item.children,function(idx,val){
 							if(val.id==childId) val.checked=!val.checked;
@@ -302,11 +136,12 @@ var FUND_FORM={
 		},
 		render:function(){
 			var _this=this;
-			_this.request().success(function(data){
+			request({url:"/api/menusRole/getMenuList"}).success(function(data){
 				_this.cacheMap(data);
 				_this.processData(data);
 			});
 		}
 	};
+	RoleList.render();
 	MenuRole.render();
 })(jQuery);
