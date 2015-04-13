@@ -198,7 +198,7 @@
     var request=function(url,argsObj){
         var args=Array.prototype.slice.apply(argsObj),_sync=false;
         if(args.length){
-            if(args[0]&&typeof args[0]=="boolean") _sync=args.shift();
+            if(typeof args[0]=="boolean") _sync=args.shift();
             var useOptions=Util.buildOptions(args.shift(), $.extend(true,args.shift()||{},{url:url}));
             if(!useOptions.url) throw Error("no ajax url");
             if(_sync)

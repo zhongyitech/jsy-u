@@ -1,249 +1,152 @@
-//数据加载、按钮点击事件等
-$(document).ready(function(){
-	ROLE_FORM.ini(true);
-});
-
-//角色信息表单
-var ROLE_FORM={
-		item: {},
-		getView: function(){
-			return $('#role-view');
-		},
-		getMenu: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#menu');
-			}
-		},
-		getForm: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#view-form');
-			}
-		},
-		getNameInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#name-input');
-			}
-		},
-		setName: function(item){
-			this.getNameInput().val(ROLE.toName(item));
-		},
-		getAuthorityInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#authority-input');
-			}
-		},
-		setAuthority: function(item){
-			this.getAuthorityInput().val(ROLE.toAuthority(item));
-		},
-		getSubmitButton: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#submit-button');
-			}
-		},
-		iniSubmitButton: function(){
-			var me = this;
-			var button = this.getSubmitButton();
-			if(button){
-				button.click(function(){
-					me.submit();
-				});
-			}
-		},
-		ini: function(async){
-			if(!async){
-				async = false;
-			}
-			
-			this.iniSubmitButton();
-			
-			var id = PAGE.getParam(ROLE.ID_KEY);
-			var item = ROLE.get(id);
-			if(item){
-				this.set(item);
-			}else{
-				this.set({});
-			}
-		},
-		set: function(item){
-			this.item = item;
-			
-			this.setName(item);
-			this.setAuthority(item);
-		},
-		getItem: function(){
-			var me = this;
-			var item = me.item;
-			
-			var name = this.getNameInput().val();
-			if(name){
-				item[ROLE.NAME_KEY] = name;
-			}
-			
-			var authority = this.getAuthorityInput().val();
-			if(authority){
-				item[ROLE.AUTHORITY_KEY] = authority;
-			}
-			
-			me.item = item;
-			return item;
-		},
-		submit: function(){//提交
-			var me = this;
-			var item = me.getItem();
-			var params = JSON.stringify({id: ROLE.toId(item)});
-			var entity = JSON.stringify(item);
-			var data = {url: '/api/role', params: params, entity: entity};
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					window.location = PAGE.ROLE_LIST;
-				},
-				error: function(response){
-					me.response = response;
-					if(LOGIN.error(response)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
-				}
-			});
-		}
-};
-
-//基金权限表单
-var FUND_FORM={
-		item: {},
-		getView: function(){
-			return $('#fund-view');
-		},
-		getMenu: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#menu');
-			}
-		},
-		getForm: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#view-form');
-			}
-		},
-		getCreateInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#create-input');
-			}
-		},
-		setCreate: function(item){
-			this.getCreateInput().val(ROLE.toName(item));
-		},
-		getAuthorityInput: function(){
-			var form = this.getForm();
-			if(form){
-				return form.find('#authority-input');
-			}
-		},
-		setAuthority: function(item){
-			this.getAuthorityInput().val(ROLE.toAuthority(item));
-		},
-		getSubmitButton: function(){
-			var view = this.getView();
-			if(view){
-				return view.find('#submit-button');
-			}
-		},
-		iniSubmitButton: function(){
-			var me = this;
-			var button = this.getSubmitButton();
-			if(button){
-				button.click(function(){
-					me.submit();
-				});
-			}
-		},
-		ini: function(async){
-			if(!async){
-				async = false;
-			}
-			
-			this.iniSubmitButton();
-			
-			var id = PAGE.getParam(ROLE.ID_KEY);
-			var item = ROLE.get(id);
-			if(item){
-				this.set(item);
-			}else{
-				this.set({});
-			}
-		},
-		set: function(item){
-			this.item = item;
-			
-			this.setName(item);
-			this.setAuthority(item);
-		},
-		getItem: function(){
-			var me = this;
-			var item = me.item;
-			
-			var name = this.getNameInput().val();
-			if(name){
-				item[ROLE.NAME_KEY] = name;
-			}
-			
-			var authority = this.getAuthorityInput().val();
-			if(authority){
-				item[ROLE.AUTHORITY_KEY] = authority;
-			}
-			
-			me.item = item;
-			return item;
-		},
-		submit: function(){//提交
-			var me = this;
-			var item = me.getItem();
-			var params = JSON.stringify({id: ROLE.toId(item)});
-			var entity = JSON.stringify(item);
-			var data = {url: '/api/role', params: params, entity: entity};
-			$.ajax({ 
-				type: "post", 
-				url: "../rest/item/post", 
-				async: true,
-				data: data,
-				dataType: "json",
-				success: function(response){
-					me.response = response;
-					window.location = PAGE.ROLE_LIST;
-				},
-				error: function(response){
-					me.response = response;
-					if(LOGIN.error(response)){
-						alert('提交失败，请补全带*号的必填信息.');
-					}
-				}
-			});
-		}
-};
-
-
 (function($){
-	var MenuRole={
-		id:$.utils.getParam("id"),
-		request:function(){
-			return $.io.get({url:"/api/menusRole/getMenuList",params:{id: this.id}})
+	var roleId=$.utils.getParam("id");
+	var request=function(readURL){
+		return $.io.get({url:readURL,params:{id: roleId}});
+	};
+	var BaseInfo={
+		render:function(){
+			$.project.domain(true,roleId,"com.jsy.auth.Role").success(function(item){
+				item=item.length&&item[0];
+				avalon.define("baseInfo",function(vm){
+					vm.name=item.name;
+					vm.authority=item.authority;
+				});
+			});
+		}
+	};
+	var FundRole={
+		submit:function(data){
 		},
+		processData:function(data){
+			var _this=this;
+			avalon.define({
+				$id: "fundRole",
+				items: data,
+				submit:function(){
+					_this.submit(data);
+				}
+			});
+		},
+		render:function(){
+			var _this=this;
+			request("/api/menusRole/getMenuList").success(function(data){
+				_this.processData([
+					{id:1,title:"操作权限",children:[
+						{id:11,title:"新增"},
+						{id:12,title:"删除"},
+						{id:13,title:"修改"},
+						{id:14,title:"查看"}
+					]},
+					{id:2,title:"字段权限",children:[
+						{id:21,title:"编号"},
+						{id:22,title:"基金名称"},
+						{id:23,title:"预募规模"},
+						{id:24,title:"实募金额"},
+						{id:25,title:"季付募集规模"},
+						{id:26,title:"季付实募"},
+						{id:27,title:"半年付募集规模"},
+						{id:28,title:"半年付实募"},
+						{id:29,title:"年付募集规模"},
+						{id:30,title:"年付实募"},
+						{id:31,title:"状态"}
+					]}
+				]);
+			});
+		}
+	};
+	var InvestmentRole={
+		submit:function(data){
+		},
+		processData:function(data){
+			var _this=this;
+			avalon.define({
+				$id: "investmentRole",
+				items: data,
+				submit:function(){
+					_this.submit(data);
+				}
+			});
+		},
+		render:function(){
+			var _this=this;
+			request("/api/menusRole/getMenuList").success(function(data){
+				_this.processData([
+					{id:1,title:"操作权限",children:[
+						{id:11,title:"新增"},
+						{id:12,title:"删除"},
+						{id:13,title:"修改"},
+						{id:14,title:"查看"},
+						{id:15,title:"打印"}
+					]},
+					{id:2,title:"字段权限",children:[
+						{id:21,title:"档案编号"},
+						{id:22,title:"合同编号"},
+						{id:23,title:"基金名称"},
+						{id:24,title:"认购人"},
+						{id:25,title:"认购日期"},
+						{id:26,title:"认购金额"},
+						{id:27,title:"认购期限"},
+						{id:28,title:"理财经理"},
+						{id:29,title:"地区"},
+						{id:30,title:"年化收益率"},
+						{id:31,title:"付息方式"},
+						{id:31,title:"到期日期"},
+						{id:31,title:"已付利息"},
+						{id:31,title:"已付本金"}
+					]}
+				]);
+			});
+		}
+	};
+	var CustomerRole={
+		submit:function(data){
+		},
+		processData:function(data){
+			var _this=this;
+			avalon.define({
+				$id: "customerRole",
+				items: data,
+				submit:function(){
+					_this.submit(data);
+				}
+			});
+		},
+		render:function(){
+			var _this=this;
+			request("/api/menusRole/getMenuList").success(function(data){
+				_this.processData([
+					{id:1,title:"操作权限",children:[
+						{id:11,title:"新增"},
+						{id:12,title:"删除"},
+						{id:13,title:"修改"},
+						{id:14,title:"查看"},
+						{id:15,title:"打印"}
+					]},
+					{id:2,title:"字段权限",children:[
+						{id:21,title:"档案编号"},
+						{id:22,title:"合同编号"},
+						{id:23,title:"基金名称"},
+						{id:24,title:"认购人"},
+						{id:25,title:"认购日期"},
+						{id:26,title:"认购金额"},
+						{id:27,title:"认购期限"},
+						{id:28,title:"理财经理"},
+						{id:29,title:"地区"},
+						{id:30,title:"年化收益率"},
+						{id:31,title:"付息方式"},
+						{id:31,title:"到期日期"},
+						{id:31,title:"已付利息"},
+						{id:31,title:"已付本金"}
+					]}
+				]);
+			});
+		}
+	};
+	var MenuRole={
 		submit:function(data){
 			var _this=this;
 			if(_this.hasChange){
-				var entity=[],roleId=this.id;
+				var entity=[];
 				$.each(data,function(idx,item){
 					item.checked&&entity.push({
 						menus:{id:item.id},
@@ -278,12 +181,12 @@ var FUND_FORM={
 			var _this=this;
 			var model=avalon.define({
 				$id: "menuRole",
-				menu_items: data,
+				items: data,
 				submit:function(){
 					_this.submit(data);
 				},
 				change:function(id,childId){
-					var item=model.menu_items[_this.mapping[id]],checked=false;
+					var item=model.items[_this.mapping[id]],checked=false;
 					if(childId){
 						$.each(item.children,function(idx,val){
 							if(val.id==childId) val.checked=!val.checked;
@@ -302,11 +205,15 @@ var FUND_FORM={
 		},
 		render:function(){
 			var _this=this;
-			_this.request().success(function(data){
+			request("/api/menusRole/getMenuList").success(function(data){
 				_this.cacheMap(data);
 				_this.processData(data);
 			});
 		}
 	};
+	BaseInfo.render();
+	FundRole.render();
+	CustomerRole.render();
+	InvestmentRole.render();
 	MenuRole.render();
 })(jQuery);
