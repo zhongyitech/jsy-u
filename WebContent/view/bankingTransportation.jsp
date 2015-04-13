@@ -12,7 +12,7 @@
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <textarea id="table-data-template" class="template">
-            {#param name=fields value=["dealDate","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","balance","manageType"]}
+            {#param name=fields value=["borrowAndLend","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","balance","manageType"]}
             {#param name=start "
             {#param name=pos value=$P.start}
             <table class="table table-striped text-center mrg0B" id="view-table">
@@ -37,7 +37,10 @@
                 <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
                     {#foreach $P.fields as field}
                     <td class="text-center">
-                        <span class="text-overflow">{$T.item[$T.field]}</span>
+                        {#if $T.field=='actionAmount'  }
+
+                        {#/if}
+                        <span class="text-overflow">{$T.field=='actionAmount' ? ($T.item['borrowAndLend']==true? - $T.item[$T.field] : $T.item[$T.field]) : $T.item[$T.field] }</span>
                     </td>
                     {#/for}
                 </tr>

@@ -63,7 +63,8 @@
             {#foreach $T as item}
             <tr data-key="{$T.item$index}" >
                 <td class="form-input"><span ><input  name="bankOfDeposit" value="{$T.item['bankOfDeposit']}" /></span></td>
-                <td class="form-input"><span ><input  name="accountName" value="{$T.item['accountName']}" /></span></td>
+                <td class="form-input"><span ><input  name="accountName" value="{$
+                T.item['accountName']}" /></span></td>
                 <td class="form-input"><span ><input   name="account" value="{$T.item['account']}" /></span></td>
                 <%--<td><span ><input name="defaultAccount" value="{$T.item['defaultAccount']}" /></span></td>--%>
                 <td ><span ><input  type="radio" name="defaultAccount" {$T.item["defaultAccount"]==true?'checked':''} /></span></td>
