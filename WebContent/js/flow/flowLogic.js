@@ -23,37 +23,9 @@ var FLOW={
     },
     initEvent: function(){
         var me = this;
-        //隐藏日复利
-        $("#label_daycount").hide();
-        $("#value_daycount").hide();
-
-
-        //设置日复利input事件
-        $("#daycount_per").focusout(function(){
-            var daycount_per = $("#daycount_per").val();
-            var data = {url: '/api/project/updateProjectDaycount_per', params: JSON.stringify({daycount_per:daycount_per,projectid:me.projectid})};
-            $.io.post(data).success(function(result){
-            }).error(function(result){
-                alert('提交时错误:'+result);
-            });
-        });
-
-        //设置利息类型事件
-        $("#interestType").change(function(){
-            var interestType = $("#interestType").val();
-            if("singleCount"==interestType){
-                $("#label_daycount").hide();
-                $("#value_daycount").hide();
-                me.saveProjectInterestType(interestType);
-            }else if("costCount"==interestType){
-                $("#label_daycount").hide();
-                $("#value_daycount").hide();
-                me.saveProjectInterestType(interestType);
-            }else if("dayCount"==interestType){
-                $("#label_daycount").show();
-                $("#value_daycount").show();
-                me.saveProjectInterestType(interestType);
-            }
+        //参数设置按钮
+        $("#attrSettingBtn").click(function(){
+            window.location.href = "projectAttrSetting.jsp?id="+me.projectid;
         });
     },
     initView: function(){
@@ -99,7 +71,12 @@ var FLOW={
         if(!project)return;
         $("#project_id").html(project.id);
         $("#project_name").html(project.name);
-        $("#fund_name").html(project.fundNames);
+        if(project.fundNames){
+            $("#fund_name").html(project.fundNames);
+        }else{
+            $("#fund_name").html("尚无关联");
+        }
+
         $("#currentStageName").html(project.currentStageName);
         if(project.archive){
             $("#currentStatus").html("结项完毕");
@@ -107,26 +84,6 @@ var FLOW={
             $("#currentStatus").html("活跃");
         }
 
-
-        //加载日复利
-        $("#daycount_per").val(project.daycount_per);
-
-        //加载利息类型
-        if(project.interestType=="singleCount"){
-            $("#interestType").val("singleCount");
-        }else if(project.interestType=="costCount"){
-            $("#interestType").val("costCount");
-        }else if(project.interestType=="dayCount"){
-            $("#interestType").val("dayCount");
-            $("#label_daycount").show();
-            $("#value_daycount").show();
-        }
-    },
-
-    saveProjectInterestType: function (interestType) {
-        var me = this;
-        var data = {url: '/api/project/saveProjectInterestType', params: JSON.stringify({interestType:interestType, projectid:me.projectid})};
-        $.io.post(data);
     }
 
 

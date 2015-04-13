@@ -35,6 +35,7 @@
         $.io.post({url:'/api/investmentArchives/getPayTimes',entity:{date:DATEFORMAT.toRest(item['rgrq']),qx:item['tzqx'],fxfs:item['fxfs']}}).success(function(result){
           item.items=result;
           filter[item.id].renderURI("/templates/report_1.html",item);
+          $("div").renderURI("/templates/report_1.html",item);
         });
       });
     }

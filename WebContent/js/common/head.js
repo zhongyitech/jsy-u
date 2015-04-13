@@ -3222,7 +3222,7 @@ var DataOperation = {
                 success: function (response) {
                     that.async = that.defaultAsync;
                     if (response == null) {
-                        alert("方法调用返回值不正常，没有键？");
+                        alert("方法调用返回值不正常？");
                         return;
                     }
                     if (response[REST.REST_STATUS_KEY] == 'suc') {
@@ -3266,3 +3266,9 @@ var DataOperation = {
         console.log(obj);
     }
 };
+
+
+$.urlParam = function (name) {
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}

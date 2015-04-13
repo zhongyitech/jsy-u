@@ -173,6 +173,24 @@ App.MakeContact = {
                 return false;
             }
 
+            //利息计算方式
+            var interestType = $('input[name="interestType"]:radio:checked').val();
+            if(interestType && interestType!=""){
+                model.interestType = interestType;
+            }else{
+                alert("请选择利息计算方式");
+                return false;
+            }
+
+            //日复利日利率
+            var daycount_per = $("#daycount_per").val();
+            if(daycount_per && daycount_per!=""){
+                daycount_per = daycount_per.replace("%","")/100;
+                model.daycount_per = daycount_per;
+            }else{
+                model.daycount_per = 0;
+            }
+
             $("input[id^=attname]").each(function () {
                 var index = $(this).attr("id").replace("attname", "");
                 var name = $(this).val();

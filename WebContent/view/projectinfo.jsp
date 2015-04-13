@@ -16,14 +16,24 @@
             <div id="page-content" class="page-view pad25T">
                 <section id="dropdowns">
                     <div class="page-header">
-                        <h1><span id="project_name"></span></h1>
+                        <h1>
+                            <span id="project_name"></span>
+
+                            <button id="attrSettingBtn" type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true">参数设置</span>
+                            </button>
+
+                            <button id="detailsBtn" type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">存档明细</span>
+                            </button>
+
+                        </h1>
                     </div>
                 </section>
 
 
 
-                <div class="center-margin col-md-10" id="fund-form">
-
+                <div id="fund-form" class="center-margin col-md-10">
 
                     <div class="form-row">
                         <div class="form-label col-md-2">
@@ -61,26 +71,26 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-label col-md-2">
-                            <label >利息计算方式：</label>
-                        </div>
-                        <div class="form-input col-md-4">
-                            <select id="interestType">
-                                <option value="none"></option>
-                                <option value="singleCount">单利</option>
-                                <option value="costCount">复利</option>
-                                <option value="dayCount">日复利</option>
-                            </select>
-                        </div>
+                    <%--<div class="form-row">--%>
+                        <%--<div class="form-label col-md-2">--%>
+                            <%--<label >利息计算方式：</label>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-input col-md-4">--%>
+                            <%--<select id="interestType">--%>
+                                <%--<option value="none"></option>--%>
+                                <%--<option value="singleCount">单利</option>--%>
+                                <%--<option value="costCount">复利</option>--%>
+                                <%--<option value="dayCount">日复利</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
 
-                        <div id="label_daycount" class="form-label col-md-2">
-                            <label>日复利日利率：</label>
-                        </div>
-                        <div id="value_daycount" class="form-input col-md-4">
-                            <input id="daycount_per" placeholder="例如：0.0001"/>
-                        </div>
-                    </div>
+                        <%--<div id="label_daycount" class="form-label col-md-2">--%>
+                            <%--<label>日复利日利率：</label>--%>
+                        <%--</div>--%>
+                        <%--<div id="value_daycount" class="form-input col-md-4">--%>
+                            <%--<input id="daycount_per" placeholder="例如：0.0001"/>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
                 </div>
 
@@ -604,7 +614,25 @@
                                     </div>
                                 </div>
 
+                                <div class="form-label col-md-2   ">
+                                    <label >利息计算方式：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <label><input type="radio" name="interestType" value="singleCount">单利</label>
+                                    <label><input type="radio" name="interestType" value="costCount">复利</label>
+                                    <label><input type="radio" name="interestType" value="dayCount">日复利</label>
+                                </div>
 
+                            </div>
+
+
+                            <div class="form-row">
+                                <div id="label_daycount" class="form-label col-md-2">
+                                    <label>日复利日利率：</label>
+                                </div>
+                                <div id="value_daycount" class="form-input col-md-4">
+                                    <input id="daycount_per" placeholder="例如：0.0001"/>
+                                </div>
                             </div>
                         </form>
 
