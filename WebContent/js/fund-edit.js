@@ -830,7 +830,7 @@ var FUND_FORM = {//基金表单
     },
     iniSubmitButton: function () {
         var me = this;
-        var button = this.getSubmitButton();
+        var button = $(me.SUBMIT_ID)
         if (button) {
             button.click(function () {
                 me.submit();

@@ -17,7 +17,7 @@ var USER_FORM = {
     KHH_ID: '#khh',
     YHZH_ID: '#yhzh',
     item: {},
-    action_mode:'create',
+    action_mode: 'create',
     getView: function () {
         return $(this.VIEW_ID);
     },
@@ -70,40 +70,10 @@ var USER_FORM = {
     iniDepartmentView: function (item) {
         var view = this.getDepartmentView();
         if (view) {
-            var items = DEPARTMENT.getItems();
-            var option = $('<option value=""></option>');
-            view.append(option);
+            $.io.get(true,{url: '/api/department/selectList'}).success(function (result) {
+                $.dom.select(view, result);
+            });
 
-            var companies = {};
-            for (var i in items) {
-                var item = items[i];
-                var company = DEPARTMENT.toCompany(item);
-                var cid = COMPANY.toId(company);
-                if (!companies[cid]) {
-                    companies[cid] = [];
-                }
-
-                companies[cid].push(item);
-            }
-
-            for (var i in companies) {
-                var group = $('<optgroup></optgroup>');
-                var company = COMPANY.get(i);
-                var name = COMPANY.toName(company);
-                group.attr('label', name);
-                view.append(group);
-
-                var children = companies[i];
-                for (var j in children) {
-                    var item = children[j];
-                    var id = DEPARTMENT.toId(item);
-                    var name = DEPARTMENT.toName(item);
-                    var option = $('<option value="' + id + '"></option>');
-                    view.append(option);
-                    var span = $('<span class="indent-2">&nbsp;&nbsp;&nbsp;&nbsp;' + name + '</span>');
-                    option.append(span);
-                }
-            }
         }
     },
     setDepartment: function (item) {
@@ -222,11 +192,12 @@ var USER_FORM = {
         this.item = item;
 
         //load UserRole data
-        if(item.id != undefined && item.id) {
+        if (item.id != undefined && item.id) {
             item['role'] = $.io.get(true,
                 {url: '/api/role/userRoleList', params: {id: item.id}}
             ).data();
         }
+
         this.setAccount(item);
         this.setName(item);
         this.setDepartment(item);
@@ -235,8 +206,8 @@ var USER_FORM = {
         this.setKHH(item);//开户行
         this.setRole(item);
         //todo:test data
-        var titems = [YHZH.get(1), YHZH.get(2), YHZH.get(2), YHZH.get(2), YHZH.get(3)];
-        BANKACCOUNTS.setView(titems);
+        //var titems = [YHZH.get(1), YHZH.get(2), YHZH.get(2), YHZH.get(2), YHZH.get(3)];
+        //BANKACCOUNTS.setView(titems);
     },
     /**
      * get from input data
@@ -291,23 +262,23 @@ var USER_FORM = {
     submit: function () {//提交
         var me = this;
         var item = me.getItem();
-        item['bankAccount']=BANKACCOUNTS.getItems();
-        var rolelis='';
-        $.each(item.role,function(i,r){
+        item['bankAccount'] = BANKACCOUNTS.getItems();
+        var rolelis = '';
+        $.each(item.role, function (i, r) {
             console.log(r);
-            return rolelis+= r.id+',';
+            return rolelis += r.id + ',';
         });
-        rolelis=(rolelis=='') ? '': rolelis.substr(0,rolelis.length-1);
-        var params =JSON.stringify({'rolelist':rolelis,'id':item.id});
+        rolelis = (rolelis == '') ? '' : rolelis.substr(0, rolelis.length - 1);
+        var params = JSON.stringify({'rolelist': rolelis, 'id': item.id});
         var data = {url: '/api/user', params: params, entity: JSON.stringify(item)};
         console.log(data.entity);
         $.io.post(data)
-            .success(function(result,page){
-                me.response=result;
+            .success(function (result, page) {
+                me.response = result;
                 alert("修改用户信息成功！");
-                window.location="./user-list.jsp";
+                window.location = "./user-list.jsp";
             })
-            .error(function(result){
+            .error(function (result) {
                 console.log(result.msg);
 //                alert("error"+result.msg);
             });

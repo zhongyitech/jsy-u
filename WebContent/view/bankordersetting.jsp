@@ -59,12 +59,12 @@
                 <td class="form-input"><input type="hidden" name="id" value="{$T.item['id']}"><input name="subject"
                                                                                                      value="{$T.item['subject']}"/>
                 </td>
-                <td class="form-input"><input name="subjectLevel2" value="{$T.item['subjectLevel2']}"/></td>
-                <td class="form-input"><select name="borrowAndLend">
+                <td class="form-input"><input name="subjectLevel2" value="{$T.item['subjectLevel2']||''}"/></td>
+                <td class="form-input"><select name="borrow">
                     <option value="true" {$T.item[
-                    'borrowAndLend'] ? 'selected' : ''}>借</option>
+                    'borrow'] ? 'selected' : ''}>借</option>
                     <option value="false" {$T.item[
-                    'borrowAndLend'] ? '' : 'selected'}>贷</option>
+                    'borrow'] ? '' : 'selected'}>贷</option>
                 </select></td>
                 <td class="form-input">
                     <%--<select>--%>
@@ -72,7 +72,7 @@
                     <%--</select>--%>
                     <input name="sumName" value="{$T.item['sumName']}"/>
                 </td>
-                <td class="form-input"><input name="fund" value="{$T.item['fund']}"/></td>
+                <td class="form-input"><input name="company" value="{$T.item['company']}"/></td>
                 <%--<td><span ><input name="defaultAccount" value="{$T.item['defaultAccount']}" /></span></td>--%>
                 <td><span class="text-overflow">
                     <button class="del-btn" data-itemid="{$T.item$index}">删除</button>

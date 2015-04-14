@@ -2,7 +2,7 @@
     var Util={
         _entity:{
             startposition: 0,
-            pagesize: 15,
+            pagesize: 10,
             type:"or",
             fields:["summary","bankName","transactionsCode","account","accountName"],
             value:"",
