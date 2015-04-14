@@ -15,8 +15,12 @@ var VIEWDATA={
     },
 
     init_view: function(){
-        $("#creatorName").val(LOGIN.getUser().chainName);
-        $("#creator").val(LOGIN.getUser().id);
+        var currentUser = LOGIN.getUser();
+        if(currentUser){
+            $("#creatorName").val(currentUser.chainName);
+            $("#creator").val(currentUser.id);
+        }
+
     },
 
     init_event: function(){
