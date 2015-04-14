@@ -322,16 +322,15 @@ var INVESTMENT_ITEM = {
         if (bm) {
             bm_select.val(bm[this.user.ID_KEY]);
         }
-
         var dm_select = $(this.INVEST_DM_ID);
         var dm = item[this.investment.BMJL_KEY];
         if (dm) {
             dm_select.val(dm[this.user.ID_KEY]);
         }
         var department = item[this.investment.BM_KEY];
-        if (department) {
-            department_select.val(department);
-        }
+        //if (department) {
+        //    department_select.val(department);
+        //}
 
         var ywtc_input = $(this.INVEST_YEWU_ID);
         var ywtc = item[this.investment.YWTC_KEY];
