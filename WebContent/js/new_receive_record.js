@@ -40,6 +40,7 @@ var VIEWDATA={
                     }
                 },
                 transformResult: function (response) {
+                    console.log(response);
                     //clear old value
                     $("#fundname").val("");
                     $("#_fundname").val("");

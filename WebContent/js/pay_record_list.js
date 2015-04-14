@@ -114,6 +114,9 @@ var VIEWDATA={
                 if (result && result.rest_status && result.rest_status == "200") {
                     me.result = result;
                     me.success(result);
+                    $("#company_prints").show();
+                }else{
+                    $("#company_prints").hide();
                 }
 
             },
@@ -221,8 +224,16 @@ var VIEWDATA={
                     });
 
                 });
+                var printbtn = $('<a data-id="' + items[i]["id"] + '" href="#">打印</a>');
+                printbtn.click(function(){
+                    var payRecordId = $(this).data("id");
+                    window.location.href = "payReport.jsp?id="+payRecordId;
+
+                });
                 var td = $('<td>');
                 td.append(delbtn);
+                td.append("&nbsp;&nbsp;");
+                td.append(printbtn);
                 row.append(td);
             }
         }
@@ -436,6 +447,17 @@ var VIEWDATA={
             return false;
         });
 
+        $("#hurryup_print").click(function(){
+            var fundid = $("#_fundname").val();
+            window.location.href="hurryupReport.jsp?id="+fundid;
+            return false;
+        });
+
+        $("#interact_print").click(function(){
+            var fundid = $("#_fundname").val();
+            window.location.href="interactReport.jsp?id="+fundid;
+            return false;
+        });
 
     },
 

@@ -1,0 +1,84 @@
+<div class="print-paper">
+    <div class="print-header">
+        <img class="logo" src="/images/logo.jpg" />
+        <div class="print-no"> 编号（<span class="underline">INTERA_{$T.id}</span>）</div>
+        <div class="print-title">往来询证函</div>
+    </div>
+    <div class="print-body">
+        <span>致：<span class="underline">{$T.companyName}</span></span>
+        <p>您好！</p>
+        <p>截止于
+            <span class="underline">{DATEFORMAT.toCH($T.nowDate||"")}</span>，,就我司支付的投资款及贵司归还的款项进行往来核对，数额如下：
+        </p>
+        <p>（本函仅为复核账目之用，并非催款结算。）</p>
+        <table>
+            <thead>
+                <tr><td>基金项目名称</td><td>投资款本金金额（元）</td><td>合计收款金额</td><td>已收管理费</td><td>已收渠道和募集费</td><td>已收投资收益</td><td>已收本金</td></tr>
+            </thead>
+            <tbody>
+                <tr><td>{$T.fundName}</td><td>{STRINGFORMAT.toYuan($T.main_pay)}</td><td>{$T.total_receive==0?'￥0':STRINGFORMAT.toYuan($T.total_receive)}</td>
+                    <td>{$T.total_manage==0?'￥0':STRINGFORMAT.toYuan($T.total_manage)}</td><td>{$T.total_channel==0?'￥0':STRINGFORMAT.toYuan($T.total_channel)}</td>
+                    <td></td><td>{$T.total_main==0?'￥0':STRINGFORMAT.toYuan($T.total_main)}</td></tr>
+            </tbody>
+        </table>
+        <p>以上数据出自本公司财务账簿记录，如与贵公司的记录相符，请在本函下端“信息证明无误”处签章证明；如有不符，请在“信息不符”处列明不符项目及理由。</p>
+        <p>另附上上述数据的明细表。</p>
+        <p></p>
+
+    </div>
+    <div class="print-footer">
+        <img class="seal" src="/images/seal.png" />
+        <div>发函公司（盖章）：深圳金赛银百淼投资基金企业(有限合伙)</div>
+        <div>{$.utils.dateFormat(new Date(),"yyyy年MM月dd日")}</div>
+    </div>
+
+    <div class="print-body">
+        <p>结论：</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>1、信息证明无误。</td>
+                    <td>2、信息不符，需列明不符项目及具体内容。</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>经办人:</td>
+                    <td>经办人:</td>
+                </tr>
+                <tr>
+                    <td>项目有限公司（盖章）</td>
+                    <td>项目有限公司（盖章）</td>
+                </tr>
+                <tr>
+                    <td>    年   月   日</td>
+                    <td>    年   月   日</td>
+                </tr>
+            </tbody>
+        </table>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p>往来询证函附表：</p>
+        <table>
+            <thead>
+            <tr><td>转账日期</td><td>转账金额</td><td>已收管理费（%)（金赛银公司收）</td><td>收款日期</td><td>已收渠道费(%)（合伙企业收）</td><td>收款日期</td><td>备注</td></tr>
+            </thead>
+            <tbody>
+            {#foreach $T.details as item}
+            <tr>
+                <td>{DATEFORMAT.toCH($T.item.payDate||"")}</td>
+                <td>{STRINGFORMAT.toYuan($T.item.amount)}</td>
+                <td>{$T.item.maintain==0?'￥0':STRINGFORMAT.toYuan($T.item.maintain)}</td>
+                <td>{DATEFORMAT.toCH($T.item.maintain_date||"")}</td>
+                <td>{$T.item.channel==0?'￥0':STRINGFORMAT.toYuan($T.item.channel)}</td>
+                <td>{DATEFORMAT.toCH($T.item.channel_date||"")}</td>
+                <td></td>
+            </tr>
+            {#/for}
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

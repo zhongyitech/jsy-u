@@ -62,13 +62,18 @@
                                     </div>
                                 </div>
 
-                                <div style="height: 20px">
-
+                                <div style="height: 20px"></div>
+                                <div id="company_prints" style="height: 20px" hidden="hidden">
+                                    <a id="hurryup_print" href="#">催款通知书</a>
+                                    <a id="interact_print" href="#">往来询证函</a>
                                 </div>
+                                <div style="height: 20px"></div>
                                 <div class="form-row">
                                     <div class="content-box box-toggle ">
                                         <div class="content-box-header primary-bg">
                                             <span class="float-left">汇款记录</span>
+
+
 
                                             <a href="#" class="float-right icon-separator btn toggle-button" title="汇款记录">
                                                 <i class="glyph-icon icon-toggle icon-chevron-down"></i>

@@ -3272,3 +3272,11 @@ $.urlParam = function (name) {
     var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
 }
+
+//在当前时间上添加天数
+Date.prototype.addDay = function(days){
+    var cd = this.getDate();
+    cd += days;
+    this.setDate(cd);
+    return this;
+}
