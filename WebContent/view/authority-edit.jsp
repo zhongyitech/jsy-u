@@ -49,7 +49,7 @@
                 <div class="content-box-header primary-bg">
                     <span class="float-left">{{el.name}}权限</span>
 
-                    <a href="javascript:;" class="float-right icon-separator btn toggle-button" title="点击" ms-click="toggle(el.id)">
+                    <a href="javascript:;" class="float-right icon-separator btn toggle-button" title="点击" ms-click="toggle(el.id)" ms-data-id="el.id">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
                 </div>
