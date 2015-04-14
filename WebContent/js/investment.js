@@ -322,7 +322,6 @@ var INVESTMENT_ITEM = {
         if (bm) {
             bm_select.val(bm[this.user.ID_KEY]);
         }
-
         var dm_select = $(this.INVEST_DM_ID);
         var dm = item[this.investment.BMJL_KEY];
         if (dm) {
