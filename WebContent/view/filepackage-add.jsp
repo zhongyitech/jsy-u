@@ -19,14 +19,14 @@
             <form class="form-bordered " action="/" method="post">
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">档案条码：</label>
+                        <label >档案条码：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="fpcode"/>
                     </div>
 
                     <div class="form-label col-md-2  ">
-                        <label for="">档案号：</label>
+                        <label >档案号：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="fpno"/>
@@ -34,13 +34,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">档案名称：</label>
+                        <label >档案名称：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="fpname"/>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="">档案类型：</label>
+                        <label >档案类型：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <select id="fptype"></select>
@@ -49,13 +49,13 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">合同编号：</label>
+                        <label >合同编号：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="contractNum" maxlength="9" placeholder="输入9位合同编号"/>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="">合同名称： </label>
+                        <label >合同名称： </label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="contractNo" />
@@ -63,13 +63,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">项目名称： </label>
+                        <label >项目名称： </label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="projectName"/>
                     </div>
                     <div class="form-label col-md-2   ">
-                        <label for="">基金名称： </label>
+                        <label >基金名称： </label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="fundName_show" readonly="true" class="disabled"/>
@@ -81,13 +81,13 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="" id="lab-tname">签约方： </label>
+                        <label id="lab-tname">签约方： </label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" id="signedPartner"/>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="" id="lab-ttype">签约日期：</label>
+                        <label id="lab-ttype">签约日期：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input class="tcal filter-input" id="signedDate"/>
@@ -96,14 +96,14 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="" id="transfer_label">移交人：</label>
+                        <label id="transfer_label">移交人：</label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="transfer"/>
+                        <input type="text" id="transfer" placeholder="自动联想"/>
                         <input type="hidden" id="transferid"/>
                     </div>
                     <div class="form-label col-md-2   ">
-                        <label for="" id="lab-tnubmer">移交日期：</label>
+                        <label id="lab-tnubmer">移交日期：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input class="tcal filter-input" id="transferDate"/>
@@ -112,14 +112,14 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="">档案室 ：</label>
+                        <label >档案室 ：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <select id="saveposition">
                         </select>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="">档案柜编号：</label>
+                        <label >档案柜编号：</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input type="text" name="input_newamount" id="cabinetno">
@@ -129,7 +129,7 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">备注：</label>
+                        <label class="font-size-20">备注：</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -139,7 +139,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">附件：</label>
+                        <label class="font-size-20">附件：</label>
                     </div>
                 </div>
                 <div class="form-row">
