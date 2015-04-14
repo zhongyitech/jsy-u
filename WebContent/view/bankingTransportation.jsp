@@ -12,7 +12,7 @@
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <textarea id="table-data-template" class="template">
-            {#param name=fields value=["borrowAndLend","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","balance","manageType"]}
+            {#param name=fields value=["dealDate","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","borrowAndLend","balance","managed"]}
             {#param name=start "
             {#param name=pos value=$P.start}
             <table class="table table-striped text-center mrg0B" id="view-table">
@@ -28,6 +28,7 @@
                     <th class="text-center">对方账号</th>
                     <th class="text-center">对方户名</th>
                     <th class="text-center">发生额</th>
+                    <th class="text-center">借贷</th>
                     <th class="text-center">余额</th>
                     <th class="text-center">处理状态</th>
                 </tr>
@@ -37,10 +38,12 @@
                 <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
                     {#foreach $P.fields as field}
                     <td class="text-center">
-                        {#if $T.field=='actionAmount'  }
+                        {#if $T.field=='managed' }
+                        <span class="text-overflow">{($T.item['managed']==true? '已处理' : '未处理')}</span>
 
+                        {#else}
+                        <span class="text-overflow">{$T.field=='borrowAndLend' ? ($T.item['borrowAndLend']==true? '借' : '贷') : $T.item[$T.field] }</span>
                         {#/if}
-                        <span class="text-overflow">{$T.field=='actionAmount' ? ($T.item['borrowAndLend']==true? - $T.item[$T.field] : $T.item[$T.field]) : $T.item[$T.field] }</span>
                     </td>
                     {#/for}
                 </tr>
