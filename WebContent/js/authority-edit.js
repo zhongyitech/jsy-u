@@ -102,7 +102,7 @@
 						});
 					});
 				});
-				$.io.post({url:"/api/resourceRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
+				$.io.post({url:"/api/menusRole/updateMenuRole",params:{id:roleId},entity:entity}).success(function(){
 					$.message.log("保存成功！");
 					_this.hasChange=false;
 				}).error(function(){
