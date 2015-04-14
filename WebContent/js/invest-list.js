@@ -130,14 +130,11 @@ var INVESTMENT_LIST = {
         var customer = item['customer'];
         var customer_td = ""
         if (customer) {
-            customer_td = $('<td><span class=" text-overflow"  title="' + customer + '">' + customer + '</span></td>');
+            customer_td = $('<td><span class=" text-overflow"  title="' + customer + '">' + customer.name + '</span></td>');
         } else {
             customer_td = $('<td>' + item['username'] + '<a href="./customer.jsp?id=' + item['id'] + '&type=complted&username=' + item['username'] + '" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
-
         }
-
         tr.append(customer_td);
-
 
         var fund_td = $('<td><span   title="' + item['fund'] + '">' + item['fund'] + '</span></td>');
         tr.append(fund_td);
@@ -191,7 +188,7 @@ var INVESTMENT_LIST = {
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
-        value = item['country'];
+        value =item['customer'] ?  item['customer']['country'] :'';
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
