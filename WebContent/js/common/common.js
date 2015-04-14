@@ -27228,6 +27228,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
     return avalon
 
 }));
+avalon.config({
+    debug:false,
+    commentInterpolate:false
+});
 /****************************************project lib****************************************/
 /**
  *  jQuery.ajax wrapper
