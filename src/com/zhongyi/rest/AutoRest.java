@@ -22,9 +22,7 @@ public class AutoRest {
 		try {
 			JSONObject paramsJSON = new JSONObject();
 			paramsJSON.put("params", params);
-			paramsJSON.put("jsonData", extraData);
-			System.out.println("dsgsdgds");
-			System.out.println(extraData);
+			paramsJSON.put("extraData", extraData);
 			ManagerResponse response = ItemManager.getInstance().get(cookie, url, paramsJSON);
 			return Response.ok(response.response).status(response.status).build();
 		}catch(Exception e){

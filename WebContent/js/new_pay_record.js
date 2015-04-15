@@ -27,7 +27,8 @@ var VIEWDATA={
                 serviceUrl: '../rest/auto/get',
                 type: 'POST',
                 params: {
-                    url: '/api/fund/nameLike'
+                    url: '/api/fund/nameLike',
+                    extraData:'ddddddd'
                 },
                 paramName: 'params',
                 onSelect: function (suggestion) {
