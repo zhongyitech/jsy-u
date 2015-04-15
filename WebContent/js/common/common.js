@@ -27839,7 +27839,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
     var UtilsPrototype={
         dateFormat: function (date,format) {
             if(!date)return "";
-            var time = date.constructor==Date?date:new Date(date.replace(/-/g,'/').replace(/T|Z/g,' ').trim());
+            var time = date.constructor==Date?date:(typeof date=="number"?new Date(date):new Date(date.replace(/-/g,'/').replace(/T|Z/g,' ').trim()));
             var o = {
                 "M+": time.getMonth() + 1, //月份
                 "d+": time.getDate(), //日
