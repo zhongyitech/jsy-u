@@ -117,7 +117,9 @@
 			_this.mapping={};
 			_this.clean= $.extend(true,{},{data:data});
 			$.each(data,function(i){
-				_this.mapping[this.id]=i;
+				var item=this;
+				_this.mapping[item.id]=i;
+				item.first=true;
 			});
 		},
 		processData:function(data){
@@ -128,19 +130,25 @@
 				submit:function(){
 					_this.submit(data);
 				},
-				change:function(id,childId){
-					var item=model.items[_this.mapping[id]],checked=false;
-					if(childId){
-						$.each(item.children,function(idx,val){
-							if(val.id==childId) val.checked=!val.checked;
-							if(val.checked) checked=true;
-						});
-					}else{
-						checked=!item.checked;
-						$.each(item.children,function(idx,val){
-							val.checked=checked;
-						});
+				check:function(){
+					var object=avalon(this),
+						checked=this.checked,
+						item=model.items[_this.mapping[object.attr("data-id")]],
+						children=item&&item.children||[],
+						one=object.attr("data-one");
+					if(!item.first){
+						for(var i=0;i<children.length;i++){
+							if(one){
+								if(children[i].checked){
+									checked=true;
+									break;
+								}
+							}else{
+								children[i].checked=checked;
+							}
+						}
 					}
+					item.first=false;
 					item.checked=checked;
 					_this.hasChange=JSON.stringify(data)!= JSON.stringify(_this.clean.data);
 				}
