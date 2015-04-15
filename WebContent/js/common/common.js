@@ -27637,7 +27637,7 @@ avalon.config({
         },
         _ajax:function(options,type,async){
             var opts=$.extend(true,{},this._defaultCfg,options,{type:type,async:async,data:{
-                _t:Date.now()
+                _t:new Date().getTime()
             }});
             var xhr=$.ajax(opts);
             if(!async){
