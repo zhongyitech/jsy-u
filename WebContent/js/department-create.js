@@ -157,34 +157,6 @@ var DEPARTMENT_FORM = {
             .error(function (result) {
                 alert("创建部门失败：" + result);
             });
-//
-//        DataOperation.async = true;
-//        DataOperation.post(
-//            data,
-//            function (result) {
-//                window.location = PAGE.DEPARTMENT_LIST;
-//            },
-//            function (msg) {
-//                alert("创建部门失败：" + msg);
-//            }
-//        );
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/item/post",
-//            async: true,
-//            data: data,
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                window.location = PAGE.DEPARTMENT_LIST;
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                if (LOGIN.error(response)) {
-//                    alert('提交失败，请补全带*号的必填信息.');
-//                }
-//            }
-//        });
     }
 };
 
