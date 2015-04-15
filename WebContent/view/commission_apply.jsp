@@ -94,13 +94,13 @@
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox"name="checkbox"></th>
-                    <th data-bindtype="value" data-Member="ywjl">提成人员</th>
-                    <th data-bindtype="value" data-Member="fundname">基金名称</th>
-                    <th data-bindtype="value" data-Member="payamount" data-format="money">付款金额</th>
-                    <th data-bindtype="value" data-Member="skr">收款人</th>
-                    <th data-bindtype="value" data-Member="account">收款账户</th>
-                    <th data-bindtype="value" data-Member="bank">开户行</th>
-                    <th data-bindtype="value" data-Member="paystatus">付款状态</th>
+                    <th class="text-center" >提成人员</th>
+                    <th class="text-center" >基金名称</th>
+                    <th class="text-center" >付款金额</th>
+                    <th class="text-center" >收款人</th>
+                    <th class="text-center" >收款账户</th>
+                    <th class="text-center" >开户行</th>
+                    <th class="text-center" >付款状态</th>
                 </tr>
             </thead>
             <tbody></tbody>

@@ -98,6 +98,12 @@ var DEPARTMENT_LIST = {
                 }
             }
         },
+        getDeparemntName:function(id){
+            if(id){
+              return  $.project.domain(id,"com.jsy.system.Department","deptName").getItem(id).deptName;
+            }
+            return ''
+        },
         add: function (item) {//table增加一行
             if (!item) {
                 return;
@@ -122,6 +128,8 @@ var DEPARTMENT_LIST = {
             } else {
                 name_td.append($('<span class="span-12"></span>'));
             }
+
+            tr.append('<td class="text-center"><span class="text-overflow" title="' + item.parent + '">' + (item.parent ? this.getDeparemntName(item.parent.id) :'') + '</span></td>')
 
             var company = DEPARTMENT.toCompany(item);
             company = COMPANY.toItem(company);

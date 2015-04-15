@@ -69,40 +69,9 @@ var USER_FORM = {
     iniDepartmentView: function (item) {
         var view = this.getDepartmentView();
         if (view) {
-            var items = DEPARTMENT.getItems();
-            var option = $('<option value=""></option>');
-            view.append(option);
-
-            var companies = {};
-            for (var i in items) {
-                var item = items[i];
-                var company = DEPARTMENT.toCompany(item);
-                var cid = COMPANY.toId(company);
-                if (!companies[cid]) {
-                    companies[cid] = [];
-                }
-
-                companies[cid].push(item);
-            }
-
-            for (var i in companies) {
-                var group = $('<optgroup></optgroup>');
-                var company = COMPANY.get(i);
-                var name = COMPANY.toName(company);
-                group.attr('label', name);
-                view.append(group);
-
-                var children = companies[i];
-                for (var j in children) {
-                    var item = children[j];
-                    var id = DEPARTMENT.toId(item);
-                    var name = DEPARTMENT.toName(item);
-                    var option = $('<option value="' + id + '"></option>');
-                    view.append(option);
-                    var span = $('<span class="indent-2">&nbsp;&nbsp;&nbsp;&nbsp;' + name + '</span>');
-                    option.append(span);
-                }
-            }
+            $.io.get({url: '/api/department/selectList'}).success(function (result) {
+                $.dom.select(view, result);
+            });
         }
     },
     setDepartment: function (item) {

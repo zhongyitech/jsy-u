@@ -240,9 +240,9 @@
                     '<tr >                ' +
                     '<td class="form-input"><input type="hidden" name="id" value="-1"><input name="subject" value="">  </td>' +
                     '<td class="form-input"><input name="subjectLevel2" value=""></td>   ' +
-                    '<td class="form-input"><select name="borrowAndLend"><option value="true">借</option><option value="false" >贷</option>  ' +
+                    '<td class="form-input"><select name="borrow"><option value="true">借</option><option value="false" >贷</option>  ' +
                     '</select></td><td class="form-input"><input name="sumName" value=""></td>' +
-                    '<td class="form-input"><input name="fund" value=""></td> ' +
+                    '<td class="form-input"><input name="company" value=""></td> ' +
                     '<td> <button class="del-btn" data-itemid="0">删除</button></td> ' +
                     '</tr>'
                 );

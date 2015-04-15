@@ -89,18 +89,21 @@ var HTDJ_PUT = {
         tr.append(user_td);
         var user_select = $('<select class="user-name " name="' + HTDJ.DJR_KEY + '"></select>');
         user_td.append(user_select);
-        var users = this.user.getItems();
-        if (users) {
-            var option = $('<option value=""></option>');
-            user_select.append(option);
-            for (var i in users) {
-                var user = users[i];
-                var id = this.user.toId(user);
-                var name = this.user.toName(user);
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                user_select.append(option);
-            }
-        }
+        $.io.get({url:'/api/user/selectList'}).success(function(result){
+            $.dom.select(user_select,result);
+        });
+        //var users = this.user.getItems();
+        //if (users) {
+        //    var option = $('<option value=""></option>');
+        //    user_select.append(option);
+        //    for (var i in users) {
+        //        var user = users[i];
+        //        var id = this.user.toId(user);
+        //        var name = this.user.toName(user);
+        //        var option = $('<option value="' + id + '">' + name + '</option>');
+        //        user_select.append(option);
+        //    }
+        //}
 
         var date_td = $('<td></td>');
         tr.append(date_td);
@@ -125,14 +128,14 @@ var HTDJ_PUT = {
         tr.append(from_td);
         var from_div = $('<div class="form-input col-md-12"></div>');
         from_td.append(from_div);
-        var from_input = $('<input name="' + HTDJ.QSBH_KEY + '" class="col-md-12"/>');
+        var from_input = $('<input name="' + HTDJ.QSBH_KEY + '" class="col-md-12" maxlength=9 />');
         from_div.append(from_input);
 
         var to_td = $('<td></td>');
         tr.append(to_td);
         var to_div = $('<div class="form-input col-md-12"></div>');
         to_td.append(to_div);
-        var to_input = $('<input name="' + HTDJ.JSBH_KEY + '" class="col-md-12"/>');
+        var to_input = $('<input name="' + HTDJ.JSBH_KEY + '" maxlength=9 class="col-md-12"/>');
         to_div.append(to_input);
 
         var count_td = $('<td></td>');
@@ -271,46 +274,17 @@ var HTDJ_PUT = {
             .success(function (result) {
                 me.items[me.tr_key] = result;
                 me.setTr(result);
-                alert('合同登记成功。');
+                //alert('合同登记成功。');
+                $.message.log('合同登记成功。')
                 window.location.reload();
             })
             .error(function (error) {
-                alert('合同登记失败:' + error.msg)
+                //alert()
+                $.message.log('合同登记失败:' + error.msg)
                 ajax_status = false
             });
 
-//			$.ajax({
-//				type: "post",
-//				url: "../rest/item/post",
-//				async: true,
-//				data: data,
-//				dataType: "json",
-//				success: function(response){
-//					me.response = response;
 //
-//					if(response[REST.REST_STATUS_KEY] == REST.REST_STATUS_ERROR){
-//						ajax_status = false;
-//						alert(response[REST.MSG_KEY]);
-//					}else if(response && response[REST.RESULT_KEY]){
-//						me.item = JSON.parse(response[REST.RESULT_KEY]);
-//						me.item[me.tr_key] = tr_key;
-//
-//						me.setTr(me.item);
-//						ajax_status = true;
-//						alert('合同登记成功。');
-//					}else{
-//						ajax_status = false;
-//						alert('合同登记失败，请补全带*号的必填字段.');
-//					}
-//				},
-//				error: function(response){
-//					me.response = response;
-//					ajax_status = false;
-//					if(LOGIN.error(response)){
-//						alert('合同登记失败，请补全带*号的必填字段.');
-//					}
-//				}
-//			});
 
         return ajax_status;
     }

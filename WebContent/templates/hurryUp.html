@@ -1,0 +1,30 @@
+<div class="print-paper">
+    <div class="print-header">
+        <img class="logo" src="/images/logo.jpg" />
+        <div class="print-no"> 编号（<span class="underline">HURRY_{$T.id}</span>）</div>
+        <div class="print-title">催款通知书</div>
+    </div>
+    <div class="print-body">
+        <span>致：<span class="underline">{$T.companyName}</span></span>
+        <p>您好！</p>
+        <p>你好, 根据我司与贵司的合作, 截止至
+            <span class="underline">{DATEFORMAT.toCH($T.nowDate||"")}</span>，贵司已到期未还款项金额为人民币<span class="underline">{STRINGFORMAT.toYuan($T.should_payback)}</span>
+            。其中到期未还本金为人民币<span class="underline">{STRINGFORMAT.toYuan($T.main_payback)}</span>。到期未支付第一年利息为人民币
+            <span class="underline">{STRINGFORMAT.toYuan($T.interest_payback)}</span>将款项汇入以下银行账户：
+            <span class="underline">{$T.bankAccount}</span>。逾期利息为人民币
+            <span class="underline">{$T.overdue_payback==0?'￥0':STRINGFORMAT.toYuan($T.overdue_payback)}</span>， 逾期利息以实际支付日期为准。
+        </p>
+        <p>若有备注的信息，则在此显示</p>
+        <p>若有采取的措施的信息，则在此显示</p>
+
+        <p></p>
+        <p>此致</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商祺！</p>
+
+    </div>
+    <div class="print-footer">
+        <img class="seal" src="/images/seal.png" />
+        <div>{$T.fundName||""}</div>
+        <div>{$.utils.dateFormat(new Date(),"yyyy年MM月dd日")}</div>
+    </div>
+</div>

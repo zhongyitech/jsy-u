@@ -37,16 +37,9 @@ var DEPARTMENT_FORM = {
     iniCompanyView: function (item) {
         var view = this.getCompanyView();
         if (view) {
-            var items = COMPANY.getItems();
-            var option = $('<option value=""></option>');
-            view.append(option);
-            for (var i in items) {
-                var item = items[i];
-                var id = COMPANY.toId(item);
-                var name = COMPANY.toName(item);
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                view.append(option);
-            }
+            $.io.get(true, {url: '/api/fundCompanyInformation/selectList'}).success(function (result) {
+                $.dom.select(view, result);
+            });
         }
     },
     //职能选择框
@@ -61,10 +54,10 @@ var DEPARTMENT_FORM = {
 //                var option = $('<option value="' + id + '">' + name + '</option>');
 //                view.append(option);
 //            }
-            $.dom.select(this.performance_ID, this.getPerformanceItem(),function(item){
+            $.dom.select(this.performance_ID, this.getPerformanceItem(), function (item) {
                 return {
-                    text:item["mapName"]+(item['description'] ? ' | '+item['description'] :''),
-                    value:item["id"]
+                    text: item["mapName"] + (item['description'] ? ' | ' + item['description'] : ''),
+                    value: item["id"]
                 }
             });
         }
@@ -103,32 +96,26 @@ var DEPARTMENT_FORM = {
 
         this.iniSubmitButton();
 
-        $('#transfer').autocomplete({
-            serviceUrl: '../rest/auto/get',
-            type: 'POST',
-            params: {
-                url: '/api/user/nameLike'
-            },
-            paramName: 'params',
-            onSelect: function (suggestion) {
-                //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-                $("#transferid").val(suggestion.data);
-            },
-            transformResult: function (response) {
-                //clear old value
-                $("#transferid").val("");
-                if (!response || response == '') {
-                    return {
-                        "query": "Unit",
-                        "suggestions": []
-                    };
-                } else {
-                    var result = JSON.parse(response);
-                    var suggestions = JSON.parse(result.suggestions);
-                    result.suggestions = suggestions;
-                    return result;
-                }
+        $.io.get({url: '/api/department/selectList'}).success(function (result) {
+            $.dom.select("#parentDepartment", result)
+        });
+        var me=this;
+        $('#parentDepartment').change(function () {
+            var id = $('#parentDepartment').val()
+            if (id && id != "") {
+                $.io.get({url: '/api/department/id', params: {id: id}}).success(function (result) {
+                    if (result) {
+                        me.getCompanyView().val(result.fundCompanyInformation.id)
+                    }
+                });
+            }else{
+                me.getCompanyView().val('')
             }
+        });
+        me.getCompanyView().change(function(){
+            $.io.get({url: '/api/department/selectList',params:{pid:me.getCompanyView().val()}}).success(function (result) {
+                $.dom.select("#parentDepartment", result)
+            });
         });
     },
     getItem: function () {
@@ -150,6 +137,7 @@ var DEPARTMENT_FORM = {
             item[DEPARTMENT.DESCRIPTION_KEY] = description;
         }
         item['performance'] = $(this.performance_ID).val();
+        item['parent'] = $("#parentDepartment").val();
 
 //        item['leader']=$('#transferid').val();
         me.item = item;

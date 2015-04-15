@@ -108,18 +108,9 @@ var HTLY_PUT = {
         tr.append(user_td);
         var user_select = $('<select class="user-name" name="' + me.htly.LYR_KEY + '"></select>');
         user_td.append(user_select);
-        var users = this.user.getItems();
-        if (users) {
-            var option = $('<option value=""></option>');
-            user_select.append(option);
-            for (var i in users) {
-                var user = users[i];
-                var id = this.user.toId(user);
-                var name = this.user.toName(user);
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                user_select.append(option);
-            }
-        }
+        $.io.get({url:'/api/user/selectList'}).success(function(result){
+            $.dom.select(user_select,result);
+        });
 
         var date_td = $('<td></td>');
         tr.append(date_td);

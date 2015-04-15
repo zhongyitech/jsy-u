@@ -1,0 +1,35 @@
+<div class="print-paper">
+    <div class="print-header">
+        <img class="logo" src="/images/logo.jpg" />
+        <div class="print-no"> 编号（<span class="underline">PAY_{$T.id}</span>）</div>
+        <div class="print-title">付款通知书</div>
+    </div>
+    <div class="print-body">
+        <span>致：<span class="underline">{$T.companyName}</span></span>
+        <p>您好！</p>
+        <p>根据我司与贵司签订的基金合作协议，我司已于
+            <span class="underline">{DATEFORMAT.toCH($T.payDate||"")}</span>将合同款人民币<span class="underline">{STRINGFORMAT.toYuan($T.amount)}</span>付款到贵司账户。根据合同规定，贵司应支付
+            <span class="underline">{NUMBERFORMAT.toRate($T.manage_per)}</span>的管理费（人民币<span class="underline">{STRINGFORMAT.toYuan($T.manage_bill)}</span>
+            和<span class="underline">{NUMBERFORMAT.toRate($T.community_per)}</span>的渠道费（人民币<span class="underline">{STRINGFORMAT.toYuan($T.community_bill)}</span>
+            到指定账户。请于收到本通知之日起2个工作日内（<span class="underline">{DATEFORMAT.toCH($T.shouldPayBackSomeDate||"")}</span>或之前）将款项汇入以下银行账户：
+        </p>
+        <p>管理费收款账户：<span class="underline">{$T.bankOfDeposit}</span></p>
+        <p>户名：<span class="underline">{$T.accountName}</span></p>
+        <p>账号：<span class="underline">{$T.account}</span></p>
+        <p>银行：<span class="underline">{$T.bankName}</span></p>
+        <p></p>
+        <p>渠道费收款账户：<span class="underline">{$T.bankOfDeposit}</span></p>
+        <p>户名：<span class="underline">{$T.accountName}</span></p>
+        <p>账号：<span class="underline">{$T.account}</span></p>
+        <p>银行：<span class="underline">{$T.bankName}</span></p>
+        <p></p>
+        <p>此致</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商祺！</p>
+
+    </div>
+    <div class="print-footer">
+        <img class="seal" src="/images/seal.png" />
+        <div>{$T.fundName||""}</div>
+        <div>{$.utils.dateFormat(new Date(),"yyyy年MM月dd日")}</div>
+    </div>
+</div>

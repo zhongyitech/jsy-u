@@ -38,20 +38,24 @@
                                 <label for="" class="label-description">(*)所属公司:</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <select id="company"></select>
+                                <select id="company" name="company" class="company"></select>
                             </div>
                         </div>
 
                         <div class="form-row">
-
                             <div class="form-label col-md-2">
                                 <label class="label-description">职能：</label>
                             </div>
                             <div class="form-input col-md-4">
-                            <select id="performance">
+                            <select id="performance" name="performance" class="performance">
                             </select>
                             </div>
-
+                            <div class="form-label col-md-2">
+                                <label for="" class="label-description">上级部门</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="parentDepartment" class="parentDepartment" name="parentDepartment"></select>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
