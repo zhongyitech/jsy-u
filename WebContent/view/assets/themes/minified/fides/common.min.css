@@ -536,7 +536,7 @@ h3 + p.font-gray-dark {
 }
 
 .button-pane, .ui-dialog-buttonpane {
-    padding: 15px
+    padding: 10px
 }
 
 #page-content > .divider {

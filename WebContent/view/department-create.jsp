@@ -31,7 +31,7 @@
                                 <label class="label-description">(*)部门名称：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input placeholder="必填" type="text" id="name">
+                                <input placeholder="输入新部门的名称" type="text" id="name" class="deptName">
                             </div>
 
                             <div class="form-label col-md-2">
@@ -69,8 +69,10 @@
                     <div style="clear:both;"></div>
 
                     <div class="button-pane">
-                        <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                                class="button-content">提交</span></button>
+                        <button class="btn-ui btn bg-green  medium float-right mrg10L" id="submit-continue-button"><span
+                                class="button-content">保存-继续新增</span></button>
+                        <button class="btn-ui btn bg-green  medium float-right mrg10L" id="submit-button"><span
+                                class="button-content">保存</span></button>
                     </div>
                 </div>
 
