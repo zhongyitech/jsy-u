@@ -175,6 +175,10 @@ var INVESTMENT_ITEM = {
             });
 
     },
+    //刷新投资期限 - 认购日期 - 到期日期的数据
+    dateRefresh:function(){
+
+    },
     setView: function (item) {
         var me = this;
 
@@ -258,7 +262,8 @@ var INVESTMENT_ITEM = {
         var rgrq_input = $(this.INVEST_FROM_ID);
         var rgrq = item[this.investment.RGRQ_KEY];
         rgrq_input.change(function () {
-            me.setRGRQ();
+            //me.setRGRQ();
+            me.dateRefresh()
         });
         rgrq_input.blur(function () {
             me.setRGRQ();
@@ -633,23 +638,27 @@ var INVESTMENT_ITEM = {
             if (tcbl) {
                 var shouyi = tcbl[this.nianhua.SHOUYI_KEY];
                 var ticheng = (tcbl[this.nianhua.TICHENG_KEY]);
+                if(!ticheng){
+                    $.message.error("该部门没有设置收益率数据!");
+                    return;
+                }
                 var sfbx = ticheng[this.tcfpfw.SFBX_KEY];
                 var bxsyl = ticheng[this.tcfpfw.BXSYL_KEY];
 
                 if (sfbx) {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', false);
+                    $(me.INVEST_YEARRATE_ID).prop('readonly', false);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(bxsyl));
                 } else {
-                    $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                    $(me.INVEST_YEARRATE_ID).prop('readonly', true);
                     $(me.INVEST_YEARRATE_ID).val(this.numberformat.toRate(shouyi));
                 }
             } else {
-                $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+                $(me.INVEST_YEARRATE_ID).prop('readonly', true);
                 $(me.INVEST_YEARRATE_ID).val('');
             }
         } else {
             me.tcbl = null;
-            $(me.INVEST_YEARRATE_ID).attr('disabled', true);
+            $(me.INVEST_YEARRATE_ID).prop('readonly', true);
             $(me.INVEST_YEARRATE_ID).val('');
         }
 
