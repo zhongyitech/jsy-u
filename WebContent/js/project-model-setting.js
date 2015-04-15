@@ -6,7 +6,7 @@
  */
 
 /**
- * ³õÊ¼»¯
+ * ï¿½ï¿½Ê¼ï¿½ï¿½
  */
 $(document).ready(function() {
     $.io.registerCallback({
@@ -20,7 +20,7 @@ $(document).ready(function() {
 });
 
 /**
- * tab ±êÇ©
+ * tab ï¿½ï¿½Ç©
  * @type {{init: init, slideContent: slideContent}}
  */
 var TabbedContent = {
@@ -56,7 +56,7 @@ var TabbedContent = {
 var ProjectModelRoleSetting = {
 
     /**
-     * ³õÊ¼»¯
+     * ï¿½ï¿½Ê¼ï¿½ï¿½
      */
     init : function(){
         ProjectModelRoleSetting.initView();
@@ -64,14 +64,14 @@ var ProjectModelRoleSetting = {
     },
 
     /**
-     * ³õÊ¼»¯½çÃæÊý¾Ý
+     * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     initView : function(){
         this.initViewRoles();
     },
 
     /**
-     * ³õÊ¼»¯table
+     * ï¿½ï¿½Ê¼ï¿½ï¿½table
      * @param result
      */
     initViewRoles:function(){
@@ -137,15 +137,15 @@ var ProjectModelRoleSetting = {
         var index = json["phaseIndex"];
         var item = [];
         item = JSON.parse(json["roles"]);
-        console.log(item);
+        //console.log(item);
         var table = null;
         if(item){
 
             for(var i =1; i<item.length + 1; i++){
                 var it = item[i-1];
-                console.log(it);
+                //console.log(it);
 
-                console.log("index=" + index);
+                //console.log("index=" + index);
                 switch(index){
                     case 1 :
                         table = $("#xianshi_table1");
@@ -188,10 +188,10 @@ var ProjectModelRoleSetting = {
     },
 
     /**
-     * °ó¶¨ÊÂ¼þ
+     * ï¿½ï¿½ï¿½Â¼ï¿½
      */
     initEvent : function() {
-        //±£´æ °ó¶¨
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         $(".t1 .setting-save").click(function () {
             ProjectModelRoleSetting.saveSettingResult(1);
         });
@@ -214,7 +214,7 @@ var ProjectModelRoleSetting = {
             ProjectModelRoleSetting.saveSettingResult(7);
         });
 
-        //Ìí¼ÓÐÐ °ó¶¨
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         $(".t1 .setting-add").click(function () {
             ProjectModelRoleSetting.addXianshiTableRow(1);
         });
@@ -237,7 +237,7 @@ var ProjectModelRoleSetting = {
             ProjectModelRoleSetting.addXianshiTableRow(7);
         });
 
-        //É¾³ýÐÐ °ó¶¨
+        //É¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         $(".t1 .setting-remove").click(function () {
             ProjectModelRoleSetting.removeTr(1);
         });
@@ -259,11 +259,44 @@ var ProjectModelRoleSetting = {
         $(".t7 .setting-remove").click(function () {
             ProjectModelRoleSetting.removeTr(7);
         });
+
+        //çŽ°æœ‰çš„è¾“å…¥æ¡†
+        $("input[name='name']").autocomplete({
+            serviceUrl: '../rest/auto/get',
+            type: 'POST',
+            params: {
+                url: '/api/role/nameLike'
+            },
+            paramName: 'params',
+            onSelect: function (suggestion) {
+                //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                console.log(suggestion.data)
+                $(name).val(suggestion.value);
+                $(id).val(suggestion.data);
+            },
+            transformResult: function (response) {
+                console.log(response);
+                //clear old value
+                $(name).val("");
+                $(id).val("");
+                if (!response || response == '') {
+                    return {
+                        "query": "Unit",
+                        "suggestions": []
+                    };
+                } else {
+                    var result = JSON.parse(response).rest_result;
+                    var suggestions = (result.suggestions);
+                    result.suggestions = suggestions;
+                    return result;
+                }
+            }
+        });
     },
 
     /**
-     * Ìí¼ÓÒ»ÐÐ
-     * @param index tabÏÂ±ê
+     * ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+     * @param index tabï¿½Â±ï¿½
      */
     addXianshiTableRow : function(index){
         var xianshi_table;
@@ -308,6 +341,7 @@ var ProjectModelRoleSetting = {
         var id  = $('<input name="id" class="form-data-field-hidden" type="hidden">');
         div.append(name);
         div.append(id);
+        console.log($(name));
         $(name).autocomplete({
             serviceUrl: '../rest/auto/get',
             type: 'POST',
@@ -317,7 +351,7 @@ var ProjectModelRoleSetting = {
             paramName: 'params',
             onSelect: function (suggestion) {
                 //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-                console.log(suggestion.data)
+                //console.log(suggestion.data)
                 $(name).val(suggestion.value);
                 $(id).val(suggestion.data);
             },
@@ -341,8 +375,8 @@ var ProjectModelRoleSetting = {
     },
 
     /**
-     * ±£´æ
-     * @param index tabÏÂ±ê
+     * ï¿½ï¿½ï¿½ï¿½
+     * @param index tabï¿½Â±ï¿½
      */
     saveSettingResult : function(index){
         var xianshi_table;
@@ -394,7 +428,7 @@ var ProjectModelRoleSetting = {
                         var obj=cells.eq(idx);
                         tempObj["id"]=obj.val();
                     });
-                    console.log(tempObj);
+                    //console.log(tempObj);
                     if($.isEmptyObject(tempObj))return;
                     var model = $.extend(true, {
                             phaseIndex:phaseIndex
@@ -414,7 +448,7 @@ var ProjectModelRoleSetting = {
             });
     },
 
-    removeTr: function (index) {//É¾³ýÑ¡ÖÐÐÐ
+    removeTr: function (index) {//É¾ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
         var xianshi_table;
         switch (index){
             case 1 :

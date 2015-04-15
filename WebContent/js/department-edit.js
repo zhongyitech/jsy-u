@@ -41,10 +41,10 @@ var DEPARTMENT_FORM = {
     iniPerformanceView: function () {
         var view = $(this.performance_ID);
         if (view) {
-            $.dom.select(this.performance_ID, this.getPerformanceItem(),function(item){
+            $.dom.select(this.performance_ID, this.getPerformanceItem(), function (item) {
                 return {
-                    text:item["mapName"]+(item['description'] ? ' | '+item['description'] :''),
-                    value:item["id"]
+                    text: item["mapName"] + (item['description'] ? ' | ' + item['description'] : ''),
+                    value: item["id"]
                 }
             });
         }
@@ -53,7 +53,7 @@ var DEPARTMENT_FORM = {
         var params = JSON.stringify({type: 8});
         var data = {url: '/api/typeConfig/type', params: params};
         var items = null;
-        items= $.project.type(8).data();
+        items = $.project.type(8).data();
 //        $.io.syncGet(data)
 //            .success(function (result) {
 //                items = result;
@@ -63,21 +63,17 @@ var DEPARTMENT_FORM = {
     iniCompanyView: function (item) {
         var view = this.getCompanyView();
         if (view) {
-            var items = COMPANY.getItems();
-            var option = $('<option value=""></option>');
-            view.append(option);
-            for (var i in items) {
-                var item = items[i];
-                var id = COMPANY.toId(item);
-                var name = COMPANY.toName(item);
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                view.append(option);
-            }
+            $.io.get(true, {url: '/api/fundCompanyInformation/selectList'}).success(function (result) {
+                $.dom.select(view, result);
+            });
         }
     },
     setCompany: function (item) {
         var id = COMPANY.toId(DEPARTMENT.toCompany(item));
         this.getCompanyView().val(id);
+        if (item && item.parent) {
+            $("#parentDepartment").val(item.parent.id);
+        }
     },
     getDescriptionView: function () {
         var form = this.getForm();
@@ -88,8 +84,8 @@ var DEPARTMENT_FORM = {
     setDescription: function (item) {
         this.getDescriptionView().val(DEPARTMENT.toDescription(item));
     },
-    setPerformance:function(item){
-        if(item){
+    setPerformance: function (item) {
+        if (item) {
             $(this.performance_ID).val(item.performance.id);
         }
     },
@@ -117,7 +113,17 @@ var DEPARTMENT_FORM = {
         this.iniPerformanceView();
         this.iniSubmitButton();
 
+
         var id = PAGE.getParam(DEPARTMENT.ID_KEY);
+
+        var params={};
+        if(id){
+            params={depId:id};
+        }
+        $.io.get(true, {url: '/api/department/selectList',params:params}).success(function (result) {
+            $.dom.select("#parentDepartment", result)
+        });
+
         if (id) {
             var item = DEPARTMENT.get(id);
             this.set(item);
@@ -131,6 +137,7 @@ var DEPARTMENT_FORM = {
             paramName: 'params',
             onSelect: function (suggestion) {
                 //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                //$("#transferid").val({data:suggestion.data,departmentID:id});
                 $("#transferid").val(suggestion.data);
             },
             transformResult: function (response) {
@@ -142,26 +149,48 @@ var DEPARTMENT_FORM = {
                         "suggestions": []
                     };
                 } else {
-                    var result =JSON.parse(response).rest_result;
+                    var result = JSON.parse(response).rest_result;
                     var suggestions = result.suggestions;
                     result.suggestions = suggestions;
                     return result;
                 }
             }
+        });
 
+        var me = this;
+        $('#parentDepartment').change(function () {
+            var id = $('#parentDepartment').val()
+            if (id && id != "") {
+                $.io.get({url: '/api/department/id', params: {id: id}}).success(function (result) {
+                    if (result) {
+                        me.getCompanyView().val(result.fundCompanyInformation.id)
+                    }
+                });
+            } else {
+                me.getCompanyView().val('')
+            }
+        });
+        me.getCompanyView().change(function () {
+            $.io.get({
+                url: '/api/department/selectList',
+                params: {pid: me.getCompanyView().val()}
+            }).success(function (result) {
+                $.dom.select("#parentDepartment", result)
+            });
         });
     },
     set: function (item) {
-        if(!item)return;
+        if (!item)return;
         this.item = item;
         this.setName(item);
         this.setCompany(item);
         this.setDescription(item);
-        this.setPerformance(item);''
+        this.setPerformance(item);
+        ''
         //部门负责人
         //todo:replace new method
-        var uid=item.leader ? item.leader.id : undefined;
-        var username= uid ? (USER.get(uid).chainName) :'';
+        var uid = item.leader ? item.leader.id : undefined;
+        var username = uid ? (USER.get(uid).chainName) : '';
         $('#transfer').val(username);
         $('#transferid').val(uid);
     },
@@ -185,6 +214,8 @@ var DEPARTMENT_FORM = {
         }
         item['leader'] = $('#transferid').val();
         item['performance'] = $(this.performance_ID).val();
+        item['parent'] = $("#parentDepartment").val();
+
         me.item = item;
         return item;
     },
@@ -195,37 +226,13 @@ var DEPARTMENT_FORM = {
         var entity = JSON.stringify(item);
         var data = {url: '/api/department', params: params, entity: entity};
         $.io.post(data)
-            .success(function(data){
+            .success(function (data) {
+                $.message.log("保存成功!")
                 window.location = PAGE.DEPARTMENT_LIST;
             })
-            .error(function(data){
+            .error(function (data) {
+                $.message.error(data.msg);
             });
-//        DataOperation.post(
-//            data,
-//            function(result){
-//                window.location = PAGE.DEPARTMENT_LIST;
-//            },
-//            function(msg){
-//                alert(msg);
-//            }
-//        )
-//        $.ajax({
-//            type: "post",
-//            url: "../rest/item/put",
-//            async: true,
-//            data: data,
-//            dataType: "json",
-//            success: function (response) {
-//                me.response = response;
-//                window.location = PAGE.DEPARTMENT_LIST;
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                if (LOGIN.error(response)) {
-//                    alert('提交失败，请补全带*号的必填信息.');
-//                }
-//            }
-//        });
     }
 };
 

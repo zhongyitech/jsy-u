@@ -29,14 +29,14 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label class="label-description">客户名称：</label>
+                                <label class="label-description">(*)客户名称：</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="输入客户名称" type="text" id="name" class="name">
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">国家（地区）:</label>
+                                <label class="label-description">(*)国家（地区）:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="country" name="country">
@@ -49,7 +49,7 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">证件类型:</label>
+                                <label class="label-description">证件类型:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="cardtype" class="credentialsType">
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)证件号码:</label>
+                                <label class="label-description">(*)证件号码:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="请输入证件号" class="credentialsNumber" type="text" id="cardnumber">
@@ -69,7 +69,7 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">住址:</label>
+                                <label class="label-description">(*)住址（证件地址）:</label>
                             </div>
                             <div class="form-input col-md-10">
                                 <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="sfzdz">
@@ -78,13 +78,13 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">开户行名称:</label>
+                                <label class="label-description">(*)开户行名称:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="请输入开户行银行" type="text" id="bankname" class="khh">
                             </div>
                             <div class="form-label col-md-2 ">
-                                <label for="" class="label-description">收益人账号:</label>
+                                <label class="label-description">(*)收益人账号:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="请输入银行账号" type="text" id="banknumber" class="yhzh">
@@ -92,13 +92,13 @@
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">联系电话:</label>
+                                <label class="label-description">(*)联系电话:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="phone" class="telephone">
                             </div>
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">邮政编码:</label>
+                                <label class="label-description">(*)邮政编码:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="zip" class="postalcode">
@@ -107,13 +107,13 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">E-Mail:</label>
+                                <label class="label-description">(*)E-Mail:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="email" class="email">
                             </div>
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">通讯地址:</label>
+                                <label class="label-description">(*)通讯地址:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="address" class="callAddress">
@@ -122,7 +122,7 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">附件:</label>
+                                <label class="label-description">附件:</label>
                             </div>
 
                             <div class="form-input col-md-10">

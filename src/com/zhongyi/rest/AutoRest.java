@@ -16,10 +16,15 @@ public class AutoRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@CookieParam("JSESSIONID") String cookie,
 			@FormParam("url")	@DefaultValue("")	String url,
-			@FormParam("params")	@DefaultValue("{}")	String params){
+			@FormParam("extraData")	@DefaultValue("{}")	String extraData,
+			@FormParam("params")	@DefaultValue("{}")	String params)
+	{
 		try {
 			JSONObject paramsJSON = new JSONObject();
 			paramsJSON.put("params", params);
+			paramsJSON.put("jsonData", extraData);
+			System.out.println("dsgsdgds");
+			System.out.println(extraData);
 			ManagerResponse response = ItemManager.getInstance().get(cookie, url, paramsJSON);
 			return Response.ok(response.response).status(response.status).build();
 		}catch(Exception e){

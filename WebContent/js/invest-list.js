@@ -69,22 +69,6 @@ var INVESTMENT_LIST = {
         }).error(function (error) {
             alert(error.msg);
         });
-
-//        $.ajax({
-//            type: 'post',
-//            url: '../rest/item/post',
-//            data: data,
-//            dataType: 'json',
-//            async: async,
-//            success: function (response) {
-//                me.response = response;
-//                me.setView(response);
-//            },
-//            error: function (response) {
-//                me.response = response;
-//                LOGIN.error(response);
-//            }
-//        });
     },
 
     setView: function (response) {
@@ -222,22 +206,6 @@ var INVESTMENT_LIST = {
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
-//			row="<td><div class='dropdown'>"+
-//			    "<a href=javascript:;' title='' class='btn medium '	data-toggle='dropdown'> <span class='button-content'>"+
-//			    "<i class='glyph-icon font-size-11 icon-cog'></i> <i class='glyph-icon font-size-11 icon-chevron-down'></i>	</span></a>"+
-//			    "<ul class='dropdown-menu float-right'>"+
-//			    "<li><a href='javascript:;' title='' btn_row_action data-rowindex='"+key+"' data-actionname='completedInvestment'><i class='glyph-icon icon-calendar mrg5R ' ></i>完成客户信息</a></li>"+
-//				"<li class='divider'></li>"+									
-//				"<li><a href='javascript:;' class=' btn_row_action' title='' data-rowindex='"+key+"' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
-//			if(item['dazt']==0){
-//				var menus=this.getMenus();
-//				for(var mkey in menus){
-//					 var m=menus[mkey];
-//					 row =row+	"<li><a href='javascript:;' class=' btn_row_action' title='' data-rowindex='"+key+"' data-actionname='"+ m.name+"'><i class='glyph-icon icon-edit mrg5R'></i>"+ m.title+"</a></li>";
-//				}
-//			}
-//			row  = row + "</ul></div></td>";
-//            tr.append(row);
         tr.append("<td></td>");
     },
     menus: null,

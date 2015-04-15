@@ -311,7 +311,7 @@ var INVESTMENT_ITEM = {
         USER.getItems();
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
-        $.io.get({url:'/api/user/selectList'}).success(function(result){
+        $.io.get(true,{url:'/api/user/selectList'}).success(function(result){
             me.userlist=result;
             $.dom.select(bm_select,result);
         });
@@ -984,6 +984,31 @@ var INVESTMENT_ITEM = {
         }
 
         var item = this.getItem();
+
+        //------------添加校验信息-----------
+        var canpass = true;
+        $.each(item.ywtcs,function(index,ywtcModel){
+            if(!ywtcModel.tcje){
+                alert("请输入业务提成金额");
+                canpass = false;
+                return false;
+            }
+        });
+        if(!canpass){
+            return false;
+        }
+        $.each(item.gltcs,function(index,ywtcModel){
+            if(!ywtcModel.tcje){
+                alert("请输入管理提成金额");
+                canpass = false;
+                return;
+            }
+        });
+        if(!canpass){
+            return false;
+        }
+        //----------------------------------
+
         var id = this.item[this.investment.ID_KEY];
         if (!id) {
             id = "";
@@ -992,6 +1017,7 @@ var INVESTMENT_ITEM = {
         var params = JSON.stringify({id: id});
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/CreateOrUpdate', params: params, entity: entity};
+
 
 
         $.io.put(data)
