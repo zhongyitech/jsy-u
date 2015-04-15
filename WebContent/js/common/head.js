@@ -2664,7 +2664,7 @@ var DATEFORMAT = {
         if (!date) {
             return '';
         }
-        var time = new Date(date);
+        var time = date.constructor==Date?date:new Date(date.replace(/-/g,'/').replace(/T|Z/g,' ').trim());
         var o = {
             "M+": time.getMonth() + 1, //月份 
             "d+": time.getDate(), //日 
