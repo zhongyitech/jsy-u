@@ -102,12 +102,12 @@
                     <div class="center-margin col-md-10">
                         <div class="form-row form-checkbox-radio" ms-repeat="items">
                             <div class="col-md-2 form-label">
-                                <input type="checkbox" ms-attr-id="menu-role-{{el.id}}" ms-attr-checked="el.checked" ms-change="change(el.id)" />
+                                <input type="checkbox" ms-attr-id="menu-role-{{el.id}}" ms-duplex-checked="el.checked" data-duplex-changed="check" ms-data-id="el.id" />
                                 <label ms-attr-for="menu-role-{{el.id}}">{{el.title}}：</label>
                             </div>
                             <div class="col-md-10">
                                 <div class="col-md-3 mrg15B" ms-repeat="el.children">
-                                    <input type="checkbox" ms-attr-id="menu-child-role-{{el.id}}" ms-attr-checked="el.checked" ms-change="change(el.parentId,el.id)" />
+                                    <input type="checkbox" ms-attr-id="menu-child-role-{{el.id}}" ms-duplex-checked="el.checked" data-duplex-changed="check" ms-data-id="el.parentId" data-one="true" />
                                     <label ms-attr-for="menu-child-role-{{el.id}}">{{el.title}}</label>
                                 </div>
                             </div>
