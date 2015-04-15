@@ -5,8 +5,8 @@
 <head>
     <jsp:include page="./head.jsp"/>
     <%--<link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>--%>
-    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
-    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/minified/aui-production.min.css" />
+    <script type="text/javascript" src="/assets/js/minified/aui-production.min.js"></script>
 <%--<link rel="stylesheet" href="/css/project.css"/>--%>
     <title>新建项目</title>
 </head>

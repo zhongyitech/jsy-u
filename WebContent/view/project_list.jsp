@@ -77,15 +77,7 @@
 
                 <div class="content-box-wrapper">
 
-                    <div class="col-md-12 page-bar pad0R">
-                        <a href="javascript:;" class="btn large float-left mrg5R ui-state-default" id="page-first">
-                            <i class="glyph-icon icon-arrow-left"></i>
-                        </a>
-                        <div class="button-group float-left " id="model-pages"></div>
-                        <a href="javascript:;" class="btn large float-left mrg5L ui-state-default" id="page-last">
-                            <i class="glyph-icon icon-arrow-right"></i>
-                        </a>
-                    </div>
+                    <div id="table-pager" class="page-bar pad0R"></div>
 
                     <table class="table table-striped text-center mrg0B" id="project-table">
                         <thead>
