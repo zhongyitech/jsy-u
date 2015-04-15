@@ -50,13 +50,21 @@
                                 <input type="hidden" id="transferid">
                             </div>
                             <div class="form-label col-md-2">
+                                <label for="" class="label-description">上级部门</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select id="parentDepartment" class="parentDepartment" name="parentDepartment"></select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
                                 <label class="label-description">职能：</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="performance">
                                 </select>
                             </div>
-
                         </div>
 
                         <div class="form-row">
