@@ -58,6 +58,43 @@ var VIEWDATA={
                 }
             });
 
+        $("#out_company").autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fundCompanyInformation/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#out_company").val(suggestion.value);
+                    $("#out_company_id").val(suggestion.data);
+                    if(me.oldSelectData!=suggestion.data){
+                        me.oldSelectData=suggestion.data
+                        me.load_projectinfos(suggestion.data);
+                    }
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#out_company").val("");
+                    $("#out_company_id").val("");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
+
         $("#add_pay_record").click(function(){
             var fundid = $("#_fundname").val();
             var project = $("#project").val();
@@ -113,29 +150,21 @@ var VIEWDATA={
                     });
                 }
 
-                if(rest_result&& rest_result.banks){
-                    $.each(rest_result.banks,function(index,obj){
-                        if(obj.defaultAccount){
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
-                            );
-                        }else{
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
-                            );
-                        }
-
-                    });
-
-                    //$("input[name='bankselect']").change(function(){
-                    //    var selected = $(this).val();
-                    //    $.each(rest_result.banks,function(index,obj){
-                    //        if(obj.id==selected){
-                    //
-                    //        }
-                    //    });
-                    //});
-                }
+                //if(rest_result&& rest_result.banks){
+                //    $.each(rest_result.banks,function(index,obj){
+                //        if(obj.defaultAccount){
+                //            $('#banklist').append(
+                //                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                //            );
+                //        }else{
+                //            $('#banklist').append(
+                //                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                //            );
+                //        }
+                //
+                //    });
+                //
+                //}
 
 
             },

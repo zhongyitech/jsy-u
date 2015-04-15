@@ -75,13 +75,24 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-2">
-                                    <label>银行账户：</label>
+                                    <label>收款人：</label>
                                 </div>
-                                <div id="banklist" class="form-input col-md-10">
 
+                                <div id="out_banklist" class="form-input col-md-10">
+                                    <input id="out_company" style="width: 200px;" placeholder="请输入收款的公司或者个人" />
+                                    <input id="out_company_id" type="hidden" />
                                 </div>
                             </div>
 
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
+                                    <label>汇款人：</label>
+                                </div>
+                                <div id="in_banklist" class="form-input col-md-10">
+                                    <input id="in_company" style="width: 200px;" placeholder="请输入汇款的公司或者个人"/>
+                                    <input id="in_company_id" type="hidden" />
+                                </div>
+                            </div>
 
                             <div class="form-row pad3B">
                                 <div class="form-label">
