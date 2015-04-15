@@ -116,11 +116,11 @@ var DEPARTMENT_FORM = {
 
         var id = PAGE.getParam(DEPARTMENT.ID_KEY);
 
-        var params={};
-        if(id){
-            params={depId:id};
+        var params = {};
+        if (id) {
+            params = {depId: id};
         }
-        $.io.get(true, {url: '/api/department/selectList',params:params}).success(function (result) {
+        $.io.get(true, {url: '/api/department/selectList', params: params}).success(function (result) {
             $.dom.select("#parentDepartment", result)
         });
 
@@ -132,7 +132,8 @@ var DEPARTMENT_FORM = {
             serviceUrl: '../rest/auto/get',
             type: 'POST',
             params: {
-                url: '/api/user/nameLike'
+                url: '/api/user/nameLike',
+                extraData:"testdata"
             },
             paramName: 'params',
             onSelect: function (suggestion) {
@@ -171,9 +172,9 @@ var DEPARTMENT_FORM = {
             }
         });
         me.getCompanyView().change(function () {
-            $.io.get({
+            $.io.get(true,{
                 url: '/api/department/selectList',
-                params: {pid: me.getCompanyView().val()}
+                params: {pid: me.getCompanyView().val(), depId: id }
             }).success(function (result) {
                 $.dom.select("#parentDepartment", result)
             });
@@ -231,7 +232,7 @@ var DEPARTMENT_FORM = {
                 window.location = PAGE.DEPARTMENT_LIST;
             })
             .error(function (data) {
-                $.message.error(data.msg);
+                //$.message.error(data.msg);
             });
     }
 };

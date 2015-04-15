@@ -114,7 +114,7 @@ var INVESTMENT_LIST = {
         var customer = item['customer'];
         var customer_td = ""
         if (customer) {
-            customer_td = $('<td><span class=" text-overflow"  title="' + customer + '">' + customer.name + '</span></td>');
+            customer_td = $('<td><span class=" text-overflow"  title="' + customer + '">' + customer['name'] + '</span></td>');
         } else {
             customer_td = $('<td>' + item['username'] + '<a href="./customer.jsp?id=' + item['id'] + '&type=complted&username=' + item['username'] + '" class="btn medium bg-orange" title=""><span class="button-content">填写</span></a></td>');
         }
