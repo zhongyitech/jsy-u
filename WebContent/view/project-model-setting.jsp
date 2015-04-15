@@ -9,8 +9,8 @@
 <html>
 <head>
   <jsp:include page="./head.jsp"/>
-  <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
-  <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+  <%--<link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />--%>
+  <%--<script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>--%>
   <title>项目模板角色设置</title>
 </head>
 <body>
@@ -261,6 +261,6 @@
       </div>
   </div>
 
-  <script type="text/javascript" src="../js/project-model-settting.js"></script>
+  <script type="text/javascript" src="../js/project-model-setting.js"></script>
 </body>
 </html>
