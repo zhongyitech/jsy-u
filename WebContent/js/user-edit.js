@@ -1,6 +1,7 @@
 //数据加载、按钮点击事件等
 $(document).ready(function () {
     USER_FORM.ini(true);
+    BANKACCOUNTS.ini(true);
 });
 
 //用户信息表单

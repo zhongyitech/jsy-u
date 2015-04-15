@@ -582,7 +582,7 @@
 })(jQuery);
 
 /**
- * utils
+ * message
  */
 (function($){
     $.extend(true,{
@@ -600,6 +600,32 @@
                     position: "top-right",
                     theme: "bg-red btn text-left"
                 })
+            }
+        }
+    });
+})(jQuery);
+
+(function($){
+    $.extend(true,{
+        utils:{
+            upload:function(options){
+                $(options.files).ajaxfileupload({
+                    action: '/rest/file/upload',
+                    params: options.params,
+                    submit_button:options.submit,
+                    onComplete: function(response) {
+                        if(typeof response!="string"&&!response.status){
+                            delete response.status;
+                            options.error&&options.error.call(options,response);
+                        }else{
+                            options.success&&options.success.call(options,JSON.parse($(response).text()));
+                        }
+                    },
+                    onStart: function() {
+                    },
+                    onCancel: function() {
+                    }
+                });
             }
         }
     });
