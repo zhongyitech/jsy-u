@@ -23,16 +23,11 @@ var VIEWDATA={
 
     init_view: function(){
         this.getItems();
-
-
     },
 
 
     getItems: function () {
-
         var me = this;
-        me.getFilter();
-
         //get 查询字段
         var project_id = $("#project_id").val();
         var project_name = $("#project_name").val();
@@ -58,7 +53,6 @@ var VIEWDATA={
         console.log("params", params);
 
         var data = { url: '/api/project/readAllForPage', entity: params };
-        var me = this;
         $.ajax({
             type: 'post',
             url: '../rest/item/post',
@@ -80,24 +74,15 @@ var VIEWDATA={
             }
         });
     },
-    getFilter: function () {//获取过滤条件
-        this.page_start = (this.pages_select - 1) * this.page_size;
-    },
     success: function (result) {
         this.items = JSON.parse(result['rest_result']);
         this.setTable(this.items);
         this.page_total = result['rest_total'];
-        this.setPage(this.page_total);
+        this.setPage(result);
     },
     setTable: function (items) {
-        var pacts = $("#project-table tr");
-        if (pacts && pacts.length) {
-            for (var i = 1; i < pacts.length; i++) {
-                $(pacts[i]).remove();
-            }
-        }
-
         var table = $("#project-table");
+        table.find("tbody").empty();
         if (table && items) {
             for (var i in items) {
                 var row = $("<tr></tr>");
@@ -144,46 +129,13 @@ var VIEWDATA={
             me.getItems();
         });
     },
-    setPage: function (total) {
-        this.page_total = total;
-
-        var pages_div = $(this.PAGES_ID);
-        var pages = pages_div.find("a");
-        if (pages.length) {
-            for (var i = 0; i < pages.length; i++) {
-                $(pages[i]).remove();
-            }
-        }
-
-        var pages_from = this.pages_select - 16;
-        if (pages_from < 1) {
-            pages_from = 1;
-        }
-        var pages_to = pages_from + this.pages_size;
-        var pages_total = Math.ceil(total / this.page_size);
-
-        var me = this;
-        for (var i = pages_from; i < pages_to && i <= pages_total; i++) {
-            var page_number = $('<a href="javascript:;" class="btn large bg-green page-number"></a>');
-            if (i == this.pages_select) {
-                page_number = $('<a href="javascript:;" class="btn large bg-green page-number disabled"></a>');
-            }
-            pages_div.append(page_number);
-            page_number.append(i);
-            page_number.click(function (e) { me.selectPage(e); });
-        }
-    },
-    selectPage: function (e) {
-        this.pages_select = e.toElement.textContent;
-        this.getItems(true);
-    },
-    selectFirst: function () {
-        this.pages_select = 1;
-        this.getItems(true);
-    },
-    selectLast: function () {
-        this.pages_select = this.pages_total;
-        this.getItems(true);
+    setPage: function (data) {
+        var _this=this;
+        $.dom.pager("#table-pager",data).onChange(function(result){
+            _this.page_start=result.startposition;
+            _this.page_size=result.pagesize;
+            _this.getItems(true);
+        });
     },
     post_request: function(filepackage, isContinue){
         console.log("filepackage:",JSON.stringify(filepackage));

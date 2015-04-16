@@ -46,20 +46,13 @@ var DEPARTMENT_FORM = {
     iniPerformanceView: function () {
         var view = $(this.performance_ID);
         if (view) {
-//            var items = this.getPerformanceItem();
-//            for (var i in items) {
-//                var item = items[i];
-//                var id = item.id;
-//                var name = item.mapName;
-//                var option = $('<option value="' + id + '">' + name + '</option>');
-//                view.append(option);
-//            }
             $.dom.select(this.performance_ID, this.getPerformanceItem(), function (item) {
                 return {
                     text: item["mapName"] + (item['description'] ? ' | ' + item['description'] : ''),
                     value: item["id"]
                 }
             });
+            view.val(21);
         }
     },
     getPerformanceItem: function () {
@@ -85,6 +78,9 @@ var DEPARTMENT_FORM = {
                 me.submit();
             });
         }
+        $("#submit-continue-button").click(function () {
+            me.submit(true);
+        });
     },
     ini: function (async) {
         if (!async) {
@@ -99,7 +95,7 @@ var DEPARTMENT_FORM = {
         $.io.get({url: '/api/department/selectList'}).success(function (result) {
             $.dom.select("#parentDepartment", result)
         });
-        var me=this;
+        var me = this;
         $('#parentDepartment').change(function () {
             var id = $('#parentDepartment').val()
             if (id && id != "") {
@@ -108,12 +104,15 @@ var DEPARTMENT_FORM = {
                         me.getCompanyView().val(result.fundCompanyInformation.id)
                     }
                 });
-            }else{
+            } else {
                 me.getCompanyView().val('')
             }
         });
-        me.getCompanyView().change(function(){
-            $.io.get({url: '/api/department/selectList',params:{pid:me.getCompanyView().val()}}).success(function (result) {
+        me.getCompanyView().change(function () {
+            $.io.get({
+                url: '/api/department/selectList',
+                params: {pid: me.getCompanyView().val()}
+            }).success(function (result) {
                 $.dom.select("#parentDepartment", result)
             });
         });
@@ -143,7 +142,7 @@ var DEPARTMENT_FORM = {
         me.item = item;
         return item;
     },
-    submit: function () {//提交
+    submit: function (contiune) {//提交
         var me = this;
         var item = me.getItem();
         var params = JSON.stringify({});
@@ -152,10 +151,15 @@ var DEPARTMENT_FORM = {
 
         $.io.put(data)
             .success(function (result) {
-                window.location = PAGE.DEPARTMENT_LIST;
+                $.message.log("创建部门成功");
+                if(contiune){
+                    me.getNameView().val('');
+                }else {
+                    window.location = PAGE.DEPARTMENT_LIST;
+                }
             })
             .error(function (result) {
-                alert("创建部门失败：" + result);
+                $.message.error("创建部门失败");
             });
     }
 };

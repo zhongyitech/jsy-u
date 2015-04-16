@@ -31,8 +31,6 @@
                     </div>
                 </section>
 
-
-
                 <div id="fund-form" class="center-margin col-md-10">
 
                     <div class="form-row">

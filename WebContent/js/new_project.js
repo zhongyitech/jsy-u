@@ -167,20 +167,27 @@ var VIEWDATA={
     attach_change_event: function (input_file) {
         var index = $(input_file).attr("id").replace("invest-attachment", "");
 
-        var attachments = this.file.upload($(input_file)[0].files);
-        var attachment_src = '../rest/file/download?path=' + attachments[0][this.file.PATH_KEY];
+        //var attachments = this.file.upload($(input_file)[0].files);
+        $.utils.upload({
+            files:$(input_file),
+            success:function(response){
+                var result=response.rest_result[0];
+                var attachment_src = '/rest/file/download?path=' + result["filePath"];
 
-        var attach_img = $("#invest-attachment-img" + index);
-        if (attach_img.size() > 0) {
-            attach_img.attr("src", attachment_src);
-            $("#invest-img-key" + index).val(attachments[0][this.file.PATH_KEY]);
-        } else {
-            console.log(attachments[0]);
-            $("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
-            $("#pics").append("<input type='hidden' value='" + attachments[0][this.file.PATH_KEY] + "' id='invest-filepath" + index + "' >");
-            $("#pics").append("<input type='hidden' value='" + attachments[0]["fileName"] + "' id='invest-filename" + index + "' >");
-        }
-
+                var attach_img = $("#invest-attachment-img" + index);
+                if (attach_img.size() > 0) {
+                    attach_img.attr("src", attachment_src);
+                    $("#invest-img-key" + index).val(result["filePath"]);
+                } else {
+                    $("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
+                    $("#pics").append("<input type='hidden' value='" + result["filePath"] + "' id='invest-filepath" + index + "' >");
+                    $("#pics").append("<input type='hidden' value='" + result["fileName"] + "' id='invest-filename" + index + "' >");
+                }
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
     },
     add_project: function(model){
         console.log("model:",JSON.stringify(model));

@@ -13,8 +13,6 @@
     <link rel="stylesheet" type="text/css" href="../css/fund-list.css">
     <link rel="stylesheet" type="text/css" href="../css/project.css">
     <link rel="stylesheet" type="text/css" href="../css/project_limittime_setting.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
-    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
     <title>项目访问时间限制设置</title>
 </head>
 <body>
