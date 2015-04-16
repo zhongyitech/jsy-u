@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+        <div class="copyright">技术支持QQ群：364396548</div>
     </div>
 </div>
 <div id="page-sidebar" class="scrollable-content">
