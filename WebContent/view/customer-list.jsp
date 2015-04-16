@@ -61,14 +61,17 @@
             </thead>
             <tbody>
             {#foreach $T as item}
-            <tr data-key="{$T.item$index}" >
-                <td class="form-input"><span ><input  name="bankOfDeposit" value="{$T.item['bankOfDeposit']}" /></span></td>
-                <td class="form-input"><span ><input  name="accountName" value="{$
-                T.item['accountName']}" /></span></td>
-                <td class="form-input"><span ><input   name="account" value="{$T.item['account']}" /></span></td>
+            <tr data-key="{$T.item$index}">
+                <td class="form-input"><span><input name="bankOfDeposit" value="{$T.item['bankOfDeposit']}"/></span>
+                </td>
+                <td class="form-input"><span><input name="accountName"
+                                                    value="{$T.item['accountName']}"/></span></td>
+                <td class="form-input"><span><input name="account" value="{$T.item['account']}"/></span></td>
                 <%--<td><span ><input name="defaultAccount" value="{$T.item['defaultAccount']}" /></span></td>--%>
-                <td ><span ><input  type="radio" name="defaultAccount" {$T.item["defaultAccount"]==true?'checked':''} /></span></td>
-                <td ><span class="text-overflow"><button class="bankdel-btn" data-itemid="{$T.item$index}">删除</button></span></td>
+                <td><span><input type="radio" name="defaultAccount"
+                                 {$T.item["defaultAccount"]==true?'checked':''} /></span></td>
+                <td><span class="text-overflow"><button class="bankdel-btn" data-itemid="{$T.item$index}">删除
+                </button></span></td>
             </tr>
             {#/for}
             </tbody>
@@ -89,6 +92,7 @@
                     <a href="#" class="float-right icon-separator btn toggle-button" title="客户信息修改">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
+
                     <div class="keyword-view float-right">
                         <div class="keyword-input-width float-left">
                             <div class="form-input">
@@ -111,19 +115,19 @@
                     <div class="table table-striped text-center mrg0B" id="table-data">
                         <%--<thead>--%>
                         <%--<tr>--%>
-                            <%--<th class="text-center">证照号码</th>--%>
-                            <%--<th class="text-center">客户名称</th>--%>
-                            <%--<th class="text-center">身份证地址</th>--%>
-                            <%--<th class="text-center">开户行名称</th>--%>
-                            <%--<th class="text-center">收益人账号</th>--%>
-                            <%--<th class="text-center">联系电话</th>--%>
-                            <%--<th class="text-center">E-Mail</th>--%>
+                        <%--<th class="text-center">证照号码</th>--%>
+                        <%--<th class="text-center">客户名称</th>--%>
+                        <%--<th class="text-center">身份证地址</th>--%>
+                        <%--<th class="text-center">开户行名称</th>--%>
+                        <%--<th class="text-center">收益人账号</th>--%>
+                        <%--<th class="text-center">联系电话</th>--%>
+                        <%--<th class="text-center">E-Mail</th>--%>
                         <%--</tr>--%>
                         <%--</thead>--%>
                         <%--<tbody></tbody>--%>
                     </div>
                     <div CLASS="mrg10T">
-                        <button  class="btn medium bg-green" title="">
+                        <button class="btn medium bg-green" title="">
                             <span class="button-content" id="user-new">+ 新客户</span>
                         </button>
                     </div>
@@ -144,8 +148,8 @@
                             <label class="label-description">客户名称：</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <input placeholder="输入客户名称" type="text" id="name"  name="name" class="name">
-                            <input type="hidden" name="customerId"  id="customerId" value="-1" />
+                            <input placeholder="输入客户名称" type="text" id="name" name="name" class="name">
+                            <input type="hidden" name="customerId" id="customerId" value="-1"/>
                         </div>
 
                         <div class="form-label col-md-2">
@@ -166,7 +170,7 @@
                         </div>
                         <div class="form-input col-md-4">
                             <select id="cardtype" class="credentialsType" name="credentialsType">
-                                <option value="身份证" >身份证</option>
+                                <option value="身份证">身份证</option>
                                 <option value="护照">护照</option>
                                 <option value="营业执照">营业执照</option>
                             </select>
@@ -176,7 +180,8 @@
                             <label for="" class="label-description">(*)证件号码:</label>
                         </div>
                         <div class="form-input col-md-4">
-                            <input placeholder="请输入证件号" class="credentialsNumber" type="text" id="cardnumber" name="credentialsNumber">
+                            <input placeholder="请输入证件号" class="credentialsNumber" type="text" id="cardnumber"
+                                   name="credentialsNumber">
                         </div>
                     </div>
 
@@ -185,23 +190,24 @@
                             <label for="" class="label-description">住址:</label>
                         </div>
                         <div class="form-input col-md-10">
-                            <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="sfzdz"  class="credentialsAddr" name="credentialsAddr">
+                            <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="sfzdz" class="credentialsAddr"
+                                   name="credentialsAddr">
                         </div>
                     </div>
 
                     <%--<div class="form-row">--%>
-                        <%--<div class="form-label col-md-2">--%>
-                            <%--<label for="" class="label-description">开户行名称:</label>--%>
-                        <%--</div>--%>
-                        <%--<div class="form-input col-md-4">--%>
-                            <%--<input placeholder="请输入开户行银行" type="text" id="bankname" class="khh" name="khh">--%>
-                        <%--</div>--%>
-                        <%--<div class="form-label col-md-2 ">--%>
-                            <%--<label for="" class="label-description">收益人账号:</label>--%>
-                        <%--</div>--%>
-                        <%--<div class="form-input col-md-4">--%>
-                            <%--<input placeholder="请输入银行账号" type="text" id="banknumber" class="yhzh" name="yhzh">--%>
-                        <%--</div>--%>
+                    <%--<div class="form-label col-md-2">--%>
+                    <%--<label for="" class="label-description">开户行名称:</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-input col-md-4">--%>
+                    <%--<input placeholder="请输入开户行银行" type="text" id="bankname" class="khh" name="khh">--%>
+                    <%--</div>--%>
+                    <%--<div class="form-label col-md-2 ">--%>
+                    <%--<label for="" class="label-description">收益人账号:</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="form-input col-md-4">--%>
+                    <%--<input placeholder="请输入银行账号" type="text" id="banknumber" class="yhzh" name="yhzh">--%>
+                    <%--</div>--%>
                     <%--</div>--%>
                     <div class="form-row">
                         <div class="form-label col-md-2">
@@ -258,7 +264,8 @@
                             <label class="label-description">备注信息:</label>
                         </div>
                         <div class="form-input col-md-10">
-                            <textarea placeholder="请输入备注信息" class="textarea-no-resize" id="remark" name="remark"></textarea>
+                            <textarea placeholder="请输入备注信息" class="textarea-no-resize" id="remark"
+                                      name="remark"></textarea>
                         </div>
                     </div>
                     <div class="button-pane">
