@@ -447,14 +447,14 @@ h3 + p.font-gray-dark {
 }
 
 #page-sidebar, #sidebar-menu li a .glyph-icon, .top-icon-bar .dropdown > a .badge {
-    -webkit-animation-duration: .7s;
+/*    -webkit-animation-duration: .7s;
     -moz-animation-duration: .7s;
     -o-animation-duration: .7s;
     animation-duration: .7s;
     -webkit-animation-fill-mode: both;
     -moz-animation-fill-mode: both;
     -o-animation-fill-mode: both;
-    animation-fill-mode: both
+    animation-fill-mode: both*/
 }
 
 .open > .dropdown-menu, .dropdown-submenu:hover > .dropdown-menu {
