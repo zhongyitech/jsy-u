@@ -79,8 +79,8 @@
                                 </div>
 
                                 <div id="out_banklist" class="form-input col-md-10">
-                                    <input id="out_company" style="width: 200px;" placeholder="请输入收款的公司或者个人" />
-                                    <input id="out_company_id" type="hidden" />
+                                    <input id="out_company" data-id data-oldid style="width: 200px;" placeholder="请输入收款的公司或者个人" />
+                                    <div id="out_banks"></div>
                                 </div>
                             </div>
 
@@ -89,8 +89,8 @@
                                     <label>汇款人：</label>
                                 </div>
                                 <div id="in_banklist" class="form-input col-md-10">
-                                    <input id="in_company" style="width: 200px;" placeholder="请输入汇款的公司或者个人"/>
-                                    <input id="in_company_id" type="hidden" />
+                                    <input id="in_company" data-id data-oldid style="width: 200px;" placeholder="请输入汇款的公司或者个人"/>
+                                    <div id="in_banks"></div>
                                 </div>
                             </div>
 
