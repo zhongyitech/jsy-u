@@ -138,7 +138,7 @@ var VIEWDATA = {
         for (var i = 0; i < arrayLength; i++) {
 
 //            var params = JSON.stringify({jsonStr: items[i]});
-            var data = {url: '/api/commissionInfo/addPayment', entity: items[i]};
+            var data = {url: '/api/commissionInfo/addPayment', params: items[i]};
 
             $.io.post(data).success(function (result) {
                 window.location.href = "commission_apply.jsp";
