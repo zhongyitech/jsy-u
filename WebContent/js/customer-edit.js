@@ -212,6 +212,13 @@ var CUSTOMER_FORM = {//客户信息表单
         this.iniSubmitButton();
         this.iniAttachment();
 
+        $("#cardtype").change(function () {
+            if ($(this).val() == "营业执照")
+                $("#fddr-panel").show();
+            else
+                $("#fddr-panel").hide();
+        });
+
         var id = PAGE.getParam(CUSTOMER.ID_KEY);
         var stype = PAGE.getParam("type");
         if (id) {
@@ -237,15 +244,40 @@ var CUSTOMER_FORM = {//客户信息表单
         if (edit == true) {
             this.edit_mode = true;
             $("#action_title").html("编辑现有客户信息")
+            $("#syncCustomer").removeAttr("checked");
+
         } else {
             this.edit_mode = false;
             $("#action_title").html("填写档案客户信息")
-            $('#name').val(PAGE.getParam('username')||"");
+            var _this = this;
+            var username = PAGE.getParam('username');
+            $.io.get({url: '/api/customerArchives/name', params: {name: username}})
+                .success(function (result) {
+                    if (result) {
+                        $("#syncCustomer").removeAttr("checked");
+                        $.message.log("此名称的客户已经存在,自动被填信息,请根据需要修改数据.");
+                        var found=false;
+                        $.each(result.bankAccount, function (i, it) {
+                            if (it.defaultAccount) {
+                                result['khh'] = it.bankOfDeposit;
+                                result['yhzh'] = it.account;
+                                result['KHH'] = it.accountName;
+                                found=true;
+                            }
+                        });
+                        if(!found && result.bankAccount.length>0){
+                            result['khh'] = result.bankAccount[0].bankOfDeposit;
+                            result['yhzh'] = result.bankAccount[0].account;
+                            result['KHH'] = result.bankAccount[0].accountName;
+                        }
+                        _this.set(result)
+                    }
+                });
+            $("#name").val(username);
         }
     },
     set: function (item) {
         this.item = item;
-
         this.setName(item);
         this.setAddress(item);
         this.setAttachment(item);
@@ -259,6 +291,10 @@ var CUSTOMER_FORM = {//客户信息表单
         this.setYZBM(item);
         this.setZJHM(item);
         this.setZJLX(item);
+        if(item.credentialsType=="营业执照"){
+            $("#fddbr").val(item.fddbr || "");
+            $("#fddr-panel").show();
+        }
     },
     getItem: function () {
         var me = this;
@@ -324,20 +360,21 @@ var CUSTOMER_FORM = {//客户信息表单
             item[CUSTOMER.ZJLX_KEY] = zjlx;
         }
 
+        item["fddbr"]= $("#fddbr").val();
         me.item = item;
         return item;
     },
     submit: function () {//提交
         var me = this;
         var item = me.getItem();
-        var params = {id:this.investmentid,sync:$("#syncCustomer").prop('checked') };
+        var params = {id: this.investmentid, sync: $("#syncCustomer").prop("checked")};
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/customer', params: params, entity: entity};
 
-        $.io.post(true,data)
+        $.io.post(true, data)
             .success(function (result) {
                 window.location = "./invest-list.jsp";
-            }).error(function(error){
+            }).error(function (error) {
                 alert(error.msg);
             });
     }

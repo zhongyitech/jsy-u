@@ -27,6 +27,9 @@ var FLOW={
         $("#attrSettingBtn").click(function(){
             window.location.href = "projectAttrSetting.jsp?id="+me.projectid;
         });
+        $("#detailsBtn").click(function(){
+            window.location.href = "project-detail.jsp?id="+me.projectid;
+        });
     },
     initView: function(){
         var me = this;

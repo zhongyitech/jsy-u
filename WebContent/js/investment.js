@@ -121,11 +121,12 @@ var INVESTMENT_ITEM = {
     rateformat: {},
     numberformat: {},
     syl: 0,
-    userlist:[],
+    userlist: [],
     ini: function (async) {
         this.set(async);
     },
     set: function (async) {
+
         //默认同步加载数据
         if (!async) {
             async = false;
@@ -176,7 +177,7 @@ var INVESTMENT_ITEM = {
 
     },
     //刷新投资期限 - 认购日期 - 到期日期的数据
-    dateRefresh:function(){
+    dateRefresh: function () {
 
     },
     setView: function (item) {
@@ -190,7 +191,7 @@ var INVESTMENT_ITEM = {
 
         var pact_input = $(this.INVEST_PACT_ID);
         pact_input.keyup(function () {
-            if (pact_input.val().length >8) {
+            if (pact_input.val().length > 8) {
                 $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: pact_input.val()}})
                     .success(function (result) {
                         //me.resetDefaultDate(result);
@@ -203,11 +204,11 @@ var INVESTMENT_ITEM = {
                             $("#invest-pact").addClass('valid_error');
                             $("#invest-pact").attr("placeholder", "合同编号没有登记")
                         }
-                    }).error(function(error){
+                    }).error(function (error) {
                         $("#invest-pact").addClass('valid_error');
                         $("#invest-pact").attr("placeholder", error.msg);
                     });
-            }else{
+            } else {
                 $("#invest-pact").addClass('valid_error');
             }
         });
@@ -316,9 +317,9 @@ var INVESTMENT_ITEM = {
         USER.getItems();
         var users = this.user.getItems();
         var bm_select = $(this.INVEST_BUSNIESSMANAGER_ID);
-        $.io.get(true,{url:'/api/user/selectList'}).success(function(result){
-            me.userlist=result;
-            $.dom.select(bm_select,result);
+        $.io.get(true, {url: '/api/user/selectList'}).success(function (result) {
+            me.userlist = result;
+            $.dom.select(bm_select, result);
         });
         bm_select.change(function () {
             me.setYWJL();
@@ -328,11 +329,11 @@ var INVESTMENT_ITEM = {
             bm_select.val(bm[this.user.ID_KEY]);
         }
         var dm_select = $(this.INVEST_DM_ID);
-        var dm = item[this.investment.BMJL_KEY];
-        if (dm) {
-            dm_select.val(dm[this.user.ID_KEY]);
-        }
-        var department = item[this.investment.BM_KEY];
+        if (item && item.bmjl)
+            dm_select.text(USER.getName(item.bmjl.id));
+
+
+        $(this.INVEST_DEPARTMENT_ID).text(item["bm"] || "");
         //if (department) {
         //    department_select.val(department);
         //}
@@ -638,7 +639,7 @@ var INVESTMENT_ITEM = {
             if (tcbl) {
                 var shouyi = tcbl[this.nianhua.SHOUYI_KEY];
                 var ticheng = (tcbl[this.nianhua.TICHENG_KEY]);
-                if(!ticheng){
+                if (!ticheng) {
                     $.message.error("该部门没有设置收益率数据!");
                     return;
                 }
@@ -996,24 +997,24 @@ var INVESTMENT_ITEM = {
 
         //------------添加校验信息-----------
         var canpass = true;
-        $.each(item.ywtcs,function(index,ywtcModel){
-            if(!ywtcModel.tcje){
+        $.each(item.ywtcs, function (index, ywtcModel) {
+            if (!ywtcModel.tcje) {
                 alert("请输入业务提成金额");
                 canpass = false;
                 return false;
             }
         });
-        if(!canpass){
+        if (!canpass) {
             return false;
         }
-        $.each(item.gltcs,function(index,ywtcModel){
-            if(!ywtcModel.tcje){
+        $.each(item.gltcs, function (index, ywtcModel) {
+            if (!ywtcModel.tcje) {
                 alert("请输入管理提成金额");
                 canpass = false;
                 return;
             }
         });
-        if(!canpass){
+        if (!canpass) {
             return false;
         }
         //----------------------------------
@@ -1026,7 +1027,6 @@ var INVESTMENT_ITEM = {
         var params = JSON.stringify({id: id});
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/CreateOrUpdate', params: params, entity: entity};
-
 
 
         $.io.put(data)
@@ -1095,12 +1095,20 @@ var GUANLI = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if (item) {
+        if (item && item['yhzh']==undefined) {
             var uid = item.user.id;
-            var userinfo = USER.get(uid);
-            item['yhzh'] = item && userinfo.yhzh;
-            item['skr'] = item && userinfo.skr;
-            item['khh'] = item && userinfo.khh;
+            //var userinfo = USER.get(uid);
+            $.io.get(true, {url: '/api/customerArchives/bankForUserId', params: {id: uid}}).success(function (result) {
+                if (result) {
+                    item['yhzh'] = result && result.yhzh;
+                    item['skr'] = result && result.skr;
+                    item['khh'] = result && result.khh;
+                }else{
+                    item['yhzh'] = "";
+                    item['skr'] = '';
+                    item['khh'] = '';
+                }
+            });
         }
         var tr = $('<tr key="' + key + '"></tr>');
         table.append(tr);
@@ -1113,7 +1121,7 @@ var GUANLI = {
         var user_select = $('<select class="user-name" name="user"></select>');
         user_td.append(user_select);
 
-        $.dom.select(user_select,INVESTMENT_ITEM.userlist);
+        $.dom.select(user_select, INVESTMENT_ITEM.userlist);
 
         if (item) {
             var user = item[this.usercommission.USER_KEY];
@@ -1368,12 +1376,20 @@ var YEWU = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if (item) {
+        if (item && item['yhzh']==undefined) {
             var uid = item.user.id;
-            var userinfo = USER.get(uid);
-            item['yhzh'] = item && userinfo.yhzh;
-            item['skr'] = item && userinfo.skr;
-            item['khh'] = item && userinfo.khh;
+
+            $.io.get(true,{url: '/api/customerArchives/bankForUserId', params: {id: uid}}).success(function (result) {
+                if (result) {
+                    item['yhzh'] = result && result.yhzh;
+                    item['skr'] = result && result.skr;
+                    item['khh'] = result && result.khh;
+                }else{
+                    item['yhzh'] = "";
+                    item['skr'] = '';
+                    item['khh'] = '';
+                }
+            });
         }
 
         var tr = $('<tr key="' + key + '"></tr>');
@@ -1386,7 +1402,7 @@ var YEWU = {
         tr.append(user_td);
         var user_select = $('<select class="user-name" name="user"></select>');
         user_td.append(user_select);
-        $.dom.select(user_select,INVESTMENT_ITEM.userlist);
+        $.dom.select(user_select, INVESTMENT_ITEM.userlist);
         if (item) {
             var user = item[this.usercommission.USER_KEY];
             user_select.val(user[this.user.ID_KEY]);

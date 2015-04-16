@@ -115,7 +115,7 @@
             </div>
 
             <div class="col-md-12 pad0A clearfix">
-                <div class="col-md-6 pad0L auto-height">
+                <div class="col-md-6 pad0L">
                     <div id="sylfw-view" class="content-box box-toggle">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">收益率范围</span>
@@ -175,7 +175,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 pad0R auto-height clearfix">
-                    <div id="tcfpfw-view" class="content-box box-toggle auto-height">
+                    <div id="tcfpfw-view" class="content-box box-toggle">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
                             <a href="#" class="float-right icon-separator btn toggle-button" title="提成分配范围">

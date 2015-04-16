@@ -55,7 +55,8 @@
                                 <select id="cardtype" class="credentialsType">
                                     <option value="身份证" >身份证</option>
                                     <option value="护照">护照</option>
-                                    <option value="营业执照">护照</option>
+                                    <option value="营业执照">营业执照</option>
+                                    <option value="其它">其它</option>
                                 </select>
                             </div>
 
@@ -66,15 +67,24 @@
                                 <input placeholder="请输入证件号" class="credentialsNumber" type="text" id="cardnumber">
                             </div>
                         </div>
+                        <div class="form-row hide" id="fddr-panel">
+                            <div class="form-label col-md-2">
+                                <label class="label-description">法定代表人:</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input placeholder="法定代表人" type="text" id="fddbr" class="fddbr" name="fddbr">
+                            </div>
 
+                        </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label class="label-description">(*)住址（证件地址）:</label>
+                                <label class="label-description">住址（证件地址）:</label>
                             </div>
                             <div class="form-input col-md-10">
                                 <input placeholder="自然人填身份证地址，机构填写营业执照注册地址" type="text" id="sfzdz">
                             </div>
                         </div>
+
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
