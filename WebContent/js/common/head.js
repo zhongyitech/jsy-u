@@ -36,7 +36,7 @@ var PAGE = {
     AUTHORITY_EDIT: './authority-edit.jsp',//权限编辑页面
     getParam: function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r =window.location.search.substr(1).match(reg);
+        var r = window.location.search.substr(1).match(reg);
         if (r != null)
             return decodeURI(r[2]);
         return null;
@@ -1853,12 +1853,13 @@ var USER = {
     },
     get: function (id) {
 //        var map = this.getMap();
-        return $.project.domain(id, "com.jsy.auth.User").getItem(id)
+        return $.project.domain(id, "com.jsy.auth.User").getItem(id);
 
 //        return map[id];
     },
     getName: function (id) {
-        var item = this.get(id);
+        var item = $.project.domain(id, "com.jsy.auth.User",this.NAME_KEY).getItem(id);
+
         var name = item[this.NAME_KEY];
         if (!name) {
             name = '无中文名';
@@ -2437,7 +2438,7 @@ var DEPARTMENT = {
     },
     get: function (id) {
 
-        return $.project.domain(id,"com.jsy.system.Department").getItem(id);
+        return $.project.domain(id, "com.jsy.system.Department").getItem(id);
 
         //var map = this.getMap();
         //return map[id];
@@ -2562,7 +2563,7 @@ var LOGIN = {
 //        var entity = JSON.stringify({});
 //        var data = {url: '/api/user/getUser', params: params, entity: entity};
 
-        return  $.io.get(true, {url: '/api/user/getUser'})
+        return $.io.get(true, {url: '/api/user/getUser'})
             .error(function (result) {
 
             }).data();
@@ -2664,7 +2665,7 @@ var DATEFORMAT = {
         if (!date) {
             return '';
         }
-        var time = date.constructor==Date?date:(typeof date=="number"?new Date(date):new Date(date.replace(/-/g,'/').replace(/T|Z/g,' ').trim()));
+        var time = date.constructor == Date ? date : (typeof date == "number" ? new Date(date) : new Date(date.replace(/-/g, '/').replace(/T|Z/g, ' ').trim()));
         var o = {
             "M+": time.getMonth() + 1, //月份 
             "d+": time.getDate(), //日 
@@ -3125,7 +3126,7 @@ var MESSAGEBOX = {
     cancelfunc: null,
     show: function (msg) {
         this.hidebutton();
-        var _this=this;
+        var _this = this;
         $("#jsy_msgbox_comfirm_dialog").show();
         $("#jsy_msgbox_comfirm_dialog").click(function () {
             $("#jsy_msgbox_light").css("display", "none");
@@ -3150,7 +3151,7 @@ var MESSAGEBOX = {
     showYesNo: function (msg, okfunc) {
         var button = "yes,no";
         var funcs = [
-            { "yes": okfunc}
+            {"yes": okfunc}
         ];
         this.dialog(msg, button, funcs);
     },
@@ -3274,7 +3275,7 @@ $.urlParam = function (name) {
 }
 
 //在当前时间上添加天数
-Date.prototype.addDay = function(days){
+Date.prototype.addDay = function (days) {
     var cd = this.getDate();
     cd += days;
     this.setDate(cd);
