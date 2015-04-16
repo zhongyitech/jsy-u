@@ -196,7 +196,7 @@
                             <tr ms-repeat="data">
                                 <td>{{el.id}}</td>
                                 <td>{{el.fileName}}</td>
-                                <td>{{el.filePath}}</td>
+                                <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
                                     <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>
@@ -235,7 +235,7 @@
                             <tr ms-repeat="data">
                                 <td>{{el.id}}</td>
                                 <td>{{el.fileName}}</td>
-                                <td>{{el.filePath}}</td>
+                                <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
                                     <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>

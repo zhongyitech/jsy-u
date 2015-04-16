@@ -27607,14 +27607,10 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             valid_extensions : ['gif','png','jpg','jpeg'],
             submit_button : null
         };
-
         var uploading_file = false;
-
-        if ( options ) {
-            $.extend( settings, options );
+        if (options) {
+            $.extend(settings,options);
         }
-
-
         // 'this' is a jQuery collection of one or more (hopefully)
         //  file elements, but doesn't check for this yet
         return this.each(function() {
@@ -27631,18 +27627,14 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 } catch(e) {
                     response = responseStr;
                 }
-
                 // Tear-down the wrapper form
                 element.siblings().remove();
                 element.unwrap();
-
                 uploading_file = false;
-
                 // Pass back to the user
-                settings.onComplete.apply(element, [response, settings.params]);
                 $element.data('ajaxUploader-setup', false);
+                settings.onComplete.apply(element, [response, settings.params]);
             };
-
             /*
              // Wraps element in a <form> tag, and inserts hidden inputs for each
              //  key:value pair in settings.params so they can be sent along with
@@ -27656,7 +27648,6 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 $('#'+frame_id).load(function() {
                     handleResponse(this, element);
                 });
-
                 // Wrap it in a form
                 element.wrap(function() {
                     return '<form action="' + settings.action + '" method="POST" enctype="multipart/form-data" target="'+frame_id+'" />'
@@ -27676,28 +27667,21 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             };
             var upload_file = function(){
                 if($element.val() == '') return settings.onCancel.apply($element, [settings.params]);
-
                 // make sure extension is valid
                 var ext = $element.val().split('.').pop().toLowerCase();
-                if(true === settings.validate_extensions && $.inArray(ext, settings.valid_extensions) == -1)
-                {
+                if(true === settings.validate_extensions && $.inArray(ext, settings.valid_extensions) == -1) {
                     // Pass back to the user
                     settings.onComplete.apply($element, [{status: false, message: 'The select file type is invalid. File must be ' + settings.valid_extensions.join(', ') + '.'}, settings.params]);
-                } else
-                {
+                } else {
                     uploading_file = true;
-
                     // Creates the form, extra inputs and iframe used to
                     //  submit / upload the file
                     wrapElement($element);
-
                     // Call user-supplied (or default) onStart(), setting
                     //  it's this context to the file DOM element
                     var ret = settings.onStart.apply($element, [settings.params]);
-
                     // let onStart have the option to cancel the upload
-                    if(ret !== false)
-                    {
+                    if(ret !== false) {
                         $element.parent('form').submit(function(e) { e.stopPropagation(); }).submit();
                     }
                 }
@@ -27710,23 +27694,18 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
 				upload_file();
 			}
 
-            if (!settings.submit_button)
-            {
+            if (!settings.submit_button) {
                 //$element.change(function(){
 				//	// since a new image was selected, reset the marker
 				//	uploading_file = false;
 				//	upload_file();
 				//});
-            } else
-            {
-                settings.submit_button.click(function(e)
-                {
+            } else {
+                settings.submit_button.click(function(e){
                     // Prevent non-AJAXy submit
                     e.preventDefault();
-
                     // only attempt to upload file if we're not uploading
-                    if (!uploading_file)
-                    {
+                    if (!uploading_file){
                         upload_file();
                     }
                 });
@@ -27736,7 +27715,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
             $element.data('ajaxUploader-setup', true);
         });
     }
-})( jQuery );
+})(jQuery);
 /****************************************project lib****************************************/
 /**
  *  jQuery.ajax wrapper

@@ -84,38 +84,33 @@
         var define=function(id,fileId,type){
             $.io.get({
                 url:"/api/project/getProjectFiles",
-                params:{
-                    id:projectId,
-                    type:type
-                }
+                params:{id:projectId,type:type}
             }).success(function(result){
                 var model= avalon.define({
                     $id: id,
                     data: result,
-                    stockDate:'',
-                    structure:'',
                     upload:function(){
-                        $.utils.upload({
-                            files:fileId,
-                            success:function(response){
-                                $.io.post({
-                                    url:"/api/project/addProjectFile",
-                                    params:{
-                                        id:projectId,
-                                        type:type
-                                    },
-                                    entity:response&&response.rest_result&&response.rest_result.length&&response.rest_result[0]||{}
-                                }).success(function(row){
-                                    model.data.push(row);
-                                });
-                            }
-                        });
+                        if($(fileId).val()!=""){
+                            $.utils.upload({
+                                files:fileId,
+                                success:function(response){
+                                    $.io.post({
+                                        url:"/api/project/addProjectFile",
+                                        params:{id:projectId,type:type},
+                                        entity:response&&response.rest_result&&response.rest_result.length&&response.rest_result[0]||{}
+                                    }).success(function(row){
+                                        model.data.push(row);
+                                    });
+                                    var file=$(fileId).get(0);
+                                    file.outerHTML+='';
+                                    file.value='';
+                                }
+                            });
+                        }
                     },
                     del:function(id){
                         if(confirm("确实要删除？")){
-                            $.each(model.data,function(){
-                                if(this.id==id) model.data.remove(this);
-                            });
+                            $.each(model.data,function(){if(this.id==id) model.data.remove(this);});
                             $.io.del({
                                 url:"/api/project/delProjectFile",
                                 params:{id:projectId,file_id:id,type:type}
