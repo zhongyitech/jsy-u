@@ -36,21 +36,21 @@
                           资料采集
                         </a>
                       </li>
-                      <li>
-                        <a href="#normal-tabs-2" title="OA审核">
-                          资料评判
-                        </a>
-                      </li>
+                      <%--<li>--%>
+                        <%--<a href="#normal-tabs-2" title="OA审核">--%>
+                          <%--资料OA审核--%>
+                        <%--</a>--%>
+                      <%--</li>--%>
                       <li>
                         <a href="#normal-tabs-3" title="项目部负责发起申请，法务部，财务部配合">
                           现场考察（方案确定)
                         </a>
                       </li>
-                      <li>
-                        <a href="#normal-tabs-4" title="OA审核">
-                          现场考察(OA审核)
-                        </a>
-                      </li>
+                      <%--<li>--%>
+                        <%--<a href="#normal-tabs-4" title="OA审核">--%>
+                          <%--现场考察OA审核--%>
+                        <%--</a>--%>
+                      <%--</li>--%>
                       <li>
                         <a href="#normal-tabs-5" title="项目部负责发起申请，法务部，财务部配合">
                           投决会
@@ -80,46 +80,46 @@
                           </table>
 
                           <div class="button-pane">
-                            <button type="button"
+                            <button data-tableid="1" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
                               <span class="button-content">删除选中行</span></button>
-                            <button type="button"
+                            <button data-tableid="1" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
+                              <span class="button-content">增加一角色</span></button>
+                            <button data-tableid="1" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                               <span class="button-content">保存</span></button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div id="normal-tabs-2">
-                      <div class="form-bordered">
-                        <div class="form-row t2">
-                          <table id = "xianshi_table2" class="table text-center mrg0B xianshi_table" >
-                            <thead>
-                            <tr>
-                              <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
-                              <th class="text-center"><span class="text-overflow">角色名称</span></th>
-                            </tr>
-                            </thead>
-                          </table>
+                    <%--<div id="normal-tabs-2">--%>
+                      <%--<div class="form-bordered">--%>
+                        <%--<div class="form-row t2">--%>
+                          <%--<table id = "xianshi_table2" class="table text-center mrg0B xianshi_table" >--%>
+                            <%--<thead>--%>
+                            <%--<tr>--%>
+                              <%--<th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>--%>
+                              <%--<th class="text-center"><span class="text-overflow">角色名称</span></th>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
+                          <%--</table>--%>
 
-                          <div class="button-pane">
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                              <span class="button-content">删除选中行</span></button>
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
-                              <span class="button-content">保存</span></button>
-                          </div>
-                        </div>
-                      </div>
+                          <%--<div class="button-pane">--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">--%>
+                              <%--<span class="button-content">删除选中行</span></button>--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-add">--%>
+                              <%--<span class="button-content">增加一角色</span></button>--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-save">--%>
+                              <%--<span class="button-content">保存</span></button>--%>
+                          <%--</div>--%>
+                        <%--</div>--%>
+                      <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
                     <div id="normal-tabs-3">
                       <div class="form-bordered">
                         <div class="form-row t3">
@@ -133,46 +133,46 @@
                           </table>
 
                           <div class="button-pane">
-                            <button type="button"
+                            <button data-tableid="3" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
                               <span class="button-content">删除选中行</span></button>
-                            <button type="button"
+                            <button data-tableid="3" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
+                              <span class="button-content">增加一角色</span></button>
+                            <button data-tableid="3" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                               <span class="button-content">保存</span></button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div id="normal-tabs-4">
-                      <div class="form-bordered">
-                        <div class="form-row t4">
-                          <table id = "xianshi_table4" class="table text-center mrg0B xianshi_table" >
-                            <thead>
-                            <tr>
-                              <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
-                              <th class="text-center"><span class="text-overflow">角色名称</span></th>
-                            </tr>
-                            </thead>
-                          </table>
+                    <%--<div id="normal-tabs-4">--%>
+                      <%--<div class="form-bordered">--%>
+                        <%--<div class="form-row t4">--%>
+                          <%--<table id = "xianshi_table4" class="table text-center mrg0B xianshi_table" >--%>
+                            <%--<thead>--%>
+                            <%--<tr>--%>
+                              <%--<th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>--%>
+                              <%--<th class="text-center"><span class="text-overflow">角色名称</span></th>--%>
+                            <%--</tr>--%>
+                            <%--</thead>--%>
+                          <%--</table>--%>
 
-                          <div class="button-pane">
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                              <span class="button-content">删除选中行</span></button>
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
-                                    class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
-                              <span class="button-content">保存</span></button>
-                          </div>
-                        </div>
-                      </div>
+                          <%--<div class="button-pane">--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">--%>
+                              <%--<span class="button-content">删除选中行</span></button>--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-add">--%>
+                              <%--<span class="button-content">增加一角色</span></button>--%>
+                            <%--<button type="button"--%>
+                                    <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-save">--%>
+                              <%--<span class="button-content">保存</span></button>--%>
+                          <%--</div>--%>
+                        <%--</div>--%>
+                      <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
                     <div id="normal-tabs-5">
                       <div class="form-bordered">
                         <div class="form-row t5">
@@ -185,13 +185,13 @@
                             </thead>
                           </table>
                           <div class="button-pane">
-                            <button type="button"
+                            <button data-tableid="5" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
                               <span class="button-content">删除选中行</span></button>
-                            <button type="button"
+                            <button data-tableid="5" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
+                              <span class="button-content">增加一角色</span></button>
+                            <button data-tableid="5" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                               <span class="button-content">保存</span></button>
                           </div>
@@ -212,13 +212,13 @@
                           </table>
 
                           <div class="button-pane">
-                            <button type="button"
+                            <button data-tableid="6" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
                               <span class="button-content">删除选中行</span></button>
-                            <button type="button"
+                            <button data-tableid="6" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
+                              <span class="button-content">增加一角色</span></button>
+                            <button data-tableid="6" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                               <span class="button-content">保存</span></button>
                           </div>
@@ -239,13 +239,13 @@
                           </table>
 
                           <div class="button-pane">
-                            <button type="button"
+                            <button data-tableid="7" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
                               <span class="button-content">删除选中行</span></button>
-                            <button type="button"
+                            <button data-tableid="7" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                              <span class="button-content">增加一行</span></button>
-                            <button type="button"
+                              <span class="button-content">增加一角色</span></button>
+                            <button data-tableid="7" type="button"
                                     class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                               <span class="button-content">保存</span></button>
                           </div>

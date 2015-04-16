@@ -709,7 +709,7 @@
                 <!-- flow instance -->
                 <div id="panel_makeContactOA" style="display:none; " class="content-box box-toggle content-box-closed">
                     <div class="content-box-header primary-bg">
-                        <span class="float-left">步骤3.1：项目合同——OA审核</span>
+                        <span class="float-left">步骤2.1：项目合同——OA审核</span>
                         <a href="#" class="float-right icon-separator btn toggle-button" title="步骤3.1：项目合同——OA审核">
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>

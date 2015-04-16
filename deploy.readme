@@ -1,0 +1,3 @@
+1.修改manager.java
+2.修改FileManager.java
+private final String DIR_PATH = "D:/jsy/UploadFiles";

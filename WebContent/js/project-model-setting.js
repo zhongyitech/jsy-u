@@ -5,22 +5,16 @@
  * Created by libosong on 2015/3/16.
  */
 
-/**
- * ��ʼ��
- */
 $(document).ready(function() {
-    $.io.registerCallback({
-        error:function(msg){
-
-        }
-    });
+    //tab控件
     TabbedContent.init();
 
+    //role信息
     ProjectModelRoleSetting.init();
 });
 
 /**
- * tab ��ǩ
+ * tab控件
  * @type {{init: init, slideContent: slideContent}}
  */
 var TabbedContent = {
@@ -53,278 +47,122 @@ var TabbedContent = {
     }
 }
 
+/**
+ * role信息
+ */
 var ProjectModelRoleSetting = {
 
     /**
-     * ��ʼ��
+     *
      */
     init : function(){
-        ProjectModelRoleSetting.initView();
+        ProjectModelRoleSetting.initRoleView();
         ProjectModelRoleSetting.initEvent();
     },
 
     /**
-     * ��ʼ���������
+     * 查询7个节点的模板，然后加载进来
      */
-    initView : function(){
-        this.initViewRoles();
-    },
-
-    /**
-     * ��ʼ��table
-     * @param result
-     */
-    initViewRoles:function(){
-        var _this = this;
-        for(var i=1; i<8; i++){
-            _this.removeTableItem(i);
-            var params = {
-                phaseIndex:i
-            };
-            var data   = {url:"/api/project/getProjectModelRole",params:JSON.stringify(params)};
-
-            $.io.get(data)
-                .success(function(result){
-                    _this.initTable(result);
-
-                })
-                .error(function(result){
-                    //alert(result);
-                });
-        }
-    },
-
-    removeTableItem:function(index){
-        var tabletr;
-        switch(index){
-            case 1 :
-                tabletr = $("#xianshi_table1 tr");
-                break;
-            case 2 :
-                tabletr = $("#xianshi_table2 tr");
-                break;
-            case 3 :
-                tabletr = $("#xianshi_table3 tr");
-                break;
-            case 4 :
-                tabletr = $("#xianshi_table4 tr");
-                break;
-            case 5 :
-                tabletr = $("#xianshi_table5 tr");
-                break;
-            case 6 :
-                tabletr = $("#xianshi_table6 tr");
-                break;
-            case 7 :
-                tabletr = $("#xianshi_table7 tr");
-                break;
-            default :
-                tabletr = $("#xianshi_table1 tr");
-        }
-
-        if (tabletr && tabletr.length) {
-            for (var i = 0; i < tabletr.length; i++) {
-                $(tabletr[i]).remove();
-            }
-        }
-    },
-    initTable:function(result){
-        var json = JSON.parse(result);
-        //console.log(json);
-        if(!json)
-            return;
-
-        var index = json["phaseIndex"];
-        var item = [];
-        item = JSON.parse(json["roles"]);
-        //console.log(item);
-        var table = null;
-        if(item){
-
-            for(var i =1; i<item.length + 1; i++){
-                var it = item[i-1];
-                //console.log(it);
-
-                //console.log("index=" + index);
-                switch(index){
-                    case 1 :
-                        table = $("#xianshi_table1");
-                        break;
-                    case 2 :
-                        table = $("#xianshi_table2");
-                        break;
-                    case 3 :
-                        table = $("#xianshi_table3");
-                        break;
-                    case 4 :
-                        table = $("#xianshi_table4");
-                        break;
-                    case 5 :
-                        table = $("#xianshi_table5");
-                        break;
-                    case 6 :
-                        table = $("#xianshi_table6");
-                        break;
-                    case 7 :
-                        table = $("#xianshi_table7");
-                        break;
-                    default :
-                        table = $("#xianshi_table1");
+    initRoleView : function(){
+        var me = this;
+        var data = {url:'/api/project/getProjectModelRole'};
+        $.io.get(data).success(function(result){
+            $.each(result,function(index, obj){
+                if(obj.phaseIndex==1){
+                    me.initGatherInfo(obj);
+                }else if(obj.phaseIndex==2){
+                    //me.initGatherOA(obj);
+                }else if(obj.phaseIndex==3){
+                    me.initResearch(obj);
+                }else if(obj.phaseIndex==4){
+                    //me.initResearchOA(obj);
+                }else if(obj.phaseIndex==5){
+                    me.initMeeting(obj);
+                }else if(obj.phaseIndex==6){
+                    me.initOtherEA(obj);
+                }else if(obj.phaseIndex==7){
+                    me.initMakeContact(obj);
+                }else if(obj.phaseIndex==8){
+                    //me.initMakeContactOA(obj);
                 }
+            });
+        });
 
-                var key = this.key++;
-                var tr = $('<tr key="' + key + '"></tr>');
-                table.append(tr);
-
-                var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
-                tr.append(checkbox);
-
-                var row = $('<td><div class="form-input "><input name="name" class="form-data-field" value="'+it["name"]+'" ><input name="id" type="hidden" class="form-data-field-hidden" value="'+it["id"]+'" ></div></td>');
-                tr.append(row);
-                tr.append(row);
-                //f_tcalInit();
-            }
-        }
     },
 
-    /**
-     * ���¼�
-     */
-    initEvent : function() {
-        //���� ��
-        $(".t1 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(1);
+    initGatherInfo: function(modlePhase){
+        var me =  this;
+        // load phaseParticipants
+        var ids = [];
+        $.each(modlePhase.phaseParticipants, function(index, obj){
+            ids.push(obj.id);
         });
-        $(".t2 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(2);
-        });
-        $(".t3 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(3);
-        });
-        $(".t4 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(4);
-        });
-        $(".t5 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(5);
-        });
-        $(".t6 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(6);
-        });
-        $(".t7 .setting-save").click(function () {
-            ProjectModelRoleSetting.saveSettingResult(7);
+        var ROLE = $.project.domain(ids,"com.jsy.auth.Role",["name","authority"]);
+        $.each(ids,function(index, obj){
+            var role = ROLE.getItem(obj);
+            me.addXianshiTableRow($("#xianshi_table1"), role);
         });
 
-        //����� ��
-        $(".t1 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(1);
-        });
-        $(".t2 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(2);
-        });
-        $(".t3 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(3);
-        });
-        $(".t4 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(4);
-        });
-        $(".t5 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(5);
-        });
-        $(".t6 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(6);
-        });
-        $(".t7 .setting-add").click(function () {
-            ProjectModelRoleSetting.addXianshiTableRow(7);
-        });
 
-        //ɾ���� ��
-        $(".t1 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(1);
-        });
-        $(".t2 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(2);
-        });
-        $(".t3 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(3);
-        });
-        $(".t4 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(4);
-        });
-        $(".t5 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(5);
-        });
-        $(".t6 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(6);
-        });
-        $(".t7 .setting-remove").click(function () {
-            ProjectModelRoleSetting.removeTr(7);
-        });
+    },
 
-        //现有的输入框
-        $("input[name='name']").autocomplete({
-            serviceUrl: '../rest/auto/get',
-            type: 'POST',
-            params: {
-                url: '/api/role/nameLike'
-            },
-            paramName: 'params',
-            onSelect: function (suggestion) {
-                //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-                console.log(suggestion.data)
-                $(name).val(suggestion.value);
-                $(id).val(suggestion.data);
-            },
-            transformResult: function (response) {
-                console.log(response);
-                //clear old value
-                $(name).val("");
-                $(id).val("");
-                if (!response || response == '') {
-                    return {
-                        "query": "Unit",
-                        "suggestions": []
-                    };
-                } else {
-                    var result = JSON.parse(response).rest_result;
-                    var suggestions = (result.suggestions);
-                    result.suggestions = suggestions;
-                    return result;
-                }
-            }
+    initResearch: function(modlePhase){
+        var me =  this;
+        // load phaseParticipants
+        var ids = [];
+        $.each(modlePhase.phaseParticipants, function(index, obj){
+            ids.push(obj.id);
+        });
+        var ROLE = $.project.domain(ids,"com.jsy.auth.Role",["name","authority"]);
+        $.each(ids,function(index, obj){
+            var role = ROLE.getItem(obj);
+            me.addXianshiTableRow($("#xianshi_table3"), role);
         });
     },
 
-    /**
-     * ���һ��
-     * @param index tab�±�
-     */
-    addXianshiTableRow : function(index){
-        var xianshi_table;
-        switch (index){
-            case 1 :
-                xianshi_table = $("#xianshi_table1");
-                break;
-            case 2 :
-                xianshi_table = $("#xianshi_table2");
-                break;
-            case 3 :
-                xianshi_table = $("#xianshi_table3");
-                break;
-            case 4 :
-                xianshi_table = $("#xianshi_table4");
-                break;
-            case 5 :
-                xianshi_table = $("#xianshi_table5");
-                break;
-            case 6 :
-                xianshi_table = $("#xianshi_table6");
-                break;
-            case 7 :
-                xianshi_table = $("#xianshi_table7");
-                break;
-            default :
-                xianshi_table = $("#xianshi_table1");
-        }
+    initMeeting: function(modlePhase){
+        var me =  this;
+        // load phaseParticipants
+        var ids = [];
+        $.each(modlePhase.phaseParticipants, function(index, obj){
+            ids.push(obj.id);
+        });
+        var ROLE = $.project.domain(ids,"com.jsy.auth.Role",["name","authority"]);
+        $.each(ids,function(index, obj){
+            var role = ROLE.getItem(obj);
+            me.addXianshiTableRow($("#xianshi_table5"), role);
+        });
+    },
+
+    initOtherEA: function(modlePhase){
+        var me =  this;
+        // load phaseParticipants
+        var ids = [];
+        $.each(modlePhase.phaseParticipants, function(index, obj){
+            ids.push(obj.id);
+        });
+        var ROLE = $.project.domain(ids,"com.jsy.auth.Role",["name","authority"]);
+        $.each(ids,function(index, obj){
+            var role = ROLE.getItem(obj);
+            me.addXianshiTableRow($("#xianshi_table6"), role);
+        });
+    },
+
+    initMakeContact: function(modlePhase){
+        var me =  this;
+        // load phaseParticipants
+        var ids = [];
+        $.each(modlePhase.phaseParticipants, function(index, obj){
+            ids.push(obj.id);
+        });
+        var ROLE = $.project.domain(ids,"com.jsy.auth.Role",["name","authority"]);
+        $.each(ids,function(index, obj){
+            var role = ROLE.getItem(obj);
+            me.addXianshiTableRow($("#xianshi_table7"), role);
+        });
+    },
+
+    addXianshiTableRow : function(xianshi_table, role){
         var key = this.key++;
         var tr = $('<tr key="' + key + '"></tr>');
         xianshi_table.append(tr);
@@ -339,9 +177,12 @@ var ProjectModelRoleSetting = {
         td.append(div);
         var name = $('<input name="name" class="form-data-field">');
         var id  = $('<input name="id" class="form-data-field-hidden" type="hidden">');
+        if(role){
+            name.val(role.name);
+            id.val(role.id);
+        }
         div.append(name);
         div.append(id);
-        console.log($(name));
         $(name).autocomplete({
             serviceUrl: '../rest/auto/get',
             type: 'POST',
@@ -365,8 +206,8 @@ var ProjectModelRoleSetting = {
                         "suggestions": []
                     };
                 } else {
-                    var result = JSON.parse(response).rest_result;
-                    var suggestions = (result.suggestions);
+                    var result = JSON.parse(response);
+                    var suggestions = JSON.parse(result.suggestions);
                     result.suggestions = suggestions;
                     return result;
                 }
@@ -374,107 +215,17 @@ var ProjectModelRoleSetting = {
         });
     },
 
-    /**
-     * ����
-     * @param index tab�±�
-     */
-    saveSettingResult : function(index){
-        var xianshi_table;
-        var phaseIndex = 0;
-        switch (index){
-            case 1 :
-                phaseIndex = 1;
-                xianshi_table = $("#xianshi_table1");
-                break;
-            case 2 :
-                phaseIndex = 2;
-                xianshi_table = $("#xianshi_table2");
-                break;
-            case 3 :
-                phaseIndex = 3;
-                xianshi_table = $("#xianshi_table3");
-                break;
-            case 4 :
-                phaseIndex = 4;
-                xianshi_table = $("#xianshi_table4");
-                break;
-            case 5 :
-                phaseIndex = 5;
-                xianshi_table = $("#xianshi_table5");
-                break;
-            case 6 :
-                phaseIndex = 6;
-                xianshi_table = $("#xianshi_table6");
-                break;
-            case 7 :
-                phaseIndex = 7;
-                xianshi_table = $("#xianshi_table7");
-                break;
-            default :
-                xianshi_table = $("#xianshi_table1");
+    removeTableItem:function(tabletr){
+        var tabletr;
+
+        if (tabletr && tabletr.length) {
+            for (var i = 0; i < tabletr.length; i++) {
+                $(tabletr[i]).remove();
+            }
         }
-
-        var _this=this;
-
-        var params = JSON.stringify({phaseIndex:index });
-        var data   = {url:"/api/project/removeProjectModelrRoles",params:params};
-        $.io.del(data)
-            .success(function(result){
-                var rows = xianshi_table.find("tr");
-                rows.each(function(i){
-                    var cells = rows.eq(i).find("input.form-data-field-hidden");
-                    var tempObj={};
-                    cells.each(function(idx){
-                        var obj=cells.eq(idx);
-                        tempObj["id"]=obj.val();
-                    });
-                    //console.log(tempObj);
-                    if($.isEmptyObject(tempObj))return;
-                    var model = $.extend(true, {
-                            phaseIndex:phaseIndex
-                        },tempObj);
-                    var data   = {url:"/api/project/setProjectModelRole",params:JSON.stringify(model)};
-                    $.io.post(data)
-                        .success(function(result){
-
-                        })
-                        .error(function(result){
-                            alert(result)
-                        });
-                });
-            })
-            .error(function(result){
-                alert(result)
-            });
     },
 
-    removeTr: function (index) {//ɾ��ѡ����
-        var xianshi_table;
-        switch (index){
-            case 1 :
-                xianshi_table = $("#xianshi_table1");
-                break;
-            case 2 :
-                xianshi_table = $("#xianshi_table2");
-                break;
-            case 3 :
-                xianshi_table = $("#xianshi_table3");
-                break;
-            case 4 :
-                xianshi_table = $("#xianshi_table4");
-                break;
-            case 5 :
-                xianshi_table = $("#xianshi_table5");
-                break;
-            case 6 :
-                xianshi_table = $("#xianshi_table6");
-                break;
-            case 7 :
-                xianshi_table = $("#xianshi_table7");
-                break;
-            default :
-                xianshi_table = $("#xianshi_table1");
-        }
+    removeTr: function (xianshi_table) {
         var trs = xianshi_table.find('tr');
         for (var i = 1; i < trs.length; i++) {
             var item = $(trs.get(i));
@@ -485,5 +236,55 @@ var ProjectModelRoleSetting = {
                 }
             }
         }
+    },
+
+    /**
+     * 初始化事件
+     */
+    initEvent : function(){
+        var me  = this;
+        $(".setting-add").click(function(){
+            var tableid = $(this).data('tableid');
+            me.addXianshiTableRow($("#xianshi_table"+tableid));
+        });
+
+        $(".setting-save").click(function(){
+            var tableid = $(this).data('tableid');
+            var roleids = [];
+            $.each($("input[name='id']","#xianshi_table"+tableid), function(index, obj){
+                roleids.push($(obj).val());
+            });;
+            console.log(roleids);
+            var data = {url:'/api/project/setProjectModelRole', params:JSON.stringify({phaseIndex:tableid,roleids:roleids})};
+            $.io.post(data).success(function(){
+                alert("更新成功");
+            });
+        });
+
+        $(".setting-remove").click(function(){
+            var tableid = $(this).data('tableid');
+            me.removeTr($("#xianshi_table"+tableid));
+        });
+
     }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -96,6 +96,113 @@ var VIEWDATA={
             me.countRemainMoney();
         });
 
+
+        $("#out_company").autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fundCompanyInformation/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#out_company").val(suggestion.value);
+                    $("#out_company").data("id",suggestion.data);
+                    if($("#out_company").data("id")!=$("#out_company").data("oldid")){
+                        $("#out_company").data("oldid",suggestion.data);
+
+                        //加载银行信息列表
+                        if(suggestion.data.indexOf('F-')!=-1){
+                            var companyid = suggestion.data.replace("F-","")
+                            var data = {url:'/api/fundCompanyInformation/loadFBanks', params:JSON.stringify({companyid:companyid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks_To(banks,"out_banks");
+                            });
+                        }else{
+                            var customerid = suggestion.data.replace("C-","")
+                            var data = {url:'/api/fundCompanyInformation/loadCBanks', params:JSON.stringify({customerid:customerid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks_To(banks,"out_banks");
+                            });
+                        }
+                    }
+
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#out_company").val("");
+                    $("#out_company").data("id","");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
+        $("#in_company").autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fundCompanyInformation/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#in_company").val(suggestion.value);
+                    $("#in_company").data("id",suggestion.data);
+                    if($("#in_company").data("id")!=$("#in_company").data("oldid")){
+                        $("#in_company").data("oldid",suggestion.data);
+
+                        //加载银行信息列表
+                        if(suggestion.data.indexOf('F-')!=-1){
+                            var companyid = suggestion.data.replace("F-","")
+                            var data = {url:'/api/fundCompanyInformation/loadFBanks', params:JSON.stringify({companyid:companyid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"in_banks");
+                            });
+                        }else{
+                            var customerid = suggestion.data.replace("C-","")
+                            var data = {url:'/api/fundCompanyInformation/loadCBanks', params:JSON.stringify({customerid:customerid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"in_banks");
+                            });
+                        }
+                    }
+
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#in_company").val("");
+                    $("#in_company").data("id","");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
         $("#add_receive").click(function(){
             var remain_money = $("#remain_money").val();
 
@@ -104,7 +211,11 @@ var VIEWDATA={
             var projectid = $("#project").val();
             var paydate = $("#paydate").val();
             var paytotal = STRINGFORMAT.toNumber($("#paytotal").val());
-            var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+
+            var out_bankselect = $('input[name="bankselect_out_banks"]:radio:checked',"#out_banklist").val();
+            var in_bankselect = $('input[name="bankselect_in_banks"]:radio:checked',"#in_banklist").val();
+            var in_company = $("#in_company").data("id");
+            var out_company = $("#out_company").data("id");
 
 
             if(!fundid || !projectid){
@@ -143,9 +254,13 @@ var VIEWDATA={
                 projectid:projectid,
                 paydate:paydate,
                 paytotal:paytotal,
-                bankid:bankid,
                 receiveDetail_struct:receiveDetail_struct,
-                remain_money_suggest:remain_money
+                remain_money_suggest:remain_money,
+
+                out_bankselect:out_bankselect,
+                in_bankselect:in_bankselect,
+                in_company:in_company,
+                out_company:out_company
             };
 
             var params = JSON.stringify(model);
@@ -162,6 +277,45 @@ var VIEWDATA={
 
 
 
+    },
+
+    load_banks: function(banks, target){
+        $.each(banks,function(index,obj){
+            if(obj.defaultAccount){
+                $("#"+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                );
+            }else{
+                $("#"+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                );
+            }
+
+        });
+    },
+
+    load_banks_To: function(banks, target){
+        var me = this;
+        $.each(banks,function(index,obj){
+            if(obj.defaultAccount){
+                $('#'+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
+                );
+            }else{
+                $('#'+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
+                );
+            }
+
+        });
+
+
+        //加载完毕银行账户后，设置剩余余额为收款余额
+        var bankid = $("input[name='bankselect_"+target+"'][type='radio']:checked").val();
+        $("#remain_money").val($("#bankOverReceive_"+bankid).val());
+        $("input[name='bankselect_"+target+"'][type='radio']").change(function(){
+            me.countRemainMoney();
+        });
     },
 
 
@@ -197,7 +351,7 @@ var VIEWDATA={
             }
         }
 
-        var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+        var bankid = $("input[name='bankselect_out_banks'][type='radio']:checked").val();
         if(!bankid){
             return;
         }
@@ -221,7 +375,7 @@ var VIEWDATA={
         });
 
 
-        var bankid = $("input[name='bankselect'][type='radio']:checked").val();
+        var bankid = $("input[name='bankselect_out_banks'][type='radio']:checked").val();
         var bankidOverReceive= parseFloat($("#bankOverReceive_"+bankid).val());
         paytotal = paytotal + bankidOverReceive*1;
 
@@ -402,30 +556,6 @@ var VIEWDATA={
                     me.loadPayRecords(projectid);
                     me.reloadLabelRate(me.projects[projectid]);
                 }
-
-
-                if(rest_result&& rest_result.banks){
-                    $.each(rest_result.banks,function(index,obj){
-                        if(obj.defaultAccount){
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
-                            );
-                        }else{
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;"><input id="bankOverReceive_'+obj.id+'" type="hidden" value="'+obj.overReceive+'">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'|收款余额:'+obj.overReceive+'</label><br>'
-                            );
-                        }
-
-                    });
-                }
-
-
-                //加载完毕银行账户后，设置剩余余额为收款余额
-                var bankid = $("input[name='bankselect'][type='radio']:checked").val();
-                $("#remain_money").val($("#bankOverReceive_"+bankid).val());
-                $("input[name='bankselect'][type='radio']").change(function(){
-                    console.log($("input[name='bankselect'][type='radio']:checked").val());
-                });
             },
             error: function(result){
                 alert('提交时错误:'+result);

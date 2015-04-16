@@ -58,6 +58,112 @@ var VIEWDATA={
                 }
             });
 
+        $("#out_company").autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fundCompanyInformation/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#out_company").val(suggestion.value);
+                    $("#out_company").data("id",suggestion.data);
+                    if($("#out_company").data("id")!=$("#out_company").data("oldid")){
+                        $("#out_company").data("oldid",suggestion.data);
+
+                        //加载银行信息列表
+                        if(suggestion.data.indexOf('F-')!=-1){
+                            var companyid = suggestion.data.replace("F-","")
+                            var data = {url:'/api/fundCompanyInformation/loadFBanks', params:JSON.stringify({companyid:companyid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"out_banks");
+                            });
+                        }else{
+                            var customerid = suggestion.data.replace("C-","")
+                            var data = {url:'/api/fundCompanyInformation/loadCBanks', params:JSON.stringify({customerid:customerid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"out_banks");
+                            });
+                        }
+                    }
+
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#out_company").val("");
+                    $("#out_company").data("id","");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
+        $("#in_company").autocomplete(
+            {
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fundCompanyInformation/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#in_company").val(suggestion.value);
+                    $("#in_company").data("id",suggestion.data);
+                    if($("#in_company").data("id")!=$("#in_company").data("oldid")){
+                        $("#in_company").data("oldid",suggestion.data);
+
+                        //加载银行信息列表
+                        if(suggestion.data.indexOf('F-')!=-1){
+                            var companyid = suggestion.data.replace("F-","")
+                            var data = {url:'/api/fundCompanyInformation/loadFBanks', params:JSON.stringify({companyid:companyid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"in_banks");
+                            });
+                        }else{
+                            var customerid = suggestion.data.replace("C-","")
+                            var data = {url:'/api/fundCompanyInformation/loadCBanks', params:JSON.stringify({customerid:customerid})};
+                            $.io.get(data).success(function(banks){
+                                console.log(banks);
+                                me.load_banks(banks,"in_banks");
+                            });
+                        }
+                    }
+
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#in_company").val("");
+                    $("#in_company").data("id","");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
+
         $("#add_pay_record").click(function(){
             var fundid = $("#_fundname").val();
             var project = $("#project").val();
@@ -76,7 +182,10 @@ var VIEWDATA={
             }
 
             var moneyUseType = $('input[name="moneyUseType"]:radio:checked').val();
-            var bankselect = $('input[name="bankselect"]:radio:checked').val();
+            var out_bankselect = $('input[name="bankselect_out_banks"]:radio:checked',"#out_banklist").val();
+            var in_bankselect = $('input[name="bankselect_in_banks"]:radio:checked',"#in_banklist").val();
+            var in_company = $("#in_company").data("id");
+            var out_company = $("#out_company").data("id");
 
             var model = {
                 fundid:fundid,
@@ -84,10 +193,27 @@ var VIEWDATA={
                 paydate:paydate,
                 paytotal:paytotal,
                 moneyUseType:moneyUseType,
-                bankselect:bankselect
+                out_bankselect:out_bankselect,
+                in_bankselect:in_bankselect,
+                in_company:in_company,
+                out_company:out_company
             };
 
             me.post_complete('/api/payRecord/add_pay_record', model);
+        });
+    },
+    load_banks: function(banks, target){
+        $.each(banks,function(index,obj){
+            if(obj.defaultAccount){
+                $("#"+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                );
+            }else{
+                $("#"+target).append(
+                    '<label><input type="radio" name="bankselect_'+target+'" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
+                );
+            }
+
         });
     },
     load_projectinfos: function(fundid){
@@ -113,29 +239,7 @@ var VIEWDATA={
                     });
                 }
 
-                if(rest_result&& rest_result.banks){
-                    $.each(rest_result.banks,function(index,obj){
-                        if(obj.defaultAccount){
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'" checked="checked"  style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
-                            );
-                        }else{
-                            $('#banklist').append(
-                                '<label><input type="radio" name="bankselect" value="'+obj.id+'"   style="height: 16px;width: 16px; position: relative;top: 3px;">'+obj.bankName+'|开户行:'+obj.bankOfDeposit+'|户名:'+obj.accountName+'|账号:'+obj.account+'|用途:'+obj.purposeName+'</label><br>'
-                            );
-                        }
 
-                    });
-
-                    //$("input[name='bankselect']").change(function(){
-                    //    var selected = $(this).val();
-                    //    $.each(rest_result.banks,function(index,obj){
-                    //        if(obj.id==selected){
-                    //
-                    //        }
-                    //    });
-                    //});
-                }
 
 
             },
