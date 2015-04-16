@@ -143,7 +143,7 @@
                             </thead>
                             <tbody>
                                 <tr ms-repeat="data">
-                                    <td>{{$index+1}}</td>
+                                    <td>{{el.id}}</td>
                                     <td>{{$.utils.dateFormat(el.stockDate,"yyyy-MM-dd")}}</td>
                                     <td>{{el.structure}}</td>
                                     <td>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-box box-toggle" data-ms-controller="EndProject">
+            <div class="content-box box-toggle">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">附件信息</span>
 
@@ -167,18 +167,18 @@
                 </div>
 
                 <div class="content-box-wrapper clearfix">
-                    <div class="col-md-6">
+                    <div class="col-md-6" ms-controller="StartProjectFile">
                         <div class="form-row">
                             <div class="col-md-8">
                                 <div class="col-md-4 form-label">
                                     <label for="start-project-file" title="选择项目文件">选择项目文件：</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" id="start-project-file" />
+                                    <input type="file" id="start-project-file" name="attachment" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn-ui btn bg-green medium mrg10L">
+                                <button class="btn-ui btn bg-green medium mrg10L" ms-click="upload">
                                     <span class="button-content">上传项目文件</span>
                                 </button>
                             </div>
@@ -189,18 +189,16 @@
                                 <th class="text-center">编号</th>
                                 <th class="text-center">文件名</th>
                                 <th class="text-center">文件路径</th>
-                                <th class="text-center">文件类型</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2013-12-31</td>
-                                <td>股份结构</td>
-                                <td>股份结构</td>
+                            <tr ms-repeat="data">
+                                <td>{{el.id}}</td>
+                                <td>{{el.fileName}}</td>
+                                <td>{{el.filePath}}</td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>
@@ -208,18 +206,18 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" ms-controller="EndProjectFile">
                         <div class="form-row">
                             <div class="col-md-8">
                                 <div class="col-md-4 form-label">
                                     <label for="end-project-file" title="选择结算文件">选择结算文件：</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" id="end-project-file" />
+                                    <input type="file" id="end-project-file" name="attachment" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn-ui btn bg-green medium mrg10L">
+                                <button class="btn-ui btn bg-green medium mrg10L" ms-click="upload">
                                     <span class="button-content">上传结算文件</span>
                                 </button>
                             </div>
@@ -230,18 +228,16 @@
                                 <th class="text-center">编号</th>
                                 <th class="text-center">文件名</th>
                                 <th class="text-center">文件路径</th>
-                                <th class="text-center">文件类型</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2013-12-31</td>
-                                <td>股份结构</td>
-                                <td>股份结构</td>
+                            <tr ms-repeat="data">
+                                <td>{{el.id}}</td>
+                                <td>{{el.fileName}}</td>
+                                <td>{{el.filePath}}</td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>

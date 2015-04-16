@@ -27640,6 +27640,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
 
                 // Pass back to the user
                 settings.onComplete.apply(element, [response, settings.params]);
+                $element.data('ajaxUploader-setup', false);
             };
 
             /*
@@ -27711,11 +27712,11 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
 
             if (!settings.submit_button)
             {
-                $element.change(function(){
-					// since a new image was selected, reset the marker
-					uploading_file = false;
-					upload_file();
-				});
+                //$element.change(function(){
+				//	// since a new image was selected, reset the marker
+				//	uploading_file = false;
+				//	upload_file();
+				//});
             } else
             {
                 settings.submit_button.click(function(e)
