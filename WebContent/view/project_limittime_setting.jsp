@@ -28,7 +28,7 @@
                         </a>
                     </div>
                     <div class="content-box-wrapper">
-                        <div style="width: 900px" id="item_settingPanel">
+                        <div style="width: 900px;height: 500px;" id="item_settingPanel">
                             <div class="form-row">
                                 <div class="tabs">
                                     <ul>
@@ -37,21 +37,21 @@
                                                 资料采集
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#normal-tabs-2" title="OA审核">
-                                                资料评判
-                                            </a>
-                                        </li>
+                                        <%--<li>--%>
+                                            <%--<a href="#normal-tabs-2" title="OA审核">--%>
+                                                <%--资料评判--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li>
                                             <a href="#normal-tabs-3" title="项目部负责发起申请，法务部，财务部配合">
                                                 现场考察（方案确定)
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="#normal-tabs-4" title="OA审核">
-                                                现场考察(OA审核)
-                                            </a>
-                                        </li>
+                                        <%--<li>--%>
+                                            <%--<a href="#normal-tabs-4" title="OA审核">--%>
+                                                <%--现场考察(OA审核)--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
                                         <li>
                                             <a href="#normal-tabs-5" title="项目部负责发起申请，法务部，财务部配合">
                                                 投决会
@@ -82,15 +82,42 @@
                                                                                       title="限时结束时间">限时结束时间</span>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_1" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_1" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_1" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_1" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_1" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_1" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+
+                                                    </tbody>
                                                 </table>
 
                                                 <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
                                                     <button type="button"
                                                             class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                                                         <span class="button-content">保存</span></button>
@@ -98,37 +125,37 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="normal-tabs-2">
-                                        <div class="form-bordered">
-                                            <div class="form-row t2">
-                                                <table id = "xianshi_table2" class="table text-center mrg0B xianshi_table" >
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
-                                                        <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                                        <th class="text-center"><span class="text-overflow item-date"
-                                                                                      title="限时开始时间">限时开始时间</span>
-                                                        <th class="text-center"><span class="text-overflow item-date"
-                                                                                      title="限时结束时间">限时结束时间</span>
-                                                    </tr>
-                                                    </thead>
-                                                </table>
+                                    <%--<div id="normal-tabs-2">--%>
+                                        <%--<div class="form-bordered">--%>
+                                            <%--<div class="form-row t2">--%>
+                                                <%--<table id = "xianshi_table2" class="table text-center mrg0B xianshi_table" >--%>
+                                                    <%--<thead>--%>
+                                                    <%--<tr>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow">用户名称</span></th>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow item-date"--%>
+                                                                                      <%--title="限时开始时间">限时开始时间</span>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow item-date"--%>
+                                                                                      <%--title="限时结束时间">限时结束时间</span>--%>
+                                                    <%--</tr>--%>
+                                                    <%--</thead>--%>
+                                                <%--</table>--%>
 
-                                                <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
-                                                        <span class="button-content">保存</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <%--<div class="button-pane">--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">--%>
+                                                        <%--<span class="button-content">删除选中行</span></button>--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-add">--%>
+                                                        <%--<span class="button-content">增加一行</span></button>--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-save">--%>
+                                                        <%--<span class="button-content">保存</span></button>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
 
-                                    </div>
+                                    <%--</div>--%>
                                     <div id="normal-tabs-3">
                                         <div class="form-bordered">
                                             <div class="form-row t3">
@@ -143,15 +170,41 @@
                                                                                       title="限时结束时间">限时结束时间</span>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_3" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_3" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_3" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_3" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_3" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_3" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
 
                                                 <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
                                                     <button type="button"
                                                             class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                                                         <span class="button-content">保存</span></button>
@@ -159,37 +212,37 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="normal-tabs-4">
-                                        <div class="form-bordered">
-                                            <div class="form-row t4">
-                                                <table id = "xianshi_table4" class="table text-center mrg0B xianshi_table" >
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>
-                                                        <th class="text-center"><span class="text-overflow">用户名称</span></th>
-                                                        <th class="text-center"><span class="text-overflow item-date"
-                                                                                      title="限时开始时间">限时开始时间</span>
-                                                        <th class="text-center"><span class="text-overflow item-date"
-                                                                                      title="限时结束时间">限时结束时间</span>
-                                                    </tr>
-                                                    </thead>
-                                                </table>
+                                    <%--<div id="normal-tabs-4">--%>
+                                        <%--<div class="form-bordered">--%>
+                                            <%--<div class="form-row t4">--%>
+                                                <%--<table id = "xianshi_table4" class="table text-center mrg0B xianshi_table" >--%>
+                                                    <%--<thead>--%>
+                                                    <%--<tr>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow"><input type="checkbox" /></span></th>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow">用户名称</span></th>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow item-date"--%>
+                                                                                      <%--title="限时开始时间">限时开始时间</span>--%>
+                                                        <%--<th class="text-center"><span class="text-overflow item-date"--%>
+                                                                                      <%--title="限时结束时间">限时结束时间</span>--%>
+                                                    <%--</tr>--%>
+                                                    <%--</thead>--%>
+                                                <%--</table>--%>
 
-                                                <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
-                                                        <span class="button-content">保存</span></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <%--<div class="button-pane">--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">--%>
+                                                        <%--<span class="button-content">删除选中行</span></button>--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-add">--%>
+                                                        <%--<span class="button-content">增加一行</span></button>--%>
+                                                    <%--<button type="button"--%>
+                                                            <%--class="btn-ui btn bg-green large medium float-right mrg10L setting-save">--%>
+                                                        <%--<span class="button-content">保存</span></button>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
 
-                                    </div>
+                                    <%--</div>--%>
                                     <div id="normal-tabs-5">
                                         <div class="form-bordered">
                                             <div class="form-row t5">
@@ -204,14 +257,40 @@
                                                                                       title="限时结束时间">限时结束时间</span>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_5" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_5" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_5" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_5" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_5" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_5" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                                 <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
                                                     <button type="button"
                                                             class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                                                         <span class="button-content">保存</span></button>
@@ -234,15 +313,41 @@
                                                                                       title="限时结束时间">限时结束时间</span>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_6" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_6" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_6" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_6" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="checkbox" name="checkbox"></td>
+                                                            <td><div class="form-input "><input name="accessor_6" data-id data-oldid class="form-data-field" ></div></td>
+                                                            <td><div class="form-input "><input name="fromDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                            <td><div class="form-input "><input name="toDate_6" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
 
                                                 <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
                                                     <button type="button"
                                                             class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                                                         <span class="button-content">保存</span></button>
@@ -265,15 +370,41 @@
                                                                                       title="限时结束时间">限时结束时间</span>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="checkbox"></td>
+                                                        <td><div class="form-input "><input name="accessor_7" data-id data-oldid class="form-data-field" ></div></td>
+                                                        <td><div class="form-input "><input name="fromDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        <td><div class="form-input "><input name="toDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="checkbox"></td>
+                                                        <td><div class="form-input "><input name="accessor_7" data-id data-oldid class="form-data-field" ></div></td>
+                                                        <td><div class="form-input "><input name="fromDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        <td><div class="form-input "><input name="toDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="checkbox"></td>
+                                                        <td><div class="form-input "><input name="accessor_7" data-id data-oldid class="form-data-field" ></div></td>
+                                                        <td><div class="form-input "><input name="fromDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        <td><div class="form-input "><input name="toDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="checkbox"></td>
+                                                        <td><div class="form-input "><input name="accessor_7" data-id data-oldid class="form-data-field" ></div></td>
+                                                        <td><div class="form-input "><input name="fromDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        <td><div class="form-input "><input name="toDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="checkbox"></td>
+                                                        <td><div class="form-input "><input name="accessor_7" data-id data-oldid class="form-data-field" ></div></td>
+                                                        <td><div class="form-input "><input name="fromDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                        <td><div class="form-input "><input name="toDate_7" class="form-data-field col-md-12 tcal tcalInput" ></div></td>
+                                                    </tr>
+                                                    </tbody>
                                                 </table>
 
                                                 <div class="button-pane">
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-remove">
-                                                        <span class="button-content">删除选中行</span></button>
-                                                    <button type="button"
-                                                            class="btn-ui btn bg-green large medium float-right mrg10L setting-add">
-                                                        <span class="button-content">增加一行</span></button>
                                                     <button type="button"
                                                             class="btn-ui btn bg-green large medium float-right mrg10L setting-save">
                                                         <span class="button-content">保存</span></button>
@@ -292,6 +423,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../js/project_limittime_set.js"></script>
+    <script type="text/javascript" src="../js/project_limittime_setting.js"></script>
 </body>
 </html>
