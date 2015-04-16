@@ -40,3 +40,7 @@ input[readonly=true] {background: #EAE5E5;}
 .pos-rel { position: relative;}
 
 .ms-controller,.ms-important,[ms-controller],[ms-important]{visibility: hidden;}
+
+#notification .dropdown,
+#notification .copyright { float:left; display: block;}
+#notification .copyright { color: #FFFFFF; line-height: 54px; text-indent: 30px;}

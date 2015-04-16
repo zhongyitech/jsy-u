@@ -156,8 +156,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 pad0R auto-height clearfix">
-                    <div class="content-box box-toggle auto-height" id="tcfpfw-view">
+                <div class="col-md-6 pad0R clearfix">
+                    <div class="content-box box-toggle" id="tcfpfw-view">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
                             <a href="#" class="float-right icon-separator btn toggle-button" title="提成分配范围">
