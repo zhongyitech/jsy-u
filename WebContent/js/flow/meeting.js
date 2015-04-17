@@ -16,11 +16,25 @@ App.Meeting = {
         var me = this;
         /***初始化事件***/
         $("#meetingFiles").change(function() {
-            me.meetingFiles_attachments = FILE.upload($(this)[0].files);
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.meetingFiles_attachments = response.rest_result;
+                }
+            });
         });
 
         $("#meeting_attachment_1").change(function() {
-            me.meeting_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.meeting_other_attachments.push({index:1,files:response.rest_result});
+                }
+            });
         });
 
         $("#meeting_add_file").click(function () {
@@ -41,7 +55,14 @@ App.Meeting = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.meeting_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
+
+                var fileId = "#"+$(this).attr("id");
+                $.utils.upload({
+                    files:fileId,
+                    success:function(response){
+                        me.meeting_other_attachments.push({index:i,files:response.rest_result});
+                    }
+                });
             });
         });
 

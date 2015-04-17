@@ -238,19 +238,27 @@ var VIEWDATA = {
     attach_change_event: function (input_file) {
         var index = $(input_file).attr("id").replace("invest-attachment", "");
 
-        var attachments = this.file.upload($(input_file)[0].files);
-        var attachment_src = '../rest/file/download?path=' + attachments[0][this.file.PATH_KEY];
+        var fileId = "#"+$(input_file).attr("id");
+        $.utils.upload({
+            files:fileId,
+            success:function(response){
+                var attachments = response.rest_result;
+                var attachment_src = '../rest/file/download?path=' + attachments[0][this.file.PATH_KEY];
 
-        var attach_img = $("#invest-attachment-img" + index);
-        if (attach_img.size() > 0) {
-            attach_img.attr("src", attachment_src);
-            $("#invest-img-key" + index).val(attachments[0][this.file.PATH_KEY]);
-        } else {
-            console.log(attachments[0]);
-            $("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
-            $("#pics").append("<input type='hidden' value='" + attachments[0][this.file.PATH_KEY] + "' id='invest-filepath" + index + "' >");
-            $("#pics").append("<input type='hidden' value='" + attachments[0]["fileName"] + "' id='invest-filename" + index + "' >");
-        }
+                var attach_img = $("#invest-attachment-img" + index);
+                if (attach_img.size() > 0) {
+                    attach_img.attr("src", attachment_src);
+                    $("#invest-img-key" + index).val(attachments[0][this.file.PATH_KEY]);
+                } else {
+                    console.log(attachments[0]);
+                    $("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
+                    $("#pics").append("<input type='hidden' value='" + attachments[0][this.file.PATH_KEY] + "' id='invest-filepath" + index + "' >");
+                    $("#pics").append("<input type='hidden' value='" + attachments[0]["fileName"] + "' id='invest-filename" + index + "' >");
+                }
+            }
+        });
+
+
 
     },
     getProjectOfHtbh: function (htbh) {

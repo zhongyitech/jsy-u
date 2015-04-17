@@ -142,8 +142,16 @@ var CUSTOMER_FORM = {//客户信息表单
         var me = this;
         var attachment = this.getAttachment();
         attachment.change(function () {
-            me.item[CUSTOMER.ATTACHMENT_KEY] = FILE.upload($(this)[0].files);
-            me.setAttachment(me.item);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.item[CUSTOMER.ATTACHMENT_KEY] = response.rest_result;
+                    me.setAttachment(me.item);
+                }
+            });
+
+
         });
     },
     getImage: function () {
