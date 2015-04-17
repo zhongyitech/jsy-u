@@ -2786,19 +2786,19 @@ var STRINGFORMAT = {
         if (!string) {
             return "";
         }
-        string = JSON.stringify(string);
+        string = string+"";
         return string.replace(/\D/g, '');
     },
     toYuan: function (number) {
         if (!number) {
             return "";
         }
-        number = JSON.stringify(number);
+        number = number+"";
         number = number.replace(/\D/g, '');
         if (!number) {
             return "";
         }
-        return '￥' + number.replace(/(\d)(?=(\d{3})+$)/ig, '$1,');
+        return '￥' + number.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g,',$1');
     },
     toRate: function (string) {
         if (!string) {
