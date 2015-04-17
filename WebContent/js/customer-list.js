@@ -166,6 +166,8 @@
             searchButton.unbind("click").bind("click", function () {
                 _this._render({startposition: 0, value: keyword.val()});
             });
+
+
         },
         render: function () {
             this._render();

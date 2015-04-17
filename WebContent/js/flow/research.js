@@ -18,16 +18,44 @@ App.Research = {
         var me = this;
         //初始化事件
         $("#lowFiles").change(function() {
-            me.lowFiles_attachments = FILE.upload($(this)[0].files);
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.lowFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#projectFiles").change(function() {
-            me.projectFiles_attachments = FILE.upload($(this)[0].files);
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.projectFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#finanFiles").change(function() {
-            me.finanFiles_attachments = FILE.upload($(this)[0].files);
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.finanFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#research_attachment_1").change(function() {
-            me.research_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.research_other_attachments.push({index:1,files:response.rest_result});
+                }
+            });
         });
 
         $("#research_add_file").click(function () {
@@ -52,7 +80,14 @@ App.Research = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.research_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
+
+                var fileId = "#"+$(this).attr("id");
+                $.utils.upload({
+                    files:fileId,
+                    success:function(response){
+                        me.research_other_attachments.push({index:i,files:response.rest_result});
+                    }
+                });
             });
         });
 

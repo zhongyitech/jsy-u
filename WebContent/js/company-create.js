@@ -203,7 +203,7 @@ var COMPANY_FORM={
 			if(v){
 				v.click(function(){
 					if(!$(me.getPartnerButton()).hasClass('disabled')){
-						$(me.getMenuPartner()).click();
+						$("#partner-button2").click();
 					}
 				});
 			}

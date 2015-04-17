@@ -35,7 +35,7 @@
                                     <label for="detail-id-1" title="董事">董事：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" id="detail-id-1" ms-duplex="project.director" />
+                                    <input type="text" id="detail-id-1" ms-duplex="data.director" />
                                 </div>
                             </div>
                             <div class="form-row form-input">
@@ -43,7 +43,7 @@
                                     <label for="detail-id-3" title="股干人员架构">股干人员架构：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea id="detail-id-3" rows="3" ms-duplex="project.stockStructure"></textarea>
+                                    <textarea id="detail-id-3" rows="3" ms-duplex="data.stockStructure"></textarea>
                                 </div>
                             </div>
                             <div class="form-row form-input">
@@ -51,7 +51,7 @@
                                     <label for="detail-id-4" title="债务">债务：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea id="detail-id-4" rows="3" ms-duplex="project.debt"></textarea>
+                                    <textarea id="detail-id-4" rows="3" ms-duplex="data.debt"></textarea>
                                 </div>
                             </div>
                             <div class="form-row form-input">
@@ -59,7 +59,7 @@
                                     <label for="detail-id-7" title="项目结算备注">项目结算备注：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea id="detail-id-7" rows="3" ms-duplex="project.endSummary"></textarea>
+                                    <textarea id="detail-id-7" rows="3" ms-duplex="data.endSummary"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                     <label for="detail-id-2" title="监事">监事：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" id="detail-id-2" ms-duplex="project.supervisor" />
+                                    <input type="text" id="detail-id-2" ms-duplex="data.supervisor" />
                                 </div>
                             </div>
                             <div class="form-row form-input">
@@ -77,7 +77,7 @@
                                     <label for="detail-id-5" title="资产">资产：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea id="detail-id-5" rows="3" ms-duplex="project.assets"></textarea>
+                                    <textarea id="detail-id-5" rows="3" ms-duplex="data.assets"></textarea>
                                 </div>
                             </div>
                             <div class="form-row form-input">
@@ -85,7 +85,7 @@
                                     <label for="detail-id-6" title="项目备注">项目备注：</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea id="detail-id-6" rows="3" ms-duplex="project.pdesc"></textarea>
+                                    <textarea id="detail-id-6" rows="3" ms-duplex="data.pdesc"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                     </button>
                 </div>
             </div>
-            <div class="content-box box-toggle" data-ms-controller="StockRight">
+            <div class="content-box box-toggle" ms-controller="StockRight">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">项目股权信息</span>
 
@@ -114,7 +114,7 @@
                                 <label for="t-cal" title="时间">时间：</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="tcal" id="t-cal" />
+                                <input type="text" class="tcal" id="t-cal" ms-duplex="stockDate" />
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -122,11 +122,11 @@
                                 <label for="stock-rights" title="股份结构">股份结构：</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" id="stock-rights" />
+                                <input type="text" id="stock-rights" ms-duplex="structure" />
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <button class="btn-ui btn bg-green medium mrg10L">
+                            <button class="btn-ui btn bg-green medium mrg10L" ms-click="add">
                                 <span class="button-content">添加</span>
                             </button>
                         </div>
@@ -142,12 +142,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2013-12-31</td>
-                                    <td>股份结构</td>
+                                <tr ms-repeat="data">
+                                    <td>{{el.id}}</td>
+                                    <td>{{$.utils.dateFormat(el.stockDate,"yyyy-MM-dd")}}</td>
+                                    <td>{{el.structure}}</td>
                                     <td>
-                                        <button class="btn-ui btn bg-green medium mrg10L">
+                                        <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                             <span class="button-content">删除</span>
                                         </button>
                                     </td>
@@ -157,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-box box-toggle" data-ms-controller="EndProject">
+            <div class="content-box box-toggle">
                 <div class="content-box-header primary-bg">
                     <span class="float-left">附件信息</span>
 
@@ -167,18 +167,18 @@
                 </div>
 
                 <div class="content-box-wrapper clearfix">
-                    <div class="col-md-6">
+                    <div class="col-md-6" ms-controller="StartProjectFile">
                         <div class="form-row">
                             <div class="col-md-8">
                                 <div class="col-md-4 form-label">
                                     <label for="start-project-file" title="选择项目文件">选择项目文件：</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" id="start-project-file" />
+                                    <input type="file" id="start-project-file" name="attachment" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn-ui btn bg-green medium mrg10L">
+                                <button class="btn-ui btn bg-green medium mrg10L" ms-click="upload">
                                     <span class="button-content">上传项目文件</span>
                                 </button>
                             </div>
@@ -189,18 +189,16 @@
                                 <th class="text-center">编号</th>
                                 <th class="text-center">文件名</th>
                                 <th class="text-center">文件路径</th>
-                                <th class="text-center">文件类型</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2013-12-31</td>
-                                <td>股份结构</td>
-                                <td>股份结构</td>
+                            <tr ms-repeat="data">
+                                <td>{{el.id}}</td>
+                                <td>{{el.fileName}}</td>
+                                <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>
@@ -208,18 +206,18 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" ms-controller="EndProjectFile">
                         <div class="form-row">
                             <div class="col-md-8">
                                 <div class="col-md-4 form-label">
                                     <label for="end-project-file" title="选择结算文件">选择结算文件：</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" id="end-project-file" />
+                                    <input type="file" id="end-project-file" name="attachment" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn-ui btn bg-green medium mrg10L">
+                                <button class="btn-ui btn bg-green medium mrg10L" ms-click="upload">
                                     <span class="button-content">上传结算文件</span>
                                 </button>
                             </div>
@@ -230,18 +228,16 @@
                                 <th class="text-center">编号</th>
                                 <th class="text-center">文件名</th>
                                 <th class="text-center">文件路径</th>
-                                <th class="text-center">文件类型</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2013-12-31</td>
-                                <td>股份结构</td>
-                                <td>股份结构</td>
+                            <tr ms-repeat="data">
+                                <td>{{el.id}}</td>
+                                <td>{{el.fileName}}</td>
+                                <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>

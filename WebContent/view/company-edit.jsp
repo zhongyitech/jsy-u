@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)公司简称:</label>
+                                <label  class="label-description">(*)公司简称:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="nickname">
@@ -44,7 +44,7 @@
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)联系电话:</label>
+                                <label  class="label-description">(*)联系电话:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="phone">
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)市:</label>
+                                <label  class="label-description">(*)市:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="city">
@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)状态:</label>
+                                <label  class="label-description">(*)状态:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="必填" type="text" id="status">
@@ -98,7 +98,7 @@
                                 <input class="tcal" placeholder="必填" type="text" id="found">
                             </div>
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">总公司:</label>
+                                <label  class="label-description">总公司:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="parent-input"></select>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)注册地址:</label>
+                                <label  class="label-description">(*)注册地址:</label>
                             </div>
                             <div class="form-input col-md-10">
                                 <input placeholder="必填" type="text" id="address">
@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)协议模板:</label>
+                                <label  class="label-description">(*)协议模板:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="template">
@@ -134,7 +134,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description" id="frdb-label">法人代表:</label>
+                                <label  class="label-description" id="frdb-label">法人代表:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="frdb" disabled="disabled">
@@ -143,7 +143,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description" id="partner-label">合伙人:</label>
+                                <label  class="label-description" id="partner-label">合伙人:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <div class="input-append-wrapper input-append-right">
@@ -156,7 +156,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">负责人:</label>
+                                <label  class="label-description">负责人:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <input placeholder="" type="text" id="assigner" disabled="disabled">

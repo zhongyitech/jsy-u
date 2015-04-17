@@ -20,22 +20,58 @@ App.GatherInfo = {
         var me = this;
         //初始化事件
         $("#certificateFiles").change(function() {
-            me.certificateFiles_attachments = FILE.upload($(this)[0].files);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.certificateFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#debtFiles").change(function() {
-            me.debtFiles_attachments = FILE.upload($(this)[0].files);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.debtFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#financialFiles").change(function() {
-            me.financialFiles_attachments = FILE.upload($(this)[0].files);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.financialFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#toPublicFiles").change(function() {
-            me.toPublicFiles_attachments = FILE.upload($(this)[0].files);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.toPublicFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#businessPlanFiles").change(function() {
-            me.businessPlanFiles_attachments = FILE.upload($(this)[0].files);
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.businessPlanFiles_attachments = response.rest_result;
+                }
+            });
         });
         $("#attachment_1").change(function() {
-            me.other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.other_attachments.push({index:1,files:response.rest_result});
+                }
+            });
         });
 
 
@@ -56,7 +92,16 @@ App.GatherInfo = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
+
+
+                var fileId = "#"+$(this).attr("id");
+                $.utils.upload({
+                    files:fileId,
+                    success:function(response){
+                        me.other_attachments.push({index:i,files:response.rest_result});
+                    }
+                });
+
             });
         });
 

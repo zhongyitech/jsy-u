@@ -16,11 +16,25 @@ App.OtherEA = {
         var me = this;
         /***初始化事件***/
         $("#thirdpartyLowFiles").change(function() {
-            me.thirdpartyLowFiles_attachments = FILE.upload($(this)[0].files);
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.thirdpartyLowFiles_attachments = response.rest_result;
+                }
+            });
         });
 
         $("#thirdpartyLow_attachment_1").change(function() {
-            me.thirdpartyLow_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.thirdpartyLow_other_attachments.push({index:1,files:response.rest_result});
+                }
+            });
         });
 
         $("#thirdpartyLow_add_file").click(function () {
@@ -41,7 +55,14 @@ App.OtherEA = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.thirdpartyLow_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
+
+                var fileId = "#"+$(this).attr("id");
+                $.utils.upload({
+                    files:fileId,
+                    success:function(response){
+                        me.thirdpartyLow_other_attachments.push({index:i,files:response.rest_result});
+                    }
+                });
             });
         });
 

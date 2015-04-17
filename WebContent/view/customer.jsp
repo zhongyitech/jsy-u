@@ -136,7 +136,7 @@
                             </div>
 
                             <div class="form-input col-md-10">
-                                <input id="attachment" class="input-file" type="file" multiple="multiple">
+                                <input id="attachment" name="attachment" class="input-file" type="file" multiple="multiple">
                             </div>
                         </div>
 

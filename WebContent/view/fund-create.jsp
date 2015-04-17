@@ -174,7 +174,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 pad0R auto-height clearfix">
+                <div class="col-md-6 pad0R clearfix">
                     <div id="tcfpfw-view" class="content-box box-toggle">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
