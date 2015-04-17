@@ -66,7 +66,14 @@ App.MakeContact = {
 
 
         $("#makeContact_attachment_1").change(function() {
-            me.makeContact_other_attachments.push({index:1,files:FILE.upload($(this)[0].files)});
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.makeContact_other_attachments.push({index:1,files:response.rest_result});
+                }
+            });
         });
         $("#makeContact_add_file").click(function () {
             var i =$("div .input-file","#makeContact_others_files").length+1;
@@ -85,7 +92,14 @@ App.MakeContact = {
             others_files.append(appenddiv);
 
             fileinput.change(function () {
-                me.makeContact_other_attachments.push({index:i,files:FILE.upload($(this)[0].files)});
+
+                var fileId = "#"+$(this).attr("id");
+                $.utils.upload({
+                    files:fileId,
+                    success:function(response){
+                        me.makeContact_other_attachments.push({index:i,files:response.rest_result});
+                    }
+                });
             });
         });
 

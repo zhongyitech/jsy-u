@@ -167,7 +167,6 @@ var VIEWDATA={
     attach_change_event: function (input_file) {
         var index = $(input_file).attr("id").replace("invest-attachment", "");
 
-        //var attachments = this.file.upload($(input_file)[0].files);
         $.utils.upload({
             files:$(input_file),
             success:function(response){
