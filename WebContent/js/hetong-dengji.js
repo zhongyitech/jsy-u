@@ -374,7 +374,7 @@ var HTDJ_LIST = {
             $.each(response, function (i, item) {
                 _self.fundids.push(item.fund.id);
             });
-            for (var i in response) {
+            for (var i=0;i<response.length;i++) {
                 this.add(response[i]);
             }
         }
@@ -397,13 +397,13 @@ var HTDJ_LIST = {
         item_tr.append(time_td);
 
         var user = item[this.htdj.DJR_KEY];
-        var username = this.user.getName(user[this.user.ID_KEY]);
+        var username = user&&this.user.getName(user[this.user.ID_KEY])||"";
         var user_td = $('<td><span class="item-value" title="' + username + '">' + username + '</span></td>');
         item_tr.append(user_td);
 
         var fund = item[this.htdj.FUND_KEY];
 //        var fundname = this.fund.getName(fund[this.fund.ID_KEY]);
-        var fundname = me.getFundName(fund.id);
+        var fundname = fund&&me.getFundName(fund.id)||"";
 
 
         var fund_td = $('<td><span class="item-value" title="' + fundname + '">' + fundname + '</span></td>');
