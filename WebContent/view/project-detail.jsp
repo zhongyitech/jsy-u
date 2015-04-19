@@ -147,7 +147,7 @@
                                     <td>{{$.utils.dateFormat(el.stockDate,"yyyy-MM-dd")}}</td>
                                     <td>{{el.structure}}</td>
                                     <td>
-                                        <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
+                                        <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id,$index)">
                                             <span class="button-content">删除</span>
                                         </button>
                                     </td>
@@ -198,7 +198,7 @@
                                 <td>{{el.fileName}}</td>
                                 <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id,$index)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>
@@ -237,7 +237,7 @@
                                 <td>{{el.fileName}}</td>
                                 <td><a ms-attr-href="/rest/file/download?path={{el.filePath}}" target="_blank">{{el.filePath}}</a></td>
                                 <td>
-                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id)">
+                                    <button class="btn-ui btn bg-green medium mrg10L" ms-click="del(el.id,$index)">
                                         <span class="button-content">删除</span>
                                     </button>
                                 </td>

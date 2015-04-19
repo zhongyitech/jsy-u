@@ -61,15 +61,13 @@
                     model.stockDate='';
                     model.structure='';
                 },
-                del:function(id){
+                del:function(id,index){
                     if(confirm("确实要删除？")){
-                        $.each(model.data,function(){
-                            if(this.id==id) model.data.remove(this);
-                        });
                         $.io.del({
                             url:"/api/project/delProjectStockRight",
                             params:{id:projectId,stock_right_id:id}
                         }).success(function(){
+                            model.data.splice(index,1);
                             $.message.log("删除成功");
                         });
                     }
@@ -108,13 +106,13 @@
                             });
                         }
                     },
-                    del:function(id){
+                    del:function(id,index){
                         if(confirm("确实要删除？")){
-                            $.each(model.data,function(){if(this.id==id) model.data.remove(this);});
                             $.io.del({
                                 url:"/api/project/delProjectFile",
                                 params:{id:projectId,file_id:id,type:type}
                             }).success(function(){
+                                model.data.splice(index,1);
                                 $.message.log("删除成功");
                             });
                         }
