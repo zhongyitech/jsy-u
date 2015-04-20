@@ -85,7 +85,7 @@ var INVESTMENT_LIST = {
         $(this.TABLE_ID).find("tbody").empty();
         if (items) {
             this.tr_key = 0;
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 this.addTr(items[i]);
             }
         }
