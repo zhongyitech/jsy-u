@@ -79,11 +79,10 @@ var VIEWDATA={
             });
         });
         $('#fundname').autocomplete({
-                serviceUrl: '../rest/auto/get',
+                serviceUrl: '/rest/auto/get',
                 type: 'POST',
                 params: {
-                    url: '/api/fund/nameLike',
-                    extraData:'ddddddd'
+                    url: '/api/fund/nameLike'
                 },
                 paramName: 'params',
                 onSelect: function (suggestion) {
