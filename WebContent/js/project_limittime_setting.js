@@ -87,7 +87,11 @@ var ProjectLimittimeSetting = {
 
         $.io.get(true,data)
             .success(function(result){
-                _this.initTable(result);
+                var itemMap = _this.sortItemByPhase(result);
+                $.each(itemMap,function(index, obj){
+                    _this.initTable(obj.items);
+                });
+
 
             })
             .error(function(result){
@@ -98,8 +102,48 @@ var ProjectLimittimeSetting = {
 
     },
 
-    initTable:function(item){
+    //这里的item是全部的！
+    sortItemByPhase:function(item){
         var table = null
+
+        var itemMap = [];
+        var phase1 = {phaseIndex:1,items:[]};
+        var phase3 = {phaseIndex:3,items:[]};
+        var phase5 = {phaseIndex:5,items:[]};
+        var phase6 = {phaseIndex:6,items:[]};
+        var phase7 = {phaseIndex:7,items:[]};
+        for(var i =1; i<item.length + 1; i++){
+            var it = item[i-1];
+            var index = it["phaseIndex"];  // 根据数据的phaseIndex判断是第几个tab
+
+            switch(index){
+                case 1 :
+                    phase1.items.push(it);
+                    break;
+                case 3 :
+                    phase3.items.push(it);
+                    break;
+                case 5 :
+                    phase5.items.push(it);
+                    break;
+                case 6 :
+                    phase6.items.push(it);
+                    break;
+                case 7 :
+                    phase7.items.push(it);
+                    break;
+                default :
+                    break;
+            }
+
+        }
+
+        var itemMap = [phase1,phase3,phase5,phase6,phase7];
+        return itemMap;
+
+    },
+    initTable:function(item){
+        var table = null;
 
         for(var i =1; i<item.length + 1; i++){
             var it = item[i-1];
@@ -142,13 +186,14 @@ var ProjectLimittimeSetting = {
      */
     initEvent : function() {
         var me  =  this;
+        //提交操作！！！
         $("button").click(function(){
             var phaseIndexes = [1,3,4,5,6,7]
             var entity = {projectid:parseFloat(me.PROJECT_ID)};
             var phaseDatas = [];
             $.each(phaseIndexes,function(index,phaseIndex){
 
-                var datas = []
+                var datas = [];
 
 
                 $.each($("tr","#xianshi_table"+phaseIndex).slice(1),function(index, obj){
