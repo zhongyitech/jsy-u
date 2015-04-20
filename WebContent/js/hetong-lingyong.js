@@ -411,7 +411,7 @@ var HTLY_LIST = {
     setTable: function (response) {
         this.getTable().empty();
         if (response) {
-            for (var i in response) {
+            for (var i=0;i<response.length;i++) {
                 this.add(response[i]);
             }
         }

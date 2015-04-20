@@ -199,7 +199,7 @@ var VIEWDATA = {
         $("#query_table tbody").empty();
         var table = $("#query_table");
         if (table && items) {
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 var enable = "";
                 var row = $("<tr></tr>");
                 if (items[i]['type'] != 0) {

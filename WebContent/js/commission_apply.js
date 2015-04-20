@@ -213,7 +213,7 @@ var VIEWDATA = {
         $("#ywtc_table tbody").empty();
 		var table = $("#ywtc_table");
 		if(table && items){
-			for(var i in items){
+			for(var i=0;i<items.length;i++){
 				var row = $("<tr></tr>");
 				table.append(row);
 
@@ -327,7 +327,7 @@ var VIEWDATA = {
 		var table = $("#gltc_table");
 
 		if(table && items){
-			for(var i in items){
+			for(var i=0;i<items.length;i++){
 
 				var row = $("<tr></tr>");
 				table.append(row);

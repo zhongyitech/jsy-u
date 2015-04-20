@@ -71,7 +71,7 @@ var USER_FORM={
 				var items = DEPARTMENT.getItems();
 				var option = $('<option value=""></option>');
 				view.append(option);
-				for(var i in items){
+				for(var i=0;i<items.length;i++){
 					var item = items[i];
 					var id = DEPARTMENT.toId(item);
 					var name = DEPARTMENT.toName(item);

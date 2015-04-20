@@ -486,7 +486,7 @@ var VIEWDATA={
 
         if (table && items) {
             me.payRecords = {};             // reset
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 me.payRecords[items[i]["id"]]=items[i];
 
                 var row = $("<tr></tr>");
