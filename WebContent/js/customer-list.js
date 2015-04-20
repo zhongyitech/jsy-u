@@ -73,7 +73,7 @@
             _this._showUserInfo(_this._items[key]);
         },
         _showUserInfo: function (data) {
-            if(data.credentialsType=="营业执照"){
+            if(data&&data.credentialsType=="营业执照"){
                 $("#fddbr").val(data.fddbr || "");
                 $("#fddr-panel").show();
             }else{
