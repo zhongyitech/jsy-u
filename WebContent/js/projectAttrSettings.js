@@ -36,6 +36,17 @@ var VIEWDATA={
         $("#daycount_per").change(function(){
             $(this).val(NUMBERFORMAT.toRate($(this).val()));
         });
+        $("#interestType").change(function(){
+            if($(this).val()=="singleCount"){
+                $("#interestType").val("singleCount");
+            }else if($(this).val()=="costCount"){
+                $("#interestType").val("costCount");
+            }else if($(this).val()=="dayCount"){
+                $("#interestType").val("dayCount");
+                $("#label_daycount").show();
+                $("#value_daycount").show();
+            }
+        });
 
 
         $("#linkProject").click(function(){
@@ -47,10 +58,16 @@ var VIEWDATA={
             var interestType = $("#interestType").val();
             var daycount_per
             if("dayCount"==interestType){
+                var temp = $("#daycount_per").val();
+                if(!temp || temp==""){
+                    alert("请输入日复利利率");
+                    return false;
+                }
                 daycount_per = me.formatPer($("#daycount_per").val());
             }else{
                 daycount_per = 0;
             }
+            var interest_per = me.formatPer($("#interest_per").val());
             var manage_per = me.formatPer($("#manage_per").val());
             var community_per = me.formatPer($("#community_per").val());
             var penalty_per = me.formatPer($("#penalty_per").val());
@@ -66,6 +83,7 @@ var VIEWDATA={
                 community_per:community_per,
                 penalty_per:penalty_per,
                 borrow_per:borrow_per,
+                interest_per:interest_per,
                 year1:year1,
                 year2:year2,
                 fund:{
@@ -165,6 +183,7 @@ var VIEWDATA={
                 $("#value_daycount").show();
             }
 
+            $("#interest_per").val(project.interest_per);
             $("#manage_per").val(project.manage_per);
             $("#community_per").val(project.community_per);
             $("#penalty_per").val(project.penalty_per);

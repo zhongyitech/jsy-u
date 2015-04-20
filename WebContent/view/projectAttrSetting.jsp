@@ -101,6 +101,15 @@
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label >年利率：</label>
+                    </div>
+                    <div class="form-input col-md-4">
+                        <input id="interest_per" placeholder="例如：0.3"/>
+                    </div>
+                </div>
+
                 <br />
                 <div class="form-row pad3B">
                     <div>

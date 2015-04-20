@@ -3,3 +3,5 @@ manager.java
 2.修改
 FileManager.java
 private final String DIR_PATH = "D:/jsy/UploadFiles";
+3.打包
+build artifacts

@@ -44,6 +44,14 @@ var EndProject = {
                     mark:$("#description").val()
                 };
 
+                var attachments = [];
+                $("input[id^=invest-attachment]").each(function () {
+                    var index = $(this).attr("id").replace("invest-filepath", "");
+
+                    attachments.push({ "filePath": $(this).val(), "fileName": $("#invest-filename" + index).val() });
+                });
+                params.endProjectFiles = attachments;
+
                 var data   ={url:"/api/project/endProject",params:JSON.stringify(params)};
 
                 $.io.post(data)
@@ -55,6 +63,20 @@ var EndProject = {
                     });
             }
         });
+
+        $("#add_file").click(function () {
+            var index = $('#fileupdate tr').length;
+            var input_invest = $("<input id='invest-attachment" + index + "' class='input-file' name='attachment' type='file'>");
+            var td = $("<td class='text-left'>");
+            var tr = $("<tr>");
+            tr.append(td);
+            td.append(input_invest)
+            $('#fileupdate tr:last').after(tr);
+            input_invest.change(function () {
+                me.attach_change_event(input_invest);
+            });
+        });
+
 
         //fundName 联想
         $('#fundname').autocomplete(
@@ -93,6 +115,32 @@ var EndProject = {
                 }
             });
     },
+
+    attach_change_event: function (input_file) {
+        var index = $(input_file).attr("id").replace("invest-attachment", "");
+
+        $.utils.upload({
+            files:$(input_file),
+            success:function(response){
+                var result=response.rest_result[0];
+                var attachment_src = '/rest/file/download?path=' + result["filePath"];
+
+                var attach_img = $("#invest-attachment-img" + index);
+                if (attach_img.size() > 0) {
+                    attach_img.attr("src", attachment_src);
+                    $("#invest-img-key" + index).val(result["filePath"]);
+                } else {
+                    //$("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
+                    $("#pics").append("<input type='hidden' value='" + result["filePath"] + "' id='invest-filepath" + index + "' >");
+                    $("#pics").append("<input type='hidden' value='" + result["fileName"] + "' id='invest-filename" + index + "' >");
+                }
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
+    },
+
     /**
      * 设置项目属性
      * @param fundName
