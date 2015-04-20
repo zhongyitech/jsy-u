@@ -37,8 +37,8 @@ var VIEWDATA = {
         var fund_select = $('#fundselect');
         //		fund_select.clear();
         $('#fundselect').find('option').remove();
-        $.io.get({url:'/api/fund/selectList',params:{exInclude:this.item.fund.id}}).success(function(result){
-            $.dom.select(fund_select,result);
+        $.io.get({url: '/api/fund/selectList', params: {exInclude: this.item.fund.id}}).success(function (result) {
+            $.dom.select(fund_select, result);
         });
         NUMBERCHECK.startCheck();
     },
@@ -70,6 +70,25 @@ var VIEWDATA = {
         //验证总金额		
         $('#input_newamount').keyup(function () {
             me.sumTzje();
+        });
+
+        //新合同编号的检测
+        $("#new_htbh").change(function () {
+            $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: $("#new_htbh").val()}})
+                .success(function (result) {
+                    if (result) {
+                        $("#fundselect").val(result.fund.id);
+                        me.setHTBH();
+                        $("#new_htbh").removeClass('valid_error');
+                        $("#new_htbh").attr("placeholder", "合同编号")
+                    } else {
+                        $("#new_htbh").addClass('valid_error');
+                        $("#new_htbh").attr("placeholder", "合同编号没有登记")
+                    }
+                }).error(function (error) {
+                    $("#new_htbh").addClass('valid_error');
+                    $("#new_htbh").attr("placeholder", error.msg);
+                });
         });
 
         this.databind.bindtarget_id = '#bindtarget_id';
@@ -149,7 +168,7 @@ var VIEWDATA = {
             },
             sqbm: this.item.department,
             // 备注
-            bz: $('#lab-bz').val(),
+            bz: $('#lab-bz').val()
         };
         var data = {
             url: '/api/dqztsq',
@@ -236,19 +255,34 @@ var VIEWDATA = {
             params: {contractNum: htbh}
         };
         $.io.get(data).success(function (result) {
-            me.item = result;
-            me.success();
+            if (result) {
+                me.item = result;
+                me.success();
+                $('#input_htbh').removeClass("valid_error");
+            } else {
+                $.message.error("此合同编号没有使用!");
+                $('#input_htbh').addClass("valid_error");
+            }
+        }).error(function (error) {
+            $('#input_htbh').addClass("valid_error");
         });
     },
     getData: function () {
         var me = this;
         var data = {
-            url: '/api/investmentArchives/GetById',
+            url: '/api/investmentArchives/getByIdSpecial',
             params: {id: me.investmentid}
         };
         $.io.get(data).success(function (result) {
-            me.item = result;
-            me.success();
+            if (result) {
+                me.item = result;
+                me.success();
+                $('#input_htbh').removeClass("valid_error");
+            } else {
+                $.message.error("获取数据出错!");
+            }
+        }).error(function (error) {
+            $('#input_htbh').addClass("valid_error");
         });
     }
 };
@@ -266,7 +300,8 @@ var DATABIND_FORM = {
         var temp = object;
         for (var i = 0; i < paths.length; i++) {
             var property = paths[i];
-            temp = temp[property];
+            if (temp)
+                temp = temp[property];
         }
         return temp;
     },
@@ -286,7 +321,7 @@ var DATABIND_FORM = {
             }
         });
         this._columns = columns;
-        console.log(columns);
+        //console.log(columns);
         return columns;
     },
     //将值写回去绑定的对象
@@ -324,7 +359,8 @@ var DATABIND_FORM = {
                     value = this.getProperty(this.BindObject, column.member);
                 }
                 if (column.bindtype == "list" && column.bindobject != null)
-                    value = this.AdditionalResources[column.bindobject].get(this.getProperty(this.BindObject, column.member))[column.displaymember];
+                    if (this.getProperty(this.BindObject, column.member))
+                        value = this.AdditionalResources[column.bindobject].get(this.getProperty(this.BindObject, column.member))[column.displaymember];
             }
             if (column.format != null) {
                 // todo edit
