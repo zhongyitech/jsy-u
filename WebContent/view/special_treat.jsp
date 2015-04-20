@@ -18,24 +18,24 @@
 				<h2>到期转投处理申请表</h2>				
 			</div>
 			<a href="./invest-list.jsp" class="btn medium bg-gray" title="">
-            <span class="button-content">返回</span>
+            <span class="button-content">返回投资档案列表</span>
             </a>
 			<form class="form-bordered " id="bindtarget_id" action="/" method="post">
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for=""> 申请部门： </label>
+						<label  > 申请部门： </label>
 					</div>
 					<div class="form-label col-md-2">
 						<label id="lab-dep " class=" bind " data-bindtype="value" data-member="department"  ></label>
 					</div>
 					<div class="form-label col-md-2  text-right">
-						<label for="">申请人： </label>
+						<label  >申请人： </label>
 					</div>
 					<div class="form-label col-md-2 text-center">
 						<label id="label_sqr " class=" bind " data-bindtype="value" data-member="sqr"  ></label>
 					</div>
 					<div class="form-label col-md-2   ">
-						<label for=""> 申请时间： </label>
+						<label  > 申请时间： </label>
 					</div>
 					<div class="form-label col-md-2 text-center">
 						<label id="lab-scrq " class=" bind " data-bindtype="value" data-member="scrq"  ></label>
@@ -43,35 +43,35 @@
 				</div>
 				<div class="form-row">
 					<div class="form-label col-md-12">
-						<label for="" class="font-size-20">1.原基金认购信息 </label>
+						<label class="font-size-20">1.原基金认购信息 </label>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for=""> 基金名称： </label>
+						<label  > 基金名称： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class="label-info bind" id="s_fundname" data-bindtype="list" data-bindobject="fund" data-member="fund.id" data-displaymember="fundName"></label>
 					</div>
 					<div class="form-label col-md-2  ">
-						<label for=""> 合同编号:</label>
+						<label  > 合同编号:</label>
 					</div>
 					<div class="form-input col-md-4">
-						<input class="bind" id="input_htbh" data-bindtype="value" data-member="contractNum" />
+						<input class="bind" id="input_htbh" data-bindtype="value" data-member="contractNum" maxlength="9" />
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for=""> 认购日期： </label>
+						<label  > 认购日期： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class=" label-info bind" id="label_rgrq" data-bindtype="value" data-member="rgrq" data-format="date"
 						></label>
 					</div>
 					<div class="form-label col-md-2  ">
-						<label for="" > 认购金额： </label>
+						<label > 认购金额： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class="label-success bind" id="label_rgje" data-bindtype="value" data-member="tzje" data-format="money"></label>
@@ -79,7 +79,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for=""> 到期日期： </label>
+						<label  > 到期日期： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class="label-info bind" id="label_dqrq" data-bindtype="value" data-member="dqrq" data-format="date" ></label>
@@ -87,18 +87,18 @@
 				</div>
 				<div class="form-row">
 					<div class="form-label col-md-12">
-						<label for="" class="font-size-20">2.客户信息 </label>
+						<label class="font-size-20">2.客户信息 </label>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for="" id="lab-tname"> 客户名称： </label>
+						<label id="lab-tname"> 客户名称： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class=" label-info bind" id="lab-cname" data-bindtype="list" data-bindobject="customer" data-member="customer.id" data-displaymember="name"></label>
 					</div>
 					<div class="form-label col-md-2  ">
-						<label for="" id="lab-ttype">证件类型： </label>
+						<label>证件类型： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class="label-success bind" id="lab-ccardtype" data-bindtype="list" data-bindobject="customer" data-member="customer.id" data-displaymember="credentialsType"></label>
@@ -107,34 +107,34 @@
 
 				<div class="form-row">
 					<div class="form-label col-md-2   ">
-						<label for="" id="lab-tnubmer">证件号码： </label>
+						<label id="lab-tnubmer">证件号码： </label>
 					</div>
 					<div class="form-label col-md-4">
 						<label class=" label-info bind" id="lab-cardnumber" data-bindtype="list" data-bindobject="customer" data-member="customer.id" data-displaymember="credentialsNumber"></label>
 					</div>
 					<div class="form-label col-md-2  ">
-						<label for="" id="lab-ttype">法定代表人： </label>
+						<label >法定代表人： </label>
 					</div>
 					<div class="form-label col-md-4">
-						<label class="label-success bind" id="lab-ccardtype" data-bindtype="list" data-bindobject="customer" data-member="customer.id" data-displaymember="fddbr"></label>
+						<label class="label-success bind"  data-bindtype="list" data-bindobject="customer" data-member="customer.id" data-displaymember="fddbr"></label>
 					</div>
 				</div>
 				
 				<div class="form-row">
 					<div class="form-label col-md-12">
-						<label for="" class="font-size-20">3.转入新的基金信息 </label>
+						<label class="font-size-20">3.转入新的基金信息 </label>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-label col-md-3   ">
-						<label for="">基金名称： </label>
+						<label  >基金名称： </label>
 					</div>
 					<div class="form-input col-md-4">
 						<select id="fundselect" class="newfundName">
 						</select>
 					</div>
 					<div class="form-label col-md-2  ">
-						<label for="">转投本金金额： </label>
+						<label  >转投本金金额： </label>
 					</div>
 					<div class="form-input col-md-2">
 						<input  class="datacheck" type="text" name="input_newamount" id="input_newamount"  data-minnumber="0" data-maxnumber="100" >
@@ -143,13 +143,13 @@
 				
 				<div class="form-row">
 					<div class="form-label col-md-3   ">
-						<label for="">原基金需付剩余收益额 ： </label>
+						<label  >原基金需付剩余收益额 ： </label>
 					</div>
 					<div class="form-label col-md-4 ">
-					     <label for="" class="bind" id="ysye_lab" data-bindtype="value" data-member="ysye"></label>	
+					     <label class="bind" id="ysye_lab" data-bindtype="value" data-member="ysye"></label>	
 					</div>					
 					<div class="form-label col-md-2   ">
-						<label for="" id="lab_tzsy">转投收益额 ： </label>
+						<label id="lab_tzsy">转投收益额 ： </label>
 					</div>					
 					<div class="form-input col-md-2 ">
 						<input type="text" class="datacheck" name="input_ztsye" id="input_ztsye"  data-minnumber="0" data-maxnumber="100" >
@@ -157,13 +157,13 @@
 				</div>	
 				<div class="form-row">
 					<div class="form-label col-md-3   ">
-						<label for="">新合同编号： </label>
+						<label  >新合同编号： </label>
 					</div>
 					<div class="form-input col-md-4 ">
 					    <input type="text" class="col-md-6 xhtbh" id="new_htbh" maxlength="9" />
 					</div>					
 					<div class="form-label col-md-2   ">
-						<label for="" >转投总金额： </label>
+						<label >转投总金额： </label>
 					</div>		
 					<div class="form-label col-md-3 ">
 					   <label id="ztje_totalamount"></label>
@@ -172,7 +172,7 @@
 								
 				<div class="form-row">
 					<div class="form-label col-md-12">
-						<label for="" class="font-size-20" >4.特殊情况备注说明 </label>
+						<label class="font-size-20" >4.特殊情况备注说明 </label>
 					</div>
 				</div>
 				<div class="form-row">
