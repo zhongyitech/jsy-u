@@ -1073,7 +1073,7 @@ var GUANLI = {
         }
 
         if (items && items.length) {
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 this.add(items[i]);
             }
         }
@@ -1354,7 +1354,7 @@ var YEWU = {
         }
 
         if (items && items.length) {
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 this.add(items[i]);
             }
         }

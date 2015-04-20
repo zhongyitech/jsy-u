@@ -111,7 +111,7 @@ var USER_LIST = {
         tr.append(name_td);
 
         var department = USER.toDepartment(item);
-        $.project.domain(item.department.id,item.department.class,'deptName');
+        //$.project.domain(item.department.id,item.department.class,'deptName');
         department = DEPARTMENT.toItem(department);
         var dname = DEPARTMENT.toName(department);
         var department_td = $('<td class="text-center"><span class="text-overflow" title="' + dname + '">' + dname + '</span></td>');

@@ -369,8 +369,8 @@ var ROLE_DIALOG = {
         }
 
         if (items) {
-            for (var i in this.items) {
-                this.add(this.items[i]);
+            for (var i=0;i<items.length;i++) {
+                this.add(items[i]);
             }
         }
 
@@ -392,7 +392,7 @@ var ROLE_DIALOG = {
         td.append(select);
         var items = ROLE.getItems();
         select.append('<option value=""></option>');
-        for (var i in items) {
+        for (var i=0;i<items.length;i++) {
             var o = items[i];
             var id = ROLE.toId(o);
             var name = ROLE.toName(o);

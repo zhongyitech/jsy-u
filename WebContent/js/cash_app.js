@@ -214,7 +214,7 @@ var REPORT = {
         var table = $("#pacts-get-table");
         table.find("tbody").empty();
         if (table && items) {
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 var row = $("<tr></tr>");
                 table.append(row);
                 row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="' + items[i]["id"] + '"></span></td>');

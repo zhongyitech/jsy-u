@@ -126,7 +126,7 @@ var COMPANY_FORM = {
             var items = COMPANY_TYPE.getItems();
             var option = $('<option value=""></option>');
             view.append(option);
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 var item = items[i];
                 var id = COMPANY_TYPE.toId(item);
                 var name = COMPANY_TYPE.toName(item);
@@ -256,7 +256,7 @@ var COMPANY_FORM = {
             var items = FUND.getItems();
             var option = $('<option value=""></option>');
             view.append(option);
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 var item = items[i];
                 var id = FUND.toId(item);
                 var name = FUND.toName(item);
@@ -282,7 +282,7 @@ var COMPANY_FORM = {
             var option = $('<option value=""></option>');
             view.append(option);
             var cid = PAGE.getParam(COMPANY.ID_KEY);
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 var item = items[i];
                 var id = COMPANY.toId(item);
 
@@ -663,8 +663,8 @@ var PARTNER_LIST = {
         }
 
         if (items) {
-            for (var i in this.items) {
-                this.add(this.items[i]);
+            for (var i=0;i<items.length;i++) {
+                this.add(items[i]);
             }
         }
 
@@ -687,7 +687,7 @@ var PARTNER_LIST = {
         var items = COMPANY.getItems();
         company_select.append('<option value=""></option>');
         var cid = PAGE.getParam(COMPANY.ID_KEY);
-        for (var i in items) {
+        for (var i=0;i<items.length;i++) {
             var o = items[i];
             var id = COMPANY.toId(o);
             var type = COMPANY.toType(o);
@@ -737,7 +737,7 @@ var PARTNER_LIST = {
         COMPANY_FORM.setPartner(COMPANY_FORM.item);
 
         var frdbs = [];
-        for (var i in items) {
+        for (var i=0;i<items.length;i++) {
             var company = COMPANY.toItem(items[i]);
             frdbs.push(COMPANY.toFRDB(company));
         }
@@ -811,8 +811,8 @@ var YHZH_LIST = {//银行账户
         }
 
         if (items) {
-            for (var i in this.items) {
-                this.add(this.items[i]);
+            for (var i=0;i<items.length;i++) {
+                this.add(items[i]);
             }
         }
 
@@ -878,7 +878,7 @@ var YHZH_LIST = {//银行账户
         purpose_td.append(purpose_select);
         var items = YHZH_PURPOSE.getItems();
         purpose_select.append('<option value=""></option>');
-        for (var i in items) {
+        for (var i=0;i<items.length;i++) {
             var o = items[i];
             var id = YHZH_PURPOSE.toId(o);
             var name = YHZH_PURPOSE.toName(o);

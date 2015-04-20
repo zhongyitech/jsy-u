@@ -41,7 +41,7 @@ var BMJL = {//异步加载所有部门经理
     getMap: function () {
         if (JSON.stringify(this.map) == "{}") {
             var items = this.getItems();
-            for (var i in items) {
+            for (var i=0;i<items.length;i++) {
                 this.map[items[i][this.ID_KEY]] = items[i];
             }
         }

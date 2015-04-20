@@ -411,7 +411,7 @@ var HTLY_LIST = {
     setTable: function (response) {
         this.getTable().empty();
         if (response) {
-            for (var i in response) {
+            for (var i=0;i<response.length;i++) {
                 this.add(response[i]);
             }
         }
@@ -448,7 +448,7 @@ var HTLY_LIST = {
         var user_td = $('<td><span class="item-value" title="' + username + '">' + username + '</span></td>');
         item_tr.append(user_td);
 
-        var fund = item[this.htly.FUND_KEY];
+        var fund = item[this.htly.FUND_KEY]||{};
         var fundname = this.fund.getName(fund[this.fund.ID_KEY]);
         var fund_td = $('<td><span class="item-value" title="' + fundname + '">' + fundname + '</span></td>');
         item_tr.append(fund_td);

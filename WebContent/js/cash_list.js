@@ -206,7 +206,7 @@ var VIEWDATA = {
 		var table = $("#cash-interest");
         table.find("tbody").empty();
 		if(table && items){
-			for(var i in items){
+			for(var i=0;i<items.length;i++){
 				var row = $("<tr></tr>");
 				table.append(row);
 
@@ -304,7 +304,7 @@ var VIEWDATA = {
 		var table = $("#cash-benjin");
         table.find("tbody").empty();
 		if(table && items){
-			for(var i in items){
+			for(var i=0;i<items.length;i++){
 				var row = $("<tr></tr>");
 				table.append(row);
 
