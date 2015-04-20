@@ -36,7 +36,7 @@
             $('#view-table button[class=del-btn]').bind("click", function () {
                 _this.delItem(this);
             });
-            $('#user-new').bind('click', function () {
+            $('#user-new').unbind().bind('click', function () {
                 $('#save-button').unbind().bind("click", function () {
                     _this._saveUserInfo();
                 });
@@ -62,12 +62,28 @@
                 _this._saveUserInfo();
             });
             $('#action_name').text('查看或编辑客户信息');
+            $("#cardtype").unbind().bind("change",(function () {
+                if ($(this).val() == "营业执照")
+                    $("#fddr-panel").show();
+                else
+                    $("#fddr-panel").hide();
+            }));
+
 
             _this._showUserInfo(_this._items[key]);
         },
         _showUserInfo: function (data) {
+            if(data.credentialsType=="营业执照"){
+                $("#fddbr").val(data.fddbr || "");
+                $("#fddr-panel").show();
+            }else{
+                $("#fddr-panel").hide();
+            }
             $('#userinfo').fadeOut(100);
             $('#userinfo').fadeIn(100);
+
+
+
             $('#userinfo input,select,textarea').each(function (i, item) {
                 if (item.tagName == 'INPUT' || item.tagName == 'TEXTAREA' ||  item.tagName == 'SELECT') {
                     if (data) {
@@ -82,6 +98,7 @@
             });
             $('#customerId').val(data ? data.id : -1);
             $("#banks-data").renderData("#banks-data-template", data && data.bankAccount || []);
+
 
             $("#bank-new-row").unbind().bind('click', function () {
                 $('#bank-table').append('<tr data-key="0"><td class="form-input"><span><input name="bankOfDeposit" value=""></span></td><td class="form-input"><span><input name="accountName" value=""></span></td><td class="form-input"><span><input name="account" value=""></span></td> <td><span><input type="radio" name="defaultAccount"></span></td><td><span class="text-overflow"><button class="bankdel-btn" data-itemid="0">删除</button></span></td></tr>');

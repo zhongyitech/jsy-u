@@ -184,7 +184,14 @@
                                    name="credentialsNumber">
                         </div>
                     </div>
-
+                    <div class="form-row hide" id="fddr-panel">
+                        <div class="form-label col-md-2">
+                            <label class="label-description">法定代表人:</label>
+                        </div>
+                        <div class="form-input col-md-4">
+                            <input placeholder="法定代表人" type="text" id="fddbr" class="fddbr" name="fddbr">
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-label col-md-2">
                             <label for="" class="label-description">住址:</label>
