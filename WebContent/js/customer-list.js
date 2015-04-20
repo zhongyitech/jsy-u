@@ -59,7 +59,8 @@
             $.io.del(data).success(function (result) {
                 _this.render();
             }).error(function (error) {
-                alert(error.msg);
+                //alert(error.msg);
+                $.message.error(error.msg);
             })
         },
         detailClick: function (item) {
