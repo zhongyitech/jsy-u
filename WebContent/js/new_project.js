@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 var VIEWDATA={
     file: {},
+    stockRights:[],
 
     init: function(sync){
         this.init_view();
@@ -48,17 +49,6 @@ var VIEWDATA={
                 return;
             }
 
-            var stockDate=[];
-            var structure=[];
-            $("input[id^=stockDate_]").on('change', function (e) {
-                var item_id = $(this).attr("id").replace("stockDate_","");
-                stockDate.push($(this).val());
-            });
-            $("input[id^=structure_]").on('change', function (e) {
-                var item_id = $(this).attr("id").replace("structure_","");
-                structure.push($(this).val());
-            });
-
 
             var model = {
                 projectDealer:projectdealer,
@@ -75,8 +65,7 @@ var VIEWDATA={
                 debt:debt,
                 assets:assets,
 
-                stockDate:stockDate,
-                structure:structure
+                stockRights:me.stockRights
             }
 
             var attachments = [];
@@ -85,7 +74,7 @@ var VIEWDATA={
 
                 attachments.push({ "filePath": $(this).val(), "fileName": $("#invest-filename" + index).val() });
             });
-            model.uploadFiles = attachments;
+            model.startProjectFiles = attachments;
 
             me.add_project(model);
             //window.location.href = "project_list.jsp"
@@ -156,6 +145,10 @@ var VIEWDATA={
             var count = $('#stock_table tr').length;
             $('#stock_table tr:last').after('<tr><td>'+count+'</td> <td>'+stockDate+'<input hidden="hidden" id="stockDate_'+count+'" value="'+stockDate+'"/></td><td>'+structure+'<input hidden="hidden" id="structure_'+count+'" value="'+structure+'"/></td></tr>');
 
+            //add to cache
+            var stockRight = {stockDate:DATEFORMAT.toRest(stockDate),structure:structure};
+            me.stockRights.push(stockRight);
+
             //clear data
             $("#stockDate").val("");
             $("#structure").val("");
@@ -178,7 +171,7 @@ var VIEWDATA={
                     attach_img.attr("src", attachment_src);
                     $("#invest-img-key" + index).val(result["filePath"]);
                 } else {
-                    $("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
+                    //$("#pics").append("<img class='attachment-img' id='invest-attachment-img" + index + "' alt='' src='" + attachment_src + "' style='width:100px;'>");
                     $("#pics").append("<input type='hidden' value='" + result["filePath"] + "' id='invest-filepath" + index + "' >");
                     $("#pics").append("<input type='hidden' value='" + result["fileName"] + "' id='invest-filename" + index + "' >");
                 }
