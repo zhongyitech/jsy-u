@@ -221,13 +221,20 @@ var INVESTMENT_ITEM = {
         var tzje_input = $(this.INVEST_MONEY_ID);
         tzje_input.keyup(function () {
             me.setTZJE();
+            if($(this).val()!=""){
+                $(this).removeClass('valid_error');
+            }
         });
+        tzje_input.bind('blur',(function(){
+            if($(this.INVEST_BUSNIESSMANAGER_ID).val()!=''){
+                me.setYWJL();
+            }
+        }));
         var tzje = item[this.investment.TZJE_KEY];
         if (tzje) {
             tzje_input.val(this.numberformat.toYuan(tzje));
             //me.setTZJE();
         }
-
         var fund_select = $(this.INVEST_FUND_ID);
         var funds = $.io.get(true, {url: '/api/fund/selectList'}).data();
         $.dom.select(this.INVEST_FUND_ID, funds, function (item) {
@@ -485,12 +492,16 @@ var INVESTMENT_ITEM = {
     },
     setYWJL: function () {
         var me = this;
+        if($(this.INVEST_MONEY_ID).val()=="") {
+            $.message.error("投资金额没有填写!");
+            $(this.INVEST_MONEY_ID).addClass('valid_error');
+            return ;
+        }else{
 
+        }
         me.setBMJL();
         me.setBM();
-
         me.setTCBL();
-
         me.setGLTC();
         me.setYWTC();
     },
