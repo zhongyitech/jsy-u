@@ -25,11 +25,11 @@ public class FileRest {
 	
 	@POST
 	@Path("upload")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public Response upload(@CookieParam("JSESSIONID") String jsession,
 			@Context HttpServletRequest request){
 		ManagerResponse response = FileManager.getInstance().upload(jsession, request);
-		return Response.ok(response.response).status(response.status).build(); 
+		return Response.ok(response.response).status(response.status).build();
 	}
 	
 	@GET
