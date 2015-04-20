@@ -67,7 +67,10 @@ var VIEWDATA={
                 penalty_per:penalty_per,
                 borrow_per:borrow_per,
                 year1:year1,
-                year2:year2
+                year2:year2,
+                fund:{
+                    id:$("#_fundname").val()
+                }
             }
 
             var data = {url: '/api/project/saveProjectSettings', entity: JSON.stringify(model)};
@@ -75,6 +78,36 @@ var VIEWDATA={
                 window.location.href = "projectAttrSetting.jsp?id="+me.projectid;
             });
         });
+        $('#fundname').autocomplete({
+                serviceUrl: '../rest/auto/get',
+                type: 'POST',
+                params: {
+                    url: '/api/fund/nameLike',
+                    extraData:'ddddddd'
+                },
+                paramName: 'params',
+                onSelect: function (suggestion) {
+                    //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $("#fundname").val(suggestion.value);
+                    $("#_fundname").val(suggestion.data);
+                },
+                transformResult: function (response) {
+                    //clear old value
+                    $("#fundname").val("");
+                    $("#_fundname").val("");
+                    if (!response || response == '') {
+                        return {
+                            "query": "Unit",
+                            "suggestions": []
+                        };
+                    } else {
+                        var result = JSON.parse(response);
+                        var suggestions = JSON.parse(result.suggestions);
+                        result.suggestions = suggestions;
+                        return result;
+                    }
+                }
+            });
     },
 
     formatPer: function(perData){
@@ -93,12 +126,12 @@ var VIEWDATA={
                 return rtn;
             }else{
                 alert(perData+"无法识别，请输入数值");
-                throw new Exception(perData+"无法识别，请输入数值");
+                throw new Error(perData+"无法识别，请输入数值");
             }
 
         }else{
             alert(perData+"无法识别，请输入数值");
-            throw new Exception(perData+"无法识别，请输入数值");
+            throw new Error(perData+"无法识别，请输入数值");
         }
 
 
@@ -139,8 +172,7 @@ var VIEWDATA={
             $("#borrow_per").val(project.borrow_per);
             $("#year1").val(project.year1);
             $("#year2").val(project.year2);
-
-
+            $("#fundname").val(project.fundName);
         }).error(function(result){
             alert("加载项目流程信息错误，请联系管理员："+result);
         });

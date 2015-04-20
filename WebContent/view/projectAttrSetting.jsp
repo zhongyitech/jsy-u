@@ -92,6 +92,13 @@
                     <div class="form-input col-md-4">
                         <input id="borrow_per" placeholder="例如：0.3"/>
                     </div>
+                    <div class="form-label col-md-2">
+                        <label >基金：</label>
+                    </div>
+                    <div class="form-input col-md-4">
+                        <input id="fundname" type="text" placeholder="自动联想"/>
+                        <input id="_fundname" type="hidden"/>
+                    </div>
                 </div>
 
                 <br />
