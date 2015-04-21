@@ -1,0 +1,83 @@
+<!-- 到期转投-委托书格式 -->
+<div class="print-paper">
+    <div class="print-header">
+        <!--<img class="logo" src="/images/logo.jpg"/>-->
+        <div class="print-title">退    伙    协    议（单GP）</div>
+        <div class="print-no"> 编号（< class="underline"><span class="underline">{$T.p_number}</span>）</div>
+    </div>
+    <div class="print-body">
+        <p>甲方：{$T.parentCompany.name}</p>
+        <p>住所：{$T.parentCompany.address}</p>
+        <p>法定代表人：{$T.parentCompany.corporate}</p>
+        <p>注册号：{$T.parentCompany.credentialsNumber}</p>
+        <br/>
+        {#if $T.customer.credentialsType=="营业执照" }
+        <!-- 机构 -->
+        <p> 乙方：<span class="underline">{$T.customer.name}</span> </p>
+        <p> 法定代表人：<span class="underline">{$T.customer.corporate}</span></p>
+        <p> 注册号：<span class="underline">{$T.customer.credentialsNumber}</span> </p>
+        <p> 住所：<span class="underline">{$T.customer.credentialsAddr}</span> </p>
+        {#else}
+        <p> 委托人：<span class="underline">{$T.customer.name}</span> </p>
+        <p> 身份证号码：<span class="underline">{$T.customer.credentialsNumber}</span> </p>
+        <p> 住址：<span class="underline">{$T.customer.credentialsAddr}</span> </p>
+        {#/if}
+
+        <p>鉴于：</p>
+        <p>1、甲方为<span class="underline">{$T.oldArchives.fundName}</span>的普通合伙人及执行事务合伙人。</p>
+        <p>2、乙方于<span class="underline">{$.utils.dateFormat($T.rgrq,"yyyy年MM月dd日")}</span>出资人民币<span class="underline">{($.utils.getCNY($T.tzje)}</span>（<span class="underline">¥{$T.tzje}</span>元），签订编号为<span class="underline">{$T.oldArchives.contractNum}</span>的合同文件（下称“原协议”），成为<span class="underline">{$T.oldArchives.fundName}</span>的有限合伙人。</p>
+        <p>现乙方由于自身原因，<span class="underline">{$.utils.dateFormat($T.scrq,"yyyy年MM月dd日")}</span>申请提前退出<span class="underline">{$T.oldArchives.fundName}</span>，同时自愿将人民币<span class="underline">{$T.ztje/10000}</span>万元整（<span class="underline">¥{$T.ztje}</span>元）投资款转投至<span class="underline">{$T.fundName}</span>。根据原协议的约定，双方达成协议如下，供遵照执行。</p>
+        <p>第一条 经合伙人协商确定，同意乙方中途退出{$T.oldArchives.fundName}。</p>
+        <p>第二条 根据原协议的约定，投资期未满1年，因有限合伙人的原因要求退伙的，该有限合伙人应向基金合伙企业支付其本人投资总额的<span class="underline">{$T.kcwyjbl *100}%</span>作为违约金。
+            {#if $T.kcwyj<=0 }
+            经合伙人协商确定，同意不扣除乙方的该笔违约金。
+            {#else}
+            执行事务合伙人有权从该有限合伙人的投资款及收益中扣除该笔违约金，该有限合伙人不得提出异议。即乙方同意甲方从乙方的本金及收益中扣除违约金人民币<span class="underline">{$.utils.getCNY($T.kcwyj)}</span>（<span class="underline">￥{$T.kcwyj}</span>元）。
+            {#/if}
+        </p>
+        <p>第三条
+            双方确认，
+            <!--（若已支付部分收益）-->
+            {#if $T.yfsyze>0 }
+            $T.fundName}已支付乙方投资收益计人民币<span class="underline">{$.utils.getCNY($T.yfsyze)}</span>（<span class="underline">￥{$T.yfsyze}</span>元）。
+            {#/if}
+            本协议签订后五个工作日内，$T.fundName}需将乙方投资款
+            {#if $T.ztsysye >0 }
+            <!--【若支付剩余收益显示】-->
+            及收益人民币<span class="underline">{$.utils.getCNY($T.ztsysye)}</span>（<span
+                    class="underline">￥{$T.ztsysye}</span>元元）转至<span class="underline">{$T.fundName}</span>的募集账户。
+            {#/if}
+            <!--【部分转投不显示】-->
+            {#if $T.ztbje>={$T.oldArchives.tzje }
+            自此，甲方及<span class="underline">{$T.oldArchives.fundName}</span>均无需向乙方支付与<span class="underline">{$T.oldArchives.fundName}</span>有关的收益或其他款项。
+            {#/if}
+        </p>
+        <p>第四条 乙方转投BBB基金企业（有限合伙）所享有的权利或承担的义务详见乙方与XXX签订的合同文件（编号：XX）相关条款。</p>
+        {#if $T.ztbje>={$T.oldArchives.tzje }
+        <!--【全部转投显示】-->
+        <p>第五条 本协议签订后，乙方即退出AAA基金企业（有限合伙），不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。</p>
+        {#else}
+        <!--【部分转投显示】-->
+        <p>第五条 乙方提前退出人民币XX元整（¥ XXX元）投资款后，其向AAA基金企业（有限合伙）投资款仅为人民币XX元整（¥ XXX元），仅享有AAA基金企业（有限合伙）XX元人民币的基金份额以及相应权利。</p>
+        {#/if}
+        <p>第六条 如履行本协议过程中发生争议，双方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
+        <p>第七条 本协议一式三份，甲方持两份，乙方持一份，自双方签字盖章之日起生效。</p>
+        <br/>
+    </div>
+    <div class="print-footer">
+        <div style="text-align: right;padding-right: 10em">
+            {#if $T.customer.credentialsType=="营业执照" }
+            <p>委托人（签字并捺印）：</p>
+            {#else}
+            <p>委托人：  </p>
+            <p> 法定（授权）代表人：</p>
+            {#/if}
+            <p>日期：   年     月   日  </p>
+        </div>
+        <!--<div><span class="underline">{$.utils.dateFormat(new Date(),"yyyy年MM月dd日")}</div>-->
+        <p>受托人同意此委托事项。</p>
+        <p>受托人：<span class="underline">{$T.fundName}</span></p>
+        <p>负责人：</p>
+        <p>日期：  年   月   日</p>
+    </div>
+</div>

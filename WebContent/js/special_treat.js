@@ -28,7 +28,7 @@ var VIEWDATA = {
         // this.set();
         console.log(this.item);
         if (this.item['dazt'] != 0) {
-            this.error("些投资档案已经有特殊申请了，不能再做特殊申请！");
+            this.error("投资档案已经有特殊申请了，不能再做特殊申请！");
             return;
         }
         this.databind.BindObject = this.item;
@@ -281,8 +281,6 @@ var VIEWDATA = {
             } else {
                 $.message.error("获取数据出错!");
             }
-        }).error(function (error) {
-            $('#input_htbh').addClass("valid_error");
         });
     }
 };
