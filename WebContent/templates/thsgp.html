@@ -30,17 +30,16 @@
         {#/if}
         <br />
         <strong>鉴于：</strong>
-        <p>1、甲乙丙三方签订编号为<span class="underline">{$T.XXX }</span>的合同文件（下称“原协议”），丙方于<span class="underline">{$T.XX 年XX月XX日}</span> 向<span class="underline">{$T.XXXX基金企业（有限合伙）}</span>（下称“合伙企业”）投资人民币<span class="underline">{$T.XX}</span>万元整（?<span class="underline">{$T.XXX}</span>），用于投资<span class="underline">{$T.XXXXXX项目}</span>。</p>
-        <p>2、丙方申请原协议约定的投资期限届满后，继续投资于合伙企业。</p>
-        <br/>
-        <strong>鉴于此，甲乙丙三方为维护各自合法权益，经友好协商，特订立如下补充协议。</strong>
-        <p><strong>第一条</strong> 根据原协议约定，原投资期限届满，合伙企业应向丙方返还投资款并分配投资款。现因丙方申请在原投资期限届满后继续投资于合伙企业，三方确认：</p>
-        <p><strong>□ 全部投资款续投。</strong>合伙企业于投资期限届满原投资款汇入丙方在原协议中指定的收款账户，而无需返还原协议约定的投资款，原协议约定的投资款期满后将直接投资于续期的合伙企业中。</p>
-        <p><strong>□ 全部投资款续投，追加投资款。</strong>合伙企业于投资期限届满后仅需将丙方原投资款汇入丙方在原协议中指定的收款账户，而无需返还原协议约定的投资款，原协议约定的投资款期满后将直接投资于续期的合伙企业中。此外，丙方追加投资款人民币<span class="underline">{$T.XX }</span>元整。</p>
-        <p><strong>□ 部分投资款续投。</strong>合伙企业于投资期限届满后仅需将丙方原投资款及部分投资款人民币<span class="underline">{$T. XX}</span>元整（?<span class="underline">{$T. XX}</span>）汇入丙方在原协议中指定的收款账户，剩余部分投资款人民币<span class="underline">{$T. XX}</span>元整（?<span class="underline">{$T. XX}</span>）期满后将直接投资于续期的合伙企业中。</p>
-        <p><strong>第二条</strong> 甲乙丙三方在此确定丙方新的投资期限为壹年，<span class="underline">{$T. XX}</span>起至<span class="underline">{$T. XX}</span>止，投资款为人民币<span class="underline">{$T. XX}</span>万元整（?<span class="underline">{$T. XX}</span>），预期年化收益率为<span class="underline">{$T. XX}</span>%。</p>
-        <p><strong>第三条</strong> 本补充协议自三方签字盖章之日起生效。本协议作为原协议的补充，与原协议具有同等法律效力。原协议与本补充协议有不同的约定，以本补充协议为准。</p>
-        <p><strong>第四条</strong> 本补充协议一式三份，甲乙丙三方各执一份，三份补充协议具有同等法律效力。</p>
+        <p>1、甲方、乙方为<span class="underline">{$T.XXX基金企业（有限合伙）}</span>的普通合伙人。</p>
+        <p>2、甲方为<span class="underline">{$T.XXX基金企业（有限合伙）}</span>执行事务合伙人。</p>
+        <p>3、丙方于<span class="underline">{$T.dateX年 X月X日}</span>出资人民币<span class="underline">{$T.a}</span>元整（¥<span class="underline">{$T.a}</span>），签订编号为<span class="underline">{$T.a}</span>的合同（下称“原协议”），成为<span class="underline">{$T.a}</span>的有限合伙人。</p>
+        <p>现丙方由于自身原因，于<span class="underline">{$T.dateX年 X月X日}</span>申请提前退出<span class="underline">{$T.XXX基金企业（有限合伙）}</span>。根据原协议的约定，三方达成协议如下，供三方遵照执行。</p>
+        <p><strong>第一条：</strong>经合伙人协商确定，同意丙方中途退出<span class="underline">{$T.XXX基金企业（有限合伙）}</span>。</p>
+        <p><strong>第二条：</strong>根据原协议的约定，因有限合伙人的原因要求退伙的，该有限合伙人应向基金合伙企业支付其本人投资总额的<span class="underline">{$T.b}</span>作为违约金。{#if $T.不扣违约金}经合伙人协商确定，同意不扣除丙方的该笔违约金。{#else}执行事务合伙人有权从该有限合伙人的投资款及收益中扣除该笔违约金，该有限合伙人不得提出异议。即丙方同意甲方从丙方的投资款及收益中扣除违约金人民币<span class="underline">{$T.a}</span>元（¥<span class="underline">{$T.a}</span>元）。{#/if}</p>
+        <p><strong>第三条：</strong>三方确认，{#if $T.已支付部分收益}<span class="underline">{$T.XXX基金企业（有限合伙）}</span>已支付丙方投资收益计人民币<span class="underline">{$T.b}</span>元整（¥<span class="underline">{$T.b}</span>元）。{#/if}本协议签订后五个工作日内，XXX基金企业（有限合伙）需返还丙方投资款{#if $T.支付剩余部分收益}及收益{#/if}计人民币<span class="underline">{$T.a}</span>元整（¥<span class="underline">{$T.a}</span>元）至原协议中指定的丙方账户。{#if !$T.部分退伙}自此，甲方、乙方及<span class="underline">{$T.XXX基金企业（有限合伙）}</span>均无需向丙方支付任何其他收益或其他款项。{#/if}</p>
+        <p><strong>第四条：</strong>{#if $T.全额退伙}本协议签订后，丙方即退出<span class="underline">{$T.aXXX基金企业（有限合伙）}</span>，不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。{#else}丙方提前退出人民币<span class="underline">{$T.a}</span>元整（¥<span class="underline">{$T.a}</span>元）投资款后，其向<span class="underline">{$T.a}</span>投资款仅为人民币<span class="underline">{$T.a}</span>元整（¥<span class="underline">{$T.a}</span>元），仅享有<span class="underline">{$T.aXXX基金企业（有限合伙）}</span><span class="underline">{$T.a}</span>元人民币的基金份额以及相应权利。{#/if}</p>
+        <p><strong>第五条：</strong>如履行本协议过程中发生争议，三方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
+        <p><strong>第六条：</strong>本协议一式三份，三方各执一份，自三方签字盖章之日起生效。</p>
         <p>（以下无正文）</p>
     </div>
     <div class="print-footer">
