@@ -1,0 +1,51 @@
+<div class="print-paper">
+    <div class="print-header">
+        <div class="print-title">退 伙 协 议（单GP）</div>
+        <div class="print-no"> 编号：（<span class="underline">{$T.JSY-XT-XXXXX}</span>）</div>
+    </div>
+    <div class="print-body">
+            <p>甲方：<span class="underline">{$T.a}</span></p>
+            <p>住所：<span class="underline">{$T.b}</span></p>
+            <p>法定代表人：<span class="underline">{$T.c}</span></p>
+            <p>注册号：<span class="underline">{$T.c440301105176459}</span></p>
+            <br />
+            {#if $T.customer.credentialsType=="营业执照" }
+            <p>乙方：<span class="underline">{$T.a}</span></p>
+            <p>身份证号码：<span class="underline">{$T.a}</span></p>
+            <p>住址：<span class="underline">{$T.b}</span></p>
+            {#else}
+            <p>乙方：<span class="underline">{$T.a}</span></p>
+            <p>住所：<span class="underline">{$T.a}</span></p>
+            <p>法定代表人：<span class="underline">{$T.b}</span></p>
+            <p>注册号：<span class="underline">{$T.b}</span></p>
+            {#/if}
+            <br />
+            <strong>鉴于：</strong>
+            <p>1、甲方为<span class="underline">{$T.XXXXX基金企业（有限合伙）}</span>的普通合伙人。</p>
+            <p>2、乙方于<span class="underline">{$T.X年 X月X日}</span>出资人民币<span class="underline">{$T.XX}</span>元整（<span class="underline">{$T.¥XXX}</span>），签订编号为<span class="underline">{$T.XX}</span>的合同（下称“原协议”），成为<span class="underline">{$T.XXXXX基金企业（有限合伙）}</span>的有限合伙人。</p>
+            <p>现乙方由于自身原因，于<span class="underline">{$T.X年X月X日}</span>申请提前退出<span class="underline">{$T.XXXXX基金企业（有限合伙）}</span>。根据原协议的约定，双方达成协议如下，供双方遵照执行。</p>
+            <br/>
+            <p><strong>第一条</strong>经合伙人协商确定，同意乙方中途退出<span class="underline">{$T.XXXXX基金企业（有限合伙）}</span>。</p>
+            <p><strong>第二条</strong>根据原协议的约定，因有限合伙人的原因要求退伙的，该有限合伙人应向基金合伙企业支付其本人投资总额的<span class="underline">{$T.XXX}</span>作为违约金。{#if $T.不扣违约金}经合伙人协商确定，同意不扣除乙方的该笔违约金。{#else}执行事务合伙人有权从该有限合伙人的投资款及收益中扣除该笔违约金，该有限合伙人不得提出异议。即乙方同意甲方从乙方的投资款及收益中扣除违约金人民币<span class="underline">{$T.XXX}</span>元（¥<span class="underline">{$T.XXX}</span>）。{#/if}</p>
+            <p><strong>第三条</strong>双方确认，{#if $T.已支付部分收益}<span class="underline">{$T.XXXXX基金企业（有限合伙）}</span>已支付乙方投资收益计人民币<span class="underline">{$T.XXX}</span>元整（¥<span class="underline">{$T.XXX}</span>）。{#/if}本协议签订后五个工作日内，<span class="underline">{$T.XXX基金企业（有限合伙）}</span>需返还乙方投资款{#if $T.支付剩余部分收益}及收益{#/if}计人民币<span class="underline">{$T.XXX}</span>元整（¥<span class="underline">{$T.XXX}</span>）至原协议中指定的乙方账户。{#if !$T.部分退伙}自此，甲方及<span class="underline">{$T.XXX基金企业（有限合伙）}</span>均无需向乙方支付任何其他收益或其他款项。{#/if}</p>
+            <p><strong>第四条</strong>{#if $T.全额退伙}本协议签订后，乙方即退出<span class="underline">{$T.XXX基金企业（有限合伙）}</span>，不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。{#else}乙方提前退出人民币<span class="underline">{$T.XXX}</span>元整（¥<span class="underline">{$T.XXX}</span>）投资款后，其向<span class="underline">{$T.基金企业}</span>投资款仅为人民币<span class="underline">{$T.XXX}</span>元整（¥<span class="underline">{$T.XXX}</span>），仅享有<span class="underline">{$T.XXX}</span><span class="underline">{$T.XXX}</span>元人民币的基金份额以及相应权利。{#/if}</p>
+            <p><strong>第五条</strong>如履行本协议过程中发生争议，双方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
+            <p><strong>第六条</strong>本协议一式三份，甲方执两份，乙方执一份，自双方签字盖章之日起生效。</p>
+            <p>（以下无正文）</p>
+    </div>
+    <div class="print-footer">
+        <p>甲方：{$T.XXXXXX公司}</p>
+        <p>法定代表人：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        {#if $T.customer.credentialsType=="营业执照" }
+        <br />
+        <p>乙方（签字并捺印）：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        {#else}
+        <br />
+        <p>乙方：{$T.xx}</p>
+        <p>法定（授权）代表人：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        {#/if}
+    </div>
+</div>

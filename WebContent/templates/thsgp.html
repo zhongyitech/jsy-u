@@ -1,0 +1,68 @@
+<div class="print-paper">
+    <div class="print-header">
+        <div class="print-title">退 伙 协 议（双GP）</div>
+        <div class="print-no"> 编号：（<span class="underline">{$T.JSY-XT-XXXXX}</span>）</div>
+    </div>
+    <div class="print-body">
+        <p>甲方：<span class="underline">{$T.aXXX公司}</span></p>
+        <p>法定代表人：<span class="underline">{$T.b王维奇}</span></p>
+        <p>地址：<span class="underline">{$T.c深圳市罗湖区宝安南路1036号鼎丰大厦907}</span></p>
+        <p>注册号：<span class="underline">{$T.c440301105176459}</span></p>
+        <br />
+        {#if $T.customer.credentialsType=="营业执照" }
+        <p>乙方：<span class="underline">{$T.a}</span></p>
+        <p>身份证号码：<span class="underline">{$T.a}</span></p>
+        <p>住址：<span class="underline">{$T.b}</span></p>
+        <br />
+        <p>丙方：<span class="underline">{$T.a}</span></p>
+        <p>身份证号码：<span class="underline">{$T.a}</span></p>
+        <p>住址：<span class="underline">{$T.b}</span></p>
+        {#else}
+        <p>乙方：<span class="underline">{$T.a}</span></p>
+        <p>住所：<span class="underline">{$T.a}</span></p>
+        <p>法定代表人：<span class="underline">{$T.b}</span></p>
+        <p>注册号：<span class="underline">{$T.b}</span></p>
+        <br />
+        <p>丙方：<span class="underline">{$T.a}</span></p>
+        <p>住所：<span class="underline">{$T.a}</span></p>
+        <p>法定代表人：<span class="underline">{$T.b}</span></p>
+        <p>注册号：<span class="underline">{$T.b}</span></p>
+        {#/if}
+        <br />
+        <strong>鉴于：</strong>
+        <p>1、甲乙丙三方签订编号为<span class="underline">{$T.XXX }</span>的合同文件（下称“原协议”），丙方于<span class="underline">{$T.XX 年XX月XX日}</span> 向<span class="underline">{$T.XXXX基金企业（有限合伙）}</span>（下称“合伙企业”）投资人民币<span class="underline">{$T.XX}</span>万元整（?<span class="underline">{$T.XXX}</span>），用于投资<span class="underline">{$T.XXXXXX项目}</span>。</p>
+        <p>2、丙方申请原协议约定的投资期限届满后，继续投资于合伙企业。</p>
+        <br/>
+        <strong>鉴于此，甲乙丙三方为维护各自合法权益，经友好协商，特订立如下补充协议。</strong>
+        <p><strong>第一条</strong> 根据原协议约定，原投资期限届满，合伙企业应向丙方返还投资款并分配投资款。现因丙方申请在原投资期限届满后继续投资于合伙企业，三方确认：</p>
+        <p><strong>□ 全部投资款续投。</strong>合伙企业于投资期限届满原投资款汇入丙方在原协议中指定的收款账户，而无需返还原协议约定的投资款，原协议约定的投资款期满后将直接投资于续期的合伙企业中。</p>
+        <p><strong>□ 全部投资款续投，追加投资款。</strong>合伙企业于投资期限届满后仅需将丙方原投资款汇入丙方在原协议中指定的收款账户，而无需返还原协议约定的投资款，原协议约定的投资款期满后将直接投资于续期的合伙企业中。此外，丙方追加投资款人民币<span class="underline">{$T.XX }</span>元整。</p>
+        <p><strong>□ 部分投资款续投。</strong>合伙企业于投资期限届满后仅需将丙方原投资款及部分投资款人民币<span class="underline">{$T. XX}</span>元整（?<span class="underline">{$T. XX}</span>）汇入丙方在原协议中指定的收款账户，剩余部分投资款人民币<span class="underline">{$T. XX}</span>元整（?<span class="underline">{$T. XX}</span>）期满后将直接投资于续期的合伙企业中。</p>
+        <p><strong>第二条</strong> 甲乙丙三方在此确定丙方新的投资期限为壹年，<span class="underline">{$T. XX}</span>起至<span class="underline">{$T. XX}</span>止，投资款为人民币<span class="underline">{$T. XX}</span>万元整（?<span class="underline">{$T. XX}</span>），预期年化收益率为<span class="underline">{$T. XX}</span>%。</p>
+        <p><strong>第三条</strong> 本补充协议自三方签字盖章之日起生效。本协议作为原协议的补充，与原协议具有同等法律效力。原协议与本补充协议有不同的约定，以本补充协议为准。</p>
+        <p><strong>第四条</strong> 本补充协议一式三份，甲乙丙三方各执一份，三份补充协议具有同等法律效力。</p>
+        <p>（以下无正文）</p>
+    </div>
+    <div class="print-footer">
+        <p>甲方：{$T.XXXXXX公司}</p>
+        <p>法定代表人：{$T.xx}</p>
+        <p>日期：{$T.date}</p>
+        {#if $T.customer.credentialsType=="营业执照" }
+        <br />
+        <p>乙方：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        <br />
+        <p>丙方（签字并捺印）：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        {#else}
+        <br />
+        <p>乙方：{$T.xx}</p>
+        <p>法定（授权）代表人：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        <br />
+        <p>丙方：{$T.xx}</p>
+        <p>法定（授权）代表人：{$T.xx}</p>
+        <p>签订日期：{$T.date}</p>
+        {#/if}
+    </div>
+</div>
