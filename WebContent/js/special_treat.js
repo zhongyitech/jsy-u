@@ -74,6 +74,7 @@ var VIEWDATA = {
 
         //新合同编号的检测
         $("#new_htbh").change(function () {
+            var me=this;
             $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: $("#new_htbh").val()}})
                 .success(function (result) {
                     if (result) {

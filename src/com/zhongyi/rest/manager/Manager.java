@@ -38,26 +38,10 @@ public class Manager {
 	private CloseableHttpClient client = HttpClients.createDefault();
 
 //	public static final String CHARSET = "UTF-8";
-
 	public String getServiceURL() {
 //		return "http://192.168.1.59:18080/jsy-rest";
-//		return "http://192.168.0.50:8080/jsy";
-//		return "http://192.168.4.129:8080/jsy";
-//		return "http://192.168.3.124:8080/jsy";
-		//张佳
-//		return "http://192.168.3.109:8080/jsy";
-		//佳文
-//		return "http://192.168.8.122:8080/jsy";
-//		return "http://192.168.30.121:8080/jsy";
-//		return "http://192.168.7.116:8080/jsy";
-//		return "http://192.168.1.59:18080/jsy-rest";
-//		return "http://192.168.0.37:8080/jsy";
-//		return "http://127.0.0.1:18080/jsy-rest";
-//		return "http://192.168.0.18:18080/jsy";
-//		return "http://jsy-pc:18080/jsy-rest";
 		return "http://localhost:8080/jsy";
 	}
-
 	/**
 	 * 执行请求
 	 * @param httpUriRequest
