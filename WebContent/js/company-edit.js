@@ -936,7 +936,7 @@ var YHZH_LIST = {//银行账户
             if (purpose) {
                 item[YHZH.PURPOSE_KEY] = {id: purpose};
             }else{
-                $.message("银行账户的用户没有选择!");
+                $.message.error("银行账户的用户没有选择!");
                 tr.find('#' + YHZH.PURPOSE_KEY).addClass("valid_error");
             }
             if (JSON.stringify(item) != '{}') {
