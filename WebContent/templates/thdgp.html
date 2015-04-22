@@ -32,11 +32,11 @@
 
         <p>1、甲方为<span class="underline">{$T.fundName}</span>的普通合伙人。</p>
 
-        <p>2、乙方于<span class="underline">{DATEFORMAT.toDate($T.rgrq)}</span>出资人民币<span class="underline">{$.utils.getCNY($T.rgje)}</span>（<span
+        <p>2、乙方于<span class="underline">{$.utils.dateFormat($T.rgrq,'yyyy年MM月dd日')}</span>出资人民币<span class="underline">{$.utils.getCNY($T.rgje)}</span>（<span
                 class="underline">¥{$T.rgje}</span>），签订编号为<span class="underline">{$T.htbh}</span>的合同（下称“原协议”），成为<span
                 class="underline">{$T.fundName}</span>的有限合伙人。</p>
 
-        <p>现乙方由于自身原因，于<span class="underline">{DATEFORMAT.toDate($T.scrq)}</span>申请提前退出<span
+        <p>现乙方由于自身原因，于<span class="underline">{$.utils.dateFormat($T.scrq,'yyyy年MM月dd日')}</span>申请提前退出<span
                 class="underline">{$T.fundName}</span>。根据原协议的约定，双方达成协议如下，供双方遵照执行。</p>
 
         <P></P>
@@ -54,7 +54,7 @@
                 class="underline">{$.utils.getCNY($T.yfsyze)}</span>(¥<span class="underline">{$T.yfsyze}</span>）。{#/if}本协议签订后五个工作日内，<span
                 class="underline">{$T.fundName}</span>需返还乙方投资款{#if $T.yqsye >0}及收益{#/if}计人民币<span
                 class="underline">{$.utils.getCNY($T.thje +$T.yqsye)}</span>元整（¥<span class="underline">{$T.thje +$T.yqsye}</span>）至原协议中指定的乙方账户。{#if
-            !$T.部分退伙}自此，甲方及<span class="underline">{$T.XXX基金企业（有限合伙）}</span>均无需向乙方支付任何其他收益或其他款项。{#/if}</p>
+            !$T.部分退伙}自此，甲方及<span class="underline">{$T.fundName}</span>均无需向乙方支付任何其他收益或其他款项。{#/if}</p>
 
         <p><strong>第四条</strong> {#if $T.thje==$T.rgje}本协议签订后，乙方即退出<span class="underline">{$T.fundName}</span>，不再是该有限合伙企业的有限合伙人，不再享有该有限合伙企业的任何权利或承担任何义务。{#else} 乙方提前退出人民币<span
                 class="underline">{$T.XXX}</span>元整（¥<span class="underline">{$T.XXX}</span>）投资款后，其向<span
