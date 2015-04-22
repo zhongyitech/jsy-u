@@ -27930,7 +27930,7 @@ if (window.jQuery && !window.jQuery.createTemplate) {(function (jQuery) {
                 if($selector&&!$selector.jquery) $selector=$($selector);
                 if(!$selector.hasTemplate()&&template||template.isURI){
                     if(template.isURI) {
-                        $selector.setTemplateURL(template.value);
+                        $selector.setTemplateURL(template.value+"?_t="+new Date().getTime());
                     }else if(template.jquery||template.indexOf("#")==0||template.indexOf(".")==0){
                         $selector.setTemplateElement($(template));
                     }else{
