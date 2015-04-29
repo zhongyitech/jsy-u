@@ -1,7 +1,9 @@
-1.修改
+1.修改rest地址
 manager.java
-2.修改
+
+2.修改路径配置
 FileManager.java
 private final String DIR_PATH = "D:/jsy/UploadFiles";
+
 3.打包
 build artifacts

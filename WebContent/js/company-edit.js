@@ -8,7 +8,6 @@ var COMPANY_FORM = {
     VIEW_ID: '#company-view',
     FORM_ID: '#company-form',
     MENU_ID: '#menu',
-    SUBMIT_ID: '#submit-button',
     NAME_ID: '#name',
     NICKNAME_ID: '#nickname',
     TYPE_ID: '#type',
@@ -391,22 +390,10 @@ var COMPANY_FORM = {
     setDescription: function (item) {
         this.getDescriptionView().val(COMPANY.toDescription(item));
     },
-    getSubmitButton: function () {
-        var view = this.getView();
-        if (view) {
-            return view.find(this.SUBMIT_ID);
-        }
-    },
-    iniSubmitButton: function () {
-        var me = this;
-        var button = this.getSubmitButton();
-        if (button) {
-            button.click(function () {
-                me.submit();
-            });
-        }
-    },
+
+
     ini: function (async) {
+        var me = this;
         if (!async) {
             async = false;
         }
@@ -418,7 +405,9 @@ var COMPANY_FORM = {
         this.iniPartnerButton();
         this.iniYHZH();
 
-        this.iniSubmitButton();
+        $("#submit-button").click(function(){
+            me.submit();
+        });
 
         var id = PAGE.getParam(COMPANY.ID_KEY);
         var item = COMPANY.get(id);
@@ -450,6 +439,8 @@ var COMPANY_FORM = {
         this.setDescription(item);
         this.setYHZH(item);
     },
+
+    /*获取company信息,包含银行列表*/
     getItem: function () {
         var me = this;
         var item = me.item;
@@ -840,10 +831,11 @@ var YHZH_LIST = {//银行账户
         tr.append(account_td);
         var account_div = $('<div class="form-input col-md-12"></div>');
         account_td.append(account_div);
-        var account_input = $('<input class=""></input>');
+        var account_input = $('<input class="">');
         account_div.append(account_input);
         account_input.attr('id', YHZH.ACCOUNT_KEY);
         account_input.val(YHZH.toAccount(item));
+        account_input.data("itemid",item["id"]);
 
         var hm_td = $('<td></td>');
         tr.append(hm_td);
@@ -911,6 +903,7 @@ var YHZH_LIST = {//银行账户
             }
         }
     },
+    /*获取银行列表信息*/
     getItems: function () {
         var me = this;
         var table = me.getTable();
@@ -923,6 +916,7 @@ var YHZH_LIST = {//银行账户
             var account = tr.find('#' + YHZH.ACCOUNT_KEY).val();
             if (account) {
                 item[YHZH.ACCOUNT_KEY] = account;
+                item["id"] = tr.find('#' + YHZH.ACCOUNT_KEY).data("itemid");
             }
 
             var hm = tr.find('#' + YHZH.HM_KEY).val();
