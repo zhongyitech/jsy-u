@@ -171,6 +171,18 @@ App.MakeContact = {
                 return false;
             }
 
+            //违约金率
+            var interest_per = $("#interest_per").val();
+            if(interest_per && interest_per!=""){
+                interest_per = me.formatPer(interest_per);
+                model.interest_per = interest_per;
+            }else{
+                alert("请选择年利率");
+                return false;
+            }
+
+
+
             //期限
             var year1 = $("#year1").val();
             if(year1 && year1!=""){
@@ -281,6 +293,7 @@ App.MakeContact = {
         $("#community_per").val(infoBean.community_per);
         $("#notNormal_per").val(infoBean.penalty_per);
         $("#borrow_per").val(infoBean.borrow_per);
+        $("#interest_per").val(infoBean.interest_per);
         $("#year1").val(infoBean.year1);
         $("#year2").val(infoBean.year2);
         $('input[name="interestType"][value="'+infoBean.interestType+'"]:radio').attr("checked","checked");

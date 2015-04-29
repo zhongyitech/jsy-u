@@ -33,9 +33,18 @@
 
             var item=PayRecord.getItem(idStr);
             var project = TSProject.getItem(item.project.id);
-            var bankAccount = BankAccount.getItem(item.bankAccount.id);
+            var bankAccount;
+            if(item.bankAccountFrom){
+                bankAccount = BankAccount.getItem(item.bankAccountFrom.id);
+            }
+
             var fund = Fund.getItem(item.fund.id);
-            var company = FundCompanyInformation.getItem(fund.funcCompany.id);
+            var company;
+            if(fund.funcCompany){
+                company = FundCompanyInformation.getItem(fund.funcCompany.id);
+            }
+
+
             if(project){
                 item.manage_per= project.manage_per;
                 item.community_per= project.community_per;
@@ -49,6 +58,8 @@
             }
             if(company){
                 item.companyName=company.companyName;
+            }else{
+                item.companyName="未确定";
             }
             item.shouldPayBackSomeDate = new Date(item.payDate).addDay(2);
             console.log(item);

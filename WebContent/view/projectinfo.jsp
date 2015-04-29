@@ -665,6 +665,12 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-2">
+                                    <label >年利率：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <input id="interest_per" placeholder="例如：0.3"/>
+                                </div>
+                                <div class="form-label col-md-2">
                                     <label >期限（年）：</label>
                                 </div>
                                 <div class="form-input col-md-4">
@@ -676,6 +682,10 @@
                                     </div>
                                 </div>
 
+                            </div>
+
+
+                            <div class="form-row">
                                 <div class="form-label col-md-2   ">
                                     <label >利息计算方式：</label>
                                 </div>
@@ -685,10 +695,6 @@
                                     <label><input type="radio" name="interestType" value="dayCount">日复利</label>
                                 </div>
 
-                            </div>
-
-
-                            <div class="form-row">
                                 <div id="label_daycount" class="form-label col-md-2">
                                     <label>日复利日利率：</label>
                                 </div>
