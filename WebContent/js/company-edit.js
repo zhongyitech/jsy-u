@@ -815,10 +815,10 @@ var YHZH_LIST = {//银行账户
                 this.add(items[i]);
             }
         }
-
-        for (var i = 0; i < 3; i++) {
-            this.add();
-        }
+        //
+        //for (var i = 0; i < 3; i++) {
+        //    this.add();
+        //}
     },
     add: function (item) {
         var table = this.getTable();
