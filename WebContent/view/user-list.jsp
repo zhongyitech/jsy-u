@@ -42,14 +42,15 @@
 						<table class="table table-striped text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
-									<th class="text-center">账号</th>
-									<th class="text-center">是否启用</th>
+									<th class="text-center">账号(登陆名))</th>
 									<th class="text-center">名称</th>
-									<th class="text-center">部门</th>
+									<th class="text-center">角色(职务)</th>
+									<th class="text-center">所属部门</th>
 									<th class="text-center">公司</th>
-									<th class="text-center">收款人</th>
-									<th class="text-center">开户行</th>
-									<th class="text-center">银行账号</th>
+									<th class="text-center">是否启用</th>
+									<%--<th class="text-center">开户行</th>--%>
+									<%--<th class="text-center">银行账号</th>--%>
+									<%--<th class="text-center">是否启用</th>--%>
 								</tr>
 							</thead>
 							<tbody></tbody>

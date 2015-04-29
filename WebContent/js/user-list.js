@@ -102,13 +102,19 @@ var USER_LIST = {
             account_td.append($('<span class="span-12"></span>'));
         }
 
-        var enabled = USER.toEnabled(item)?'是':'否';
-        var enabled_td = $('<td class="text-center"><span class="text-overflow" title="' + enabled + '">' + enabled + '</span></td>');
-        tr.append(enabled_td);
-
         var name = USER.toName(item);
-        var name_td = $('<td class="text-center"><span class="text-overflow" title="' + name + '">' + name + '</span></td>');
+        var name_td = $('<td class="text-left"><span class="text-overflow" title="' + name + '">' + name + '</span></td>');
         tr.append(name_td);
+
+        item['role'] = $.io.get(true,
+            {url: '/api/role/userRoleList', params: {id: item.id}}
+        ).data();
+        var roleNames="";
+        $.each(item['role'],function(i,item){
+            roleNames+=item.name+",";
+        })
+
+        tr.append('<td class="text-center"><span class="text-overflow" title="' +roleNames+ '">' +  (roleNames.substr(0,roleNames.length-1))+ '</span></td>');
 
         var department = USER.toDepartment(item);
         //$.project.domain(item.department.id,item.department.class,'deptName');
@@ -122,17 +128,21 @@ var USER_LIST = {
         var company_td = $('<td class="text-center"><span class="text-overflow" title="' + company + '">' + company + '</span></td>');
         tr.append(company_td);
 
-        var skr = USER.toSKR(item);
-        var skr_td = $('<td class="text-center"><span class="text-overflow" title="' + skr + '">' + skr + '</span></td>');
-        tr.append(skr_td);
+        var enabled = USER.toEnabled(item)?'是':'否';
+        var enabled_td = $('<td class="text-center"><span class="text-overflow" title="' + enabled + '">' + enabled + '</span></td>');
+        tr.append(enabled_td);
 
-        var khh = USER.toKHH(item);
-        var khh_td = $('<td class="text-center"><span class="text-overflow" title="' + khh + '">' + khh + '</span></td>');
-        tr.append(khh_td);
-
-        var yhzh = USER.toYHZH(item);
-        var yhzh_td = $('<td class="text-center"><span class="text-overflow" title="' + yhzh + '">' + yhzh + '</span></td>');
-        tr.append(yhzh_td);
+        //var skr = USER.toSKR(item);
+        //var skr_td = $('<td class="text-center"><span class="text-overflow" title="' + skr + '">' + skr + '</span></td>');
+        //tr.append(skr_td);
+        //
+        //var khh = USER.toKHH(item);
+        //var khh_td = $('<td class="text-center"><span class="text-overflow" title="' + khh + '">' + khh + '</span></td>');
+        //tr.append(khh_td);
+        //
+        //var yhzh = USER.toYHZH(item);
+        //var yhzh_td = $('<td class="text-center"><span class="text-overflow" title="' + yhzh + '">' + yhzh + '</span></td>');
+        //tr.append(yhzh_td);
     }
 };
 

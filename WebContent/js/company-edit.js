@@ -552,23 +552,31 @@ var COMPANY_FORM = {
         var params = JSON.stringify({id: COMPANY.toId(item)});
         var entity = JSON.stringify(item);
         var data = {url: '/api/fundCompanyInformation', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: "../rest/item/put",
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                window.location = PAGE.COMPANY_LIST;
-            },
-            error: function (response) {
-                me.response = response;
-                if (LOGIN.error(response)) {
-                    alert('提交失败，请补全带*号的必填信息.');
-                }
-            }
-        });
+
+        $.io.put(data).success(function(result){
+            //me.response = response;
+            window.location = PAGE.COMPANY_LIST;
+        }).
+            error(function(error){
+                alert('提交失败，请补全带*号的必填信息.');
+            });
+        //$.ajax({
+        //    type: "post",
+        //    url: "../rest/item/put",
+        //    async: true,
+        //    data: data,
+        //    dataType: "json",
+        //    success: function (response) {
+        //        me.response = response;
+        //        window.location = PAGE.COMPANY_LIST;
+        //    },
+        //    error: function (response) {
+        //        me.response = response;
+        //        if (LOGIN.error(response)) {
+        //            alert('提交失败，请补全带*号的必填信息.');
+        //        }
+        //    }
+        //});
     }
 };
 
@@ -815,10 +823,10 @@ var YHZH_LIST = {//银行账户
                 this.add(items[i]);
             }
         }
-
-        for (var i = 0; i < 3; i++) {
-            this.add();
-        }
+        //
+        //for (var i = 0; i < 3; i++) {
+        //    this.add();
+        //}
     },
     add: function (item) {
         var table = this.getTable();

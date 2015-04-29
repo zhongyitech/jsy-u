@@ -93,64 +93,64 @@
 
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label>银行卡信息</label>
-                            </div>
-                        </div>
+                        <%--<div class="form-row">--%>
+                            <%--<div class="form-label col-md-2">--%>
+                                <%--<label>银行卡信息</label>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label for="" class="label-description">收款人:</label>
-                            </div>
+                        <%--<div class="form-row">--%>
+                            <%--<div class="form-label col-md-2">--%>
+                                <%--<label for="" class="label-description">收款人:</label>--%>
+                            <%--</div>--%>
 
-                            <div class="form-input col-md-4">
-                                <input placeholder="" type="text" id="skr">
-                            </div>
+                            <%--<div class="form-input col-md-4">--%>
+                                <%--<input placeholder="" type="text" id="skr">--%>
+                            <%--</div>--%>
 
-                            <div class="form-label col-md-2">
-                                <label for="" class="label-description">银行账号:</label>
-                            </div><div class="form-input col-md-4">
-                            <input placeholder="" type="text" id="yhzh">
-                        </div>
-                        </div>
+                            <%--<div class="form-label col-md-2">--%>
+                                <%--<label for="" class="label-description">银行账号:</label>--%>
+                            <%--</div><div class="form-input col-md-4">--%>
+                            <%--<input placeholder="" type="text" id="yhzh">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label for="" class="label-description">开户行:</label>
-                            </div>
+                        <%--<div class="form-row">--%>
+                            <%--<div class="form-label col-md-2">--%>
+                                <%--<label for="" class="label-description">开户行:</label>--%>
+                            <%--</div>--%>
 
-                            <div class="form-input col-md-10">
-                                <input placeholder="" type="text" id="khh">
-                            </div>
-                        </div>
+                            <%--<div class="form-input col-md-10">--%>
+                                <%--<input placeholder="" type="text" id="khh">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="form-row hide" >
-                            <table class="table table-striped text-center mrg0B form-input" id="bankaccount_table">
-                                <tr>
-                                    <th class="text-center"><span>账号</span></th>
-                                    <th class="text-center"><span>户名</span></th>
-                                    <th class="text-center"><span>开户行</span></th>
-                                    <th class="text-center"><span>银行名称</span></th>
-                                </tr>
-                                <tr>
-                                    <td>ff</td>
-                                    <td>df</td>
-                                    <td>dsf</td>
-                                    <td>da</td>
-                                </tr>
-                            </table>
-                            <div class="text-right mrg5T">
-                                <button type="button" class="btn-ui btn primary large medium mrg10L"
-                                        id="rowadd">
-                                    <span class="button-content">添加</span>
-                                </button>
-                                <button type="button" class="btn-ui btn primary large medium mrg10L"
-                                        id="rowdel">
-                                    <span class="button-content">删除</span>
-                                </button>
-                            </div>
-                        </div>
+                        <%--<div class="form-row hide" >--%>
+                            <%--<table class="table table-striped text-center mrg0B form-input" id="bankaccount_table">--%>
+                                <%--<tr>--%>
+                                    <%--<th class="text-center"><span>账号</span></th>--%>
+                                    <%--<th class="text-center"><span>户名</span></th>--%>
+                                    <%--<th class="text-center"><span>开户行</span></th>--%>
+                                    <%--<th class="text-center"><span>银行名称</span></th>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td>ff</td>--%>
+                                    <%--<td>df</td>--%>
+                                    <%--<td>dsf</td>--%>
+                                    <%--<td>da</td>--%>
+                                <%--</tr>--%>
+                            <%--</table>--%>
+                            <%--<div class="text-right mrg5T">--%>
+                                <%--<button type="button" class="btn-ui btn primary large medium mrg10L"--%>
+                                        <%--id="rowadd">--%>
+                                    <%--<span class="button-content">添加</span>--%>
+                                <%--</button>--%>
+                                <%--<button type="button" class="btn-ui btn primary large medium mrg10L"--%>
+                                        <%--id="rowdel">--%>
+                                    <%--<span class="button-content">删除</span>--%>
+                                <%--</button>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
 
 
