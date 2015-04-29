@@ -36,42 +36,6 @@
                     </div>
                 </div>
                 <div class="content-box-wrapper">
-                    <div class="pad3A mrg5B seach_panel " id="search_panel">
-                        <div class="form-row">
-                            <div class="form-input col-md-2">
-                                <div class="input-append-wrapper">
-                                    <div class="input-append bg-gray pad5L pad5R">
-                                        <label>合同编号</label>
-                                    </div>
-                                    <input type="text" placeholder="查询条件" name="" id="">
-                                </div>
-                            </div>
-                            <div class="form-input col-md-2">
-                                <div class="input-append-wrapper">
-                                    <div class="input-append bg-gray pad5L pad5R">
-                                        <label>合同编号</label>
-                                    </div>
-                                    <input type="text" placeholder="查询条件" name="" id="">
-                                </div>
-                            </div>
-                            <div class="form-input col-md-2">
-                                <div class="input-append-wrapper">
-                                    <div class="input-append bg-gray pad5L pad5R">
-                                        <label>客户名称</label>
-                                    </div>
-                                    <input type="text" placeholder="查询条件" name="" id="">
-                                </div>
-                            </div>
-                            <div class="form-input col-md-2">
-                                <div class="input-append-wrapper">
-                                    <div class="input-append bg-gray pad5L pad5R ">
-                                        <label>投资日期</label>
-                                    </div>
-                                    <input type="text" placeholder="查询条件" name="" id="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div id="table-pager" class="page-bar"></div>
                     <table id="payorder-table" class="table table-striped text-center mrg0B" id="filepackage-get-table"></table>
                 </div>

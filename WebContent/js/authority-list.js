@@ -100,6 +100,7 @@ var ROLE_LIST ={
 			}else{
 				name_td.append($('<span class="span-12"></span>')); 
 			}
+			tr.append('<td class="text-left"> <a class=" text-overflow item-url" target="_blank" href="./authority-edit.jsp?id=2" title="">设置权限</a></td>');
 		},
 		remove: function(){//删除选中行
 			var table = this.getTable();

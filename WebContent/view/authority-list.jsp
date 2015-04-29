@@ -42,13 +42,13 @@
 						<table class="table table-striped mrg0B" id="view-table">
 							<thead>
 								<tr>
-									<th>角色名称</th>
+									<th style="width: 400px">角色名称</th>
+									<th></th>
                                 </tr>
 							</thead>
 							<tbody></tbody>
 						</table>
 					</div>
-					
 					<div class="button-pane hide">
 						<button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="remove-button"><span class="button-content">删除选中行</span></button>
 					</div>
