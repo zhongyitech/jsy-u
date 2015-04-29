@@ -118,22 +118,22 @@ App.MakeContact = {
                 model.signers.push(obj)
             });
 
-            //有限合伴
-            var company = $("#company").html();
-            if(company && company!=""){
-                //model.company = company;
-            }else{
-                alert("请为给项目创建基金，并进行关联");
-                return false;
-            }
-            //基金
-            var fund = $("#relate_fund").html();
-            if(fund && fund!=""){
-                //model.fund = fund;
-            }else{
-                alert("请为给项目创建基金，并进行关联");
-                return false;
-            }
+            ////有限合伴
+            //var company = $("#company").html();
+            //if(company && company!=""){
+            //    //model.company = company;
+            //}else{
+            //    alert("请为给项目创建基金，并进行关联");
+            //    return false;
+            //}
+            ////基金
+            //var fund = $("#relate_fund").html();
+            //if(fund && fund!=""){
+            //    //model.fund = fund;
+            //}else{
+            //    alert("请为给项目创建基金，并进行关联");
+            //    return false;
+            //}
             //管理费率
             var manage_per = $("#manage_per").val();
             if(manage_per && manage_per!=""){
