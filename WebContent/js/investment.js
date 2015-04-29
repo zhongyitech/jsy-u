@@ -619,17 +619,17 @@ var INVESTMENT_ITEM = {
     setNHSYL: function () {//设置年化收益率
         var me = this;
 
-        var nhsyl = $(me.INVEST_YEARRATE_ID).val();
-        var print = $(this.INVEST_PRINT_ID);
-        var nhsy_print = print.find(this.PRINT_SHOUYI_NAME);
-        for (var i = 0; i < nhsy_print.length; i++) {
-            var shouyi_a = $(nhsy_print.get(i));
-            if (nhsyl) {
-                shouyi_a.text(nhsyl);
-            } else {
-                shouyi_a.text('________');
-            }
-        }
+        //var nhsyl = $(me.INVEST_YEARRATE_ID).val();
+        //var print = $(this.INVEST_PRINT_ID);
+        //var nhsy_print = print.find(this.PRINT_SHOUYI_NAME);
+        //for (var i = 0; i < nhsy_print.length; i++) {
+        //    var shouyi_a = $(nhsy_print.get(i));
+        //    if (nhsyl) {
+        //        shouyi_a.text(nhsyl);
+        //    } else {
+        //        shouyi_a.text('________');
+        //    }
+        //}
 
         me.setYWTCBL();
         me.setGLTCBL();
