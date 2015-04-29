@@ -191,6 +191,9 @@ var VIEWDATA={
             $("#year1").val(project.year1);
             $("#year2").val(project.year2);
             $("#fundname").val(project.fundName);
+            console.log(project);
+            $("#_fundname").val(project.fundId);
+
         }).error(function(result){
             alert("加载项目流程信息错误，请联系管理员："+result);
         });

@@ -102,8 +102,8 @@ App.Research = {
 
 
             $.each(me.research_other_attachments, function( index, attachment ) {
-                attachment.desc=$("#attachment_txt_"+attachment.index).val();
-                attachment.desc2=$("#attachment2_txt_"+attachment.index).val();
+                attachment.desc=$("#research_attachment_txt_"+attachment.index).val();
+                attachment.desc2=$("#research_attachment2_txt_"+attachment.index).val();
             });
 
             var model = {
@@ -177,53 +177,67 @@ App.Research = {
 
 
         //other
+        //other
         if(infoBean.other_attachments && infoBean.other_attachments.length > 0){
             //empty
 
             //add
             $.each(infoBean.other_attachments,function(index,obj){
 
-                var i =$("div .input-file","#others_files").length+1;
-                var others_files = $("#exist_others");
+                var i =$("div .input-file","#research_others_files").length+1;
+                var others_files = $("#exist_research_others");
 
-                var appenddiv = $("<div>");
-                var filediv = $('<div class="form-input col-md-4">');
-                var div = $('<div>');
-                var ul = $('<ul>');
-                div.append(ul);
-                filediv.append(div);
-                appenddiv.append(filediv);
-
-                var descdiv = $('<div class="form-input col-md-4">');
-                var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
-                descarea.val(obj.desc);
-                descdiv.append(descarea);
-
-                var descdiv2 = $('<div class="form-input col-md-4">');
-                var descarea2 = $('<textarea id="attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
-                descarea2.val(obj.desc2);
-                descdiv.append(descarea2);
-
-
-                var deldiv = $('<div class="form-input col-md-2">');
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                delspan.click(function () {
-                    console.log("del",obj);
-                });
-                deldiv.append(delspan);
-
-                appenddiv.append(descdiv);
-                appenddiv.append(deldiv);
-
-                others_files.append(appenddiv);
-
-                $.each(obj.files,function(index2,obj2){
-                    var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
-                    ul.append(fileli);
-                });
-
+                App.Tools.construct_other_fileDiv2(i ,others_files , obj);
             });
         }
+
+        //if(infoBean.other_attachments && infoBean.other_attachments.length > 0){
+        //    //empty
+        //
+        //    //add
+        //    $.each(infoBean.other_attachments,function(index,obj){
+        //
+        //        var i =$("div .input-file","#others_files").length+1;
+        //        var others_files = $("#exist_others");
+        //
+        //        var appenddiv = $("<div>");
+        //        var filediv = $('<div class="form-input col-md-4">');
+        //        var div = $('<div>');
+        //        var ul = $('<ul>');
+        //        div.append(ul);
+        //        filediv.append(div);
+        //        appenddiv.append(filediv);
+        //
+        //        var descdiv = $('<div class="form-input col-md-4">');
+        //        var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+        //        descarea.val(obj.desc);
+        //        descdiv.append(descarea);
+        //
+        //        var descdiv2 = $('<div class="form-input col-md-4">');
+        //        var descarea2 = $('<textarea id="attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+        //        descarea2.val(obj.desc2);
+        //        descdiv.append(descarea2);
+        //
+        //
+        //        var deldiv = $('<div class="form-input col-md-2">');
+        //        var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+        //        delspan.click(function () {
+        //            console.log("del",obj);
+        //        });
+        //        deldiv.append(delspan);
+        //
+        //        appenddiv.append(descdiv);
+        //        appenddiv.append(deldiv);
+        //
+        //        others_files.append(appenddiv);
+        //
+        //        $.each(obj.files,function(index2,obj2){
+        //            var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
+        //            ul.append(fileli);
+        //        });
+        //
+        //    });
+        //}
     },
     showView: function (infoBean) {
         var me = this;

@@ -1,6 +1,8 @@
 var App = window.App || {};
 App.OtherEA = {
     thirdpartyLowFiles_attachments: [],
+    testFiles_attachments: [],
+    houseFiles_attachments: [],
     thirdpartyLow_other_attachments: [],
 
     projectid:null,
@@ -22,6 +24,28 @@ App.OtherEA = {
                 files:fileId,
                 success:function(response){
                     me.thirdpartyLowFiles_attachments = response.rest_result;
+                }
+            });
+        });
+
+        $("#testFiles").change(function() {
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.testFiles_attachments = response.rest_result;
+                }
+            });
+        });
+
+        $("#houseFiles").change(function() {
+
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.houseFiles_attachments = response.rest_result;
                 }
             });
         });
@@ -68,6 +92,8 @@ App.OtherEA = {
 
         $("#complete_thirdpartyLow").click(function(){
             var thirdpartyLowDesc= $("#thirdpartyLowDesc").val();
+            var testFilesDesc= $("#testFilesDesc").val();
+            var houseFilesDesc= $("#houseFilesDesc").val();
 
             $.each(me.thirdpartyLow_other_attachments, function( index, attachment ) {
                 attachment.desc=$("#thirdpartyLow_attachment_txt_"+attachment.index).val();
@@ -76,7 +102,11 @@ App.OtherEA = {
             var model = {
                 projectid:me.projectid,
                 thirdpartyLowDesc:thirdpartyLowDesc,
+                testFilesDesc:testFilesDesc,
+                houseFilesDesc:houseFilesDesc,
                 thirdpartyLowFiles_attachments: me.thirdpartyLowFiles_attachments,
+                houseFiles_attachments: me.houseFiles_attachments,
+                testFiles_attachments: me.testFiles_attachments,
                 thirdpartyLow_other_attachments: me.thirdpartyLow_other_attachments
             };
 
@@ -96,7 +126,31 @@ App.OtherEA = {
             });
         }
         if(infoBean.thirdPartyDesc) {
-            $("#thirdpartyLowDesc").val(meetingDesc.thirdPartyDesc);
+            $("#thirdpartyLowDesc").val(infoBean.thirdPartyDesc);
+        }
+
+        //houseFile
+        if(infoBean.houseFile && infoBean.houseFile.length > 0){
+            $.each(infoBean.houseFile,function(index,obj){
+                var fileli= App.Tools.construct_fileli(obj);
+
+                $("#exist_houseFiles").append(fileli);
+            });
+        }
+        if(infoBean.houseFileDesc) {
+            $("#houseFilesDesc").val(infoBean.houseFileDesc);
+        }
+
+        //testFile
+        if(infoBean.testFile && infoBean.testFile.length > 0){
+            $.each(infoBean.testFile,function(index,obj){
+                var fileli= App.Tools.construct_fileli(obj);
+
+                $("#exist_testFiles").append(fileli);
+            });
+        }
+        if(infoBean.testDesc) {
+            $("#testFilesDesc").val(infoBean.testDesc);
         }
     },
     showView: function (infoBean) {

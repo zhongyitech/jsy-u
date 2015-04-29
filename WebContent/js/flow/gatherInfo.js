@@ -7,6 +7,8 @@ App.GatherInfo = {
     financialFiles_attachments: [],
     toPublicFiles_attachments: [],
     businessPlanFiles_attachments: [],
+    analyseReportFiles_attachments: [],
+    loanFiles_attachments: [],
     other_attachments: [],
 
     init: function(project, infoBean) {
@@ -64,6 +66,24 @@ App.GatherInfo = {
                 }
             });
         });
+        $("#analyseReportFiles").change(function() {
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.analyseReportFiles_attachments = response.rest_result;
+                }
+            });
+        });
+        $("#loanFiles").change(function() {
+            var fileId = "#"+$(this).attr("id");
+            $.utils.upload({
+                files:fileId,
+                success:function(response){
+                    me.loanFiles_attachments = response.rest_result;
+                }
+            });
+        });
         $("#attachment_1").change(function() {
             var fileId = "#"+$(this).attr("id");
             $.utils.upload({
@@ -112,6 +132,8 @@ App.GatherInfo = {
             var financialFilesDesc= $("#financialFilesDesc").val();
             var toPublicFilesDesc= $("#toPublicFilesDesc").val();
             var businessPlanFilesDesc= $("#businessPlanFilesDesc").val();
+            var analyseReportFilesDesc= $("#analyseReportFilesDesc").val();
+            var loanFilesDesc= $("#loanFilesDesc").val();
 
 
             $.each(me.other_attachments, function( index, attachment ) {
@@ -125,12 +147,17 @@ App.GatherInfo = {
                 financialFilesDesc:financialFilesDesc,
                 toPublicFilesDesc:toPublicFilesDesc,
                 businessPlanFilesDesc:businessPlanFilesDesc,
+                analyseReportFilesDesc:analyseReportFilesDesc,
+                loanFilesDesc: loanFilesDesc,
                 certificateFiles_attachments: me.certificateFiles_attachments,
                 debtFiles_attachments: me.debtFiles_attachments,
                 financialFiles_attachments: me.financialFiles_attachments,
                 toPublicFiles_attachments: me.toPublicFiles_attachments,
                 businessPlanFiles_attachments: me.businessPlanFiles_attachments,
+                loanFiles_attachments: me.loanFiles_attachments,
+                analyseReportFiles_attachments: me.analyseReportFiles_attachments,
                 other_attachments: me.other_attachments
+
             };
 
             var data = {url: '/api/project/complete_gather', entity: JSON.stringify(model)};
@@ -197,6 +224,26 @@ App.GatherInfo = {
         if(infoBean.businessPlanFilesDesc){
             $("#businessPlanFilesDesc").val(infoBean.businessPlanFilesDesc);
         }
+        //
+        if(infoBean.loanFiles_attachments && infoBean.loanFiles_attachments.length > 0){
+            $.each(infoBean.loanFiles_attachments,function(index,obj){
+                var fileli= App.Tools.construct_fileli(obj);
+                $("#exist_loanFiles").append(fileli);
+            });
+        }
+        if(infoBean.loanFilesDesc){
+            $("#loanFilesDesc").val(infoBean.loanFilesDesc);
+        }
+        //
+        if(infoBean.analyseReportFiles_attachments && infoBean.analyseReportFiles_attachments.length > 0){
+            $.each(infoBean.analyseReportFiles_attachments,function(index,obj){
+                var fileli= App.Tools.construct_fileli(obj);
+                $("#exist_analyseReportFiles").append(fileli);
+            });
+        }
+        if(infoBean.analyseReportFilesDesc){
+            $("#analyseReportFilesDesc").val(infoBean.analyseReportFilesDesc);
+        }
         //other
         if(infoBean.other_attachments && infoBean.other_attachments.length > 0){
             //empty
@@ -207,36 +254,7 @@ App.GatherInfo = {
                 var i =$("div .input-file","#others_files").length+1;
                 var others_files = $("#exist_others");
 
-                var appenddiv = $("<div>");
-                var filediv = $('<div class="form-input col-md-4">');
-                var div = $('<div>');
-                var ul = $('<ul>');
-                div.append(ul);
-                filediv.append(div);
-                appenddiv.append(filediv);
-                var descdiv = $('<div class="form-input col-md-6">');
-                var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
-                descarea.val(obj.desc);
-                descdiv.append(descarea);
-
-
-                var deldiv = $('<div class="form-input col-md-2">');
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                delspan.click(function () {
-                    console.log("del",obj);
-                });
-                deldiv.append(delspan);
-
-                appenddiv.append(descdiv);
-                appenddiv.append(deldiv);
-
-                others_files.append(appenddiv);
-
-                $.each(obj.files,function(index2,obj2){
-                    var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
-                    ul.append(fileli);
-                });
-
+                App.Tools.construct_other_fileDiv(i ,others_files , obj);
             });
         }
 

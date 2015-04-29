@@ -4,7 +4,6 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
     <title>项目结算</title>
 </head>
 

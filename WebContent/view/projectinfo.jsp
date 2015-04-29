@@ -167,6 +167,38 @@
 
                             <div class="form-row">
                                 <div class="form-label col-md-2">
+                                    <label >(*) 评估报告：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <div >
+                                        <ul id="exist_analyseReportFiles">
+                                        </ul>
+                                    </div>
+                                    <input id="analyseReportFiles" class="input-file" name="attachment" type="file" multiple>
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <textarea id="analyseReportFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
+                                    <label >(*) 贷款申请书：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <div >
+                                        <ul id="exist_loanFiles">
+                                        </ul>
+                                    </div>
+                                    <input id="loanFiles" class="input-file" name="attachment" type="file" multiple>
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <textarea id="loanFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-2">
                                     <label >(*) 商务计划书：</label>
                                 </div>
                                 <div class="form-input col-md-4">
@@ -250,7 +282,7 @@
                             <div class="form-row">
 
                                 <div class="form-label col-md-2">
-                                    <label >(*) 法律进调报告：</label>
+                                    <label >(*) 法律尽调报告：</label>
                                 </div>
 
                                 <div class="form-input col-md-2">
@@ -271,7 +303,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-label col-md-2   ">
-                                    <label >(*) 项目进调报告：</label>
+                                    <label >(*) 项目尽职调查报告：</label>
                                 </div>
                                 <div class="form-input col-md-2">
                                     <div >
@@ -434,8 +466,8 @@
                 <!-- flow instance -->
                 <div id="panel_otherEA" style="display:none; " class="content-box box-toggle content-box-closed">
                     <div class="content-box-header primary-bg">
-                        <span class="float-left">步骤1.6：第三方法律机构（项目部负责发起申请，法务部，财务部配合）</span>
-                        <a href="#" class="float-right icon-separator btn toggle-button" title="步骤1.6：第三方法律机构（项目部负责发起申请，法务部，财务部配合）">
+                        <span class="float-left">步骤1.6：第三方机构（律师事务所，会计师事务所，第三方评估机构）（项目部负责发起申请，法务部，财务部配合）</span>
+                        <a href="#" class="float-right icon-separator btn toggle-button" title="步骤1.6：第三方机构（律师事务所，会计师事务所，第三方评估机构）（项目部负责发起申请，法务部，财务部配合）">
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>
                     </div>
@@ -443,7 +475,7 @@
                         <form id="form_thirdpartyLow" class="form-bordered " action="/" method="post">
                             <div class="form-row">
                                 <div class="form-label col-md-2   ">
-                                    <label >法律证件：</label>
+                                    <label >法律尽调报告：</label>
                                 </div>
                                 <div class="form-input col-md-4">
                                     <div >
@@ -454,6 +486,38 @@
                                 </div>
                                 <div class="form-input col-md-6">
                                     <textarea id="thirdpartyLowDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-2   ">
+                                    <label >审计报告/验资报告：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <div >
+                                        <ul id="exist_testFiles">
+                                        </ul>
+                                    </div>
+                                    <input id="testFiles" class="input-file" name="attachment" type="file">
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <textarea id="testFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-label col-md-2   ">
+                                    <label >评估报告（土地和房产）：</label>
+                                </div>
+                                <div class="form-input col-md-4">
+                                    <div >
+                                        <ul id="exist_houseFiles">
+                                        </ul>
+                                    </div>
+                                    <input id="houseFiles" class="input-file" name="attachment" type="file">
+                                </div>
+                                <div class="form-input col-md-6">
+                                    <textarea id="houseFilesDesc" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
                                 </div>
                             </div>
 

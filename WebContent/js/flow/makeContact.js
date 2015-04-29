@@ -137,7 +137,7 @@ App.MakeContact = {
             //管理费率
             var manage_per = $("#manage_per").val();
             if(manage_per && manage_per!=""){
-                manage_per = manage_per.replace("%","")/100;
+                manage_per = me.formatPer(manage_per);
                 model.manage_per = manage_per;
             }else{
                 alert("请选择管理费率");
@@ -146,7 +146,7 @@ App.MakeContact = {
             //渠道费率
             var community_per = $("#community_per").val();
             if(community_per && community_per!=""){
-                community_per = community_per.replace("%","")/100;
+                community_per = me.formatPer(community_per);
                 model.community_per = community_per;
             }else{
                 alert("请选择渠道费率");
@@ -155,7 +155,7 @@ App.MakeContact = {
             //违约金率
             var notNormal_per = $("#notNormal_per").val();
             if(notNormal_per && notNormal_per!=""){
-                notNormal_per = notNormal_per.replace("%","")/100;
+                notNormal_per = me.formatPer(notNormal_per);
                 model.notNormal_per = notNormal_per;
             }else{
                 alert("请选择违约金率");
@@ -164,7 +164,7 @@ App.MakeContact = {
             //借款率
             var borrow_per = $("#borrow_per").val();
             if(borrow_per && borrow_per!=""){
-                borrow_per = borrow_per.replace("%","")/100;
+                borrow_per = me.formatPer(borrow_per);
                 model.borrow_per = borrow_per;
             }else{
                 alert("请选择违借款率");
@@ -199,7 +199,7 @@ App.MakeContact = {
             //日复利日利率
             var daycount_per = $("#daycount_per").val();
             if(daycount_per && daycount_per!=""){
-                daycount_per = daycount_per.replace("%","")/100;
+                daycount_per = me.formatPer(daycount_per);
                 model.daycount_per = daycount_per;
             }else{
                 model.daycount_per = 0;
@@ -237,6 +237,39 @@ App.MakeContact = {
         $("#borrow_per").change(function(){
             $(this).val(NUMBERFORMAT.toRate($(this).val()));
         });
+    },
+    formatPer: function(perData){
+        if(this.isNumber(perData)){
+            return perData;
+        }else if(this.isString(perData)){
+            var rtn;
+            if(perData.indexOf('%')!=-1){
+                rtn = perData.replace("%","")/100;
+            }else{
+                rtn = parseFloat(perData);
+            }
+
+            console.log(isNaN(rtn));
+            if(this.isNumber(rtn)){
+                return rtn;
+            }else{
+                alert(perData+"无法识别，请输入数值");
+                throw new Error(perData+"无法识别，请输入数值");
+            }
+
+        }else{
+            alert(perData+"无法识别，请输入数值");
+            throw new Error(perData+"无法识别，请输入数值");
+        }
+
+
+    },
+    isNumber: function(obj){
+        return (typeof obj=='number')&&obj.constructor==Number;
+    },
+
+    isString: function(str){
+        return (typeof str=='string')&&str.constructor==String;
     },
     initView: function (infoBean) {
         /***加载数据***/
