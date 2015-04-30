@@ -868,6 +868,24 @@ var FUND_FORM = {//基金表单
         this.setBNFMJGM(item);
         this.setNFMJGM(item);
 
+        if(item.funcCompany){
+            var FundCompanyInformation=$.project.domain(item.funcCompany.id,"com.jsy.fundObject.FundCompanyInformation");
+            var funcCompany=FundCompanyInformation.getItem(item.funcCompany.id);
+            $("#fundCompany").val(funcCompany.companyName);
+        }
+        var params = JSON.stringify({"fundId":item.id});
+        var data   = {url:"/api/project/getProjectFromFund",params:params};
+        var _this = this;
+        $.io.get(data)
+            .success(function(result){
+                $("#projectname").val(result.name);
+
+            })
+            .error(function(result){
+                alert(result);
+            });
+
+
         SYLFW_LIST.set(FUND.toSYLFW(item));
         TZQX_LIST.set(FUND.toTZQX(item));
         TCFPFW_LIST.set(FUND.toTCFPFW(item));

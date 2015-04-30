@@ -89,6 +89,22 @@
                             </div>
                         </div>
 
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label>关联的有限合伙：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input class="" type="text" id="fundCompany" readonly="readonly">
+                            </div>
+
+                            <div class="form-label col-md-2">
+                                <label>关联的项目：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input class="" type="text" id="projectname" readonly="readonly">
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
