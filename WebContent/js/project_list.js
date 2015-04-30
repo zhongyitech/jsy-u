@@ -91,8 +91,8 @@ var VIEWDATA={
                 row.append('<td>' + items[i]["id"] + '</td>');
                 var link = "projectinfo.jsp?id="+ items[i]["id"];
                 row.append('<td><a href="'+link+'">' + items[i]["name"] + '</a></td>');
-                if(items[i]["fundNames"]){
-                    row.append('<td>' + items[i]["fundNames"] + '</td>');
+                if(items[i]["fundName"]){
+                    row.append('<td>' + items[i]["fundName"] + '</td>');
                 }else{
                     row.append('<td>尚未关联</td>');
                 }

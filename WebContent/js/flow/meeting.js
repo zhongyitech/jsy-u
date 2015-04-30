@@ -99,6 +99,20 @@ App.Meeting = {
         if(infoBean.meetingDesc) {
             $("#meetingDesc").val(meetingDesc.meetingDesc);
         }
+
+        //other
+        if(infoBean.other_attachments && infoBean.other_attachments.length > 0){
+            //empty
+
+            //add
+            $.each(infoBean.other_attachments,function(index,obj){
+
+                var i =$("div .input-file","#meeting_others_files").length+1;
+                var others_files = $("#meeting_exist_others");
+
+                App.Tools.construct_other_fileDiv(i ,others_files , obj);
+            });
+        }
     },
     showView: function (infoBean) {
         var me = this;

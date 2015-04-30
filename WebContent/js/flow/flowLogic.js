@@ -74,8 +74,8 @@ var FLOW={
         if(!project)return;
         $("#project_id").html(project.id);
         $("#project_name").html(project.name);
-        if(project.fundNames){
-            $("#fund_name").html(project.fundNames);
+        if(project.fundName){
+            $("#fund_name").html(project.fundName);
         }else{
             $("#fund_name").html("尚无关联");
         }

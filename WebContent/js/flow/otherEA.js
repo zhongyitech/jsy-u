@@ -152,6 +152,20 @@ App.OtherEA = {
         if(infoBean.testDesc) {
             $("#testFilesDesc").val(infoBean.testDesc);
         }
+
+        //other
+        if(infoBean.other_attachments && infoBean.other_attachments.length > 0){
+            //empty
+
+            //add
+            $.each(infoBean.other_attachments,function(index,obj){
+
+                var i =$("div .input-file","#thirdpartyLow_others_files").length+1;
+                var others_files = $("#exist_thirdpartyLow_others");
+
+                App.Tools.construct_other_fileDiv(i ,others_files , obj);
+            });
+        }
     },
     showView: function (infoBean) {
         var me = this;
