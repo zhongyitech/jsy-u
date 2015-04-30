@@ -232,7 +232,57 @@ var REPORT = {
                 row.append('<td>' + items[i]["gj"] + '</td>');
                 row.append('<td>' + items[i]["zjlx"] + '</td>');
                 row.append('<td>' + items[i]["zjhm"] + '</td>');
-                row.append('<td>  <a href="#" class="btn medium bg-green tooltip-button" data-placement="top" title="" data-original-title="Content" id="attach_' + items[i]["id"] + '"><i class="glyph-icon icon-hdd"></i></a> </td>');
+
+
+                var td = $('<td>   </td>');
+                td.data("status","closed");
+                var attachment = $('<a href="#" class="btn medium bg-green tooltip-button" data-placement="top" title="" data-original-title="Content" id="attach_' + items[i]["id"] + '"><i class="glyph-icon icon-hdd"></i></a>');
+                attachment.data("archivesId",items[i]["archivesId"]);
+                attachment.click(function(){
+                    var id = this.id.replace("attach_","");
+                    if(td.data("status")=="closed"){
+                        td.data("status","checked");
+                        $("input[type='checkbox'][value='"+id+"']").prop("checked",true);
+                        var archivesId = $(this).data("archivesId");
+
+                        //开始取出附件
+                        var InvestmentArchives=$.project.domain(archivesId,"com.jsy.archives.InvestmentArchives");
+                        var investmentArchive=InvestmentArchives.getItem(archivesId);
+                        if(investmentArchive.customerArchive){
+                            var CustomerArchives=$.project.domain(archivesId,"com.jsy.archives.CustomerArchives");
+                            var customerArchive=CustomerArchives.getItem(investmentArchive.customerArchive.id);
+
+                            if(customerArchive.uploadFiles && customerArchive.uploadFiles.length>0){
+                                $.each(customerArchive.uploadFiles,function(i, obj){
+                                    var attachment = obj;
+                                    var id = attachment[FILE.ID_KEY];
+                                    if (id) {
+                                        attachment = FILE.get(id);
+                                    }
+
+                                    var attachment_name = attachment[FILE.NAME_KEY];
+                                    var attachment_src = '../rest/file/download?path=' + attachment[FILE.PATH_KEY];
+                                    var attachment_item = $('<div class="attachment-div"></div>');
+                                    $("#temp_attachment").append(attachment_item);
+                                    var attachment_i = $('<i class="attachment-i"></i>');
+                                    attachment_item.append(attachment_i);
+                                    var attachment = $('<img class="attachment-img" title="' + attachment_name + '" src="' + attachment_src + '">');
+                                    attachment_i.append(attachment);
+                                });
+                            }
+                        }
+
+
+
+
+                    }else{
+                        td.data("status","closed");
+                        $("#temp_attachment").empty();
+                        $("input[type='checkbox'][value='"+id+"']").prop("checked",false)
+                    }
+                });
+                td.append(attachment);
+                row.append(td);
             }
         }
 

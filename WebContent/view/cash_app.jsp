@@ -160,6 +160,9 @@
                 </div>
             </div>
 
+            <div id="temp_attachment" class="content-box box-toggle ">
+            </div>
+
             <div class="content-box box-toggle ">
                 <h3 class="content-box-header primary-bg">
                     <span class="float-left">汇总</span>
