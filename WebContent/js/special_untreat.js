@@ -87,7 +87,6 @@ var VIEWDATA = {
                 .success(function (result) {
                     if (result) {
                         $("#fundselect").val(result.fund.id);
-                        me.setHTBH();
                         $("#new_htbh").removeClass('valid_error');
                         $("#new_htbh").attr("placeholder", "合同编号")
                     } else {

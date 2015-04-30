@@ -143,7 +143,9 @@
                     </a>
                 </div>
                 <div class="content-box-wrapper">
-                    <div id="setting-pager" class="page-bar"></div>
+                    <div id="setting-pager" class="page-bar">
+                        <span>[开户行] [公司名称] [账号后4位] [对方户名] [对方账号]</span>
+                    </div>
                     <div class="table table-striped text-center mrg0B" id="setting-data">
                     </div>
                     <div CLASS="mrg10T">

@@ -176,7 +176,7 @@
                 </div>
             </div>
 
-            <div class="content-box box-toggle ">
+            <div class="content-box box-toggle hide ">
                 <h3 class="content-box-header primary-bg">
                     <span class="float-left">兑付报表</span>
                     <a href="#" class="float-right icon-separator btn toggle-button" title="兑付报表">

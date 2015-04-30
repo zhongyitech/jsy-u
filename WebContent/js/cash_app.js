@@ -33,62 +33,62 @@ var REPORT = {
         this.set_event();
 
         //报表测试数据
-        var report = echarts.init(document.getElementById('cash-report'));
-        if (report) {
-            var option = {
-                title: {
-                    text: '基金募集趋势及对比图',
-                    subtext: ''
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
-                legend: {
-                    x: 'center',
-                    y: 'bottom',
-                    data: ['金赛银A', '金赛银B']
-                },
-                toolbox: {
-                    show: true,
-                    feature: {
-                        mark: {show: true},
-                        dataView: {show: true, readOnly: false},
-                        magicType: {show: true, type: ['line', 'bar']},
-                        restore: {show: true},
-                        saveAsImage: {show: true}
-                    }
-                },
-                calculable: true,
-                xAxis: [
-                    {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value}'
-                        }
-                    }
-                ],
-                series: [
-                    {
-                        name: '金赛银A',
-                        type: 'line',
-                        data: [11, 11, 15, 13, 12, 13, 10]
-                    },
-                    {
-                        name: '金赛银B',
-                        type: 'line',
-                        data: [1, -2, 2, 5, 3, 2, 0]
-                    }
-                ]
-            };
-            report.setOption(option);
-        }
+        //var report = echarts.init(document.getElementById('cash-report'));
+        //if (report) {
+        //    var option = {
+        //        title: {
+        //            text: '基金募集趋势及对比图',
+        //            subtext: ''
+        //        },
+        //        tooltip: {
+        //            trigger: 'axis'
+        //        },
+        //        legend: {
+        //            x: 'center',
+        //            y: 'bottom',
+        //            data: ['金赛银A', '金赛银B']
+        //        },
+        //        toolbox: {
+        //            show: true,
+        //            feature: {
+        //                mark: {show: true},
+        //                dataView: {show: true, readOnly: false},
+        //                magicType: {show: true, type: ['line', 'bar']},
+        //                restore: {show: true},
+        //                saveAsImage: {show: true}
+        //            }
+        //        },
+        //        calculable: true,
+        //        xAxis: [
+        //            {
+        //                type: 'category',
+        //                boundaryGap: false,
+        //                data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+        //            }
+        //        ],
+        //        yAxis: [
+        //            {
+        //                type: 'value',
+        //                axisLabel: {
+        //                    formatter: '{value}'
+        //                }
+        //            }
+        //        ],
+        //        series: [
+        //            {
+        //                name: '金赛银A',
+        //                type: 'line',
+        //                data: [11, 11, 15, 13, 12, 13, 10]
+        //            },
+        //            {
+        //                name: '金赛银B',
+        //                type: 'line',
+        //                data: [1, -2, 2, 5, 3, 2, 0]
+        //            }
+        //        ]
+        //    };
+        //    report.setOption(option);
+        //}
 
     },
     set_event: function () {
