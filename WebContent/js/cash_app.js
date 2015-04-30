@@ -249,11 +249,11 @@ var REPORT = {
                         var InvestmentArchives=$.project.domain(archivesId,"com.jsy.archives.InvestmentArchives");
                         var investmentArchive=InvestmentArchives.getItem(archivesId);
                         if(investmentArchive.customerArchive){
-                            var CustomerArchives=$.project.domain(archivesId,"com.jsy.archives.CustomerArchives");
-                            var customerArchive=CustomerArchives.getItem(investmentArchive.customerArchive.id);
+                            var Customer=$.project.domain(archivesId,"com.jsy.customerObject.Customer");
+                            var customer=Customer.getItem(investmentArchive.customer.id);
 
-                            if(customerArchive.uploadFiles && customerArchive.uploadFiles.length>0){
-                                $.each(customerArchive.uploadFiles,function(i, obj){
+                            if(customer.uploadFiles && customer.uploadFiles.length>0){
+                                $.each(customer.uploadFiles,function(i, obj){
                                     var attachment = obj;
                                     var id = attachment[FILE.ID_KEY];
                                     if (id) {
