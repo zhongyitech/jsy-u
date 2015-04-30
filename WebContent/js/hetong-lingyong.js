@@ -1,3 +1,4 @@
+
 //页面加载完成后添加点击事件
 $(document).ready(function () {
 
@@ -76,10 +77,12 @@ var HTLY_PUT = {
             var data = $.io.get(true,{url:'/api/user/findUserDepartment',params:{uid:id}}).data()
 //                $.project.domain(1, 'com.jsy.system.Department').data()
             if (data.count == 0) return;
-            var target = $(eventObj.closest('tr')).find('input[name=department]');
+            var target = $(eventObj.closest('tr')).find('label[class=department]');
+            var targget_id=$(eventObj.closest('tr')).find('input[name=department_id]');
             if(target!=null || target!=undefined){
-                target.val(data.deptName);
-                target.attr('value',data.deptName);
+                targget_id.val(data.id);
+                //target.attr('value',data.deptName);
+                target.html(data.deptName);
             }
         }
     },
@@ -104,7 +107,8 @@ var HTLY_PUT = {
         var department_td = $('<td class="form-input"></td>');
         tr.append(department_td);
 //        var department_select = $('<select name="' + me.htly.DEPARTMENT_KEY + '"></select>');
-        var department_select = $('<div class="form-input col-md-12"><input readonly="true" name="' + me.htly.DEPARTMENT_KEY + '" class="col-md-12 disabled"/></div>');
+//        var department_select = $('<div class="form-input col-md-12"><input readonly="true" name="' + me.htly.DEPARTMENT_KEY + '" class="col-md-12 disabled"/></div>');
+        var department_select = $('<div class="form-input col-md-12"><input type="hidden" name="department_id" /> <label class="'+ me.htly.DEPARTMENT_KEY + '"></label></div>');
         department_td.append(department_select);
 
 //        var departments = this.department.getItems();
@@ -217,14 +221,15 @@ var HTLY_PUT = {
                 $(number_input).val(item[me.htly.NUMBER_KEY]);
             }
 
-            var djr_select = item_tr.find('select[name=' + me.htly.DEPARTMENT_KEY + ']');
+            var djr_select = item_tr.find('label[class=' + me.htly.DEPARTMENT_KEY + ']');
             if (djr_select) {
                 $(djr_select).attr('disabled', true);
             }
 
             var lyr_select = item_tr.find('select[name=' + me.htly.LYR_KEY + ']');
             if (lyr_select) {
-                $(lyr_select).attr('disabled', true);
+                //$(lyr_select).attr('disabled', true);
+                $(lyr_select).attr('readonly', true);
             }
 
             var djsj_input = item_tr.find('input[name=' + me.htly.LYSJ_KEY + ']');
@@ -263,7 +268,7 @@ var HTLY_PUT = {
             var tr = $(trs.get(i));
             var itemJSON = {};
 
-            var department = tr.find('select[name=' + me.htly.DEPARTMENT_KEY + ']').val();
+            var department = tr.find('input[name=department_id]').val();
             if (department) {
                 itemJSON[me.htly.DEPARTMENT_KEY] = {id: department};
             }
@@ -322,7 +327,7 @@ var HTLY_PUT = {
         var tr_key = item[this.tr_key];
 
         $.io.post(data).success(function (result) {
-            alert('合同归还成功。');
+            alert('合同领用成功。');
             window.location.reload();
 
         }).error(function (error) {
