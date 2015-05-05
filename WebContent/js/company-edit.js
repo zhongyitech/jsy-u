@@ -125,7 +125,7 @@ var COMPANY_FORM = {
             var items = COMPANY_TYPE.getItems();
             var option = $('<option value=""></option>');
             view.append(option);
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var id = COMPANY_TYPE.toId(item);
                 var name = COMPANY_TYPE.toName(item);
@@ -255,7 +255,7 @@ var COMPANY_FORM = {
             var items = FUND.getItems();
             var option = $('<option value=""></option>');
             view.append(option);
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var id = FUND.toId(item);
                 var name = FUND.toName(item);
@@ -281,7 +281,7 @@ var COMPANY_FORM = {
             var option = $('<option value=""></option>');
             view.append(option);
             var cid = PAGE.getParam(COMPANY.ID_KEY);
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var id = COMPANY.toId(item);
 
@@ -405,7 +405,7 @@ var COMPANY_FORM = {
         this.iniPartnerButton();
         this.iniYHZH();
 
-        $("#submit-button").click(function(){
+        $("#submit-button").click(function () {
             me.submit();
         });
 
@@ -544,11 +544,11 @@ var COMPANY_FORM = {
         var entity = JSON.stringify(item);
         var data = {url: '/api/fundCompanyInformation', params: params, entity: entity};
 
-        $.io.put(data).success(function(result){
+        $.io.put(data).success(function (result) {
             //me.response = response;
             window.location = PAGE.COMPANY_LIST;
         }).
-            error(function(error){
+            error(function (error) {
                 alert('提交失败，请补全带*号的必填信息.');
             });
         //$.ajax({
@@ -662,7 +662,7 @@ var PARTNER_LIST = {
         }
 
         if (items) {
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.add(items[i]);
             }
         }
@@ -686,7 +686,7 @@ var PARTNER_LIST = {
         var items = COMPANY.getItems();
         company_select.append('<option value=""></option>');
         var cid = PAGE.getParam(COMPANY.ID_KEY);
-        for (var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             var o = items[i];
             var id = COMPANY.toId(o);
             var type = COMPANY.toType(o);
@@ -736,7 +736,7 @@ var PARTNER_LIST = {
         COMPANY_FORM.setPartner(COMPANY_FORM.item);
 
         var frdbs = [];
-        for (var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             var company = COMPANY.toItem(items[i]);
             frdbs.push(COMPANY.toFRDB(company));
         }
@@ -810,7 +810,7 @@ var YHZH_LIST = {//银行账户
         }
 
         if (items) {
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.add(items[i]);
             }
         }
@@ -835,7 +835,8 @@ var YHZH_LIST = {//银行账户
         account_div.append(account_input);
         account_input.attr('id', YHZH.ACCOUNT_KEY);
         account_input.val(YHZH.toAccount(item));
-        account_input.data("itemid",item["id"]);
+        if (item)
+            account_input.data("itemid", item["id"]);
 
         var hm_td = $('<td></td>');
         tr.append(hm_td);
@@ -878,7 +879,7 @@ var YHZH_LIST = {//银行账户
         purpose_td.append(purpose_select);
         var items = YHZH_PURPOSE.getItems();
         purpose_select.append('<option value=""></option>');
-        for (var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             var o = items[i];
             var id = YHZH_PURPOSE.toId(o);
             var name = YHZH_PURPOSE.toName(o);
@@ -937,7 +938,7 @@ var YHZH_LIST = {//银行账户
             var purpose = tr.find('#' + YHZH.PURPOSE_KEY).val();
             if (purpose) {
                 item[YHZH.PURPOSE_KEY] = {id: purpose};
-            }else{
+            } else {
                 $.message.error("银行账户的用户没有选择!");
                 tr.find('#' + YHZH.PURPOSE_KEY).addClass("valid_error");
             }

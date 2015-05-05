@@ -4,7 +4,7 @@
             startposition: 0,
             pagesize: 10,
             type:"or",
-            fields:["summary","bankName","transactionsCode","account","accountName"],
+            fields:["account"],
             value:"",
             order:{id:"desc"}
         },
@@ -17,7 +17,7 @@
         _request:function(options){
             $.extend(true,this._entity,options.entity)
             return $.io.post({
-                url: '/api/bankTransactionsRecord/readAllForPage',
+                url: '/api/bankTransactionsRecord/banksAccounts',
                 entity:this._entity
             });
         },
