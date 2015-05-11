@@ -388,7 +388,7 @@ var VIEWDATA = {
 			async : false,
 			success : function(rest_result) {
 				me.rest_result = rest_result;
-				var result = JSON.parse(rest_result[REST.RESULT_KEY]);
+				var result = rest_result[REST.RESULT_KEY];//JSON.parse();
 				if (result) {
 					if (result.length > 0) {
 						me.item = result[0];
