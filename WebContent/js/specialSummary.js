@@ -35,6 +35,7 @@
         },
         _renderData:function(result){
             var _this=this;
+            console.log(result);
             $("#table-data").renderData("#table-data-template",result,function(){
                 return _this._entity.startposition;
             });

@@ -12,7 +12,7 @@
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
 		<textarea id="table-data-template" class="template">
-            {#param name=fields value=["","status","fundName","htbh","sqbm","sqr","sqrq","type","customer","bz"]}
+            {#param name=fields value=["","status","fundName","htbh","sqbm","sqr","sqrq","type","customerName","bz"]}
             {#param name=start value=$P.callback()+1}
             {#param name=pos value=$P.start}
             <table class="table table-striped text-center mrg0B" id="view-table">
@@ -35,14 +35,14 @@
                 <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
                     <%--{#foreach $P.fields as field}--%>
                     <td><span class="text-overflow"></span></td>
-                    <td><span class="text-overflow">{$T.item["status"]}</span></td>
+                    <td><span class="text-overflow">{$T.item["statusName"]}</span></td>
                     <td><span class="text-overflow">{$T.item["fundName"]}</span></td>
                     <td><span class="text-overflow">{$T.item["htbh"]}</span></td>
                     <td><span class="text-overflow">{$T.item["sqbm"]}</span></td>
-                    <td><span class="text-overflow">{$T.item["sqr"]}</span></td>
+                    <td><span class="text-overflow">{$T.item["sqrName"]}</span></td>
                     <td><span class="text-overflow">{$T.item["sqrq"]}</span></td>
                     <td><span class="text-overflow">{$T.item["type"]}</span></td>
-                    <td><span class="text-overflow">{$T.item["customer"]}</span></td>
+                    <td><span class="text-overflow">{$T.item["customerName"]}</span></td>
                     <td><span class="text-overflow">{ ($T.item["bz"] || "")}</span></td>
                     <%--{#/for}--%>
                 </tr>
