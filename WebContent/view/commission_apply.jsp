@@ -94,7 +94,7 @@
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox"name="checkbox"></th>
-                    <th class="text-center" >提成人员</th>
+                    <th class="text-center " >提成人员</th>
                     <th class="text-center" >基金名称</th>
                     <th class="text-center" >付款金额</th>
                     <th class="text-center" >收款人</th>
@@ -201,12 +201,12 @@
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
-                    <th>提成人员</th>
-                    <th>基金名称</th>
-                    <th>付款金额</th>
-                    <th>收款人</th>
-                    <th>收款账户</th>
-                    <th>开户行</th>
+                    <th class="text-center">提成人员</th>
+                    <th class="text-center">基金名称</th>
+                    <th class="text-center">付款金额</th>
+                    <th class="text-center">收款人</th>
+                    <th class="text-center">收款账户</th>
+                    <th class="text-center">开户行</th>
                     <th data-bindtype="value" data-Member="paystatus">付款状态</th>
                 </tr>
             </thead>
@@ -214,12 +214,12 @@
         </table>
     </div>
 
+
+</div>
     <div class="button-pane">
         <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="funds-save">
             <span class="button-content">申请付款</span></button>
     </div>
-</div>
-
 <div class="content-box box-toggle view-width">
     <h3 class="content-box-header primary-bg">
         <span class="float-left">数据汇总</span>
@@ -242,6 +242,7 @@
         </table>
     </div>
 </div>
+
 </div>
 </div>
 </div>

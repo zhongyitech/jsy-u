@@ -8,8 +8,10 @@ function format(item, field) {
             break;
         case "scsj":
         case "yfsj":
+            return item || "" ;
+            break;
         case "zfsj":
-            return DATEFORMAT.toDate(item);
+            return item ? DATEFORMAT.toDate(item) : "";
             break;
         case "status":
             switch (item) {

@@ -12,7 +12,7 @@
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <textarea id="table-data-template" class="template">
-        {#param name=fields value=["fundName","contractNum","customerName","yfk","khh","zh","fpe","zfsj","yfsj","scsj","status"]}
+        {#param name=fields value=["fundName","contractNum","customerName","yfk","khh","zh","fpe","zfsj","yfsj","status","frontLogNo","payStatus"]}
         {#param name=start value=$P.callback()+1}
         {#param name=pos value=$P.start}
         <table class="table table-striped text-center mrg0B" id="view-table">
@@ -25,10 +25,11 @@
                 <th class="text-center">开户行</th>
                 <th class="text-center">账号</th>
                 <th class="text-center">发票额</th>
+                <th class="text-center">要求支付时间</th>
                 <th class="text-center">支付时间</th>
-                <th class="text-center">已付时间</th>
-                <th class="text-center">生成时间</th>
                 <th class="text-center">兑付状态</th>
+                <th class="text-center">交易流水号</th>
+                <th class="text-center">交易状态</th>
             </tr>
             </thead>
             <tbody>
