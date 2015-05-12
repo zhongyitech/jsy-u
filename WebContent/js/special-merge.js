@@ -84,12 +84,9 @@ var VIEWDATA = {
             this.showinfo("数据填写有误！请修改数据。");
             return;
         }
-        var ztjjid = $('#fundselect').val();
-        var fundName = $('#s_fundname').text();
         var postData = {
             htbh: me.item.contractNum,
-            fundName: fundName,
-            htbh: this.item.contractNum,
+            newContractNum: "",
             bz: $('#lab-bz').val()
         };
         console.log(postData);
