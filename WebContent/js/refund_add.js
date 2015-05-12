@@ -182,28 +182,6 @@ var VIEWDATA = {
         }).error(function(error){
             me.error(error.msg);
         });
-        //$.ajax({
-        //    type: 'post',
-        //    url: '../rest/item/post',
-        //    data: data,
-        //    dataType: 'json',
-        //    async: false,
-        //    success: function (rest_result) {
-        //        console.log(rest_result);
-        //        this.rest_result = rest_result;
-        //        if (rest_result["rest_status"] == REST.RESULT_SUCCESS) {
-        //            if (rest_result[REST.RESULT_KEY]) {
-        //                resultAction = true;
-        //                me.error("申请单提交成功");
-        //            }
-        //        } else {
-        //            me.error('提交申请出错。');
-        //        }
-        //    },
-        //    error: function (result) {
-        //        me.error("error");
-        //    }
-        //});
 
     },
     showOkInfo: function (msg) {
