@@ -153,7 +153,7 @@
                         <label for="">基金名称： </label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""> {基金名称} </label>
+                        <label  id="nnion_name" for=""> {基金名称} </label>
                     </div>
                 </div>
 
@@ -182,7 +182,7 @@
                         <label for="">合并后起息日：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <input class="form-input tcal tcalInput" id="">
+                        <input class="form-input tcal tcalInput" id="new_payDate">
                     </div>
                     <div class="form-label col-md-3  text-right ">
                         <label for="">合并后期限：</label>

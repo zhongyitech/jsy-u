@@ -263,7 +263,7 @@ var CUSTOMER_FORM = {//客户信息表单
                 .success(function (result) {
                     if (result) {
                         $("#syncCustomer").removeAttr("checked");
-                        $.message.log("此名称的客户已经存在,自动被填信息,请根据需要修改数据.");
+                        $.message.log("此名称的客户已经存在,自动填写信息,请根据需要修改数据.");
                         var found=false;
                         $.each(result.bankAccount, function (i, it) {
                             if (it.defaultAccount) {
@@ -383,7 +383,6 @@ var CUSTOMER_FORM = {//客户信息表单
             .success(function (result) {
                 window.location = "./invest-list.jsp";
             }).error(function (error) {
-                alert(error.msg);
             });
     }
 };
