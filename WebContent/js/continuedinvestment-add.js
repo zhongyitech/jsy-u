@@ -230,8 +230,8 @@ var VIEWDATA = {
 
 		this.databind.binding(this.item);
 
-		$('#xt_sq_date').val(DATEFORMAT.toDate(Date()));
-		$('#xt_jx_date').val(DATEFORMAT.toDate(Date()));
+		$('#xt_sq_date').val(DATEFORMAT.toDate(new Date()));
+		$('#xt_jx_date').val(DATEFORMAT.toDate(new Date()));
 		$(this.select_id).trigger("change");
 
         $('#xt_fxfs').html(STRINGFORMAT.toPayType(this.item.fxfs));
@@ -372,7 +372,7 @@ var VIEWDATA = {
 			success : function(rest_result) {
 				me.rest_result = rest_result;
 				if (rest_result[REST.RESULT_KEY]) {
-					me.item = JSON.parse(rest_result[REST.RESULT_KEY]);
+					me.item = rest_result[REST.RESULT_KEY];//JSON.parse();
 					console.log(me.item);
 				}
 				me.success();
@@ -449,57 +449,24 @@ var DATABIND_FORM = {
 		}
 	}
 };
+
+
 // 数据格式化类
 var FORMATPRIVED = {
-	formatValue : function(name, data) {
+	formatValue: function (name, data) {
 		var fun = FORMATPRIVED[name];
 		if (fun != null) {
 			return fun(data);
 		}
 		return data;
 	},
-	money : function(data) {
+	money: function (data) {
 		return MONEYFORMAT.toYuan(data);
 	},
-	date : function(data) {
+	date: function (data) {
 		return DATEFORMAT.toDate(data);
 	},
-	time : function(data) {
+	time: function (data) {
 		return DATEFORMAT.toTime(data);
-	},
-	rate : function(data) {
-		return NUMBERFORMAT.toRate(data);
-	}
-};
-var CUSTOMER = {
-	itmes : {},
-	success : {},
-	item : {},
-	get : function(id) {
-		var rest_result = {};
-		var item = {};
-		var params = JSON.stringify({
-			cid : id
-		});
-		var data = {
-			url : '/api/customer/getcustomer',
-			params : params
-		};
-		$.ajax({
-			type	 : 'post',
-			url		 : '../rest/item/get',
-			data	 : data,
-			dataType : 'json',
-			async : false,
-			success : function(result) {
-				rest_result = result;
-			},
-			error : function(result) {
-			}
-		});
-		if (rest_result[REST.RESULT_KEY]) {
-			item = JSON.parse(rest_result[REST.RESULT_KEY]);
-		}
-		return item;
 	}
 };

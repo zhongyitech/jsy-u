@@ -91,6 +91,14 @@ var ViewModel = {
                 me.getDataOfHtbh(input.trim());
             }
         });
+
+        $('#input_htbh2').change(function () {
+            var input = $(this).val();
+            if (input != null) {
+                me.getDataOfHtbh(input.trim());
+            }
+        });
+
     },
     valid: function () {
         this.submit_error = this.submit_error || ($('#fundselect').val() == '') || ($('#input_htbh').val() == '');
