@@ -1858,7 +1858,7 @@ var USER = {
 //        return map[id];
     },
     getName: function (id) {
-        var item = $.project.domain(id, "com.jsy.auth.User",this.NAME_KEY).getItem(id);
+        var item = $.project.domain(id, "com.jsy.auth.User", this.NAME_KEY).getItem(id);
 
         var name = item[this.NAME_KEY];
         if (!name) {
@@ -2778,68 +2778,68 @@ var NUMBERFORMAT = {
 };
 
 var STRINGFORMAT = {
-    toNumber: function (string) {
-        if (string == '0') {
-            return '0';
-        }
+        statusText: {Y: "年付", N: "到期付", J: "季付", M: "月付", D: "立即付息", W: "半年付"},
+        toNumber: function (string) {
+            if (string == '0') {
+                return '0';
+            }
 
-        if (!string) {
-            return "";
+            if (!string) {
+                return "";
+            }
+            string = string + "";
+            return string.replace(/\D/g, '');
         }
-        string = string+"";
-        return string.replace(/\D/g, '');
-    },
-    toYuan: function (number) {
-        if (!number) {
-            return "";
+        ,
+        toYuan: function (number) {
+            if (!number) {
+                return "";
+            }
+            number = number + "";
+            number = number.replace(/\D/g, '');
+            if (!number) {
+                return "";
+            }
+            return '￥' + number.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g, ',$1');
         }
-        number = number+"";
-        number = number.replace(/\D/g, '');
-        if (!number) {
-            return "";
-        }
-        return '￥' + number.replace(/(?=(?!^)(?:\d{3})+(?:\.|$))(\d{3}(\.\d+$)?)/g,',$1');
-    },
-    toRate: function (string) {
-        if (!string) {
-            return '';
-        }
-        string = string.replace(/[^\d\.]/g, '');
+        ,
+        toRate: function (string) {
+            if (!string) {
+                return '';
+            }
+            string = string.replace(/[^\d\.]/g, '');
 
-        if (!string) {
-            return '';
-        }
+            if (!string) {
+                return '';
+            }
 
-        return string.replace(/(\.)(\d*)(\.)/ig, '$1$2') + '%';
-    },
-    toPayType: function (string) {
-        if (string == 'N') {
-            return '年付';
-        } else if (string == 'J') {
-            return '季付';
-        } else if (string == 'W') {
-            return '半年付';
+            return string.replace(/(\.)(\d*)(\.)/ig, '$1$2') + '%';
         }
-        return '无付息方式';
-    },
-    toFXFS: function (string) {
-        if (string == 'N') {
-            return '年付';
-        } else if (string == 'J') {
-            return '季付';
-        } else if (string == 'W') {
-            return '半年付';
+        ,
+        toPayType: function (string) {
+            return this.statusText[string];
         }
-        return '无付息方式';
-    },
-    toVers: function (s) {
-        if (s) {
-            return s[3];
-        } else {
-            return '';
+        ,
+        toFXFS: function (string) {
+            if (string == 'N') {
+                return '年付';
+            } else if (string == 'J') {
+                return '季付';
+            } else if (string == 'W') {
+                return '半年付';
+            }
+            return '无付息方式';
+        }
+        ,
+        toVers: function (s) {
+            if (s) {
+                return s[3];
+            } else {
+                return '';
+            }
         }
     }
-};
+    ;
 
 var RATEFORMAT = {
     toNumber: function (rate) {
