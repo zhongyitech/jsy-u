@@ -126,8 +126,8 @@ var VIEWDATA = {
             $.each(items, function (i, item) {
                 var data = {url: '/api/payment/toPay?id=' + item};
                 $.io.get(data).success(function (result) {
-                    $.message.log("申请付款成功!")
-                    alert("申请付款成功!");
+                    $.message.log("申请付款成功! 银行受理流水号为:" + result.FrontLogNo);
+                    alert("申请付款成功! 银行受理流水号为:" + result.FrontLogNo);
                 });
             });
             me.getItems();
@@ -135,7 +135,7 @@ var VIEWDATA = {
         } else {
             var data = {url: '/api/payment/toPays?ids=' + params};
             $.io.get(data).success(function (result) {
-                $.message.log("申请付款成功!")
+                $.message.log("申请付款成功!");
                 alert("申请付款成功!");
                 me.getItems();
             });
