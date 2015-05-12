@@ -4,7 +4,8 @@
 <html>
 <head>
     <jsp:include page="./head.jsp"/>
-    <script type="text/javascript" src="/js/special_treat.js"></script>
+    <%--<script type="text/javascript" src="/js/special_treat.js"></script>--%>
+    <script type="text/javascript" src="/js/special-merge.js"></script>
     <title>合并计息申请表</title>
 </head>
 <body >
@@ -146,7 +147,7 @@
                         <label for="">合并的合同编号：</label>
                     </div>
                     <div class="form-input col-md-3">
-                        <input placeholder="要合并入的投资档案的合同编号" class="" value=""/>
+                        <input id="input_htbh2" placeholder="要合并入的投资档案的合同编号" class="" value=""/>
                     </div>
                     <div class="form-label col-md-3 text-right  ">
                         <label for="">基金名称： </label>
