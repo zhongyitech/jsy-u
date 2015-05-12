@@ -72,11 +72,8 @@ var VIEWMODE_PAYUSER = {
         for (var i = 1; i < trs.length; i++) {
             var tr = $(trs.get(i));
             var payuser = {};
-            if(this.getRowValue(tr, 'id')){
-                payuser['id'] = this.getRowValue(tr, 'id');
-            }
             payuser['payDate'] = DATEFORMAT.toRest(this.getRowValue(tr, 'paydate'));
-            payuser['payAmount'] = Number(this.getRowValue(tr, 'payamount'));
+            payuser['payAmount'] = this.getRowValue(tr, 'payamount');
             payuser['pName'] = this.getRowValue(tr, 'pname');
             payuser['payBankAccount'] = this.getRowValue(tr, 'paybankaccount');
             payuser['cardType'] = this.getRowValue(tr, 'cardtype');
@@ -142,11 +139,7 @@ var VIEWDATA = {
     init: function () {
         this.databind.table_id = "#bindtarget_id";
         var me = this;
-        var investid = PAGE.getParam('id');
-
-        if (investid != null) {
-            this.investmentid = args[1];
-        }
+        this.investmentid = PAGE.getParam("investmentid");
         this.loginuser = LOGIN.getUser();
         $(this.savebtnid).click(function () {
             me.save();
@@ -184,8 +177,8 @@ var VIEWDATA = {
         this.submit_error = errors;
     },
     save: function () {
-        var payuser = VIEWMODE_PAYUSER.save();
         this.valid();
+        var payuser = VIEWMODE_PAYUSER.save();
         if (this.submit_error.length > 0) {
             $.each(this.submit_error, function (index, obj) {
                 $("#" + obj).addClass("valid_error");
@@ -195,6 +188,9 @@ var VIEWDATA = {
                 $(this).removeClass("valid_error");
             });
             this.error("数据未填写完整！请修改数据。");
+            return;
+        }
+        if ($(".valid_error").length > 0) {
             return;
         }
         var fundName = $('#s_fundname').text();
@@ -211,15 +207,15 @@ var VIEWDATA = {
             khfbs: payuser,
             mjAccount: $("#bankaccountlist").val()
         };
-        console.log(postData);
+        var params = {};
         var entity = JSON.stringify(postData);
         var data = {
             url: '/api/wtfksq/create',
+            params: params,
             entity: entity
         };
         $(this.savebtnid).attr("disabled", true);
         $(this.savebtnid).html("数据提交中。。。");
-
         var me = this;
         /* 禁用提交按钮*/
         $(this.savebtnid).attr('readonly', true);
@@ -243,35 +239,21 @@ var VIEWDATA = {
 
         this.databind.binding(this.item);
         $(this.savebtnid).attr('readonly', false);
+        this.setBankAccount($("#input_htbh").val());
     },
-    getUnPayAmount: function () {
-        var me = this;
-        var params = JSON.stringify({
-            archiveNum: me.investmentid
-        });
-        var data = {
-            url: '/api/investmentArchives/getProceeds',
-            params: params
-        };
-        var result = 0;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (rest_result) {
-                me.rest_result = rest_result;
-                if (rest_result[REST.RESULT_KEY]) {
-                    result = JSON.parse(rest_result[REST.RESULT_KEY]);
-                }
-            },
-            error: function (result) {
-                me.rest_result = result;
-                me.error("error");
+    setBankAccount: function (htbh) {
+        //获取基金相关的募集账户
+        $.io.get({
+            url: '/api/investmentArchives/getBankAccount',
+            params: {htbh: htbh}
+        }).success(function (result) {
+            if (result.length == 0) {
+                $.message.error("与基金关联的有队合伙企业没有设置资金募集账户!");
             }
+            $.dom.select("#bankaccountlist", result, function (item) {
+                return {text: item.bankOfDeposit + "(" + item.account + ")", value: item.id};
+            });
         });
-        return result;
     },
     error: function (errormsg) {
         MESSAGEBOX.show(errormsg);
@@ -297,41 +279,21 @@ var VIEWDATA = {
         }).error(function (error) {
             $('#input_htbh').addClass("valid_error");
         });
-        //获取募集账户信息
-        $.io.get({url: '/api/investmentArchives/getBankAccount', params: {htbh: htbh}}).success(function (result) {
-            $.dom.select("#bankaccountlist", result, function (item) {
-                return {text: item.bankOfDeposit + "(" + item.account + ")", value: item.id};
-            });
-        });
+        this.setBankAccount(htbh);
     },
     getData: function () {
         var me = this;
-        var params = JSON.stringify({
-            iaid: me.investmentid
-        });
         var data = {
-            url: '/api/dqztsq/getIAInfo',
-            params: params
+            url: '/api/investmentArchives/getByIdSpecial',
+            params: {id: me.investmentid}
         };
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/get',
-            data: data,
-            dataType: 'json',
-            async: true,
-            success: function (rest_result) {
-                me.rest_result = rest_result;
-                if (rest_result[REST.RESULT_KEY]) {
-                    me.item = JSON.parse(rest_result[REST.RESULT_KEY]);
-                    console.log(me.item);
-                    me.success();
-                } else {
-                    me.error("没有找到此合同编号的投资档案");
-                }
-            },
-            error: function (result) {
-                me.rest_result = result;
-                me.error("error");
+        $.io.get(data).success(function (result) {
+            if (result) {
+                me.item = result;
+                me.success();
+                $('#input_htbh').removeClass("valid_error");
+            } else {
+                $.message.error("获取数据出错!");
             }
         });
     }

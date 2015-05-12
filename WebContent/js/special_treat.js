@@ -48,13 +48,7 @@ var VIEWDATA = {
             console.log(type);
             console.log(object);
         };
-        if (window.location.search.substr(1).split('&').length > 0) {
-            var args = window.location.search.substr(1).split('&')[0].split('=');
-            var investid = args[1];
-            if (investid != null) {
-                this.investmentid = args[1];
-            }
-        }
+        this.investmentid = PAGE.getParam('investmentid');
         this.loginuser = LOGIN.getUser();
 
         console.log('investmentid : ' + this.investmentid);
@@ -74,7 +68,7 @@ var VIEWDATA = {
 
         //新合同编号的检测
         $("#new_htbh").change(function () {
-            var me=this;
+            var me = this;
             $.io.get({url: '/api/investmentArchives/contractNumCanAdd', params: {num: $("#new_htbh").val()}})
                 .success(function (result) {
                     if (result) {
