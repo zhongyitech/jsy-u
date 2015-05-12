@@ -85,7 +85,7 @@ var INVESTMENT_LIST = {
         $(this.TABLE_ID).find("tbody").empty();
         if (items) {
             this.tr_key = 0;
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.addTr(items[i]);
             }
         }
@@ -135,14 +135,13 @@ var INVESTMENT_LIST = {
             "<a href=javascript:;' title='' class='btn medium '	data-toggle='dropdown'> <span class='button-content'>" + contractNum +
             "<i class='glyph-icon font-size-11 icon-chevron-down'></i>	</span></a>" +
             "<ul class='dropdown-menu float-right'>" +
-//		    "<li><a href='javascript:;' title='' btn_row_action data-rowindex='"+key+"' data-actionname='completedInvestment'><i class='glyph-icon icon-calendar mrg5R ' ></i>完成客户信息</a></li>"+
             "<li><a href='./investment-details.jsp?id=" + item.id + "' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='viewInvestment'><i class='glyph-icon icon-edit mrg5R'></i>查看投资档案明细</a></li><li class='divider'></li>";
         "<li class='divider'></li>";
         if (item['dazt'] == 0) {
             var menus = this.getMenus();
             for (var mkey in menus) {
                 var m = menus[mkey];
-                if (m.name === "dqzt") {
+                if (m.name === "delegate") {
                     contractNum_td += '<li class="divider"></li>';
                 }
                 contractNum_td = contractNum_td + "<li><a href='javascript:;' class=' btn_row_action' title='' data-rowindex='" + key + "' data-actionname='" + m.name + "'><i class='glyph-icon icon-edit mrg5R'></i>" + m.title + "</a></li>";
@@ -170,7 +169,7 @@ var INVESTMENT_LIST = {
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
-        value =item['customer'] ?  item['customer']['country'] :'';
+        value = item['customer'] ? item['customer']['country'] : '';
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
 
@@ -191,7 +190,7 @@ var INVESTMENT_LIST = {
 
         var statusid = item['dazt'];
         value = FUNDWTSTATUS.get(statusid);
-        var vurl = FUNDWTSTATUS.getUrl(statusid) + "?investmentid=" + statusid;
+        var vurl = FUNDWTSTATUS.getUrl(statusid) + "?investmentid=" + statusid + "&type=edit";
         row = $("<td><a class='' target='_blank' href='" + vurl + "' class='text-overflow' title='" + value + "'>" + value + "</a></td>");
         tr.append(row);
 
@@ -230,6 +229,12 @@ var INVESTMENT_LIST = {
                     window.location = location;
                 }
             },
+            delegate: {
+                title: '委托付款申请', name: 'delegate', actionfunc: function (item) {
+                    var location = "./special-paytreat.jsp?investmentid=" + item.id;
+                    window.location = location;
+                }
+            },
             dqzt: {
                 title: '到期转投处理申请', name: 'dqzt', actionfunc: function (item) {
                     var location = "./special_treat.jsp?investmentid=" + item.id;
@@ -251,6 +256,12 @@ var INVESTMENT_LIST = {
             jjxt: {
                 title: '基金续投申请', name: 'jjxt', actionfunc: function (item) {
                     var location = "./continuedinvestment-add.jsp?investmentid=" + item.id;
+                    window.location = location;
+                }
+            },
+            union: {
+                title: '合并申请', name: 'union', actionfunc: function (item) {
+                    var location = "./special-merge.jsp?investmentid=" + item.id;
                     window.location = location;
                 }
             }
@@ -275,7 +286,7 @@ var FUNDWTSTATUS = {
         "./refund_add.jsp"
     ],
     ini: function () {
-        this.items =  ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
+        this.items = ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
     },
     get: function (status_id) {
         if (this.items == null) {
