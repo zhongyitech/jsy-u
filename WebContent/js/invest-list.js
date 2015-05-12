@@ -162,8 +162,6 @@ var INVESTMENT_LIST = {
         var rqje_td = $('<td><span   class="text-overflow" title="' + rqje + '">' + rqje + '</span></td>');
         tr.append(rqje_td);
 
-        var value = '';
-        var row = '';
         value = item['tzqx'];
         row = $('<td><span   class="text-overflow" title="' + value + '">' + value + '</span></td>');
         tr.append(row);
@@ -277,9 +275,7 @@ var FUNDWTSTATUS = {
         "./refund_add.jsp"
     ],
     ini: function () {
-        this.items = [
-            "无", "到期", "未到期", "续投", "退伙", "", "委付款", "委收款",
-        ];
+        this.items =  ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
     },
     get: function (status_id) {
         if (this.items == null) {
