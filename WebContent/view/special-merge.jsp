@@ -158,8 +158,11 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-label col-md-12   ">
+                    <div class="form-label col-md-3   ">
                         <label for="">添加合并款：</label>
+                    </div>
+                    <div class="form-label col-md-3   ">
+                        <input class="form-input" id="addAmount" />
                     </div>
                 </div>
 
@@ -168,13 +171,13 @@
                         <label for="">合并后金额：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""></label>
+                        <label  id="lab_totalAmount"></label>
                     </div>
                     <div class="form-label col-md-3 text-right  ">
                         <label for="">合并后收益率：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""></label>
+                        <label id="lab_totalRate"></label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -188,7 +191,7 @@
                         <label for="">合并后期限：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""></label>
+                        <label  id="lab_totalTzqx"></label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -196,13 +199,13 @@
                         <label for="">按照公司规定应扣除利息：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""></label>
+                        <label id="lab_muteLx"></label>
                     </div>
                     <div class="form-label col-md-3  text-right  ">
                         <label for="">合并后付息方式：</label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label for=""></label>
+                        <label  id="lab_totalFxfj"></label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -210,7 +213,7 @@
                         <label for="">实际扣除利息：</label>
                     </div>
                     <div class="form-input col-md-3   ">
-                        <input/>
+                        <input id="real_lx"/>
                     </div>
                 </div>
 

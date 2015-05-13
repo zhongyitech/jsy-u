@@ -72,6 +72,16 @@ var VIEWDATA = {
                 me.GetNewHtbh(input.trim());
             }
         });
+        $("#addAmount").unbind().bind("keyup", function () {
+            var value = parseInt($(this).val());
+            if (isNaN(value)) {
+                $(this).val(0);
+            }
+            else {
+                $(this).val(value);
+            }
+            me.getAdditionalInfo()
+        });
     },
     valid: function () {
         this.submit_error = this.submit_error || ($('#fundselect').val() == '') || ($('#input_htbh').val() == '');
@@ -79,55 +89,42 @@ var VIEWDATA = {
     save: function () {
         this.valid();
         var me = this;
-
         if (this.submit_error) {
             this.showinfo("数据填写有误！请修改数据。");
             return;
         }
+        if ($(".valid_error").length > 0) {
+            MESSAGEBOX.show("数据未填写完成,请填写数据");
+            return;
+        }
         var postData = {
             htbh: me.item.contractNum,
-            newContractNum: "",
-            bz: $('#lab-bz').val()
+            newContractNum: $("#input_htbh2").val(),
+            bz: $('#lab-bz').val(),
+            real_lx: $("#real_lx").val()
+            , addAmount: $("#addAmount").val()
+            , unionStartDate: DATEFORMAT.toRest($("#new_payDate").val())
         };
         console.log(postData);
         var params = {};
         var entity = JSON.stringify(postData);
         var data = {
-            url: '/api/wdqztsq',
+            url: '/api/mergesq/create',
             params: params,
             entity: entity
         };
-
         $(this.savebtnid).attr("disabled", true);
         $(this.savebtnid).html("数据提交中。。。");
-        var posResault = false;
-        $.ajax({
-            type: 'post',
-            url: '../rest/item/post',
-            data: data,
-            dataType: 'json',
-            async: false,
-            success: function (rest_result) {
-                console.log(rest_result);
-                this.rest_result = rest_result;
-                if (rest_result[REST.RESULT_KEY]) {
-                    me.showinfo("申请单提交成功");
-                    posResault = true;
-                }
-                else {
-                    me.error('提交申请出错。');
-                }
-            },
-            error: function (result) {
-                me.error("error");
-            }
+        var me = this;
+        $.io.post(data).success(function (resutl) {
+            $(me.savebtnid).attr('disabled', true);
+            $(me.savebtnid).html("申请单已经提交成功！");
+            me.showinfo('申请单提交成功');
+        }).error(function (error) {
+            $(me.savebtnid).html("提交申请");
+            $(me.savebtnid).attr('disabled', false);
+            me.showinfo(error.msg);
         });
-        $(this.savebtnid).attr('disabled', posResault);
-        if (posResault) {
-            $(this.savebtnid).html("申请单已经提交成功！");
-        } else {
-            $(this.savebtnid).html("提交申请");
-        }
     },
 
     setData: function () {
@@ -143,6 +140,19 @@ var VIEWDATA = {
         NUMBERCHECK.startCheck();
         $(this.savebtnid).attr('disabled', false);
         $("#new_payDate").val(DATEFORMAT.toDate(new Date()));
+    },
+
+    getAdditionalInfo: function () {
+        var addAmount = parseInt($("#addAmount").val());
+        addAmount = (isNaN(addAmount)) ? 0 : addAmount;
+        $.io.get({url: '/api/mergesq/unionPre', params: {ivid: this.investmentid, newAmount: addAmount}})
+            .success(function (result) {
+                $("#lab_totalAmount").html(result.totalAmount);
+                $("#lab_totalRate").html(NUMBERFORMAT.toRate(result.totalRate));
+                $("#lab_totalFxfj").html(STRINGFORMAT.toPayType(result.totalFxfj));
+                $("#lab_totalTzqx").html(result.totalTzqx);
+                $("#lab_muteLx").html(result.muteLx);
+            });
     },
     formatValue: function (type, data) {
     },
@@ -168,6 +178,7 @@ var VIEWDATA = {
                 }
                 $('#input_htbh2').removeClass("valid_error");
                 $('#nnion_name').html(result.fundName);
+                me.getAdditionalInfo();
             } else {
                 $.message.error("无此合同编号,或合同编号没有登记!!");
                 $('#input_htbh2').addClass("valid_error");
