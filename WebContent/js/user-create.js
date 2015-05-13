@@ -222,6 +222,11 @@ var USER_FORM = {
             item[USER.PASSWORD_KEY] = password;
         }
 
+        var email = $("#email").val();
+        if (email) {
+            item["email"] = email;
+        }
+
         var enabled = this.getEnabledView().val();
         if (enabled) {
             item[USER.ENABLED_KEY] = enabled;

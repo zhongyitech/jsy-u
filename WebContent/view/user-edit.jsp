@@ -93,6 +93,16 @@
 
                         </div>
 
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label class="label-description">(*)邮件：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input placeholder="必填" type="text" id="email">
+                            </div>
+
+                        </div>
+
                         <%--<div class="form-row">--%>
                             <%--<div class="form-label col-md-2">--%>
                                 <%--<label>银行卡信息</label>--%>

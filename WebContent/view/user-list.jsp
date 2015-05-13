@@ -44,6 +44,7 @@
 								<tr>
 									<th class="text-center">账号(登陆名))</th>
 									<th class="text-center">名称</th>
+									<th class="text-center">邮件</th>
 									<th class="text-center">角色(职务)</th>
 									<th class="text-center">所属部门</th>
 									<th class="text-center">公司</th>

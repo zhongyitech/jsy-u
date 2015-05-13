@@ -206,6 +206,7 @@ var USER_FORM = {
         this.setYHZH(item);//银行账号
         this.setKHH(item);//开户行
         this.setRole(item);
+        $("#email").val(item.email);
         //todo:test data
         //var titems = [YHZH.get(1), YHZH.get(2), YHZH.get(2), YHZH.get(2), YHZH.get(3)];
         //BANKACCOUNTS.setView(titems);
@@ -231,6 +232,8 @@ var USER_FORM = {
         if (enabled) {
             item[USER.ENABLED_KEY] = enabled;
         }
+
+        item['email'] = $("#email").val();
 
         var name = this.getNameView().val();
         if (name) {
