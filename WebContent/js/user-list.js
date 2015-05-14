@@ -106,6 +106,10 @@ var USER_LIST = {
         var name_td = $('<td class="text-left"><span class="text-overflow" title="' + name + '">' + name + '</span></td>');
         tr.append(name_td);
 
+        var email = item.email;
+        var email_td = $('<td class="text-left"><span class="text-overflow" title="' + email + '">' + email + '</span></td>');
+        tr.append(email_td);
+
         item['role'] = $.io.get(true,
             {url: '/api/role/userRoleList', params: {id: item.id}}
         ).data();

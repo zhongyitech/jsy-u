@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description">(*)部门:</label>
+                                <label class="label-description">(*)部门:</label>
                             </div>
                             <div class="form-input col-md-4">
                                 <select id="department"></select>
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="form-label col-md-2">
-                                <label for="" class="label-description" id="role-label">职务:</label>
+                                <label class="label-description" id="role-label">职务:</label>
                             </div>
 
                             <div class="form-input col-md-4">
@@ -93,6 +93,15 @@
 
                         </div>
 
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label class="label-description">(*)邮件：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <input placeholder="必填" type="text" id="email">
+                            </div>
+                        </div>
+
                         <%--<div class="form-row">--%>
                             <%--<div class="form-label col-md-2">--%>
                                 <%--<label>银行卡信息</label>--%>
@@ -101,7 +110,7 @@
 
                         <%--<div class="form-row">--%>
                             <%--<div class="form-label col-md-2">--%>
-                                <%--<label for="" class="label-description">收款人:</label>--%>
+                                <%--<label class="label-description">收款人:</label>--%>
                             <%--</div>--%>
 
                             <%--<div class="form-input col-md-4">--%>
@@ -109,7 +118,7 @@
                             <%--</div>--%>
 
                             <%--<div class="form-label col-md-2">--%>
-                                <%--<label for="" class="label-description">银行账号:</label>--%>
+                                <%--<label class="label-description">银行账号:</label>--%>
                             <%--</div><div class="form-input col-md-4">--%>
                             <%--<input placeholder="" type="text" id="yhzh">--%>
                         <%--</div>--%>
@@ -117,7 +126,7 @@
 
                         <%--<div class="form-row">--%>
                             <%--<div class="form-label col-md-2">--%>
-                                <%--<label for="" class="label-description">开户行:</label>--%>
+                                <%--<label class="label-description">开户行:</label>--%>
                             <%--</div>--%>
 
                             <%--<div class="form-input col-md-10">--%>
