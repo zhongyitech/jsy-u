@@ -25,21 +25,21 @@
                   method="post">
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for=""> 申请部门： </label>
+                        <label > 申请部门： </label>
                     </div>
                     <div class="form-label col-md-2">
                         <label id="lab-dep " class=" bind " data-bindtype="value"
                                data-member="department"></label>
                     </div>
                     <div class="form-label col-md-2  text-right">
-                        <label for="">申请人： </label>
+                        <label >申请人： </label>
                     </div>
                     <div class="form-label col-md-2 text-center">
                         <label id="label_sqr " class=" bind " data-bindtype="value"
                                data-member="sqr"></label>
                     </div>
                     <div class="form-label col-md-2   ">
-                        <label for=""> 申请时间： </label>
+                        <label > 申请时间： </label>
                     </div>
                     <div class="form-label col-md-2 text-center">
                         <label id="lab-scrq " class=" bind " data-bindtype="value"
@@ -48,12 +48,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">1.客户信息 </label>
+                        <label  class="font-size-20">1.客户信息 </label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="" id="lab-tname"> 客户名称： </label>
+                        <label  id="lab-tname"> 客户名称： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class=" label-info bind" id="lab-cname"
@@ -61,7 +61,7 @@
                                data-member="customer.id" data-displaymember="name"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="">证件类型： </label>
+                        <label >证件类型： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-success bind" id="lab-ccardtype"
@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for="" id="lab-tnubmer">证件号码： </label>
+                        <label  id="lab-tnubmer">证件号码： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class=" label-info bind" id="lab-cardnumber"
@@ -79,7 +79,7 @@
                                data-member="customer.id" data-displaymember="credentialsNumber"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="" id="lab-ttype">法定代表人： </label>
+                        <label  id="lab-ttype">法定代表人： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-success bind"
@@ -89,13 +89,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">2.基金认购信息 </label>
+                        <label  class="font-size-20">2.基金认购信息 </label>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for=""> 基金名称： </label>
+                        <label > 基金名称： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-info bind" id="s_fundname"
@@ -103,7 +103,7 @@
                                data-member="fund.id" data-displaymember="fundName"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for=""> 合同编号:</label>
+                        <label > 合同编号:</label>
                     </div>
                     <div class="form-input col-md-4">
                         <input placeholder="键入编号搜索..." class="bind" id="input_htbh" data-bindtype="value"
@@ -113,14 +113,14 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for=""> 认购日期： </label>
+                        <label > 认购日期： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class=" label-info bind" id="label_rgrq"
                                data-bindtype="value" data-member="rgrq" data-format="date"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for=""> 认购金额： </label>
+                        <label > 认购金额： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-success bind" id="label_rgje"
@@ -129,7 +129,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-2   ">
-                        <label for=""> 到期日期： </label>
+                        <label > 到期日期： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-info bind" id="label_dqrq"
@@ -139,27 +139,27 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">3.合并入的基金信息 </label>
+                        <label  class="font-size-20">3.合并入的基金信息 </label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">合并的合同编号：</label>
+                        <label >合并的合同编号：</label>
                     </div>
                     <div class="form-input col-md-3">
                         <input id="input_htbh2" placeholder="要合并入的投资档案的合同编号" class="" value=""/>
                     </div>
                     <div class="form-label col-md-3 text-right  ">
-                        <label for="">基金名称： </label>
+                        <label >基金名称： </label>
                     </div>
                     <div class="form-label col-md-3   ">
-                        <label  id="nnion_name" for=""> {基金名称} </label>
+                        <label  id="nnion_name" > {基金名称} </label>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">添加合并款：</label>
+                        <label >添加合并款：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <input class="form-input" id="addAmount" />
@@ -168,13 +168,13 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">合并后金额：</label>
+                        <label >合并后金额：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <label  id="lab_totalAmount"></label>
                     </div>
                     <div class="form-label col-md-3 text-right  ">
-                        <label for="">合并后收益率：</label>
+                        <label >合并后收益率：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <label id="lab_totalRate"></label>
@@ -182,13 +182,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">合并后起息日：</label>
+                        <label >合并后起息日：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <input class="form-input tcal tcalInput" id="new_payDate">
                     </div>
                     <div class="form-label col-md-3  text-right ">
-                        <label for="">合并后期限：</label>
+                        <label >合并后期限：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <label  id="lab_totalTzqx"></label>
@@ -196,13 +196,13 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">按照公司规定应扣除利息：</label>
+                        <label >按照公司规定应扣除利息：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <label id="lab_muteLx"></label>
                     </div>
                     <div class="form-label col-md-3  text-right  ">
-                        <label for="">合并后付息方式：</label>
+                        <label >合并后付息方式：</label>
                     </div>
                     <div class="form-label col-md-3   ">
                         <label  id="lab_totalFxfj"></label>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-label col-md-3   ">
-                        <label for="">实际扣除利息：</label>
+                        <label >实际扣除利息：</label>
                     </div>
                     <div class="form-input col-md-3   ">
                         <input id="real_lx"/>
@@ -219,7 +219,7 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-12">
-                        <label for="" class="font-size-20">4.特殊情况备注说明 </label>
+                        <label  class="font-size-20">4.特殊情况备注说明 </label>
                     </div>
                 </div>
                 <div class="form-row">

@@ -224,7 +224,6 @@ var VIEWDATA = {
     }
 };
 
-
 // 数据格式化类
 var FORMATPRIVED = {
     formatValue: function (name, data) {
