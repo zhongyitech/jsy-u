@@ -13,7 +13,7 @@ var INVESTMENT_LIST = {
     TABLE_ID: '#investment-table',
     PAGES_ID: '#page-numbers',
     page_start: 0,
-    page_size: 10,
+    page_size: 25,
     pages_select: 1,
     pages_total: 0,
     pages_size: 21,
