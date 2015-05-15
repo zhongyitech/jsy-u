@@ -41,7 +41,7 @@ var BMJL = {//异步加载所有部门经理
     getMap: function () {
         if (JSON.stringify(this.map) == "{}") {
             var items = this.getItems();
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.map[items[i][this.ID_KEY]] = items[i];
             }
         }
@@ -181,24 +181,27 @@ var TZQX_LIST = {//投资期限
         tr.append(checkbox);
 
         var me = this;
-        var jsz_td = $('<td></td>');
-        tr.append(jsz_td);
-        var jsz_div = $('<div class="form-input col-md-12"></div>');
-        jsz_td.append(jsz_div);
-        var jsz_input = $('<input name="qx"/>');
-        jsz_div.append(jsz_input);
-        $(jsz_input).keyup(function () {
-            var v = STRINGFORMAT.toNumber($(this).val());
-            $(this).val(v);
-        });
+        tr.append('<td class="form-input"><input class="in_vail_number" name="qx" value="1" /></td> ');
+        //var jsz_td = $('<td></td>');
+        //tr.append(jsz_td);
+        //var jsz_div = $('<div class="form-input col-md-12"></div>');
+        //jsz_td.append(jsz_div);
+        //var jsz_input = $('<input name="qx"/>');
+        //jsz_div.append(jsz_input);
+        //$(jsz_input).keyup(function () {
+        //    var v = STRINGFORMAT.toNumber($(this).val());
+        //    $(this).val(v);
+        //});
 
-        var dw_td = $('<td></td>');
-        tr.append(dw_td);
-        var dw_select = $('<select class="" name="dw"></select>');
-        dw_td.append(dw_select);
-        dw_select.append('<option value=""></option>');
-        dw_select.append('<option value="年">年</option>');
-        dw_select.append('<option value="天">天</option>');
+        //var dw_td = $('<td></td>');
+        //tr.append(dw_td);
+        //var dw_select = $('<select class="" name="dw"></select>');
+        //dw_td.append(dw_select);
+        //dw_select.append('<option value=""></option>');
+        //dw_select.append('<option value="年">年</option>');
+        //dw_select.append('<option value="天">天</option>');
+        tr.append('<td class="form-input"><select class="" name="dw" ><option value="年">年</option><option value="天">天</option></select></td> ');
+
     },
     removeTr: function () {//删除选中行
         var table = this.getTable();
@@ -234,10 +237,20 @@ var TCFPFW_LIST = {//提成分配范围
         this.iniTable();
     },
     iniTable: function () {
+        var me = this;
         var items = this.bmjl.getItems();
         for (var i = 0; i < items.length; i++) {
             this.addTr(items[i]);
         }
+
+        $(".in_vail_rate").unbind().bind('keyup', function (e) {
+            if (e.which == 8) {
+                $(this).val('');
+            } else {
+                var rate = STRINGFORMAT.toRate($(this).val());
+                $(this).val(rate);
+            }
+        });
     },
     getView: function () {
         return $(this.VIEW_ID);
@@ -257,7 +270,7 @@ var TCFPFW_LIST = {//提成分配范围
         for (var i = 1; i < trs.length; i++) {
             var tr = $(trs.get(i));
             var item = {};
-            var dm = tr.find('select[name="dm"]').val();
+            var dm = tr.find('input[name="dm"]').val();
             if (dm) {
                 item['manageerId'] = dm.trim();
             }
@@ -281,6 +294,9 @@ var TCFPFW_LIST = {//提成分配范围
             if (shouyilv) {
                 item['investment'] = this.rateformat.toNumber(shouyilv.trim());
             }
+
+            item["rateBefore"] = tr.find('select[name="rateBefore"]').val();
+            item["rate"] =this.rateformat.toNumber(tr.find('input[name="rate"]').val());
 
             if (JSON.stringify(item) != '{}') {
                 items.push(item);
@@ -324,64 +340,77 @@ var TCFPFW_LIST = {//提成分配范围
         tr.attr(me.tr_key, tr_key);
         table.append(tr);
 
-        var dm_td = $('<td></td>');
-        tr.append(dm_td);
-        var dm_select = $('<select class="user-name" name="dm" disabled></select>');
-        dm_td.append(dm_select);
+        //var dm_td = $('<td class="form-input"></td>');
+        //tr.append(dm_td);
+        //var dm_select = $('<select class="user-name" name="dm" disabled></select>');
+        //dm_td.append(dm_select);
+        //
+        //var uid = this.bmjl.toId(item);
+        //var username = this.bmjl.toView(item);
+        //var option = $('<option value="' + uid + '">' + username + '</option>');
+        //dm_select.append(option);
+        //
+        //var sfbx_td = $('<td class="form-input"></td>');
+        //tr.append(sfbx_td);
+        //var sfbx_input = $('<input type="checkbox" name="sfbx"/>');
+        //sfbx_td.append(sfbx_input);
+        //sfbx_input.change(function () {
+        //    me.setSFBX(tr_key);
+        //});
+        //
+        //var ywtcbl_td = $('<td class="form-input"></td>');
+        //tr.append(ywtcbl_td);
+        //var ywtcbl_div = $('<div class="col-md-12"></div>');
+        //ywtcbl_td.append(ywtcbl_div);
+        //var ywtcbl_input = $('<input name="ywtcbl"/>');
+        //ywtcbl_div.append(ywtcbl_input);
+        //$(ywtcbl_input).keyup(function (e) {
+        //    if (e.which == 8) {
+        //        $(this).val('');
+        //    } else {
+        //        $(this).val(STRINGFORMAT.toRate($(this).val()));
+        //    }
+        //});
+        //
+        //var gltcbl_td = $('<td class="form-input"></td>');
+        //tr.append(gltcbl_td);
+        //var gltcbl_div = $('<div class=" col-md-12"></div>');
+        //gltcbl_td.append(gltcbl_div);
+        //var gltcbl_input = $('<input name="gltcbl"/>');
+        //gltcbl_div.append(gltcbl_input);
+        //$(gltcbl_input).keyup(function (e) {
+        //    if (e.which == 8) {
+        //        $(this).val('');
+        //    } else {
+        //        $(this).val(STRINGFORMAT.toRate($(this).val()));
+        //    }
+        //});
+        //
+        //var bxsyl_td = $('<td class="form-input"></td>');
+        //tr.append(bxsyl_td);
+        //var bxsyl_div = $('<div class="col-md-12"></div>');
+        //bxsyl_td.append(bxsyl_div);
+        //var bxsyl_input = $('<input name="bxsyl" disabled/>');
+        //bxsyl_div.append(bxsyl_input);
+        //$(bxsyl_input).keyup(function (e) {
+        //    if (e.which == 8) {
+        //        $(this).val('');
+        //    } else {
+        //        $(this).val(STRINGFORMAT.toRate($(this).val()));
+        //    }
+        //});
 
-        var uid = this.bmjl.toId(item);
-        var username = this.bmjl.toView(item);
-        var option = $('<option value="' + uid + '">' + username + '</option>');
-        dm_select.append(option);
-
-        var sfbx_td = $('<td></td>');
-        tr.append(sfbx_td);
-        var sfbx_input = $('<input type="checkbox" name="sfbx"/>');
-        sfbx_td.append(sfbx_input);
-        sfbx_input.change(function () {
+        var userName = item && item.chainName
+        var userID = item && item.id;
+        tr.append('<td class="form-input"><input type="hidden" name="dm" value="' + userID + '" /> <Label>' + userName + '</Label></td>');
+        tr.append('<td class="form-input"><input class="sl_bx" type="checkbox" name="sfbx"/></td>');
+        tr.append('<td class="form-input"><input  class="in_vail_rate" name="ywtcbl" /></td>');
+        tr.append('<td class="form-input"><input  class="in_vail_rate" name="gltcbl" /></td>');
+        tr.append('<td class="form-input"><input class="in_vail_rate"  name="bxsyl" disabled /></td>');
+        tr.append('<td class="form-input"><input  class="in_vail_rate" name="rate" /></td>');
+        tr.append('<td class="form-input"><select name="rateBefore" ><option value="false">税后 </option><option value="true">税前</option></select> </td>');
+        $(".sl_bx").change(function () {
             me.setSFBX(tr_key);
-        });
-
-        var ywtcbl_td = $('<td></td>');
-        tr.append(ywtcbl_td);
-        var ywtcbl_div = $('<div class="form-input col-md-12"></div>');
-        ywtcbl_td.append(ywtcbl_div);
-        var ywtcbl_input = $('<input name="ywtcbl"/>');
-        ywtcbl_div.append(ywtcbl_input);
-        $(ywtcbl_input).keyup(function (e) {
-            if (e.which == 8) {
-                $(this).val('');
-            } else {
-                $(this).val(STRINGFORMAT.toRate($(this).val()));
-            }
-        });
-
-        var gltcbl_td = $('<td></td>');
-        tr.append(gltcbl_td);
-        var gltcbl_div = $('<div class="form-input col-md-12"></div>');
-        gltcbl_td.append(gltcbl_div);
-        var gltcbl_input = $('<input name="gltcbl"/>');
-        gltcbl_div.append(gltcbl_input);
-        $(gltcbl_input).keyup(function (e) {
-            if (e.which == 8) {
-                $(this).val('');
-            } else {
-                $(this).val(STRINGFORMAT.toRate($(this).val()));
-            }
-        });
-
-        var bxsyl_td = $('<td></td>');
-        tr.append(bxsyl_td);
-        var bxsyl_div = $('<div class="form-input col-md-12"></div>');
-        bxsyl_td.append(bxsyl_div);
-        var bxsyl_input = $('<input name="bxsyl" disabled/>');
-        bxsyl_div.append(bxsyl_input);
-        $(bxsyl_input).keyup(function (e) {
-            if (e.which == 8) {
-                $(this).val('');
-            } else {
-                $(this).val(STRINGFORMAT.toRate($(this).val()));
-            }
         });
     },
     removeTr: function () {//删除选中行
@@ -524,9 +553,6 @@ var SYLFW_LIST = {//收益率范围
         this.iniRemoveButton();
     },
     iniTable: function () {
-        //for (var i = 0; i < 3; i++) {
-        //
-        //}
         this.addTr();
     },
     iniAddButton: function () {
@@ -606,46 +632,28 @@ var SYLFW_LIST = {//收益率范围
     },
     addTr: function () {//增加一行
         var me = this;
-
         var table = this.getTable();
         var tr = $('<tr></tr>');
         table.append(tr);
 
-        var checkbox = $('<td><input type="checkbox" name="checkbox"></td>');
-        tr.append(checkbox);
+        tr.append('<td class="form-input"><input type="checkbox" name="checkbox"></td>');
+        tr.append('<td class="form-input"><input class="in_vail_money" name="min"/></td>');
+        tr.append('<td class="form-label"><label>≤ 金额 <</label></td>');
+        tr.append('<td class="form-input"><input  class="in_vail_money" name="max" /></td>');
+        tr.append('<td class="form-input"><input   class="in_vail_rate" name="rate"/></td>');
+        tr.append('<td class="form-input"><input   class="in_vail_ver" name="vers"/></td>');
 
-        var min_td = $('<td></td>');
-        tr.append(min_td);
-        var min_div = $('<div class="form-input col-md-12"></div>');
-        min_td.append(min_div);
-        var min_input = $('<input name="min"/>');
-        min_div.append(min_input);
-        $(min_input).keyup(function () {
+        //金额验证
+        $(".in_vail_money").unbind().bind('keyup', function () {
             var money = STRINGFORMAT.toYuan($(this).val());
             $(this).val(money);
         });
-
-        var label = $('<td><span class="form-label"> ≤ 金额 < </span></td>');
-        tr.append(label);
-
-        var max_td = $('<td></td>');
-        tr.append(max_td);
-        var max_div = $('<div class="form-input col-md-12"></div>');
-        max_td.append(max_div);
-        var max_input = $('<input name="max"/>');
-        max_div.append(max_input);
-        $(max_input).keyup(function () {
-            var money = STRINGFORMAT.toYuan($(this).val());
-            $(this).val(money);
+        //版本验证
+        $(".in_vail_ver").unbind().bind('keyup', function () {
+            $(this).val(me.string_jsy.toVers($(this).val()));
         });
-
-        var yield_td = $('<td></td>');
-        tr.append(yield_td);
-        var yield_div = $('<div class="form-input col-md-12"></div>');
-        yield_td.append(yield_div);
-        var yield_input = $('<input name="rate"/>');
-        yield_div.append(yield_input);
-        $(yield_input).keyup(function (e) {
+        //税率验证
+        $(".in_vail_rate").unbind().bind('keyup', function (e) {
             if (e.which == 8) {
                 $(this).val('');
             } else {
@@ -654,15 +662,54 @@ var SYLFW_LIST = {//收益率范围
             }
         });
 
-        var vers_td = $('<td></td>');
-        tr.append(vers_td);
-        var vers_div = $('<div class="form-input col-md-12"></div>');
-        vers_td.append(vers_div);
-        var vers_input = $('<input name="vers" placeholder="输入字母"/>');
-        vers_div.append(vers_input);
-        $(vers_input).keyup(function (e) {
-            $(this).val(me.string_jsy.toVers($(this).val()));
-        });
+        //var min_td = $('<td class="form-input"></td>');
+        //tr.append(min_td);
+        //var min_div = $('<div class="form-input col-md-12"></div>');
+        //min_td.append(min_div);
+        //var min_input = $('<input name="min"/>');
+        //min_div.append(min_input);
+        //$(min_input).keyup(function () {
+        //    var money = STRINGFORMAT.toYuan($(this).val());
+        //    $(this).val(money);
+        //});
+        //
+        //var label = $('<td><span class="form-label"> ≤ 金额 < </span></td>');
+        //tr.append(label);
+        //
+        //var max_td = $('<td class="form-input"></td>');
+        //tr.append(max_td);
+        //var max_div = $('<div class="col-md-12"></div>');
+        //max_td.append(max_div);
+        //var max_input = $('<input name="max"/>');
+        //max_div.append(max_input);
+        //$(max_input).keyup(function () {
+        //    var money = STRINGFORMAT.toYuan($(this).val());
+        //    $(this).val(money);
+        //});
+        //var yield_td = $('<td class="form-input"></td>');
+        //tr.append(yield_td);
+        //var yield_div = $('<div class="col-md-12"></div>');
+        //yield_td.append(yield_div);
+        //var yield_input = $('<input name="rate"/>');
+        //yield_div.append(yield_input);
+        //$(yield_input).keyup(function (e) {
+        //    if (e.which == 8) {
+        //        $(this).val('');
+        //    } else {
+        //        var rate = STRINGFORMAT.toRate($(this).val());
+        //        $(this).val(rate);
+        //    }
+        //});
+        //
+        //var vers_td = $('<td class="form-input"></td>');
+        //tr.append(vers_td);
+        //var vers_div = $('<div class="col-md-12"></div>');
+        //vers_td.append(vers_div);
+        //var vers_input = $('<input name="vers" placeholder="输入字母"/>');
+        //vers_div.append(vers_input);
+        //$(vers_input).keyup(function (e) {
+        //    $(this).val(me.string_jsy.toVers($(this).val()));
+        //});
     },
     removeTr: function () {//删除选中行
         var table = this.getTable();

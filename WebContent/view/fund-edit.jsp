@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="col-md-12 pad0A clearfix">
-                <div class="col-md-6  pad0L">
+                <div class="col-md-5  pad0L">
                     <div class="content-box box-toggle " id="sylfw-view">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">收益率范围</span>
@@ -123,11 +123,10 @@
                             <table class="table text-center mrg0B" id="sylfw-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><span class="text-overflow"><input type="checkbox" name="checkbox"></span>
-                                    </th>
-                                    <th class="text-center" colspan="3"><span class="text-overflow">(*)收益范围</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)收益率</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)合同版本</span></th>
+                                    <th class="text-center" width="10px"><input type="checkbox" name="checkbox"></th>
+                                    <th class="text-center" colspan="3">收益范围</th>
+                                    <th class="text-center " width="60px;"><span class="text-overflow">收益率</span></th>
+                                    <th class="text-center" width="40px;">版本</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -172,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 pad0R clearfix">
+                <div class="col-md-7 pad0R clearfix">
                     <div class="content-box box-toggle" id="tcfpfw-view">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
@@ -185,11 +184,13 @@
                             <table class="table text-center mrg0B" id="tcfpfw-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><span class="text-overflow">(*)部门经理</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)是否包销</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)业务提成比例</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)管理提成比例</span></th>
-                                    <th class="text-center"><span class="text-overflow">(*)包销收益率</span></th>
+                                    <th class="text-center">部门经理</th>
+                                    <th class="text-center"  width="30x;">是否包销</th>
+                                    <th class="text-center"  width="100px;">业务提成比例</th>
+                                    <th class="text-center" width="100px;">管理提成比例</th>
+                                    <th class="text-center" width="100px;">包销收益率</th>
+                                    <th class="text-center" width="60px;">提成税率</th>
+                                    <th class="text-center">提成方式</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>

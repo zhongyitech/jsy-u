@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/fund-create.css">
 </head>
 
-<body >
+<body>
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <div id="page-content-wrapper">
@@ -57,7 +57,7 @@
                                 <label>预期募集款：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="yqmjk" >
+                                <input class="" type="text" name="yqmjk">
                             </div>
                             <div class="form-label col-md-2">
                                 <label>季付募集规模：</label>
@@ -115,7 +115,7 @@
             </div>
 
             <div class="col-md-12 pad0A clearfix">
-                <div class="col-md-6 pad0L">
+                <div class="col-md-5 pad0L">
                     <div id="sylfw-view" class="content-box box-toggle">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">收益率范围</span>
@@ -128,10 +128,10 @@
                             <table class="table text-center mrg0B" id="sylfw-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><input type="checkbox" name="checkbox"></th>
-                                    <th class="text-center" colspan="3">(*)收益范围</th>
-                                    <th class="text-center">(*)收益率</th>
-                                    <th class="text-center">(*)合同版本</th>
+                                    <th class="text-center" width="10px"><input type="checkbox" name="checkbox"></th>
+                                    <th class="text-center" colspan="3">收益范围</th>
+                                    <th class="text-center " width="60px;"><span class="text-overflow">收益率</span></th>
+                                    <th class="text-center" width="40px;">版本</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -139,8 +139,10 @@
                         </div>
 
                         <div class="button-pane">
-                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="remove-button"><span class="button-content">删除选中行</span></button>
-                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="add-button"><span class="button-content">增加一行</span></button>
+                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L"
+                                    id="remove-button"><span class="button-content">删除选中行</span></button>
+                            <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L"
+                                    id="add-button"><span class="button-content">增加一行</span></button>
                         </div>
                     </div>
                     <div class="content-box box-toggle" id="tzqx-view">
@@ -155,11 +157,12 @@
                             <table class="table text-center mrg0B" id="tzqx-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center"><input type="checkbox"
-                                                                                               name="checkbox">
+                                    <th class="text-center">
+                                        <input type="checkbox"
+                                               name="checkbox">
                                     </th>
-                                    <th class="text-center">(*)期限</th>
-                                    <th class="text-center">(*)单位</th>
+                                    <th style="width: 20%;" class="text-center">期限</th>
+                                    <th class="text-center">年限单位</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -174,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 pad0R clearfix">
+                <div class="col-md-7 pad0R clearfix">
                     <div id="tcfpfw-view" class="content-box box-toggle">
                         <h3 class="content-box-header primary-bg">
                             <span class="float-left">提成分配范围</span>
@@ -187,11 +190,13 @@
                             <table class="table text-center mrg0B" id="tcfpfw-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">(*)部门经理</th>
-                                    <th class="text-center">(*)是否包销</th>
-                                    <th class="text-center">(*)业务提成比例</th>
-                                    <th class="text-center">(*)管理提成比例</th>
-                                    <th class="text-center">(*)包销收益率</th>
+                                    <th class="text-center">部门经理</th>
+                                    <th class="text-center"  width="30x;">是否包销</th>
+                                    <th class="text-center"  width="100px;">业务提成比例</th>
+                                    <th class="text-center" width="100px;">管理提成比例</th>
+                                    <th class="text-center" width="100px;">包销收益率</th>
+                                    <th class="text-center" width="60px;">提成税率</th>
+                                    <th class="text-center">提成方式</th>
                                 </tr>
                                 </thead>
                                 <tbody></tbody>

@@ -24,7 +24,7 @@ var BMJL = {//异步加载所有部门经理
         //var params = JSON.stringify({authority: 'ROLE_MANAGER'});
         var data = {url: '/api/user/allDepartmentLader'};
         var me = this;
-        me.items = $.io.get(true,data).data();
+        me.items = $.io.get(true, data).data();
     },
     getItems: function () {
         if (!this.items || !this.items.length) {
@@ -35,7 +35,7 @@ var BMJL = {//异步加载所有部门经理
     getMap: function () {
         if (JSON.stringify(this.map) == "{}") {
             var items = this.getItems();
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.map[items[i][this.ID_KEY]] = items[i];
             }
         }
@@ -263,6 +263,14 @@ var TCFPFW_LIST = {//提成分配范围
                 this.addTr(item);
             }
         }
+        $(".in_vail_rate").unbind().bind('keyup', function (e) {
+            if (e.which == 8) {
+                $(this).val('');
+            } else {
+                var rate = STRINGFORMAT.toRate($(this).val());
+                $(this).val(rate);
+            }
+        });
     },
     getView: function () {
         return $(this.VIEW_ID);
@@ -306,6 +314,8 @@ var TCFPFW_LIST = {//提成分配范围
             if (shouyilv) {
                 item['investment'] = this.rateformat.toNumber(shouyilv.trim());
             }
+            item["rateBefore"] = tr.find('select[name="rateBefore"]').val();
+            item["rate"] = this.rateformat.toNumber(tr.find('input[name="rate"]').val());
 
             if (JSON.stringify(item) != '{}') {
                 items.push(item);
@@ -427,6 +437,12 @@ var TCFPFW_LIST = {//提成分配范围
             sfbx_input[0]['checked'] = sfbx;
             this.setSFBX(tr_key);
         }
+
+        tr.append('<td class="form-input"><input  class="in_vail_rate" name="rate" value="' + NUMBERFORMAT.toRate(item.rate) + '" /></td>');
+        console.log(item.rateBefore);
+        var before = item.rateBefore ? 1 : 0
+        var sl = $(tr.append('<td class="form-input"><select name="rateBefore" ><option value="0">税后 </option><option value="1">税前</option></select> </td>').find('select[name=rateBefore]')[0]);
+        sl.val(before);
     },
     removeTr: function () {//删除选中行
         var table = this.getTable();
@@ -570,11 +586,11 @@ var SYLFW_LIST = {//收益率范围
         this.iniRemoveButton();
     },
     set: function (items) {
-        this.items=items&&items.sort(
-          function(a,b){
-              return a.id>b.id;
-          }
-        );
+        this.items = items && items.sort(
+                function (a, b) {
+                    return a.id > b.id;
+                }
+            );
         if (items && items.length > 0) {
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
@@ -868,20 +884,20 @@ var FUND_FORM = {//基金表单
         this.setBNFMJGM(item);
         this.setNFMJGM(item);
 
-        if(item.funcCompany){
-            var FundCompanyInformation=$.project.domain(item.funcCompany.id,"com.jsy.fundObject.FundCompanyInformation");
-            var funcCompany=FundCompanyInformation.getItem(item.funcCompany.id);
+        if (item.funcCompany) {
+            var FundCompanyInformation = $.project.domain(item.funcCompany.id, "com.jsy.fundObject.FundCompanyInformation");
+            var funcCompany = FundCompanyInformation.getItem(item.funcCompany.id);
             $("#fundCompany").val(funcCompany.companyName);
         }
-        var params = JSON.stringify({"fundId":item.id});
-        var data   = {url:"/api/project/getProjectFromFund",params:params};
+        var params = JSON.stringify({"fundId": item.id});
+        var data = {url: "/api/project/getProjectFromFund", params: params};
         var _this = this;
         $.io.get(data)
-            .success(function(result){
+            .success(function (result) {
                 $("#projectname").val(result.name);
 
             })
-            .error(function(result){
+            .error(function (result) {
                 alert(result);
             });
 
@@ -916,7 +932,7 @@ var FUND_FORM = {//基金表单
             var status_list = FUND_STATUS.getItems();
             var option = $('<option value=""></option>');
             status_select.append(option);
-            for (var i=0;i<status_list.length;i++) {
+            for (var i = 0; i < status_list.length; i++) {
                 var status = status_list[i];
                 var id = FUND_STATUS.toId(status);
                 var name = FUND_STATUS.toName(status);
