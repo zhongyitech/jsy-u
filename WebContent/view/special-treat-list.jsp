@@ -19,7 +19,8 @@
             <table class="table table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
-                    <th class="text-center" style="width: 6em;"><span>状态</span></th>
+                    <th class="text-center" style="width: 5em;"><span>状态</span></th>
+                    <th class="text-center"><span class=""></span></th>
                     <th class="text-center"><span class="">基金名称</span></th>
                     <th class="text-center"><span class="">合同编号</span></th>
                     <th class="text-center"><span class="">申请部门</span></th>
@@ -42,6 +43,7 @@
                         <span class="label bg-orange tooltip-button mrg15R text-center" title=""
                               data-original-title="Label with .bg-orange">审核中</span>
                         {#/if}
+                    <td><a class="btn" href="preview.jsp?id={$T.item.id}&reporttype={$T.item.sq_type}"+ >查看</a></td>
                     <td>{$T.item.fundName}</td>
                     <td>{$T.item.htbh}</td>
                     <td>{$T.item.sqbm}</td>
@@ -94,6 +96,15 @@
 
                 </div>
                 <div class="content-box-wrapper">
+                    <div>
+                        <div class="form-row">
+                            <div class="form-input col-md-2">
+                                <label> 特殊申请类型：</label><select id="sq_type"></select>
+                            </div>
+                            <div class="form-label col-md-2">
+                            </div>
+                        </div>
+                    </div>
                     <div id="table-pager" class="page-bar"></div>
                     <div id="table-data"></div>
 

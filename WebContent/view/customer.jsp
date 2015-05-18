@@ -34,7 +34,6 @@
                             <div class="form-input col-md-4">
                                 <input placeholder="输入客户名称" type="text" id="name" class="name">
                             </div>
-
                             <div class="form-label col-md-2">
                                 <label class="label-description">(*)国家（地区）:</label>
                             </div>
@@ -47,6 +46,11 @@
                             </div>
                         </div>
 
+                        <div class="form-row" id="customer_select_panel">
+                            <div class="form-label col-md-12">
+                                <label>选择下列的用户：</label>
+                                <span>用户1</span>
+                            </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
                                 <label class="label-description">证件类型:</label>

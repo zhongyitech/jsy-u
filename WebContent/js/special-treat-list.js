@@ -1,13 +1,40 @@
-(function($){
-    var Util={
-        _entity:{
+(function ($) {
+    var FUNDWTSTATUS = {
+        items: null,
+        urls: [
+            "./special_treat.jsp",
+            "./special_untreat.jsp",
+            "./continuedinvestment-add.jsp",
+            "./refund_add.jsp"
+        ],
+        ini: function () {
+            this.items = ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
+        },
+        get: function (status_id) {
+            if (this.items == null) {
+                this.ini();
+            }
+            return this.items[status_id];
+        },
+        getUrl: function (status_id) {
+            if (status_id - 1 >= this.urls.length) {
+                return "";
+            }
+            if (status_id == 0) {
+                return "";
+            }
+            return this.urls[status_id - 1];
+        }
+    };
+    var Util = {
+        _entity: {
             startposition: 0,
             pagesize: 10,
-            type:"or",
-            fields:["czr","url","method","params","address"],
-            value:"",
-            sType:"Dqztsq",
-            order:{id:"desc"}
+            type: "or",
+            fields: ["czr", "url", "method", "params", "address"],
+            value: "",
+            order: {id: "desc"},
+            sq_type: 1,
         },
         /**
          * 发送请求，接收Options参数可包含entity、params
@@ -15,11 +42,11 @@
          * @returns {*}
          * @private
          */
-        _request:function(options){
-            $.extend(true,this._entity,options.entity)
+        _request: function (options) {
+            $.extend(true, this._entity, options.entity)
             return $.io.post({
                 url: '/api/dqztsq/getAll',
-                entity:this._entity
+                entity: this._entity
             });
         },
         /**
@@ -27,50 +54,63 @@
          * @param entity
          * @private
          */
-        _render:function(entity){
-            var _this=this;
-            _this._request({entity:entity}).success(function(result,pager){
+        _render: function (entity) {
+            var _this = this;
+            _this._request({entity: entity}).success(function (result, pager) {
                 _this._renderData(result);
                 _this._renderPage(pager);
             });
         },
-        _renderData:function(result){
-            var _this=this;
-            $("#table-data").renderData("#table-data-template",result,function(){
+        _renderData: function (result) {
+            var _this = this;
+            $("#table-data").renderData("#table-data-template", result, function () {
                 return _this._entity.startposition;
             });
             //取消申请操作
-            $("#view-table .btn_cancel").unbind().bind("click",function(){
+            $("#view-table .btn_cancel").unbind().bind("click", function () {
                 alert("开发中...");
             });
             //审核申请
-            $("#view-table .btn_accept").unbind().bind("click",function(){
+            $("#view-table .btn_accept").unbind().bind("click", function () {
                 alert("开发中...");
             });
         },
-        _renderPage:function(pager){
-            var _this=this;
-            if(!_this._entity.startposition){
-                $.dom.pager("#table-pager",pager,{
-                    pageSize:_this._entity.pagesize
-                }).onChange(function(entity){
+        _renderPage: function (pager) {
+            var _this = this;
+            if (!_this._entity.startposition) {
+                $.dom.pager("#table-pager", pager, {
+                    pageSize: _this._entity.pagesize
+                }).onChange(function (entity) {
                     _this._render(entity);
                 });
             }
         },
-        _bindEvent:function(){
-            var _this=this,keyword=$("#keyword-input"),searchButton=$("#keyword-button");
-            keyword.unbind("keyup").bind("keyup",function(e){
-                if(e.keyCode==13) _this._render({startposition: 0,value:keyword.val()});
+        _bindEvent: function () {
+            var _this = this, keyword = $("#keyword-input"), searchButton = $("#keyword-button");
+            keyword.unbind("keyup").bind("keyup", function (e) {
+                if (e.keyCode == 13) _this._render({startposition: 0, value: keyword.val()});
             });
-            searchButton.unbind("click").bind("click",function(){
-                _this._render({startposition: 0,value:keyword.val()});
+            searchButton.unbind("click").bind("click", function () {
+                _this._render({startposition: 0, value: keyword.val()});
             });
         },
-        render:function(){
+        render: function () {
             this._render();
             this._bindEvent();
         }
     };
     Util.render();
+
+    $(function () {
+        FUNDWTSTATUS.ini();
+        var index = 0;
+        $.dom.select("#sq_type", FUNDWTSTATUS.items, function (item) {
+            return {text: item, value: index++};
+        });
+        $("#sq_type").unbind().bind('change', function () {
+            Util._entity.sq_type = $(this).val();
+            Util.render();
+        });
+    });
 })(jQuery);
+

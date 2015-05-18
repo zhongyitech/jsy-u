@@ -30,19 +30,20 @@
 <div id="print" style="display: none"></div>
 <script type="text/javascript">
     (function () {
-        var print = $("#print"), params = $.utils.getParams(),type=params.reporttype;
-        if(params.id&&params.reporttype){
+        var print = $("#print"), params = $.utils.getParams(), type = params.reporttype;
+        var types = ["fket", "dqzt", "special_dq", "speical_undq", "xfdgp", "thdgp"];
+        if (params.id && params.reporttype) {
             $.io.get({
-                url:"/api/special/report",
-                params:params
-            }).success(function(data){
+                url: "/api/special/report",
+                params: params
+            }).success(function (data) {
                 console.log(data);
-                print.renderURI("/templates/"+type+".html",data);
+                print.renderURI("/templates/" + types[type-1] + ".html", data);
                 print.show();
-            }).error(function(){
+            }).error(function () {
                 $.message.error("查询出错！");
             });
-        }else{
+        } else {
             $.message.error("参数有误！请指定参数（id、type）");
         }
     })();
