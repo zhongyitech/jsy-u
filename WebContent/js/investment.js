@@ -221,12 +221,12 @@ var INVESTMENT_ITEM = {
         var tzje_input = $(this.INVEST_MONEY_ID);
         tzje_input.keyup(function () {
             me.setTZJE();
-            if($(this).val()!=""){
+            if ($(this).val() != "") {
                 $(this).removeClass('valid_error');
             }
         });
-        tzje_input.bind('blur',(function(){
-            if($(this.INVEST_BUSNIESSMANAGER_ID).val()!=''){
+        tzje_input.bind('blur', (function () {
+            if ($(this.INVEST_BUSNIESSMANAGER_ID).val() != '') {
                 me.setYWJL();
             }
         }));
@@ -259,12 +259,10 @@ var INVESTMENT_ITEM = {
 
         var tzqx_select = $(this.INVEST_DUE_ID);
         tzqx_select.change(function () {
-            me.setTZQX();
         });
         var tzqx = item[this.investment.TZQX_KEY];
         if (tzqx) {
             tzqx_select.val(tzqx);
-            me.setTZQX();
         }
 
         var rgrq_input = $(this.INVEST_FROM_ID);
@@ -435,9 +433,9 @@ var INVESTMENT_ITEM = {
         var fxfs = fxfs_select.val();
         var tzqx_select = $(this.INVEST_DUE_ID);
         if (fxfs == 'N') {
-            tzqx_select.attr('readonly', false);
+            tzqx_select.attr('disabled', false);
         } else {
-            tzqx_select.attr('readonly', true);
+            tzqx_select.attr('disabled', true);
         }
 
         var fid = $(this.INVEST_FUND_ID).val();
@@ -453,6 +451,7 @@ var INVESTMENT_ITEM = {
             if (tzqx_list && tzqx_list.length > 0) {
                 for (var i in tzqx_list) {
                     var jsz = this.tzqx.toJSZ(tzqx_list[i]);
+                    if (jsz == 0.5) jsz = "半";
                     var dw = this.tzqx.toDW(tzqx_list[i]);
                     var qx = jsz + dw;
                     tzqx_select.append('<option value="' + qx + '">' + qx + '</option>');
@@ -472,10 +471,6 @@ var INVESTMENT_ITEM = {
             tzqx_select.append('<option value="1年">1年</option>');
         }
 
-        me.setTZQX();
-    },
-    setTZQX: function () {
-
     },
     setKHMC: function () {//设置客户名称
         var print = $(this.INVEST_PRINT_ID);
@@ -492,11 +487,11 @@ var INVESTMENT_ITEM = {
     },
     setYWJL: function () {
         var me = this;
-        if($(this.INVEST_MONEY_ID).val()=="") {
+        if ($(this.INVEST_MONEY_ID).val() == "") {
             $.message.error("投资金额没有填写!");
             $(this.INVEST_MONEY_ID).addClass('valid_error');
-            return ;
-        }else{
+            return;
+        } else {
 
         }
         me.setBMJL();
@@ -618,19 +613,6 @@ var INVESTMENT_ITEM = {
     },
     setNHSYL: function () {//设置年化收益率
         var me = this;
-
-        //var nhsyl = $(me.INVEST_YEARRATE_ID).val();
-        //var print = $(this.INVEST_PRINT_ID);
-        //var nhsy_print = print.find(this.PRINT_SHOUYI_NAME);
-        //for (var i = 0; i < nhsy_print.length; i++) {
-        //    var shouyi_a = $(nhsy_print.get(i));
-        //    if (nhsyl) {
-        //        shouyi_a.text(nhsyl);
-        //    } else {
-        //        shouyi_a.text('________');
-        //    }
-        //}
-
         me.setYWTCBL();
         me.setGLTCBL();
     },
@@ -685,9 +667,16 @@ var INVESTMENT_ITEM = {
                 var tcfp = (tcfp_string);
                 var sfbx = tcfp[this.tcfpfw.SFBX_KEY];
                 if (sfbx) {
+                    //根据金额计算出的年化收益率
                     var jjsy = tcbl[this.nianhua.SHOUYI_KEY];
+                    //设置的个化率
                     var nhsyl = this.rateformat.toNumber($(me.INVEST_YEARRATE_ID).val());
-                    var ywtcbl = NUMBER.toFixed(jjsy - nhsyl);
+                    //获取输入的个化率，并计算出业务比例
+                    if (tcbl.rest_tc.allSell)
+                        $("#lab_pabxiao").html("包销率：" + this.numberformat.toRate(tcbl.rest_tc.investment));
+                    else
+                        $("#lab_pabxiao").html("");
+                    var ywtcbl = NUMBER.toFixed(tcbl.rest_tc.investment - nhsyl);
                     $(me.INVEST_YEWU_ID).val(this.numberformat.toRate(ywtcbl));
                 } else {
                     var ywtcbl = tcfp[this.nianhua.YEWU_KEY];
@@ -1084,7 +1073,7 @@ var GUANLI = {
         }
 
         if (items && items.length) {
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.add(items[i]);
             }
         }
@@ -1106,7 +1095,7 @@ var GUANLI = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if (item && item['yhzh']==undefined) {
+        if (item && item['yhzh'] == undefined) {
             var uid = item.user.id;
             //var userinfo = USER.get(uid);
             $.io.get(true, {url: '/api/customerArchives/bankForUserId', params: {id: uid}}).success(function (result) {
@@ -1114,7 +1103,7 @@ var GUANLI = {
                     item['yhzh'] = result && result.yhzh;
                     item['skr'] = result && result.skr;
                     item['khh'] = result && result.khh;
-                }else{
+                } else {
                     item['yhzh'] = "";
                     item['skr'] = '';
                     item['khh'] = '';
@@ -1216,17 +1205,8 @@ var GUANLI = {
             skr_input.val(skr);
         }
 
-        var sjffsj_td = $('<td></td>');
-        tr.append(sjffsj_td);
-        var sjffsj_div = $('<div class="form-input col-md-12"></div>');
-        sjffsj_td.append(sjffsj_div);
-        var sjffsj_input = $('<input class="item-date tcal disabled" name="shiji" readonly="true"/>');
-        sjffsj_div.append(sjffsj_input);
-        f_tcalInit();
-        if (item) {
-            var sjffsj = item[this.usercommission.SJFFSJ_KEY];
-            sjffsj_input.val(me.dateformat.toDate(sjffsj));
-        }
+        tr.append('<td><select name="cartType" ><option value="0"  >个人</option><option value="1"  >公司</option></select> </td>');
+
 
         var khh_td = $('<td></td>');
         tr.append(khh_td);
@@ -1312,6 +1292,8 @@ var GUANLI = {
                 item['yhzh'] = yhzh.trim();
             }
 
+            item["cartType"] = tr.find('select[name="cartType"]').val();
+
             if (JSON.stringify(item) != '{}') {
                 items.push(item);
             }
@@ -1365,7 +1347,7 @@ var YEWU = {
         }
 
         if (items && items.length) {
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 this.add(items[i]);
             }
         }
@@ -1374,6 +1356,9 @@ var YEWU = {
 //        for (var i = 0; i < 2; i++) {
 //            this.add();
 //        }
+    },
+    getTcData: function () {
+
     },
     add: function (item) {//增加一行
         var key = this.item_key++;
@@ -1387,15 +1372,15 @@ var YEWU = {
          * 设置 银行账户,收款人,银行账户信息(从用户的信息中获取取)
          * @type {string}
          */
-        if (item && item['yhzh']==undefined) {
+        if (item && item['yhzh'] == undefined) {
             var uid = item.user.id;
 
-            $.io.get(true,{url: '/api/customerArchives/bankForUserId', params: {id: uid}}).success(function (result) {
+            $.io.get(true, {url: '/api/customerArchives/bankForUserId', params: {id: uid}}).success(function (result) {
                 if (result) {
                     item['yhzh'] = result && result.yhzh;
                     item['skr'] = result && result.skr;
                     item['khh'] = result && result.khh;
-                }else{
+                } else {
                     item['yhzh'] = "";
                     item['skr'] = '';
                     item['khh'] = '';
@@ -1430,6 +1415,7 @@ var YEWU = {
                 $(this).val('');
             } else {
                 $(this).val(me.stringformat.toRate($(this).val()));
+                //TODO:同步更新提成金额金额
             }
         });
         if (item) {
@@ -1455,11 +1441,11 @@ var YEWU = {
         tr.append(tcffsj_td);
         var tcffsj_div = $('<div class="form-input col-md-12"></div>');
         tcffsj_td.append(tcffsj_div);
-        var tcffsj_input = $('<input class="tcal" name="plantime"/>');
+        var tcffsj_input = $('<input class="tcal" name="plantime" disabled="disabled" />');
         tcffsj_div.append(tcffsj_input);
         if (item) {
             var tcffsj = item[this.usercommission.TCFFSJ_KEY];
-            tcffsj_input.val(me.dateformat.toDate(tcffsj));
+            tcffsj_input.prop("value", me.dateformat.toDate(tcffsj));
         }
 
         var skr_td = $('<td></td>');
@@ -1473,17 +1459,19 @@ var YEWU = {
             skr_input.val(skr);
         }
 
-        var sjffsj_td = $('<td></td>');
-        tr.append(sjffsj_td);
-        var sjffsj_div = $('<div class="form-input col-md-12"></div>');
-        sjffsj_td.append(sjffsj_div);
-        var sjffsj_input = $('<input class="disabled" name="shiji" readonly="true"/>');
-        sjffsj_div.append(sjffsj_input);
-        f_tcalInit();
-        if (item) {
-            var sjffsj = item[this.usercommission.SJFFSJ_KEY];
-            sjffsj_input.val(me.dateformat.toDate(sjffsj));
-        }
+        tr.append('<td><select name="cartType" ><option value="0"  >个人</option><option value="1"  >公司</option></select> </td>');
+
+        //var sjffsj_td = $('<td></td>');
+        //tr.append(sjffsj_td);
+        //var sjffsj_div = $('<div class="form-input col-md-12"></div>');
+        //sjffsj_td.append(sjffsj_div);
+        //var sjffsj_input = $('<input class="disabled" name="shiji" readonly="true"/>');
+        //sjffsj_div.append(sjffsj_input);
+        //f_tcalInit();
+        //if (item) {
+        //    var sjffsj = item[this.usercommission.SJFFSJ_KEY];
+        //    sjffsj_input.val(me.dateformat.toDate(sjffsj));
+        //}
 
         var khh_td = $('<td></td>');
         tr.append(khh_td);
@@ -1556,7 +1544,7 @@ var YEWU = {
             if (yhzh) {
                 item['yhzh'] = yhzh.trim();
             }
-
+            item["cartType"] = tr.find('select[name="cartType"]').val();
             if (JSON.stringify(item) != '{}') {
                 items.push(item);
             }

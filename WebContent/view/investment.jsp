@@ -91,7 +91,7 @@
             <label class="label-description">(*)基金名称：</label>
         </div>
         <div class="form-input col-md-4">
-            <select id="invest-fund" class="fund disabled" readonly="true" ></select>
+            <select id="invest-fund" class="fund disabled" disabled="disabled" ></select>
         </div>
         <div class="form-label col-md-2">
             <label class="label-description">(*)业务经理：</label>
@@ -122,7 +122,6 @@
         </div>
         <div class="form-input col-md-4">
             <select id="invest-due" readonly="true" >
-                <option value="1年">1年</option>
             </select>
         </div>
         <div class="form-label col-md-2">
@@ -143,8 +142,11 @@
         <div class="form-label col-md-2">
             <label class="label-description">(*)年化收益率：</label>
         </div>
-        <div class="form-input col-md-4">
+        <div class="form-input col-md-2">
             <input type="text" id="invest-yearrate" readonly="true" >
+        </div>
+        <div class="form-label col-md-2">
+            <label class="label-description" id="lab_pabxiao"></label>
         </div>
     </div>
     <div class="form-row">
@@ -218,7 +220,8 @@
                 <th class="text-center"><span class="text-overflow" title="提成应发放时间">(*)提成应发放时间</span>
                 </th>
                 <th class="text-center"><span class="text-overflow">(*)收款人</span></th>
-                <th class="text-center"><span class="text-overflow">实际发放时间</span></th>
+                <th class="text-center" width="50px;"><span class="text-overflow">类型</span></th>
+                <%--<th class="text-center"><span class="text-overflow">实际发放时间</span></th>--%>
                 <th class="text-center"><span class="text-overflow">(*)开户银行</span></th>
                 <th class="text-center"><span class="text-overflow">(*)银行账号</span></th>
             </tr>
@@ -261,12 +264,13 @@
                 </th>
                 <th class="text-center"><span class="text-overflow item-date"
                                               title="20%提成应发放时间">(*)20%提成应发放时间</span>
-                </th>
                 <th class="text-center"><span class="text-overflow item-date"
-                                              title="10%提成应发放时间">(*)10%提成应发放时间</span>
+                                              title="10%提成应发放时间">(*)10%提成时间</span>
+                </th>
                 </th>
                 <th class="text-center"><span class="text-overflow">(*)收款人</span></th>
-                <th class="text-center"><span class="text-overflow">实际发放时间</span></th>
+                <th class="text-center" width="50px;"><span class="text-overflow">类型</span></th>
+
                 <th class="text-center"><span
                         class="text-overflow bank-name">(*)开户银行</span></th>
                 <th class="text-center"><span
@@ -295,40 +299,7 @@
     <form action="" class="col-md-12 center-margin">
         <%--要进行模块内容替换的位置--%>
         <div class="print-page" id="invest-print">
-            <div class="print-head">
-                <span class="print-number"> 编号（<a name="print-number">________</a>）</span>
-            </div>
-
-            <p class="print-title">客户投资确认书</p>
-
-            <div class="print-content">
-                <p>尊敬的客户<a class="print-underline" name="print-customer">________</a></p>
-
-                <p class="print-section">您好！</p>
-
-                <p class="print-section">感谢您投资<a class="print-underline" name="print-fund">________</a>，成为该有限合伙企业的有限合伙人，您的实际投资金额为人民币：<a
-                        class="print-underline" name="print-money">________</a>万元整， 期限为<a
-                        class="print-underline" name="print-year">________</a>。本合伙企业承诺预期收益率为<a
-                        class="print-underline" name="print-shouyi">________</a>/年。</p>
-
-                <p class="print-section">您的计息起始日期为<a class="print-underline" name="print-from">________</a>，
-                </p>
-
-                <div name="print-paydate"></div>
-
-                <p class="print-section">根据《XXXX》、《XXXXXX》等约定，您作为<a class="print-underline"
-                                                                    name="print-fund">________</a>的有限合伙人，享受权利并承担相应义务。本合伙企业将按照上述协议的约定，积极履行自己的职责，确保您的投资安全！
-                </p>
-
-                <p class="print-section">特此确认！</p>
-            </div>
-
-            <div class="print-bottom">
-                <p class="print-right"><a name="print-fund">________</a></p>
-
-                <p class="print-right"><a name="print-from">________</a></p>
-            </div>
-        </div>
+           </div>
     </form>
 </div>
 

@@ -187,10 +187,17 @@ var TZQX_LIST = {//投资期限
         jsz_td.append(jsz_div);
         var jsz_input = $('<input name="qx"/>');
         jsz_div.append(jsz_input);
-        $(jsz_input).keyup(function () {
-            var v = STRINGFORMAT.toNumber($(this).val());
-            $(this).val(v);
-        });
+        $(jsz_input).unbind().bind("change", (function () {
+            var _v = ($(this).val());
+            if (isNaN(_v)) {
+                $(this).val("");
+                $(this).focus();
+            } else {
+                $(this).val(_v);
+            }
+            //var v = STRINGFORMAT.toNumber($(this).val());
+            //$(this).val(v);
+        }));
         if (item) {
             var jsz = TZQX_REST.toJSZ(item);
             $(jsz_input).val(jsz);
