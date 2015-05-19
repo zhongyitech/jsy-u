@@ -5,6 +5,11 @@
     <jsp:include page="./head.jsp"/>
     <link rel="stylesheet" type="text/css" href="/css/company-edit.css">
     <title>记账凭证生成设置</title>
+    <style type="text/css">
+        .table td {
+            padding: 1px 1px;
+        }
+    </style>
 </head>
 <body>
 <div id="page-wrapper">
@@ -47,10 +52,11 @@
                 <%--根据客户权限多加一列操作列--%>
                 <th class="text-center">一级科目名称</th>
                 <th class="text-center">二级科目名称</th>
+                <th class="text-center">三级科目名称</th>
                 <th class="text-center">借贷方式</th>
                 <th class="text-center">摘要</th>
-                <th class="text-center">账套</th>
-                <th class="text-center" width="150px"></th>
+                <th class="text-center">账套（银行账号名称）</th>
+                <th class="text-center" width="120px"></th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +66,7 @@
                                                                                                      value="{$T.item['subject']}"/>
                 </td>
                 <td class="form-input"><input name="subjectLevel2" value="{$T.item['subjectLevel2']||''}"/></td>
+                <td class="form-input"><input name="subjectLevel3" value="{$T.item['subjectLevel3']||''}"/></td>
                 <td class="form-input"><select name="borrow">
                     <option value="true" {$T.item[
                     'borrow'] ? 'selected' : ''}>借</option>
@@ -129,7 +136,7 @@
                         </div>
                         <div class="form-input col-md-6">
                             <button class="btn medium bg-green float-right mrg10L" title="" id="subject-save">
-                                <span class="button-content" >保存</span>
+                                <span class="button-content">保存</span>
                             </button>
                         </div>
                     </div>
@@ -144,7 +151,7 @@
                 </div>
                 <div class="content-box-wrapper">
                     <div id="setting-pager" class="page-bar">
-                        <span>[开户行] [公司名称] [账号后4位] [对方户名] [对方账号]</span>
+                        <span>[开户行] [公司名称] [账号后4位] [对方户名] [对方账号]</span> <span>中括号使用英文半角输入</span>
                     </div>
                     <div class="table table-striped text-center mrg0B" id="setting-data">
                     </div>

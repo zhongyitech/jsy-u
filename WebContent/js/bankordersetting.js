@@ -205,11 +205,11 @@
     var UtilSubject = {
         _entity: {
             startposition: 0,
-            pagesize: 5,
+            pagesize: 10,
             type: "or",
             fields: ["name"],
             value: "",
-            order: {id: "asc"}
+            order: {id:"asc",sumName: "asc"}
         },
         _items: [],
         _request: function (options) {
@@ -240,6 +240,7 @@
                     '<tr >                ' +
                     '<td class="form-input"><input type="hidden" name="id" value="-1"><input name="subject" value="">  </td>' +
                     '<td class="form-input"><input name="subjectLevel2" value=""></td>   ' +
+                    '<td class="form-input"><input name="subjectLevel3" value=""></td>   ' +
                     '<td class="form-input"><select name="borrow"><option value="true">借</option><option value="false" >贷</option>  ' +
                     '</select></td><td class="form-input"><input name="sumName" value=""></td>' +
                     '<td class="form-input"><input name="company" value=""></td> ' +
@@ -290,7 +291,9 @@
                 $(tr).find('input,select').each(function (i, obj) {
                     item[$(obj).prop('name')] = $(obj).val();
                 });
-                items.push(item);
+                if (item.subject != "" && item.sumName != null) {
+                    items.push(item);
+                }
             });
             console.log(items);
             //todo:submit
@@ -299,7 +302,7 @@
                     //add
                     $.io.post(true, {url: '/api/summaryToFund', entity: item})
                         .success(function (result) {
-                            $.message.log('数据保存成功:' );
+                            $.message.log('数据保存成功:');
                         })
                         .error(function (error) {
                             $.message.log(error.msg);

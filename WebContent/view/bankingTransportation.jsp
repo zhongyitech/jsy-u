@@ -30,7 +30,7 @@
                     <th class="text-center">发生额</th>
                     <th class="text-center">借贷</th>
                     <th class="text-center">余额</th>
-                    <th class="text-center">处理状态</th>
+                    <th class="text-center">（凭证）处理状态</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,8 +39,7 @@
                     {#foreach $P.fields as field}
                     <td class="text-center">
                         {#if $T.field=='managed' }
-                        <span class="text-overflow">{($T.item['managed']==true? '已处理' : '未处理')}</span>
-
+                        <span class="text-overflow">{($T.item['managed']==true? ($T.item['manageType']==2 ? $T.item['processDescript']:  '已处理') : $T.item['processDescript'])}</span>
                         {#else}
                         <span class="text-overflow">{$T.field=='borrowAndLend' ? ($T.item['borrowAndLend']==true? '借' : '贷') : $T.item[$T.field] }</span>
                         {#/if}
