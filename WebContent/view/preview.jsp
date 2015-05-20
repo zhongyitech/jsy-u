@@ -24,6 +24,15 @@
             border: 1px dashed #CCC;
             border-radius: 3px;
         }
+
+        #auth_name {
+            border:none;
+            border-collapse: separate;
+        }
+
+        #auth_name td+td {
+            border: 0px;;
+        }
     </style>
 </head>
 <body>
@@ -31,19 +40,29 @@
 <script type="text/javascript">
     (function () {
         var print = $("#print"), params = $.utils.getParams(), type = params.reporttype;
-        var types = ["fket", "dqzt", "special_dq", "speical_undq", "xfdgp", "thdgp"];
+        var types = ["fket", "speical_dq", "speical_undq", "th", "xt", "merger"];
         if (params.id && params.reporttype) {
             $.io.get({
                 url: "/api/special/report",
                 params: params
             }).success(function (data) {
-                console.log(data);
-                print.renderURI("/templates/" + types[type-1] + ".html", data);
-                print.show();
-            }).error(function () {
-                $.message.error("查询出错！");
-            });
-        } else {
+                        console.log(data);
+                        var templateName = types[type - 1]
+                        //是退伙申请，需要判断单又GP
+                        if (type == 4) {
+                        }
+                        //是续投申请
+                        if (type == 5) {
+                        }
+                        print.renderURI("/templates/" + templateName + ".html", data);
+                        print.show();
+                    }
+            ).
+                    error(function () {
+                        $.message.error("查询出错！");
+                    });
+        }
+        else {
             $.message.error("参数有误！请指定参数（id、type）");
         }
     })();
