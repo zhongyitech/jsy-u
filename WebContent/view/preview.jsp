@@ -16,6 +16,14 @@
             width: 100%;
             margin: 0;
         }
+
+        #auth_name {
+            border: none;
+            border-collapse: separate;
+        }
+        #auth_name td + td {
+            border: none;
+        }
     </style>
     <style type="text/css" rel="stylesheet" media="screen">
         #print {
@@ -26,12 +34,12 @@
         }
 
         #auth_name {
-            border:none;
+            border: none;
             border-collapse: separate;
         }
 
-        #auth_name td+td {
-            border: 0px;;
+        #auth_name td + td {
+            border: none;
         }
     </style>
 </head>

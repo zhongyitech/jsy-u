@@ -6,7 +6,6 @@
     </div>
     <div class="print-body">
         {#if $T.customer.credentialsType=="营业执照" }
-        <!-- 机构 -->
         <p> 委托人：$T.customer.name </p>
 
         <p> 住所：<span class="underline">{$T.customer.credentialsAddr}</span></p>
@@ -32,7 +31,7 @@
 
         <p>鉴于：</p>
 
-        <p> 1、委托人与<span class="underline">{$T.fundName}</span> 签订编号为<span class="underline">{$T.xhtbh}</span>
+        <p> 1、委托人与<span class="underline">{$T.htTarget}</span> 签订编号为<span class="underline">{$T.xhtbh}</span>
             的合同文件（下称“新协议”），约定委托人作为<span class="underline">{$T.fundName}</span>的有限合伙人，出资人民币<span class="underline">{$T.ztje}</span>元整，投资<span
                     class="underline">{$T.fundName}</span>。</p>
 
@@ -42,7 +41,7 @@
         <p>委托事项如下：</p>
 
         <p>现委托人特委托受托人于本委托人投资<span class="underline">{$T.oldArchives.fundName}</span> 的投资期限届满后将本委托人投资款人民币<span
-                class="underline">{$T.ztje}</span> 元整存入上述新协议中指定的<span class="underline">{$T.fundName}</span>募集账户。如由此引起纠纷，由委托人承担一切责任。
+                class="underline">{$T.ztje}</span> 元整存入上述新协议中指定的<span class="underline">{$T.newFundName}</span>募集账户。如由此引起纠纷，由委托人承担一切责任。
         </p>
         <br/>
 

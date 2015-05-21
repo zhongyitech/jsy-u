@@ -55,7 +55,7 @@ var VIEWMODE_PAYUSER = {
         tr.append('<td><input type="hidden" name="id" value=' + ((item && item.id ) || "") + '> <input type="checkbox" name="checkbox"></td>');
         tr.append('<td><div class="form-input "><input name="paydate" class="col-md-12 tcal tcalInput"></div></td>');
         tr.append('<td><div class="form-input "><input name="payamount" value="' + ((item && item.payAmount ) || "") + '"></div></td>');
-        tr.append('<td><div class="form-input "><input name="pname"  value="' + ((item && item.pName) || "") + '"></div></td>');
+        tr.append('<td><div class="form-input "><input name="name"  value="' + ((item && item.name) || "") + '"></div></td>');
         tr.append('<td><div class="form-input "><input name="paybankaccount"   value="' + ((item && item.payBankAccount) || "") + '"></div></td>');
         tr.append('<td><div class="form-input "><input name="cardtype"  value="' + ((item && item.cardType) || "" ) + '" ></div></td>');
         tr.append('<td><div class="form-input "><input name="cardsn"   value="' + ((item && item.cardSn ) || "" ) + '"></div></td>');
@@ -74,7 +74,7 @@ var VIEWMODE_PAYUSER = {
             var payuser = {};
             payuser['payDate'] = DATEFORMAT.toRest(this.getRowValue(tr, 'paydate'));
             payuser['payAmount'] = this.getRowValue(tr, 'payamount');
-            payuser['pName'] = this.getRowValue(tr, 'pname');
+            payuser['name'] = this.getRowValue(tr, 'name');
             payuser['payBankAccount'] = this.getRowValue(tr, 'paybankaccount');
             payuser['cardType'] = this.getRowValue(tr, 'cardtype');
             payuser['cardSn'] = this.getRowValue(tr, 'cardsn');
