@@ -5,7 +5,7 @@
   Time: 10:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <html>
 <head>
     <title></title>
@@ -17,19 +17,21 @@
             margin: 0;
         }
 
-        #auth_name,#auth_name1,.auth_name {
+        #auth_name, #auth_name1, .auth_name {
             border: none;
             border-collapse: separate;
         }
+
         #auth_name1 {
             border: none;
             border-collapse: separate;
         }
 
-        #auth_name td + td,.auth_name td + td  {
+        #auth_name td + td, .auth_name td + td {
             border: none;
         }
-        #auth_name1 td + td,.auth_name td + td  {
+
+        #auth_name1 td + td, .auth_name td + td {
             border: none;
         }
     </style>
@@ -45,14 +47,17 @@
             border: none;
             border-collapse: separate;
         }
+
         #auth_name1 {
             border: none;
             border-collapse: separate;
         }
-        #auth_name td + td ,.auth_name td + td {
+
+        #auth_name td + td, .auth_name td + td {
             border: none;
         }
-        #auth_name1 td + td ,.auth_name td + td {
+
+        #auth_name1 td + td, .auth_name td + td {
             border: none;
         }
     </style>
@@ -62,7 +67,7 @@
 <script type="text/javascript">
     (function () {
         var print = $("#print"), params = $.utils.getParams(), type = params.reporttype;
-        var types = ["fket", "speical_dq", "wdqzt", "th", "xt", "merger"];
+        var types = ["fket", "speical_dq", "wdqzt", "xt", "th", "merger"];
         if (params.id && params.reporttype) {
             $.io.get({
                 url: "/api/special/report",
@@ -70,7 +75,7 @@
             }).success(function (data) {
                         console.log(data);
                         var templateName = types[type - 1]
-                        if (type == 3) {
+                        if (type == 3 || type == 4 || type == 5) {
                             if (data && data.isSingle) {
                                 //单GP
                                 templateName += 'dgp';
@@ -78,12 +83,6 @@
                                 //双GP
                                 templateName += 'sgp';
                             }
-                        }
-                        //是退伙申请，需要判断单又GP
-                        if (type == 4) {
-                        }
-                        //是续投申请
-                        if (type == 5) {
                         }
                         print.renderURI("/templates/" + templateName + ".html", data);
                         print.show();

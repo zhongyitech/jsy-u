@@ -19,14 +19,14 @@
     <bookmark url="file://$PROJECT_DIR$/WebContent/js/company-edit.js" line="680" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58df2fd-dcc7-46b1-9bd9-7df4ad5bb85a" name="Default" comment="添加投资档案中的半年和一年的期限的选择。&#10;问题：在修改年化收益率后，应该要同步更新业务提成和管理提成人的提成金额">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/templates/wdqztsgp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/company-create.js" afterPath="$PROJECT_DIR$/WebContent/js/company-create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/company-create.jsp" afterPath="$PROJECT_DIR$/WebContent/view/company-create.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/js/company-edit.js" afterPath="$PROJECT_DIR$/WebContent/js/company-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/company-edit.jsp" afterPath="$PROJECT_DIR$/WebContent/view/company-edit.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/templates/wdqztdgp.html" afterPath="$PROJECT_DIR$/WebContent/templates/wdqztdgp.html" />
+    <list default="true" id="b58df2fd-dcc7-46b1-9bd9-7df4ad5bb85a" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\Project\jsy-u\WebContent\templates\thsgp_back.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuestionAndBugs.xlsx" afterPath="$PROJECT_DIR$/QuestionAndBugs.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/view/preview.jsp" afterPath="$PROJECT_DIR$/WebContent/view/preview.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/templates/thdgp.html" afterPath="$PROJECT_DIR$/WebContent/templates/thdgp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/templates/thsgp.html" afterPath="$PROJECT_DIR$/WebContent/templates/thsgp.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/templates/xtsgp.html" afterPath="$PROJECT_DIR$/WebContent/templates/xtsgp.html" />
     </list>
     <ignored path="jsy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,41 +49,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="company-create.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/view/company-create.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.838709">
-              <caret line="262" column="51" selection-start-line="262" selection-start-column="51" selection-end-line="262" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="company-create.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/company-create.js">
+      <file leaf-file-name="preview.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/view/preview.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="541" column="0" selection-start-line="541" selection-start-column="0" selection-end-line="541" selection-end-column="0" />
+              <caret line="63" column="7" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company-edit.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/view/company-edit.jsp">
+      <file leaf-file-name="thsgp.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/templates/thsgp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3552169">
-              <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.40679953">
+              <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company-edit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/js/company-edit.js">
+      <file leaf-file-name="wdqztsgp.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/templates/wdqztsgp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="528" column="0" selection-start-line="528" selection-start-column="0" selection-end-line="528" selection-end-column="0" />
+            <state vertical-scroll-proportion="-14.193548">
+              <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thdgp.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/templates/thdgp.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.870968">
+              <caret line="65" column="22" selection-start-line="32" selection-start-column="7" selection-end-line="65" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -94,10 +94,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Html5" />
         <option value="Jsp File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="Html5" />
       </list>
     </option>
   </component>
@@ -117,10 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WebContent/view/authority-list.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/js/authority-list.js" />
-        <option value="$PROJECT_DIR$/WebContent/templates/report_1.html" />
-        <option value="$PROJECT_DIR$/src/com/zhongyi/rest/manager/Manager.java" />
         <option value="$PROJECT_DIR$/WebContent/js/hetong-lingyong.js" />
         <option value="$PROJECT_DIR$/WebContent/js/special_untreat.js" />
         <option value="$PROJECT_DIR$/WebContent/view/cash_app.jsp" />
@@ -160,7 +156,6 @@
         <option value="$PROJECT_DIR$/WebContent/templates/speical_dq.html" />
         <option value="$PROJECT_DIR$/WebContent/templates/fket.html" />
         <option value="$PROJECT_DIR$/WebContent/js/common/head.js" />
-        <option value="$PROJECT_DIR$/WebContent/view/preview.jsp" />
         <option value="$PROJECT_DIR$/WebContent/css/common/common.css" />
         <option value="$PROJECT_DIR$/WebContent/templates/wdqztsgp.html" />
         <option value="$PROJECT_DIR$/WebContent/templates/wdqztdgp.html" />
@@ -168,6 +163,11 @@
         <option value="$PROJECT_DIR$/WebContent/view/company-edit.jsp" />
         <option value="$PROJECT_DIR$/WebContent/js/company-edit.js" />
         <option value="$PROJECT_DIR$/WebContent/js/company-create.js" />
+        <option value="$PROJECT_DIR$/WebContent/templates/thsgp_back.html" />
+        <option value="$PROJECT_DIR$/WebContent/view/preview.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/templates/xtsgp.html" />
+        <option value="$PROJECT_DIR$/WebContent/templates/thdgp.html" />
+        <option value="$PROJECT_DIR$/WebContent/templates/thsgp.html" />
       </list>
     </option>
   </component>
@@ -266,9 +266,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -993,19 +993,8 @@
       <workItem from="1432115268109" duration="1239000" />
       <workItem from="1432169662270" duration="10101000" />
       <workItem from="1432186565401" duration="116000" />
-      <workItem from="1432187172778" duration="5996000" />
-    </task>
-    <task id="LOCAL-00104" summary="配置清理">
-      <created>1429092003428</created>
-      <option name="number" value="00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1429092003428</updated>
-    </task>
-    <task id="LOCAL-00105" summary="css js modify">
-      <created>1429092430599</created>
-      <option name="number" value="00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1429092430599</updated>
+      <workItem from="1432187172778" duration="9324000" />
+      <workItem from="1432198621858" duration="4115000" />
     </task>
     <task id="LOCAL-00106" summary="css js modify">
       <created>1429092642802</created>
@@ -1289,11 +1278,23 @@
       <option name="project" value="LOCAL" />
       <updated>1432190494836</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="公司添加证件号码&#10;未到期转投双GP协议">
+      <created>1432193209840</created>
+      <option name="number" value="00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1432193209840</updated>
+    </task>
+    <task id="LOCAL-00154" summary="公司添加证件号码&#10;未到期转投双GP协议">
+      <created>1432193994766</created>
+      <option name="number" value="00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1432193994766</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="842865000" />
+    <option name="totallyTimeSpent" value="850308000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1332,7 +1333,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16327623" sideWeight="0.4875944" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16327623" sideWeight="0.4875944" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16720085" sideWeight="0.51240563" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22644539" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1406,7 +1407,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="去除编辑时添加的多余行" />
     <MESSAGE value="公司编辑" />
     <MESSAGE value="解决合同登记时部门无值的问题" />
     <MESSAGE value="添加投资档案" />
@@ -1431,7 +1431,8 @@
     <MESSAGE value="到期转投和付款委托完成" />
     <MESSAGE value="合伙人模块" />
     <MESSAGE value="未到期转投单GP退伙协议+委托书" />
-    <option name="LAST_COMMIT_MESSAGE" value="未到期转投单GP退伙协议+委托书" />
+    <MESSAGE value="公司添加证件号码&#10;未到期转投双GP协议" />
+    <option name="LAST_COMMIT_MESSAGE" value="公司添加证件号码&#10;未到期转投双GP协议" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1462,7 +1463,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="83" />
+      <option name="time" value="84" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1476,10 +1477,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/view/special-merge.jsp">
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/thdgp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.741936">
-          <caret line="246" column="63" selection-start-line="246" selection-start-column="63" selection-end-line="246" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1962,13 +1964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/xtsgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/templates/dqzt.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4126612">
@@ -1997,27 +1992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/xtdgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/thsgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/thdgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22626026">
-          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/js/common/head.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2033,39 +2007,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/wdqztsgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18053928">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/templates/wdqztdgp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84525204">
-          <caret line="201" column="16" selection-start-line="201" selection-start-column="16" selection-end-line="201" selection-end-column="16" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#2;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#2;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/templates/fket.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3552169">
           <caret line="49" column="20" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/view/preview.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7467761">
-          <caret line="51" column="48" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2073,40 +2018,295 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49003518">
           <caret line="34" column="63" selection-start-line="7" selection-start-column="7" selection-end-line="34" selection-end-column="63" />
-          <folding>
-            <element signature="n#table#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/company-edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="528" column="0" selection-start-line="528" selection-start-column="0" selection-end-line="528" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/view/company-create.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.838709">
-          <caret line="262" column="51" selection-start-line="262" selection-start-column="51" selection-end-line="262" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/js/company-create.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="541" column="0" selection-start-line="541" selection-start-column="0" selection-end-line="541" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/view/company-edit.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3552169">
-          <caret line="251" column="29" selection-start-line="251" selection-start-column="29" selection-end-line="251" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.12309496">
+          <caret line="242" column="28" selection-start-line="242" selection-start-column="28" selection-end-line="242" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/view/company-create.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7936694">
+          <caret line="262" column="51" selection-start-line="262" selection-start-column="51" selection-end-line="262" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/xtdgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.774194">
+          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/xtsgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.967742">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/view/preview.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="7" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/company-edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64705884">
+          <caret line="633" column="6" selection-start-line="633" selection-start-column="6" selection-end-line="633" selection-end-column="6" />
+          <folding>
+            <element signature="e#45#76#0" expanded="false" />
+            <element signature="e#108#15903#0" expanded="false" />
+            <element signature="e#836#875#0" expanded="false" />
+            <element signature="e#902#1018#0" expanded="false" />
+            <element signature="e#957#1012#0" expanded="false" />
+            <element signature="e#1052#1166#0" expanded="false" />
+            <element signature="e#1101#1160#0" expanded="false" />
+            <element signature="e#1193#1309#0" expanded="false" />
+            <element signature="e#1248#1303#0" expanded="false" />
+            <element signature="e#1340#1456#0" expanded="false" />
+            <element signature="e#1395#1450#0" expanded="false" />
+            <element signature="e#1487#1548#0" expanded="false" />
+            <element signature="e#1583#1703#0" expanded="false" />
+            <element signature="e#1638#1697#0" expanded="false" />
+            <element signature="e#1738#1807#0" expanded="false" />
+            <element signature="e#1838#1954#0" expanded="false" />
+            <element signature="e#1893#1948#0" expanded="false" />
+            <element signature="e#1985#3436#0" expanded="false" />
+            <element signature="e#2358#2508#0" expanded="false" />
+            <element signature="e#2514#2690#0" expanded="false" />
+            <element signature="e#2931#3125#0" expanded="false" />
+            <element signature="e#3131#3430#0" expanded="false" />
+            <element signature="e#3471#4343#0" expanded="false" />
+            <element signature="e#3530#4010#0" expanded="false" />
+            <element signature="e#3723#4000#0" expanded="false" />
+            <element signature="e#4067#4335#0" expanded="false" />
+            <element signature="e#4156#4221#0" expanded="false" />
+            <element signature="e#4227#4292#0" expanded="false" />
+            <element signature="e#4378#4498#0" expanded="false" />
+            <element signature="e#4433#4492#0" expanded="false" />
+            <element signature="e#4533#4621#0" expanded="false" />
+            <element signature="e#4655#4774#0" expanded="false" />
+            <element signature="e#4710#4768#0" expanded="false" />
+            <element signature="e#4808#4875#0" expanded="false" />
+            <element signature="e#4910#5032#0" expanded="false" />
+            <element signature="e#4965#5026#0" expanded="false" />
+            <element signature="e#5066#5185#0" expanded="false" />
+            <element signature="e#5121#5179#0" expanded="false" />
+            <element signature="e#5219#5596#0" expanded="false" />
+            <element signature="e#5305#5475#0" expanded="false" />
+            <element signature="e#5358#5465#0" expanded="false" />
+            <element signature="e#5632#5755#0" expanded="false" />
+            <element signature="e#5687#5749#0" expanded="false" />
+            <element signature="e#5791#6077#0" expanded="false" />
+            <element signature="e#5870#6071#0" expanded="false" />
+            <element signature="e#5904#6059#0" expanded="false" />
+            <element signature="e#5974#6045#0" expanded="false" />
+            <element signature="e#6113#6236#0" expanded="false" />
+            <element signature="e#6168#6230#0" expanded="false" />
+            <element signature="e#6270#6305#0" expanded="false" />
+            <element signature="e#6336#6678#0" expanded="false" />
+            <element signature="e#6419#6641#0" expanded="false" />
+            <element signature="e#6472#6631#0" expanded="false" />
+            <element signature="e#6544#6617#0" expanded="false" />
+            <element signature="e#6705#6737#0" expanded="false" />
+            <element signature="e#6769#6888#0" expanded="false" />
+            <element signature="e#6824#6882#0" expanded="false" />
+            <element signature="e#6919#7035#0" expanded="false" />
+            <element signature="e#6974#7029#0" expanded="false" />
+            <element signature="e#7066#7163#0" expanded="false" />
+            <element signature="e#7194#7715#0" expanded="false" />
+            <element signature="e#7253#7709#0" expanded="false" />
+            <element signature="e#7438#7699#0" expanded="false" />
+            <element signature="e#7749#7870#0" expanded="false" />
+            <element signature="e#7804#7864#0" expanded="false" />
+            <element signature="e#7903#8014#0" expanded="false" />
+            <element signature="e#8048#8353#0" expanded="false" />
+            <element signature="e#8110#8347#0" expanded="false" />
+            <element signature="e#8139#8252#0" expanded="false" />
+            <element signature="e#8278#8335#0" expanded="false" />
+            <element signature="e#8385#8504#0" expanded="false" />
+            <element signature="e#8440#8498#0" expanded="false" />
+            <element signature="e#8535#8651#0" expanded="false" />
+            <element signature="e#8590#8645#0" expanded="false" />
+            <element signature="e#8682#8743#0" expanded="false" />
+            <element signature="e#8775#8892#0" expanded="false" />
+            <element signature="e#8830#8886#0" expanded="false" />
+            <element signature="e#8924#8987#0" expanded="false" />
+            <element signature="e#9018#9134#0" expanded="false" />
+            <element signature="e#9073#9128#0" expanded="false" />
+            <element signature="e#9165#9226#0" expanded="false" />
+            <element signature="e#9257#9373#0" expanded="false" />
+            <element signature="e#9312#9367#0" expanded="false" />
+            <element signature="e#9404#9465#0" expanded="false" />
+            <element signature="e#9498#9616#0" expanded="false" />
+            <element signature="e#9553#9610#0" expanded="false" />
+            <element signature="e#9649#9714#0" expanded="false" />
+            <element signature="e#9746#9863#0" expanded="false" />
+            <element signature="e#9801#9857#0" expanded="false" />
+            <element signature="e#9895#9996#0" expanded="false" />
+            <element signature="e#10031#10151#0" expanded="false" />
+            <element signature="e#10086#10145#0" expanded="false" />
+            <element signature="e#10186#10255#0" expanded="false" />
+            <element signature="e#10287#10404#0" expanded="false" />
+            <element signature="e#10342#10398#0" expanded="false" />
+            <element signature="e#10436#10499#0" expanded="false" />
+            <element signature="e#10529#10644#0" expanded="false" />
+            <element signature="e#10584#10638#0" expanded="false" />
+            <element signature="e#10674#10733#0" expanded="false" />
+            <element signature="e#10771#10894#0" expanded="false" />
+            <element signature="e#10826#10888#0" expanded="false" />
+            <element signature="e#10932#11007#0" expanded="false" />
+            <element signature="e#11037#11574#0" expanded="false" />
+            <element signature="e#11082#11120#0" expanded="false" />
+            <element signature="e#11344#11380#0" expanded="false" />
+            <element signature="e#11486#11525#0" expanded="false" />
+            <element signature="e#11531#11568#0" expanded="false" />
+            <element signature="e#11601#12232#0" expanded="false" />
+            <element signature="e#12239#12261#0" expanded="false" />
+            <element signature="e#12287#14803#0" expanded="false" />
+            <element signature="e#12404#12458#0" expanded="false" />
+            <element signature="e#12535#12597#0" expanded="false" />
+            <element signature="e#12662#12722#0" expanded="false" />
+            <element signature="e#12799#12861#0" expanded="false" />
+            <element signature="e#12935#12995#0" expanded="false" />
+            <element signature="e#13060#13120#0" expanded="false" />
+            <element signature="e#13126#13180#0" expanded="false" />
+            <element signature="e#13252#13316#0" expanded="false" />
+            <element signature="e#13322#13378#0" expanded="false" />
+            <element signature="e#13531#13587#0" expanded="false" />
+            <element signature="e#13652#13706#0" expanded="false" />
+            <element signature="e#13771#13825#0" expanded="false" />
+            <element signature="e#13896#13954#0" expanded="false" />
+            <element signature="e#14022#14097#0" expanded="false" />
+            <element signature="e#14174#14236#0" expanded="false" />
+            <element signature="e#14304#14360#0" expanded="false" />
+            <element signature="e#14422#14474#0" expanded="false" />
+            <element signature="e#14560#14628#0" expanded="false" />
+            <element signature="e#14829#15901#0" expanded="false" />
+            <element signature="e#15136#15234#0" expanded="false" />
+            <element signature="e#15272#15331#0" expanded="false" />
+            <element signature="e#15342#15352#0" expanded="false" />
+            <element signature="e#16233#16272#0" expanded="false" />
+            <element signature="e#16300#16408#0" expanded="false" />
+            <element signature="e#16349#16402#0" expanded="false" />
+            <element signature="e#16431#16529#0" expanded="false" />
+            <element signature="e#16553#16593#0" expanded="false" />
+            <element signature="e#16618#16659#0" expanded="false" />
+            <element signature="e#16691#16806#0" expanded="false" />
+            <element signature="e#16746#16800#0" expanded="false" />
+            <element signature="e#16838#17023#0" expanded="false" />
+            <element signature="e#16925#17017#0" expanded="false" />
+            <element signature="e#16964#17005#0" expanded="false" />
+            <element signature="e#17058#17176#0" expanded="false" />
+            <element signature="e#17113#17170#0" expanded="false" />
+            <element signature="e#17211#17402#0" expanded="false" />
+            <element signature="e#17301#17396#0" expanded="false" />
+            <element signature="e#17340#17384#0" expanded="false" />
+            <element signature="e#17435#17551#0" expanded="false" />
+            <element signature="e#17490#17545#0" expanded="false" />
+            <element signature="e#17584#17771#0" expanded="false" />
+            <element signature="e#17672#17765#0" expanded="false" />
+            <element signature="e#17711#17753#0" expanded="false" />
+            <element signature="e#17799#17885#0" expanded="false" />
+            <element signature="e#17918#18350#0" expanded="false" />
+            <element signature="e#18024#18136#0" expanded="false" />
+            <element signature="e#18075#18126#0" expanded="false" />
+            <element signature="e#18157#18271#0" expanded="false" />
+            <element signature="e#18210#18261#0" expanded="false" />
+            <element signature="e#18309#18344#0" expanded="false" />
+            <element signature="e#18377#19066#0" expanded="false" />
+            <element signature="e#18951#19010#0" expanded="false" />
+            <element signature="e#19092#19497#0" expanded="false" />
+            <element signature="e#19219#19491#0" expanded="false" />
+            <element signature="e#19360#19481#0" expanded="false" />
+            <element signature="e#19410#19467#0" expanded="false" />
+            <element signature="e#20195#20307#0" expanded="false" />
+            <element signature="e#20466#26939#0" expanded="false" />
+            <element signature="e#20648#20687#0" expanded="false" />
+            <element signature="e#20715#20823#0" expanded="false" />
+            <element signature="e#20764#20817#0" expanded="false" />
+            <element signature="e#20846#20914#0" expanded="false" />
+            <element signature="e#20946#21061#0" expanded="false" />
+            <element signature="e#21001#21055#0" expanded="false" />
+            <element signature="e#21093#21278#0" expanded="false" />
+            <element signature="e#21180#21272#0" expanded="false" />
+            <element signature="e#21219#21260#0" expanded="false" />
+            <element signature="e#21313#21431#0" expanded="false" />
+            <element signature="e#21368#21425#0" expanded="false" />
+            <element signature="e#21466#21657#0" expanded="false" />
+            <element signature="e#21556#21651#0" expanded="false" />
+            <element signature="e#21595#21639#0" expanded="false" />
+            <element signature="e#21685#21750#0" expanded="false" />
+            <element signature="e#21783#22231#0" expanded="false" />
+            <element signature="e#21889#22001#0" expanded="false" />
+            <element signature="e#21940#21991#0" expanded="false" />
+            <element signature="e#22022#22136#0" expanded="false" />
+            <element signature="e#22075#22126#0" expanded="false" />
+            <element signature="e#22145#22147#0" expanded="false" />
+            <element signature="e#22258#25010#0" expanded="false" />
+            <element signature="e#24612#24866#0" expanded="false" />
+            <element signature="e#24885#25004#0" expanded="false" />
+            <element signature="e#25036#25441#0" expanded="false" />
+            <element signature="e#25163#25435#0" expanded="false" />
+            <element signature="e#25304#25425#0" expanded="false" />
+            <element signature="e#25354#25411#0" expanded="false" />
+            <element signature="e#25447#25459#0" expanded="false" />
+            <element signature="e#25486#26937#0" expanded="false" />
+            <element signature="e#25652#26909#0" expanded="false" />
+            <element signature="e#25807#25949#0" expanded="false" />
+            <element signature="e#26026#26081#0" expanded="false" />
+            <element signature="e#26164#26223#0" expanded="false" />
+            <element signature="e#26303#26360#0" expanded="false" />
+            <element signature="e#26452#26523#0" expanded="false" />
+            <element signature="e#26529#26666#0" expanded="false" />
+            <element signature="e#26713#26897#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/js/company-create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8619909">
+          <caret line="189" column="20" selection-start-line="189" selection-start-column="20" selection-end-line="189" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/wdqztdgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/thdgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.870968">
+          <caret line="65" column="22" selection-start-line="32" selection-start-column="7" selection-end-line="65" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/wdqztsgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.193548">
+          <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/templates/thsgp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40679953">
+          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
           <folding />
         </state>
       </provider>

@@ -6,13 +6,13 @@
     <div class="print-body">
         <p>甲方：<span class="underline">{$T.company.companyName}</span></p>
 
-        <p>住所：<span class="underline">{$$T.company.address}</span></p>
+        <p>住所：<span class="underline">{$T.company.address}</span></p>
 
         <p>法定代表人：<span class="underline">{$T.company.corporate}</span></p>
 
         <p>注册号：<span class="underline">{$T.company.sn}</span></p>
         <br/>
-        {#if $T.customer.credentialsType!="营业执照" }
+        {#if $T.customer.credentialsType !="营业执照" }
         <p>乙方：<span class="underline">{$T.customer.name}</span></p>
 
         <p>身份证号码：<span class="underline">{$T.customer.credentialsNumber}</span></p>
@@ -61,32 +61,22 @@
                 class="underline">{$T.基金企业}</span>投资款仅为人民币<span class="underline">{$T.XXX}</span>元整（¥<span
                 class="underline">{$T.XXX}</span>），仅享有<span class="underline">{$T.XXX}</span><span class="underline">{$T.XXX}</span>元人民币的基金份额以及相应权利。{#/if}
         </p>
-
         <p><strong>第五条</strong> 如履行本协议过程中发生争议，双方应协商解决。协商不成，可向甲方所在地人民法院提起诉讼。</p>
-
         <p><strong>第六条</strong> 本协议一式三份，甲方执两份，乙方执一份，自双方签字盖章之日起生效。</p>
-
         <p>（以下无正文）</p>
     </div>
     <div class="print-footer">
-        <p>甲方：{$T.company.companyName}</p>
-
-        <p>法定代表人：{$T.company.corporate||""}</p>
-
+        <p>甲方：<span class="underline">{$T.company.companyName}</span></p>
+        <p>法定代表人：</p>
         <p>签订日期： &nbsp;年&nbsp;月 &nbsp;日</p>
-        {#if $T.customer.credentialsType=="营业执照" }
+        {#if $T.customer.credentialsType!="营业执照" }
         <br/>
-
         <p>乙方（签字并捺印）： &nbsp; &nbsp; &nbsp; &nbsp;</p>
-
         <p>签订日期： &nbsp;年&nbsp;月 &nbsp;日</p>
         {#else}
         <br/>
-
-        <p>乙方：{$T.customer.name}</p>
-
+        <p>乙方：<span class="underline">{$T.customer.name}</span></p>
         <p>法定（授权）代表人： &nbsp; &nbsp; &nbsp; &nbsp;</p>
-
         <p>签订日期： &nbsp;年 &nbsp;月&nbsp;日</p>
         {#/if}
     </div>
