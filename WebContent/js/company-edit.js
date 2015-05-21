@@ -430,6 +430,7 @@ var COMPANY_FORM = {
         this.setFax(item);
         this.setDescription(item);
         this.setYHZH(item);
+        $("#credentialsNumber").val(item['credentialsNumber']);
     },
 
     /*获取company信息,包含银行列表*/
@@ -525,6 +526,7 @@ var COMPANY_FORM = {
         }
 
         item[COMPANY.YHZH_KEY] = YHZH_LIST.getItems();
+        item["credentialsNumber"] = $("#credentialsNumber").val();
 
         me.item = item;
         return item;
@@ -928,6 +930,8 @@ var YHZH_LIST = {//银行账户
                 item[YHZH.ISDEFAULT_KEY] = isdefault[0]['checked'];
                 items.push(item);
             }
+
+
         }
         return items;
     }

@@ -538,6 +538,7 @@ var COMPANY_FORM = {
         }
 
         item[COMPANY.YHZH_KEY] = YHZH_LIST.getItems();
+        item["credentialsNumber"] = $("#credentialsNumber").val();
 
         me.item = item;
         return item;

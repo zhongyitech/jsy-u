@@ -115,6 +115,14 @@
                         </div>
                         <div class="form-row">
                             <div class="form-label col-md-2">
+                                <label for="" class="label-description">(*)证件号码:</label>
+                            </div>
+                            <div class="form-input col-md-10">
+                                <input placeholder="必填" type="text" id="credentialsNumber" class="credentialsNumber">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
                                 <label class="label-description">(*)公司类型：</label>
                             </div>
                             <div class="form-input col-md-4">
