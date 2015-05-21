@@ -2095,7 +2095,7 @@ var COMPANY = {
     TYPE_KEY: 'companyType',//公司类型
     TEMPLATE_KEY: 'protocolTemplate',//协议模板
     ADDRESS_KEY: 'address',//注册地址
-    PARTNER_KEY: 'partners',//合伙人
+    PARTNER_KEY: 'partner',//合伙人
     PARENT_KEY: 'head',//总公司
     FUND_KEY: 'fund',//基金
     FRDB_KEY: 'corporate',//法人代表
@@ -2112,31 +2112,6 @@ var COMPANY = {
     YHZH_KEY: 'bankAccount',//银行账户
     map: {},
     ini: function (async) {
-        //默认异步加载数据
-        if (!async) {
-            async = false;
-        }
-
-        var params = JSON.stringify({});
-        var data = {url: '/api/fundCompanyInformation/readAll', params: params};
-        var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/get",
-            async: async,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                if (response && response[REST.RESULT_KEY]) {
-                    me.items = JSON.parse(response[REST.RESULT_KEY]);
-                }
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
-        });
     },
     getItems: function () {
         //同步加载数据
@@ -2155,8 +2130,11 @@ var COMPANY = {
         return this.map;
     },
     get: function (id) {
-        var map = this.getMap();
-        return map[id];
+        //var map = this.getMap();
+        //return map[id];
+        if (id)
+            return $.io.get(true, {url: '/api/fundCompanyInformation/findById', params: {id: id}}).data();
+        return null;
     },
     toItem: function (item) {
         if (item) {

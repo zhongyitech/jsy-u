@@ -21,6 +21,7 @@
             border: none;
             border-collapse: separate;
         }
+
         #auth_name td + td {
             border: none;
         }
@@ -48,7 +49,7 @@
 <script type="text/javascript">
     (function () {
         var print = $("#print"), params = $.utils.getParams(), type = params.reporttype;
-        var types = ["fket", "speical_dq", "speical_undq", "th", "xt", "merger"];
+        var types = ["fket", "speical_dq", "wdqzt", "th", "xt", "merger"];
         if (params.id && params.reporttype) {
             $.io.get({
                 url: "/api/special/report",
@@ -56,6 +57,15 @@
             }).success(function (data) {
                         console.log(data);
                         var templateName = types[type - 1]
+                        if (type == 3) {
+                            if (data && data.isSingle) {
+                                //单GP
+                                templateName += 'dgp';
+                            } else {
+                                //双GP
+                                templateName += 'sgp';
+                            }
+                        }
                         //是退伙申请，需要判断单又GP
                         if (type == 4) {
                         }

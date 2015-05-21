@@ -277,20 +277,12 @@ var COMPANY_FORM = {
     iniParentInput: function () {
         var view = this.getParentInput();
         if (view) {
-            var items = COMPANY.getItems();
-            var option = $('<option value=""></option>');
-            view.append(option);
-            var cid = PAGE.getParam(COMPANY.ID_KEY);
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i];
-                var id = COMPANY.toId(item);
-
-                if (cid != id) {
-                    var name = COMPANY.toName(item);
-                    var option = $('<option value="' + id + '">' + name + '</option>');
-                    view.append(option);
-                }
-            }
+            $.io.get(true, {
+                url: '/api/fundCompanyInformation/selectList',
+                params: {depId: 0}
+            }).success(function (data) {
+                $.dom.select(view, data);
+            });
         }
     },
     getFRDBLabel: function () {
@@ -683,21 +675,10 @@ var PARTNER_LIST = {
         tr.append(company_td);
         var company_select = $('<select class="" id="company"></select>');
         company_td.append(company_select);
-        var items = COMPANY.getItems();
         company_select.append('<option value=""></option>');
-        var cid = PAGE.getParam(COMPANY.ID_KEY);
-        for (var i = 0; i < items.length; i++) {
-            var o = items[i];
-            var id = COMPANY.toId(o);
-            var type = COMPANY.toType(o);
-            type = COMPANY_TYPE.toItem(type);
-            var value = COMPANY_TYPE.toValue(type);
-            if (cid != id && value == COMPANY_TYPE.VALUE_GENNERAL) {
-                var name = COMPANY.toName(o);
-                var option = $('<option value="' + id + '">' + name + '</option>');
-                company_select.append(option);
-            }
-        }
+        $.io.get(true, {url: '/api/fundCompanyInformation/selectList', params: {depId: 0}}).success(function (data) {
+            $.dom.select(company_select, data);
+        });
         company_select.val(COMPANY.toId(item));
     },
     remove: function () {//删除选中行

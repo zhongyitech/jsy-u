@@ -183,18 +183,13 @@
                         </div>
                     </div>
                     <div style="clear:both;"></div>
-
-                    <div class="button-pane">
-                        <button class="btn-ui btn bg-green large medium float-right mrg10L"><span
+                    <div class="button-pane" id="menu">
+                        <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
                                 class="button-content">提交</span></button>
                         <button class="btn-ui btn bg-green large medium float-right mrg10L partner-button hide"
-                                id="partner-button2"><span class="button-content">合伙人</span></button>
+                                id="partner-button"><span class="button-content">合伙人</span></button>
                     </div>
-
-
                 </div>
-
-
             </div>
 
             <div class="hide" id="partner-dialog" title="合伙人">
@@ -252,11 +247,6 @@
                     <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="add-button">
                         <span class="button-content">增加一行</span></button>
                 </div>
-            </div>
-            <div class="button-pane" id="menu">
-                <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
-                        class="button-content">提交</span></button>
-
             </div>
 
         </div>
