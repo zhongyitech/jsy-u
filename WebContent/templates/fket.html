@@ -1,5 +1,6 @@
 <div class="print-paper">
     <div class="print-header">
+        <!--<img class="logo" src="/images/logo.jpg"/>-->
         <div class="print-title">（委托付款限定只用于自然人）</div>
         <div class="print-title">付&nbsp;款&nbsp;委&nbsp;托&nbsp;书</div>
         <div class="print-no"> 编号（<span class="underline">{$T.number}</span>）</div>
@@ -43,8 +44,8 @@
         <p>鉴于：</p>
 
         <p>委托人与<span class="underline">{$T.fundName}</span>签订编号为<span class="underline">{$T.htbh}</span>的合同文件（下称“原协议”），约定委托人作为<span
-                class="underline">{$T.fundName}</span>的有限合伙人，出资人民币<span class="underline">{$T.ztje}</span>元整，投资<span
-                class="underline">{$T.fundName}</span>项目。</p>
+                class="underline">{$T.fundName}</span>的有限合伙人，出资人民币<span class="underline">{$.utils.getCNY($T.archives.tzje)}</span>，投资<span
+                class="underline">{$T.project.name}</span>项目。</p>
 
         <p>委托事项：</p>
         {#foreach $T.khfbs as item}

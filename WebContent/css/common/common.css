@@ -21,7 +21,7 @@ input[readonly=true] {background: #EAE5E5;}
 .print-paper { font-family: '宋体', Verdana; padding:1.5em 4em 1em; font-size: 17px; line-height: 1.5em; page-break-after:always; overflow: hidden;}
 .print-paper h3 { padding: 0; margin: 0;}
 .print-paper p { text-indent: 2em;}
-.print-paper .underline { text-decoration: underline;}
+.print-paper .underline { text-decoration: underline; padding: 0px 3px;}
 .print-paper .print-header { position: relative;}
 .print-paper .print-no { height: 2em; text-align: right;}
 .print-paper .print-title { height: 2em; text-align: center;}
