@@ -17,12 +17,19 @@
             margin: 0;
         }
 
-        #auth_name {
+        #auth_name,#auth_name1,.auth_name {
+            border: none;
+            border-collapse: separate;
+        }
+        #auth_name1 {
             border: none;
             border-collapse: separate;
         }
 
-        #auth_name td + td {
+        #auth_name td + td,.auth_name td + td  {
+            border: none;
+        }
+        #auth_name1 td + td,.auth_name td + td  {
             border: none;
         }
     </style>
@@ -38,8 +45,14 @@
             border: none;
             border-collapse: separate;
         }
-
-        #auth_name td + td {
+        #auth_name1 {
+            border: none;
+            border-collapse: separate;
+        }
+        #auth_name td + td ,.auth_name td + td {
+            border: none;
+        }
+        #auth_name1 td + td ,.auth_name td + td {
             border: none;
         }
     </style>
