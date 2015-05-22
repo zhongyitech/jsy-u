@@ -39,7 +39,7 @@
 					<div class="content-box-wrapper">
                         <div id="table-pager" class="page-bar"></div>
 						
-						<table class="table table-striped text-center mrg0B" id="view-table">
+						<table class="table table-hover table-striped text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
 									<th class="text-center">账号(登陆名))</th>

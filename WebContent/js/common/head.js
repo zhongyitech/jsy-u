@@ -750,11 +750,19 @@ var CUSTOMER = {
     REMARK_KEY: 'remark',
     response: {},
     item: {},
+    localCatch: {},
     get: function (id) {
         var me = this;
+        if (me.localCatch[id]) {
+            return me.localCatch[id];
+        }
         var params = JSON.stringify({cid: id});
-        var data = {url: '/api/customerArchives/getcustomer', params: params};
+        var data = {url: '/api/customer/getcustomer', params: params};
         me.item = $.io.get(true, data).data();
+        if (console) {
+            console.log(me.item);
+        }
+        me.localCatch[id]=me.item;
         return me.item;
     },
     getName: function (id) {

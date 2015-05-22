@@ -15,7 +15,7 @@
             {#param name=fields value=["dealDate","transactionsCode","summary","bankName","bankOfDeposit","accountName","account","otherSideAccount","otherSideName","actionAmount","borrowAndLend","balance","managed"]}
             {#param name=start "
             {#param name=pos value=$P.start}
-            <table class="table table-striped text-center mrg0B" id="view-table">
+            <table class="table table-hover table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
                     <th class="text-center">交易时间</th>

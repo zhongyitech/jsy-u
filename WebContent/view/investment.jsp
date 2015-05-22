@@ -208,7 +208,7 @@
     </div>
 
     <div class="content-box-wrapper">
-        <table class="table text-center mrg0B" id="yewu-table">
+        <table class="table table-hover text-center mrg0B" id="yewu-table">
             <thead>
             <tr>
                 <th class="text-center"><span class="text-overflow"><input
@@ -250,7 +250,7 @@
     </h3>
 
     <div class="content-box-wrapper">
-        <table class="table text-center mrg0B" id="guanli-table">
+        <table class="table table-hover text-center mrg0B" id="guanli-table">
             <thead>
             <tr>
                 <th class="text-center"><span class="text-overflow"><input

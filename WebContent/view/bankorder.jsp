@@ -14,7 +14,7 @@
             {#param name=fields value=["createDate","summary","subjectName","borrowAmount","lendAmount","transaction","company"]}
             {#param name=start value=$P.callback()+1}
             {#param name=pos value=$P.start}
-            <table class="table table-striped text-center mrg0B" id="view-table">
+            <table class="table table-hover table-striped text-center mrg0B" id="view-table">
                 <thead>
                     <tr>
                         <th class="text-center">生成时间</th>

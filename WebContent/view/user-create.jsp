@@ -135,7 +135,7 @@
                         <%--</div>--%>
 
                         <%--<div class="form-row hide" >--%>
-                            <%--<table class="table table-striped text-center mrg0B form-input" id="bankaccount_table">--%>
+                            <%--<table class="table table-hover table-striped text-center mrg0B form-input" id="bankaccount_table">--%>
                                 <%--<tr>--%>
                                     <%--<th class="text-center"><span>账号</span></th>--%>
                                     <%--<th class="text-center"><span>户名</span></th>--%>
@@ -180,7 +180,7 @@
 
             <div class="hide" id="role-dialog" title="编辑角色">
                 <div class="content-box mrg0B" id="role-view">
-                    <table class="table text-center mrg0B" id="view-table">
+                    <table class="table table-hover text-center mrg0B" id="view-table">
                         <thead class="primary-bg">
                         <tr>
                             <th class="primary-bg text-center"><input type="checkbox" name="checkbox"></th>

@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div>
-                        <table class="table table-striped text-center mrg0B">
+                        <table class="table table-hover table-striped text-center mrg0B">
                             <thead>
                                 <tr>
                                     <th class="text-center">编号</th>
@@ -183,7 +183,7 @@
                                 </button>
                             </div>
                         </div>
-                        <table class="table table-striped text-center mrg0B">
+                        <table class="table table-hover table-striped text-center mrg0B">
                             <thead>
                             <tr>
                                 <th class="text-center">编号</th>
@@ -222,7 +222,7 @@
                                 </button>
                             </div>
                         </div>
-                        <table class="table table-striped text-center mrg0B">
+                        <table class="table table-hover table-striped text-center mrg0B">
                             <thead>
                             <tr>
                                 <th class="text-center">编号</th>

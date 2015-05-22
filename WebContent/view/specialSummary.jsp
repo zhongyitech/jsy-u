@@ -15,7 +15,7 @@
             {#param name=fields value=["","status","fundName","htbh","sqbm","sqr","sqrq","type","customerName","bz"]}
             {#param name=start value=$P.callback()+1}
             {#param name=pos value=$P.start}
-            <table class="table table-striped text-center mrg0B" id="view-table">
+            <table class="table table-hover table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
                     <th style="width: 10px;"></th>

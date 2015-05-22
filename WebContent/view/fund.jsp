@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="content-box-wrapper">
-                    <table class="table text-center mrg0B" id="funds-table">
+                    <table class="table table-hover text-center mrg0B" id="funds-table">
                         <thead>
                         <tr>
                             <th class="text-center"><input type="checkbox" name="checkbox" /></th>
@@ -63,7 +63,7 @@
 
             <div class="hide" id="black-modal-60" title="收益率范围">
                 <div class="content-box mrg0B">
-                    <table class="table text-center mrg0B" id="sylfw-table">
+                    <table class="table table-hover text-center mrg0B" id="sylfw-table">
                         <thead class="primary-bg">
                         <tr>
                             <th class="primary-bg text-center"><input type="checkbox" name="checkbox"></th>
@@ -88,7 +88,7 @@
 
             <div class="hide" id="tzqx-dialog" title="投资期限">
                 <div class="content-box mrg0B">
-                    <table class="table text-center mrg0B" id="tzqx-table">
+                    <table class="table table-hover text-center mrg0B" id="tzqx-table">
                         <thead class="primary-bg">
                         <tr>
                             <th class="primary-bg text-center"><input type="checkbox" name="checkbox"></th>
@@ -112,7 +112,7 @@
 
             <div class="hide" id="black-modal-70" title="提成分配范围">
                 <div class="content-box mrg0B">
-                    <table class="table text-center mrg0B" id="tcfpfw-table">
+                    <table class="table table-hover text-center mrg0B" id="tcfpfw-table">
                         <thead class="primary-bg">
                         <tr>
                             <th class="primary-bg text-center"><input type="checkbox" name="checkbox"></th>

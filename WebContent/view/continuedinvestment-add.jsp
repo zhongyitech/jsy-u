@@ -113,7 +113,7 @@
                                data-member="customer.id" data-displaymember="name"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="" id="lab-ttype">证件类型： </label>
+                        <label for="">证件类型： </label>
                     </div>
                     <div class="form-label col-md-4">
                         <label class="label-success bind" id="lab-ccardtype" data-bindtype="list"
@@ -132,10 +132,10 @@
                                data-displaymember="credentialsNumber"></label>
                     </div>
                     <div class="form-label col-md-2  ">
-                        <label for="" id="lab-ttype">法定代表人： </label>
+                        <label for="">法定代表人： </label>
                     </div>
                     <div class="form-label col-md-4">
-                        <label class="label-success bind" id="lab-ccardtype" data-bindtype="list"
+                        <label class="label-success bind" data-bindtype="list"
                                data-bindobject="customer" data-member="customer.id" data-displaymember="fddbr"></label>
                     </div>
                 </div>
@@ -169,13 +169,13 @@
                 <div id="select_event_target">
                     <div class="form-row">
                         <div class="form-label col-md-3   ">
-                            <label for="" id="lab-tname"> 续投申请日期： </label>
+                            <label for=""> 续投申请日期： </label>
                         </div>
                         <div class="form-input col-md-3">
                             <input class="item-input tcal " id="xt_sq_date"/>
                         </div>
                         <div class="form-label col-md-3  ">
-                            <label for="" id="lab-ttype">续投本金额： </label>
+                            <label for="">续投本金额： </label>
                         </div>
                         <div class="form-input col-md-3">
                             <input id="xt_bje" class="bind" data-xttypes="5" data-bindtype="value" data-member="tzje"
@@ -185,13 +185,13 @@
 
                     <div class="form-row" id="">
                         <div class="form-label col-md-3  ">
-                            <label for="" id="lab-tnubmer">追加投资金额： </label>
+                            <label for="">追加投资金额： </label>
                         </div>
                         <div class="form-input col-md-3">
                             <input id="xt_amount" data-xttypes="3,4" value="0"/>
                         </div>
                         <div class="form-label col-md-3  ">
-                            <label for="" id="lab-ttype">续投收益额 ：</label>
+                            <label for="">续投收益额 ：</label>
                         </div>
                         <div class="form-input col-md-3">
                             <input id="xt_sy_amount" class="" data-xttypes="2,4" data-bindtype="value"
@@ -200,7 +200,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-label col-md-3   ">
-                            <label for="" id="lab-tname"> 续投投资期限： </label>
+                            <label for=""> 续投投资期限： </label>
                         </div>
                         <div class="form-input col-md-3">
                             <select disabled="disabled" id="xt_tzqx">
@@ -211,20 +211,20 @@
                             <label for="" id="lab-totalamount">总投资金额： </label>
                         </div>
                         <div class="form-input col-md-3">
-                            <input id="xt_tzje" disabled="disabled"></input>
+                            <input id="xt_tzje" disabled="disabled"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-label col-md-3  ">
-                        <label for="" id="lab-tnubmer">续投计息日期： </label>
+                        <label for="">续投计息日期： </label>
                     </div>
                     <div class="form-input col-md-3">
                         <input class="tcal" id="xt_jx_date"/>
                     </div>
                     <div class="form-label col-md-3  ">
-                        <label for="" id="lab-ttype">续投到期日期：</label>
+                        <label for="">续投到期日期：</label>
                     </div>
                     <div class="form-input col-md-3">
                         <input class="label-success tcal" id="xt_dqrq"/>
@@ -233,13 +233,13 @@
 
                 <div class="form-row">
                     <div class="form-label col-md-3  ">
-                        <label for="" id="lab-tnubmer">续投预期收益率： </label>
+                        <label for="">续投预期收益率： </label>
                     </div>
                     <div class="form-input col-md-3">
-                        <input class="datacheck" data-minnumber="0" data-maxnumber="1" id="xf_yqsy"/>
+                        <input class="datacheck" data-minnumber="0" data-maxnumber="1" id="xf_yqsy" disabled="disabled" readonly="true"/>
                     </div>
                     <div class="form-label col-md-3  ">
-                        <label for="" id="lab-ttype">续投付息方式：</label>
+                        <label for="">续投付息方式：</label>
                     </div>
                     <div class="form-label col-md-3">
                         <label class="label-success" id="xt_fxfs"></label>

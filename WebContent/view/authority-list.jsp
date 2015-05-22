@@ -39,7 +39,7 @@
 					<div class="content-box-wrapper">
 						<div id="table-pager" class="page-bar"></div>
 						
-						<table class="table table-striped mrg0B" id="view-table">
+						<table class="table table-hover table-striped mrg0B" id="view-table">
 							<thead>
 								<tr>
 									<th style="width: 400px">角色名称</th>

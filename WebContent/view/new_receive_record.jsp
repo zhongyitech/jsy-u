@@ -109,7 +109,7 @@
                                             <%--<input type="checkbox" id="penalty_money" name="target_type" value="penalty_money"> 违约金 <label id="label_penalty_per"></label>--%>
                                         </div>
                                         <div class="content-box-wrapper">
-                                            <table class="table table-striped text-center mrg0B" id="pay_records_table">
+                                            <table class="table table-hover table-striped text-center mrg0B" id="pay_records_table">
                                                 <thead>
                                                 <tr>
                                                     <th class="text-center">选择</th>
@@ -147,7 +147,7 @@
                                         </div>
 
                                         <div class="content-box-wrapper">
-                                            <table class="table table-striped text-center mrg0B" id="pay_records_table2">
+                                            <table class="table table-hover table-striped text-center mrg0B" id="pay_records_table2">
                                                 <thead>
                                                 <tr>
                                                     <th class="text-center">选择</th>

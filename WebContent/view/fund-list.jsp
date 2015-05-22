@@ -138,7 +138,7 @@
 					
 						<div id="table-pager" class="page-bar"></div>
 
-						<table class="table table-striped text-center mrg0B" id="funds-table">
+						<table class="table table-hover table-striped text-center mrg0B" id="funds-table">
 				            <thead>
 				                <tr>
 				                    <th class="text-center">编号</th>

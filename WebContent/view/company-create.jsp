@@ -202,7 +202,7 @@
 
             <div class="hide" id="partner-dialog" title="合伙人">
                 <div class="content-box mrg0B" id="partner-view">
-                    <table class="table text-center mrg0B" id="view-table">
+                    <table class="table table-hover text-center mrg0B" id="view-table">
                         <thead class="primary-bg">
                         <tr>
                             <th class="primary-bg text-center"><input type="checkbox" name="checkbox"></th>
@@ -232,7 +232,7 @@
                 </h3>
 
                 <div class="content-box-wrapper">
-                    <table class="table text-center mrg0B" id="view-table">
+                    <table class="table table-hover text-center mrg0B" id="view-table">
                         <thead>
                         <tr>
                             <th class="text-center"><span class="text-overflow"><input type="checkbox" name="checkbox"></span>

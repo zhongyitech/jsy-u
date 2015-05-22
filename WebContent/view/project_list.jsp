@@ -79,7 +79,7 @@
 
                     <div id="table-pager" class="page-bar pad0R"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="project-table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="project-table">
                         <thead>
                         <tr>
                             <th class="text-center">编号</th>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="page-view">
                             <div class="content-box box-toggle ">
-                                <table class="table text-center mrg0B" id="xianshi_table">
+                                <table class="table table-hover text-center mrg0B" id="xianshi_table">
                                     <th class="text-center"><span class="text-overflow"><input type="checkbox"></span></th>
                                     <th class="text-center"><span class="text-overflow">用户名称</span></th>
                                     <th class="text-center"><span class="text-overflow item-date"

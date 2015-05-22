@@ -96,7 +96,7 @@
                                             <div class="col-md-8 page-bar pad0R">
                                                 查看变化情况请修改截止日期:<input id="paydate" class="tcal filter-input" type="text" />
                                             </div>
-                                            <table class="table table-striped text-center mrg0B" id="pay_records_table">
+                                            <table class="table table-hover table-striped text-center mrg0B" id="pay_records_table">
                                                 <thead>
                                                 <tr>
                                                     <th class="text-center">选择</th>
@@ -138,7 +138,7 @@
                                                     <i class="glyph-icon icon-arrow-right"></i>
                                                 </a>
                                             </div>
-                                            <table class="table table-striped text-center mrg0B" id="receives_table">
+                                            <table class="table table-hover table-striped text-center mrg0B" id="receives_table">
                                                 <thead>
                                                 <tr>
                                                     <%--<th class="text-center">选择</th>--%>
@@ -179,7 +179,7 @@
 
 
                                     <div class="content-box-wrapper">
-                                        <table class="table table-striped text-center mrg0B" id="receive_records_table">
+                                        <table class="table table-hover table-striped text-center mrg0B" id="receive_records_table">
                                             <thead>
                                             <tr>
                                                 <th class="text-center">款项性质</th>

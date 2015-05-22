@@ -125,7 +125,7 @@
                         </h3>
 
                         <div class="content-box-wrapper">
-                            <table class="table text-center mrg0B" id="sylfw-table">
+                            <table class="table table-hover text-center mrg0B" id="sylfw-table">
                                 <thead>
                                 <tr>
                                     <th class="text-center" width="10px"><input type="checkbox" name="checkbox"></th>
@@ -154,7 +154,7 @@
                         </h3>
 
                         <div class="content-box-wrapper">
-                            <table class="table text-center mrg0B" id="tzqx-table">
+                            <table class="table table-hover text-center mrg0B" id="tzqx-table">
                                 <thead>
                                 <tr>
                                     <th class="text-center">
@@ -187,7 +187,7 @@
                         </h3>
 
                         <div class="content-box-wrapper">
-                            <table class="table text-center mrg0B" id="tcfpfw-table">
+                            <table class="table table-hover text-center mrg0B" id="tcfpfw-table">
                                 <thead>
                                 <tr>
                                     <th class="text-center">部门经理</th>

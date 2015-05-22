@@ -81,7 +81,7 @@
 
                     <div id="table-pager-1" class="page-bar"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="filepackage-get-table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="filepackage-get-table">
                         <thead>
                             <tr>
                                 <th><span class="">档案号</span></th>
@@ -159,7 +159,7 @@
 
                     <div id="table-pager-2" class="page-bar"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="inout_table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="inout_table">
                         <thead>
                             <tr>
                                 <th><span class="">档案号</span></th>

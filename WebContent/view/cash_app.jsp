@@ -14,7 +14,7 @@
         {#param name=fields value=["fundName","amount","count","lx","bj"]}
         {#param name=start value=$P.callback()+1}
         {#param name=pos value=$P.start}
-        <table class="table table-striped text-center mrg0B" id="view-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="view-table">
             <thead>
             <tr>
                 <th class="text-center">基金</th>
@@ -128,7 +128,7 @@
 
                     <div id="table-pager" class="page-bar"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="pacts-get-table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="pacts-get-table">
                         <thead>
                             <tr>
                                 <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
@@ -173,7 +173,7 @@
 
                 <div class="content-box-wrapper">
                     <div id="table-pager-summary" class="page-bar"></div>
-                    <table class="table table-striped text-center mrg0B" id="summary-data">
+                    <table class="table table-hover table-striped text-center mrg0B" id="summary-data">
 
                     </table>
                 </div>

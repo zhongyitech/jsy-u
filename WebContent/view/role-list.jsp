@@ -43,7 +43,7 @@
 
                     <div id="table-pager" class="page-bar"></div>
 
-                    <table class="table table-striped text-center mrg0B" id="view-table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="view-table">
                         <thead>
                         <tr>
                             <th class="text-center" width="56px"><input type="checkbox" name="checkbox"></th>

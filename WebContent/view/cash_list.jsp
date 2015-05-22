@@ -22,7 +22,7 @@
     </h3>
 
     <div class="content-box-wrapper">
-        <table class="table table-striped text-center mrg0B" id="cash-collect">
+        <table class="table table-hover table-striped text-center mrg0B" id="cash-collect">
             <thead>
             <tr>
                 <th class="text-center">基金</th>
@@ -114,7 +114,7 @@
 
         <div id="table-pager-1" class="page-bar"></div>
 
-        <table class="table table-striped text-center mrg0B" id="cash-interest">
+        <table class="table table-hover table-striped text-center mrg0B" id="cash-interest">
             <thead>
                 <tr>
                     <th class="text-center"><input type="checkbox"></th>
@@ -209,7 +209,7 @@
 
         <div id="table-pager-2" class="page-bar"></div>
 
-        <table class="table table-striped text-center mrg0B" id="cash-benjin">
+        <table class="table table-hover table-striped text-center mrg0B" id="cash-benjin">
             <thead>
                 <tr>
                     <th class="text-center"><input type="checkbox"></th>

@@ -25,7 +25,7 @@
 					</div>
 
 					<div class="content-box-wrapper">
-						<table class="table text-center mrg0B" id="view-table">
+						<table class="table table-hover text-center mrg0B" id="view-table">
 							<thead>
 								<tr>
 									<th class="text-center"><input type="checkbox" name="checkbox"></th>
@@ -76,7 +76,7 @@
 					<div class="content-box-wrapper">
 						<div id="table-pager" class="page-bar"></div>
 						
-						<table class="table table-striped text-center mrg0B" id="table-data">
+						<table class="table table-hover table-striped text-center mrg0B" id="table-data">
 							<thead>
 								<tr>
 									<th class="text-center">领用时间</th>

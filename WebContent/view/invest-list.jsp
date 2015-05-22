@@ -40,7 +40,7 @@
                 </div>
                 <div class="content-box-wrapper">
                     <div id="table-pager" class="page-bar"></div>
-                    <table class="table table-striped text-center" id="investment-table">
+                    <table class="table table-hover table-striped text-center" id="investment-table">
                         <thead>
                             <tr>
                                 <th><span class="text-overflow">认购人</span></th>

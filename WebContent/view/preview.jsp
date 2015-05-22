@@ -75,7 +75,7 @@
             }).success(function (data) {
                         console.log(data);
                         var templateName = types[type - 1]
-                        if (type == 3 || type == 4 || type == 5) {
+                        if (type == 3 || type == 4 || type == 5 ) {
                             if (data && data.isSingle) {
                                 //单GP
                                 templateName += 'dgp';

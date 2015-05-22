@@ -15,7 +15,7 @@
 <div id="page-wrapper">
     <jsp:include page="./navi.jsp"/>
     <textarea id="banktosummary-data-template" class="template">
-        <table class="table table-striped text-center mrg0B" id="banktosummary-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="banktosummary-table">
             <thead>
             <tr>
                 <%--根据客户权限多加一列操作列--%>
@@ -46,7 +46,7 @@
         </table>
     </textarea>
     <textarea id="subject-data-template" class="template">
-        <table class="table table-striped text-center mrg0B" id="subject-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="subject-table">
             <thead>
             <tr>
                 <%--根据客户权限多加一列操作列--%>

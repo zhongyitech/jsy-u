@@ -33,7 +33,7 @@
         {#param name=fields value=["czr","czsj","url","method","params","address"]}
         {#param name=start value=$P.callback()+1}
         {#param name=pos value=$P.start}
-        <table class="table table-striped text-center mrg0B" id="view-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="view-table">
             <thead>
             <tr>
                 <th class="text-center">操作人</th>

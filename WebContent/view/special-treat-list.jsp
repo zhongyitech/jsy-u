@@ -16,7 +16,7 @@
             {#param name=fields value=["czr","czsj","url","method","params","address"]}
             {#param name=start value=$P.callback()+1}
             {#param name=pos value=$P.start}
-            <table class="table table-striped text-center mrg0B" id="view-table">
+            <table class="table table-hover table-hover table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
                     <th class="text-center" style="width: 5em;"><span>状态</span></th>
@@ -43,7 +43,11 @@
                         <span class="label bg-orange tooltip-button mrg15R text-center" title=""
                               data-original-title="Label with .bg-orange">审核中</span>
                         {#/if}
-                    <td><a class="btn" href="preview.jsp?id={$T.item.id}&reporttype={$T.item.sq_type}"+ >查看</a></td>
+                    <td>
+                        {#if $T.item.sType!="合并申请"}
+                        <a class="btn" href="preview.jsp?id={$T.item.id}&reporttype={$T.item.sq_type}" >查看</a>
+                        {#/if}
+                    </td>
                     <td>{$T.item.fundName}</td>
                     <td>{$T.item.htbh}</td>
                     <td>{$T.item.sqbm}</td>

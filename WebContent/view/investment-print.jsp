@@ -40,7 +40,7 @@
 
                 <div class="content-box-wrapper">
                     <div id="table-pager" class="page-bar"></div>
-                    <table class="table table-striped text-center mrg0B" id="investment-table">
+                    <table class="table table-hover table-striped text-center mrg0B" id="investment-table">
                         <thead>
                         <tr>
                             <th class="text-center"><input id="checkbox-selector" type="checkbox" name="checkbox"></th>

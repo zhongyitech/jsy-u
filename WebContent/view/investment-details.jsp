@@ -208,7 +208,7 @@
                  </a>
              </div>
              <div class="content-box-wrapper">
-                 <table class="table table-striped text-center mrg0B">
+                 <table class="table table-hover table-striped text-center mrg0B">
                      <thead>
                      <tr>
                          <th class="text-center"><span class="text-overflow">提成人员</span></th>
@@ -251,7 +251,7 @@
                  </a>
              </div>
              <div class="content-box-wrapper">
-                 <table class="table table-striped text-center mrg0B">
+                 <table class="table table-hover table-striped text-center mrg0B">
                      <thead>
                      <tr>
                          <th class="text-center"> <span class="text-overflow ">序号</span></th>
@@ -293,7 +293,7 @@
                  </a>
              </div>
              <div class="content-box-wrapper">
-                 <table class="table table-striped text-center mrg0B">
+                 <table class="table table-hover table-striped text-center mrg0B">
                      <thead>
                      <tr>
                          <th class="text-center"><span class="text-overflow">序号</span></th>

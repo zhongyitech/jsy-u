@@ -15,7 +15,7 @@
             {#param name=fields value=["accountName","account","purpose","bankOfDeposit","Balance","CcyCode","AccountStatus"]}
             {#param name=start "
             {#param name=pos value=$P.start}
-            <table class="table table-striped text-center mrg0B" id="view-table">
+            <table class="table table-hover table-striped text-center mrg0B" id="view-table">
                 <thead>
                 <tr>
                     <th class="text-center">公司名称</th>

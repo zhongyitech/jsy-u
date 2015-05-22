@@ -15,7 +15,7 @@
         {#param name=fields value=["name","credentialsType","credentialsNumber","country","fddbr","phone","remark","id"]}
         {#param name=start value=$P.callback()+1}
         {#param name=pos value=$P.start}
-        <table class="table table-striped text-center mrg0B" id="view-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="view-table">
             <thead>
             <tr>
                 <%--根据客户权限多加一列操作列--%>
@@ -48,7 +48,7 @@
         <div class="data-rows">第{$P.start}-{$P.start+$T.length-1}条</div>
     </textarea>
     <textarea id="banks-data-template" class="template">
-        <table class="table table-striped text-center mrg0B" id="bank-table">
+        <table class="table table-hover table-striped text-center mrg0B" id="bank-table">
             <thead>
             <tr>
                 <%--根据客户权限多加一列操作列--%>
