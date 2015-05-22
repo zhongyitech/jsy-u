@@ -23,6 +23,7 @@
                     <th class="text-center"><span class=""></span></th>
                     <th class="text-center"><span class="">基金名称</span></th>
                     <th class="text-center"><span class="">合同编号</span></th>
+                    <th class="text-center"><span class="">目标合同编号</span></th>
                     <th class="text-center"><span class="">申请部门</span></th>
                     <th class="text-center"><span class="">申请人</span></th>
                     <th class="text-center"><span class="">申请日期</span></th>
@@ -36,20 +37,26 @@
                 {#foreach $T as item}
                 <tr data-key="{$T.item$index}" data-row="{$P.pos++}">
                     <td class="text-center">
+                        {#if $T.item.status==0}
+                        <span class="badge bg-orange tooltip-button text-center" title=""
+                              data-original-title="label with .bg-green">审核中</span>
+                        {#/if}
                         {#if $T.item.status==1}
-                        <span class="badge bg-green tooltip-button text-center" title=""
-                              data-original-title="Badge with .bg-green">通过</span>
-                        {#else}
-                        <span class="label bg-orange tooltip-button mrg15R text-center" title=""
-                              data-original-title="Label with .bg-orange">审核中</span>
+                        <span class="label bg-green tooltip-button  text-center" title=""
+                              data-original-title="label with .bg-orange">已通过</span>
+                        {#/if}
+                        {#if $T.item.status==3}
+                        <span class="label bg-red tooltip-button  text-center" title=""
+                              data-original-title="label with .bg-orange">取消</span>
                         {#/if}
                     <td>
                         {#if $T.item.sType!="合并申请"}
-                        <a class="btn" href="preview.jsp?id={$T.item.id}&reporttype={$T.item.sq_type}" >查看</a>
+                        <a class="btn" href="preview.jsp?id={$T.item.id}&reporttype={$T.item.sq_type}">查看</a>
                         {#/if}
                     </td>
                     <td>{$T.item.fundName}</td>
                     <td>{$T.item.htbh}</td>
+                    <td>{$T.item.xhtbh || '-'}</td>
                     <td>{$T.item.sqbm}</td>
                     <td>{$T.item.sqr.chainName}</td>
                     <td>{$T.item.scrq}</td>
@@ -58,8 +65,12 @@
                     <td>{$T.item.bz}</td>
                     <td class="text-center">
                         {#if $T.item.status==0}
-                        <button class="btn medium bg-orange mrg5L btn_cancel">取消申请</button>
-                        <button class="btn medium bg-green btn_accept">同意申请</button>
+                        <button class="btn medium bg-orange mrg5L btn_cancel" data-index="{$T.item.id}"
+                                data-stype="{$T.item.sq_type}">取消申请
+                        </button>
+                        <button class="btn medium bg-green btn_accept" data-index="{$T.item.id}"
+                                data-stype="{$T.item.sq_type}">同意申请
+                        </button>
                         {#/if}
                     </td>
                 </tr>
