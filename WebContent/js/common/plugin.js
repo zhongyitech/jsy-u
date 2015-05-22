@@ -98,12 +98,15 @@
             return $.extend(true, options || {}, {data: data}, {data: {entity: entity, params: params}});
         },
         doSuccess: function (data, fn) {
+            $("#loader-overlay").hide();
             this._success(data) && this._return(fn || this._system.success, data);
         },
         doError: function (data, fn) {
+            $("#loader-overlay").hide();
             this._error(data) && this._return(fn || this._system.error, data);
         },
         doFail: function (data, fn) {
+            $("#loader-overlay").hide();
             this._return(fn || this._system.fail, data);
         },
         registerCallback: function (callback) {
@@ -214,15 +217,21 @@
              * @returns {XHR}
              */
             get: function () {
+                $("#loader-overlay").show();
                 return request(RestURI._get, arguments);
             },
             post: function () {
+                $("#loader-overlay").show();
+
                 return request(RestURI._post, arguments);
             },
             put: function () {
+                $("#loader-overlay").show();
+
                 return request(RestURI._put, arguments);
             },
             del: function () {
+                $("#loader-overlay").show();
                 return request(RestURI._delete, arguments);
             },
             registerCallback: function (callback) {

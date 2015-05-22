@@ -114,6 +114,8 @@
 <div id="page-sidebar" class="scrollable-content">
     <div id="sidebar-menu"></div>
 </div>
+<div id="loader-overlay" class="ui-front hide loader ui-widget-overlay bg-gray opacity-60" style=""><img src="/images/loader-dark.gif" alt=""></div>
+
 <script type="text/javascript">
 //    var data=[
 //        {text:"基金管理",items:[
