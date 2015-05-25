@@ -90,7 +90,7 @@
 
     <div class="content-box-wrapper">
         <div id="table-pager-1" class="page-bar"></div>
-        <table id="ywtc_table" class="table table-striped text-center mrg0B">
+        <table id="ywtc_table" class="table table-hover table-striped text-center mrg0B">
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox"name="checkbox"></th>

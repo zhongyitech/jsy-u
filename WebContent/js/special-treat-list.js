@@ -33,7 +33,7 @@
             type: "or",
             fields: ["czr", "url", "method", "params", "address"],
             value: "",
-            order: {id: "desc"},
+            order: {status: "asc"},
             sq_type: 1,
         },
         /**
@@ -68,11 +68,35 @@
             });
             //取消申请操作
             $("#view-table .btn_cancel").unbind().bind("click", function () {
-                alert("开发中...");
+                var action_data = $(this).data();
+                if (confirm("您确定要取消些申请单？ 此操作将会删除此申请单，并将对应的投资档案的状态更新为“正常”")) {
+                    $.io.post({
+                        url: '/api/special/cancel',
+                        params: {id: action_data.index, sType: action_data.stype}
+                    }).success(function (result) {
+                        Util._entity.sq_type = action_data.stype;
+                        Util.render();
+                        $.message.log("操作成功！");
+                    }).error(function (msg) {
+                        alert("取消特殊申请出错！");
+                    })
+                }
             });
             //审核申请
             $("#view-table .btn_accept").unbind().bind("click", function () {
-                alert("开发中...");
+                var action_data = $(this).data();
+                if (confirm("您确定要通过此特殊申请？")) {
+                    $.io.post({
+                        url: '/api/special/accept',
+                        params: {id: action_data.index, sType: action_data.stype}
+                    }).success(function (result) {
+                        Util._entity.sq_type = action_data.stype;
+                        Util.render();
+                        $.message.log("操作成功！");
+                    }).error(function (msg) {
+                        alert("同意特殊申请出错！");
+                    })
+                }
             });
         },
         _renderPage: function (pager) {

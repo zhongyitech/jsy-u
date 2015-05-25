@@ -59,6 +59,7 @@
                                 <th><span class="text-overflow">已付利息</span></th>
                                 <th><span class="text-overflow">已付本金</span></th>
                                 <%--<th><span class="text-overflow">操作</span></th>--%>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody></tbody>

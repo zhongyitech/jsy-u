@@ -102,7 +102,7 @@
 
                     <div id="table-pager" class="page-bar"></div>
 
-                    <table id="query_table" class="table table-striped text-center mrg0B text-center">
+                    <table id="query_table" class="table table-hover table-striped text-center mrg0B text-center">
                         <thead>
                         <tr>
                             <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
