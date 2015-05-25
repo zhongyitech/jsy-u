@@ -142,12 +142,17 @@ var VIEWDATA = {
         $("#new_payDate").val(DATEFORMAT.toDate(new Date()));
     },
 
-    getAdditionalInfo: function () {
+    getAdditionalInfo: function (source_amount) {
+        if (!source_amount) source_amount = parseInt($("#source_tzje").html());
         var addAmount = parseInt($("#addAmount").val());
         addAmount = (isNaN(addAmount)) ? 0 : addAmount;
-        $.io.get({url: '/api/mergesq/unionPre', params: {ivid: this.investmentid, newAmount: addAmount}})
+        source_amount = (isNaN(source_amount)) ? 0 : source_amount;
+        $.io.get({
+            url: '/api/mergesq/unionPre',
+            params: {ivid: this.investmentid, newAmount: addAmount + source_amount}
+        })
             .success(function (result) {
-                $("#lab_totalAmount").html(result.totalAmount);
+                $("#lab_totalAmount").html(NUMBERFORMAT.toCount(result.totalAmount));
                 $("#lab_totalRate").html(NUMBERFORMAT.toRate(result.totalRate));
                 $("#lab_totalFxfj").html(STRINGFORMAT.toPayType(result.totalFxfj));
                 $("#lab_totalTzqx").html(result.totalTzqx);
@@ -178,7 +183,8 @@ var VIEWDATA = {
                 }
                 $('#input_htbh2').removeClass("valid_error");
                 $('#nnion_name').html(result.fundName);
-                me.getAdditionalInfo();
+                $('#source_tzje').html((result.bj));
+                me.getAdditionalInfo(result.bj);
             } else {
                 $.message.error("无此合同编号,或合同编号没有登记!!");
                 $('#input_htbh2').addClass("valid_error");

@@ -304,8 +304,3 @@ var FUNDWTSTATUS = {
         return this.urls[status_id - 1];
     }
 };
-var Context = {
-    id: 1,
-    name: 'administrator',
-    loginuser: 'administrator'
-};
