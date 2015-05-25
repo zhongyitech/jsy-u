@@ -26,22 +26,18 @@
         if(idStr){
             print.empty();
             var PayRecord=$.project.domain(idStr,"com.jsy.project.PayRecord");
-            var TSProject=$.project.domain(idStr,"com.jsy.project.TSProject");
-            var BankAccount=$.project.domain(idStr,"com.jsy.bankConfig.BankAccount");
-            var Fund=$.project.domain(idStr,"com.jsy.fundObject.Fund");
-            var FundCompanyInformation=$.project.domain(idStr,"com.jsy.fundObject.FundCompanyInformation");
 
             var item=PayRecord.getItem(idStr);
-            var project = TSProject.getItem(item.project.id);
+            var project = $.project.domain(item.project.id,"com.jsy.project.TSProject").getItem(item.project.id);
             var bankAccount;
             if(item.bankAccountFrom){
-                bankAccount = BankAccount.getItem(item.bankAccountFrom.id);
+                bankAccount = $.project.domain(item.bankAccountFrom.id,"com.jsy.bankConfig.BankAccount").getItem(item.bankAccountFrom.id);
             }
 
-            var fund = Fund.getItem(item.fund.id);
+            var fund = $.project.domain(item.fund.id,"com.jsy.fundObject.Fund").getItem(item.fund.id);
             var company;
-            if(fund.funcCompany){
-                company = FundCompanyInformation.getItem(fund.funcCompany.id);
+            if(fund && fund.funcCompany){
+                company = $.project.domain(fund.funcCompany.id,"com.jsy.fundObject.FundCompanyInformation").getItem(fund.funcCompany.id);
             }
 
 
