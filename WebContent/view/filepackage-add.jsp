@@ -66,7 +66,7 @@
                         <label >项目名称： </label>
                     </div>
                     <div class="form-input col-md-4">
-                        <input type="text" id="projectName"/>
+                        <input type="text" id="projectName" placeholder="自动联想"/>
                     </div>
                     <div class="form-label col-md-2   ">
                         <label >基金名称： </label>
