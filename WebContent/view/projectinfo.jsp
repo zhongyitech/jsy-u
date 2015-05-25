@@ -254,16 +254,34 @@
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>
                     </div>
-                    <div class="content-box-wrapper">
+                    <div class="content-box-wrapper" id="oagrather_form">
                         <div class="form-row">
-                            <div class="form-label col-md-2">
-                                <label >评审结果：</label>
-                            </div>
+                            <div>
+                                <div id="oa_gather_others_files">
+                                    <div id="exist_oa_gather_others">
 
-                            <div class="form-input col-md-4">
-                                通过
+                                    </div>
+                                    <div>
+                                        <div class="form-input col-md-10">
+                                            <input type="button" id="oa_gather_add_file" value="添加其他文件" style="width: 100px;">
+                                        </div>
+                                        <div class="form-input col-md-4">
+                                            <input id="oa_gather_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                        </div>
+                                        <div class="form-input col-md-6">
+                                            <textarea id="oa_gather_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
+                        </div>
+                        <br />
+                        <div class="form-row pad3B">
+                            <div>
+                                <button class="but-ui btn primary-bg large" type="button">
+                                    <span class="button-content" id="complete_oagather">提交</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -387,18 +405,37 @@
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>
                     </div>
-                    <div class="content-box-wrapper">
+                    <div class="content-box-wrapper" id="research_form">
                         <div class="form-row">
-                            <div class="form-label col-md-2   ">
-                                <label >评审结果：</label>
-                            </div>
+                            <div>
+                                <div id="oa_research_others_files">
+                                    <div id="exist_oa_research_others">
 
-                            <div class="form-input col-md-4">
-                                通过
+                                    </div>
+                                    <div>
+                                        <div class="form-input col-md-10">
+                                            <input type="button" id="oa_research_add_file" value="添加其他文件" style="width: 100px;">
+                                        </div>
+                                        <div class="form-input col-md-4">
+                                            <input id="oa_research_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                        </div>
+                                        <div class="form-input col-md-6">
+                                            <textarea id="oa_research_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
+                        </div>
+                        <br />
+                        <div class="form-row pad3B">
+                            <div>
+                                <button class="but-ui btn primary-bg large" type="button">
+                                    <span class="button-content" id="complete_oa_research">提交</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- flow instance -->
@@ -784,16 +821,34 @@
                             <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                         </a>
                     </div>
-                    <div class="content-box-wrapper">
+                    <div class="content-box-wrapper" id="makecontact_form">
                         <div class="form-row">
-                            <div class="form-label col-md-2   ">
-                                <label >评审结果：</label>
-                            </div>
+                            <div>
+                                <div id="oa_makecontact_others_files">
+                                    <div id="exist_oa_makecontact_others">
 
-                            <div class="form-input col-md-4">
-                                通过
+                                    </div>
+                                    <div>
+                                        <div class="form-input col-md-10">
+                                            <input type="button" id="oa_makecontact_add_file" value="添加其他文件" style="width: 100px;">
+                                        </div>
+                                        <div class="form-input col-md-4">
+                                            <input id="oa_makecontact_attachment_1"  class="input-file" name="attachment" type="file" multiple>
+                                        </div>
+                                        <div class="form-input col-md-6">
+                                            <textarea id="oa_makecontact_attachment_txt_1"  name="input_text" class="small-textarea" placeholder="备注栏"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
+                        </div>
+                        <br />
+                        <div class="form-row pad3B">
+                            <div>
+                                <button class="but-ui btn primary-bg large" type="button">
+                                    <span class="button-content" id="complete_oamakecontact">提交</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

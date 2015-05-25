@@ -29,15 +29,22 @@ App.Tools = {
         descdiv.append(descarea);
 
 
-        var deldiv = $('<div class="form-input col-md-2">');
-        var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-        delspan.click(function () {
-            console.log("del",obj);
+        $.each(obj.files, function(index,entry){
+            var deldiv = $('<div class="form-input col-md-2">');
+            var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+            delspan.click(function () {
+                console.log("del",entry);
+                $.io.del({
+                    url:"/api/project/delProjectFile2",
+                    params:{file_id:entry.filePath}
+                }).success(function(){
+                    $.message.log("删除成功："+entry.filePath);
+                });
+            });
+            deldiv.append(delspan);
+            appenddiv.append(descdiv);
+            appenddiv.append(deldiv);
         });
-        deldiv.append(delspan);
-
-        appenddiv.append(descdiv);
-        appenddiv.append(deldiv);
 
         others_files.append(appenddiv);
 

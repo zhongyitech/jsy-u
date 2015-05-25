@@ -233,6 +233,10 @@ App.MakeContact = {
             var data = {url: '/api/project/complete_makeContact', entity: JSON.stringify(model)};
             $.io.post(data).success(function(){
                 window.location.href = "projectinfo.jsp?id="+me.projectid;
+            }).error(function(data){
+                $.message.log(data);
+            }).fail(function(data){
+                $.message.log(data);
             });
 
         });
