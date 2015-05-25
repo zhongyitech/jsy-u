@@ -129,7 +129,7 @@ var VIEWDATA = {
             yfsysjd: $('#lab_yfsy_descript').html().trim(),
             yfsyze: this.item.paysy_amount,
             xjjmc: $("#fundselect").find("option:selected").text().trim(),
-            xhtbh: $('#input_htbh').val().trim(),
+            xhtbh: $('#inew_htbh').val().trim(),
 
             kcwyjbl: 0,
             kcwyj: 0,
@@ -355,7 +355,7 @@ var CUSTOMER = {
         });
 
         if (rest_result[REST.RESULT_KEY]) {
-            item =(rest_result[REST.RESULT_KEY]);
+            item = (rest_result[REST.RESULT_KEY]);
         }
         return item;
     }
