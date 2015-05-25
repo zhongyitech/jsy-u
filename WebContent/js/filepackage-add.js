@@ -32,6 +32,7 @@ var VIEWDATA = {
         });
 
         $("#transferDate").val(DATEFORMAT.toDate(new Date()));
+
     },
 
     init_event: function () {
@@ -117,6 +118,34 @@ var VIEWDATA = {
                 } else {
                     var result = JSON.parse(response).rest_result;
                     var suggestions = (result.suggestions);
+                    result.suggestions = suggestions;
+                    return result;
+                }
+            }
+        });
+
+        $("#projectName").autocomplete({
+            serviceUrl: '../rest/auto/get',
+            type: 'POST',
+            params: {
+                url: '/api/project/nameLike'
+            },
+            paramName: 'params',
+            onSelect: function (suggestion) {
+                //console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                $("#projectName").val(suggestion.value);
+            },
+            transformResult: function (response) {
+                //clear old value
+                $("#projectName").val("");
+                if (!response || response == '') {
+                    return {
+                        "query": "Unit",
+                        "suggestions": []
+                    };
+                } else {
+                    var result = JSON.parse(response);
+                    var suggestions = JSON.parse(result.suggestions);
                     result.suggestions = suggestions;
                     return result;
                 }
