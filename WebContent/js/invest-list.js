@@ -13,10 +13,10 @@ var INVESTMENT_LIST = {
     TABLE_ID: '#investment-table',
     PAGES_ID: '#page-numbers',
     page_start: 0,
-    page_size: 15,
+    page_size: 10,
     pages_select: 1,
     pages_total: 0,
-    pages_size: 15,
+    pages_size: 10,
     filter_keyword: '',
     tr_key: '',
     response: {},
@@ -286,7 +286,7 @@ var FUNDWTSTATUS = {
         "./refund_add.jsp"
     ],
     ini: function () {
-        this.items = ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
+        this.items = ["无", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
     },
     get: function (status_id) {
         if (this.items == null) {
@@ -303,9 +303,4 @@ var FUNDWTSTATUS = {
         }
         return this.urls[status_id - 1];
     }
-};
-var Context = {
-    id: 1,
-    name: 'administrator',
-    loginuser: 'administrator'
 };

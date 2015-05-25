@@ -161,8 +161,14 @@
                     <div class="form-label col-md-3   ">
                         <label >添加合并款：</label>
                     </div>
-                    <div class="form-label col-md-3   ">
+                    <div class="form-input col-md-3   ">
                         <input class="form-input" id="addAmount" />
+                    </div>
+                    <div class="form-label col-md-3  text-right  ">
+                        <label >合资入档案金额：</label>
+                    </div>
+                    <div class="form-label col-md-3   ">
+                        <label class="form-input" id="source_tzje" ></label>
                     </div>
                 </div>
 
@@ -184,7 +190,7 @@
                     <div class="form-label col-md-3   ">
                         <label >合并后起息日：</label>
                     </div>
-                    <div class="form-label col-md-3   ">
+                    <div class="form-input col-md-3   ">
                         <input class="form-input tcal tcalInput" id="new_payDate">
                     </div>
                     <div class="form-label col-md-3  text-right ">
