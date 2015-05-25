@@ -286,7 +286,7 @@ var FUNDWTSTATUS = {
         "./refund_add.jsp"
     ],
     ini: function () {
-        this.items = ["正常", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
+        this.items = ["无", "委托付款", "到期转投", "未到期转投", "基金续投", "退伙申请", "合并申请"];
     },
     get: function (status_id) {
         if (this.items == null) {
