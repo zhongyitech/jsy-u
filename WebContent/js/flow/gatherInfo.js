@@ -211,8 +211,7 @@ App.GatherInfo = {
             });
         }
         if(infoBean.toPublicFilesDesc){
-            var fileli= App.Tools.construct_fileli(obj);
-            $("#toPublicFilesDesc").val(fileli);
+            $("#toPublicFilesDesc").val(infoBean.toPublicFilesDesc);
         }
         //商务计划
         if(infoBean.businessPlanFiles_attachments && infoBean.businessPlanFiles_attachments.length > 0){

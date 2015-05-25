@@ -64,16 +64,16 @@ App.Research = {
 
             var appenddiv = $("<div>");
             var filediv = $('<div class="form-input col-md-4">');
-            var fileinput = $('<input id="attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
+            var fileinput = $('<input id="research_attachment_'+i+'" class="input-file" name="attachment" type="file" multiple>');
             filediv.append(fileinput);
             appenddiv.append(filediv);
             var descdiv = $('<div class="form-input col-md-4">');
-            var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            var descarea = $('<textarea id="research_attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
             descdiv.append(descarea);
             appenddiv.append(descdiv);
 
             var descdiv2 = $('<div class="form-input col-md-4">');
-            var descarea2 = $('<textarea id="attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
+            var descarea2 = $('<textarea id="research_attachment2_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
             descdiv2.append(descarea2);
             appenddiv.append(descdiv2);
 
