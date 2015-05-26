@@ -813,7 +813,8 @@ var FUND_FORM = {//基金表单
             return {text: item.mapName, value: item.id}
         });
         $("#fundCompany").unbind().bind("change",function(){
-            $("#fund_name").val($(this).text());
+            var text=$(this).find("option:selected").text();
+            $("#fund_name").val(text);
         });
     },
     iniStatus: function () {
