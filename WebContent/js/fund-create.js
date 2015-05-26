@@ -296,7 +296,7 @@ var TCFPFW_LIST = {//提成分配范围
             }
 
             item["rateBefore"] = tr.find('select[name="rateBefore"]').val();
-            item["rate"] =this.rateformat.toNumber(tr.find('input[name="rate"]').val());
+            item["rate"] = this.rateformat.toNumber(tr.find('input[name="rate"]').val());
 
             if (JSON.stringify(item) != '{}') {
                 items.push(item);
@@ -661,55 +661,6 @@ var SYLFW_LIST = {//收益率范围
                 $(this).val(rate);
             }
         });
-
-        //var min_td = $('<td class="form-input"></td>');
-        //tr.append(min_td);
-        //var min_div = $('<div class="form-input col-md-12"></div>');
-        //min_td.append(min_div);
-        //var min_input = $('<input name="min"/>');
-        //min_div.append(min_input);
-        //$(min_input).keyup(function () {
-        //    var money = STRINGFORMAT.toYuan($(this).val());
-        //    $(this).val(money);
-        //});
-        //
-        //var label = $('<td><span class="form-label"> ≤ 金额 < </span></td>');
-        //tr.append(label);
-        //
-        //var max_td = $('<td class="form-input"></td>');
-        //tr.append(max_td);
-        //var max_div = $('<div class="col-md-12"></div>');
-        //max_td.append(max_div);
-        //var max_input = $('<input name="max"/>');
-        //max_div.append(max_input);
-        //$(max_input).keyup(function () {
-        //    var money = STRINGFORMAT.toYuan($(this).val());
-        //    $(this).val(money);
-        //});
-        //var yield_td = $('<td class="form-input"></td>');
-        //tr.append(yield_td);
-        //var yield_div = $('<div class="col-md-12"></div>');
-        //yield_td.append(yield_div);
-        //var yield_input = $('<input name="rate"/>');
-        //yield_div.append(yield_input);
-        //$(yield_input).keyup(function (e) {
-        //    if (e.which == 8) {
-        //        $(this).val('');
-        //    } else {
-        //        var rate = STRINGFORMAT.toRate($(this).val());
-        //        $(this).val(rate);
-        //    }
-        //});
-        //
-        //var vers_td = $('<td class="form-input"></td>');
-        //tr.append(vers_td);
-        //var vers_div = $('<div class="col-md-12"></div>');
-        //vers_td.append(vers_div);
-        //var vers_input = $('<input name="vers" placeholder="输入字母"/>');
-        //vers_div.append(vers_input);
-        //$(vers_input).keyup(function (e) {
-        //    $(this).val(me.string_jsy.toVers($(this).val()));
-        //});
     },
     removeTr: function () {//删除选中行
         var table = this.getTable();
@@ -792,11 +743,6 @@ var FUND_FORM = {//基金表单
     },
     ini: function (async) {
         var me = this;
-
-        if (!async) {
-            async = false;
-        }
-
         me.iniStatus();
         me.iniYQMJK();
         me.iniJFMJGM();
@@ -812,8 +758,8 @@ var FUND_FORM = {//基金表单
         $.dom.select("#project", $.io.get({url: "/api/project/selectList"}), function (item) {
             return {text: item.mapName, value: item.id}
         });
-        $("#fundCompany").unbind().bind("change",function(){
-            var text=$(this).find("option:selected").text();
+        $("#fundCompany").unbind().bind("change", function () {
+            var text = $(this).find("option:selected").text();
             $("#fund_name").val(text);
         });
     },
