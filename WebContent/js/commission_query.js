@@ -187,8 +187,8 @@ var VIEWDATA = {
                 row.append('<td>' + NUMBERFORMAT.toRate(items[i]["tcl"]) + '</td>');
                 row.append('<td><span class="text-overflow">' + ( (items[i]["lx"] == 0) ? '业务提成' : '管理提成' ) + '</span></td>');
                 row.append('<td><span class="text-overflow">' +  NUMBERFORMAT.toYuan(items[i]["tcje"]) + '</span></td>');
-                row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['tcje']) + '</span></td>');
                 row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['fpje']) + '</span></td>');
+                row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['sj']) + '</span></td>');
                 row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['fkje']) + '</span></td>');
             }
         }
