@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="form-input col-md-10">
-                                <input type="text" name="name" class="fundName">
+                                <input type="text" name="name" class="fundName" id="fund_name">
                             </div>
                         </div>
                         <div class="form-row">
