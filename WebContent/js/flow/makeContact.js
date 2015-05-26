@@ -126,14 +126,14 @@ App.MakeContact = {
             //    alert("请为给项目创建基金，并进行关联");
             //    return false;
             //}
-            ////基金
-            //var fund = $("#relate_fund").html();
-            //if(fund && fund!=""){
-            //    //model.fund = fund;
-            //}else{
-            //    alert("请为给项目创建基金，并进行关联");
-            //    return false;
-            //}
+            //基金
+            var fund = $("#relate_fund").html();
+            if(fund && fund!=""){
+                //model.fund = fund;
+            }else{
+                alert("请为给项目创建基金，并进行关联");
+                return false;
+            }
             //管理费率
             var manage_per = $("#manage_per").val();
             if(manage_per && manage_per!=""){
@@ -253,6 +253,14 @@ App.MakeContact = {
         $("#borrow_per").change(function(){
             $(this).val(NUMBERFORMAT.toRate($(this).val()));
         });
+        $("#interest_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+        $("#daycount_per").change(function(){
+            $(this).val(NUMBERFORMAT.toRate($(this).val()));
+        });
+
+
     },
     formatPer: function(perData){
         if(this.isNumber(perData)){
@@ -300,6 +308,8 @@ App.MakeContact = {
         $("#interest_per").val(infoBean.interest_per);
         $("#year1").val(infoBean.year1);
         $("#year2").val(infoBean.year2);
+        $("#daycount_per").val(infoBean.daycount_per);
+
         $('input[name="interestType"][value="'+infoBean.interestType+'"]:radio').attr("checked","checked");
 
         if(infoBean.signers && infoBean.signers.length > 0){
@@ -356,37 +366,8 @@ App.MakeContact = {
                 var i =$("div .input-file","#makeContact_others_files").length+1;
                 var others_files = $("#exist_makeContact_others");
 
-                var appenddiv = $("<div>");
-                var filediv = $('<div class="form-input col-md-4">');
-                var div = $('<div>');
-                var ul = $('<ul>');
-                div.append(ul);
-                filediv.append(div);
-                appenddiv.append(filediv);
 
-                var descdiv = $('<div class="form-input col-md-4">');
-                var descarea = $('<textarea id="attachment_txt_'+i+'" name="input_text" class="small-textarea" placeholder="备注栏"></textarea>');
-                descarea.val(obj.desc);
-                descdiv.append(descarea);
-
-
-                var deldiv = $('<div class="form-input col-md-2">');
-                var delspan = $('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
-                delspan.click(function () {
-                    console.log("del",obj);
-                });
-                deldiv.append(delspan);
-
-                appenddiv.append(descdiv);
-                appenddiv.append(deldiv);
-
-                others_files.append(appenddiv);
-
-                $.each(obj.files,function(index2,obj2){
-                    var fileli= $("<li><a href='/jsy/rest/file/download?name="+obj2.fileName+"&path="+obj2.filePath+"'>"+obj2.fileName+"</li>");
-                    ul.append(fileli);
-                });
-
+                App.Tools.construct_other_fileDiv(i ,others_files , obj);
             });
         }
     },

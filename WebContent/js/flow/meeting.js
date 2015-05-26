@@ -97,7 +97,7 @@ App.Meeting = {
             });
         }
         if(infoBean.meetingDesc) {
-            $("#meetingDesc").val(meetingDesc.meetingDesc);
+            $("#meetingDesc").val(infoBean.meetingDesc);
         }
 
         //other
