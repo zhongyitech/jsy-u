@@ -37,33 +37,25 @@ var VIEWDATA = {
     deposit: {},
     customer: {},
     init: function () {
-        //http://192.168.1.59:8080/jsy-rest/api/commissionInfo/getcommissionInfo
         this.getView();
         this.set_event();
     },
     set_event: function () {
         var me = this;
-        //$('#select_sqsh').on('change', function (e) {
+        //$("select[id^=select_sqsh]").on('change', function (e) {
         //    //var optionSelected = $("option:selected", this);
         //    //var valueSelected = this.value;
-        //    console.log($( "#select_sqsh").val());
-        //    console.log(me.deposit.getData(sfgs,rate,$("#select_sqsh").val(),amount));
+        //    var item_id = $(this).attr("id").replace("select_sqsh_", "");
+        //    me.count_auto_value(item_id, me);
+        //
         //});
-
-        $("select[id^=select_sqsh]").on('change', function (e) {
-            //var optionSelected = $("option:selected", this);
-            //var valueSelected = this.value;
-            var item_id = $(this).attr("id").replace("select_sqsh_", "");
-            me.count_auto_value(item_id, me);
-
-        });
-        $("input[id^=sl_]").on('change', function (e) {
-            //var optionSelected = $("option:selected", this);
-            //var valueSelected = this.value;
-            var item_id = $(this).attr("id").replace("sl_", "");
-            me.count_auto_value(item_id, me);
-
-        });
+        //$("input[id^=sl_]").on('change', function (e) {
+        //    //var optionSelected = $("option:selected", this);
+        //    //var valueSelected = this.value;
+        //    var item_id = $(this).attr("id").replace("sl_", "");
+        //    me.count_auto_value(item_id, me);
+        //
+        //});
 
         //税率 double sl
         //税前还是税后 boolean sqsh
@@ -86,7 +78,6 @@ var VIEWDATA = {
                 item.sl = $("#sl_" + item_id).val();
                 selected.push(item);
             });
-
             me.post_request(selected);
         });
 
@@ -105,27 +96,6 @@ var VIEWDATA = {
         });
 
     },
-    count_auto_value: function (item_id, me) {
-        var sfgs = $("#sfgs_" + item_id).val();
-        if (sfgs == 'undefined') {
-            sfgs = false;
-        }
-        var rate = $("#sl_" + item_id).val();
-        var amount = $("#tcje_" + item_id).attr("amount");
-        var ratetbefore = $("#select_sqsh_" + item_id).val();
-
-        //console.log(amount);
-        var deposit = me.deposit.getData(JSON.parse(sfgs), parseFloat(rate), JSON.parse(ratetbefore), parseFloat(amount));
-
-        $("#pay_" + item_id).val(deposit.pay);
-        $("#fpje_" + item_id).html(STRINGFORMAT.toYuan(deposit.fp_amount));
-        $("#sj_" + item_id).html(STRINGFORMAT.toYuan(deposit.rate_amount.toFixed(0)));
-        $("#fkje_" + item_id).html(STRINGFORMAT.toYuan(deposit.pay_amount));
-
-        $("#c_fpje_" + item_id).val(deposit.fp_amount);
-        $("#c_sj_" + item_id).val(deposit.rate_amount);
-        $("#c_fkje_" + item_id).val(deposit.pay_amount);
-    },
     getView: function () {
         this.getItems();
     },
@@ -136,19 +106,13 @@ var VIEWDATA = {
             return;
         }
         for (var i = 0; i < arrayLength; i++) {
-
-//            var params = JSON.stringify({jsonStr: items[i]});
             var data = {url: '/api/commissionInfo/addPayment', params: items[i]};
-
             $.io.post(data).success(function (result) {
                 window.location.href = "commission_apply.jsp";
             }).error(function (error) {
                 alert("申请操作出错了:" + error.msg);
             });
         }
-//        if (!isAllSuc) {
-//            alert('提交过程中，存在部分提交时错误.');
-//        }
     },
     getFilter: function () {//获取过滤条件
         var from_input = $(this.FROM_ID);
@@ -174,16 +138,18 @@ var VIEWDATA = {
     getItems: function () {
         var me = this;
         me.getFilter();
-        //var entity = JSON.stringify({type: this.filter_status, startposition: me.page_start, pagesize: me.page_size, keyword: me.filter_keyword, startsaledate1: me.filter_from, startsaledate2: me.filter_to});
-
-        var condition = {'type': $('#filter-status').val()  };
+        var condition = {'type': $('#filter-status').val()};
         var rgrq = DATEFORMAT.toRest($('#filter_from').val());
         var endrqrq = DATEFORMAT.toRest($('#filter_to').val());
 
-        var entity = {startposition: me.page_start, pagesize: me.page_size, type: 'and', condition: condition, order: {type: "asc"}};
-        //investment-print.js
+        var entity = {
+            startposition: me.page_start,
+            pagesize: me.page_size,
+            type: 'and',
+            condition: condition,
+            order: {type: "asc"}
+        };
         var data = {url: '/api/commissionInfo/getcommissionInfo', entity: entity};
-
         $.io.post(data)
             .success(function (result, page) {
                 me.success(result, page);
@@ -199,7 +165,7 @@ var VIEWDATA = {
         $("#query_table tbody").empty();
         var table = $("#query_table");
         if (table && items) {
-            for (var i=0;i<items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 var enable = "";
                 var row = $("<tr></tr>");
                 if (items[i]['type'] != 0) {
@@ -209,82 +175,21 @@ var VIEWDATA = {
                 table.append(row);
 
                 row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="' + items[i]["id"] + '"' + enable + '></span></td>');
-//                if(items[i]["type"]==0){
-//                    row.append('<td><span class="text-overflow fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-//                }else{
-//                    $(row).attr("style","background-color: #2381e9;");
-//                    row.append('<td><span class="text-overflow fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-//                }
-
                 row.append('<td><span class="text-overflow">' + items[i]["ywjl"] + '</span></td>');
                 row.append('<td><span class=" text-overflow funds-item-name" title="' + items[i]["fundName"] + '">' + items[i]["fundName"] + '</span></td>');
                 row.append('<td><span class="text-overflow">' + this.dateformat.toDate(items[i]["rgrq"]) + '</span></td>');
                 row.append('<td><span class="text-overflow">' + items[i]["customer"] + '</td>');
                 row.append('<td><span class="text-overflow">' + STRINGFORMAT.toYuan(items[i]["tzje"]) + '</span></td>');
-                row.append('<td><span class="text-overflow">' + items[i]["syl"] + '</span></td>');
+                row.append('<td><span class="text-overflow">' +NUMBERFORMAT.toRate(items[i]["syl"] )+ '</span></td>');
                 row.append('<td><span class="text-overflow">' + items[i]["rgqx"] + '</span></td>');
-
-                if (items[i]["type"] == 0) {
-                    if (JSON.parse(items[i]["sqsh"])) {
-                        row.append('<td>' +
-                            "<select id='select_sqsh_" + items[i]["id"] + "'>" +
-                            "<option selected=\"selected\" value =\"true\">税前</option>" +
-                            "<option value =\"false\">税后</option>" +
-                            "</select>" +
-                            '</td>');
-                    } else {
-                        row.append('<td>' +
-                            "<select id='select_sqsh_" + items[i]["id"] + "'>" +
-                            "<option value =\"true\">税前</option>" +
-                            "<option selected=\"selected\" value =\"false\">税后</option>" +
-                            "</select>" +
-                            '</td>');
-
-                    }
-
-
-                    row.append('<td><input size="4" id="sl_' + items[i]["id"] + '" value="' + items[i]["sl"] + '" /></td>');
-                } else {
-                    if (JSON.parse(items[i]["sqsh"])) {
-                        row.append('<td>' +
-                            "<select id='select_sqsh_" + items[i]["id"] + "' disabled='disabled'>" +
-                            "<option selected=\"selected\" value =\"true\">税前</option>" +
-                            "<option value =\"false\">税后</option>" +
-                            "</select>" +
-                            '</td>');
-                    } else {
-                        row.append('<td>' +
-                            "<select id='select_sqsh_" + items[i]["id"] + "' disabled='disabled'>" +
-                            "<option value =\"true\">税前</option>" +
-                            "<option selected=\"selected\" value =\"false\">税后</option>" +
-                            "</select>" +
-                            '</td>');
-                    }
-
-
-                    row.append('<td><input disabled="disabled" size="4" id="sl_' + items[i]["id"] + '" value="' + items[i]["sl"] + '" /></td>');
-                }
-
-                row.append('<td>' + items[i]["tcl"] + '</td>');
-                if (items[i]["lx"] == 0) {
-                    row.append('<td><span class="text-overflow">业务提成</span></td>');
-                } else {
-                    row.append('<td><span class="text-overflow">管理提成</span></td>');
-                }
-
-                row.append('<td><span id="tcje_' + items[i]["id"] + '"  amount="' + items[i]["tcje"] + '" >' + STRINGFORMAT.toYuan(items[i]["tcje"]) + '</span></td>');
-                row.append('<td><span id="fpje_' + items[i]["id"] + '"></span></td>');
-                row.append('<td><span id="sj_' + items[i]["id"] + '"></span></td>');
-                row.append('<td><span id="fkje_' + items[i]["id"] + '"></span></td>');
-                row.append('<input type="hidden" id="sfgs_' + items[i]["id"] + '" value="' + items[i]["sfgs"] + '"/>');
-                row.append('<input type="hidden" id="pay_' + items[i]["id"] + '" value=""/>');
-
-                row.append('<input type="hidden" id="c_fpje_' + items[i]["id"] + '" value=""/>');
-                row.append('<input type="hidden" id="c_sj_' + items[i]["id"] + '" value=""/>');
-                row.append('<input type="hidden" id="c_fkje_' + items[i]["id"] + '" value=""/>');
-
-                this.count_auto_value(items[i]["id"], this);
-
+                row.append('<td><span class="text-overflow">' + ((items[i]["sqsh"]) ? "税前" : "税后" ) + '</span></td>');
+                row.append('<td><span class="text-overflow">' +(items[i]['sl']) + '</span></td>');
+                row.append('<td>' + NUMBERFORMAT.toRate(items[i]["tcl"]) + '</td>');
+                row.append('<td><span class="text-overflow">' + ( (items[i]["lx"] == 0) ? '业务提成' : '管理提成' ) + '</span></td>');
+                row.append('<td><span class="text-overflow">' +  NUMBERFORMAT.toYuan(items[i]["tcje"]) + '</span></td>');
+                row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['tcje']) + '</span></td>');
+                row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['fpje']) + '</span></td>');
+                row.append('<td><span class="text-overflow">' + NUMBERFORMAT.toYuan(items[i]['fkje']) + '</span></td>');
             }
         }
 
@@ -369,11 +274,11 @@ var COMMISSION_REPORT = {
                 toolbox: {
                     show: true,
                     feature: {
-                        mark: { show: true },
-                        dataView: { show: true, readOnly: false },
-                        magicType: { show: true, type: ['line', 'bar'] },
-                        restore: { show: true },
-                        saveAsImage: { show: true }
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        magicType: {show: true, type: ['line', 'bar']},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
                     }
                 },
                 calculable: true,

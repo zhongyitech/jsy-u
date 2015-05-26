@@ -116,11 +116,13 @@ var VIEWDATA = {
             return;
         }
         var me = this;
-        //var params = JSON.stringify({payIds: items});
         var params = items.join(",");
         var singlePay = true;
         if (items.length > 1) {
             singlePay = !confirm("选择了多条兑付数据,是否要批量量转账?");
+        } else {
+            if (!confirm('您确定要对此业务提成单进行支付操作？'))
+                return;
         }
         if (singlePay) {
             $.each(items, function (i, item) {
@@ -128,6 +130,8 @@ var VIEWDATA = {
                 $.io.get(data).success(function (result) {
                     $.message.log("申请付款成功! 银行受理流水号为:" + result.FrontLogNo);
                     alert("申请付款成功! 银行受理流水号为:" + result.FrontLogNo);
+                }).error(function (error) {
+                    alert('申请付款操作失败:\n ' + error.msg);
                 });
             });
             me.getItems();
@@ -138,31 +142,10 @@ var VIEWDATA = {
                 $.message.log("申请付款成功!");
                 alert("申请付款成功!");
                 me.getItems();
+            }).error(function (error) {
+                alert('申请付款操作失败:\n ' + error.msg);
             });
         }
-
-        //$.ajax({
-        //	type: 'post',
-        //	url: '../rest/item/get',
-        //	data: data,
-        //	dataType: 'json',
-        //	async: false,
-        //	success: function(result){
-        //		console.log(result);
-        //		if(result && result.rest_status && result.rest_status == "suc"){
-        //			me.result = result;
-        //			console.log("relaod page...");
-        //		}
-        //		window.location.href = "commission_apply.jsp";
-        //	},
-        //	error: function(result){
-        //		isAllSuc = false;
-        //		if(LOGIN.error(result)){
-        //			return;
-        //		}
-        //		alert('提交时错误.');
-        //	}
-        //});
     },
     getFilter: function () {//获取过滤条件
         var from_input = $(this.FROM_ID);
@@ -170,19 +153,15 @@ var VIEWDATA = {
         if (this.filter_from) {
             this.filter_from = this.dateformat.toRest(this.filter_from);
         }
-
         var to_input = $(this.TO_ID);
         this.filter_to = to_input.val();
         if (this.filter_to) {
             this.filter_to = this.dateformat.toRest(this.filter_to);
         }
-
         var status_select = $(this.STATUS_ID);
         this.filter_status = status_select.val();
-
         var keyword_input = $(this.KEYWORD_ID);
         this.filter_keyword = keyword_input.val();
-
     },
 
     getItems: function () {
@@ -199,33 +178,7 @@ var VIEWDATA = {
             me.setTable(result);
             me.setPage(pager);
         });
-        //$.ajax({
-        //	type: 'post',
-        //	url: '../rest/item/post',
-        //	data: data,
-        //	dataType: 'json',
-        //	async: false,
-        //	success: function(result){
-        //		if(result && result.rest_status && result.rest_status == "suc"){
-        //			me.result = result;
-        //			me.success(result);
-        //		}
-        //	},
-        //	error: function(result){
-        //		if(LOGIN.error(result)){
-        //			return;
-        //		}
-        //		alert('获取基金信息失败，请刷新页面.');
-        //	}
-        //});
     },
-    //
-    //success: function(result){
-    //	this.items = JSON.parse(result['rest_result']);
-    //	this.setTable(this.items);
-    //	this.setPage(result);
-    //},
-
 
     setTable: function (items) {
         $("#ywtc_table tbody").empty();
@@ -234,15 +187,7 @@ var VIEWDATA = {
             for (var i = 0; i < items.length; i++) {
                 var row = $("<tr></tr>");
                 table.append(row);
-
                 row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="' + items[i]["id"] + '"></span></td>');
-                //if(items[i]["status"]==0){
-                //	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-                //}else {
-                //	$(row).attr("style","background-color: #2381e9;");
-                //	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-                //}
-
                 row.append('<td><span class="funds-item-name" title="' + items[i]["bmjl"] + '">' + items[i]["bmjl"] + '</span></td>');
                 row.append('<td>' + items[i]["fundName"] + '</td>');
                 row.append('<td>' + STRINGFORMAT.toYuan(items[i]["yfk"]) + '</td>');
@@ -258,10 +203,8 @@ var VIEWDATA = {
                 } else {
                     row.append('<td>未知状态</td>');
                 }
-
             }
         }
-
     },
 
     setPage: function (response) {
@@ -303,44 +246,11 @@ var VIEWDATA = {
                 status: me.filter_status2
             }
         };
-
-        //var params = JSON.stringify({type: "gl"});
-        //var entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2, startsaledate1: me.filter_from2, startsaledate2: me.filter_to2});
-        //if(me.filter_from2==""||me.filter_to2==""){
-        //	entity = JSON.stringify({startposition: me.page_start2, pagesize: me.page_size2, keyword: me.filter_keyword2});
-        //}
-        //var data = {url: '/api/payment/getCommissions', params: params, entity: entity};
-
         $.io.post(data).success(function (result, pager) {
             me.setTable2(result);
             me.setPage2(pager);
         });
-        //$.ajax({
-        //	type: 'post',
-        //	url: '../rest/item/post',
-        //	data: data,
-        //	dataType: 'json',
-        //	async: false,
-        //	success: function(result){
-        //		if(result && result.rest_status && result.rest_status == "suc"){
-        //			me.result = result;
-        //			me.success2(result);
-        //		}
-        //
-        //	},
-        //	error: function(result){
-        //		if(LOGIN.error(result)){
-        //			return;
-        //		}
-        //		alert('获取基金信息失败，请刷新页面.');
-        //	}
-        //});
     },
-    //success2: function(result){
-    //	this.items = JSON.parse(result['rest_result']);
-    //	this.setTable2(this.items);
-    //	this.setPage2(result);
-    //},
     setTable2: function (items) {
         $("#gltc_table tbody").empty();
 
@@ -353,13 +263,6 @@ var VIEWDATA = {
                 table.append(row);
 
                 row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="' + items[i]["id"] + '"></span></td>');
-                //if(items[i]["status"]==0){
-                //	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" value="'+ items[i]["id"] +'"></span></td>');
-                //}else{
-                //	$(row).attr("style","background-color: #2381e9;");
-                //	row.append('<td><span class="fund-field" title="' + items[i]["id"] + '"><input type="checkbox" class="item-checkbox" name="checkbox" disabled="disabled" value="'+ items[i]["id"] +'"></span></td>');
-                //}
-
                 row.append('<td><span class="funds-item-name" title="' + items[i]["bmjl"] + '">' + items[i]["bmjl"] + '</span></td>');
                 row.append('<td>' + items[i]["fundName"] + '</td>');
                 row.append('<td>' + STRINGFORMAT.toYuan(items[i]["yfk"]) + '</td>');

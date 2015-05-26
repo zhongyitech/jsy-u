@@ -222,12 +222,10 @@
             },
             post: function () {
                 $("#loader-overlay").show();
-
                 return request(RestURI._post, arguments);
             },
             put: function () {
                 $("#loader-overlay").show();
-
                 return request(RestURI._put, arguments);
             },
             del: function () {
