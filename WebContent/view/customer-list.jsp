@@ -36,7 +36,7 @@
                 <td><span class="text-overflow">{$T.item["credentialsType"]}</span></td>
                 <td><span class="text-overflow">{$T.item["credentialsNumber"]}</span></td>
                 <td><span class="text-overflow">{$T.item["country"]}</span></td>
-                <td><span class="text-overflow">{$T.item["fddbr"]}</span></td>
+                <td><span class="text-overflow">{ ($T.item["fddbr"] || '-')}</span></td>
                 <td><span class="text-overflow">{$T.item["phone"]}</span></td>
                 <td><span class="text-overflow">{$T.item["remark"]}</span></td>
                 <td><span class="text-overflow"><button class="detail-btn" data-itemid="{$T.item$index}">编辑</button>

@@ -375,18 +375,17 @@ var INVESTMENT_ITEM = {
         this.task(450);
     },
     task: function (time) {
-        var finish = $('.buttonFinish');
-        if (finish) {
-            finish.attr('onclick', 'INVESTMENT_ITEM.save()');
-            if (finish.attr('onclick')) {
-                //IE8需要重新渲染
-//					$('.toggle-button').click();
-//					$('.toggle-button').click();
-                return;
-            }
-        }
-
-        setTimeout("INVESTMENT_ITEM.task()", time);
+//        var finish = $('.buttonFinish');
+//        if (finish) {
+//            finish.attr('onclick', 'INVESTMENT_ITEM.save()');
+//            if (finish.attr('onclick')) {
+//                //IE8需要重新渲染
+////					$('.toggle-button').click();
+////					$('.toggle-button').click();
+//                return;
+//            }
+//        }
+//        setTimeout("INVESTMENT_ITEM.task()", time);
     },
     setHTBH: function () {
         var me = this;
@@ -659,35 +658,6 @@ var INVESTMENT_ITEM = {
         me.setNHSYL();
     },
     setYWTCBL: function () {
-        var me = this;
-        var tcbl = me.tcbl;
-        if (tcbl) {
-            var tcfp_string = tcbl[this.nianhua.TICHENG_KEY];
-            if (tcfp_string) {
-                var tcfp = (tcfp_string);
-                var sfbx = tcfp[this.tcfpfw.SFBX_KEY];
-                if (sfbx) {
-                    //根据金额计算出的年化收益率
-                    var jjsy = tcbl[this.nianhua.SHOUYI_KEY];
-                    //设置的个化率
-                    var nhsyl = this.rateformat.toNumber($(me.INVEST_YEARRATE_ID).val());
-                    //获取输入的个化率，并计算出业务比例
-                    if (tcbl.rest_tc.allSell)
-                        $("#lab_pabxiao").html("包销率：" + this.numberformat.toRate(tcbl.rest_tc.investment));
-                    else
-                        $("#lab_pabxiao").html("");
-                    var ywtcbl = NUMBER.toFixed(tcbl.rest_tc.investment - nhsyl);
-                    $(me.INVEST_YEWU_ID).val(this.numberformat.toRate(ywtcbl));
-                } else {
-                    var ywtcbl = tcfp[this.nianhua.YEWU_KEY];
-                    $(me.INVEST_YEWU_ID).val(this.numberformat.toRate(ywtcbl));
-                }
-            } else {
-                $(me.INVEST_YEWU_ID).val('');
-            }
-        } else {
-            $(me.INVEST_YEWU_ID).val('');
-        }
 
     },
     setGLTCBL: function () {
@@ -744,48 +714,6 @@ var INVESTMENT_ITEM = {
         me.setFXRQ();
     },
     setFXRQ: function () {//付息日期
-        var me = this;
-        var rgrq = $(this.INVEST_FROM_ID).val();
-        var paytype = $(this.INVEST_PAYTYPE_ID)[0].value;
-        var print = $(this.INVEST_PRINT_ID);
-        var pays = print.find(this.PRINT_PAYDATE_NAME);
-        for (var i = 0; i < pays.length; i++) {
-            var pay_div = $(pays.get(i));
-            var pay_p = pay_div.find('p');
-            for (var j = 0; j < pay_p.length; j++) {
-                $(pay_p.get(j)).remove();
-            }
-            var last = new Date(rgrq);
-            var dqrq_input = $(this.INVEST_TO_ID);
-            last = DATEFORMAT.toCH(dqrq_input.val());
-            if (paytype == 'N') {
-                pay_div.append('<p class="print-section">付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            } else if (paytype == 'J') {
-                var first = new Date(rgrq);
-                first = first.setMonth(first.getMonth() + 3);
-                first = DATEFORMAT.toCH(first);
-                pay_div.append('<p class="print-section">第一次付息日为<a class="print-underline">' + first + '</a>,</p>');
-
-                var second = new Date(rgrq);
-                second = second.setMonth(second.getMonth() + 6);
-                second = DATEFORMAT.toCH(second);
-                pay_div.append('<p class="print-section">第二次付息日为<a class="print-underline">' + second + '</a>,</p>');
-
-                var third = new Date(rgrq);
-                third = third.setMonth(third.getMonth() + 9);
-                third = DATEFORMAT.toCH(third);
-                pay_div.append('<p class="print-section">第三次付息日为<a class="print-underline">' + third + '</a>,</p>');
-
-                pay_div.append('<p class="print-section">第四次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            } else if (paytype == 'W') {
-                var first = new Date(rgrq);
-                first = first.setMonth(first.getMonth() + 6);
-                first = DATEFORMAT.toCH(first);
-                pay_div.append('<p class="pr-text">第一次付息日为<a class="print-underline">' + first + '</a>,</p>');
-
-                pay_div.append('<p class="pr-text">第二次付息和归还本金日为<a class="print-underline">' + last + '</a>。</p>');
-            }
-        }
     },
     getItem: function () {
         var me = this;
@@ -1146,52 +1074,10 @@ var GUANLI = {
             tcbl_input.val(me.numberformat.toRate(tcbl));
         }
 
-        var money_td = $('<td></td>');
-        tr.append(money_td);
-        var money_div = $('<div class="form-input col-md-12"></div>');
-        money_td.append(money_div);
-        var tcje_input = $('<input name="money"/>');
-        money_div.append(tcje_input);
-        $(tcje_input).keyup(function () {
-            $(this).val(me.stringformat.toYuan($(this).val()));
-        });
-        if (item) {
-            var tcje = item[this.usercommission.TCJE_KEY];
-            tcje_input.val(me.stringformat.toYuan(tcje));
-        }
-
-        var date70_td = $('<td></td>');
-        tr.append(date70_td);
-        var date70_div = $('<div class="form-input col-md-12"></div>');
-        date70_td.append(date70_div);
-        var date70_input = $('<input class="item-date tcal" name="date70"/>');
-        date70_div.append(date70_input);
-        if (item) {
-            var tcffsj = item[this.usercommission.TCFFSJ_KEY];
-            date70_input.val(me.dateformat.toDate(tcffsj));
-        }
-
-        var date20_td = $('<td></td>');
-        tr.append(date20_td);
-        var date20_div = $('<div class="form-input col-md-12"></div>');
-        date20_td.append(date20_div);
-        var date20_input = $('<input class="item-date tcal" name="date20"/>');
-        date20_div.append(date20_input);
-        if (item) {
-            var tcffsj = item[this.usercommission.GLFFSJ2_KEY];
-            date20_input.val(me.dateformat.toDate(tcffsj));
-        }
-
-        var date10_td = $('<td></td>');
-        tr.append(date10_td);
-        var date10_div = $('<div class="form-input col-md-12"></div>');
-        date10_td.append(date10_div);
-        var date10_input = $('<input class="item-date tcal" name="date10"/>');
-        date10_div.append(date10_input);
-        if (item) {
-            var tcffsj = item[this.usercommission.GLFFSJ3_KEY];
-            date10_input.val(me.dateformat.toDate(tcffsj));
-        }
+        tr.append('<td class="form-input"><input name="money" readonly="true" disabled="disabled" value="' + NUMBERFORMAT.toYuan(item.tcje) + '"/></td>');
+        tr.append('<td class="form-input"><input name="date70" readonly="true" disabled="disabled" value="' + me.dateformat.toDate(item.tcffsj) + '"/></td>');
+        tr.append('<td class="form-input"><input name="date20" readonly="true" disabled="disabled" value="' + me.dateformat.toDate(item.glffsj3) + '"/></td>');
+        tr.append('<td class="form-input"><input name="date10" readonly="true" disabled="disabled" value="' + me.dateformat.toDate(item.glffsj2) + '"/></td>');
 
         var skr_td = $('<td></td>');
         tr.append(skr_td);

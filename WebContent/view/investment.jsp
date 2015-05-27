@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-input col-md-4">
-            <input type="text" id="invest-number" readonly="true">
+            <input type="text" id="invest-number" disabled="disabled" readonly="true" class="disabled" value=""/>
         </div>
 
         <div class="form-label col-md-2">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-input col-md-4">
-            <select readonly="true" id="invest-status" class="disabled">
+            <select readonly="true" id="invest-status" class="disabled" disabled="disabled">
                 <option value="2">正常</option>
             </select>
         </div>
@@ -176,7 +176,6 @@
                 <option value="M">月付(M)</option>
                 <option value="D">立即付息(D)</option>
                 <option value="W">半年付(W)</option>
-
             </select>
         </div>
         <div class="form-label col-md-2">
@@ -214,13 +213,13 @@
                 <th class="text-center"><span class="text-overflow"><input
                         type="checkbox"></span></th>
                 <th class="text-center"><span class="text-overflow">(*)提成人</span></th>
-                <th class="text-center"><span class="text-overflow">(*)比例</span></th>
-                <th class="text-center"><span class="text-overflow">(*)业务提成金额</span>
+                <th class="text-center" width="80px"><span class="text-overflow">(*)比例</span></th>
+                <th class="text-center" width="80px"><span class="text-overflow">提成金额</span>
                 </th>
-                <th class="text-center"><span class="text-overflow" title="提成应发放时间">(*)提成应发放时间</span>
+                <th class="text-center" width="90px"><span class="text-overflow" title="提成应发放时间">提成应发放时间</span>
                 </th>
                 <th class="text-center"><span class="text-overflow">(*)收款人</span></th>
-                <th class="text-center" width="50px;"><span class="text-overflow">类型</span></th>
+                <th class="text-center" width="60px;"><span class="text-overflow">类型</span></th>
                 <%--<th class="text-center"><span class="text-overflow">实际发放时间</span></th>--%>
                 <th class="text-center"><span class="text-overflow">(*)开户银行</span></th>
                 <th class="text-center"><span class="text-overflow">(*)银行账号</span></th>
@@ -232,10 +231,10 @@
 
     <div class="button-pane">
         <button type="button"
-                class="btn-ui btn bg-green large medium float-right mrg10L"
+                class="btn-ui btn ui-state-default medium float-right mrg10L"
                 id="yewu-remove"><span class="button-content">删除选中行</span></button>
         <button type="button"
-                class="btn-ui btn bg-green large medium float-right mrg10L"
+                class="btn-ui btn ui-state-default medium float-right mrg10L"
                 id="yewu-add"><span class="button-content">增加一行</span></button>
     </div>
 </div>
@@ -256,20 +255,20 @@
                 <th class="text-center"><span class="text-overflow"><input
                         type="checkbox" name="checkbox"></span></th>
                 <th class="text-center"><span class="text-overflow">(*)提成人</span></th>
-                <th class="text-center"><span class="text-overflow">(*)比例</span></th>
-                <th class="text-center"><span class="text-overflow">(*)管理提成金额</span>
+                <th class="text-center" width="80px"><span class="text-overflow">(*)比例</span></th>
+                <th class="text-center" width="80px"><span class="text-overflow">提成金额</span>
                 </th>
-                <th class="text-center"><span class="text-overflow item-date"
-                                              title="70%提成应发放时间">(*)70%提成应发放时间</span>
+                <th class="text-center" width="90px"><span class="text-overflow item-date"
+                                              title="70%提成应发放时间">70%提成应发放时间</span>
                 </th>
-                <th class="text-center"><span class="text-overflow item-date"
-                                              title="20%提成应发放时间">(*)20%提成应发放时间</span>
-                <th class="text-center"><span class="text-overflow item-date"
-                                              title="10%提成应发放时间">(*)10%提成时间</span>
+                <th class="text-center"  width="90px"><span class="text-overflow item-date"
+                                              title="20%提成应发放时间">20%提成应发放时间</span>
+                <th class="text-center"  width="90px"><span class="text-overflow item-date"
+                                              title="10%提成应发放时间">10%提成时间</span>
                 </th>
                 </th>
                 <th class="text-center"><span class="text-overflow">(*)收款人</span></th>
-                <th class="text-center" width="50px;"><span class="text-overflow">类型</span></th>
+                <th class="text-center" width="60px;"><span class="text-overflow">类型</span></th>
 
                 <th class="text-center"><span
                         class="text-overflow bank-name">(*)开户银行</span></th>
@@ -284,10 +283,10 @@
 
     <div class="button-pane">
         <button type="button"
-                class="btn-ui btn bg-green large medium float-right mrg10L"
+                class="btn-ui btn ui-state-default  medium float-right mrg10L"
                 id="guanli-remove"><span class="button-content">删除选中行</span></button>
         <button type="button"
-                class="btn-ui btn bg-green large medium float-right mrg10L"
+                class="btn-ui btn ui-state-default  medium float-right mrg10L"
                 id="guanli-add"><span class="button-content">增加一行</span></button>
     </div>
 </div>

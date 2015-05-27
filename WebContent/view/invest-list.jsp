@@ -16,8 +16,8 @@
 
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">客户投资信息管理</span>
-                    <a href="#" class="float-right icon-separator btn toggle-button" title="最近领用记录">
+                    <span class="float-left">客户投资档案浏览</span>
+                    <a href="#" class="float-right icon-separator btn toggle-button" title="投资档案列表">
                         <i class="glyph-icon icon-toggle icon-chevron-down"></i>
                     </a>
 
@@ -45,19 +45,19 @@
                             <tr>
                                 <th><span class="text-overflow">认购人</span></th>
                                 <th><span class="text-overflow">基金名称</span></th>
-                                <th><span class="text-overflow">档案编号</span></th>
-                                <th><span class="text-overflow">合同编号</span></th>
-                                <th><span class="text-overflow">认购日期</span></th>
-                                <th><span class="text-overflow">认购金额</span></th>
-                                <th><span class="text-overflow">认购期限</span></th>
-                                <th><span class="text-overflow">理财经理</span></th>
+                                <th width="100px"><span class="">档案编号</span></th>
+                                <th width="100px;"><span class="text-overflow">合同编号</span></th>
+                                <th width="75px"><span class="text-overflow">认购日期</span></th>
+                                <th width="70px"><span class="text-overflow">认购金额</span></th>
+                                <th width="60px;"><span class="text-overflow">认购期限</span></th>
+                                <th width="60px"><span class="text-overflow">理财经理</span></th>
                                 <th><span class="text-overflow">地区</span></th>
-                                <th><span class="text-overflow">年经收益率</span></th>
-                                <th><span class="text-overflow">付息方式</span></th>
-                                <th><span class="text-overflow">到期日期</span></th>
+                                <th width="50px"><span class="text-overflow">年收益率</span></th>
+                                <th width="60px"><span class="text-overflow">付息方式</span></th>
+                                <th width="75px"><span class="text-overflow">到期日期</span></th>
                                 <th><span class="text-overflow">委托情况</span></th>
-                                <th><span class="text-overflow">已付利息</span></th>
-                                <th><span class="text-overflow">已付本金</span></th>
+                                <th width="70px"><span class="text-overflow">已付利息</span></th>
+                                <th width="70px"><span class="text-overflow">已付本金</span></th>
                                 <%--<th><span class="text-overflow">操作</span></th>--%>
                                 <th></th>
                             </tr>

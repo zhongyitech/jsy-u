@@ -598,6 +598,9 @@ h3 + p.font-gray-dark {
     padding-left: 1px;
     padding-right: 1px;
 }
+.actionBar{
+    padding-right: 10px;
+}
 
 body .button-pane {
     text-align: left;

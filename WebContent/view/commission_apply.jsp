@@ -94,13 +94,13 @@
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox"name="checkbox"></th>
-                    <th class="text-center " >提成人员</th>
+                    <th class="text-center " width="100px;" >提成人员</th>
                     <th class="text-center" >基金名称</th>
-                    <th class="text-center" >付款金额</th>
+                    <th class="text-center" width="90px" >付款金额</th>
                     <th class="text-center" >收款人</th>
                     <th class="text-center" >收款账户</th>
                     <th class="text-center" >开户行</th>
-                    <th class="text-center" >付款状态</th>
+                    <th class="text-center" width="80px">付款状态</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -201,13 +201,13 @@
             <thead>
                 <tr>
                     <th><input class="item-checkbox" type="checkbox" name="checkbox"></th>
-                    <th class="text-center">提成人员</th>
+                    <th class="text-center" width="100px;">提成人员</th>
                     <th class="text-center">基金名称</th>
-                    <th class="text-center">付款金额</th>
+                    <th class="text-center" width="90px">付款金额</th>
                     <th class="text-center">收款人</th>
                     <th class="text-center">收款账户</th>
                     <th class="text-center">开户行</th>
-                    <th data-bindtype="value" data-Member="paystatus">付款状态</th>
+                    <th data-bindtype="value" data-Member="paystatus" width="90px">付款状态</th>
                 </tr>
             </thead>
             <tbody></tbody>
