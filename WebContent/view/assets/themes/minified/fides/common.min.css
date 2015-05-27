@@ -24,7 +24,8 @@ h3 + p.font-gray-dark {
 #page-sidebar {
     position: fixed;
     height: 100%;
-    width: 200px;
+    /*width: 200px;*/
+    width: 171px;
     padding: 0 10px;
     z-index: 4;
     top: 54px
@@ -108,7 +109,7 @@ h3 + p.font-gray-dark {
 
 #header-logo {
     float: left;
-    width: 210px;
+    width: 181px;
     padding: 0 0 0 10px;
     height: 54px;
     line-height: 53px;
@@ -220,13 +221,14 @@ h3 + p.font-gray-dark {
 }
 
 #page-content-wrapper {
-    margin-left: 220px;
+    /*margin-left: 220px;*/
+    margin-left: 191px;
     position: relative;
     z-index: 4
 }
 
 #page-content {
-    padding: 0 20px 20px
+    padding: 0 10px 20px
 }
 
 #page-title {
@@ -408,7 +410,7 @@ h3 + p.font-gray-dark {
 }
 
 .ui-tabs-panel, .content-box .content-box-wrapper {
-    padding: 15px
+    padding: 5px
 }
 
 .ui-slider-horizontal .ui-slider-range {
@@ -447,14 +449,14 @@ h3 + p.font-gray-dark {
 }
 
 #page-sidebar, #sidebar-menu li a .glyph-icon, .top-icon-bar .dropdown > a .badge {
-/*    -webkit-animation-duration: .7s;
-    -moz-animation-duration: .7s;
-    -o-animation-duration: .7s;
-    animation-duration: .7s;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    -o-animation-fill-mode: both;
-    animation-fill-mode: both*/
+    /*    -webkit-animation-duration: .7s;
+        -moz-animation-duration: .7s;
+        -o-animation-duration: .7s;
+        animation-duration: .7s;
+        -webkit-animation-fill-mode: both;
+        -moz-animation-fill-mode: both;
+        -o-animation-fill-mode: both;
+        animation-fill-mode: both*/
 }
 
 .open > .dropdown-menu, .dropdown-submenu:hover > .dropdown-menu {
@@ -588,11 +590,13 @@ h3 + p.font-gray-dark {
 }
 
 .table th {
-    text-align: left
+    padding:0px;
 }
 
 .table td {
     /*padding: 11px 15px*/
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 body .button-pane {
@@ -783,19 +787,21 @@ body .popover {
 }
 
 .content-box-header.primary-bg {
-    background: #F7F9FC;
+    background: #F2F2F2;
+    /*background: #F7F9FC;*/
     color: #333;
 }
 
 .content-box-header .toggle-button,
-.content-box-header .toggle-button:hover{
+.content-box-header .toggle-button:hover {
     color: #333;
     background: #EEF2F9;
 }
 
-.input-append-wrapper .append-left input{
-     border-left: #cdcdcd solid 1px;
- }
-.input-append-wrapper .append-left input:focus{
+.input-append-wrapper .append-left input {
+    border-left: #cdcdcd solid 1px;
+}
+
+.input-append-wrapper .append-left input:focus {
     border-left: #3da6ff solid 1px;
 }

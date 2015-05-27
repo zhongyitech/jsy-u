@@ -70,7 +70,8 @@ h3, .h3 {
 }
 
 #page-sidebar, #sidebar-menu {
-    background: #f5f7f9
+    /*background: #f5f7f9*/
+    background: #F2F2F2
 }
 
 #page-sidebar li a {
