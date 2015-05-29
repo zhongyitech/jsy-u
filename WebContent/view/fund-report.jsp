@@ -227,6 +227,7 @@
 
                                 </div>
                                 <div class="form-row">
+                                    <div id="char_saleData" class="dev_box" style="width: 95%;height: 240px;margin-left: auto;margin-right:15px "></div>
                                 </div>
                             </div>
                         </div>
@@ -244,7 +245,7 @@
                             </div>
                             <div class="form-input col-md-9">
                                 <div class="content-box box-toggle ">
-                                    <div class="content-box-header primary-bg"> 兑付</div>
+                                    <div class="content-box-header primary-bg">兑付</div>
                                     <div class="content-box-wrapper">
                                         <div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
                                             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"

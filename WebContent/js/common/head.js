@@ -164,8 +164,8 @@ var NOTIFICATION_TASK = {
     getView: function () {
         return $(this.PARENT_ID).find(this.VIEW_ID);
     },
-    setView: function (response) {
-        this.setTotal(response);
+    setView: function (response,page) {
+        this.setTotal(page);
         this.setList(response);
     },
     ini: function () {
@@ -179,22 +179,10 @@ var NOTIFICATION_TASK = {
             keyword: ''
         });
         var data = {url: '/api/toDoTask/getTodo', params: params, entity: entity};
-
         var me = this;
-        $.ajax({
-            type: "post",
-            url: "/rest/item/post",
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                me.setView(response);
-            },
-            error: function (response) {
-                me.response = response;
-                LOGIN.error(response);
-            }
+        $.io.post(data).success(function(result,page){
+            me.response = result;
+            me.setView(result,page);
         });
     },
     getListView: function () {
@@ -210,7 +198,7 @@ var NOTIFICATION_TASK = {
         }
 
         if (response) {
-            this.items = JSON.parse(response[REST.RESULT_KEY]);
+            this.items = (response);
         } else {
             this.items = [];
         }
@@ -250,7 +238,7 @@ var NOTIFICATION_TASK = {
     },
     setTotal: function (response) {
         if (response) {
-            this.total = JSON.parse(response[REST.TOTAL_KEY]);
+            this.total = (response[REST.TOTAL_KEY]);
         } else {
             this.total = 0;
         }
