@@ -868,6 +868,8 @@ var FUND_FORM = {//基金表单
 
         item["funcCompany"] = $('#fundCompany').val();
         item["project"] = $('#project').val();
+        item["limitRules"] = $('#limitRules').val();
+        item["minInvestmentAmount"] =MONEYFORMAT.toNumber($('#minInvestmentAmount').val());
 
         me.item = item;
         return item;

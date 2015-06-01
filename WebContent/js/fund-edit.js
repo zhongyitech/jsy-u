@@ -214,6 +214,10 @@ var TZQX_LIST = {//投资期限
             var v = TZQX_REST.toDW(item);
             $(dw_select).val(v);
         }
+        $(".in_vail_money").unbind().bind('keyup', function () {
+            var money = STRINGFORMAT.toYuan($(this).val());
+            $(this).val(money);
+        });
     },
     removeTr: function () {//删除选中行
         var table = this.getTable();
@@ -898,7 +902,7 @@ var FUND_FORM = {//基金表单
         }
         var params = JSON.stringify({"fundId": item.id});
         var data = {url: "/api/project/getProjectFromFund", params: params};
-        var _this = this;
+        var _that = this;
         $.io.get(data)
             .success(function (result) {
                 $("#projectname").val(result.name);
@@ -912,6 +916,8 @@ var FUND_FORM = {//基金表单
         SYLFW_LIST.set(FUND.toSYLFW(item));
         TZQX_LIST.set(FUND.toTZQX(item));
         TCFPFW_LIST.set(FUND.toTCFPFW(item));
+        $("#limitRules").val(item.limitRules);
+        $("#minInvestmentAmount").val(NUMBERFORMAT.toYuan(item.minInvestmentAmount));
     },
     getNameInput: function () {
         var form = this.getForm();
@@ -1042,6 +1048,8 @@ var FUND_FORM = {//基金表单
         if (tcfpfw) {
             item[FUND.TCFPFW_KEY] = tcfpfw;
         }
+        item["limitRules"] = $('#limitRules').val();
+        item["minInvestmentAmount"] =MONEYFORMAT.toNumber($('#minInvestmentAmount').val());
 
         me.item = item;
         return item;
@@ -1052,22 +1060,10 @@ var FUND_FORM = {//基金表单
         var params = JSON.stringify({id: item[FUND.ID_KEY]});
         var entity = JSON.stringify(item);
         var data = {url: '/api/fund/update', params: params, entity: entity};
-        $.ajax({
-            type: "post",
-            url: "../rest/item/put",
-            async: true,
-            data: data,
-            dataType: "json",
-            success: function (response) {
-                me.response = response;
-                window.location = PAGE.FUND_LIST;
-            },
-            error: function (response) {
-                me.response = response;
-                if (LOGIN.error(response)) {
-                    alert('编辑基金失败，请补全带*号的必填信息.');
-                }
-            }
+
+        $.io.put(data).success(function () {
+            window.location = PAGE.FUND_LIST;
+
         });
     }
 };
