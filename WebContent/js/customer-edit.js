@@ -259,12 +259,13 @@ var CUSTOMER_FORM = {//客户信息表单
             $("#action_title").html("填写档案客户信息")
             var _this = this;
             var username = PAGE.getParam('username');
+            var copyUser = fals;
             $.io.get({url: '/api/customerArchives/name', params: {name: username}})
                 .success(function (result) {
                     if (result) {
                         $("#syncCustomer").removeAttr("checked");
                         $.message.log("此名称的客户已经存在,自动填写信息,请根据需要修改数据.");
-                        BOX_1.show({name: result.name,number:result.credentialsNumber}, function () {
+                        BOX_1.show({name: result.name, number: result.credentialsNumber}, function () {
                             $.each(result.bankAccount, function (i, it) {
                                 if (it.defaultAccount) {
                                     result['khh'] = it.bankOfDeposit;
@@ -277,10 +278,14 @@ var CUSTOMER_FORM = {//客户信息表单
                                 result['yhzh'] = result.bankAccount[0].account;
                                 result['KHH'] = result.bankAccount[0].accountName;
                             }
-                            _this.set(result)
+                            _this.set(result);
+                            copyUser = true;
                         });
                     }
                 });
+            if (copyUser) {
+                $("#syncCustomer").prop('checked', true);
+            }
             $("#name").val(username);
         }
     },
@@ -304,6 +309,7 @@ var CUSTOMER_FORM = {//客户信息表单
             $("#fddr-panel").show();
         }
         $('#cid').val(item.id);
+
     },
     getItem: function () {
         var me = this;
