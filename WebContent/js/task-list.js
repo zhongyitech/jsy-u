@@ -6,7 +6,7 @@
 			type:"or",
 			fields:[],
 			value:"",
-			order:{id:"desc"}
+			order:{status:'asc',cjsj:'desc'}
 		},
 		/**
 		 * 发送请求，接收Options参数可包含entity、params
