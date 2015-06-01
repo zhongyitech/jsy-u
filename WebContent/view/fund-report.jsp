@@ -17,6 +17,18 @@
             padding: 5px 10px;
         !important;
         }
+
+        .ui-tabs-panel {
+            height: 240px;
+        }
+
+        .content-box {
+            margin-bottom: 2px;
+        }
+        .ui-tabs{
+            margin-bottom: 0px;
+
+        }
     </style>
 </head>
 
@@ -227,7 +239,8 @@
 
                                 </div>
                                 <div class="form-row">
-                                    <div id="char_saleData" class="dev_box" style="width: 95%;height: 240px;margin-left: auto;margin-right:15px "></div>
+                                    <div id="char_saleData" class="dev_box"
+                                         style="width: 95%;height: 320px;margin-left: auto;margin-right:15px "></div>
                                 </div>
                             </div>
                         </div>
@@ -271,13 +284,11 @@
                                                  class="ui-tabs-panel ui-widget-content ui-corner-bottom"
                                                  role="tabpanel" aria-expanded="true" aria-hidden="false"
                                                  style="display: block;">
-                                                tab 1 content
                                             </div>
                                             <div id="normal-tabs-2" aria-labelledby="ui-id-5"
                                                  class="ui-tabs-panel ui-widget-content ui-corner-bottom"
                                                  role="tabpanel" aria-expanded="false" aria-hidden="true"
                                                  style="display: none;">
-                                                tab 2 content
                                             </div>
 
                                         </div>
@@ -310,7 +321,7 @@
                                                  class="ui-tabs-panel ui-widget-content ui-corner-bottom"
                                                  role="tabpanel" aria-expanded="true" aria-hidden="false"
                                                  style="display: block;">
-                                                tab 1 content
+
                                             </div>
                                             <div id="pay_normal-tabs-2" aria-labelledby="ui-id-7"
                                                  class="ui-tabs-panel ui-widget-content ui-corner-bottom"
@@ -382,7 +393,6 @@
                     </div>
                 </div>
             </div>
-            <div id="fund-report" class="fund-report"></div>
         </div>
 
     </div>
