@@ -152,12 +152,12 @@
                                     <textarea placeholder="请输入备注信息" class="textarea-no-resize" id="remark"></textarea>
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row hide">
                                 <div class="form-label col-md-2">
                                     <label class="label-description">同步添加客户信息</label>
                                 </div>
-                                <div class="form-input col-md-10">
-                                    <input type="checkbox" checked="checked" id="syncCustomer" name="syncCustomer">
+                                <div class="form-input col-md-10 ">
+                                    <input type="checkbox" checked="checked" id="syncCustomer" name="syncCustomer" />
                                 </div>
                             </div>
                         </div>
