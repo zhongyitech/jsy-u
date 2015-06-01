@@ -375,17 +375,17 @@ var INVESTMENT_ITEM = {
         this.task(450);
     },
     task: function (time) {
-//        var finish = $('.buttonFinish');
-//        if (finish) {
-//            finish.attr('onclick', 'INVESTMENT_ITEM.save()');
-//            if (finish.attr('onclick')) {
-//                //IE8需要重新渲染
-////					$('.toggle-button').click();
-////					$('.toggle-button').click();
-//                return;
-//            }
-//        }
-//        setTimeout("INVESTMENT_ITEM.task()", time);
+        var finish = $('.buttonFinish');
+        if (finish) {
+            finish.attr('onclick', 'INVESTMENT_ITEM.save()');
+            if (finish.attr('onclick')) {
+                //IE8需要重新渲染
+//					$('.toggle-button').click();
+//					$('.toggle-button').click();
+                return;
+            }
+        }
+        setTimeout("INVESTMENT_ITEM.task()", time);
     },
     setHTBH: function () {
         var me = this;
