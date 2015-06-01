@@ -142,10 +142,10 @@ var CUSTOMER_FORM = {//客户信息表单
         var me = this;
         var attachment = this.getAttachment();
         attachment.change(function () {
-            var fileId = "#"+$(this).attr("id");
+            var fileId = "#" + $(this).attr("id");
             $.utils.upload({
-                files:fileId,
-                success:function(response){
+                files: fileId,
+                success: function (response) {
                     me.item[CUSTOMER.ATTACHMENT_KEY] = response.rest_result;
                     me.setAttachment(me.item);
                 }
@@ -264,21 +264,21 @@ var CUSTOMER_FORM = {//客户信息表单
                     if (result) {
                         $("#syncCustomer").removeAttr("checked");
                         $.message.log("此名称的客户已经存在,自动填写信息,请根据需要修改数据.");
-                        var found=false;
-                        $.each(result.bankAccount, function (i, it) {
-                            if (it.defaultAccount) {
-                                result['khh'] = it.bankOfDeposit;
-                                result['yhzh'] = it.account;
-                                result['KHH'] = it.accountName;
-                                found=true;
+                        BOX_1.show({name: result.name,number:result.credentialsNumber}, function () {
+                            $.each(result.bankAccount, function (i, it) {
+                                if (it.defaultAccount) {
+                                    result['khh'] = it.bankOfDeposit;
+                                    result['yhzh'] = it.account;
+                                    result['KHH'] = it.accountName;
+                                }
+                            });
+                            if (result.bankAccount.length > 0) {
+                                result['khh'] = result.bankAccount[0].bankOfDeposit;
+                                result['yhzh'] = result.bankAccount[0].account;
+                                result['KHH'] = result.bankAccount[0].accountName;
                             }
+                            _this.set(result)
                         });
-                        if(!found && result.bankAccount.length>0){
-                            result['khh'] = result.bankAccount[0].bankOfDeposit;
-                            result['yhzh'] = result.bankAccount[0].account;
-                            result['KHH'] = result.bankAccount[0].accountName;
-                        }
-                        _this.set(result)
                     }
                 });
             $("#name").val(username);
@@ -299,10 +299,11 @@ var CUSTOMER_FORM = {//客户信息表单
         this.setYZBM(item);
         this.setZJHM(item);
         this.setZJLX(item);
-        if(item.credentialsType=="营业执照"){
+        if (item.credentialsType == "营业执照") {
             $("#fddbr").val(item.fddbr || "");
             $("#fddr-panel").show();
         }
+        $('#cid').val(item.id);
     },
     getItem: function () {
         var me = this;
@@ -368,14 +369,15 @@ var CUSTOMER_FORM = {//客户信息表单
             item[CUSTOMER.ZJLX_KEY] = zjlx;
         }
 
-        item["fddbr"]= $("#fddbr").val();
+        item["fddbr"] = $("#fddbr").val();
+
         me.item = item;
         return item;
     },
     submit: function () {//提交
         var me = this;
         var item = me.getItem();
-        var params = {id: this.investmentid, sync: $("#syncCustomer").prop("checked")};
+        var params = {id: this.investmentid, sync: $("#syncCustomer").prop("checked"), cid: $('#cid').val()};
         var entity = JSON.stringify(item);
         var data = {url: '/api/investmentArchives/customer', params: params, entity: entity};
 
@@ -387,3 +389,29 @@ var CUSTOMER_FORM = {//客户信息表单
     }
 };
 
+var BOX_1 = {
+    init: function () {
+        this.close();
+    },
+    show: function (data, ok_func) {
+        var _that = this;
+        $("#model_msg_back").show();
+        $("#model_msg_box").show();
+        $("#s_u_name").html(data.name);
+        $("#s_u_number").html(data.number || '-');
+
+        $("#box_btn_ok").unbind().bind("click", function () {
+            if (ok_func) {
+                ok_func();
+            }
+            _that.close();
+        });
+        $("#box_btn_cancel").unbind().bind("click", function () {
+            _that.close();
+        });
+    },
+    close: function () {
+        $("#model_msg_back").hide();
+        $("#model_msg_box").hide();
+    }
+}

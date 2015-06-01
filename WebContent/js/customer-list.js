@@ -3,7 +3,7 @@
     var UtilList = {
         _entity: {
             startposition: 0,
-            pagesize: 5,
+            pagesize: 10,
             type: "or",
             fields: ["name"],
             value: "",
