@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@
                             </div>
 
                             <div class="form-input col-md-10">
-                                <input type="text" name="name" class="fundName" id="fund_name">
+                                <input type="text" name="name" class="fundName" id="fund_name"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -48,7 +49,7 @@
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="tcal" type="text" name="ksrq" id="startSaleDate">
+                                <input class="tcal" type="text" name="ksrq" id="startSaleDate"/>
                             </div>
                         </div>
 
@@ -57,14 +58,14 @@
                                 <label>预期募集款：</label>
                             </div>
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="yqmjk">
+                                <input class="" type="text" name="yqmjk"/>
                             </div>
                             <div class="form-label col-md-2">
                                 <label>季付募集规模：</label>
                             </div>
 
                             <div class="form-input col-md-4">
-                                <input class="" type="text" name="jfmjgm">
+                                <input class="" type="text" name="jfmjgm"/>
                             </div>
 
                         </div>
@@ -82,6 +83,25 @@
 
                             <div class="form-input col-md-4">
                                 <input class="" type="text" name="nfmjgm"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label>投资额规则：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select name="limitRules" class="limitRules" id="limitRules">
+                                    <option value="0">最低投资额</option>
+                                    <option value="1">最低投资额的倍数</option>
+                                </select>
+                            </div>
+                            <div class="form-label col-md-2">
+                                <label>最低投资金额：</label>
+                            </div>
+
+                            <div class="form-input col-md-4">
+                                <input class="minInvestmentAmount in_vail_money" type="text" name="minInvestmentAmount"
+                                       id="minInvestmentAmount" />
                             </div>
                         </div>
 
@@ -191,8 +211,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center">部门经理</th>
-                                    <th class="text-center"  width="30x;">是否包销</th>
-                                    <th class="text-center"  width="100px;">业务提成比例</th>
+                                    <th class="text-center" width="30x;">是否包销</th>
+                                    <th class="text-center" width="100px;">业务提成比例</th>
                                     <th class="text-center" width="100px;">管理提成比例</th>
                                     <th class="text-center" width="100px;">包销收益率</th>
                                     <th class="text-center" width="60px;">提成税率</th>
@@ -207,7 +227,7 @@
             </div>
             <div class="pos-rel">
                 <div class="button-pane">
-                    <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button">
+                    <button class="btn-ui btn primary-bg large medium float-right mrg10L" id="submit-button">
                         <span class="button-content">提交</span>
                     </button>
                 </div>

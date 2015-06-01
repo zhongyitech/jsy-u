@@ -88,6 +88,25 @@
                                 <input class="" type="text" name="nfmjgm">
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-label col-md-2">
+                                <label>投资额规则：</label>
+                            </div>
+                            <div class="form-input col-md-4">
+                                <select name="limitRules" class="limitRules" id="limitRules">
+                                    <option value="0">最低投资额</option>
+                                    <option value="1">最低投资额的倍数</option>
+                                </select>
+                            </div>
+                            <div class="form-label col-md-2">
+                                <label>最低投资金额：</label>
+                            </div>
+
+                            <div class="form-input col-md-4">
+                                <input class="minInvestmentAmount in_vail_money" type="text" name="minInvestmentAmount"
+                                       id="minInvestmentAmount" />
+                            </div>
+                        </div>
 
                         <div class="form-row">
                             <div class="form-label col-md-2">
