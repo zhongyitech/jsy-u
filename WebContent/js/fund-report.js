@@ -11,6 +11,9 @@
             $('#view_saleData').renderData('#table-saleData-template', data);
             $('#view_payAndTc').renderData('#table-payAndTc-template', data);
             $('#view_project').renderData('#table-project-template', data);
+            //todo:从后台获取day的天数数据
+            var month_categories = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+            var day_categories = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
             //趋势及对比图
             $('#fund_chart_salse_01').highcharts({
                 chart: {
@@ -119,8 +122,7 @@
                 },
                 subtitle: {},
                 xAxis: [{
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: month_categories
                 }],
                 yAxis: [{ // Primary yAxis
                     labels: {
@@ -137,7 +139,7 @@
                     }
                 }, { // Secondary yAxis
                     title: {
-                        text: '业务数据',
+                        text: '业务数量',
                         style: {
                             color: '#4572A7'
                         }
@@ -154,8 +156,7 @@
                     shared: true
                 },
                 legend: {
-                    layout: 'vertical',
-                    align: 'left',
+                    align: 'right',
                     x: 10,
                     verticalAlign: 'top',
                     y: 10,
@@ -163,7 +164,7 @@
                     backgroundColor: '#FFFFFF'
                 },
                 series: [{
-                    name: '本金',
+                    name: '业务数量',
                     color: '#4572A7',
                     type: 'column',
                     yAxis: 1,
@@ -173,7 +174,7 @@
                     }
 
                 }, {
-                    name: '利息',
+                    name: '金额',
                     color: '#89A54E',
                     type: 'spline',
                     data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
@@ -182,11 +183,7 @@
                     }
                 }]
             });
-
-
-            //todo:从后台获取day的天数数据
-            var month_categories = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-            var day_categories = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
+            
             //兑付-day
             $('#normal-tabs-1').highcharts({
                 chart: {
