@@ -183,7 +183,7 @@
                     }
                 }]
             });
-            
+
             //兑付-day
             $('#normal-tabs-1').highcharts({
                 chart: {
