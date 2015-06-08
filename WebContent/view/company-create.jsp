@@ -192,7 +192,7 @@
                     </div>
                     <div style="clear:both;"></div>
                     <div class="button-pane" id="menu">
-                        <button class="btn-ui btn bg-green large medium float-right mrg10L" id="submit-button"><span
+                        <button class="btn-ui btn primary-bg large medium float-right mrg10L" id="submit-button"><span
                                 class="button-content">提交</span></button>
                         <button class="btn-ui btn bg-green large medium float-right mrg10L partner-button hide"
                                 id="partner-button"><span class="button-content">合伙人</span></button>

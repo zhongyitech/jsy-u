@@ -23,9 +23,12 @@ public class FileManager {
 	}
 	
 	private static FileManager instance;
-	private final String DIR_PATH = "";
+//	private final String DIR_PATH = "";
+	private final String DIR_PATH = "D:/jsy/UploadFiles";
+
 	private final String PATH_KEY = "filePath";
 	private final String NAME_KEY = "fileName";
+
 	private final String REQUEST_ENCODING = "UTF-8";
 	private final String NOT_FOUND = "404";
 	

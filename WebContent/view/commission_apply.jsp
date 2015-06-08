@@ -217,7 +217,7 @@
 
 </div>
     <div class="button-pane">
-        <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="funds-save">
+        <button type="button" class="btn-ui btn primary-bg large medium float-right mrg10L" id="funds-save">
             <span class="button-content">申请付款</span></button>
     </div>
 <div class="content-box box-toggle view-width">

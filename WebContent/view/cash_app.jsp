@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="button-pane">
-                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="submit_cash">
+                    <button type="button" class="btn-ui btn primary-bg large medium float-right mrg10L" id="submit_cash">
                         <span class="button-content">兑付申请</span></button>
                 </div>
             </div>

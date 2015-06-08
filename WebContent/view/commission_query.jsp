@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="button-pane">
-                    <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L"
+                    <button type="button" class="btn-ui btn  primary-bg large medium float-right mrg10L"
                             id="submit_commission"><span class="button-content">提成申请</span></button>
                     <button type="button" class="btn-ui btn bg-green large medium float-right mrg10L" id="btn_expt">
                         <span class="button-content">导出数据</span></button>

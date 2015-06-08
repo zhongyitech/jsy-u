@@ -45,7 +45,7 @@
 			</div>
 		
 			<div class="button-pane">
-				<button class="btn-ui btn bg-green large medium float-right" id="login-button"><span class="button-content">登录</span></button>
+				<button class="btn-ui btn  large medium float-right" id="login-button"><span class="button-content">登录</span></button>
 			</div>
 		</div>
 	</div>

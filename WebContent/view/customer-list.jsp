@@ -276,7 +276,7 @@
                         </div>
                     </div>
                     <div class="button-pane">
-                        <button class="btn-ui btn bg-green large medium float-right mrg10L" id="save-button"><span
+                        <button class="btn-ui btn primary-bg large medium float-right mrg10L" id="save-button"><span
                                 class="button-content">保存</span></button>
                     </div>
                 </div>
