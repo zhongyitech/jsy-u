@@ -121,18 +121,8 @@ var FUND_LIST = {
         var row = $("<tr></tr>");
         table.append(row);
 
-        var number = this.fund.toNumber(item);
-        var number_td = $('<td></td>');
-        row.append(number_td);
-        if (number) {
-            var url = "./fund-edit.jsp?id=" + this.fund.toId(item);
-            var number_a = $('<a class="item-url" target="_blank" href="' + url + '" title="' + number + '">' + number + '</a>');
-            number_td.append(number_a);
-        } else {
-            var number_a = $('<span class="span-12"></span>');
-            number_td.append(number_a);
-        }
-
+        //row.append('<td><a class="item-url" target="_blank" href="./fund-report.jsp?id=' + item.id + '">详细统计</a><td>');
+        row.append('<td><a class="item-url mrg5R" target="_blank" href="./fund-report.jsp?id=' + item.id + '">详细统计</a><a class="item-url" target="_blank" href="./fund-edit.jsp?id=' + item.id + '" >' + item.fundNo + '</a></td>');
         row.append('<td>' + this.fund.toName(item) + '</td>');
         row.append('<td><div class="text-right">' + this.fund.toYMGM(item) + '</div></td>');
         row.append('<td><div class="text-right">' + this.fund.toSMJE(item) + '</div></td>');

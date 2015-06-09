@@ -7,6 +7,8 @@
         render: function () {
             var data = $.project.domain(4, 'com.jsy.fundObject.Fund').getItem(4);
             console.log(data);
+            $(".id_fundName").html(data.fundName);
+
             $('#view_fundDetail').renderData('#table-fundDetail-template', data);
             $('#view_saleData').renderData('#table-saleData-template', data);
             $('#view_payAndTc').renderData('#table-payAndTc-template', data);

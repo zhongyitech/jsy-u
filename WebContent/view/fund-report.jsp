@@ -39,71 +39,71 @@
          <form class="form-bordered" action="" method="">
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">基金编号</div>
-                 <div class=" col-md-6">{$T.fundNo}</div>
+                 <div class="form-label col-md-6">{$T.fundNo}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">基金名称</div>
-                 <div class="col-md-6">{$T.fundName}</div>
+                 <div class="form-labelcol-md-6">{$T.fundName}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">收益率范围</div>
-                 <div class="col-md-6">{$T.fundNo}</div>
+                 <div class="form-labelcol-md-6">{$T.fundNo}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">开售日期</div>
-                 <div class="col-md-6">{DATEFORMAT.toDate($T.startSaleDate)}</div>
+                 <div class="form-labelcol-md-6">{DATEFORMAT.toDate($T.startSaleDate)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">预募规模</div>
-                 <div class=" col-md-6">{NUMBERFORMAT.toYuan($T.raiseFunds)}</div>
+                 <div class="form-label col-md-6">{NUMBERFORMAT.toYuan($T.raiseFunds)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">实募规模</div>
-                 <div class=" col-md-6">{NUMBERFORMAT.toYuan($T.rRaiseFunds)}</div>
+                 <div class=" form-label col-md-6">{NUMBERFORMAT.toYuan($T.rRaiseFunds)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">季付募集规模</div>
-                 <div class=" col-md-6">{NUMBERFORMAT.toYuan($T.quarterRaise)}</div>
+                 <div class="form-label col-md-6">{NUMBERFORMAT.toYuan($T.quarterRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">季付实募</div>
-                 <div class="  col-md-6">{NUMBERFORMAT.toYuan($T.rQuarterRaise)}</div>
+                 <div class="form-label  col-md-6">{NUMBERFORMAT.toYuan($T.rQuarterRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">年付募集规模</div>
-                 <div class="  col-md-6">{NUMBERFORMAT.toYuan($T.yearRaise)}</div>
+                 <div class="form-label  col-md-6">{NUMBERFORMAT.toYuan($T.yearRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">年付实募</div>
-                 <div class="  col-md-6">{NUMBERFORMAT.toYuan($T.rYearRaise)}</div>
+                 <div class="form-label  col-md-6">{NUMBERFORMAT.toYuan($T.rYearRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">半年付募集规模</div>
-                 <div class=" col-md-6">{NUMBERFORMAT.toYuan($T.halfRaise)}</div>
+                 <div class="form-label col-md-6">{NUMBERFORMAT.toYuan($T.halfRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">半年付实募</div>
-                 <div class="col-md-6">{NUMBERFORMAT.toYuan($T.rHalfRaise)}</div>
+                 <div class="form-label col-md-6">{NUMBERFORMAT.toYuan($T.rHalfRaise)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">进度</div>
-                 <div class=" col-md-6">{NUMBERFORMAT.toRate($T.rRaiseFunds/$T.raiseFunds)}</div>
+                 <div class="form-label col-md-6">{NUMBERFORMAT.toRate($T.rRaiseFunds/$T.raiseFunds)}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">停募日期</div>
-                 <div class=" col-md-6">{$T.stopRaise ? DATEFORMAT.toDate($T.stopRaise):'-'}</div>
+                 <div class=" form-label col-md-6">{$T.stopRaise ? DATEFORMAT.toDate($T.stopRaise):'-'}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">停募原因</div>
-                 <div class=" col-md-6">{$T.stopRaiseReason : '-'}</div>
+                 <div class="form-label col-md-6">{$T.stopRaiseReason : '-'}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">状态</div>
-                 <div class=" col-md-6">{$T.status.id}</div>
+                 <div class="form-label col-md-6">{$T.status.id}</div>
              </div>
              <div class="form-row">
                  <div class="form-label col-md-6 text-center">备注</div>
-                 <div class=" col-md-6">{($T.memo || '')}</div>
+                 <div class="form-label col-md-6">{($T.memo || '')}</div>
              </div>
          </form>
      </textarea>
@@ -217,7 +217,9 @@
         <div id="page-content" class="page-view pad15T">
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">基金(safalfj)数据总览</span>
+                    <span class="float-left id_fundName" >基金(safalfj)</span>数据总览<a href="./fund-list.jsp" class="btn medium hover-green" title="">
+                    <span class="button-content">返回</span>
+                </a>
                 </div>
                 <div class="content-box-wrapper ">
                     <%--基金收付数据趋及对比图--%>
@@ -249,7 +251,7 @@
             </div>
             <div class="content-box box-toggle ">
                 <div class="content-box-header primary-bg">
-                    <span class="float-left">基金</span><span>兑付及提成数据统计</span>
+                    <span class="float-left id_fundName">基金</span><span>兑付及提成数据统计</span>
                 </div>
                 <div class="content-box-wrapper">
                     <div id="fund_payAndTc_details" class="dev_box pad5A" style="width: 1000px">
@@ -338,7 +340,7 @@
                 </div>
                 <div class="content-box box-toggle ">
                     <div class="content-box-header primary-bg">
-                        <span class="float-left">基金</span><span>投资项目情况汇总</span>
+                        <span class="float-left id_fundName">基金</span><span>投资项目情况汇总</span>
                     </div>
                     <div class="content-box-wrapper">
                         <div id="fund_project_details" class="dev_box pad5A" style="width: 1000px">
