@@ -189,7 +189,7 @@ var VIEWDATA = {
 					posResault=true;
 				}						
 				else{
-					me.error('提交申请出错。');					
+					me.error('保存申请单出错。');
 				}		
 			},
 			error : function(result) {
@@ -200,7 +200,7 @@ var VIEWDATA = {
 		if(posResault){
 			$(this.savebtnid).html("申请单已经提交成功！");
 		}else{
-			$(this.savebtnid).html("提交申请");
+			$(this.savebtnid).html("保存申请单");
 		}
 	},
 	

@@ -172,12 +172,12 @@ var VIEWDATA = {
                 me.error("申请单提交成功");
                 resultAction = true;
                 $(this.savebtnid).attr("disabled", false);
-                $(this.savebtnid).html("提交申请");
+                $(this.savebtnid).html("保存申请单");
                 if (resultAction) {
                     window.location = "./invest-list.jsp";
                 }
             }else{
-                me.error('提交申请出错。');
+                me.error('保存申请单出错。');
             }
         }).error(function(error){
             me.error(error.msg);

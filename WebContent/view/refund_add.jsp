@@ -278,7 +278,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-input col-md-4 ">
-                        <button type="button" id="save_btn" class="btn  large primary-bg ">提交申请</button>
+                        <button type="button" id="save_btn" class="btn  large primary-bg ">保存申请单</button>
                         <a href="./invest-list.jsp" class=""><span>取消</span></a>
                     </div>
                     <div class="form-input col-md-8 ">

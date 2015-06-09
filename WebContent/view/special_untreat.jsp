@@ -264,7 +264,7 @@
                 <div class="form-row">
                     <div class="form-input col-md-10 ">
                         <button type="button" id="save_btn"
-                                class="btn  large primary-bg ">提交申请
+                                class="btn  large primary-bg ">保存申请单
                         </button>
                     </div>
                 </div>

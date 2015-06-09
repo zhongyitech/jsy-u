@@ -186,7 +186,7 @@ var VIEWDATA = {
             me.showinfo('申请单提交成功');
         })
             .error(function (error) {
-                $(me.savebtnid).html("提交申请");
+                $(me.savebtnid).html("保存申请单");
                 $(me.savebtnid).attr('disabled', false);
                 me.showinfo(error.msg);
             });
