@@ -9,51 +9,62 @@
             console.log(data);
             $(".id_fundName").html(data.fundName);
 
+
+            var id = PAGE.getParam("id");
+
+            //趋势及对比图(饼图）
+            $.io.get({url: '/api/report/fundTzje', params: {id: id}}).success(function (result) {
+                console.log(result);
+                var data = result[0];
+
+                $('#fund_chart_salse_01').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: '比例',
+                        data: [
+                            ['实募(' + data.tzje + ')', (data.tzje || 0)],
+                            ['预募(' + data.rtzje + ')', (data.rtzje || 0)],
+                            //{
+                            //    name: 'Chrome',
+                            //    y: 12.8,
+                            //    sliced: true,
+                            //    selected: true
+                            //}
+                        ]
+                    }]
+                });
+            });
+
+
             $('#view_fundDetail').renderData('#table-fundDetail-template', data);
             $('#view_saleData').renderData('#table-saleData-template', data);
             $('#view_payAndTc').renderData('#table-payAndTc-template', data);
             $('#view_project').renderData('#table-project-template', data);
             //todo:从后台获取day的天数数据
             var month_categories = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-            var day_categories = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
-            //趋势及对比图
-            $('#fund_chart_salse_01').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: false
-                        },
-                        showInLegend: true
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: '比例',
-                    data: [
-                        ['实募', 26.8],
-                        ['预募', 43.8],
-                        //{
-                        //    name: 'Chrome',
-                        //    y: 12.8,
-                        //    sliced: true,
-                        //    selected: true
-                        //}
-                    ]
-                }]
-            });
+            var day_categories = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17'];
+
             $('#fund_chart_salse_02').highcharts({
                 chart: {
                     type: 'area'
@@ -239,10 +250,10 @@
                 },
                 series: [{
                     name: '利息',
-                    data: [53, 32, 42, 73, 24,24,34,54,23,24,544,24,57]
+                    data: [53, 32, 42, 73, 24, 24, 34, 54, 23, 24, 544, 24, 57]
                 }, {
                     name: '本金',
-                    data: [22, 32, 23, 52, 91,23,122,44,12,31,1,4,12]
+                    data: [22, 32, 23, 52, 91, 23, 122, 44, 12, 31, 1, 4, 12]
                 }]
             });
             $('#normal-tabs-2').highcharts({

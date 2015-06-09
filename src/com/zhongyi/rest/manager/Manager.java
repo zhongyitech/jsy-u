@@ -39,8 +39,8 @@ public class Manager {
 
 //	public static final String CHARSET = "UTF-8";
 	public String getServiceURL() {
-//		return "http://192.168.1.59:18080/jsy-rest";
-		return "http://localhost:8080/jsy";
+		return "http://192.168.1.59:18080/jsy-rest";
+//		return "http://localhost:8080/jsy";
 	}
 	/**
 	 * 执行请求
