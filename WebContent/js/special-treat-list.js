@@ -128,9 +128,9 @@
     $(function () {
         FUNDWTSTATUS.ini();
         var index = 0;
-        $.dom.select("#sq_type", FUNDWTSTATUS.items, function (item) {
-            return {text: item, value: index++};
-        });
+        //$.dom.select("#sq_type", FUNDWTSTATUS.items, function (item) {
+        //    return {text: item, value: index++};
+        //});
         $("#sq_type").unbind().bind('change', function () {
             Util._entity.sq_type = $(this).val();
             Util.render();

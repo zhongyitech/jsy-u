@@ -114,7 +114,16 @@
                     <div>
                         <div class="form-row">
                             <div class="form-input col-md-2">
-                                <label> 特殊申请类型：</label><select id="sq_type"></select>
+                                <label> 特殊申请类型：</label>
+                                <select id="sq_type">
+                                    <option value="">请选择</option>
+                                    <option value="1">委托付款</option>
+                                    <option value="2">到期转投</option>
+                                    <option value="3">未到期转投</option>
+                                    <option value="4">基金续投</option>
+                                    <option value="5">退伙申请</option>
+                                    <option value="6">合并申请</option>
+                                </select>
                             </div>
                             <div class="form-label col-md-2">
                             </div>
