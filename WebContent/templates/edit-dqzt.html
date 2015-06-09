@@ -1,0 +1,80 @@
+<div id="edit_panel" class="edit-panel">
+    <br>
+
+    <h2 style="text-align: center">到期转换申请表</h2>
+    <br>
+
+    <form class="form-bordered" action="" method="">
+        <div class="form-row">
+            <div class="form-label col-md-2">申请部门：</div>
+            <div class="form-label col-md-2">{$T.sqbm}</div>
+            <div class="form-label col-md-2">申请人：</div>
+            <div class="form-label col-md-2">{$T.sqr.chainName}</div>
+            <div class="form-label col-md-2">申请时间：</div>
+            <div class="form-label col-md-2">{DATEFORMAT.toDate($T.scrq)}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-12"><p class="font-size-20">1.原基金认购信息</p></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3">基金名称：</div>
+            <div class="form-label col-md-3">{$T.fundName}</div>
+            <div class="form-label col-md-3">合同编号:</div>
+            <div class="form-label col-md-3">{$T.htbh}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3">认购日期：</div>
+            <div class="form-label col-md-3">{DATEFORMAT.toDate($T.rgrq)}</div>
+            <div class="form-label col-md-3">认购金额：</div>
+            <div class="form-label col-md-3">{NUMBERFORMAT.toYuan($T.oldArchives.tzje)}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3">到期日期：</div>
+            <div class="form-label col-md-3">{DATEFORMAT.toDate($T.dqrq)}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-12"><p class="font-size-20">2.客户信息</p></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3">客户名称：</div>
+            <div class="form-label col-md-3">{$T.customer.name}</div>
+            <div class="form-label col-md-3">证件类型：</div>
+            <div class="form-label col-md-3">{$T.customer.credentialsType}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3">证件号码：</div>
+            <div class="form-label col-md-3">{$T.customer.credentialsNumber}</div>
+            <div class="form-label col-md-3">法定代表人：</div>
+            <div class="form-label col-md-3">{($T.customer.fddbr || '-')}</div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-12"><p class="font-size-20">3.转入新的基金信息</p></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3"><label>基金名称：</label></div>
+            <div class="form-input col-md-3"><input name="newFundName" value="{$T.newFundName}" /></div>
+            <div class="form-label col-md-3"><label>转投本金金额：</label></div>
+            <div class="form-input col-md-3"><input name="ztje" value="{$T.ztje}" /> </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3"><label>原基金需付剩余收益额 ：</label></div>
+            <div class="form-input col-md-3"><input name="tzjj" /></div>
+            <div class="form-label col-md-3"><label>转投收益额：</label></div>
+            <div class="form-input col-md-3"><input name="ztsye" value="{$T.ztsye}" /> </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-3"><label>新合同编号：</label></div>
+            <div class="form-input col-md-3"><input name="xhtbh" value="{$T.xhtbh}" /></div>
+            <div class="form-label col-md-3"><label>转投总金额：</label></div>
+            <div class="form-input col-md-3"><label id="totalZtje" >{$T.ztje+$T.ztsye}</label> </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-12"><p class="font-size-20">4.特殊情况备注说明</p></div>
+        </div>
+        <div class="form-row">
+            <div class="form-input col-md-12">
+                <textarea name="bz" id="lab-bz" class="small-textarea"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
