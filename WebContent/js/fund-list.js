@@ -120,8 +120,6 @@ var FUND_LIST = {
         var table = $(this.TABLE_ID);
         var row = $("<tr></tr>");
         table.append(row);
-
-        //row.append('<td><a class="item-url" target="_blank" href="./fund-report.jsp?id=' + item.id + '">详细统计</a><td>');
         row.append('<td><a class="item-url mrg5R" target="_blank" href="./fund-report.jsp?id=' + item.id + '">详细统计</a><a class="item-url" target="_blank" href="./fund-edit.jsp?id=' + item.id + '" >' + item.fundNo + '</a></td>');
         row.append('<td>' + this.fund.toName(item) + '</td>');
         row.append('<td><div class="text-right">' + this.fund.toYMGM(item) + '</div></td>');
