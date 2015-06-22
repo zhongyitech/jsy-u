@@ -3215,7 +3215,11 @@ var DataOperation = {
                             that.log(response[REST.RESULT_KEY]);
                         }
                         if (failed == null) {
-                            that.alert("调用接口操作失败！\n\n提示：请提供 failed 回调方法以处理此操作结果。")
+                            if(response.rest_result){
+                                $.message.error(response.rest_result);
+                            }else{
+                                that.alert("调用接口操作失败！\n\n提示：请提供 failed 回调方法以处理此操作结果。")
+                            }
                         } else {
                             failed(response[REST.MSG_KEY], response[REST.RESULT_KEY]);
                         }

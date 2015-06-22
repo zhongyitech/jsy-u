@@ -194,6 +194,7 @@ var FUND_REPORT = {
     ini: function (async) {
 
         $.io.get({url: '/api/report/fundTrend'}).success(function (data) {
+            if(!data)return;
             $('#fund-report').highcharts({
                 chart: {
                     type: 'line'
