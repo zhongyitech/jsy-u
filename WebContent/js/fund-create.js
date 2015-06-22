@@ -881,6 +881,7 @@ var FUND_FORM = {//基金表单
         $.io.put(true, data).success(function (result) {
             window.location = PAGE.FUND_LIST
         }).error(function (error) {
+            $.errorMessage(error);
             console.log(error);
         });
     }
